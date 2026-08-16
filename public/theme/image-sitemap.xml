@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  <url>
+    <loc>https://kodrank.com/services/on-page-seo/</loc>
+    <image:image>
+      <image:loc>https://kodrank.com/services/on-page-seo/images/on-page-seo-services-agency-banner.jpg</image:loc>
+      <image:title>On Page SEO Services</image:title>
+      <image:caption>On-page SEO services specialist optimizing a website with SEO keyword, ranking and content icons.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://kodrank.com/services/on-page-seo/images/on-page-seo-optimization-website-growth.jpg</image:loc>
+      <image:title>On-Page SEO Optimization for Website Growth</image:title>
+      <image:caption>On-page SEO optimization driving website growth, shown as a laptop with SEO analytics and ranking icons.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://kodrank.com/services/on-page-seo/images/on-page-seo-audit-search-network.jpg</image:loc>
+      <image:title>Free On-Page SEO Audit</image:title>
+      <image:caption>Free on-page SEO audit concept: a digital network connecting web pages, search and contact points.</image:caption>
+    </image:image>
+  </url>
+</urlset>

@@ -1,0 +1,340 @@
+/* ─────────────────────────────────────────────────────────
+   KodRank — WordPress Development Services
+   Ported from public/theme/blog/kodrank-wordpress-development-services
+   Scoped to body.page-wordpress so it cannot leak into other pages.
+   ───────────────────────────────────────────────────────── */
+
+.page-wordpress{
+  --ink-2:#0F2A33;
+  --ink-3:#163B44;
+  --wp-shadow-sm:0 1px 2px rgba(13,32,41,.05),0 6px 18px -8px rgba(13,32,41,.10);
+  --wp-shadow-md:0 2px 4px rgba(13,32,41,.05),0 18px 40px -20px rgba(13,32,41,.22);
+  --wp-why-bg:url('../media/services/wordpress/why-bg.jpg');
+  --wp-stats-bg:url('../media/services/wordpress/stats-bg.jpg');
+  --wp-cta-bg:url('../media/services/wordpress/cta-bg.jpg');
+}
+
+.page-wordpress section{padding:clamp(44px,7vw,100px) 0;position:relative}
+.page-wordpress .sec-paper{background:var(--paper,#fff)}
+
+/* theme typography scale — home.css runs a larger display scale */
+.page-wordpress h1,
+.page-wordpress h2,
+.page-wordpress h3,
+.page-wordpress h4{line-height:1.15;letter-spacing:-.01em;color:var(--graphite)}
+.page-wordpress h1{font-weight:800;font-size:clamp(2.2rem,5.2vw,4.1rem);letter-spacing:-.025em}
+.page-wordpress h2{font-weight:700;font-size:clamp(1.75rem,3.6vw,2.65rem);letter-spacing:-.02em}
+.page-wordpress h3{font-weight:650;font-size:clamp(1.15rem,1.8vw,1.45rem)}
+.page-wordpress h4{font-weight:600;font-size:1.05rem}
+.page-wordpress .sec-ink h1,
+.page-wordpress .sec-ink h2,
+.page-wordpress .sec-ink h3,
+.page-wordpress .sec-ink h4{color:#fff}
+.page-wordpress p{color:var(--slate);font-size:1rem;line-height:1.7}
+.page-wordpress .eyebrow::before{content:"— ";display:inline;margin-right:2px}
+
+.page-wordpress .sec-ink p{color:#9FB6BE}
+.page-wordpress .sec-ink .body-2{color:#B7CBD2}
+.page-wordpress .sec-ink strong{color:#fff}
+.page-wordpress .hl{color:var(--signal-deep);font-weight:600}
+.page-wordpress .sec-ink .hl{color:var(--signal)}
+
+.page-wordpress .section-head{max-width:820px;margin:0 0 clamp(24px,4vw,40px);text-align:left}
+.page-wordpress .section-head p{margin-top:16px;font-size:1.05rem}
+
+/* ── HERO ───────────────────────────────────────────────── */
+.page-wordpress .wp-hero{background:var(--ink);color:#fff;padding:0;overflow:hidden;position:relative;min-height:min(760px,92vh)}
+.page-wordpress .wp-hero-grid{display:block;padding:calc(84px + clamp(24px,3.5vw,48px)) 0 clamp(56px,7vw,104px);width:100%}
+.page-wordpress .wp-hero-copy{padding:0;max-width:none;position:relative;z-index:3}
+.page-wordpress .wp-hero h1{color:#fff;font-size:clamp(2.35rem,6.4vw,4.1rem);line-height:1.08;letter-spacing:-.03em;font-weight:800;margin:24px 0 28px;max-width:640px;text-shadow:0 2px 24px rgba(0,0,0,.35)}
+.page-wordpress .wp-hero h1 .accent{color:var(--signal);display:inline}
+.page-wordpress .wp-hero .lede{font-size:clamp(1.05rem,1.4vw,1.22rem);line-height:1.6;color:#B7CBD2;margin-bottom:30px;max-width:560px;text-shadow:0 2px 16px rgba(0,0,0,.3)}
+.page-wordpress .wp-hero-cta{display:flex;flex-wrap:wrap;gap:14px;margin-bottom:36px}
+
+.page-wordpress .wp-breadcrumb{margin-bottom:28px}
+.page-wordpress .wp-breadcrumb ol{display:flex;flex-wrap:wrap;align-items:center;gap:10px;list-style:none;font-size:.8rem;font-weight:500;letter-spacing:.04em;margin:0;padding:0}
+.page-wordpress .wp-breadcrumb li{display:flex;align-items:center;gap:10px}
+.page-wordpress .wp-breadcrumb li:not(:last-child)::after{content:"›";color:#5A6E77;font-size:1rem;font-weight:400;line-height:1}
+.page-wordpress .wp-breadcrumb a{color:#B7CBD2;transition:color .2s ease}
+.page-wordpress .wp-breadcrumb a:hover{color:var(--signal)}
+.page-wordpress .wp-breadcrumb [aria-current="page"]{color:var(--signal);font-weight:600}
+
+.page-wordpress .wp-hero-badges{display:flex;flex-wrap:wrap;gap:22px 40px;padding-top:24px;border-top:1px solid rgba(255,255,255,.12);max-width:940px}
+.page-wordpress .wp-hero-badge{display:flex;flex-direction:column;gap:2px}
+.page-wordpress .wp-hero-badge .num{font-size:2rem;font-weight:800;color:var(--signal);line-height:1;letter-spacing:-.02em}
+.page-wordpress .wp-hero-badge .num .unit{color:#fff;font-size:1rem;font-weight:600}
+.page-wordpress .wp-hero-badge .lbl{font-size:.72rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:#8FA5AD;margin-top:10px}
+
+.page-wordpress .wp-hero-visual{position:absolute;inset:0;z-index:1;height:100%;min-height:100%;overflow:hidden;pointer-events:none}
+.page-wordpress .wp-hero-visual::before{
+  content:"";position:absolute;inset:0;z-index:2;
+  background:linear-gradient(95deg,
+    rgba(10,26,34,1) 0%,
+    rgba(10,26,34,.96) 10%,
+    rgba(10,26,34,.82) 22%,
+    rgba(10,26,34,.58) 34%,
+    rgba(10,26,34,.34) 46%,
+    rgba(10,26,34,.15) 58%,
+    rgba(10,26,34,.04) 68%,
+    rgba(10,26,34,0) 78%);
+  pointer-events:none;
+}
+.page-wordpress .wp-hero-visual::after{
+  content:"";position:absolute;inset:0;z-index:2;
+  background:linear-gradient(180deg,rgba(10,26,34,.32) 0%,rgba(10,26,34,0) 16%,rgba(10,26,34,0) 80%,rgba(10,26,34,.5) 100%);
+  pointer-events:none;
+}
+.page-wordpress .wp-hero-img{width:100%;height:100%;object-fit:cover;object-position:right center;position:absolute;inset:0;opacity:1}
+
+@media(max-width:820px){
+  .page-wordpress .wp-hero{min-height:auto}
+  .page-wordpress .wp-hero-grid{padding:118px 0 64px}
+  .page-wordpress .wp-hero-badges{gap:22px 32px}
+  .page-wordpress .wp-hero-badge .num{font-size:1.5rem}
+  .page-wordpress .wp-hero h1{font-size:clamp(2.1rem,9vw,3.2rem);line-height:1.12}
+  .page-wordpress .wp-hero-visual::before{
+    background:linear-gradient(180deg,
+      rgba(10,26,34,.92) 0%,
+      rgba(10,26,34,.8) 36%,
+      rgba(10,26,34,.5) 58%,
+      rgba(10,26,34,.28) 74%,
+      rgba(10,26,34,.5) 100%);
+  }
+  .page-wordpress .wp-hero-visual::after{display:none}
+}
+
+/* ── TRUST BAR ──────────────────────────────────────────── */
+.page-wordpress .wp-trust{background:var(--paper,#fff);padding:clamp(32px,4.5vw,52px) 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.page-wordpress .wp-trust-inner{display:flex;align-items:center;justify-content:space-between;gap:32px;flex-wrap:wrap}
+.page-wordpress .wp-trust-label{font-size:.75rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--slate-2)}
+.page-wordpress .wp-trust-logos{display:flex;align-items:center;gap:clamp(20px,3vw,48px);flex-wrap:wrap;opacity:.65}
+.page-wordpress .wp-trust-logo{font-weight:700;font-size:.9rem;color:var(--slate);letter-spacing:.02em}
+
+/* ── PROBLEM CARDS (dark) ───────────────────────────────── */
+.page-wordpress .problem-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:0}
+@media(max-width:980px){.page-wordpress .problem-grid{grid-template-columns:repeat(2,1fr)}}
+.page-wordpress .problem-card{background:var(--ink-2);border:1px solid rgba(244,122,31,.16);border-radius:18px;padding:clamp(24px,3vw,30px) clamp(22px,2.5vw,26px);position:relative;transition:all .3s ease}
+.page-wordpress .problem-card:hover{border-color:rgba(244,122,31,.4);transform:translateY(-2px)}
+.page-wordpress .problem-card .icon{width:44px;height:44px;border-radius:12px;background:rgba(244,122,31,.12);display:grid;place-items:center;margin-bottom:18px}
+.page-wordpress .problem-card .icon svg{width:22px;height:22px;stroke:var(--signal);fill:none;stroke-width:1.75}
+.page-wordpress .problem-card h4{color:#fff;margin-bottom:10px;font-size:1.02rem;font-weight:600}
+.page-wordpress .problem-card p{font-size:.9rem;color:#9FB6BE;line-height:1.6}
+
+/* ── SERVICE CARDS (light) ──────────────────────────────── */
+.page-wordpress .service-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px}
+.page-wordpress .svc-card{background:var(--paper,#fff);border-radius:18px;padding:clamp(24px,3vw,30px) clamp(22px,2.5vw,26px);border:1px solid var(--line);position:relative;transition:all .3s ease;display:flex;flex-direction:column}
+.page-wordpress .svc-card:hover{transform:translateY(-3px);box-shadow:var(--wp-shadow-md);border-color:transparent}
+.page-wordpress .svc-card .tile{width:52px;height:52px;border-radius:12px;background:var(--mist);display:grid;place-items:center;transition:background .25s ease;margin-bottom:20px}
+.page-wordpress .svc-card:hover .tile{background:var(--signal)}
+.page-wordpress .svc-card .tile svg{width:26px;height:26px;stroke:var(--graphite);fill:none;stroke-width:1.75;transition:stroke .25s ease}
+.page-wordpress .svc-card:hover .tile svg{stroke:var(--signal-ink)}
+.page-wordpress .svc-card .check{position:absolute;top:24px;right:24px;width:26px;height:26px;border-radius:50%;background:var(--signal);color:var(--signal-ink);display:grid;place-items:center;font-size:.75rem;font-weight:700}
+.page-wordpress .svc-card .check svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:3}
+.page-wordpress .svc-card h3{margin-bottom:10px;font-weight:650;font-size:1.15rem}
+.page-wordpress .svc-card p{font-size:.9rem;flex:1;margin-bottom:0}
+
+/* ── FEATURE CARDS (dark) ───────────────────────────────── */
+.page-wordpress .feature-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+@media(max-width:980px){.page-wordpress .feature-grid{grid-template-columns:repeat(2,1fr)}}
+.page-wordpress .feat-card{background:var(--ink-2);border:1px solid rgba(244,122,31,.16);border-radius:18px;padding:clamp(26px,3.2vw,32px) clamp(22px,2.8vw,28px);transition:all .3s ease;position:relative}
+.page-wordpress .feat-card:hover{border-color:rgba(244,122,31,.35);background:var(--ink-3)}
+.page-wordpress .feat-card .ic{width:48px;height:48px;border-radius:12px;background:rgba(244,122,31,.14);display:grid;place-items:center;margin-bottom:20px}
+.page-wordpress .feat-card .ic svg{width:24px;height:24px;stroke:var(--signal);fill:none;stroke-width:1.75}
+.page-wordpress .feat-card h3{color:#fff;font-size:1.1rem;margin-bottom:10px}
+.page-wordpress .feat-card p{font-size:.9rem;color:#B7CBD2}
+
+/* ── SECTION BACKGROUND ART ─────────────────────────────── */
+.page-wordpress .sec-ink.why-bg{position:relative;isolation:isolate;overflow:hidden}
+.page-wordpress .sec-ink.why-bg::before{
+  content:"";position:absolute;inset:0;z-index:-2;
+  background:var(--wp-why-bg) center 30%/cover no-repeat;
+}
+.page-wordpress .sec-ink.why-bg::after{
+  content:"";position:absolute;inset:0;z-index:-1;
+  background:
+    linear-gradient(100deg,rgba(10,26,34,.92) 0%,rgba(10,26,34,.74) 24%,rgba(10,26,34,.46) 44%,rgba(10,26,34,.22) 64%,rgba(10,26,34,.34) 100%),
+    linear-gradient(180deg,rgba(10,26,34,.52) 0%,rgba(10,26,34,.18) 30%,rgba(10,26,34,.06) 68%,rgba(10,26,34,.16) 100%);
+}
+.page-wordpress .sec-ink.why-bg .feat-card{
+  background:rgba(15,42,51,.74);
+  backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+  border-color:rgba(244,122,31,.18);
+}
+.page-wordpress .sec-ink.why-bg .feat-card:hover{background:rgba(22,59,68,.82)}
+
+.page-wordpress .sec-ink.stats-bg{position:relative;isolation:isolate;overflow:hidden}
+.page-wordpress .sec-ink.stats-bg::before{
+  content:"";position:absolute;inset:0;z-index:-2;
+  background:var(--wp-stats-bg) center right/cover no-repeat;
+}
+.page-wordpress .sec-ink.stats-bg::after{
+  content:"";position:absolute;inset:0;z-index:-1;
+  background:
+    linear-gradient(100deg,rgba(10,26,34,.88) 0%,rgba(10,26,34,.7) 26%,rgba(10,26,34,.44) 48%,rgba(10,26,34,.24) 68%,rgba(10,26,34,.34) 100%),
+    linear-gradient(180deg,rgba(10,26,34,.18) 0%,rgba(10,26,34,.42) 20%,rgba(10,26,34,.42) 80%,rgba(10,26,34,.18) 100%);
+}
+.page-wordpress .sec-ink.stats-bg .stat{border-left-color:rgba(255,255,255,.15)}
+
+.page-wordpress .sec-ink.cta-bg{position:relative;isolation:isolate;overflow:hidden}
+.page-wordpress .sec-ink.cta-bg::before{
+  content:"";position:absolute;inset:0;z-index:-2;
+  background:var(--wp-cta-bg) center 38%/cover no-repeat;
+}
+.page-wordpress .sec-ink.cta-bg::after{
+  content:"";position:absolute;inset:0;z-index:-1;
+  background:
+    radial-gradient(62% 130% at 50% 50%,rgba(10,26,34,.94) 0%,rgba(10,26,34,.84) 42%,rgba(10,26,34,.56) 68%,rgba(10,26,34,.3) 100%),
+    linear-gradient(90deg,rgba(10,26,34,.22) 0%,rgba(10,26,34,.08) 14%,rgba(10,26,34,.18) 55%,rgba(10,26,34,.6) 78%,rgba(10,26,34,.74) 100%),
+    linear-gradient(180deg,rgba(10,26,34,.35) 0%,rgba(10,26,34,.05) 25%,rgba(10,26,34,.05) 75%,rgba(10,26,34,.4) 100%);
+}
+
+@media(max-width:820px){
+  .page-wordpress .sec-ink.why-bg::after{
+    background:linear-gradient(180deg,rgba(10,26,34,.86) 0%,rgba(10,26,34,.62) 34%,rgba(10,26,34,.34) 62%,rgba(10,26,34,.5) 100%);
+  }
+  .page-wordpress .sec-ink.stats-bg::after{
+    background:linear-gradient(180deg,rgba(10,26,34,.85) 0%,rgba(10,26,34,.55) 32%,rgba(10,26,34,.4) 68%,rgba(10,26,34,.72) 100%);
+  }
+  .page-wordpress .sec-ink.cta-bg::after{
+    background:
+      radial-gradient(90% 120% at 50% 45%,rgba(10,26,34,.92) 0%,rgba(10,26,34,.82) 50%,rgba(10,26,34,.6) 100%),
+      linear-gradient(180deg,rgba(10,26,34,.4) 0%,rgba(10,26,34,.15) 30%,rgba(10,26,34,.6) 100%);
+  }
+}
+
+/* ── PROCESS ────────────────────────────────────────────── */
+.page-wordpress .process-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px;margin-top:0}
+.page-wordpress .proc{background:var(--paper,#fff);border-radius:18px;padding:clamp(24px,3vw,28px) clamp(22px,2.5vw,24px);border:1px solid var(--line);border-top:2px solid var(--signal);position:relative;transition:all .3s ease}
+.page-wordpress .proc:hover{box-shadow:var(--wp-shadow-md);transform:translateY(-2px)}
+.page-wordpress .proc .num{font-size:2.5rem;font-weight:800;color:var(--signal);line-height:1;letter-spacing:-.03em;margin-bottom:18px;display:block}
+.page-wordpress .proc h4{font-size:1.05rem;font-weight:650;margin-bottom:8px}
+.page-wordpress .proc p{font-size:.9rem}
+
+/* ── STATS ──────────────────────────────────────────────── */
+.page-wordpress .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:24px;margin-top:0}
+.page-wordpress .stat{padding:16px 0;border-left:1px solid rgba(255,255,255,.08);padding-left:22px}
+.page-wordpress .stat:first-child{border-left:none;padding-left:0}
+.page-wordpress .stat .num{font-size:clamp(2.3rem,4vw,3rem);font-weight:800;line-height:1;letter-spacing:-.03em;color:#fff;display:block;margin-bottom:10px}
+.page-wordpress .stat .num.signal{color:var(--signal)}
+.page-wordpress .stat .lbl{font-size:.72rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:#7A929A}
+
+/* ── COMPARISON ─────────────────────────────────────────── */
+.page-wordpress .compare-wrap{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:0}
+.page-wordpress .compare-card{background:var(--ink-2);border-radius:18px;padding:clamp(28px,3vw,32px) clamp(22px,2.5vw,28px);border:1px solid rgba(244,122,31,.16)}
+.page-wordpress .compare-card.pro{border:2px solid var(--signal);background:var(--ink);position:relative}
+.page-wordpress .compare-card.pro::before{content:attr(data-badge);position:absolute;top:-14px;left:32px;background:var(--signal);color:var(--signal-ink);padding:5px 14px;border-radius:999px;font-size:.72rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase}
+.page-wordpress .compare-card h3{color:#fff;font-size:1.1rem;margin-bottom:22px;font-weight:650}
+.page-wordpress .compare-card.muted h3{color:#9FB6BE}
+.page-wordpress .compare-list{list-style:none;display:flex;flex-direction:column;gap:13px;margin:0;padding:0}
+.page-wordpress .compare-list li{font-size:.9rem;color:#B7CBD2;padding-left:30px;position:relative;line-height:1.55}
+.page-wordpress .compare-list li .mark{position:absolute;left:0;top:2px;width:19px;height:19px;border-radius:50%;display:grid;place-items:center;font-size:.68rem;font-weight:700}
+.page-wordpress .compare-list li .mark.x{background:rgba(255,80,80,.12);color:#FF7676}
+.page-wordpress .compare-list li .mark.v{background:var(--signal);color:var(--signal-ink)}
+.page-wordpress .compare-card.muted li{color:#9FB6BE}
+@media(max-width:820px){.page-wordpress .compare-wrap{grid-template-columns:1fr}}
+
+/* ── WHY US ─────────────────────────────────────────────── */
+.page-wordpress .why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+@media(max-width:980px){.page-wordpress .why-grid{grid-template-columns:repeat(2,1fr)}}
+.page-wordpress .why-card{background:var(--ink);border-radius:18px;padding:clamp(26px,3.2vw,32px) clamp(22px,3vw,28px);color:#fff;border:1px solid rgba(255,255,255,.06);transition:all .3s ease}
+.page-wordpress .why-card:hover{transform:translateY(-3px);box-shadow:var(--wp-shadow-md);border-color:rgba(244,122,31,.3)}
+.page-wordpress .why-card .tile{width:48px;height:48px;border-radius:12px;background:rgba(244,122,31,.14);display:grid;place-items:center;margin-bottom:18px}
+.page-wordpress .why-card .tile svg{width:22px;height:22px;stroke:var(--signal);fill:none;stroke-width:1.75}
+.page-wordpress .why-card h3{color:#fff;font-size:1.05rem;margin-bottom:8px}
+.page-wordpress .why-card p{font-size:.875rem;color:#9FB6BE;margin-bottom:0}
+
+/* ── TESTIMONIALS ───────────────────────────────────────── */
+.page-wordpress .testi-wrap{margin-top:0}
+.page-wordpress .testi-track{display:flex;gap:20px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;-ms-overflow-style:none;padding-bottom:4px}
+.page-wordpress .testi-track::-webkit-scrollbar{display:none}
+.page-wordpress .testi{flex:0 0 clamp(280px,42vw,420px);scroll-snap-align:start;background:var(--paper,#fff);border:1px solid var(--line);border-radius:18px;padding:clamp(24px,3vw,28px);display:flex;flex-direction:column}
+.page-wordpress .testi .stars{display:flex;gap:3px;margin-bottom:16px}
+.page-wordpress .testi .stars svg{width:15px;height:15px;fill:var(--signal);stroke:none}
+.page-wordpress .testi p{font-size:.925rem;color:var(--graphite);line-height:1.65;margin-bottom:20px;flex:1}
+.page-wordpress .testi-person{display:flex;align-items:center;gap:12px}
+.page-wordpress .testi-avatar{width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,var(--signal),var(--signal-deep));display:grid;place-items:center;color:#fff;font-weight:700;font-size:.85rem}
+.page-wordpress .testi-name{font-weight:650;font-size:.9rem}
+.page-wordpress .testi-role{font-size:.8rem;color:var(--slate-2)}
+.page-wordpress .testi-controls{display:flex;gap:10px;margin-top:24px}
+.page-wordpress .testi-nav{width:40px;height:40px;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;transition:all .2s;background:none;cursor:pointer}
+.page-wordpress .testi-nav:hover:not(:disabled){background:var(--ink);border-color:var(--ink)}
+.page-wordpress .testi-nav:hover:not(:disabled) svg{stroke:#fff}
+.page-wordpress .testi-nav svg{width:16px;height:16px;stroke:var(--graphite);fill:none;stroke-width:2.2}
+.page-wordpress .testi-nav:disabled{opacity:.3;cursor:default}
+
+/* ── FAQ ────────────────────────────────────────────────── */
+.page-wordpress #faq .section-head.center{margin-left:auto;margin-right:auto;text-align:center}
+.page-wordpress #faq .section-head.center p{margin-left:auto;margin-right:auto}
+.page-wordpress .faq-list{max-width:820px;margin:0 auto;display:flex;flex-direction:column;gap:10px}
+.page-wordpress .faq-item{background:var(--paper,#fff);border:1px solid var(--line);border-radius:14px;padding:6px 22px;transition:border-color .2s}
+.page-wordpress .faq-item[open]{border-color:rgba(244,122,31,.35)}
+.page-wordpress .faq-item summary{list-style:none;cursor:pointer;padding:18px 0;display:flex;align-items:center;justify-content:space-between;gap:16px;font-weight:650;font-size:1rem;color:var(--graphite)}
+.page-wordpress .faq-item summary::-webkit-details-marker{display:none}
+.page-wordpress .faq-toggle{flex-shrink:0;color:var(--signal-deep);font-size:1.3rem;font-weight:400;transition:transform .2s}
+.page-wordpress .faq-item[open] .faq-toggle{transform:rotate(45deg)}
+.page-wordpress .faq-body{padding:0 0 22px;font-size:.925rem;color:var(--slate);line-height:1.7}
+
+/* ── SHARED PAGE CAROUSEL (WP card sections) ────────────── */
+.page-wordpress .page-svc-carousel .feature-grid,
+.page-wordpress .page-svc-carousel .why-grid,
+.page-wordpress .page-svc-carousel .compare-wrap,
+.page-wordpress .page-svc-carousel .problem-grid,
+.page-wordpress .page-svc-carousel .service-grid,
+.page-wordpress .page-svc-carousel .process-list{display:contents}
+.page-wordpress .page-svc-carousel .feat-card,
+.page-wordpress .page-svc-carousel .why-card,
+.page-wordpress .page-svc-carousel .compare-card,
+.page-wordpress .page-svc-carousel .problem-card,
+.page-wordpress .page-svc-carousel .svc-card,
+.page-wordpress .page-svc-carousel .proc{
+  display:flex;
+  flex-direction:column;
+  height:auto;
+  min-height:100%;
+  box-sizing:border-box;
+}
+.page-wordpress .page-svc-carousel--ink .svc-nav{
+  border-color:rgba(255,255,255,.22);
+  color:#fff;
+  background:rgba(10,26,34,.35);
+}
+.page-wordpress .page-svc-carousel--ink .svc-nav:hover:not(:disabled){
+  background:var(--signal);
+  border-color:var(--signal);
+  color:var(--signal-ink);
+}
+
+/* ── FINAL CTA ──────────────────────────────────────────── */
+.page-wordpress .cta-band{text-align:center;max-width:760px;margin:0 auto;position:relative;z-index:2}
+.page-wordpress .cta-band .btn{margin-top:8px}
+.page-wordpress .cta-band .eyebrow::before{content:none}
+
+/* ── CONTACT ────────────────────────────────────────────── */
+.page-wordpress .contact-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:44px;align-items:start}
+@media(max-width:900px){.page-wordpress .contact-grid{grid-template-columns:1fr}}
+.page-wordpress .contact-side h2{margin-bottom:16px}
+.page-wordpress .contact-side p{margin-bottom:32px}
+.page-wordpress .contact-meta{display:flex;flex-direction:column;gap:20px}
+.page-wordpress .cm-item{display:flex;align-items:center;gap:14px}
+.page-wordpress .cm-icon{width:40px;height:40px;border-radius:10px;background:var(--paper,#fff);border:1px solid var(--line);display:grid;place-items:center;flex-shrink:0}
+.page-wordpress .cm-icon svg{width:18px;height:18px;stroke:var(--signal-deep);fill:none;stroke-width:1.8}
+.page-wordpress .cm-item .label{font-size:.72rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--slate-2)}
+.page-wordpress .cm-item .value{font-weight:600;font-size:.95rem;margin-top:2px}
+
+.page-wordpress .contact-card{background:var(--paper,#fff);border-radius:18px;padding:clamp(28px,3.5vw,36px);box-shadow:var(--wp-shadow-md)}
+.page-wordpress .form-row{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.page-wordpress .form-field{display:flex;flex-direction:column;gap:8px}
+.page-wordpress .form-field.full{grid-column:1/-1}
+.page-wordpress .form-field label{font-size:.8rem;font-weight:600;color:var(--graphite)}
+.page-wordpress .form-field input,
+.page-wordpress .form-field select,
+.page-wordpress .form-field textarea{
+  border:none;border-bottom:1.5px solid var(--line);padding:10px 2px;font-size:.95rem;
+  background:transparent;color:var(--graphite);transition:border-color .2s;font-family:inherit;
+}
+.page-wordpress .form-field input:focus,
+.page-wordpress .form-field select:focus,
+.page-wordpress .form-field textarea:focus{outline:none;border-color:var(--signal)}
+.page-wordpress .form-field textarea{resize:vertical}
+.page-wordpress .form-submit{margin-top:26px;width:100%;justify-content:center}
+@media(max-width:560px){.page-wordpress .form-row{grid-template-columns:1fr}}

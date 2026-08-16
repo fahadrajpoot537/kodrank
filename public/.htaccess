@@ -1,0 +1,83 @@
+<IfModule mod_headers.c>
+    Header always set X-Frame-Options "SAMEORIGIN"
+    Header always set X-Content-Type-Options "nosniff"
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+    Header always set Permissions-Policy "accelerometer=(), autoplay=(), camera=(), display-capture=(), encrypted-media=(), fullscreen=(self), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), payment=(), usb=()"
+
+    # HSTS — HTTPS only (Hostinger / proxies may use X-Forwarded-Proto)
+    SetEnvIf HTTPS on KODRANK_HTTPS=1
+    SetEnvIf X-Forwarded-Proto "^https$" KODRANK_HTTPS=1
+    Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains" env=KODRANK_HTTPS
+    # HSTS — only when the request is already HTTPS (avoids locking local http)
+    Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload" env=HTTPS
+</IfModule>
+
+<IfModule mod_rewrite.c>
+    <IfModule mod_negotiation.c>
+        Options -MultiViews -Indexes
+    </IfModule>
+
+    RewriteEngine On
+
+    # ----------------------------------------------------------------------
+    # Production canonical host ONLY (kodrank.com / www.kodrank.com).
+    # Localhost / 127.0.0.1 / other hosts are never redirected.
+    # Goal: a single 301 to https://kodrank.com + cleaned path.
+    # ----------------------------------------------------------------------
+
+    # /public/... → https://kodrank.com/...  (also forces https + non-www)
+    RewriteCond %{HTTP_HOST} ^(www\.)?kodrank\.com$ [NC]
+    RewriteCond %{THE_REQUEST} \s/+public/([^\s?]*) [NC]
+    RewriteRule ^(?:public/)?(.*)$ https://kodrank.com/%1 [L,R=301,QSD]
+
+    RewriteCond %{HTTP_HOST} ^(www\.)?kodrank\.com$ [NC]
+    RewriteCond %{THE_REQUEST} \s/+public[\s?] [NC]
+    RewriteRule ^public/?$ https://kodrank.com/ [L,R=301,QSD]
+
+    # /index.php/... → https://kodrank.com/...
+    RewriteCond %{HTTP_HOST} ^(www\.)?kodrank\.com$ [NC]
+    RewriteCond %{THE_REQUEST} \s/+index\.php/([^\s?]*) [NC]
+    RewriteRule ^index\.php/(.*)$ https://kodrank.com/$1 [L,R=301,QSD]
+
+    RewriteCond %{HTTP_HOST} ^(www\.)?kodrank\.com$ [NC]
+    RewriteCond %{THE_REQUEST} \s/+index\.php[\s?] [NC]
+    RewriteRule ^index\.php/?$ https://kodrank.com/ [L,R=301,QSD]
+
+    # http and/or www on homepage (with or without query) → https://kodrank.com/
+    RewriteCond %{HTTP_HOST} ^(www\.)?kodrank\.com$ [NC]
+    RewriteCond %{HTTPS} !=on [OR]
+    RewriteCond %{HTTP_HOST} ^www\.kodrank\.com$ [NC]
+    RewriteCond %{REQUEST_URI} ^/$
+    RewriteRule ^$ https://kodrank.com/ [L,R=301,QSD]
+
+    # http and/or www on any other path → https://kodrank.com{path}{query}
+    RewriteCond %{HTTP_HOST} ^(www\.)?kodrank\.com$ [NC]
+    RewriteCond %{HTTPS} !=on [OR]
+    RewriteCond %{HTTP_HOST} ^www\.kodrank\.com$ [NC]
+    RewriteRule ^ https://kodrank.com%{REQUEST_URI} [L,R=301]
+
+    # Already on https://kodrank.com/ but still has a query string → strip (homepage only)
+    RewriteCond %{HTTP_HOST} ^kodrank\.com$ [NC]
+    RewriteCond %{HTTPS} =on
+    RewriteCond %{REQUEST_URI} ^/$
+    RewriteCond %{QUERY_STRING} ^.+$
+    RewriteRule ^$ https://kodrank.com/? [L,R=301]
+
+    # Handle Authorization Header
+    RewriteCond %{HTTP:Authorization} .
+    RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+
+    # Handle X-XSRF-Token Header
+    RewriteCond %{HTTP:x-xsrf-token} .
+    RewriteRule .* - [E=HTTP_X_XSRF_TOKEN:%{HTTP:X-XSRF-Token}]
+
+    # Redirect Trailing Slashes If Not A Folder...
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_URI} (.+)/$
+    RewriteRule ^ %1 [L,R=301]
+
+    # Send Requests To Front Controller...
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteRule ^ index.php [L]
+</IfModule>

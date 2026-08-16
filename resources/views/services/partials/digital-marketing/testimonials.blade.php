@@ -1,0 +1,42 @@
+@php $tm = $s['testimonials'] ?? []; @endphp
+<section class="sec-mist">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">{{ $tm['eyebrow'] ?? 'What Clients Say' }}</span>
+      <h2>
+        @if(!empty($tm['title_html']))
+          {!! $tm['title_html'] !!}
+        @else
+          {{ $tm['title'] ?? '' }}
+        @endif
+      </h2>
+      <p>{{ $tm['lede'] ?? '' }}</p>
+    </div>
+
+    <div class="testi-slider">
+      <div class="testi-track" id="testiTrack">
+        @foreach($tm['items'] ?? [] as $item)
+          <div class="testi">
+            <div class="stars">{{ $item['stars'] ?? '★★★★★' }}</div>
+            <p class="quote">"{{ $item['quote'] ?? '' }}"</p>
+            <div class="testi-person">
+              <div class="avatar">{{ $item['avatar'] ?? \Illuminate\Support\Str::substr($item['name'] ?? 'KR', 0, 2) }}</div>
+              <div>
+                <div class="name">{{ $item['name'] ?? '' }}</div>
+                <div class="role">{{ $item['role'] ?? '' }}</div>
+              </div>
+            </div>
+          </div>
+        @endforeach
+      </div>
+      <div class="testi-nav-wrap">
+        <button class="testi-nav" data-dir="prev" aria-label="Previous testimonial" type="button">
+          <svg viewBox="0 0 24 24"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+        </button>
+        <button class="testi-nav" data-dir="next" aria-label="Next testimonial" type="button">
+          <svg viewBox="0 0 24 24"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>

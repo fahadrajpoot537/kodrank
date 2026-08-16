@@ -1,0 +1,15 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # If the site document root is the project folder (not /public),
+    # permanently remove /public from the URL, then route into /public.
+
+    # /public or /public/ → /
+    RewriteRule ^public/?$ / [L,R=301]
+
+    # /public/foo → /foo
+    RewriteRule ^public/(.*)$ /$1 [L,R=301]
+
+    # Internally serve everything from /public (no redirect)
+    RewriteRule ^(.*)$ public/$1 [L]
+</IfModule>

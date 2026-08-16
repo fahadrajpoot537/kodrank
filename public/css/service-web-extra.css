@@ -1,0 +1,246 @@
+/* Web Design service page — section polish only (nav/shell locked in service-page-extra.css) */
+
+/*
+ * Hero shell = homepage: same horizontal edge as .nav-in, same vertical pad as .hero-in
+ * (150px / 92px / 84px) so logo and banner text share one column.
+ */
+body.page-web-dev .hero{
+  min-height:min(100svh,900px) !important;
+  display:flex !important;
+  align-items:flex-end !important;
+  padding:0 !important;
+  overflow:hidden;
+}
+body.page-web-dev .hero > .hero-in,
+body.page-web-dev .hero > .wrap{
+  position:relative;
+  z-index:2;
+  width:100%;
+  max-width:var(--maxw) !important;
+  margin-left:auto !important;
+  margin-right:auto !important;
+  padding:150px var(--pad) clamp(56px,8vw,96px) !important;
+  box-sizing:border-box !important;
+}
+body.page-web-dev .hero-inner{
+  max-width:none;
+  width:100%;
+}
+
+/* Breadcrumb — match DM hero */
+body.page-web-dev .breadcrumb{
+  margin-bottom:22px;
+}
+body.page-web-dev .breadcrumb ol{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  gap:10px;
+  list-style:none;
+  margin:0;
+  padding:0;
+  font-size:.8rem;
+  font-weight:500;
+  letter-spacing:.04em;
+}
+body.page-web-dev .breadcrumb li{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  color:#B7CBD2;
+}
+body.page-web-dev .breadcrumb li:not(:last-child)::after{
+  content:"›";
+  color:#5A6E77;
+  font-size:1rem;
+  font-weight:400;
+  line-height:1;
+}
+body.page-web-dev .breadcrumb a{
+  color:#B7CBD2;
+  transition:color .2s ease;
+}
+body.page-web-dev .breadcrumb a:hover{color:var(--signal)}
+body.page-web-dev .breadcrumb [aria-current="page"]{
+  color:var(--signal);
+  font-weight:600;
+}
+@media (max-width:640px){
+  body.page-web-dev .breadcrumb{margin-bottom:16px}
+  body.page-web-dev .breadcrumb ol{font-size:.75rem;gap:8px}
+  body.page-web-dev .breadcrumb li{gap:8px}
+}
+
+body.page-web-dev .eyebrow::before{
+  content:none !important;
+  display:none !important;
+}
+
+/* FAQ: one plus only (home.css may add ::after) */
+body.page-web-dev .faq-item summary::after,
+body.page-web-dev .faq summary::after,
+body.page-web-dev .faq-q::after{
+  display:none !important;
+  content:none !important;
+}
+
+body.page-web-dev #faq .section-head.center,
+body.page-web-dev .faq-wrap{
+  margin-left:auto;
+  margin-right:auto;
+}
+body.page-web-dev .section-head.center{
+  text-align:center;
+}
+body.page-web-dev .section-head.center .lede{
+  margin-left:auto;
+  margin-right:auto;
+}
+
+@media (max-width:1200px){
+  body.page-web-dev .answer-grid{gap:40px}
+}
+
+@media (max-width:1024px){
+  body.page-web-dev .pain-grid,
+  body.page-web-dev .services-grid,
+  body.page-web-dev .why-grid{
+    grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+  }
+  body.page-web-dev .included-grid{
+    grid-template-columns:repeat(3,minmax(0,1fr)) !important;
+  }
+  body.page-web-dev .process-grid{
+    grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+  }
+  body.page-web-dev .process-line{display:none !important}
+  body.page-web-dev .answer-grid,
+  body.page-web-dev .section-head-flex,
+  body.page-web-dev .compare-grid{
+    grid-template-columns:minmax(0,1fr) !important;
+  }
+  body.page-web-dev .stats-band{
+    grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+  }
+}
+
+@media (max-width:900px){
+  body.page-web-dev .hero{
+    min-height:auto !important;
+    padding:0 !important;
+  }
+  body.page-web-dev .hero > .hero-in,
+  body.page-web-dev .hero > .wrap{
+    padding:92px var(--pad) 36px !important;
+  }
+  body.page-web-dev .hero h1{
+    font-size:clamp(1.85rem,7.2vw,2.7rem) !important;
+    line-height:1.12 !important;
+  }
+  body.page-web-dev .hero .lede{
+    font-size:1rem !important;
+    margin-bottom:22px !important;
+  }
+  body.page-web-dev .hero-ctas{
+    flex-direction:column;
+    align-items:stretch;
+  }
+  body.page-web-dev .hero-ctas .btn{justify-content:center}
+  body.page-web-dev .hero-badges{
+    gap:10px !important;
+    flex-wrap:wrap;
+  }
+}
+
+@media (max-width:860px){
+  body.page-web-dev .included-grid{
+    grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+  }
+  body.page-web-dev .hero-blur{
+    -webkit-mask-image:none !important;
+    mask-image:none !important;
+    backdrop-filter:none !important;
+    background:none !important;
+  }
+}
+
+@media (max-width:680px){
+  body.page-web-dev .hero > .hero-in,
+  body.page-web-dev .hero > .wrap{
+    padding:84px var(--pad) 32px !important;
+  }
+  body.page-web-dev .pain-grid,
+  body.page-web-dev .services-grid,
+  body.page-web-dev .why-grid,
+  body.page-web-dev .included-grid,
+  body.page-web-dev .process-grid,
+  body.page-web-dev .stats-band{
+    grid-template-columns:minmax(0,1fr) !important;
+  }
+  body.page-web-dev .svc-card-lg{
+    grid-column:auto !important;
+  }
+  body.page-web-dev .cta-ctas{
+    flex-direction:column;
+  }
+  body.page-web-dev .cta-ctas .btn{
+    width:100%;
+    justify-content:center;
+  }
+  body.page-web-dev section{
+    padding-block:clamp(48px,8vw,72px) !important;
+  }
+}
+
+@media (max-width:420px){
+  body.page-web-dev .hero h1{
+    font-size:1.7rem !important;
+  }
+}
+
+/* Backgrounds from Blade CSS variables / inline styles */
+body.page-web-dev .sec-included-bg::before{
+  background-image: var(--included-bg) !important;
+  background-size: cover;
+  background-position: center;
+}
+body.page-web-dev .sec-included-bg > .wrap{
+  position:relative;
+  z-index:1;
+}
+/* Keep layered CTA background from service-web-development.css (gradients + image) */
+
+
+
+/* FAQ details/summary (theme used .open class) */
+body.page-web-dev details.faq-item > summary{
+  list-style:none;
+  cursor:pointer;
+}
+body.page-web-dev details.faq-item > summary::-webkit-details-marker{display:none}
+body.page-web-dev details.faq-item[open]{
+  border-color:var(--signal);
+}
+body.page-web-dev details.faq-item[open] .faq-toggle{
+  transform:rotate(45deg);
+  background:var(--signal);
+  color:var(--signal-ink);
+}
+body.page-web-dev details.faq-item[open] .faq-a{
+  max-height:480px;
+}
+body.page-web-dev .faq-a-inner{
+  padding:0 26px 22px;
+}
+
+/* Reveal on scroll */
+body.page-web-dev .reveal{
+  opacity:0;
+  transform:translateY(18px);
+  transition:opacity .55s ease, transform .55s ease;
+}
+body.page-web-dev .reveal.in,
+body.page-web-dev .reveal.on{
+  opacity:1;
+  transform:none;
+}
