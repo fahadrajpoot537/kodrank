@@ -3,17 +3,7 @@
 @section('content')
 @php
   $heroBg = $settings['hero_background'] ?? 'media/blog/hero-background.jpg';
-  $seoCat = $categories->firstWhere('slug', 'seo');
-  $webCat = $categories->firstWhere('slug', 'web-development');
-  $aeoCat = $categories->firstWhere('slug', 'aeo-geo');
   $pillQuery = array_filter(['q' => $q !== '' ? $q : null]);
-  $pills = [
-    ['key' => 'all', 'label' => 'All'],
-    ['key' => 'seo', 'label' => 'SEO'],
-    ['key' => 'web-development', 'label' => 'Web Development'],
-    ['key' => 'aeo-geo', 'label' => 'AEO & GEO'],
-    ['key' => 'news', 'label' => 'News & Case Studies'],
-  ];
 @endphp
 
 @push('schema')
@@ -58,14 +48,13 @@
     </form>
 
     <div class="cat-pills" role="navigation" aria-label="Blog categories">
-      @foreach($pills as $pill)
+      <a href="{{ route('blog.index', $pillQuery) }}" class="cat-pill{{ $category === 'all' ? ' active' : '' }}"@if($category === 'all') aria-current="page"@endif>All</a>
+      @foreach($categories as $cat)
         @php
-          $href = $pill['key'] === 'all'
-            ? route('blog.index', $pillQuery)
-            : route('blog.index', array_merge($pillQuery, ['category' => $pill['key']]));
-          $active = $category === $pill['key'];
+          $href = route('blog.index', array_merge($pillQuery, ['category' => $cat->slug]));
+          $active = $category === $cat->slug;
         @endphp
-        <a href="{{ $href }}" class="cat-pill{{ $active ? ' active' : '' }}"@if($active) aria-current="page"@endif>{{ $pill['label'] }}</a>
+        <a href="{{ $href }}" class="cat-pill{{ $active ? ' active' : '' }}"@if($active) aria-current="page"@endif>{{ $cat->name }}</a>
       @endforeach
     </div>
   </div>
@@ -131,71 +120,30 @@
 </section>
 @endif
 
-@if($seoCat && ($byCategory['seo'] ?? collect())->isNotEmpty())
-<section class="sec-paper" id="seo">
-  <div class="wrap">
-    <div class="section-head">
-      <div class="htext">
-        <span class="eyebrow">Category</span>
-        <h2>{{ $seoCat->name }}</h2>
+@foreach($categories as $cat)
+  @php $posts = $byCategory[$cat->slug] ?? collect(); @endphp
+  @if($posts->isNotEmpty())
+  <section class="{{ $loop->even ? 'sec-ink' : 'sec-paper' }}" id="{{ $cat->slug }}">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="htext">
+          <span class="eyebrow">Category</span>
+          <h2>{{ $cat->name }}</h2>
+        </div>
+        <a href="{{ route('blog.index', ['category' => $cat->slug]) }}" class="tlink">View all {{ $cat->name }} <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
       </div>
-      <a href="{{ route('blog.index', ['category' => 'seo']) }}" class="tlink">View all SEO <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
-    </div>
-    <div class="cat-section-grid">
-      @include('blog.partials.topic-sidebar', ['catSlug' => 'seo', 'topics' => $topicCounts['seo'] ?? []])
-      <div class="blog-grid cols-2">
-        @foreach($byCategory['seo'] as $post)
-          @include('blog.partials.card', ['post' => $post])
-        @endforeach
-      </div>
-    </div>
-  </div>
-</section>
-@endif
-
-@if($webCat && ($byCategory['web-development'] ?? collect())->isNotEmpty())
-<section class="sec-ink" id="webdev">
-  <div class="wrap">
-    <div class="section-head">
-      <div class="htext">
-        <span class="eyebrow">Category</span>
-        <h2>{{ $webCat->name }}</h2>
-      </div>
-      <a href="{{ route('blog.index', ['category' => 'web-development']) }}" class="tlink">View all Web Dev <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
-    </div>
-    <div class="cat-section-grid">
-      @include('blog.partials.topic-sidebar', ['catSlug' => 'web-development', 'topics' => $topicCounts['web-development'] ?? []])
-      <div class="blog-grid cols-2">
-        @foreach($byCategory['web-development'] as $post)
-          @include('blog.partials.card', ['post' => $post])
-        @endforeach
+      <div class="cat-section-grid">
+        @include('blog.partials.topic-sidebar', ['catSlug' => $cat->slug, 'topics' => $topicCounts[$cat->slug] ?? []])
+        <div class="blog-grid cols-2">
+          @foreach($posts as $post)
+            @include('blog.partials.card', ['post' => $post])
+          @endforeach
+        </div>
       </div>
     </div>
-  </div>
-</section>
-@endif
-
-@if($aeoCat && ($byCategory['aeo-geo'] ?? collect())->isNotEmpty())
-<section class="sec-paper" id="aeo">
-  <div class="wrap">
-    <div class="section-head">
-      <div class="htext">
-        <span class="eyebrow">Category</span>
-        <h2>{{ $aeoCat->name }}</h2>
-      </div>
-      <a href="{{ route('blog.index', ['category' => 'aeo-geo']) }}" class="tlink">View all AEO &amp; GEO <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
-    </div>
-    <div class="cat-section-grid">
-      @include('blog.partials.topic-sidebar', ['catSlug' => 'aeo-geo', 'topics' => $topicCounts['aeo-geo'] ?? []])
-      <div class="blog-grid cols-2">
-        @foreach($byCategory['aeo-geo'] as $post)
-          @include('blog.partials.card', ['post' => $post])
-        @endforeach
-      </div>
-    </div>
-  </div>
-</section>
-@endif
+  </section>
+  @endif
+@endforeach
 @endif
 
 <section class="sec-ink" id="news">

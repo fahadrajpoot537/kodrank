@@ -4,13 +4,13 @@
   $date = $post->formattedDate();
 @endphp
 <article class="blog-card{{ !empty($featured) ? ' blog-featured' : '' }}{{ !empty($dark) ? ' blog-card-dark' : '' }}">
-  <div class="blog-thumb">
-    @if($post->featured_image)
-      <img src="{{ asset(ltrim($post->featured_image, '/')) }}" alt="{{ $post->featured_image_alt ?: $post->title }}" loading="lazy">
-    @else
-      <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg>
-    @endif
-  </div>
+  <a href="{{ route('blog.show', $post->slug) }}" class="blog-thumb" aria-label="Read {{ $post->title }}">
+      @if($post->featured_image)
+        <img src="{{ asset(ltrim($post->featured_image, '/')) }}" alt="{{ $post->featured_image_alt ?: $post->title }}" loading="lazy">
+      @else
+        <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg>
+      @endif
+  </a>
   <div class="blog-body">
     @if($post->tag_label)
       <span class="blog-tag">{{ $post->tag_label }}</span>

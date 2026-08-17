@@ -101,8 +101,10 @@
   if ($serviceTheme === 'ai-chatbot') {
       $bodyExtras .= ' page-ai-chatbot';
   }
+  // themes that ship a complete, self-scoped component sheet
+  $standaloneThemes = ['wordpress', 'ai-chatbot', 'cms', 'website-redesign'];
 @endphp
-@if($serviceTheme === 'wordpress' || $serviceTheme === 'ai-chatbot')
+@if(in_array($serviceTheme, $standaloneThemes, true))
   {{-- these themes ship their own complete component sheet; loading another theme sheet would fight it --}}
 @elseif($cssTheme === 'web-development')
   <link rel="stylesheet" href="{{ asset('css/service-web-development.css') }}?v={{ @filemtime(public_path('css/service-web-development.css')) ?: time() }}">
@@ -120,13 +122,27 @@
 @if($serviceTheme === 'ai-chatbot')
   <link rel="stylesheet" href="{{ asset('css/service-ai-chatbot.css') }}?v={{ @filemtime(public_path('css/service-ai-chatbot.css')) ?: time() }}">
 @endif
+@if($serviceTheme === 'cms')
+  <link rel="stylesheet" href="{{ asset('css/service-cms.css') }}?v={{ @filemtime(public_path('css/service-cms.css')) ?: time() }}">
+@endif
+@if($serviceTheme === 'website-redesign')
+  <link rel="stylesheet" href="{{ asset('css/service-redesign.css') }}?v={{ @filemtime(public_path('css/service-redesign.css')) ?: time() }}">
+@endif
 @stack('head')
 </head>
 <body class="page-service{{ $cssTheme === 'web-development' ? ' page-web-dev' : '' }}{{ $bodyExtras }}">
 @php $navStuck = false; @endphp
 @include('home.partials.nav')
-@if($serviceTheme === 'ai-chatbot')
-  <main class="ac-page">@yield('content')</main>
+@php
+  $pageWrapper = match ($serviceTheme) {
+      'ai-chatbot' => 'ac-page',
+      'cms' => 'cms-page',
+      'website-redesign' => 'rd-page',
+      default => null,
+  };
+@endphp
+@if($pageWrapper)
+  <main class="{{ $pageWrapper }}">@yield('content')</main>
 @else
   @yield('content')
 @endif

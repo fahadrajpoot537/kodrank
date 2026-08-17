@@ -1,26 +1,33 @@
 @php
   /** @var \App\Models\BlogPost $post */
-  $date = $post->formattedDate();
+  $avatar = $post->authorAvatarPath();
+  $category = $post->tag_label ?: $post->category?->name;
 @endphp
-<a href="{{ route('blog.show', $post->slug) }}" class="rel-card">
-  <div class="rel-shot">
-    @if($post->featured_image)
-      <img src="{{ asset(ltrim($post->featured_image, '/')) }}" alt="{{ $post->featured_image_alt ?: $post->title }}" loading="lazy">
-    @else
-      <svg viewBox="0 0 400 250" aria-hidden="true"><rect width="400" height="250" fill="#0A1A22"/><path d="M0 180 L100 120 L200 150 L300 90 L400 130 L400 250 L0 250 Z" fill="#163B44"/><circle cx="100" cy="120" r="5" fill="#F47A1F"/><circle cx="300" cy="90" r="5" fill="#F47A1F"/></svg>
-    @endif
-  </div>
+<article class="rel-card">
   <div class="rel-body">
-    @if($post->tag_label || $post->category)
-      <p class="rel-cat">{{ $post->tag_label ?: $post->category?->name }}</p>
+    @if($category)
+      <span class="rel-cat">{{ $category }}</span>
     @endif
-    <h4>{{ $post->title }}</h4>
+    <h4>
+      <a href="{{ route('blog.show', $post->slug) }}">{{ $post->title }}</a>
+    </h4>
     @if($post->excerpt)
-      <p>{{ \Illuminate\Support\Str::limit($post->excerpt, 110) }}</p>
+      <p class="rel-excerpt">{{ \Illuminate\Support\Str::limit($post->excerpt, 120) }}</p>
     @endif
     <div class="rel-meta">
-      @if($post->author_name)<span>{{ $post->author_name }}</span>@endif
-      @if($post->read_minutes)<span>· {{ $post->read_minutes }} min read</span>@endif
+      @if($avatar)
+        <img class="rel-avatar" src="{{ asset($avatar) }}" alt="{{ $post->author_name }}">
+      @elseif($post->author_name)
+        <span class="rel-avatar-fallback" aria-hidden="true">{{ $post->authorInitials() }}</span>
+      @endif
+      <div class="rel-meta-text">
+        @if($post->author_name)<span class="rel-author">{{ $post->author_name }}</span>@endif
+        @if($post->read_minutes)<span class="rel-read">{{ $post->read_minutes }} min read</span>@endif
+      </div>
     </div>
+    <a href="{{ route('blog.show', $post->slug) }}" class="btn btn-ghost-dark btn-sm rel-btn">
+      Read article
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
   </div>
-</a>
+</article>

@@ -11,33 +11,6 @@ use Illuminate\View\View;
 
 class BlogController extends Controller
 {
-    /** @var list<string> */
-    private const FILTERS = ['all', 'seo', 'web-development', 'aeo-geo', 'news'];
-
-    /** @var array<string, array<string, int>> */
-    private const THEME_TOPIC_COUNTS = [
-        'seo' => [
-            'General SEO' => 18,
-            'Technical SEO' => 14,
-            'On-Page SEO' => 11,
-            'Link Building' => 9,
-            'Local SEO' => 7,
-            'Keyword Research' => 12,
-        ],
-        'web-development' => [
-            'Site Speed' => 10,
-            'WordPress' => 13,
-            'Shopify' => 8,
-            'UX & Conversion' => 6,
-        ],
-        'aeo-geo' => [
-            'Answer Engine Optimization' => 9,
-            'Generative Engine Optimization' => 7,
-            'AI Overviews' => 5,
-            'LLM Visibility' => 6,
-        ],
-    ];
-
     public function index(Request $request): View
     {
         $c = CmsSection::getMap();
@@ -45,7 +18,9 @@ class BlogController extends Controller
         $q = trim((string) $request->query('q', ''));
         $tag = trim((string) $request->query('tag', ''));
         $category = strtolower(trim((string) $request->query('category', 'all')));
-        if (! in_array($category, self::FILTERS, true)) {
+        $categories = BlogCategory::query()->orderBy('sort_order')->orderBy('name')->get();
+
+        if ($category !== 'all' && ! $categories->contains('slug', $category)) {
             $category = 'all';
         }
 
@@ -69,15 +44,7 @@ class BlogController extends Controller
 
         if ($isFiltered) {
             $filteredQuery = clone $base;
-            if ($category === 'news') {
-                $filteredQuery->where(function ($query) {
-                    $query->where('tag_label', 'like', '%Case Study%')
-                        ->orWhere('tag_label', 'like', '%News%')
-                        ->orWhere('title', 'like', '%case study%')
-                        ->orWhere('title', 'like', '%pipeline%');
-                });
-                $filterLabel = 'News & Case Studies';
-            } elseif ($category !== 'all') {
+            if ($category !== 'all') {
                 $cat = BlogCategory::query()->where('slug', $category)->first();
                 if ($cat) {
                     $filteredQuery->where('category_id', $cat->id);
@@ -107,8 +74,6 @@ class BlogController extends Controller
         $editorsPicks = collect();
         $byCategory = [];
         $topicCounts = [];
-        $categories = BlogCategory::query()->orderBy('sort_order')->get();
-
         if (! $isFiltered) {
             $latest = (clone $base)
                 ->where('show_in_latest', true)
@@ -133,19 +98,15 @@ class BlogController extends Controller
                     ->limit(4)
                     ->get();
 
-                $topicCounts[$cat->slug] = collect(
-                    self::THEME_TOPIC_COUNTS[$cat->slug]
-                    ?? BlogPost::query()
-                        ->published()
-                        ->where('category_id', $cat->id)
-                        ->whereNotNull('tag_label')
-                        ->where('tag_label', '!=', '')
-                        ->selectRaw('tag_label, COUNT(*) as total')
-                        ->groupBy('tag_label')
-                        ->orderByDesc('total')
-                        ->pluck('total', 'tag_label')
-                        ->all()
-                );
+                $topicCounts[$cat->slug] = BlogPost::query()
+                    ->published()
+                    ->where('category_id', $cat->id)
+                    ->whereNotNull('tag_label')
+                    ->where('tag_label', '!=', '')
+                    ->selectRaw('tag_label, COUNT(*) as total')
+                    ->groupBy('tag_label')
+                    ->orderByDesc('total')
+                    ->pluck('total', 'tag_label');
             }
         }
 

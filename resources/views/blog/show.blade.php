@@ -10,7 +10,8 @@
   $shareTitle = urlencode($post->title);
   $authorLinkedIn = $post->authorLinkedInUrl();
   $categoryFilter = $post->category?->slug;
-  $heroBg = $post->featured_image ?: ($settings['hero_background'] ?? 'media/blog/hero-background.jpg');
+  // Shared blog listing hero art only — never the post thumbnail.
+  $heroBg = $settings['hero_background'] ?? 'media/blog/hero-background.jpg';
 
   $hasEmbeddedTags = str_contains($contentHtml, 'post-tags');
   $hasEmbeddedAuthor = str_contains($contentHtml, 'author-card');
@@ -170,12 +171,6 @@
       </aside>
 
       <article class="content">
-        @if($post->featured_image && ! str_contains($contentHtml, '<figure'))
-          <figure>
-            <img src="{{ asset(ltrim($post->featured_image, '/')) }}" alt="{{ $post->featured_image_alt ?: $post->title }}">
-          </figure>
-        @endif
-
         @if($contentHtml !== '')
           {!! $contentHtml !!}
         @else

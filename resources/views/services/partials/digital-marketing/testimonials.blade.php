@@ -20,7 +20,7 @@
             <div class="stars">{{ $item['stars'] ?? '★★★★★' }}</div>
             <p class="quote">"{{ $item['quote'] ?? '' }}"</p>
             <div class="testi-person">
-              <div class="avatar">{{ $item['avatar'] ?? \Illuminate\Support\Str::substr($item['name'] ?? 'KR', 0, 2) }}</div>
+              <div class="avatar">{{ $item['initials'] ?? $item['avatar'] ?? \Illuminate\Support\Str::substr($item['name'] ?? 'KR', 0, 2) }}</div>
               <div>
                 <div class="name">{{ $item['name'] ?? '' }}</div>
                 <div class="role">{{ $item['role'] ?? '' }}</div>

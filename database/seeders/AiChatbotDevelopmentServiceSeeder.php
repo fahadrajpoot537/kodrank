@@ -27,7 +27,7 @@ class AiChatbotDevelopmentServiceSeeder extends Seeder
                     'seo_description' => 'KodRank builds custom, LLM-powered AI chatbots that understand context, hand off to humans cleanly, and turn conversations into customers.',
                     'og_title' => 'AI Chatbot Development Services That Convert — KodRank',
                     'og_description' => 'Custom AI chatbot development that people actually finish conversations with. Understands context, hands off to humans, drives revenue.',
-                    'og_image' => 'media/services/ai-chatbot/bg-1.jpg',
+                    'og_image' => 'media/services/ai-chatbot/conversational-ai-chatbot-features-24-7-multilingual.jpeg',
                     'keywords' => 'AI Chatbot Development Services, custom chatbot development, conversational AI, LLM chatbot, RAG chatbot, AI chatbot agency',
                     'robots' => 'index, follow',
                     'canonical_url' => '',
