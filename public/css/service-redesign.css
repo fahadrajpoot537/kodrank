@@ -10,7 +10,6 @@
   --paper:#FFFFFF; --mist:#F1F5F3; --mist-2:#E8EFEB; --line:#E1E9E5;
   --line-dark:rgba(244,122,31,.16);
   --graphite:#0D2029; --slate:#4B5B62; --slate-2:#6B7A80;
-  --maxw:1560px; --pad:clamp(18px,3.2vw,40px);
   --r-card:18px; --r-btn:12px; --r-sm:8px;
   --sh-sm:0 1px 2px rgba(13,32,41,.05),0 6px 18px -8px rgba(13,32,41,.10);
   --sh-md:0 2px 4px rgba(13,32,41,.05),0 18px 40px -20px rgba(13,32,41,.22);
@@ -24,8 +23,7 @@
 .rd-page h1,.rd-page h2,.rd-page h3,.rd-page h4{line-height:1.12;letter-spacing:-.01em}
 .rd-page section[id]{scroll-margin-top:84px}
 
-/* ---------- Layout ---------- */
-.rd-page .wrap{max-width:var(--maxw);margin:0 auto;padding-left:var(--pad);padding-right:var(--pad)}
+/* Layout uses site shell from home.css + service-page-extra (.wrap aligns with nav) */
 .rd-page section{padding:clamp(64px,7vw,110px) 0}
 .rd-page .sec-ink{background:var(--ink);color:#B7CBD2}
 .rd-page .sec-mist{background:var(--mist)}
@@ -68,8 +66,7 @@
 .rd-page :focus-visible{outline:2px solid var(--beam);outline-offset:3px;border-radius:4px}
 
 /* ---------- Hero ---------- */
-/* 84px clears the site-wide fixed nav */
-.rd-page .hero{position:relative;background:var(--ink);color:#fff;overflow:hidden;padding-top:calc(84px + clamp(48px,6vw,76px));padding-bottom:clamp(70px,8vw,120px)}
+.rd-page .hero{position:relative;background:var(--ink);color:#fff;overflow:hidden;padding-bottom:clamp(70px,8vw,120px)}
 .rd-page .hero-bg{position:absolute;inset:0;
   background-image:url('../media/services/website-redesign/website-redesign-services-before-after-transformation.jpg');
   background-size:cover;background-position:center right}
@@ -245,7 +242,6 @@
 }
 @media(max-width:560px){
   .rd-page section{padding:46px 0}
-  .rd-page .hero{padding-top:calc(64px + 34px);padding-bottom:52px}
   .rd-page .g-4{grid-template-columns:1fr}
   .rd-page .steps{grid-template-columns:1fr}
   .rd-page .stats{grid-template-columns:1fr 1fr;gap:24px 18px}

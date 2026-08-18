@@ -14,6 +14,31 @@ body.page-web-dev{
 .page-service .hero {
   padding-top: calc(84px + 12px);
 }
+/* CMS matches other service pages: nav clearance only (inner offset is on .hero-copy) */
+.page-service .cms-page .hero{
+  padding-top:calc(84px + 12px);
+}
+/* Redesign / AI chatbot: full hero padding on the section */
+.page-service .rd-page .hero,
+.page-service .ac-page .hero{
+  padding-top:calc(84px + clamp(48px,6vw,72px));
+}
+@media (max-width:900px){
+  .page-service .cms-page .hero,
+  .page-service .rd-page .hero,
+  .page-service .ac-page .hero{
+    padding-top:calc(64px + 16px);
+  }
+  .cms-page .hero-copy{padding-top:0}
+}
+@media (max-width:680px){
+  .page-service .cms-page .hero,
+  .page-service .rd-page .hero,
+  .page-service .ac-page .hero{
+    padding-top:calc(64px + 16px);
+    padding-bottom:48px;
+  }
+}
 body.page-web-dev .hero {
   padding-top: 0;
 }
