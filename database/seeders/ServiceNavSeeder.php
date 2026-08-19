@@ -40,6 +40,8 @@ class ServiceNavSeeder extends Seeder
                     ['slug' => 'technical-seo-services', 'name' => 'Technical SEO Services', 'sort_order' => 2, 'seed_sections' => false],
                     ['slug' => 'geo-services', 'name' => 'GEO Services', 'sort_order' => 3, 'seed_sections' => false],
                     ['slug' => 'aeo-services', 'name' => 'AEO Services', 'sort_order' => 4, 'seed_sections' => false],
+                    ['slug' => 'saas-seo-services', 'name' => 'SaaS SEO Services', 'sort_order' => 5, 'seed_sections' => false],
+                    ['slug' => 'monthly-seo-services', 'name' => 'Monthly SEO Services', 'sort_order' => 6, 'seed_sections' => false],
                 ],
             ],
             [
@@ -49,7 +51,7 @@ class ServiceNavSeeder extends Seeder
                 'seed_sections' => false, // full content from WebDesignDevelopmentServiceSeeder
                 'children' => [
                     ['slug' => 'wordpress-development-services', 'name' => 'WordPress Development Services', 'sort_order' => 0, 'seed_sections' => false],
-                    ['slug' => 'shopify-development-services', 'name' => 'Shopify Development Services', 'sort_order' => 1],
+                    ['slug' => 'shopify-development-services', 'name' => 'Shopify Development Services', 'sort_order' => 1, 'seed_sections' => false],
                     ['slug' => 'ai-chatbot-development-services', 'name' => 'AI Chatbot Development Services', 'sort_order' => 2, 'seed_sections' => false],
                     ['slug' => 'website-redesign-services', 'name' => 'Website Redesign Services', 'sort_order' => 3, 'seed_sections' => false],
                     ['slug' => 'cms-development-services', 'name' => 'CMS Development Services', 'sort_order' => 4, 'seed_sections' => false],

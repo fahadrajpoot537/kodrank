@@ -34,8 +34,11 @@ class DatabaseSeeder extends Seeder
         $this->call(AeoServiceSeeder::class);
         $this->call(WordPressDevelopmentServiceSeeder::class);
         $this->call(AiChatbotDevelopmentServiceSeeder::class);
+        $this->call(ShopifyDevelopmentServiceSeeder::class);
         $this->call(WebsiteRedesignServiceSeeder::class);
         $this->call(CmsDevelopmentServiceSeeder::class);
+        $this->call(SaasSeoServiceSeeder::class);
+        $this->call(MonthlySeoServiceSeeder::class);
         $this->call(AboutUsSeeder::class);
         $this->call(BlogSeeder::class);
     }

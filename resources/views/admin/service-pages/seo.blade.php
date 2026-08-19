@@ -49,7 +49,7 @@
     </div>
 
     @foreach([
-      'theme' => 'Theme key (digital-marketing / web-development / seo-service / about / wordpress / ai-chatbot)',
+      'theme' => 'Theme key (digital-marketing / web-development / seo-service / about / wordpress / ai-chatbot / cms / website-redesign / shopify / saas-seo / monthly-seo)',
       'seo_title' => 'SEO title',
       'seo_description' => 'SEO description',
       'og_title' => 'OG title',

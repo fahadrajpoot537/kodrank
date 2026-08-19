@@ -54,6 +54,11 @@
         <option value="web-development" @selected($defaultTheme === 'web-development')>Web Development layout</option>
         <option value="wordpress" @selected($defaultTheme === 'wordpress')>WordPress Development layout</option>
         <option value="ai-chatbot" @selected($defaultTheme === 'ai-chatbot')>AI Chatbot Development layout</option>
+        <option value="shopify" @selected($defaultTheme === 'shopify')>Shopify Development layout</option>
+        <option value="cms" @selected($defaultTheme === 'cms')>CMS Development layout</option>
+        <option value="website-redesign" @selected($defaultTheme === 'website-redesign')>Website Redesign layout</option>
+        <option value="saas-seo" @selected($defaultTheme === 'saas-seo')>SaaS SEO layout</option>
+        <option value="monthly-seo" @selected($defaultTheme === 'monthly-seo')>Monthly SEO layout</option>
       </select>
       <p class="admin-hint">Theme decide karti hai page ka design. Baad me SEO &amp; settings se bhi change kar sakte ho.</p>
     </div>

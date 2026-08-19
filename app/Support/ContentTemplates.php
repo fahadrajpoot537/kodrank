@@ -282,6 +282,227 @@ class ContentTemplates
             ];
         }
 
+        if ($theme === 'shopify') {
+            return [
+                self::sectionTemplate('hero', 'Hero', 0, [
+                    'title_html' => 'Headline with <span class="mark">accent</span>',
+                    'lede_html' => '',
+                    'cta_text' => 'Get a free store teardown',
+                    'cta_url' => '#contact',
+                    'image' => 'media/services/shopify-development/shopify-development-services-custom-store-build.jpg',
+                    'strip' => [['value' => '200+', 'label' => 'Stores built']],
+                ]),
+                self::sectionTemplate('pain', 'The real problem', 1, [
+                    'eyebrow' => 'Sound familiar?',
+                    'title_html' => 'Problem headline',
+                    'lede' => '',
+                    'cards' => [['icon_key' => 'clock', 'title' => 'Issue', 'body' => 'Description']],
+                ]),
+                self::sectionTemplate('services', 'What we do', 2, [
+                    'eyebrow' => 'What we do',
+                    'title' => 'Services headline',
+                    'lede' => '',
+                    'cards' => [['icon_key' => 'theme', 'title' => 'Service', 'body' => 'Description']],
+                    'stats' => [['value' => '90+', 'label' => 'Stat']],
+                ]),
+                self::sectionTemplate('process', 'Process', 3, [
+                    'eyebrow' => 'How it works',
+                    'title_html' => 'Process headline',
+                    'lede' => '',
+                    'steps' => [['num' => '01', 'title' => 'Step', 'body' => 'Description']],
+                ]),
+                self::sectionTemplate('why', 'Why KodRank', 4, [
+                    'eyebrow' => 'Why KodRank',
+                    'title_html' => 'Why headline',
+                    'lede' => '',
+                    'image' => 'media/services/shopify-development/shopify-seo-friendly-store-development.jpg',
+                    'features' => [['icon_key' => 'search', 'title' => 'Reason', 'body' => 'Description']],
+                    'other' => ['tag' => 'Typical', 'items' => ['Item']],
+                    'us' => ['tag' => 'KodRank', 'items' => ['Item']],
+                ]),
+                self::sectionTemplate('industries', 'Industries', 5, [
+                    'eyebrow' => 'Who we build for',
+                    'title_html' => 'Industries headline',
+                    'lede' => '',
+                    'cards' => [['icon_key' => 'bag', 'title' => 'Industry', 'body' => 'Description']],
+                ]),
+                self::sectionTemplate('testimonials', 'Testimonials', 6, [
+                    'eyebrow' => 'Proof',
+                    'title_html' => 'Testimonials headline',
+                    'lede' => '',
+                    'items' => [['quote' => '', 'initials' => 'AB', 'name' => 'Name', 'role' => 'Role']],
+                ]),
+                self::sectionTemplate('faq', 'FAQ', 7, [
+                    'eyebrow' => 'Questions',
+                    'title' => 'FAQ headline',
+                    'lede' => '',
+                    'items' => [['q' => 'Question?', 'a' => 'Answer.']],
+                ]),
+                self::sectionTemplate('contact', 'Contact', 8, [
+                    'eyebrow' => "Let's talk",
+                    'title' => 'Contact headline',
+                    'lede' => '',
+                    'meta' => [
+                        ['label' => 'info@kodrank.com', 'hint' => 'We reply within one business day', 'value' => 'info@kodrank.com', 'icon_key' => 'email'],
+                    ],
+                    'fields' => [
+                        'name_label' => 'Your name',
+                        'email_label' => 'Work email',
+                        'website_label' => 'Store URL',
+                        'service_label' => 'What you need',
+                        'message_label' => "Where's it stuck?",
+                    ],
+                    'service_options' => ['New custom Shopify build', 'Not sure yet'],
+                    'default_service' => 'New custom Shopify build',
+                    'submit_text' => 'Send my teardown request',
+                ]),
+            ];
+        }
+
+        if ($theme === 'saas-seo') {
+            return [
+                self::sectionTemplate('hero', 'Hero', 0, [
+                    'eyebrow' => 'SaaS SEO Agency',
+                    'title_html' => 'Headline with <span class="hl">accent</span>',
+                    'lede_html' => '',
+                    'cta_text' => 'Get your free SEO audit',
+                    'cta_url' => '#contact',
+                    'trust' => [['value' => 'Full-funnel', 'label' => 'Awareness to signup']],
+                ]),
+                self::sectionTemplate('intro', 'Intro', 1, [
+                    'eyebrow' => 'The problem',
+                    'title' => 'Intro headline',
+                    'paragraphs_html' => [['html' => 'Intro copy.']],
+                    'card_value' => '1 in 2',
+                    'card_label' => 'Stat label',
+                    'card_rows' => ['Point'],
+                ]),
+                self::sectionTemplate('pain', 'Sound familiar?', 2, [
+                    'eyebrow' => 'Sound familiar?',
+                    'title_html' => 'Problem headline',
+                    'lede' => '',
+                    'cards' => [['title' => 'Issue', 'body' => 'Description']],
+                ]),
+                self::sectionTemplate('services', "What's inside", 3, [
+                    'eyebrow' => "What's inside",
+                    'title_html' => 'Services headline',
+                    'lede' => '',
+                    'cards' => [['title' => 'Service', 'body' => 'Description']],
+                ]),
+                self::sectionTemplate('process', 'How we work', 4, [
+                    'eyebrow' => 'How we work',
+                    'title_html' => 'Process headline',
+                    'lede' => '',
+                    'steps' => [['num' => '01', 'title' => 'Step', 'body' => 'Description']],
+                ]),
+                self::sectionTemplate('stats', 'Results', 5, [
+                    'eyebrow' => 'Why organic compounds',
+                    'title_html' => 'Stats headline',
+                    'lede' => '',
+                    'items' => [['value' => '53%', 'label' => 'Stat']],
+                    'note' => '',
+                ]),
+                self::sectionTemplate('compare', 'The difference', 6, [
+                    'eyebrow' => 'The difference',
+                    'title_html' => 'Compare headline',
+                    'lede' => '',
+                    'other' => ['tag' => 'Typical', 'title' => 'Title', 'items' => ['Item']],
+                    'us' => ['tag' => 'KodRank', 'title' => 'Title', 'items' => ['Item']],
+                ]),
+                self::sectionTemplate('faq', 'FAQ', 7, [
+                    'eyebrow' => 'Good questions',
+                    'title_html' => 'FAQ headline',
+                    'items' => [['q' => 'Question?', 'a' => 'Answer.']],
+                ]),
+                self::sectionTemplate('contact', 'Contact', 8, [
+                    'eyebrow' => "Let's talk",
+                    'title_html' => 'Contact headline',
+                    'lede' => '',
+                    'points' => ['Point'],
+                    'fields' => [
+                        'name_label' => 'Your name',
+                        'email_label' => 'Work email',
+                        'website_label' => 'Website / domain',
+                        'service_label' => 'Current MRR range',
+                        'message_label' => 'Where are you stuck?',
+                    ],
+                    'service_options' => ['Pre-revenue / early', '$10k – $50k MRR'],
+                    'default_service' => 'Pre-revenue / early',
+                    'submit_text' => 'Send my audit request',
+                ]),
+            ];
+        }
+
+        if ($theme === 'monthly-seo') {
+            return [
+                self::sectionTemplate('hero', 'Hero', 0, [
+                    'eyebrow' => 'Monthly SEO Services',
+                    'title_html' => 'Headline with <span class="pop">accent</span>',
+                    'lede' => '',
+                    'cta_text' => 'Get My Free SEO Plan',
+                    'cta_url' => '#contact',
+                    'note' => 'No lock-in contracts',
+                    'stats' => [['value' => '+187%', 'label' => 'Stat', 'highlight' => true]],
+                ]),
+                self::sectionTemplate('pain', 'Why ongoing SEO wins', 1, [
+                    'eyebrow' => 'Why ongoing SEO wins',
+                    'title' => 'Intro headline',
+                    'paragraphs_html' => [['html' => 'Intro copy.']],
+                    'aside' => ['eyebrow' => 'Every month', 'title' => 'Included', 'items' => ['Item']],
+                    'pain_eyebrow' => 'Sound familiar?',
+                    'pain_title' => 'Pain headline',
+                    'cards' => [['num' => '01', 'title' => 'Issue', 'body' => 'Description']],
+                ]),
+                self::sectionTemplate('included', "What's included", 2, [
+                    'eyebrow' => "What's inside",
+                    'title' => 'Included headline',
+                    'lede' => '',
+                    'cards' => [['title' => 'Service', 'body' => 'Description']],
+                ]),
+                self::sectionTemplate('process', 'The monthly loop', 3, [
+                    'eyebrow' => 'The monthly loop',
+                    'title' => 'Process headline',
+                    'lede' => '',
+                    'steps' => [['num' => '01', 'title' => 'Step', 'body' => 'Description']],
+                ]),
+                self::sectionTemplate('compare', 'The difference', 4, [
+                    'eyebrow' => 'The difference',
+                    'title' => 'Compare headline',
+                    'lede' => '',
+                    'other' => ['title' => 'Typical', 'items' => ['Item']],
+                    'us' => ['tag' => 'KodRank', 'title' => 'Ours', 'items' => ['Item']],
+                ]),
+                self::sectionTemplate('testimonials', 'Client results', 5, [
+                    'eyebrow' => 'Client results',
+                    'title' => 'Testimonials headline',
+                    'items' => [['quote' => '', 'initials' => 'AB', 'name' => 'Name', 'role' => 'Role']],
+                ]),
+                self::sectionTemplate('faq', 'FAQ', 6, [
+                    'eyebrow' => 'Questions',
+                    'title' => 'FAQ headline',
+                    'items' => [['q' => 'Question?', 'a' => 'Answer.']],
+                ]),
+                self::sectionTemplate('contact', 'Contact', 7, [
+                    'eyebrow' => 'Start now',
+                    'title' => 'Contact headline',
+                    'lede' => '',
+                    'points' => ['Point'],
+                    'form_title' => 'Request your plan',
+                    'form_sub' => 'Takes under a minute.',
+                    'fields' => [
+                        'name_label' => 'Full name',
+                        'email_label' => 'Work email',
+                        'website_label' => 'Website URL',
+                        'service_label' => 'Primary goal',
+                        'message_label' => 'Anything else we should know?',
+                    ],
+                    'service_options' => ['Grow organic traffic', 'Generate more leads or sales'],
+                    'default_service' => 'Grow organic traffic',
+                    'submit_text' => 'Send Me My Free Plan',
+                ]),
+            ];
+        }
+
         return $base;
     }
 

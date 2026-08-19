@@ -175,7 +175,7 @@ class DigitalMarketingServiceSeeder extends Seeder
                             'title' => 'Monthly SEO Services',
                             'body' => 'Predictable retainers, not project chaos. A monthly cadence of audits, content, links, and technical work — with one strategist you can actually reach and one report that says what changed and why.',
                             'link_text' => 'Start Monthly Growth',
-                            'link_url' => '#contact',
+                            'link_url' => '/monthly-seo-services',
                             'icon_key' => 'monthly',
                         ],
                     ],

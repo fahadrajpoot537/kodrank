@@ -102,7 +102,7 @@
       $bodyExtras .= ' page-ai-chatbot';
   }
   // themes that ship a complete, self-scoped component sheet
-  $standaloneThemes = ['wordpress', 'ai-chatbot', 'cms', 'website-redesign'];
+  $standaloneThemes = ['wordpress', 'ai-chatbot', 'cms', 'website-redesign', 'shopify', 'saas-seo', 'monthly-seo'];
 @endphp
 @if(in_array($serviceTheme, $standaloneThemes, true))
   {{-- these themes ship their own complete component sheet; loading another theme sheet would fight it --}}
@@ -128,6 +128,15 @@
 @if($serviceTheme === 'website-redesign')
   <link rel="stylesheet" href="{{ asset('css/service-redesign.css') }}?v={{ @filemtime(public_path('css/service-redesign.css')) ?: time() }}">
 @endif
+@if($serviceTheme === 'shopify')
+  <link rel="stylesheet" href="{{ asset('css/service-shopify.css') }}?v={{ @filemtime(public_path('css/service-shopify.css')) ?: time() }}">
+@endif
+@if($serviceTheme === 'saas-seo')
+  <link rel="stylesheet" href="{{ asset('css/service-saas.css') }}?v={{ @filemtime(public_path('css/service-saas.css')) ?: time() }}">
+@endif
+@if($serviceTheme === 'monthly-seo')
+  <link rel="stylesheet" href="{{ asset('css/service-monthly.css') }}?v={{ @filemtime(public_path('css/service-monthly.css')) ?: time() }}">
+@endif
 @stack('head')
 </head>
 <body class="page-service{{ $cssTheme === 'web-development' ? ' page-web-dev' : '' }}{{ $bodyExtras }}">
@@ -138,6 +147,9 @@
       'ai-chatbot' => 'ac-page',
       'cms' => 'cms-page',
       'website-redesign' => 'rd-page',
+      'shopify' => 'shop-page',
+      'saas-seo' => 'saas-page',
+      'monthly-seo' => 'mo-page',
       default => null,
   };
 @endphp
