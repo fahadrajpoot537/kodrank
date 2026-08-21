@@ -1,37 +1,13 @@
 @php
   $d = $s['hero'] ?? [];
   $heroImg = asset($d['image'] ?? 'media/services/web-design/hero.jpg');
-  $crumbs = $d['breadcrumb'] ?? [
-    ['label' => 'Home', 'url' => route('home')],
-    ['label' => 'Services', 'url' => '#'],
-    ['label' => $page->name ?? 'Web Design and Development', 'url' => ''],
-  ];
 @endphp
 <header class="hero">
   <div class="hero-bg" style="background-image:url('{{ $heroImg }}')"></div>
   <div class="hero-blur"></div>
   <div class="hero-in">
     <div class="hero-inner">
-      <nav class="breadcrumb" aria-label="Breadcrumb">
-        <ol>
-          @foreach($crumbs as $i => $crumb)
-            @php
-              $isLast = $i === count($crumbs) - 1;
-              $label = $crumb['label'] ?? '';
-              $url = $crumb['url'] ?? '';
-              if ($label === 'Home') $url = route('home');
-              if ($label === 'Services' && ($url === '' || $url === '/services/')) $url = '#';
-            @endphp
-            <li @if($isLast || $url === '') aria-current="page" @endif>
-              @if(!$isLast && $url !== '')
-                <a href="{{ $url }}">{{ $label }}</a>
-              @else
-                {{ $label }}
-              @endif
-            </li>
-          @endforeach
-        </ol>
-      </nav>
+      @include('services.partials.shared.breadcrumb', ['crumbs' => $d['breadcrumb'] ?? null])
       @if(!empty($d['eyebrow']))
         <span class="eyebrow">{{ $d['eyebrow'] }}</span>
       @endif

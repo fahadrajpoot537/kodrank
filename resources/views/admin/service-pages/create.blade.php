@@ -59,6 +59,9 @@
         <option value="website-redesign" @selected($defaultTheme === 'website-redesign')>Website Redesign layout</option>
         <option value="saas-seo" @selected($defaultTheme === 'saas-seo')>SaaS SEO layout</option>
         <option value="monthly-seo" @selected($defaultTheme === 'monthly-seo')>Monthly SEO layout</option>
+        <option value="b2b-seo" @selected($defaultTheme === 'b2b-seo')>B2B SEO layout</option>
+        <option value="ecommerce-seo" @selected($defaultTheme === 'ecommerce-seo')>eCommerce SEO layout</option>
+        <option value="wordpress-seo" @selected($defaultTheme === 'wordpress-seo')>WordPress SEO layout</option>
       </select>
       <p class="admin-hint">Theme decide karti hai page ka design. Baad me SEO &amp; settings se bhi change kar sakte ho.</p>
     </div>

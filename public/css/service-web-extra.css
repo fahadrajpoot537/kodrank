@@ -19,7 +19,7 @@ body.page-web-dev .hero > .wrap{
   max-width:var(--maxw) !important;
   margin-left:auto !important;
   margin-right:auto !important;
-  padding:150px var(--pad) clamp(56px,8vw,96px) !important;
+  padding:108px var(--pad) clamp(40px,5vw,72px) !important;
   box-sizing:border-box !important;
 }
 body.page-web-dev .hero-inner{
@@ -50,7 +50,7 @@ body.page-web-dev .breadcrumb li{
   color:#B7CBD2;
 }
 body.page-web-dev .breadcrumb li:not(:last-child)::after{
-  content:"›";
+  content:"\203A";
   color:#5A6E77;
   font-size:1rem;
   font-weight:400;
@@ -131,15 +131,15 @@ body.page-web-dev .section-head.center .lede{
   }
   body.page-web-dev .hero > .hero-in,
   body.page-web-dev .hero > .wrap{
-    padding:92px var(--pad) 36px !important;
+    padding:72px var(--pad) 28px !important;
   }
   body.page-web-dev .hero h1{
-    font-size:clamp(1.85rem,7.2vw,2.7rem) !important;
-    line-height:1.12 !important;
+    font-size:clamp(1.65rem,6vw,2.2rem) !important;
+    line-height:1.1 !important;
   }
   body.page-web-dev .hero .lede{
-    font-size:1rem !important;
-    margin-bottom:22px !important;
+    font-size:.95rem !important;
+    margin-bottom:16px !important;
   }
   body.page-web-dev .hero-ctas{
     flex-direction:column;
@@ -167,7 +167,7 @@ body.page-web-dev .section-head.center .lede{
 @media (max-width:680px){
   body.page-web-dev .hero > .hero-in,
   body.page-web-dev .hero > .wrap{
-    padding:84px var(--pad) 32px !important;
+    padding:68px var(--pad) 24px !important;
   }
   body.page-web-dev .pain-grid,
   body.page-web-dev .services-grid,

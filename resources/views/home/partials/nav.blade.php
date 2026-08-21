@@ -102,6 +102,9 @@
               @endforeach
             @endforelse
           </div>
+          <div class="mega-foot">
+            <a class="mega-all-btn" href="/services">View all services</a>
+          </div>
         </div>
       </div>
 

@@ -90,10 +90,11 @@
   content:"";position:absolute;inset:0;
   background:linear-gradient(90deg,var(--ink) 0%,var(--ink) 30%,rgba(10,26,34,.86) 52%,rgba(10,26,34,.35) 78%,rgba(10,26,34,.15) 100%);
 }
-.cms-page .hero .wrap{position:relative;z-index:2}
+.cms-page .hero .wrap,
+.cms-page .hero-copy{position:relative;z-index:2}
 .cms-page .hero-copy{
   max-width:780px;
-  padding-top:clamp(32px,4vw,56px); /* same inner offset as other service .hero-grid */
+  padding-top:0;
 }
 .cms-page .hero h1{font-size:clamp(2rem,4.1vw,3.35rem);font-weight:800;color:#fff;letter-spacing:-.02em;line-height:1.1;margin:.9rem 0 0}
 .cms-page .hero h1 .hl{color:var(--signal)}

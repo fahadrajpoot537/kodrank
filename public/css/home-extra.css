@@ -58,6 +58,15 @@ body{overflow-x:hidden}
   padding-left:var(--pad);
   padding-right:var(--pad);
 }
+@media (max-width:1200px){
+  :root{ --pad:clamp(20px,3.6vw,36px); }
+}
+@media (max-width:900px){
+  :root{ --pad:clamp(16px,4vw,28px); }
+}
+@media (max-width:480px){
+  :root{ --pad:16px; }
+}
 img,svg,video{max-width:100%;height:auto}
 .hero-media video,.hero-media img{height:100%}
 
@@ -68,14 +77,21 @@ img,svg,video{max-width:100%;height:auto}
   content:none !important;
 }
 
-/* No decorative mark / square before section eyebrows */
-.eyebrow::before{
-  content:none !important;
-  display:none !important;
-  width:0 !important;
-  height:0 !important;
-  background:none !important;
+/* Homepage polish — rhythm only, no redesign */
+.lede{line-height:1.65}
+.shead .lede,.head-split .lede{line-height:1.65}
+.btn:focus-visible,
+.nav-quote:focus-visible,
+a:focus-visible{
+  outline:2px solid var(--signal);
+  outline-offset:3px;
 }
+@media(min-width:901px){
+  .svc-card,.card,.work-card,.tech-col{
+    transition:transform .22s ease,box-shadow .22s ease,border-color .22s ease;
+  }
+}
+
 
 /* ---------- Medium screens (tablets / small laptops) ---------- */
 @media(max-width:1200px){
@@ -278,8 +294,7 @@ img,svg,video{max-width:100%;height:auto}
   float:none !important;
 }
 #industries .ind-nav{
-  z-index:10 !important;
-  pointer-events:auto !important;
+  display:none !important;
 }
 #industries .ind-dots{
   position:relative;

@@ -35,8 +35,7 @@ Route::middleware('throttle:12,1')->group(function () {
 // One-click cache clear (local + live). Use ?key= from .env CACHE_CLEAR_KEY
 Route::get('/clear-cache', [CacheController::class, 'clearPublic'])->name('cache.clear.public');
 
-Route::get('/digital-marketing-services', [ServicePageController::class, 'digitalMarketing'])
-    ->name('services.digital-marketing');
+Route::get('/services', [ServicePageController::class, 'index'])->name('services.index');
 
 Route::get('/blogs', [BlogController::class, 'index'])->name('blog.index');
 Route::get('/blogs/{slug}', [BlogController::class, 'show'])
@@ -52,6 +51,7 @@ Route::get('/sitemap.xml', function () {
     $urls = [
         ['loc' => url('/'), 'changefreq' => 'weekly', 'priority' => '1.0'],
         ['loc' => url('/contact'), 'changefreq' => 'monthly', 'priority' => '0.8'],
+        ['loc' => url('/services'), 'changefreq' => 'weekly', 'priority' => '0.8'],
         ['loc' => url('/blogs'), 'changefreq' => 'weekly', 'priority' => '0.8'],
     ];
 
@@ -168,5 +168,5 @@ Route::prefix('admin')->name('admin.')->group(function () {
 });
 
 Route::get('/{slug}', [ServicePageController::class, 'show'])
-    ->where('slug', '^(?!admin$|blog$|blogs$|sitemap\\.xml$|image-sitemap\\.xml$|clear-cache$)[a-z0-9]+(?:-[a-z0-9]+)*$')
+    ->where('slug', '^(?!admin$|blog$|blogs$|services$|sitemap\\.xml$|image-sitemap\\.xml$|clear-cache$)[a-z0-9]+(?:-[a-z0-9]+)*$')
     ->name('services.show');

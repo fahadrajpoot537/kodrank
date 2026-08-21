@@ -172,7 +172,7 @@ strong{font-weight:650;color:var(--graphite)}
 }
 .breadcrumb li{display:flex;align-items:center;gap:10px}
 .breadcrumb li:not(:last-child)::after{
-  content:"›";
+  content:"\203A";
   color:#5A6E77;
   font-size:1rem;
   font-weight:400;
@@ -556,7 +556,7 @@ strong{font-weight:650;color:var(--graphite)}
 }
 .compare-card.pro::before{
   content:"KodRank";position:absolute;top:-14px;left:32px;
-  background:var(--signal);color:var(--signal-ink);
+  background:var(--signal);color:#0A1A22;
   padding:5px 14px;border-radius:999px;
   font-size:.72rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
 }

@@ -39,6 +39,9 @@ class DatabaseSeeder extends Seeder
         $this->call(CmsDevelopmentServiceSeeder::class);
         $this->call(SaasSeoServiceSeeder::class);
         $this->call(MonthlySeoServiceSeeder::class);
+        $this->call(B2bSeoServiceSeeder::class);
+        $this->call(EcommerceSeoServiceSeeder::class);
+        $this->call(WordPressSeoServiceSeeder::class);
         $this->call(AboutUsSeeder::class);
         $this->call(BlogSeeder::class);
     }

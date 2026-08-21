@@ -21,6 +21,7 @@ class MonthlySeoServiceSeeder extends Seeder
                 'sort_order' => 6,
                 'seo' => [
                     'theme' => 'monthly-seo',
+                    'hide_from_nav' => true,
                     'seo_title' => 'Monthly SEO Services That Compound Into Real Revenue | KodRank',
                     'seo_description' => 'KodRank monthly SEO services run search as an ongoing engine — technical fixes, content, links and reporting every month, with no lock-in contracts.',
                     'og_title' => 'Monthly SEO Services That Compound Into Real Revenue | KodRank',

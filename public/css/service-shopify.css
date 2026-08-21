@@ -88,7 +88,7 @@
     linear-gradient(90deg,var(--ink) 14%,rgba(10,26,34,.88) 34%,rgba(10,26,34,.48) 52%,rgba(10,26,34,.10) 74%,rgba(10,26,34,.04) 100%),
     linear-gradient(0deg,var(--ink) 1%,rgba(10,26,34,0) 50%);
 }
-.shop-page .hero-inner{position:relative;z-index:1;padding-top:clamp(32px,4vw,56px);display:flex;justify-content:flex-start}
+.shop-page .hero-inner{position:relative;z-index:2;padding-top:0;display:flex;justify-content:flex-start}
 .shop-page .hero-copy{max-width:min(820px,58vw);margin-right:auto}
 .shop-page .hero h1{
   font-size:clamp(2rem,3.5vw,3.15rem);font-weight:800;color:#fff;line-height:1.08;letter-spacing:-.02em;

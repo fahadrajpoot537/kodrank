@@ -6,9 +6,7 @@
   <div class="wrap">
     <div class="hero-grid">
       <div class="hero-copy">
-        @if(!empty($h['eyebrow']))
-          <span class="eyebrow">{{ $h['eyebrow'] }}</span>
-        @endif
+        @include('services.partials.shared.breadcrumb', ['crumbs' => $h['breadcrumb'] ?? null])
         <h1>
           @if(!empty($h['title_html']))
             {!! $h['title_html'] !!}

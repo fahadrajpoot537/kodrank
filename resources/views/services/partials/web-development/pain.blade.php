@@ -23,7 +23,7 @@
       @endif
     </div>
 
-    <div class="svc-carousel page-svc-carousel" data-sp-carousel data-per-desktop="3">
+    <div class="svc-carousel page-svc-stack page-svc-stack--pair" data-sp-stack data-per-desktop="3">
       <button type="button" class="svc-nav svc-prev" aria-label="Previous cards">{!! $arrow !!}</button>
       <div class="svc-viewport">
         <div class="svc-track">

@@ -49,7 +49,7 @@ class ServicePageController extends Controller
             'parent_id' => ['nullable', 'integer', 'exists:service_pages,id'],
             'is_active' => ['nullable', 'boolean'],
             'with_template' => ['nullable', 'boolean'],
-            'theme' => ['nullable', 'string', Rule::in(['digital-marketing', 'web-development', 'seo-service', 'about', 'wordpress', 'ai-chatbot', 'cms', 'website-redesign', 'shopify', 'saas-seo', 'monthly-seo'])],
+            'theme' => ['nullable', 'string', Rule::in(['digital-marketing', 'web-development', 'seo-service', 'about', 'wordpress', 'ai-chatbot', 'cms', 'website-redesign', 'shopify', 'saas-seo', 'monthly-seo', 'b2b-seo', 'ecommerce-seo', 'wordpress-seo'])],
         ]);
 
         $slug = $data['slug'] ?? Str::slug($data['name']);
@@ -169,6 +169,7 @@ class ServicePageController extends Controller
 
         $oldSlug = $page->slug;
         $seo = is_array($validated['seo'] ?? null) ? $validated['seo'] : [];
+        $seo['hide_from_nav'] = $request->boolean('hide_from_nav');
 
         $page->update([
             'name' => $validated['name'],

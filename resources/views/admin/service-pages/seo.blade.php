@@ -45,11 +45,12 @@
     </div>
 
     <div class="field">
-      <label><input type="checkbox" name="is_active" value="1" @checked(old('is_active', $page->is_active))> Active</label>
+      <label><input type="checkbox" name="hide_from_nav" value="1" @checked(old('hide_from_nav', !empty($seo['hide_from_nav'])))> Hide from Services dropdown</label>
+      <p class="admin-hint">Page stays live and listed on View all services. It will not appear in the navbar mega menu.</p>
     </div>
 
     @foreach([
-      'theme' => 'Theme key (digital-marketing / web-development / seo-service / about / wordpress / ai-chatbot / cms / website-redesign / shopify / saas-seo / monthly-seo)',
+      'theme' => 'Theme key (digital-marketing / web-development / seo-service / about / wordpress / ai-chatbot / cms / website-redesign / shopify / saas-seo / monthly-seo / b2b-seo / ecommerce-seo / wordpress-seo)',
       'seo_title' => 'SEO title',
       'seo_description' => 'SEO description',
       'og_title' => 'OG title',

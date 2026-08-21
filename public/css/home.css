@@ -26,7 +26,7 @@
   --r-lg:18px;
   --r-md:12px;
   --r-sm:8px;
-  --pad:clamp(16px,2.8vw,28px);
+  --pad:clamp(18px,3.2vw,40px);
   --maxw:1600px;
   --shadow-sm:0 1px 2px rgba(13,32,41,.05),0 6px 18px -8px rgba(13,32,41,.10);
   --shadow-md:0 2px 4px rgba(13,32,41,.05),0 18px 40px -20px rgba(13,32,41,.22);
@@ -141,6 +141,15 @@ section{padding-block:clamp(72px,9vw,132px)}
 .mega-cta:hover,.nav .mega-cta:hover,.nav-links .mega-cta:hover{color:var(--signal-deep)!important}
 .mega-cta svg{width:14px;height:14px;transition:transform .2s ease;color:inherit}
 .mega-cta:hover svg{transform:translateX(4px)}
+.mega-foot{max-width:var(--maxw);margin:0 auto;padding:0 var(--pad) clamp(22px,2.5vw,32px);display:flex;justify-content:flex-end}
+.mega-all-btn{
+  display:inline-flex;align-items:center;justify-content:center;
+  background:var(--signal);color:var(--signal-ink)!important;
+  font-weight:600;font-size:.9rem;padding:12px 22px;border-radius:999px;
+  box-shadow:0 8px 22px -10px rgba(244,122,31,.7);
+  transition:background .18s ease,transform .18s ease;
+}
+.mega-all-btn:hover{background:var(--signal-deep);color:#fff!important;transform:translateY(-1px)}
 .mega-col .mega-head{display:block;font-family:"Poppins",sans-serif;font-weight:700;font-size:1.02rem;color:var(--graphite);padding-bottom:14px;margin-bottom:12px;border-bottom:1px solid var(--line)}
 .mega-col .mega-head:hover{color:var(--signal-deep)}
 .mega-col ul{list-style:none;margin:0;padding:0}
@@ -163,6 +172,8 @@ section{padding-block:clamp(72px,9vw,132px)}
   }
   .mega-col{display:block;width:100%}
   .mega-intro{display:none}
+  .mega-foot{justify-content:stretch;padding:12px 0 8px}
+  .mega-all-btn{width:100%}
   .nav-mega-trigger{width:100%;justify-content:space-between;padding:8px 0;color:var(--graphite)!important;font-size:1rem;pointer-events:auto;cursor:pointer;-webkit-tap-highlight-color:rgba(244,122,31,.15)}
   .mega-col .mega-head{border-bottom:0;padding-bottom:8px;margin-bottom:4px}
   .nav-item.has-mega{display:flex;flex-direction:column;align-items:stretch;width:100%}
@@ -320,7 +331,7 @@ footer .brand-logo{
   position:relative;
   --svc-per:3;
   --svc-gap:20px;
-  padding-inline:36px;
+  padding-inline:0;
   margin-top:8px;
 }
 .svc-carousel.is-aeo{--svc-per:2}
@@ -347,25 +358,9 @@ footer .brand-logo{
   flex-direction:column;
 }
 .svc-nav{
-  position:absolute;
-  top:42%;
-  transform:translateY(-50%);
-  z-index:6;
-  width:42px;height:42px;
-  border-radius:999px;
-  border:1px solid var(--line);
-  background:#fff;
-  color:var(--graphite);
-  display:grid;place-items:center;
-  cursor:pointer;
-  box-shadow:var(--shadow-sm);
-  transition:background .2s ease,color .2s ease,border-color .2s ease;
-  touch-action:manipulation;
+  display:none !important;
 }
-.svc-nav svg{width:18px;height:18px}
-.svc-nav:hover{background:var(--signal);color:#fff;border-color:var(--signal)}
-.svc-prev{left:0}
-.svc-next{right:0}
+.svc-prev,.svc-next{display:none !important}
 .svc-dots{
   display:flex;justify-content:center;gap:8px;margin-top:16px;
 }
@@ -376,17 +371,15 @@ footer .brand-logo{
 }
 .svc-dot.is-active{width:22px;background:var(--signal)}
 @media(max-width:900px){
-  .svc-carousel{padding-inline:32px;--svc-per:2}
-  .svc-nav{width:38px;height:38px}
+  .svc-carousel{padding-inline:0;--svc-per:2}
 }
 @media(max-width:680px){
-  .svc-carousel{padding-inline:28px;--svc-per:1}
+  .svc-carousel{padding-inline:0;--svc-per:1}
   .svc-viewport{width:100%}
   .svc-slide{min-width:0}
-  .svc-nav{width:36px;height:36px;top:40%}
 }
 @media(max-width:420px){
-  .svc-carousel{padding-inline:24px}
+  .svc-carousel{padding-inline:0}
 }
 
 /* ---------- service group label ---------- */
@@ -486,7 +479,7 @@ footer .brand-logo{
   position:relative;
   --ind-gap:1px;
   --ind-per:5;
-  padding-inline:28px;
+  padding-inline:0;
 }
 .ind-viewport{
   overflow:hidden;
@@ -551,22 +544,7 @@ footer .brand-logo{
 .ind-head .lede{margin:12px auto 0}
 
 .ind-nav{
-  position:absolute;
-  top:50%;
-  transform:translateY(-50%);
-  z-index:8;
-  width:42px;height:42px;
-  border-radius:999px;
-  border:1px solid var(--line);
-  background:#fff;
-  color:var(--graphite);
-  display:grid;place-items:center;
-  cursor:pointer;
-  box-shadow:var(--shadow-sm);
-  transition:background .2s ease,color .2s ease,opacity .2s ease,border-color .2s ease;
-  pointer-events:auto;
-  -webkit-tap-highlight-color:transparent;
-  touch-action:manipulation;
+  display:none !important;
 }
 .ind-nav svg{width:18px;height:18px}
 .ind-nav:hover{background:var(--signal);color:#fff;border-color:var(--signal)}
@@ -600,15 +578,9 @@ footer .brand-logo{
   .ind-nav{width:38px;height:38px}
 }
 @media(max-width:680px){
-  .ind-carousel{--ind-per:1;padding-inline:26px}
+  .ind-carousel{--ind-per:1;padding-inline:0}
   .ind-slide{padding:26px 18px;gap:12px}
   .ind-name{font-size:1rem}
-  .ind-prev{left:0}
-  .ind-next{right:0}
-  .ind-nav{
-    width:40px;height:40px;
-    z-index:10;
-  }
 }
 
 /* legacy class kept so older CSS hooks don't break */

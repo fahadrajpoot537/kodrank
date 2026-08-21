@@ -6,24 +6,7 @@
   </div>
   <div class="wrap hero-inner">
     <div class="hero-copy">
-      @if(!empty($d['breadcrumb']))
-        <nav class="crumbs" aria-label="Breadcrumb">
-          @foreach($d['breadcrumb'] as $i => $crumb)
-            @php
-              $isLast = $i === count($d['breadcrumb']) - 1;
-              $label = $crumb['label'] ?? '';
-              $url = $crumb['url'] ?? '';
-              if ($label === 'Home') $url = route('home');
-            @endphp
-            @if($i > 0)<span aria-hidden="true">›</span>@endif
-            @if(!$isLast && $url !== '')
-              <a href="{{ $url }}">{{ $label }}</a>
-            @else
-              <span class="here">{{ $label }}</span>
-            @endif
-          @endforeach
-        </nav>
-      @endif
+      @include('services.partials.shared.breadcrumb', ['crumbs' => $d['breadcrumb'] ?? null])
       <h1>@if(!empty($d['title_html'])){!! $d['title_html'] !!}@else{{ $d['title'] ?? '' }}@endif</h1>
       @if(!empty($d['lede_html']) || !empty($d['lede']))
         <p class="lede">@if(!empty($d['lede_html'])){!! $d['lede_html'] !!}@else{{ $d['lede'] }}@endif</p>

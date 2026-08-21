@@ -7,6 +7,7 @@
   $partialBase = 'services.partials.'.$theme.'.';
 @endphp
 @foreach($page->sections as $section)
+  @continue($section->key === 'cta')
   @includeIf($partialBase.$section->key)
 @endforeach
 @endsection

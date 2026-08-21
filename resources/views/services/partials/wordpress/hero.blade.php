@@ -12,22 +12,10 @@
   <div class="wrap">
     <div class="wp-hero-grid">
       <div class="wp-hero-copy">
-        @if(!empty($d['breadcrumb']))
-          <nav class="wp-breadcrumb" aria-label="Breadcrumb">
-            <ol>
-              @foreach($d['breadcrumb'] as $crumb)
-                @php $url = trim((string) ($crumb['url'] ?? '')); @endphp
-                <li>
-                  @if($url !== '' && $url !== '#')
-                    <a href="{{ $url }}">{{ $crumb['label'] ?? '' }}</a>
-                  @else
-                    <span aria-current="page">{{ $crumb['label'] ?? '' }}</span>
-                  @endif
-                </li>
-              @endforeach
-            </ol>
-          </nav>
-        @endif
+        @include('services.partials.shared.breadcrumb', [
+          'crumbs' => $d['breadcrumb'] ?? null,
+          'navClass' => 'breadcrumb wp-breadcrumb',
+        ])
 
         <h1>
           @if(!empty($d['title_html']))

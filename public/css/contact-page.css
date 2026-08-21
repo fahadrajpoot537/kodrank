@@ -53,7 +53,7 @@ body.page-contact .breadcrumb li{
   color:#B7CBD2;
 }
 body.page-contact .breadcrumb li:not(:last-child)::after{
-  content:"›";
+  content:"\203A";
   color:#5A6E77;
   font-size:1rem;
   font-weight:400;

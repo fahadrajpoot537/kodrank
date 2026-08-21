@@ -90,7 +90,7 @@ class HomepageSeeder extends Seeder
                 'label' => 'Hero',
                 'sort_order' => 2,
                 'data' => [
-                    'eyebrow' => 'Web development & SEO services',
+                    'eyebrow' => '',
                     'title' => 'Web development and SEO services that make your site',
                     'title_em' => 'rank the day it launches.',
                     'sub' => 'Most agencies build your website, then sell you SEO to fix what they broke. We do it once, together.',

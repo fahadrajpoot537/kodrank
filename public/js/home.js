@@ -138,6 +138,9 @@
     var dotsWrap=root.querySelector('[data-ind-dots]');
     if(!viewport||!track||!slides.length) return;
 
+    if(prev){ prev.hidden=true; prev.setAttribute('aria-hidden','true'); }
+    if(next){ next.hidden=true; next.setAttribute('aria-hidden','true'); }
+
     var index=0;
     var per=1;
     var slideW=0;
@@ -169,9 +172,13 @@
       if(!gap && gap!==0) gap=1;
       var vw=viewport.getBoundingClientRect().width||viewport.clientWidth;
       if(vw<2){
-        vw=Math.max(200,(root.getBoundingClientRect().width||root.clientWidth)-56);
+        vw=Math.max(200,(root.getBoundingClientRect().width||root.clientWidth));
       }
-      slideW=Math.max(1, (vw - (per-1)*gap) / per);
+      if(per===1){
+        slideW=Math.max(1,(vw-Math.max(gap,12))/1.1);
+      }else{
+        slideW=Math.max(1, (vw - (per-1)*gap) / per);
+      }
       for(var s=0;s<slides.length;s++){
         slides[s].style.boxSizing='border-box';
         slides[s].style.flex='0 0 '+slideW+'px';
@@ -374,7 +381,7 @@
 
     roots.forEach(function(root){
       // Service pages use scroll-snap carousels in service-page.js
-      if(root.classList.contains('page-svc-carousel') || root.hasAttribute('data-sp-carousel')) return;
+      if(root.classList.contains('page-svc-carousel') || root.classList.contains('page-svc-stack') || root.hasAttribute('data-sp-carousel') || root.hasAttribute('data-sp-stack')) return;
       var viewport=root.querySelector('.svc-viewport');
       var track=root.querySelector('.svc-track');
       var slides=Array.prototype.slice.call(root.querySelectorAll('.svc-slide'));
@@ -382,6 +389,9 @@
       var next=root.querySelector('.svc-next');
       var dotsWrap=root.querySelector('[data-svc-dots]');
       if(!viewport||!track||!slides.length) return;
+
+      if(prev){ prev.hidden=true; prev.setAttribute('aria-hidden','true'); }
+      if(next){ next.hidden=true; next.setAttribute('aria-hidden','true'); }
 
       var desktopPer=parseInt(root.getAttribute('data-per-desktop')||'3',10)||3;
       var index=0, per=desktopPer, slideW=0, gap=20;
@@ -402,8 +412,13 @@
         gap=parseFloat(window.getComputedStyle(track).gap);
         if(!gap && gap!==0) gap=20;
         var vw=viewport.getBoundingClientRect().width||viewport.clientWidth;
-        if(vw<2) vw=Math.max(200,(root.getBoundingClientRect().width||root.clientWidth)-56);
-        slideW=Math.max(1,(vw-(per-1)*gap)/per);
+        if(vw<2) vw=Math.max(200,(root.getBoundingClientRect().width||root.clientWidth));
+        // Mobile: 1 full card + ~10% of the next card peeking
+        if(per===1){
+          slideW=Math.max(1,(vw-gap)/1.1);
+        }else{
+          slideW=Math.max(1,(vw-(per-1)*gap)/per);
+        }
         for(var s=0;s<slides.length;s++){
           slides[s].style.boxSizing='border-box';
           slides[s].style.setProperty('flex','0 0 '+slideW+'px','important');

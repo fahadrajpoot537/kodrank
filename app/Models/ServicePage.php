@@ -83,6 +83,9 @@ class ServicePage extends Model
             if (! $child->is_active) {
                 continue;
             }
+            if (! empty($child->seo['hide_from_nav'])) {
+                continue;
+            }
             $items->push($child);
             foreach ($child->navDescendants() as $desc) {
                 $items->push($desc);

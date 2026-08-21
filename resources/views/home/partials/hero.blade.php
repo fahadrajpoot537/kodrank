@@ -20,9 +20,6 @@
   </div>
 
   <div class="hero-in">
-    @if(!empty($c['hero']['eyebrow']))
-      <p class="eyebrow hero-eyebrow">{{ $c['hero']['eyebrow'] }}</p>
-    @endif
     <h1>{{ $c['hero']['title'] ?? '' }}@if(!empty($c['hero']['title_em'])) <em>{{ $c['hero']['title_em'] }}</em>@endif</h1>
     @if(!empty($c['hero']['sub']))
       <p class="hero-sub">{{ $c['hero']['sub'] }}</p>

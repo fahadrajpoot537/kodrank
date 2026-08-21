@@ -21,6 +21,7 @@ class SaasSeoServiceSeeder extends Seeder
                 'sort_order' => 5,
                 'seo' => [
                     'theme' => 'saas-seo',
+                    'hide_from_nav' => true,
                     'seo_title' => 'SaaS SEO Services That Turn Rankings Into Recurring Revenue | KodRank',
                     'seo_description' => 'KodRank SaaS SEO services fill your pipeline with trials, demos and SQLs — not vanity traffic. Full-funnel strategy, technical SEO, content, links and AI search, measured as MRR.',
                     'og_title' => 'SaaS SEO Services That Turn Rankings Into Recurring Revenue | KodRank',

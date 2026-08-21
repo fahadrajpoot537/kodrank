@@ -23,6 +23,13 @@ class ContentTemplates
     {
         $base = self::digitalMarketingSectionTemplates();
 
+        if ($theme === 'b2b-seo' || $theme === 'ecommerce-seo') {
+            return self::servicePageSectionsForTheme('saas-seo');
+        }
+        if ($theme === 'wordpress-seo') {
+            return self::servicePageSectionsForTheme('monthly-seo');
+        }
+
         if ($theme === 'seo-service') {
             return array_values(array_filter(
                 array_merge(

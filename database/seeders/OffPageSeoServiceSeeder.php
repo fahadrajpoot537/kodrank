@@ -228,6 +228,7 @@ class OffPageSeoServiceSeeder extends Seeder
                     'title' => 'The numbers our clients care about.',
                     'title_html' => 'The numbers our clients <span class="hl">care about</span>.',
                     'lede' => 'Vanity metrics don\'t pay the bills. These are the outcomes we build toward on every off page SEO campaign.',
+                    'tone' => 'light',
                     'items' => [
                         ['value' => '+68%', 'label' => 'Average lift in organic traffic within 6 months', 'signal' => true],
                         ['value' => '3.4×', 'label' => 'More keywords ranking in the top 10', 'signal' => false],
@@ -245,6 +246,7 @@ class OffPageSeoServiceSeeder extends Seeder
                     'title' => 'Off-page done the safe, boring, effective way.',
                     'title_html' => 'Off-page done the <span class="hl">safe, boring, effective</span> way.',
                     'lede' => 'There are faster ways to get links. They also get you penalized. We\'d rather build authority that still stands after the next core update.',
+                    'image' => 'media/services/digital-marketing/bg-3.webp',
                     'cards' => [
                         [
                             'title' => 'White-hat, full stop',

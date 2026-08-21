@@ -1,8 +1,13 @@
 ﻿@php
   $w = $s['why_us'] ?? [];
   $isOffPage = str_contains($page->slug ?? '', 'off-page');
+  $bg = $w['image'] ?? $w['background_image'] ?? null;
+  $secClass = $isOffPage ? 'sec-ink seo-why' : 'sec-paper seo-why';
+  if ($bg) {
+      $secClass .= ' why-bg';
+  }
 @endphp
-<section id="why-us" class="{{ $isOffPage ? 'sec-ink seo-why' : 'sec-paper' }}">
+<section id="why-us" class="{{ $secClass }}"@if($bg) style="--why-bg-image:url('{{ asset($bg) }}')"@endif>
   <div class="wrap">
     <div class="section-head">
       <span class="eyebrow">{{ $w['eyebrow'] ?? 'Why KodRank' }}</span>
@@ -13,7 +18,7 @@
           {{ $w['title'] ?? '' }}
         @endif
       </h2>
-      <p class="{{ $isOffPage ? 'lede' : '' }}">{{ $w['lede'] ?? '' }}</p>
+      <p class="lede">{{ $w['lede'] ?? '' }}</p>
     </div>
 
     <div class="why-grid">

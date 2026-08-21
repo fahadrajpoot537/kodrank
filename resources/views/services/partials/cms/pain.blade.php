@@ -8,7 +8,7 @@
         <p class="lede">@if(!empty($d['lede_html'])){!! $d['lede_html'] !!}@else{{ $d['lede'] }}@endif</p>
       @endif
     </div>
-    <div class="svc-carousel page-svc-carousel" data-sp-carousel data-per-desktop="3">
+    <div class="svc-carousel page-svc-stack page-svc-stack--pair" data-sp-stack data-per-desktop="3">
       <button type="button" class="svc-nav svc-prev" aria-label="Previous problems">
         <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M15 5 8 12l7 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </button>

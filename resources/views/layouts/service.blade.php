@@ -86,10 +86,11 @@
 @php
   $serviceTheme = ($seo['theme'] ?? null)
     ?: (($page->slug ?? '') === 'web-design-and-development-services' ? 'web-development' : 'digital-marketing');
-  // about + seo-service reuse the digital-marketing visual system
   $cssTheme = $serviceTheme === 'web-development' ? 'web-development' : 'digital-marketing';
+  // SEO niche pages share on-page / digital-marketing design system
+  $dmSeoThemes = ['seo-service', 'b2b-seo', 'ecommerce-seo', 'saas-seo', 'monthly-seo', 'wordpress-seo'];
   $bodyExtras = '';
-  if ($serviceTheme === 'seo-service') {
+  if (in_array($serviceTheme, $dmSeoThemes, true)) {
       $bodyExtras .= ' page-seo-service';
   }
   if ($serviceTheme === 'about') {
@@ -101,11 +102,11 @@
   if ($serviceTheme === 'ai-chatbot') {
       $bodyExtras .= ' page-ai-chatbot';
   }
-  // themes that ship a complete, self-scoped component sheet
-  $standaloneThemes = ['wordpress', 'ai-chatbot', 'cms', 'website-redesign', 'shopify', 'saas-seo', 'monthly-seo'];
+  // Build themes keep their own sheets; SEO themes use DM like on-page
+  $standaloneThemes = ['wordpress', 'ai-chatbot', 'cms', 'website-redesign', 'shopify'];
 @endphp
 @if(in_array($serviceTheme, $standaloneThemes, true))
-  {{-- these themes ship their own complete component sheet; loading another theme sheet would fight it --}}
+  {{-- standalone component sheet only --}}
 @elseif($cssTheme === 'web-development')
   <link rel="stylesheet" href="{{ asset('css/service-web-development.css') }}?v={{ @filemtime(public_path('css/service-web-development.css')) ?: time() }}">
   <link rel="stylesheet" href="{{ asset('css/service-web-extra.css') }}?v={{ @filemtime(public_path('css/service-web-extra.css')) ?: time() }}">
@@ -131,12 +132,7 @@
 @if($serviceTheme === 'shopify')
   <link rel="stylesheet" href="{{ asset('css/service-shopify.css') }}?v={{ @filemtime(public_path('css/service-shopify.css')) ?: time() }}">
 @endif
-@if($serviceTheme === 'saas-seo')
-  <link rel="stylesheet" href="{{ asset('css/service-saas.css') }}?v={{ @filemtime(public_path('css/service-saas.css')) ?: time() }}">
-@endif
-@if($serviceTheme === 'monthly-seo')
-  <link rel="stylesheet" href="{{ asset('css/service-monthly.css') }}?v={{ @filemtime(public_path('css/service-monthly.css')) ?: time() }}">
-@endif
+<link rel="stylesheet" href="{{ asset('css/service-stack.css') }}?v={{ @filemtime(public_path('css/service-stack.css')) ?: time() }}">
 @stack('head')
 </head>
 <body class="page-service{{ $cssTheme === 'web-development' ? ' page-web-dev' : '' }}{{ $bodyExtras }}">
@@ -148,8 +144,6 @@
       'cms' => 'cms-page',
       'website-redesign' => 'rd-page',
       'shopify' => 'shop-page',
-      'saas-seo' => 'saas-page',
-      'monthly-seo' => 'mo-page',
       default => null,
   };
 @endphp

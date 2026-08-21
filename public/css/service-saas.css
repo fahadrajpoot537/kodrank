@@ -11,7 +11,7 @@
   font-family:"Poppins",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
   color:var(--graphite);background:var(--paper);line-height:1.6;
   -webkit-font-smoothing:antialiased;
-  overflow-x:clip;
+  overflow-x:visible;
 }
 .saas-page *{box-sizing:border-box;margin:0;padding:0}
 .saas-page section[id]{scroll-margin-top:84px}
@@ -50,12 +50,14 @@
 .saas-page .tlink .arw{transition:transform .22s ease}
 .saas-page .tlink:hover .arw{transform:translateX(4px)}
 .saas-page .hero{position:relative;background:var(--ink);overflow:hidden;isolation:isolate}
-.saas-page .hero-bg{position:absolute;inset:0;z-index:-2;background-size:cover;background-position:right center;opacity:.92}
+.saas-page .hero-bg{position:absolute;inset:0;z-index:0;background-size:cover;background-position:right center;opacity:.92}
 .saas-page .hero-bg::after{content:"";position:absolute;inset:0}
-.saas-page .hero-veil{position:absolute;inset:0;z-index:-1;
+.saas-page .hero-veil{position:absolute;inset:0;z-index:1;pointer-events:none;
   background:
     radial-gradient(120% 90% at 82% 45%, rgba(244,122,31,.10), transparent 55%),
     linear-gradient(90deg, var(--ink) 0%, var(--ink) 30%, rgba(10,26,34,.86) 48%, rgba(10,26,34,.35) 72%, rgba(10,26,34,.15) 100%);}
+.saas-page .hero > .wrap,
+.saas-page .hero-copy{position:relative;z-index:2}
 .saas-page .hero-in{padding:0 0 clamp(48px,6vw,84px)}
 .saas-page .hero-copy{max-width:760px}
 .saas-page .hero h1{font-size:clamp(2.25rem,4.7vw,3.9rem);font-weight:800;color:#fff;
@@ -192,7 +194,7 @@
 .saas-page .stats-bg{
   background-image:url('../media/services/saas-seo/saas-seo-services-content-clusters-serp-ai-visibility-recurring-revenue-growth.jpg');
 }
-.saas-page .hero-copy{padding-top:clamp(32px,4vw,56px);padding-left:0;padding-right:0}
+.saas-page .hero-copy{padding-top:0;padding-left:0;padding-right:0}
 .saas-page .eyebrow::before{content:"—"!important;display:inline!important}
 .saas-page .page-svc-carousel{margin-top:8px}
 .saas-page .page-svc-carousel .svc-slide{height:auto;min-height:100%;box-sizing:border-box}

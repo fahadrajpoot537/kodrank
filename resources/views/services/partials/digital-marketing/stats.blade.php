@@ -2,10 +2,15 @@
   $st = $s['stats'] ?? [];
   $bg = $st['image'] ?? $st['background_image'] ?? null;
   $compact = ! empty($st['compact']) || (empty($st['title']) && empty($st['title_html']) && empty($st['eyebrow']));
+  $tone = $st['tone'] ?? 'dark';
+  $isLight = $tone === 'light' || ! empty($st['light']);
+  $secClass = $isLight
+      ? 'sec-paper stats-light'
+      : ('sec-ink stats-bg'.($compact ? ' seo-stats-compact' : ''));
 @endphp
-<section class="sec-ink stats-bg{{ $compact ? ' seo-stats-compact' : '' }}"@if($bg) style="--stats-bg-image:url('{{ asset($bg) }}')"@endif>
+<section class="{{ $secClass }}"@if(! $isLight && $bg) style="--stats-bg-image:url('{{ asset($bg) }}')"@endif>
   <div class="wrap">
-    @unless($compact)
+    @unless($compact && ! $isLight)
       <div class="section-head left">
         @if(!empty($st['eyebrow']))
           <span class="eyebrow">{{ $st['eyebrow'] }}</span>
