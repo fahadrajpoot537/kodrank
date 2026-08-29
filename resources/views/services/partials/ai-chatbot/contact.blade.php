@@ -79,6 +79,7 @@
           <textarea id="ac-msg" name="message" placeholder="{{ $fields['message_placeholder'] ?? '' }}" required>{{ old('message') }}</textarea>
           @error('message')<span class="field-err">{{ $message }}</span>@enderror
         </div>
+        @include('partials.recaptcha')
         <button class="btn btn-primary" type="submit">{{ $ct['submit_text'] ?? 'Get My Free Quote' }} <span class="arw">→</span></button>
         @if(!empty($ct['disclaimer']))<small>{{ $ct['disclaimer'] }}</small>@endif
       </form>

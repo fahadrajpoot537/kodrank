@@ -29,6 +29,35 @@ class ContentTemplates
         if ($theme === 'wordpress-seo') {
             return self::servicePageSectionsForTheme('monthly-seo');
         }
+        if ($theme === 'theme-html') {
+            return [
+                self::sectionTemplate('body', 'Page content (HTML)', 0, [
+                    'scope' => 'theme-html-page',
+                    'html' => '<p>Paste full page HTML content here.</p>',
+                ]),
+            ];
+        }
+        if (in_array($theme, ['guest-posting', 'restaurant-seo', 'healthcare-seo', 'real-estate-seo', 'electrician', 'saas-development'], true)) {
+            return self::servicePageSectionsForTheme('b2b-seo');
+        }
+        if ($theme === 'industries') {
+            return [
+                self::sectionTemplate('hero', 'Industries hub', 0, [
+                    'eyebrow' => '— Industries',
+                    'title_html' => 'Built to <span>Rank</span>',
+                    'lede' => 'Search and web solutions tuned to how your market actually searches.',
+                    'stats' => [
+                        ['value' => '9+', 'label' => 'Industries served'],
+                        ['value' => '3.4×', 'label' => 'Avg. traffic lift'],
+                    ],
+                    'cta_text' => 'Get a free audit',
+                    'cta_url' => '/contact',
+                    'items' => [
+                        ['title' => 'Industry', 'body' => 'Short description', 'url' => '/contact'],
+                    ],
+                ]),
+            ];
+        }
 
         if ($theme === 'seo-service') {
             return array_values(array_filter(

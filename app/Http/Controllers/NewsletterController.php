@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\NewsletterSubscriber;
+use App\Rules\Recaptcha;
 use App\Services\LeadNotificationService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -20,6 +21,7 @@ class NewsletterController extends Controller
         $data = $request->validate([
             'email' => ['required', 'email', 'max:190'],
             'redirect_to' => ['nullable', 'string', 'max:500'],
+            'g-recaptcha-response' => ['required', new Recaptcha],
         ]);
 
         $email = mb_strtolower(trim($data['email']));
@@ -34,12 +36,7 @@ class NewsletterController extends Controller
         $subscriber->save();
 
         if ($isNew) {
-            $notifications->send('New KodRank blog subscriber', [
-                'A new newsletter subscriber was saved.',
-                'Email: '.$subscriber->email,
-                'Source: '.$subscriber->source,
-                'Subscribed at: '.$subscriber->subscribed_at?->toDateTimeString(),
-            ]);
+            $notifications->sendNewsletterEmails($subscriber->email);
         }
 
         return redirect()

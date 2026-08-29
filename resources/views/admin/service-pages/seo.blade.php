@@ -50,7 +50,8 @@
     </div>
 
     @foreach([
-      'theme' => 'Theme key (digital-marketing / web-development / seo-service / about / wordpress / ai-chatbot / cms / website-redesign / shopify / saas-seo / monthly-seo / b2b-seo / ecommerce-seo / wordpress-seo)',
+      'theme' => 'Theme key (digital-marketing / web-development / seo-service / about / wordpress / ai-chatbot / cms / website-redesign / shopify / saas-seo / monthly-seo / b2b-seo / ecommerce-seo / wordpress-seo / theme-html / industries)',
+      'css' => 'Extra CSS path (e.g. css/page-privacy.css)',
       'seo_title' => 'SEO title',
       'seo_description' => 'SEO description',
       'og_title' => 'OG title',

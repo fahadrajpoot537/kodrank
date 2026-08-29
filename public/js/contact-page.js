@@ -89,6 +89,11 @@
       ok = false;
     }
 
+    if (typeof grecaptcha !== 'undefined' && typeof grecaptcha.getResponse === 'function' && !grecaptcha.getResponse()) {
+      showStatus('error', 'Please complete the captcha so we know you are human.');
+      ok = false;
+    }
+
     if (!ok) {
       e.preventDefault();
       if (statusEl && !statusEl.classList.contains('show')) {

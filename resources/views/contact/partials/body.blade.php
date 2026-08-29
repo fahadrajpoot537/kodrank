@@ -260,6 +260,8 @@
 
             <div class="form-status" id="form-status" role="alert" aria-live="polite"></div>
 
+            @include('partials.recaptcha')
+
             <div class="form-submit">
               <div class="trust-row">
                 <span class="trust-item">

@@ -64,10 +64,42 @@
 .ac-page .hero-lede{margin-top:22px;font-size:clamp(1.02rem,1.5vw,1.2rem);color:#9FB6BE;max-width:560px;font-weight:400}
 .ac-page .hero-lede strong{color:#DCE8EC;font-weight:600}
 .ac-page .hero-actions{margin-top:34px;display:flex;flex-wrap:wrap;gap:14px}
-.ac-page .hero-trust{margin-top:40px;display:flex;flex-wrap:wrap;gap:14px 40px;border-top:1px solid var(--line-dark);padding-top:26px}
-.ac-page .ht{display:flex;flex-direction:column}
-.ac-page .ht b{font-size:1.55rem;font-weight:800;color:var(--signal);line-height:1}
-.ac-page .ht span{font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:#7E969E;margin-top:7px;font-weight:500}
+.ac-page .hero-trust{
+  margin-top:40px;
+  display:flex;
+  flex-direction:row;
+  flex-wrap:nowrap;
+  align-items:flex-start;
+  gap:14px 40px;
+  border-top:1px solid var(--line-dark);
+  padding-top:26px;
+  width:100%;
+  max-width:100%;
+}
+.ac-page .hero-trust .ht{
+  display:flex;
+  flex-direction:column;
+  flex:0 1 auto;
+  min-width:0;
+  max-width:none;
+}
+.ac-page .hero-trust .ht b{
+  font-size:1.55rem;
+  font-weight:800;
+  color:var(--signal);
+  line-height:1;
+  white-space:nowrap;
+}
+.ac-page .hero-trust .ht span{
+  font-size:.72rem;
+  letter-spacing:.06em;
+  text-transform:uppercase;
+  color:#7E969E;
+  margin-top:7px;
+  font-weight:500;
+  white-space:nowrap;
+  max-width:none;
+}
 .ac-page .chat{background:rgba(15,42,51,.72);border:1px solid var(--line-dark);border-radius:18px;
   padding:18px;backdrop-filter:blur(14px);box-shadow:0 30px 70px -30px rgba(0,0,0,.7)}
 .ac-page .chat-top{display:flex;align-items:center;gap:11px;padding:4px 4px 16px;border-bottom:1px solid var(--line-dark)}

@@ -15,11 +15,11 @@ class SeoServiceInquiryController extends Controller
         if ($request->filled('fax_number')) {
             return redirect()
                 ->to($this->safeRedirect($request) ?? url()->previous())
-                ->with('contact_success', 'Thanks — we received your message and will get back to you soon.');
+                ->with('contact_success', 'Thanks — we received your message. Our team will contact you within 24 hours.');
         }
 
         $data = $request->validated();
-        unset($data['fax_number'], $data['redirect_to']);
+        unset($data['fax_number'], $data['redirect_to'], $data['g-recaptcha-response']);
 
         $inquiry = SeoServiceInquiry::query()->create([
             ...$data,
@@ -29,23 +29,20 @@ class SeoServiceInquiryController extends Controller
             'status' => SeoServiceInquiry::STATUS_NEW,
         ]);
 
-        $notifications->send('New KodRank service inquiry', [
-            'A new service inquiry was saved.',
-            'Service: '.($inquiry->service_name ?? '—'),
-            'Page type: '.($inquiry->page_type ?? '—'),
-            'Name: '.$inquiry->name,
-            'Email: '.$inquiry->email,
-            'Phone: '.($inquiry->phone ?? '—'),
-            'Company: '.($inquiry->company ?? '—'),
-            'Website: '.($inquiry->website ?? '—'),
-            '',
-            'Message:',
-            $inquiry->message,
+        $notifications->sendInquiryEmails([
+            'source' => 'Service inquiry'.($inquiry->service_name ? ' — '.$inquiry->service_name : ''),
+            'name' => $inquiry->name,
+            'email' => $inquiry->email,
+            'phone' => $inquiry->phone,
+            'company' => $inquiry->company,
+            'website' => $inquiry->website,
+            'service' => $inquiry->service_name,
+            'message' => $inquiry->message,
         ]);
 
         return redirect()
             ->to($this->safeRedirect($request) ?? url()->previous())
-            ->with('contact_success', 'Thanks — we received your message and will get back to you soon.');
+            ->with('contact_success', 'Thanks — we received your message. Our team will contact you within 24 hours.');
     }
 
     private function safeRedirect(StoreSeoServiceInquiryRequest $request): ?string

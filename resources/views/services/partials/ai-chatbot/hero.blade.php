@@ -14,13 +14,6 @@
             <a href="{{ $d['cta_url'] ?: '#contact' }}" class="btn btn-primary">{{ $d['cta_text'] }} <span class="arw">→</span></a>
           </div>
         @endif
-        @if(!empty($d['trust']))
-          <div class="hero-trust">
-            @foreach($d['trust'] as $item)
-              <div class="ht"><b>{{ $item['value'] ?? '' }}</b><span>{{ $item['label'] ?? '' }}</span></div>
-            @endforeach
-          </div>
-        @endif
       </div>
 
       @if(!empty($chat))
@@ -41,6 +34,17 @@
         </div>
       @endif
     </div>
+
+    @if(!empty($d['trust']))
+      <div class="hero-trust">
+        @foreach($d['trust'] as $item)
+          <div class="ht">
+            <b>{{ $item['value'] ?? $item['num'] ?? '' }}</b>
+            <span>{{ $item['label'] ?? '' }}</span>
+          </div>
+        @endforeach
+      </div>
+    @endif
   </div>
 </section>
 

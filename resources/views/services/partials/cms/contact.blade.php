@@ -84,6 +84,7 @@
         <textarea id="cms-message" name="message" rows="3" placeholder="{{ $fields['message_placeholder'] ?? '' }}" required>{{ old('message') }}</textarea>
         @error('message')<span class="field-err">{{ $message }}</span>@enderror
       </div>
+      @include('partials.recaptcha')
       <button class="btn btn-primary" type="submit" style="width:100%;justify-content:center">{{ $d['submit_text'] ?? 'Send my request' }}
         <svg class="arw" width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </button>

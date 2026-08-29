@@ -1,0 +1,3322 @@
+/* Theme-html + webdev-ref service pages — WP /wordpress-development-services
+   mobile + tablet behavior.
+
+   Reference (do not invent):
+   - Carousel ≤767: problem/pain + feature/why  (85vw snap, pan-x, 4s autoplay in JS)
+   - Scroll-stack ≤900: services + process
+   - Pain/feature 768–980: 2-col grid
+   Desktop ≥901: ZERO rules in the .webdev-ref blocks below. */
+
+/* ══════════════════════════════════════════════════════════════
+   WP reference page (.wpdev-theme-page) — same as
+   theme-wordpress-development-mobile.css so the source of truth
+   still works when this file is the one actually linked.
+   ══════════════════════════════════════════════════════════════ */
+body.page-theme-html.page-service section#services.has-page-svc-stack,
+body.page-theme-html.page-service section#process.has-page-svc-stack,
+body.page-theme-html.page-service section#included.has-page-svc-stack,
+.wpdev-theme-page section#services.has-page-svc-stack,
+.wpdev-theme-page section#process.has-page-svc-stack {
+  overflow-x: clip !important;
+  overflow-y: visible !important;
+}
+
+.wpdev-theme-page #services .service-grid.page-svc-stack,
+.wpdev-theme-page #process .process-list.page-svc-stack {
+  overflow: visible !important;
+  transform: none !important;
+  filter: none !important;
+  contain: none !important;
+}
+
+@media (max-width: 900px) {
+  .wpdev-theme-page #services .service-grid.page-svc-stack,
+  .wpdev-theme-page #process .process-list.page-svc-stack {
+    display: block !important;
+    grid-template-columns: none !important;
+    gap: 0 !important;
+  }
+
+  .wpdev-theme-page #services .service-grid.page-svc-stack .svc-stack-item,
+  .wpdev-theme-page #process .process-list.page-svc-stack .svc-stack-item {
+    position: sticky;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  .wpdev-theme-page #services .service-grid.page-svc-stack .svc-card,
+  .wpdev-theme-page #process .process-list.page-svc-stack .proc {
+    opacity: 1 !important;
+    background: var(--paper, #fff) !important;
+    box-shadow:
+      0 1px 2px rgba(13, 32, 41, 0.04),
+      0 10px 28px -16px rgba(13, 32, 41, 0.16) !important;
+  }
+
+  .wpdev-theme-page #services .service-grid.page-svc-stack .svc-card:hover,
+  .wpdev-theme-page #process .process-list.page-svc-stack .proc:hover {
+    transform: none !important;
+  }
+}
+
+@media (min-width: 901px) {
+  .wpdev-theme-page #services .service-grid.page-svc-stack {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)) !important;
+    gap: 20px !important;
+  }
+
+  .wpdev-theme-page #process .process-list.page-svc-stack {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)) !important;
+    gap: 18px !important;
+  }
+
+  .wpdev-theme-page #services .service-grid.page-svc-stack .svc-stack-item,
+  .wpdev-theme-page #process .process-list.page-svc-stack .svc-stack-item {
+    position: relative !important;
+    top: auto !important;
+    margin: 0 !important;
+    transform: none !important;
+  }
+
+  .wpdev-theme-page #services .service-grid.page-svc-stack .svc-stack-item > *,
+  .wpdev-theme-page #process .process-list.page-svc-stack .svc-stack-item > * {
+    transform: none !important;
+  }
+}
+
+@media (max-width: 767px) {
+  /* why-bg uses overflow:hidden for the photo. Scroll lives on .why-mobile-carousel
+     (JS wraps .feature-grid) — same pattern as .page-wordpress in service-stack.css. */
+  body.page-theme-html .wpdev-theme-page .why-bg .wrap,
+  .wpdev-theme-page.theme-html-root .why-bg .wrap,
+  .wpdev-theme-page .why-bg .wrap {
+    max-width: 100% !important;
+    min-width: 0 !important;
+    overflow: visible !important;
+  }
+
+  body.page-theme-html .wpdev-theme-page .why-bg .why-mobile-carousel,
+  .wpdev-theme-page.theme-html-root .why-bg .why-mobile-carousel,
+  .wpdev-theme-page .sec-ink.why-bg .why-mobile-carousel,
+  .wpdev-theme-page .why-bg .why-mobile-carousel {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    -webkit-overflow-scrolling: touch !important;
+    scroll-snap-type: x mandatory !important;
+    overscroll-behavior-x: contain !important;
+    scrollbar-width: none !important;
+    touch-action: pan-x !important;
+  }
+
+  body.page-theme-html .wpdev-theme-page .why-bg .why-mobile-carousel::-webkit-scrollbar,
+  .wpdev-theme-page .why-bg .why-mobile-carousel::-webkit-scrollbar {
+    display: none !important;
+    height: 0 !important;
+  }
+
+  body.page-theme-html .wpdev-theme-page .why-bg .why-mobile-carousel .feature-grid,
+  .wpdev-theme-page.theme-html-root .why-bg .why-mobile-carousel .feature-grid,
+  .wpdev-theme-page .why-bg .why-mobile-carousel .feature-grid {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    align-items: stretch !important;
+    gap: 16px !important;
+    width: max-content !important;
+    max-width: none !important;
+    min-width: 0 !important;
+    height: auto !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: visible !important;
+    grid-template-columns: none !important;
+    grid-template-rows: none !important;
+  }
+
+  body.page-theme-html .wpdev-theme-page .why-bg .why-mobile-carousel .feat-card,
+  .wpdev-theme-page.theme-html-root .why-bg .why-mobile-carousel .feat-card,
+  .wpdev-theme-page .why-bg .why-mobile-carousel .feat-card,
+  .wpdev-theme-page .why-bg .why-mobile-carousel .feature-grid > * {
+    flex: 0 0 85vw !important;
+    flex-shrink: 0 !important;
+    flex-grow: 0 !important;
+    width: 85vw !important;
+    min-width: 85vw !important;
+    max-width: 85vw !important;
+    height: auto !important;
+    box-sizing: border-box !important;
+    scroll-snap-align: start !important;
+  }
+
+  .wpdev-theme-page .why-bg .why-mobile-carousel .feat-card:hover {
+    transform: none !important;
+  }
+
+  /* #why-us .why-grid (Fixed pricing / SEO built in / …) — beat
+     theme @media(max-width:560px){ .why-grid { 1fr } } */
+  body.page-theme-html .wpdev-theme-page #why-us .wrap,
+  .wpdev-theme-page #why-us .wrap {
+    max-width: 100% !important;
+    min-width: 0 !important;
+    overflow: visible !important;
+  }
+
+  body.page-theme-html .wpdev-theme-page #why-us .why-mobile-carousel,
+  .wpdev-theme-page #why-us .why-mobile-carousel,
+  .wpdev-theme-page .why-mobile-carousel:has(> .why-grid) {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    -webkit-overflow-scrolling: touch !important;
+    scroll-snap-type: x mandatory !important;
+    overscroll-behavior-x: contain !important;
+    scrollbar-width: none !important;
+    touch-action: pan-x !important;
+  }
+
+  body.page-theme-html .wpdev-theme-page #why-us .why-mobile-carousel::-webkit-scrollbar,
+  .wpdev-theme-page #why-us .why-mobile-carousel::-webkit-scrollbar,
+  .wpdev-theme-page .why-mobile-carousel:has(> .why-grid)::-webkit-scrollbar {
+    display: none !important;
+    height: 0 !important;
+  }
+
+  html body.page-theme-html .wpdev-theme-page #why-us .why-grid,
+  .wpdev-theme-page #why-us .why-grid,
+  .wpdev-theme-page .why-grid,
+  .wpdev-theme-page #why-us .why-mobile-carousel .why-grid,
+  .wpdev-theme-page .why-mobile-carousel > .why-grid {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    align-items: stretch !important;
+    gap: 16px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    height: auto !important;
+    margin: 0 !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    -webkit-overflow-scrolling: touch !important;
+    scroll-snap-type: x mandatory !important;
+    grid-template-columns: none !important;
+    grid-template-rows: none !important;
+    scrollbar-width: none !important;
+    touch-action: pan-x !important;
+  }
+
+  .wpdev-theme-page #why-us .why-mobile-carousel .why-grid,
+  .wpdev-theme-page .why-mobile-carousel > .why-grid {
+    width: max-content !important;
+    max-width: none !important;
+    overflow: visible !important;
+  }
+
+  html body.page-theme-html .wpdev-theme-page #why-us .why-grid > .why-card,
+  .wpdev-theme-page #why-us .why-grid > .why-card,
+  .wpdev-theme-page .why-grid > .why-card,
+  .wpdev-theme-page #why-us .why-grid > *,
+  .wpdev-theme-page .why-mobile-carousel .why-grid > * {
+    flex: 0 0 85vw !important;
+    flex-shrink: 0 !important;
+    flex-grow: 0 !important;
+    width: 85vw !important;
+    min-width: 85vw !important;
+    max-width: 85vw !important;
+    height: auto !important;
+    box-sizing: border-box !important;
+    scroll-snap-align: start !important;
+  }
+
+  .wpdev-theme-page #why-us .why-card:hover,
+  .wpdev-theme-page .why-grid > .why-card:hover {
+    transform: none !important;
+  }
+
+  body.page-theme-html .wpdev-theme-page .problem-grid,
+  .wpdev-theme-page.theme-html-root .problem-grid,
+  .wpdev-theme-page .sec-ink .problem-grid,
+  .wpdev-theme-page .problem-grid {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    align-items: stretch !important;
+    gap: 16px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    height: auto !important;
+    margin-top: 0 !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    -webkit-overflow-scrolling: touch !important;
+    scroll-snap-type: x mandatory !important;
+    overscroll-behavior-x: contain !important;
+    grid-template-columns: none !important;
+    grid-template-rows: none !important;
+    scrollbar-width: none !important;
+    touch-action: pan-x !important;
+  }
+
+  body.page-theme-html .wpdev-theme-page .problem-grid::-webkit-scrollbar,
+  .wpdev-theme-page .problem-grid::-webkit-scrollbar {
+    display: none !important;
+    height: 0 !important;
+  }
+
+  body.page-theme-html .wpdev-theme-page .problem-grid .problem-card,
+  .wpdev-theme-page.theme-html-root .problem-grid .problem-card,
+  .wpdev-theme-page .problem-grid > .problem-card {
+    flex: 0 0 85vw !important;
+    flex-shrink: 0 !important;
+    flex-grow: 0 !important;
+    width: 85vw !important;
+    min-width: 85vw !important;
+    max-width: 85vw !important;
+    height: auto !important;
+    box-sizing: border-box !important;
+    scroll-snap-align: start !important;
+  }
+
+  .wpdev-theme-page .problem-grid .problem-card:hover {
+    transform: none !important;
+  }
+}
+
+/* ══════════════════════════════════════════════════════════════
+   Listed service pages (.webdev-ref) — same breakpoints/behavior
+   ══════════════════════════════════════════════════════════════ */
+
+/* Stack ≤900 — beat theme #id + display:grid !important */
+@media (max-width: 900px) {
+  html body.page-service .webdev-ref section.has-page-svc-stack,
+  html body.page-web-dev .webdev-ref section.has-page-svc-stack {
+    overflow-x: clip !important;
+    overflow-y: visible !important;
+  }
+
+  html body.page-service .webdev-ref .page-svc-stack,
+  html body.page-service .webdev-ref [data-thm-stack],
+  html body.page-service .webdev-ref [data-thm-stack].page-svc-stack,
+  html body.page-service .webdev-ref .service-grid.page-svc-stack,
+  html body.page-service .webdev-ref .svc-grid.page-svc-stack,
+  html body.page-service .webdev-ref .serv-grid.page-svc-stack,
+  html body.page-service .webdev-ref .process-list.page-svc-stack,
+  html body.page-service .webdev-ref .process-grid.page-svc-stack,
+  html body.page-service .webdev-ref .proc-grid.page-svc-stack,
+  html body.page-service .webdev-ref .loop-grid.page-svc-stack,
+  html body.page-service .webdev-ref .steps.page-svc-stack,
+  html body.page-service .webdev-ref .grid-cards.page-svc-stack,
+  html body.page-service .webdev-ref .proc.page-svc-stack,
+  html body.page-service .webdev-ref #process .proc-grid,
+  html body.page-service .webdev-ref #process .proc-grid.page-svc-stack,
+  html body.page-service .webdev-ref #process .process-list.page-svc-stack,
+  html body.page-service .webdev-ref #process .process-grid.page-svc-stack,
+  html body.page-service .webdev-ref #process .steps.page-svc-stack,
+  html body.page-service .webdev-ref #process [data-thm-stack],
+  html body.page-service .webdev-ref #services .svc-grid.page-svc-stack,
+  html body.page-service .webdev-ref #services .service-grid.page-svc-stack,
+  html body.page-service .webdev-ref #services .serv-grid.page-svc-stack,
+  html body.page-service .webdev-ref #services [data-thm-stack],
+  html body.page-service .webdev-ref #services .carousel-track,
+  html body.page-service .webdev-ref #services [data-thm-stack],
+  html body.page-service .webdev-ref #included [data-thm-stack] {
+    display: block !important;
+    grid-template-columns: none !important;
+    grid-template-rows: none !important;
+    gap: 0 !important;
+    overflow: visible !important;
+    transform: none !important;
+    filter: none !important;
+    contain: none !important;
+  }
+
+  html body.page-service .webdev-ref .page-svc-stack .svc-stack-item,
+  html body.page-service .webdev-ref [data-thm-stack] .svc-stack-item,
+  html body.page-web-dev .webdev-ref .page-svc-stack .svc-stack-item {
+    position: sticky;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  html body.page-service .webdev-ref .page-svc-stack .svc-stack-item > *:hover,
+  html body.page-service .webdev-ref [data-thm-stack] .svc-stack-item > *:hover {
+    transform: none !important;
+  }
+
+  html body.page-service .webdev-ref #services .carousel-nav-wrap {
+    display: none !important;
+  }
+
+  html body.page-web-dev .webdev-ref #services .svc-carousel,
+  html body.page-web-dev .webdev-ref #services .svc-viewport,
+  html body.page-web-dev .webdev-ref #services .svc-track,
+  html body.page-web-dev .webdev-ref #services .service-grid,
+  html body.page-web-dev .webdev-ref #services [data-thm-stack],
+  html body.page-web-dev .webdev-ref #process .process-list,
+  html body.page-web-dev .webdev-ref #process [data-thm-stack] {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    display: block !important;
+    overflow: visible !important;
+    transform: none !important;
+  }
+
+  html body.page-web-dev .webdev-ref #services .svc-stack-item {
+    width: 100% !important;
+    max-width: 100% !important;
+    position: sticky;
+  }
+
+  html body.page-web-dev .webdev-ref #services .svc-card,
+  html body.page-web-dev .webdev-ref #services .service-card,
+  html body.page-web-dev .webdev-ref #process .process-step,
+  html body.page-web-dev .webdev-ref #process .proc {
+    background: var(--paper, #fff) !important;
+    box-shadow:
+      0 1px 2px rgba(13, 32, 41, 0.04),
+      0 10px 28px -16px rgba(13, 32, 41, 0.16) !important;
+  }
+
+  html body.page-web-dev .webdev-ref #services .service-card.svc-card-lg,
+  html body.page-web-dev .webdev-ref #services .svc-card.svc-card-lg,
+  html body.page-web-dev .webdev-ref .page-svc-stack .svc-card-lg {
+    background: var(--ink, #0A1A22) !important;
+    background-color: var(--ink, #0A1A22) !important;
+    border-color: var(--line-dark, rgba(244,122,31,.16)) !important;
+    color: #fff !important;
+  }
+  html body.page-web-dev .webdev-ref #services .service-card.svc-card-lg h3 {
+    color: #fff !important;
+  }
+  html body.page-web-dev .webdev-ref #services .service-card.svc-card-lg p,
+  html body.page-web-dev .webdev-ref #services .service-card.svc-card-lg .tag {
+    color: #B7CBD2 !important;
+  }
+
+  /* Shopify = WP: pain cards stay ink, service cards stay paper */
+  html body.page-service .shopify-theme-page.webdev-ref .pain-card {
+    background: var(--ink-2, #0F2A33) !important;
+    background-color: var(--ink-2, #0F2A33) !important;
+    border-color: var(--line-dark, rgba(244,122,31,.16)) !important;
+    color: #B7CBD2 !important;
+  }
+  html body.page-service .shopify-theme-page.webdev-ref .pain-card h3 {
+    color: #fff !important;
+  }
+  html body.page-service .shopify-theme-page.webdev-ref .pain-card p {
+    color: #9FB6BE !important;
+  }
+  html body.page-service .shopify-theme-page.webdev-ref #services .svc-card {
+    background: var(--paper, #fff) !important;
+    background-color: var(--paper, #fff) !important;
+    border-color: var(--line, #E1E9E5) !important;
+  }
+  html body.page-service .shopify-theme-page.webdev-ref #services .svc-card h3 {
+    color: var(--graphite, #0D2029) !important;
+  }
+  html body.page-service .shopify-theme-page.webdev-ref #services .svc-card p {
+    color: var(--slate, #4B5B62) !important;
+  }
+
+  /* AI chatbot = WP: problem cards stay ink, service cards stay paper */
+  html body.page-service .aibot-theme-page.webdev-ref #problem .prob-item {
+    background: var(--ink-2, #0F2A33) !important;
+    background-color: var(--ink-2, #0F2A33) !important;
+    border-color: var(--line-dark, rgba(244,122,31,.16)) !important;
+    color: #B7CBD2 !important;
+  }
+  html body.page-service .aibot-theme-page.webdev-ref #problem .prob-item b {
+    color: #fff !important;
+  }
+  html body.page-service .aibot-theme-page.webdev-ref #problem .prob-item p {
+    color: #9FB6BE !important;
+  }
+  html body.page-service .aibot-theme-page.webdev-ref #services .svc {
+    background: var(--paper, #fff) !important;
+    background-color: var(--paper, #fff) !important;
+    border-color: var(--line, #E1E9E5) !important;
+  }
+  html body.page-service .aibot-theme-page.webdev-ref #services .svc h3 {
+    color: var(--graphite, #0D2029) !important;
+  }
+  html body.page-service .aibot-theme-page.webdev-ref #services .svc p {
+    color: var(--slate, #4B5B62) !important;
+  }
+  html body.page-service .aibot-theme-page.webdev-ref #why .why {
+    background: var(--ink-2, #0F2A33) !important;
+    background-color: var(--ink-2, #0F2A33) !important;
+    border-color: var(--line-dark, rgba(244,122,31,.16)) !important;
+  }
+  html body.page-service .aibot-theme-page.webdev-ref #why .why h3 {
+    color: #fff !important;
+  }
+  html body.page-service .aibot-theme-page.webdev-ref #why .why p {
+    color: #9FB6BE !important;
+  }
+  html body.page-service .aibot-theme-page.webdev-ref #process .pstep {
+    background: var(--paper, #fff) !important;
+    background-color: var(--paper, #fff) !important;
+    border-color: var(--line, #E1E9E5) !important;
+  }
+  html body.page-service .aibot-theme-page.webdev-ref #process .pstep h4 {
+    color: var(--graphite, #0D2029) !important;
+  }
+  html body.page-service .aibot-theme-page.webdev-ref #process .pstep p {
+    color: var(--slate, #4B5B62) !important;
+  }
+}
+
+/* Tablet 768–980: WP pain/feature = 2-col (not carousel, not 3/4-col squash).
+   Does not apply ≥981 (desktop). */
+@media (min-width: 768px) and (max-width: 980px) {
+  html body.page-service .webdev-ref .problem-grid:not(.page-svc-stack):not([data-thm-stack]),
+  html body.page-service .webdev-ref .pain-grid:not(.page-svc-stack):not([data-thm-stack]),
+  html body.page-service .webdev-ref .pain-list:not(.page-svc-stack):not([data-thm-stack]),
+  html body.page-service .webdev-ref .feature-grid:not(.page-svc-stack):not([data-thm-stack]),
+  html body.page-service .webdev-ref .edge-grid:not(.page-svc-stack):not([data-thm-stack]),
+  html body.page-service .webdev-ref .why-feats:not(.page-svc-stack),
+  html body.page-service .webdev-ref .grid:has(> .pain):not(.page-svc-stack):not([data-thm-stack]),
+  html body.page-service .webdev-ref .grid:has(> .pain-card):not(.page-svc-stack):not([data-thm-stack]),
+  html body.page-service .webdev-ref .grid:has(> .feat):not(.page-svc-stack):not([data-thm-stack]),
+  html body.page-service .webdev-ref .feat-list:has(> .feat):not(.page-svc-stack),
+  html body.page-service .webdev-ref .prob-list:not(.page-svc-stack):not([data-thm-stack]),
+  html body.page-service .webdev-ref .tgrid:not(.page-svc-stack):not([data-thm-stack]),
+  html body.page-service .webdev-ref .testi-grid:not(.page-svc-stack):not([data-thm-stack]),
+  html body.page-service .webdev-ref .why-grid:not(:has(.stat)):not(:has(.why-feats)):not(:has(.compare)):not(:has(.why-copy)):not(:has(.why-list)):not(.page-svc-stack) {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 18px !important;
+    overflow: visible !important;
+    flex-wrap: unset !important;
+  }
+
+  /* Blade hub pain/why: WP 2-col grid (not sticky pairs, not carousel) */
+  html body.page-web-dev .webdev-ref #pain .svc-track,
+  html body.page-web-dev .webdev-ref #why .svc-track {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 18px !important;
+    overflow: visible !important;
+    transform: none !important;
+    width: 100% !important;
+    flex-wrap: unset !important;
+  }
+
+  html body.page-web-dev .webdev-ref #pain .svc-stack-item,
+  html body.page-web-dev .webdev-ref #why .svc-stack-item,
+  html body.page-web-dev .webdev-ref #pain .svc-track > *,
+  html body.page-web-dev .webdev-ref #why .svc-track > * {
+    position: relative !important;
+    top: auto !important;
+    width: auto !important;
+    min-width: 0 !important;
+    max-width: none !important;
+    flex: none !important;
+    margin: 0 !important;
+  }
+}
+
+/* Carousel ≤767 — identical to WP: flex row, 85vw snap, pan-x */
+@media (max-width: 767px) {
+  html body.page-service .webdev-ref .wrap:has([data-thm-carousel]),
+  html body.page-service .webdev-ref .wrap:has(.problem-grid),
+  html body.page-service .webdev-ref .wrap:has(.pain-grid),
+  html body.page-service .webdev-ref .wrap:has(.feature-grid),
+  html body.page-service .webdev-ref .wrap:has(.pain-list),
+  html body.page-service .webdev-ref .wrap:has(.why-feats),
+  html body.page-service .webdev-ref .wrap:has(.testi-grid),
+  html body.page-service .webdev-ref .wrap:has(.tst-grid),
+  html body.page-service .webdev-ref .wrap:has(#testiTrack),
+  html body.page-service .webdev-ref .wrap:has(.plat-grid),
+  html body.page-service .webdev-ref .wrap:has(.grid:has(> .tcard)),
+  html body.page-service .webdev-ref .why-bg .wrap {
+    max-width: 100%;
+    min-width: 0;
+    overflow: visible !important;
+  }
+
+  html body.page-service .webdev-ref section:has([data-thm-carousel]),
+  html body.page-service .webdev-ref section:has(.problem-grid),
+  html body.page-service .webdev-ref section:has(.pain-grid),
+  html body.page-service .webdev-ref section:has(.feature-grid),
+  html body.page-service .webdev-ref section:has(.why-feats),
+  html body.page-service .webdev-ref section:has(.testi-grid),
+  html body.page-service .webdev-ref section:has(.tst-grid),
+  html body.page-service .webdev-ref section:has(.plat-grid),
+  html body.page-service .webdev-ref section:has(.tcard),
+  html body.page-service .webdev-ref section:has(#testiTrack),
+  html body.page-service .webdev-ref #why,
+  html body.page-web-dev .webdev-ref #pain,
+  html body.page-web-dev .webdev-ref #why {
+    overflow-x: clip !important;
+    overflow-y: visible !important;
+  }
+
+  html body.page-service .webdev-ref .problem-grid,
+  html body.page-service .webdev-ref .pain-grid,
+  html body.page-service .webdev-ref .pain-list,
+  html body.page-service .webdev-ref .prob-list,
+  html body.page-service .webdev-ref .feature-grid,
+  html body.page-service .webdev-ref .why-bg .feature-grid,
+  html body.page-service .webdev-ref .why-feats,
+  html body.page-service .webdev-ref .why-grid:not(:has(.stat)):not(:has(.stat-card)):not(:has(.why-feats)):not(:has(.compare)):not(:has(.why-copy)):not(:has(.why-list)),
+  html body.page-service .webdev-ref .edge-grid,
+  html body.page-service .webdev-ref .industry-grid,
+  html body.page-service .webdev-ref .ind-grid,
+  html body.page-service .webdev-ref .grid:has(> .pain),
+  html body.page-service .webdev-ref .grid.g3:has(> .pain),
+  html body.page-service .webdev-ref .grid.g-3:has(> .pain),
+  html body.page-service .webdev-ref .grid.g-4:has(> .pain),
+  html body.page-service .webdev-ref .grid:has(> .pain-card),
+  html body.page-service .webdev-ref .grid:has(> .feat),
+  html body.page-service .webdev-ref .grid:has(> .why),
+  html body.page-service .webdev-ref .grid:has(> .problem-card),
+  html body.page-service .webdev-ref .feat-list:has(> .feat),
+  html body.page-service .webdev-ref .tst-grid,
+  html body.page-service .webdev-ref .test-grid,
+  html body.page-service .webdev-ref .testi-grid,
+  html body.page-service .webdev-ref .tgrid,
+  html body.page-service .webdev-ref #testiTrack,
+  html body.page-service .webdev-ref .testi-track,
+  html body.page-service .webdev-ref .plat-grid,
+  html body.page-service .webdev-ref .grid:has(> .tcard),
+  html body.page-service .webdev-ref .carousel-track:has(> .testi),
+  html body.page-service .webdev-ref #pain > .wrap > .grid,
+  html body.page-service .webdev-ref #problem > .wrap > .grid,
+  html body.page-service .webdev-ref section#pain .grid.g-3,
+  html body.page-service .webdev-ref section#pain .grid.g-4,
+  html body.page-service .webdev-ref section#deliver > .wrap > .grid,
+  html body.page-service .webdev-ref .thm-mobile-carousel,
+  html body.page-service .webdev-ref [data-thm-carousel],
+  html body.page-web-dev .webdev-ref #pain .svc-track,
+  html body.page-web-dev .webdev-ref #pain [data-thm-carousel],
+  html body.page-web-dev .webdev-ref #pain .problem-grid,
+  html body.page-web-dev .webdev-ref #why .svc-track,
+  html body.page-web-dev .webdev-ref #why [data-thm-carousel],
+  html body.page-web-dev .webdev-ref #why .feature-grid,
+  html body.page-web-dev .webdev-ref #why .why-grid {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    align-items: stretch !important;
+    gap: 16px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    height: auto !important;
+    margin-top: 0 !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    -webkit-overflow-scrolling: touch !important;
+    scroll-snap-type: x mandatory !important;
+    overscroll-behavior-x: contain !important;
+    grid-template-columns: none !important;
+    grid-template-rows: none !important;
+    scrollbar-width: none !important;
+    touch-action: pan-x !important;
+  }
+
+  html body.page-service .webdev-ref .problem-grid::-webkit-scrollbar,
+  html body.page-service .webdev-ref .pain-grid::-webkit-scrollbar,
+  html body.page-service .webdev-ref .pain-list::-webkit-scrollbar,
+  html body.page-service .webdev-ref .feature-grid::-webkit-scrollbar,
+  html body.page-service .webdev-ref .why-grid::-webkit-scrollbar,
+  html body.page-service .webdev-ref .why-feats::-webkit-scrollbar,
+  html body.page-service .webdev-ref .grid::-webkit-scrollbar,
+  html body.page-service .webdev-ref .tst-grid::-webkit-scrollbar,
+  html body.page-service .webdev-ref .test-grid::-webkit-scrollbar,
+  html body.page-service .webdev-ref .testi-grid::-webkit-scrollbar,
+  html body.page-service .webdev-ref .tgrid::-webkit-scrollbar,
+  html body.page-service .webdev-ref #testiTrack::-webkit-scrollbar,
+  html body.page-service .webdev-ref .testi-track::-webkit-scrollbar,
+  html body.page-service .webdev-ref .plat-grid::-webkit-scrollbar,
+  html body.page-service .webdev-ref .grid:has(> .tcard)::-webkit-scrollbar,
+  html body.page-service .webdev-ref .thm-mobile-carousel::-webkit-scrollbar,
+  html body.page-service .webdev-ref [data-thm-carousel]::-webkit-scrollbar,
+  html body.page-web-dev .webdev-ref #pain .svc-track::-webkit-scrollbar,
+  html body.page-web-dev .webdev-ref #pain .problem-grid::-webkit-scrollbar,
+  html body.page-web-dev .webdev-ref #why .svc-track::-webkit-scrollbar,
+  html body.page-web-dev .webdev-ref #why .feature-grid::-webkit-scrollbar {
+    display: none !important;
+    height: 0 !important;
+  }
+
+  html body.page-service .webdev-ref .problem-grid > *,
+  html body.page-service .webdev-ref .pain-grid > *,
+  html body.page-service .webdev-ref .pain-list > *,
+  html body.page-service .webdev-ref .prob-list > *,
+  html body.page-service .webdev-ref .feature-grid > *,
+  html body.page-service .webdev-ref .why-feats > *,
+  html body.page-service .webdev-ref .why-grid:not(:has(.stat)):not(:has(.why-feats)):not(:has(.compare)):not(:has(.why-copy)) > *,
+  html body.page-service .webdev-ref .edge-grid > *,
+  html body.page-service .webdev-ref .industry-grid > *,
+  html body.page-service .webdev-ref .ind-grid > *,
+  html body.page-service .webdev-ref .grid:has(> .pain) > *,
+  html body.page-service .webdev-ref .grid.g3:has(> .pain) > *,
+  html body.page-service .webdev-ref .grid.g-3:has(> .pain) > *,
+  html body.page-service .webdev-ref .grid.g-4:has(> .pain) > *,
+  html body.page-service .webdev-ref .grid:has(> .pain-card) > *,
+  html body.page-service .webdev-ref .grid:has(> .feat) > *,
+  html body.page-service .webdev-ref .grid:has(> .why) > *,
+  html body.page-service .webdev-ref .grid:has(> .problem-card) > *,
+  html body.page-service .webdev-ref .feat-list:has(> .feat) > *,
+  html body.page-service .webdev-ref .tst-grid > *,
+  html body.page-service .webdev-ref .test-grid > *,
+  html body.page-service .webdev-ref .testi-grid > *,
+  html body.page-service .webdev-ref .tgrid > *,
+  html body.page-service .webdev-ref #testiTrack > *,
+  html body.page-service .webdev-ref .testi-track > *,
+  html body.page-service .webdev-ref .plat-grid > *,
+  html body.page-service .webdev-ref .grid:has(> .tcard) > *,
+  html body.page-service .webdev-ref .carousel-track:has(> .testi) > *,
+  html body.page-service .webdev-ref #pain > .wrap > .grid > *,
+  html body.page-service .webdev-ref #problem > .wrap > .grid > *,
+  html body.page-service .webdev-ref section#pain .grid.g-3 > *,
+  html body.page-service .webdev-ref section#pain .grid.g-4 > *,
+  html body.page-service .webdev-ref section#deliver > .wrap > .grid > *,
+  html body.page-service .webdev-ref .thm-mobile-carousel > *,
+  html body.page-service .webdev-ref [data-thm-carousel] > *,
+  html body.page-web-dev .webdev-ref #pain .svc-track > *,
+  html body.page-web-dev .webdev-ref #pain .svc-stack-item,
+  html body.page-web-dev .webdev-ref #pain .problem-grid > *,
+  html body.page-web-dev .webdev-ref #why .svc-track > *,
+  html body.page-web-dev .webdev-ref #why .svc-stack-item,
+  html body.page-web-dev .webdev-ref #why .feature-grid > *,
+  html body.page-web-dev .webdev-ref #why .why-grid > * {
+    flex: 0 0 85vw !important;
+    flex-shrink: 0 !important;
+    flex-grow: 0 !important;
+    width: 85vw !important;
+    min-width: 85vw !important;
+    max-width: 85vw !important;
+    height: auto !important;
+    box-sizing: border-box !important;
+    scroll-snap-align: start !important;
+  }
+
+  html body.page-web-dev .webdev-ref #pain .svc-stack-item {
+    position: relative !important;
+    top: auto !important;
+    margin: 0 !important;
+  }
+
+  html body.page-service .webdev-ref .problem-grid > *:hover,
+  html body.page-service .webdev-ref .pain-grid > *:hover,
+  html body.page-service .webdev-ref .feature-grid > *:hover,
+  html body.page-service .webdev-ref .why-feats > *:hover,
+  html body.page-service .webdev-ref [data-thm-carousel] > *:hover {
+    transform: none !important;
+  }
+
+  /* Cards must stay visible — WP has no opacity-0 entrance on cards */
+  html body.page-service .webdev-ref [data-thm-carousel] .reveal,
+  html body.page-service .webdev-ref [data-thm-carousel] .fade-up,
+  html body.page-service .webdev-ref [data-thm-carousel] .rv,
+  html body.page-service .webdev-ref [data-thm-carousel] .rev,
+  html body.page-service .webdev-ref .page-svc-stack .reveal,
+  html body.page-service .webdev-ref .page-svc-stack .fade-up,
+  html body.page-service .webdev-ref .page-svc-stack .rv,
+  html body.page-service .webdev-ref .page-svc-stack .rev,
+  html body.page-service .webdev-ref .pain-grid .fade-up,
+  html body.page-service .webdev-ref .pain-grid .rv,
+  html body.page-service .webdev-ref .pain-grid .rev,
+  html body.page-service .webdev-ref .grid > .pain,
+  html body.page-service .webdev-ref .grid > .feat,
+  html body.page-service .webdev-ref .grid > .svc {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+/* Digital marketing — mobile: stats 2-up + testimonial carousel
+   This file loads last, so these beat earlier 1-col / 3-up rules. */
+@media (max-width: 680px) {
+  html body.page-dm.page-service .dm-theme-page .stats,
+  html body.page-dm .dm-theme-page .stats {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 22px 16px !important;
+  }
+  html body.page-dm .dm-theme-page .stat {
+    min-width: 0 !important;
+  }
+  html body.page-dm .dm-theme-page .stat:nth-child(odd) {
+    border-left: none !important;
+    padding-left: 0 !important;
+  }
+  html body.page-dm .dm-theme-page .stat .num {
+    font-size: clamp(1.5rem, 6.5vw, 2rem) !important;
+  }
+  html body.page-dm .dm-theme-page .stat .lbl {
+    font-size: 0.62rem !important;
+    line-height: 1.35 !important;
+    white-space: normal !important;
+  }
+}
+
+@media (max-width: 767px) {
+  html body.page-dm .dm-theme-page .testi-track {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    gap: 14px !important;
+    overflow-x: auto !important;
+    scroll-snap-type: x mandatory !important;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  html body.page-dm .dm-theme-page .testi-track::-webkit-scrollbar {
+    display: none;
+  }
+  html body.page-dm .dm-theme-page .testi-track .testi,
+  html body.page-dm .dm-theme-page .testi {
+    flex: 0 0 86% !important;
+    width: 86% !important;
+    max-width: 86% !important;
+    min-width: 86% !important;
+    scroll-snap-align: start !important;
+    background: #fff !important;
+    border: 1px solid #e1e9e5 !important;
+    border-radius: 18px !important;
+    box-shadow: 0 10px 28px -16px rgba(13, 32, 41, 0.18) !important;
+    min-height: 280px;
+    display: flex !important;
+    flex-direction: column !important;
+  }
+  html body.page-dm .dm-theme-page .testi-nav-wrap {
+    display: flex !important;
+    justify-content: center !important;
+  }
+}
+
+/* Digital marketing Problem: black copy (beats webdev-ref white-on-ink lock) */
+html body.page-dm .dm-theme-page.theme-html-root.webdev-ref .sec-ink.problem-bg,
+html body.page-dm .dm-theme-page.webdev-ref .sec-ink.problem-bg,
+html body.page-dm .dm-theme-page .sec-ink.problem-bg{
+  background:#fff !important;
+  color:#111 !important;
+}
+html body.page-dm .dm-theme-page.theme-html-root.webdev-ref .sec-ink.problem-bg h2,
+html body.page-dm .dm-theme-page.theme-html-root.webdev-ref .sec-ink.problem-bg h3,
+html body.page-dm .dm-theme-page.theme-html-root.webdev-ref .sec-ink.problem-bg h4,
+html body.page-dm .dm-theme-page.theme-html-root.webdev-ref .sec-ink.problem-bg strong,
+html body.page-dm .dm-theme-page.theme-html-root.webdev-ref .sec-ink.problem-bg p,
+html body.page-dm .dm-theme-page.theme-html-root.webdev-ref .sec-ink.problem-bg .lede,
+html body.page-dm .dm-theme-page.theme-html-root.webdev-ref .sec-ink.problem-bg .body-2,
+html body.page-dm .dm-theme-page.theme-html-root.webdev-ref .sec-ink.problem-bg .problem-card,
+html body.page-dm .dm-theme-page.theme-html-root.webdev-ref .sec-ink.problem-bg .problem-card h3,
+html body.page-dm .dm-theme-page.theme-html-root.webdev-ref .sec-ink.problem-bg .problem-card h4,
+html body.page-dm .dm-theme-page.theme-html-root.webdev-ref .sec-ink.problem-bg .problem-card p,
+html body.page-dm .dm-theme-page.webdev-ref .sec-ink .problem-card h4,
+html body.page-dm .dm-theme-page.webdev-ref .sec-ink .problem-card p{
+  color:#111 !important;
+}
+
+/* On-page SEO — same carousels / stats / testi as digital marketing */
+html body.page-onpage .onpage-theme-page{
+  overflow-x:clip !important;
+  overflow-y:visible !important;
+}
+html body.page-onpage .onpage-theme-page #pain .pain-card{
+  background:#0F2A33 !important;
+  border:1px solid rgba(244,122,31,.16) !important;
+  color:#fff !important;
+}
+html body.page-onpage .onpage-theme-page #pain .pain-card h3,
+html body.page-onpage .onpage-theme-page #pain .pain-card p{
+  color:#fff !important;
+}
+html body.page-onpage .onpage-theme-page .def-card,
+html body.page-onpage .onpage-theme-page .def-card h3,
+html body.page-onpage .onpage-theme-page .def-card > p,
+html body.page-onpage .onpage-theme-page .def-card p,
+html body.page-onpage .onpage-theme-page .def-card .def-list,
+html body.page-onpage .onpage-theme-page .def-card .def-list li,
+html body.page-onpage.page-service .sec-mist .def-card h3,
+html body.page-onpage.page-service .sec-mist .def-card p{
+  color:#fff !important;
+}
+
+@media (max-width: 680px) {
+  html body.page-onpage.page-service .onpage-theme-page .stats,
+  html body.page-onpage .onpage-theme-page .stats {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 22px 16px !important;
+  }
+  html body.page-onpage .onpage-theme-page .stat {
+    min-width: 0 !important;
+  }
+  html body.page-onpage .onpage-theme-page .stat:nth-child(odd) {
+    border-left: none !important;
+    padding-left: 0 !important;
+  }
+  html body.page-onpage .onpage-theme-page .stat .n,
+  html body.page-onpage .onpage-theme-page .stat .num {
+    font-size: clamp(1.5rem, 6.5vw, 2rem) !important;
+  }
+  html body.page-onpage .onpage-theme-page .stat .l,
+  html body.page-onpage .onpage-theme-page .stat .lbl {
+    font-size: 0.62rem !important;
+    line-height: 1.35 !important;
+    white-space: normal !important;
+  }
+}
+
+@media (max-width: 767px) {
+  html body.page-onpage .onpage-theme-page .testi-slider{
+    position:relative;
+  }
+  html body.page-onpage .onpage-theme-page .testi-track {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    gap: 14px !important;
+    overflow-x: auto !important;
+    scroll-snap-type: x mandatory !important;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  html body.page-onpage .onpage-theme-page .testi-track::-webkit-scrollbar {
+    display: none;
+  }
+  html body.page-onpage .onpage-theme-page .testi-track .testi,
+  html body.page-onpage .onpage-theme-page .testi {
+    flex: 0 0 86% !important;
+    width: 86% !important;
+    max-width: 86% !important;
+    min-width: 86% !important;
+    scroll-snap-align: start !important;
+    background: #fff !important;
+    border: 1px solid #e1e9e5 !important;
+    border-radius: 18px !important;
+    box-shadow: 0 10px 28px -16px rgba(13, 32, 41, 0.18) !important;
+    min-height: 280px;
+    display: flex !important;
+    flex-direction: column !important;
+  }
+  html body.page-onpage .onpage-theme-page .testi-nav-wrap {
+    display: flex !important;
+    justify-content: center !important;
+    gap: 12px !important;
+    margin-top: 22px !important;
+  }
+}
+
+/* Off-page SEO — same carousels / stacks / compact motion as on-page */
+html body.page-offpage .offpage-theme-page{
+  overflow-x:clip !important;
+  overflow-y:visible !important;
+}
+html body.page-offpage .offpage-theme-page .pain{
+  background:#0F2A33 !important;
+  border:1px solid rgba(244,122,31,.16) !important;
+  color:#fff !important;
+}
+html body.page-offpage .offpage-theme-page .pain p,
+html body.page-offpage .offpage-theme-page .pain p b{
+  color:#fff !important;
+}
+html body.page-offpage .offpage-theme-page .solve h3,
+html body.page-offpage .offpage-theme-page .feat h3{
+  color:#fff !important;
+}
+html body.page-offpage .offpage-theme-page .feat p{
+  color:#9FB6BE !important;
+}
+
+@media (min-width: 941px) {
+  html body.page-offpage .offpage-theme-page .pain-list{
+    display:grid !important;
+    grid-template-columns:1fr !important;
+    overflow:visible !important;
+    flex-wrap:unset !important;
+  }
+}
+
+@media (max-width: 680px) {
+  html body.page-offpage .offpage-theme-page .rowstat {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 22px 16px !important;
+  }
+  html body.page-offpage .offpage-theme-page .rowstat .n {
+    font-size: clamp(1.5rem, 6.5vw, 2rem) !important;
+  }
+  html body.page-offpage .offpage-theme-page .rowstat .l {
+    font-size: 0.62rem !important;
+    line-height: 1.35 !important;
+    white-space: normal !important;
+  }
+}
+
+@media (max-width: 767px) {
+  html body.page-offpage .offpage-theme-page .tgrid {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    gap: 14px !important;
+    overflow-x: auto !important;
+    scroll-snap-type: x mandatory !important;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  html body.page-offpage .offpage-theme-page .tgrid::-webkit-scrollbar {
+    display: none;
+  }
+  html body.page-offpage .offpage-theme-page .tgrid > .tcard,
+  html body.page-offpage .offpage-theme-page .tcard {
+    flex: 0 0 86% !important;
+    width: 86% !important;
+    max-width: 86% !important;
+    min-width: 86% !important;
+    scroll-snap-align: start !important;
+    background: #fff !important;
+    border: 1px solid #e1e9e5 !important;
+    border-radius: 18px !important;
+    box-shadow: 0 10px 28px -16px rgba(13, 32, 41, 0.18) !important;
+  }
+}
+
+/* Shared Digital Marketing motion: clip overflow so sticky stacks work */
+html body.page-dm-motion .theme-html-root,
+html body.page-dm-motion .webdev-ref{
+  overflow-x:clip !important;
+  overflow-y:visible !important;
+}
+
+/* KodRank layout hero is the only hero — hide leftover imported theme heroes */
+html body.page-dm-motion .theme-html-root > section.hero,
+html body.page-dm-motion .theme-html-root > .hero {
+  display: none !important;
+}
+
+/* Large: pain/problem tiles = 3-up (Digital Marketing) */
+@media (min-width: 981px) {
+  html body.page-dm-motion .webdev-ref .pain-grid:not([data-thm-stack]),
+  html body.page-dm-motion .webdev-ref .problem-grid:not([data-thm-stack]),
+  html body.page-dm-motion .webdev-ref .pain-list:not([data-thm-stack]),
+  html body.page-dm-motion .webdev-ref .grid.g3:has(> .pain),
+  html body.page-dm-motion .webdev-ref .grid.g-3:has(> .pain),
+  html body.page-dm-motion .webdev-ref .grid:has(> .pain):not([data-thm-stack]) {
+    display: grid !important;
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  }
+}
+
+/* FAQ accordion: keep answers hidden until opened (beats home.css padding on .faq-a) */
+html body.page-service .theme-html-root details.faq-item:not([open]) > *:not(summary),
+html body.page-service .webdev-ref details.faq-item:not([open]) > *:not(summary),
+html body.page-service .theme-html-root .faq-item:not(.open):not([open]) > .faq-a,
+html body.page-service .theme-html-root .faq-item:not(.open):not([open]) > .faq-body,
+html body.page-service .webdev-ref .faq-item:not(.open):not([open]) > .faq-a,
+html body.page-service .webdev-ref .faq-item:not(.open):not([open]) > .faq-body {
+  display: none !important;
+  max-height: 0 !important;
+  height: 0 !important;
+  overflow: hidden !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  visibility: hidden !important;
+  border: 0 !important;
+}
+html body.page-service .theme-html-root .faq-item.open > .faq-a,
+html body.page-service .theme-html-root .faq-item.open > .faq-body,
+html body.page-service .theme-html-root .faq-item[open] > .faq-a,
+html body.page-service .theme-html-root .faq-item[open] > .faq-body,
+html body.page-service .webdev-ref .faq-item.open > .faq-a,
+html body.page-service .webdev-ref .faq-item.open > .faq-body,
+html body.page-service .webdev-ref .faq-item[open] > .faq-a,
+html body.page-service .webdev-ref .faq-item[open] > .faq-body {
+  display: block !important;
+  max-height: none !important;
+  height: auto !important;
+  overflow: visible !important;
+  visibility: visible !important;
+  padding: 0 26px 4px !important;
+}
+
+/* AEO: center FAQ heading + list (section often has no #faq in stored HTML) */
+html body.page-service .aeo-theme-page .wrap:has(> .faq) > .section-head,
+html body.page-service .aeo-theme-page #faq .section-head,
+html body.page-service .webdev-ref .wrap:has(> .faq) > .section-head {
+  margin-left: auto !important;
+  margin-right: auto !important;
+  text-align: center !important;
+  max-width: 820px !important;
+}
+html body.page-service .aeo-theme-page .wrap:has(> .faq) > .section-head h2,
+html body.page-service .aeo-theme-page #faq .section-head h2 {
+  text-align: center !important;
+}
+html body.page-service .aeo-theme-page .faq,
+html body.page-service .aeo-theme-page #faq .faq {
+  margin-left: auto !important;
+  margin-right: auto !important;
+  max-width: 820px !important;
+  width: 100% !important;
+}
+html body.page-service .aeo-theme-page .faq-item {
+  padding: 0 !important;
+  text-align: left !important;
+}
+
+@media (max-width: 767px) {
+  html body.page-service .aeo-theme-page #testiTrack,
+  html body.page-service .aeo-theme-page .carousel-track:has(> .testi),
+  html body.page-service .webdev-ref #testiTrack {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    align-items: stretch !important;
+    gap: 14px !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    scroll-snap-type: x mandatory !important;
+    -webkit-overflow-scrolling: touch !important;
+    touch-action: pan-x !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+  }
+  html body.page-service .aeo-theme-page #testiTrack > .testi,
+  html body.page-service .aeo-theme-page .carousel-track > .testi,
+  html body.page-service .webdev-ref #testiTrack > .testi {
+    flex: 0 0 85vw !important;
+    flex-shrink: 0 !important;
+    width: 85vw !important;
+    min-width: 85vw !important;
+    max-width: 85vw !important;
+    scroll-snap-align: start !important;
+    box-sizing: border-box !important;
+  }
+}
+
+@media (max-width: 680px) {
+  html body.page-dm-motion .theme-html-root .stats,
+  html body.page-dm-motion .theme-html-root .rowstat,
+  html body.page-dm-motion .theme-html-root .stats-row,
+  html body.page-dm-motion .theme-html-root .stats-grid,
+  html body.page-dm-motion .theme-html-root .stat-row,
+  html body.page-dm-motion .stats,
+  html body.page-dm-motion .rowstat,
+  html body.page-dm-motion .stats-row,
+  html body.page-dm-motion .stats-grid,
+  html body.page-dm-motion .stat-row {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 22px 16px !important;
+  }
+}
+
+/* GEO problem cards: black copy on white tiles */
+html body.page-service .geo-theme-page #problem .pain-card,
+html body.page-service .geo-theme-page .pain-grid .pain-card,
+html body.page-geo .geo-theme-page #problem .pain-card {
+  background: #fff !important;
+  border: 1px solid #e1e9e5 !important;
+  color: #111 !important;
+}
+html body.page-service .geo-theme-page #problem .pain-card h3,
+html body.page-service .geo-theme-page #problem .pain-card h4,
+html body.page-service .geo-theme-page #problem .pain-card p,
+html body.page-service .geo-theme-page .pain-grid .pain-card h3,
+html body.page-service .geo-theme-page .pain-grid .pain-card p,
+html body.page-geo .geo-theme-page #problem .pain-card h3,
+html body.page-geo .geo-theme-page #problem .pain-card p {
+  color: #111 !important;
+}
+
+/* Monthly SEO process loop: black copy on white tiles */
+html body.page-service .monthly-theme-page #process .loop-card,
+html body.page-service .monthly-theme-page .loop-grid .loop-card {
+  background: #fff !important;
+  border: 1px solid #e1e9e5 !important;
+  color: #111 !important;
+}
+html body.page-service .monthly-theme-page #process .loop-card h4,
+html body.page-service .monthly-theme-page #process .loop-card p,
+html body.page-service .monthly-theme-page .loop-grid .loop-card h4,
+html body.page-service .monthly-theme-page .loop-grid .loop-card p {
+  color: #111 !important;
+}
+
+/* SaaS SEO process cards: white faces, no text bleed in sticky stack */
+html body.page-service .saasseo-theme-page #process .step,
+html body.page-service .saasseo-theme-page .proc-grid .step,
+html body.page-service .saasseo-theme-page #process .svc-stack-item > .step {
+  background: #fff !important;
+  background-color: #fff !important;
+  border: 1px solid #e1e9e5 !important;
+  border-radius: 18px !important;
+  color: #111 !important;
+  isolation: isolate;
+  overflow: hidden !important;
+}
+html body.page-service .saasseo-theme-page #process .step h4,
+html body.page-service .saasseo-theme-page #process .step p,
+html body.page-service .saasseo-theme-page .proc-grid .step h4,
+html body.page-service .saasseo-theme-page .proc-grid .step p {
+  color: #111 !important;
+}
+html body.page-service .saasseo-theme-page #process .svc-stack-item {
+  background: #fff !important;
+  isolation: isolate;
+}
+
+/* Healthcare SEO — process cards: label vs number, grid on desktop/medium */
+html body.page-service .hc-theme-page #process .proc-card,
+html body.page-service .hc-theme-page .proc-grid .proc-card {
+  background: #fff !important;
+  background-color: #fff !important;
+  border: 1px solid var(--line, #e1e9e5) !important;
+  border-top: 2px solid var(--signal, #f47a1f) !important;
+  border-radius: 18px !important;
+  box-shadow: 0 1px 2px rgba(13, 32, 41, 0.05), 0 6px 18px -8px rgba(13, 32, 41, 0.1) !important;
+  padding: 26px 24px !important;
+  box-sizing: border-box !important;
+  min-width: 0 !important;
+  height: 100%;
+  display: flex !important;
+  flex-direction: column !important;
+  isolation: isolate;
+  overflow: hidden;
+}
+html body.page-service .hc-theme-page #process .proc-card .step,
+html body.page-service .hc-theme-page .proc-card .step {
+  display: block !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  width: auto !important;
+  max-width: none !important;
+  min-width: 0 !important;
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  overflow: visible !important;
+  isolation: auto;
+  font-size: 0.72rem !important;
+  letter-spacing: 0.1em !important;
+  text-transform: uppercase !important;
+  font-weight: 600 !important;
+  color: var(--signal-deep, #cd661a) !important;
+  line-height: 1.2 !important;
+}
+html body.page-service .hc-theme-page #process .proc-card .num,
+html body.page-service .hc-theme-page .proc-card .num {
+  display: block !important;
+  font-size: clamp(1.55rem, 2.2vw, 1.9rem) !important;
+  font-weight: 800 !important;
+  color: var(--graphite, #0d2029) !important;
+  line-height: 1 !important;
+  letter-spacing: -0.03em !important;
+  margin: 8px 0 12px !important;
+}
+html body.page-service .hc-theme-page #process .proc-card h3,
+html body.page-service .hc-theme-page .proc-card h3 {
+  color: var(--graphite, #0d2029) !important;
+  font-size: 1.08rem !important;
+  font-weight: 650 !important;
+  margin: 0 0 8px !important;
+  overflow-wrap: anywhere;
+}
+html body.page-service .hc-theme-page #process .proc-card p,
+html body.page-service .hc-theme-page .proc-card p {
+  color: var(--slate, #4b5b62) !important;
+  font-size: 0.9rem !important;
+  line-height: 1.55 !important;
+  margin: 0 !important;
+  overflow-wrap: anywhere;
+}
+
+@media (min-width: 768px) {
+  html body.page-service .hc-theme-page #process .proc-grid,
+  html body.page-service .hc-theme-page #process .proc-grid.page-svc-stack,
+  html body.page-service .hc-theme-page #process [data-thm-stack] {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 18px !important;
+    overflow: visible !important;
+  }
+  html body.page-service .hc-theme-page #process .svc-stack-item {
+    position: relative !important;
+    top: auto !important;
+    z-index: auto !important;
+    width: auto !important;
+    max-width: none !important;
+    margin: 0 !important;
+    transform: none !important;
+    height: auto !important;
+    min-width: 0 !important;
+  }
+  html body.page-service .hc-theme-page #process .svc-stack-item > .proc-card {
+    height: 100% !important;
+    transform: none !important;
+  }
+}
+
+@media (min-width: 1041px) {
+  html body.page-service .hc-theme-page #process .proc-grid,
+  html body.page-service .hc-theme-page #process .proc-grid.page-svc-stack,
+  html body.page-service .hc-theme-page #process [data-thm-stack] {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: 18px !important;
+  }
+}
+
+/* Ecommerce SEO — platform logos carousel + why/stats layout on mobile */
+@media (max-width: 767px) {
+  html body.page-service .ecom-theme-page .plat-grid,
+  html body.page-service .ecom-theme-page .plat-grid[data-thm-carousel] {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    align-items: stretch !important;
+    gap: 12px !important;
+    margin-top: 28px !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    scroll-snap-type: x mandatory !important;
+    -webkit-overflow-scrolling: touch !important;
+    scrollbar-width: none !important;
+    touch-action: pan-x !important;
+    grid-template-columns: none !important;
+  }
+  html body.page-service .ecom-theme-page .plat-grid > .plat,
+  html body.page-service .ecom-theme-page .plat-grid[data-thm-carousel] > .plat {
+    flex: 0 0 72vw !important;
+    flex-shrink: 0 !important;
+    width: 72vw !important;
+    min-width: 72vw !important;
+    max-width: 72vw !important;
+    scroll-snap-align: start !important;
+    box-sizing: border-box !important;
+    padding: 22px 16px !important;
+  }
+}
+
+@media (max-width: 900px) {
+  html body.page-service .ecom-theme-page #results,
+  html body.page-service .ecom-theme-page #results .wrap {
+    overflow-x: clip !important;
+    min-width: 0 !important;
+  }
+  html body.page-service .ecom-theme-page #results .wrap.why-grid,
+  html body.page-service .ecom-theme-page #results .why-grid {
+    display: flex !important;
+    flex-direction: column !important;
+    flex-wrap: nowrap !important;
+    align-items: stretch !important;
+    gap: 32px !important;
+    overflow: visible !important;
+    height: auto !important;
+    scroll-snap-type: none !important;
+    grid-template-columns: 1fr !important;
+  }
+  html body.page-service .ecom-theme-page #results .wrap.why-grid > *,
+  html body.page-service .ecom-theme-page #results .why-grid > * {
+    flex: none !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+    scroll-snap-align: none !important;
+  }
+  html body.page-service .ecom-theme-page #results h2,
+  html body.page-service .ecom-theme-page #results .lede {
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+  html body.page-service .ecom-theme-page #results .why-list {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 16px !important;
+    margin-top: 22px !important;
+  }
+  html body.page-service .ecom-theme-page #results .why-item {
+    display: flex !important;
+    align-items: flex-start !important;
+    gap: 14px !important;
+    background: var(--ink-2, #12232c) !important;
+    border: 1px solid var(--line-dark, #1e3640) !important;
+    border-radius: 16px !important;
+    padding: 16px 14px !important;
+  }
+  html body.page-service .ecom-theme-page #results .why-item > div {
+    min-width: 0 !important;
+  }
+  html body.page-service .ecom-theme-page #results .why-item h4,
+  html body.page-service .ecom-theme-page #results .why-item p {
+    overflow-wrap: anywhere;
+  }
+  html body.page-service.page-dm-motion .ecom-theme-page #results .stats-row,
+  html body.page-service .ecom-theme-page #results .stats-row {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 2px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    overflow: hidden !important;
+    flex: none !important;
+  }
+  html body.page-service .ecom-theme-page #results .stat {
+    min-width: 0 !important;
+    width: auto !important;
+    max-width: none !important;
+    padding: 22px 14px !important;
+    box-sizing: border-box !important;
+  }
+  html body.page-service .ecom-theme-page #results .stat .n {
+    font-size: clamp(1.45rem, 7vw, 2.1rem) !important;
+    word-break: break-word !important;
+  }
+  html body.page-service .ecom-theme-page #results .stat .l {
+    white-space: normal !important;
+    line-height: 1.35 !important;
+    letter-spacing: 0.04em !important;
+  }
+}
+
+/* Guest posting — testimonials carousel (Maya / Daniel / Sara) */
+@media (max-width: 767px) {
+  html body.page-service .gp-theme-page #results .grid.g3,
+  html body.page-service .gp-theme-page #results .grid:has(> .tcard),
+  html body.page-service .gp-theme-page .grid:has(> .tcard) {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    align-items: stretch !important;
+    gap: 14px !important;
+    margin-top: 28px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    scroll-snap-type: x mandatory !important;
+    -webkit-overflow-scrolling: touch !important;
+    scrollbar-width: none !important;
+    touch-action: pan-x !important;
+    grid-template-columns: none !important;
+  }
+  html body.page-service .gp-theme-page #results .grid:has(> .tcard)::-webkit-scrollbar,
+  html body.page-service .gp-theme-page .grid:has(> .tcard)::-webkit-scrollbar {
+    display: none !important;
+  }
+  html body.page-service .gp-theme-page #results .tcard,
+  html body.page-service .gp-theme-page .grid:has(> .tcard) > .tcard {
+    flex: 0 0 85vw !important;
+    width: 85vw !important;
+    min-width: 85vw !important;
+    max-width: 85vw !important;
+    scroll-snap-align: start !important;
+    box-sizing: border-box !important;
+    background: #fff !important;
+    border: 1px solid var(--line, #e1e9e5) !important;
+  }
+}
+
+/* Real estate SEO — pain headings white on ink cards; process grid cards */
+html body.page-service .re-theme-page #pain .pain-card,
+html body.page-service .re-theme-page .pain-grid .pain-card {
+  background: var(--ink-2, #0f2a33) !important;
+  background-color: var(--ink-2, #0f2a33) !important;
+  border: 1px solid var(--line-dark, rgba(244, 122, 31, 0.16)) !important;
+  color: #b7cbd2 !important;
+}
+html body.page-service .re-theme-page #pain .pain-card h3,
+html body.page-service .re-theme-page .pain-grid .pain-card h3 {
+  color: #fff !important;
+}
+html body.page-service .re-theme-page #pain .pain-card p,
+html body.page-service .re-theme-page .pain-grid .pain-card p {
+  color: #9fb6be !important;
+}
+html body.page-service .re-theme-page #pain .pain-card .n,
+html body.page-service .re-theme-page .pain-grid .pain-card .n {
+  color: var(--signal, #f47a1f) !important;
+}
+
+html body.page-service .re-theme-page #process .proc,
+html body.page-service .re-theme-page .proc:has(> .proc-step),
+html body.page-service .re-theme-page .proc:has(> .svc-stack-item) {
+  background: transparent !important;
+  background-color: transparent !important;
+  border: none !important;
+  border-top: none !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+}
+
+html body.page-service .re-theme-page #process .proc-step,
+html body.page-service .re-theme-page .proc .proc-step,
+html body.page-service .re-theme-page #process .svc-stack-item > .proc-step {
+  background: #fff !important;
+  background-color: #fff !important;
+  border: 1px solid var(--line, #e1e9e5) !important;
+  border-top: 3px solid var(--signal, #f47a1f) !important;
+  border-radius: 18px !important;
+  box-shadow: 0 1px 2px rgba(13, 32, 41, 0.04), 0 10px 28px -16px rgba(13, 32, 41, 0.16) !important;
+  padding: 28px 26px !important;
+  box-sizing: border-box !important;
+  min-width: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  display: flex !important;
+  flex-direction: column !important;
+  isolation: isolate;
+  overflow: visible !important;
+}
+html body.page-service .re-theme-page #process .proc-step .pn,
+html body.page-service .re-theme-page .proc-step .pn {
+  display: block !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  font-size: 0.75rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.08em !important;
+  text-transform: uppercase !important;
+  color: var(--signal-deep, #cd661a) !important;
+  line-height: 1.2 !important;
+}
+html body.page-service .re-theme-page #process .proc-step h4,
+html body.page-service .re-theme-page .proc-step h4 {
+  color: var(--graphite, #0d2029) !important;
+  font-size: 1.02rem !important;
+  font-weight: 700 !important;
+  margin: 10px 0 8px !important;
+  overflow-wrap: anywhere;
+}
+html body.page-service .re-theme-page #process .proc-step p,
+html body.page-service .re-theme-page .proc-step p {
+  color: var(--slate, #4b5b62) !important;
+  font-size: 0.86rem !important;
+  line-height: 1.55 !important;
+  margin: 0 !important;
+  overflow-wrap: anywhere;
+}
+
+/* Stack wrappers must not paint a second card behind .proc-step */
+html body.page-service .re-theme-page #process .svc-stack-item,
+html body.page-service .re-theme-page #process .svc-stack-pair {
+  background: transparent !important;
+  background-color: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  outline: none !important;
+  isolation: auto !important;
+  overflow: visible !important;
+}
+html body.page-service .re-theme-page #process .svc-stack-item::before,
+html body.page-service .re-theme-page #process .svc-stack-item::after {
+  content: none !important;
+  display: none !important;
+}
+
+@media (max-width: 767px) {
+  html body.page-service .re-theme-page #process,
+  html body.page-service .re-theme-page section#process {
+    overflow-x: clip !important;
+    overflow-y: visible !important;
+  }
+  html body.page-service .re-theme-page #process .proc,
+  html body.page-service .re-theme-page #process .proc.page-svc-stack,
+  html body.page-service .re-theme-page #process [data-thm-stack] {
+    display: block !important;
+    grid-template-columns: none !important;
+    gap: 0 !important;
+    overflow: visible !important;
+    transform: none !important;
+  }
+  html body.page-service .re-theme-page #process .svc-stack-item {
+    position: sticky !important;
+    top: calc(56px + 12px) !important;
+    z-index: calc(1 + var(--index0, 0)) !important;
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 0 20px !important;
+    transform: none !important;
+    height: auto !important;
+    min-height: 0 !important;
+  }
+  html body.page-service .re-theme-page #process .svc-stack-item > .proc-step {
+    height: auto !important;
+    transform-origin: center top !important;
+    overflow: hidden !important;
+  }
+}
+
+@media (min-width: 768px) {
+  html body.page-service .re-theme-page #process .proc,
+  html body.page-service .re-theme-page #process .proc.page-svc-stack,
+  html body.page-service .re-theme-page #process [data-thm-stack] {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 20px !important;
+    align-items: stretch !important;
+    overflow: visible !important;
+  }
+  html body.page-service .re-theme-page #process .svc-stack-item {
+    position: relative !important;
+    top: auto !important;
+    z-index: auto !important;
+    display: flex !important;
+    width: auto !important;
+    max-width: none !important;
+    margin: 0 !important;
+    transform: none !important;
+    height: auto !important;
+    min-width: 0 !important;
+    min-height: 100% !important;
+  }
+  html body.page-service .re-theme-page #process .svc-stack-item > .proc-step {
+    height: 100% !important;
+    transform: none !important;
+  }
+}
+
+@media (min-width: 900px) {
+  html body.page-service .re-theme-page #process .proc,
+  html body.page-service .re-theme-page #process .proc.page-svc-stack,
+  html body.page-service .re-theme-page #process [data-thm-stack] {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: 22px !important;
+  }
+}
+
+@media (min-width: 1400px) {
+  html body.page-service .re-theme-page #process .proc,
+  html body.page-service .re-theme-page #process .proc.page-svc-stack,
+  html body.page-service .re-theme-page #process [data-thm-stack] {
+    grid-template-columns: repeat(5, minmax(0, 1fr)) !important;
+    gap: 24px !important;
+  }
+}
+
+/* WordPress + web-dev hub: By The Numbers — 2-up on phones
+   Beats .page-service .stats { grid-template-columns: 1fr !important } at ≤680. */
+@media (max-width: 680px) {
+  html body.page-service .wpdev-theme-page .stats,
+  html body.page-theme-html .wpdev-theme-page .stats,
+  .wpdev-theme-page .stats,
+  html body.page-web-dev .webdev-ref .stats,
+  html body.page-shopify .shopify-theme-page .stats {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 22px 16px !important;
+  }
+  html body.page-service .wpdev-theme-page .stat,
+  .wpdev-theme-page .stat,
+  html body.page-web-dev .webdev-ref .stat,
+  html body.page-shopify .shopify-theme-page .stat {
+    min-width: 0 !important;
+    padding: 10px 0 10px 14px !important;
+    border-left: 1px solid rgba(255, 255, 255, 0.16) !important;
+  }
+  html body.page-service .wpdev-theme-page .stat:nth-child(odd),
+  .wpdev-theme-page .stat:nth-child(odd),
+  html body.page-web-dev .webdev-ref .stat:nth-child(odd),
+  html body.page-shopify .shopify-theme-page .stat:nth-child(odd) {
+    border-left: none !important;
+    padding-left: 0 !important;
+  }
+  html body.page-service .wpdev-theme-page .stat:nth-child(n + 3),
+  .wpdev-theme-page .stat:nth-child(n + 3),
+  html body.page-web-dev .webdev-ref .stat:nth-child(n + 3),
+  html body.page-shopify .shopify-theme-page .stat:nth-child(n + 3) {
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+    padding-top: 16px !important;
+  }
+  html body.page-service .wpdev-theme-page .stat .num,
+  .wpdev-theme-page .stat .num,
+  html body.page-web-dev .webdev-ref .stat .num,
+  html body.page-shopify .shopify-theme-page .stat .num {
+    font-size: clamp(1.45rem, 7vw, 2rem) !important;
+    line-height: 1.05 !important;
+    white-space: normal !important;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+  html body.page-service .wpdev-theme-page .stat .lbl,
+  .wpdev-theme-page .stat .lbl,
+  html body.page-web-dev .webdev-ref .stat .lbl,
+  html body.page-shopify .shopify-theme-page .stat .lbl {
+    font-size: 0.62rem !important;
+    letter-spacing: 0.06em !important;
+    line-height: 1.35 !important;
+    white-space: normal !important;
+  }
+}
+
+/* #why-us .why-grid carousel through tablet — theme is 2-col until 980px */
+@media (max-width: 980px) {
+  html body.page-theme-html .wpdev-theme-page #why-us .wrap,
+  .wpdev-theme-page #why-us .wrap,
+  html body.page-web-dev .webdev-ref #why .wrap,
+  html body.page-shopify .shopify-theme-page.webdev-ref #why .wrap,
+  html body.page-aibot .aibot-theme-page.webdev-ref #why .wrap,
+  html body.page-cms .cms-theme-page.webdev-ref #why .wrap,
+  html body.page-cms .cms-theme-page #problem .wrap,
+  html body.page-redesign .redesign-theme-page.webdev-ref #pain .wrap,
+  html body.page-saas .saas-theme-page #problems .wrap {
+    max-width: 100% !important;
+    min-width: 0 !important;
+    overflow: visible !important;
+  }
+
+  html body.page-theme-html .wpdev-theme-page #why-us .why-mobile-carousel,
+  .wpdev-theme-page #why-us .why-mobile-carousel,
+  .wpdev-theme-page .why-mobile-carousel:has(> .why-grid),
+  html body.page-web-dev .webdev-ref #why .why-mobile-carousel,
+  html body.page-web-dev .webdev-ref .why-mobile-carousel:has(> .why-grid),
+  html body.page-shopify .shopify-theme-page .why-mobile-carousel:has(> .why-feats),
+  html body.page-aibot .aibot-theme-page .why-mobile-carousel:has(> .why-grid),
+  html body.page-cms .cms-theme-page .why-mobile-carousel:has(> .grid),
+  html body.page-redesign .redesign-theme-page .why-mobile-carousel:has(> #pain .grid),
+  html body.page-redesign .redesign-theme-page #pain .why-mobile-carousel,
+  html body.page-saas .saas-theme-page #problems .why-mobile-carousel,
+  html body.page-saas .saas-theme-page .why-mobile-carousel:has(> .pain-grid) {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    -webkit-overflow-scrolling: touch !important;
+    scroll-snap-type: x mandatory !important;
+    overscroll-behavior-x: contain !important;
+    scrollbar-width: none !important;
+    touch-action: pan-x !important;
+  }
+
+  html body.page-theme-html .wpdev-theme-page #why-us .why-grid,
+  .wpdev-theme-page #why-us .why-grid,
+  .wpdev-theme-page #why-us .why-mobile-carousel .why-grid,
+  html body.page-web-dev .webdev-ref #why .why-grid,
+  html body.page-web-dev .webdev-ref .why-mobile-carousel .why-grid,
+  html body.page-shopify .shopify-theme-page .why-mobile-carousel > .why-feats,
+  html body.page-shopify .shopify-theme-page .why-feats.thm-mobile-carousel,
+  html body.page-aibot .aibot-theme-page .why-mobile-carousel > .why-grid,
+  html body.page-aibot .aibot-theme-page #why .why-grid,
+  html body.page-cms .cms-theme-page .why-mobile-carousel > .grid,
+  html body.page-cms .cms-theme-page #problem .grid,
+  html body.page-redesign .redesign-theme-page #pain .why-mobile-carousel > .grid,
+  html body.page-redesign .redesign-theme-page #pain .grid,
+  html body.page-saas .saas-theme-page #problems .why-mobile-carousel > .pain-grid,
+  html body.page-saas .saas-theme-page #problems .pain-grid {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    align-items: stretch !important;
+    gap: 16px !important;
+    width: max-content !important;
+    max-width: none !important;
+    min-width: 0 !important;
+    overflow: visible !important;
+    grid-template-columns: none !important;
+    grid-template-rows: none !important;
+  }
+
+  html body.page-theme-html .wpdev-theme-page #why-us .why-grid > .why-card,
+  .wpdev-theme-page #why-us .why-grid > .why-card,
+  .wpdev-theme-page #why-us .why-grid > *,
+  html body.page-web-dev .webdev-ref #why .why-grid > .why-card,
+  html body.page-web-dev .webdev-ref #why .why-grid > *,
+  html body.page-shopify .shopify-theme-page .why-feats > .feat,
+  html body.page-shopify .shopify-theme-page .why-feats > *,
+  html body.page-aibot .aibot-theme-page .why-grid > .why,
+  html body.page-aibot .aibot-theme-page .why-grid > *,
+  html body.page-cms .cms-theme-page #problem .grid > .prob,
+  html body.page-cms .cms-theme-page #problem .grid > *,
+  html body.page-redesign .redesign-theme-page #pain .grid > .pain,
+  html body.page-redesign .redesign-theme-page #pain .grid > *,
+  html body.page-saas .saas-theme-page #problems .pain-grid > .pain,
+  html body.page-saas .saas-theme-page #problems .pain-grid > * {
+    flex: 0 0 85vw !important;
+    flex-shrink: 0 !important;
+    width: 85vw !important;
+    min-width: 85vw !important;
+    max-width: 85vw !important;
+    box-sizing: border-box !important;
+    scroll-snap-align: start !important;
+  }
+}
+
+@media (min-width: 981px) {
+  html body.page-web-dev .webdev-ref #why .why-grid {
+    display: grid !important;
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: 20px !important;
+    width: 100% !important;
+    max-width: none !important;
+    overflow: visible !important;
+    flex-wrap: unset !important;
+  }
+  html body.page-web-dev .webdev-ref #why .why-grid > .why-card,
+  html body.page-web-dev .webdev-ref #why .why-grid > * {
+    flex: none !important;
+    width: auto !important;
+    min-width: 0 !important;
+    max-width: none !important;
+  }
+  html body.page-aibot .aibot-theme-page #why .why-grid {
+    display: grid !important;
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: 24px !important;
+    width: 100% !important;
+    max-width: none !important;
+    overflow: visible !important;
+    flex-wrap: unset !important;
+  }
+  html body.page-aibot .aibot-theme-page #why .why-grid > .why,
+  html body.page-aibot .aibot-theme-page #why .why-grid > * {
+    flex: none !important;
+    width: auto !important;
+    min-width: 0 !important;
+    max-width: none !important;
+  }
+}
+
+@media (max-width: 767px) {
+  html body.page-web-dev .webdev-ref .included-grid,
+  html body.page-web-dev .webdev-ref .included-grid.thm-mobile-carousel,
+  html body.page-web-dev .webdev-ref [data-thm-carousel].included-grid {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    align-items: stretch !important;
+    gap: 16px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    -webkit-overflow-scrolling: touch !important;
+    scroll-snap-type: x mandatory !important;
+    grid-template-columns: none !important;
+    scrollbar-width: none !important;
+    touch-action: pan-x !important;
+  }
+  html body.page-web-dev .webdev-ref .included-grid > .include-tile,
+  html body.page-web-dev .webdev-ref .included-grid > * {
+    flex: 0 0 85vw !important;
+    width: 85vw !important;
+    min-width: 85vw !important;
+    max-width: 85vw !important;
+    scroll-snap-align: start !important;
+  }
+}
+
+/* Web-dev hub: compact hero + pain carousel shell + stats 2-up */
+html body.page-web-dev .hero,
+html body.page-web-dev section.hero{
+  min-height:auto !important;
+  height:auto !important;
+  align-items:flex-start !important;
+  padding-top:64px !important;
+  padding-bottom:0 !important;
+}
+html body.page-web-dev .nav-in{
+  height:64px !important;
+  gap:16px !important;
+}
+html body.page-web-dev .hero > .wrap,
+html body.page-web-dev .hero > .hero-in{
+  padding-top:10px !important;
+  padding-bottom:clamp(16px,2.4vw,28px) !important;
+}
+html body.page-web-dev .hero .hero-copy{
+  padding-top:0 !important;
+  margin-top:0 !important;
+}
+html body.page-web-dev .hero .breadcrumb{
+  margin-bottom:10px !important;
+}
+html body.page-web-dev .hero h1{
+  margin-top:0 !important;
+  margin-bottom:10px !important;
+  letter-spacing:-.04em !important;
+  line-height:1.06 !important;
+}
+html body.page-web-dev .hero .lede,
+html body.page-web-dev .hero .sub,
+html body.page-web-dev .hero .hero-sub{
+  margin-top:0 !important;
+  margin-bottom:14px !important;
+  line-height:1.45 !important;
+}
+html body.page-web-dev .hero-actions,
+html body.page-web-dev .hero-ctas{
+  margin-top:0 !important;
+  margin-bottom:12px !important;
+  gap:10px !important;
+}
+
+@media (max-width: 767px) {
+  html body.page-web-dev .webdev-ref #pain .why-mobile-carousel,
+  html body.page-web-dev .webdev-ref #pain .why-mobile-carousel:has(> .problem-grid) {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    -webkit-overflow-scrolling: touch !important;
+    scroll-snap-type: x mandatory !important;
+    scrollbar-width: none !important;
+    touch-action: pan-x !important;
+  }
+  html body.page-web-dev .webdev-ref #pain .why-mobile-carousel::-webkit-scrollbar {
+    display: none !important;
+  }
+  html body.page-web-dev .webdev-ref #pain .why-mobile-carousel .problem-grid {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    width: max-content !important;
+    max-width: none !important;
+    overflow: visible !important;
+    gap: 16px !important;
+    grid-template-columns: none !important;
+  }
+}
+
+@media (max-width: 680px) {
+  html body.page-web-dev .webdev-ref #compare .stats-band,
+  html body.page-web-dev .stats-band {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 22px 16px !important;
+    padding: 24px 0 !important;
+    text-align: left !important;
+  }
+  html body.page-web-dev .webdev-ref #compare .stat-item .num,
+  html body.page-web-dev .stats-band .stat-item .num {
+    font-size: clamp(1.5rem, 7vw, 2rem) !important;
+    white-space: nowrap;
+  }
+  html body.page-web-dev .webdev-ref #compare .stat-item .lab,
+  html body.page-web-dev .stats-band .stat-item .lab {
+    font-size: 0.62rem !important;
+    line-height: 1.35 !important;
+    white-space: normal !important;
+  }
+}
+
+html body.page-web-dev .webdev-ref #pain,
+html body.page-web-dev .webdev-ref #compare {
+  background: #fff !important;
+  color: var(--graphite, #0D2029);
+}
+html body.page-web-dev .webdev-ref #pain h2,
+html body.page-web-dev .webdev-ref #compare h2 {
+  color: var(--graphite, #0D2029) !important;
+}
+html body.page-web-dev .webdev-ref #pain .lede,
+html body.page-web-dev .webdev-ref #compare .lede {
+  color: var(--slate, #4B5B62) !important;
+}
+html body.page-web-dev .webdev-ref #pain .pain-card,
+html body.page-web-dev .webdev-ref #pain .problem-card {
+  background: #fff !important;
+  border: 1px solid var(--line, #E1E9E5) !important;
+  border-top: 3px solid var(--signal, #F47A1F) !important;
+  color: var(--slate, #4B5B62);
+}
+html body.page-web-dev .webdev-ref #pain .pain-card h3,
+html body.page-web-dev .webdev-ref #pain .problem-card h3 {
+  color: var(--graphite, #0D2029) !important;
+}
+html body.page-web-dev .webdev-ref #pain .pain-card p,
+html body.page-web-dev .webdev-ref #pain .problem-card p {
+  color: var(--slate, #4B5B62) !important;
+}
+html body.page-web-dev .webdev-ref #compare .compare-card.other {
+  background: #f1f5f3 !important;
+  border: 1px solid #e1e9e5 !important;
+}
+html body.page-web-dev .webdev-ref #compare .compare-card.other h3 {
+  color: #6b7a80 !important;
+}
+html body.page-web-dev .webdev-ref #compare .compare-card.other li {
+  color: #4b5b62 !important;
+  border-bottom-color: #e1e9e5 !important;
+}
+html body.page-web-dev .webdev-ref #compare .compare-card.us {
+  background: #0a1a22 !important;
+  border: 2px solid #f47a1f !important;
+  padding-top: 48px !important;
+}
+html body.page-web-dev .webdev-ref #compare .compare-card.us h3,
+html body.page-web-dev .webdev-ref #compare .compare-card.us li {
+  color: #fff !important;
+}
+html body.page-web-dev .webdev-ref #compare .stat-item .num.white {
+  color: #0d2029 !important;
+}
+html body.page-web-dev .webdev-ref #compare .stat-item .lab {
+  color: #4b5b62 !important;
+}
+
+html body.page-web-dev .webdev-ref #compare .compare-list{
+  list-style:none !important;
+  padding:0 !important;
+  margin:0 !important;
+}
+html body.page-web-dev .webdev-ref #compare .compare-list li{
+  display:flex !important;
+  align-items:flex-start !important;
+  gap:12px !important;
+  padding:11px 0 !important;
+  padding-left:0 !important;
+  position:relative !important;
+}
+html body.page-web-dev .webdev-ref #compare .compare-list .mark{
+  position:relative !important;
+  left:auto !important;
+  top:auto !important;
+  flex:0 0 20px !important;
+  width:20px !important;
+  height:20px !important;
+  min-width:20px !important;
+  margin:2px 0 0 !important;
+  border-radius:50% !important;
+  display:inline-flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  font-size:11px !important;
+  font-weight:700 !important;
+  line-height:1 !important;
+  overflow:visible !important;
+}
+html body.page-web-dev .webdev-ref #compare .mark.mark-x{
+  background:rgba(226,75,75,.14) !important;
+  color:#d44545 !important;
+}
+html body.page-web-dev .webdev-ref #compare .mark.mark-check{
+  background:var(--signal,#F47A1F) !important;
+  color:#0A1A22 !important;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   Shopify Development Services — same motion as web-dev hub
+   Compact hero, carousels, sticky stacks, compare marks.
+   Content/sections unchanged.
+   ══════════════════════════════════════════════════════════════ */
+html body.page-shopify .shopify-theme-page,
+html body.page-shopify .shopify-theme-page.theme-html-root,
+html body.page-shopify .shopify-theme-page.webdev-ref {
+  overflow-x: clip !important;
+  overflow-y: visible !important;
+}
+html body.page-shopify .shopify-theme-page #why {
+  overflow-x: clip !important;
+  overflow-y: visible !important;
+}
+
+html body.page-shopify .hero,
+html body.page-shopify section.hero {
+  min-height: auto !important;
+  height: auto !important;
+  align-items: flex-start !important;
+  padding-top: 64px !important;
+  padding-bottom: 0 !important;
+  display: block !important;
+}
+html body.page-shopify .nav-in {
+  height: 64px !important;
+  gap: 16px !important;
+}
+html body.page-shopify .hero > .wrap,
+html body.page-shopify .hero > .hero-in {
+  padding-top: 10px !important;
+  padding-bottom: clamp(16px, 2.4vw, 28px) !important;
+}
+html body.page-shopify .hero .hero-copy {
+  padding-top: 0 !important;
+  margin-top: 0 !important;
+  max-width: min(820px, 100%) !important;
+}
+html body.page-shopify .hero .breadcrumb {
+  margin-bottom: 10px !important;
+}
+html body.page-shopify .hero h1 {
+  margin-top: 0 !important;
+  margin-bottom: 10px !important;
+  letter-spacing: -0.04em !important;
+  line-height: 1.06 !important;
+}
+html body.page-shopify .hero h1 .line {
+  display: block;
+  white-space: normal;
+}
+html body.page-shopify .hero .lede,
+html body.page-shopify .hero .sub,
+html body.page-shopify .hero .hero-sub {
+  margin-top: 0 !important;
+  margin-bottom: 14px !important;
+  line-height: 1.45 !important;
+}
+html body.page-shopify .hero-actions,
+html body.page-shopify .hero-ctas {
+  margin-top: 0 !important;
+  margin-bottom: 12px !important;
+  gap: 10px !important;
+}
+
+/* Pain = web-dev paper cards (keep original copy) */
+html body.page-shopify .shopify-theme-page.webdev-ref section:has(> .wrap .pain-grid) {
+  background: #fff !important;
+  color: var(--graphite, #0d2029);
+}
+html body.page-shopify .shopify-theme-page.webdev-ref section:has(.pain-grid) .eyebrow,
+html body.page-shopify .shopify-theme-page.webdev-ref section:has(.pain-grid) .eyebrow::before {
+  color: var(--signal-deep, #cd661a) !important;
+}
+html body.page-shopify .shopify-theme-page.webdev-ref section:has(.pain-grid) h2,
+html body.page-shopify .shopify-theme-page.webdev-ref section:has(.pain-grid) h3 {
+  color: var(--graphite, #0d2029) !important;
+}
+html body.page-shopify .shopify-theme-page.webdev-ref section:has(.pain-grid) .lede,
+html body.page-shopify .shopify-theme-page.webdev-ref section:has(.pain-grid) .head-block p,
+html body.page-shopify .shopify-theme-page.webdev-ref section:has(.pain-grid) .head-block .lede {
+  color: var(--slate, #4b5b62) !important;
+}
+html body.page-shopify .shopify-theme-page.webdev-ref section:has(.pain-grid) .mark {
+  color: var(--signal-deep, #cd661a) !important;
+}
+html body.page-shopify .shopify-theme-page.webdev-ref .pain-card {
+  background: #fff !important;
+  background-color: #fff !important;
+  border: 1px solid var(--line, #e1e9e5) !important;
+  border-top: 3px solid var(--signal, #f47a1f) !important;
+  color: var(--slate, #4b5b62) !important;
+  box-shadow: 0 1px 2px rgba(13, 32, 41, 0.04), 0 10px 28px -16px rgba(13, 32, 41, 0.16) !important;
+}
+html body.page-shopify .shopify-theme-page.webdev-ref .pain-card h3 {
+  color: var(--graphite, #0d2029) !important;
+}
+html body.page-shopify .shopify-theme-page.webdev-ref .pain-card p {
+  color: var(--slate, #4b5b62) !important;
+}
+html body.page-shopify .shopify-theme-page.webdev-ref .pain-card .ico {
+  background: rgba(244, 122, 31, 0.12) !important;
+  color: var(--signal-deep, #cd661a) !important;
+}
+html body.page-shopify .shopify-theme-page.webdev-ref .pain-line {
+  background: #f1f5f3 !important;
+  border: 1px solid var(--line, #e1e9e5) !important;
+  color: var(--graphite, #0d2029) !important;
+}
+html body.page-shopify .shopify-theme-page.webdev-ref .pain-line p {
+  color: var(--slate, #4b5b62) !important;
+}
+html body.page-shopify .shopify-theme-page.webdev-ref .pain-line b {
+  color: var(--graphite, #0d2029) !important;
+}
+
+/* Compare marks = web-dev 20px circles */
+html body.page-shopify .shopify-theme-page .cmp.typ {
+  background: #f1f5f3 !important;
+  border: 1px solid #e1e9e5 !important;
+}
+html body.page-shopify .shopify-theme-page .cmp.typ .ct {
+  color: #6b7a80 !important;
+}
+html body.page-shopify .shopify-theme-page .cmp.typ li {
+  color: #4b5b62 !important;
+}
+html body.page-shopify .shopify-theme-page .cmp.win {
+  background: #0a1a22 !important;
+  border: 2px solid #f47a1f !important;
+}
+html body.page-shopify .shopify-theme-page .cmp.win .ct {
+  color: var(--signal, #f47a1f) !important;
+}
+html body.page-shopify .shopify-theme-page .cmp.win li,
+html body.page-shopify .shopify-theme-page .cmp.win li span {
+  color: #fff !important;
+}
+html body.page-shopify .shopify-theme-page .cmp li {
+  display: flex !important;
+  align-items: flex-start !important;
+  gap: 12px !important;
+}
+html body.page-shopify .shopify-theme-page .cmp li svg {
+  position: relative !important;
+  flex: 0 0 20px !important;
+  width: 20px !important;
+  height: 20px !important;
+  min-width: 20px !important;
+  min-height: 20px !important;
+  margin: 2px 0 0 !important;
+  padding: 3px !important;
+  box-sizing: border-box !important;
+  border-radius: 50% !important;
+  overflow: visible !important;
+}
+html body.page-shopify .shopify-theme-page .cmp li svg.x,
+html body.page-shopify .shopify-theme-page .cmp.typ li svg {
+  background: rgba(226, 75, 75, 0.14) !important;
+  color: #d44545 !important;
+  stroke: #d44545 !important;
+}
+html body.page-shopify .shopify-theme-page .cmp li svg.chk,
+html body.page-shopify .shopify-theme-page .cmp.win li svg {
+  background: var(--signal, #f47a1f) !important;
+  color: #0a1a22 !important;
+  stroke: #0a1a22 !important;
+}
+
+@media (max-width: 767px) {
+  html body.page-shopify .shopify-theme-page .why-mobile-carousel,
+  html body.page-shopify .shopify-theme-page .why-mobile-carousel:has(> .pain-grid),
+  html body.page-shopify .shopify-theme-page .why-mobile-carousel:has(> .ind-grid),
+  html body.page-shopify .shopify-theme-page .why-mobile-carousel:has(> .tst-grid) {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    -webkit-overflow-scrolling: touch !important;
+    scroll-snap-type: x mandatory !important;
+    scrollbar-width: none !important;
+    touch-action: pan-x !important;
+  }
+  html body.page-shopify .shopify-theme-page .why-mobile-carousel::-webkit-scrollbar {
+    display: none !important;
+  }
+  html body.page-shopify .shopify-theme-page .why-mobile-carousel > .pain-grid,
+  html body.page-shopify .shopify-theme-page .why-mobile-carousel > .ind-grid,
+  html body.page-shopify .shopify-theme-page .why-mobile-carousel > .tst-grid {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    width: max-content !important;
+    max-width: none !important;
+    overflow: visible !important;
+    gap: 16px !important;
+    grid-template-columns: none !important;
+  }
+  html body.page-shopify .shopify-theme-page .why-mobile-carousel > .pain-grid > *,
+  html body.page-shopify .shopify-theme-page .why-mobile-carousel > .ind-grid > *,
+  html body.page-shopify .shopify-theme-page .why-mobile-carousel > .tst-grid > * {
+    flex: 0 0 85vw !important;
+    width: 85vw !important;
+    min-width: 85vw !important;
+    max-width: 85vw !important;
+    scroll-snap-align: start !important;
+  }
+  html body.page-shopify .shopify-theme-page .compare {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+@media (min-width: 981px) {
+  html body.page-shopify .shopify-theme-page .why-mobile-carousel {
+    display: contents;
+  }
+}
+
+/* ══════════════════════════════════════════════════════════════
+   AI Chatbot Development Services — same motion as web-dev hub
+   Compact hero, carousels, sticky stacks. Content/sections unchanged.
+   ══════════════════════════════════════════════════════════════ */
+html body.page-aibot .aibot-theme-page,
+html body.page-aibot .aibot-theme-page.theme-html-root,
+html body.page-aibot .aibot-theme-page.webdev-ref {
+  overflow-x: clip !important;
+  overflow-y: visible !important;
+}
+
+html body.page-aibot .hero,
+html body.page-aibot section.hero {
+  min-height: auto !important;
+  height: auto !important;
+  align-items: flex-start !important;
+  padding-top: 64px !important;
+  padding-bottom: 0 !important;
+  display: block !important;
+}
+html body.page-aibot .nav-in {
+  height: 64px !important;
+  gap: 16px !important;
+}
+html body.page-aibot .hero > .wrap,
+html body.page-aibot .hero > .hero-in {
+  padding-top: 10px !important;
+  padding-bottom: clamp(16px, 2.4vw, 28px) !important;
+}
+html body.page-aibot .hero .hero-copy {
+  padding-top: 0 !important;
+  margin-top: 0 !important;
+  max-width: min(820px, 100%) !important;
+}
+html body.page-aibot .hero .breadcrumb {
+  margin-bottom: 10px !important;
+}
+html body.page-aibot .hero h1 {
+  margin-top: 0 !important;
+  margin-bottom: 10px !important;
+  letter-spacing: -0.04em !important;
+  line-height: 1.06 !important;
+}
+html body.page-aibot .hero .lede,
+html body.page-aibot .hero .sub,
+html body.page-aibot .hero .hero-sub {
+  margin-top: 0 !important;
+  margin-bottom: 14px !important;
+  line-height: 1.45 !important;
+}
+html body.page-aibot .hero-actions,
+html body.page-aibot .hero-ctas {
+  margin-top: 0 !important;
+  margin-bottom: 12px !important;
+  gap: 10px !important;
+}
+
+/* Problem = web-dev paper; keep 67% panel + all three pain cards */
+html body.page-aibot .aibot-theme-page.webdev-ref #problem {
+  background: #fff !important;
+  color: var(--graphite, #0d2029);
+}
+html body.page-aibot .aibot-theme-page.webdev-ref #problem .eyebrow,
+html body.page-aibot .aibot-theme-page.webdev-ref #problem .eyebrow::before {
+  color: var(--signal-deep, #cd661a) !important;
+}
+html body.page-aibot .aibot-theme-page.webdev-ref #problem h2 {
+  color: var(--graphite, #0d2029) !important;
+}
+html body.page-aibot .aibot-theme-page.webdev-ref #problem h2 .o,
+html body.page-aibot .aibot-theme-page.webdev-ref #problem .o {
+  color: var(--signal-deep, #cd661a) !important;
+}
+html body.page-aibot .aibot-theme-page.webdev-ref #problem .prob-grid > div > p,
+html body.page-aibot .aibot-theme-page.webdev-ref #problem p {
+  color: var(--slate, #4b5b62) !important;
+}
+html body.page-aibot .aibot-theme-page.webdev-ref #problem .prob-item {
+  background: #fff !important;
+  background-color: #fff !important;
+  border: 1px solid var(--line, #e1e9e5) !important;
+  border-top: 3px solid var(--signal, #f47a1f) !important;
+  color: var(--slate, #4b5b62) !important;
+  box-shadow: 0 1px 2px rgba(13, 32, 41, 0.04), 0 10px 28px -16px rgba(13, 32, 41, 0.16) !important;
+}
+html body.page-aibot .aibot-theme-page.webdev-ref #problem .prob-item b {
+  color: var(--graphite, #0d2029) !important;
+}
+html body.page-aibot .aibot-theme-page.webdev-ref #problem .prob-item p {
+  color: var(--slate, #4b5b62) !important;
+}
+html body.page-aibot .aibot-theme-page.webdev-ref #problem .prob-x {
+  flex: 0 0 20px !important;
+  width: 20px !important;
+  height: 20px !important;
+  min-width: 20px !important;
+  background: rgba(226, 75, 75, 0.14) !important;
+  color: #d44545 !important;
+  font-size: 0 !important;
+  line-height: 1 !important;
+}
+html body.page-aibot .aibot-theme-page.webdev-ref #problem .prob-x::after {
+  content: "✕";
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1;
+  color: #d44545;
+}
+html body.page-aibot .aibot-theme-page.webdev-ref #problem .prob-panel {
+  background: #0a1a22 !important;
+  border: 1px solid rgba(244, 122, 31, 0.16) !important;
+  color: #b7cbd2 !important;
+}
+html body.page-aibot .aibot-theme-page.webdev-ref #problem .prob-panel h3,
+html body.page-aibot .aibot-theme-page.webdev-ref #problem .prob-panel .flip {
+  color: #fff !important;
+}
+html body.page-aibot .aibot-theme-page.webdev-ref #problem .prob-panel p {
+  color: #9fb6be !important;
+}
+html body.page-aibot .aibot-theme-page.webdev-ref #problem .prob-panel .big,
+html body.page-aibot .aibot-theme-page.webdev-ref #problem .prob-panel .o,
+html body.page-aibot .aibot-theme-page.webdev-ref #problem .prob-panel .flip .o {
+  color: var(--signal, #f47a1f) !important;
+}
+
+/* Problem section ≤980: head → card carousel → 67% panel (inspector ~865px) */
+@media (max-width: 980px) {
+  html body.page-aibot .aibot-theme-page #problem,
+  html body.page-aibot .aibot-theme-page #problem .wrap {
+    overflow-x: clip !important;
+    overflow-y: visible !important;
+    min-width: 0 !important;
+  }
+  html body.page-aibot .aibot-theme-page #problem .prob-grid {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 20px !important;
+    margin-top: 0 !important;
+    grid-template-columns: none !important;
+    min-width: 0 !important;
+  }
+  html body.page-aibot .aibot-theme-page #problem .prob-grid > div:not(.prob-panel) {
+    min-width: 0 !important;
+    width: 100% !important;
+  }
+  html body.page-aibot .aibot-theme-page #problem .prob-grid > div:not(.prob-panel) > h2 {
+    font-size: clamp(1.55rem, 5vw, 2.15rem) !important;
+    margin: 8px 0 10px !important;
+    max-width: 18ch;
+  }
+  html body.page-aibot .aibot-theme-page #problem .prob-grid > div:not(.prob-panel) > p {
+    margin: 0 0 8px !important;
+    max-width: 62ch;
+    font-size: 0.98rem !important;
+    line-height: 1.5 !important;
+  }
+  html body.page-aibot .aibot-theme-page #problem .why-mobile-carousel:has(> .prob-list),
+  html body.page-aibot .aibot-theme-page #problem .why-mobile-carousel {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    margin-top: 12px !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    -webkit-overflow-scrolling: touch !important;
+    scroll-snap-type: x mandatory !important;
+    scrollbar-width: none !important;
+    touch-action: pan-x !important;
+  }
+  html body.page-aibot .aibot-theme-page #problem .why-mobile-carousel::-webkit-scrollbar {
+    display: none !important;
+  }
+  html body.page-aibot .aibot-theme-page #problem .prob-list,
+  html body.page-aibot .aibot-theme-page #problem .why-mobile-carousel > .prob-list {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    align-items: stretch !important;
+    width: max-content !important;
+    max-width: none !important;
+    overflow: visible !important;
+    gap: 16px !important;
+    margin-top: 0 !important;
+    grid-template-columns: none !important;
+  }
+  html body.page-aibot .aibot-theme-page #problem .prob-list > .prob-item,
+  html body.page-aibot .aibot-theme-page #problem .prob-list > * {
+    flex: 0 0 min(78vw, 420px) !important;
+    width: min(78vw, 420px) !important;
+    min-width: min(78vw, 420px) !important;
+    max-width: min(78vw, 420px) !important;
+    scroll-snap-align: start !important;
+    box-sizing: border-box !important;
+  }
+  html body.page-aibot .aibot-theme-page #problem .prob-item {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 10px !important;
+    min-height: 0 !important;
+    padding: 22px 20px !important;
+  }
+  html body.page-aibot .aibot-theme-page #problem .prob-x {
+    margin-top: 0 !important;
+  }
+  html body.page-aibot .aibot-theme-page #problem .prob-panel {
+    width: 100% !important;
+    padding: 24px 22px !important;
+  }
+  html body.page-aibot .aibot-theme-page #problem .prob-panel .big {
+    font-size: clamp(2.2rem, 8vw, 3.2rem) !important;
+  }
+  html body.page-aibot .aibot-theme-page #problem .prob-panel h3 {
+    font-size: 1.12rem !important;
+    margin: 10px 0 8px !important;
+  }
+  html body.page-aibot .aibot-theme-page #problem .prob-panel .rule {
+    margin: 16px 0 !important;
+  }
+}
+
+/* Compare = web-dev cards + 20px marks */
+html body.page-aibot .aibot-theme-page .cmp-card:not(.win) {
+  background: #f1f5f3 !important;
+  border: 1px solid #e1e9e5 !important;
+}
+html body.page-aibot .aibot-theme-page .cmp-card:not(.win) h3,
+html body.page-aibot .aibot-theme-page .cmp-card:not(.win) .tag {
+  color: #6b7a80 !important;
+}
+html body.page-aibot .aibot-theme-page .cmp-card:not(.win) li {
+  color: #4b5b62 !important;
+}
+html body.page-aibot .aibot-theme-page .cmp-card.win {
+  background: #0a1a22 !important;
+  border: 2px solid #f47a1f !important;
+}
+html body.page-aibot .aibot-theme-page .cmp-card.win h3,
+html body.page-aibot .aibot-theme-page .cmp-card.win li {
+  color: #fff !important;
+}
+html body.page-aibot .aibot-theme-page .ic {
+  flex: 0 0 20px !important;
+  width: 20px !important;
+  height: 20px !important;
+  min-width: 20px !important;
+  margin: 2px 0 0 !important;
+  border-radius: 50% !important;
+  font-size: 0 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  line-height: 1 !important;
+}
+html body.page-aibot .aibot-theme-page .ic.no {
+  background: rgba(226, 75, 75, 0.14) !important;
+  color: #d44545 !important;
+}
+html body.page-aibot .aibot-theme-page .ic.yes {
+  background: var(--signal, #f47a1f) !important;
+  color: #0a1a22 !important;
+}
+html body.page-aibot .aibot-theme-page .ic.no::after {
+  content: "✕";
+  font-size: 11px;
+  font-weight: 700;
+  color: #d44545;
+}
+html body.page-aibot .aibot-theme-page .ic.yes::after {
+  content: "✓";
+  font-size: 11px;
+  font-weight: 700;
+  color: #0a1a22;
+}
+
+html body.page-aibot .aibot-theme-page #services .svc,
+html body.page-aibot .aibot-theme-page #process .pstep {
+  overflow: visible !important;
+}
+
+@media (max-width: 767px) {
+  html body.page-aibot .aibot-theme-page .why-mobile-carousel,
+  html body.page-aibot .aibot-theme-page .why-mobile-carousel:has(> .prob-list),
+  html body.page-aibot .aibot-theme-page .why-mobile-carousel:has(> .tst-grid) {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    -webkit-overflow-scrolling: touch !important;
+    scroll-snap-type: x mandatory !important;
+    scrollbar-width: none !important;
+    touch-action: pan-x !important;
+  }
+  html body.page-aibot .aibot-theme-page .why-mobile-carousel::-webkit-scrollbar {
+    display: none !important;
+  }
+  html body.page-aibot .aibot-theme-page .why-mobile-carousel > .prob-list,
+  html body.page-aibot .aibot-theme-page .why-mobile-carousel > .tst-grid {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    width: max-content !important;
+    max-width: none !important;
+    overflow: visible !important;
+    gap: 16px !important;
+    grid-template-columns: none !important;
+  }
+  html body.page-aibot .aibot-theme-page .why-mobile-carousel > .prob-list > *,
+  html body.page-aibot .aibot-theme-page .why-mobile-carousel > .tst-grid > * {
+    flex: 0 0 85vw !important;
+    width: 85vw !important;
+    min-width: 85vw !important;
+    max-width: 85vw !important;
+    scroll-snap-align: start !important;
+  }
+  html body.page-aibot .aibot-theme-page .cmp {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+@media (max-width: 680px) {
+  html body.page-aibot .aibot-theme-page .stats {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 22px 16px !important;
+    text-align: left !important;
+  }
+  html body.page-aibot .aibot-theme-page .stat {
+    min-width: 0 !important;
+  }
+}
+
+@media (min-width: 981px) {
+  html body.page-aibot .aibot-theme-page .why-mobile-carousel {
+    display: contents;
+  }
+}
+
+/* ══════════════════════════════════════════════════════════════
+   CMS Development Services — same motion as web-dev hub
+   Compact hero, carousels, sticky stacks. Content/sections unchanged.
+   ══════════════════════════════════════════════════════════════ */
+html body.page-cms .cms-theme-page,
+html body.page-cms .cms-theme-page.theme-html-root,
+html body.page-cms .cms-theme-page.webdev-ref {
+  overflow-x: clip !important;
+  overflow-y: visible !important;
+}
+
+html body.page-cms .hero,
+html body.page-cms section.hero {
+  min-height: auto !important;
+  height: auto !important;
+  align-items: flex-start !important;
+  padding-top: 64px !important;
+  padding-bottom: 0 !important;
+  display: block !important;
+}
+html body.page-cms .nav-in {
+  height: 64px !important;
+  gap: 16px !important;
+}
+html body.page-cms .hero > .wrap,
+html body.page-cms .hero > .hero-in {
+  padding-top: 10px !important;
+  padding-bottom: clamp(16px, 2.4vw, 28px) !important;
+}
+html body.page-cms .hero .hero-copy {
+  padding-top: 0 !important;
+  margin-top: 0 !important;
+  max-width: min(820px, 100%) !important;
+}
+html body.page-cms .hero .breadcrumb {
+  margin-bottom: 10px !important;
+}
+html body.page-cms .hero h1 {
+  margin-top: 0 !important;
+  margin-bottom: 10px !important;
+  letter-spacing: -0.04em !important;
+  line-height: 1.06 !important;
+}
+html body.page-cms .hero .lede,
+html body.page-cms .hero .sub,
+html body.page-cms .hero .hero-sub {
+  margin-top: 0 !important;
+  margin-bottom: 14px !important;
+  line-height: 1.45 !important;
+}
+html body.page-cms .hero-actions,
+html body.page-cms .hero-ctas {
+  margin-top: 0 !important;
+  margin-bottom: 12px !important;
+  gap: 10px !important;
+}
+
+html body.page-cms .cms-theme-page #problem .prob {
+  background: #fff !important;
+  border: 1px solid var(--line, #e1e9e5) !important;
+  border-top: 3px solid var(--signal, #f47a1f) !important;
+  box-shadow: 0 1px 2px rgba(13, 32, 41, 0.04), 0 10px 28px -16px rgba(13, 32, 41, 0.16) !important;
+}
+html body.page-cms .cms-theme-page #services .svc,
+html body.page-cms .cms-theme-page #process .step {
+  overflow: visible !important;
+}
+
+@media (max-width: 767px) {
+  html body.page-cms .cms-theme-page #why .why-mobile-carousel:has(> .feat-list),
+  html body.page-cms .cms-theme-page .why-mobile-carousel:has(> .feat-list) {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    -webkit-overflow-scrolling: touch !important;
+    scroll-snap-type: x mandatory !important;
+    scrollbar-width: none !important;
+    touch-action: pan-x !important;
+  }
+  html body.page-cms .cms-theme-page .why-mobile-carousel > .feat-list,
+  html body.page-cms .cms-theme-page #why .feat-list {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    width: max-content !important;
+    max-width: none !important;
+    height: auto !important;
+    overflow: visible !important;
+    gap: 16px !important;
+    grid-template-columns: none !important;
+    grid-template-rows: none !important;
+  }
+  html body.page-cms .cms-theme-page .feat-list > .feat,
+  html body.page-cms .cms-theme-page .feat-list > * {
+    flex: 0 0 85vw !important;
+    width: 85vw !important;
+    min-width: 85vw !important;
+    max-width: 85vw !important;
+    height: auto !important;
+    scroll-snap-align: start !important;
+  }
+  html body.page-cms .cms-theme-page .why-mobile-carousel:has(> .plat),
+  html body.page-cms .cms-theme-page .why-mobile-carousel:has(> #work .grid) {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    -webkit-overflow-scrolling: touch !important;
+    scroll-snap-type: x mandatory !important;
+    scrollbar-width: none !important;
+    touch-action: pan-x !important;
+  }
+  html body.page-cms .cms-theme-page #work .why-mobile-carousel,
+  html body.page-cms .cms-theme-page .why-mobile-carousel:has(> .plat) {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    -webkit-overflow-scrolling: touch !important;
+    scroll-snap-type: x mandatory !important;
+    scrollbar-width: none !important;
+    touch-action: pan-x !important;
+  }
+  html body.page-cms .cms-theme-page .why-mobile-carousel::-webkit-scrollbar {
+    display: none !important;
+  }
+  html body.page-cms .cms-theme-page .why-mobile-carousel > .plat,
+  html body.page-cms .cms-theme-page #work .why-mobile-carousel > .grid {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    width: max-content !important;
+    max-width: none !important;
+    overflow: visible !important;
+    gap: 16px !important;
+    grid-template-columns: none !important;
+  }
+  html body.page-cms .cms-theme-page .why-mobile-carousel > .plat > *,
+  html body.page-cms .cms-theme-page #work .why-mobile-carousel > .grid > * {
+    flex: 0 0 min(78vw, 420px) !important;
+    width: min(78vw, 420px) !important;
+    min-width: min(78vw, 420px) !important;
+    max-width: min(78vw, 420px) !important;
+    scroll-snap-align: start !important;
+  }
+}
+
+@media (max-width: 680px) {
+  html body.page-cms .cms-theme-page .stats {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 22px 16px !important;
+    text-align: left !important;
+  }
+}
+
+@media (min-width: 768px) {
+  html body.page-cms .cms-theme-page #why .why-mobile-carousel:has(> .feat-list),
+  html body.page-cms .cms-theme-page .why-mobile-carousel:has(> .feat-list) {
+    display: contents !important;
+  }
+  html body.page-cms .cms-theme-page #why,
+  html body.page-cms .cms-theme-page section#why.sec-ink {
+    overflow: visible !important;
+  }
+  html body.page-cms .cms-theme-page #why .wrap.why-grid,
+  html body.page-cms .cms-theme-page #why .why-grid {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 1.2fr) !important;
+    gap: clamp(24px, 3.2vw, 56px) !important;
+    align-items: stretch !important;
+    width: 100% !important;
+    max-width: var(--maxw, var(--max, 1560px)) !important;
+    min-width: 0 !important;
+    overflow: visible !important;
+  }
+  html body.page-cms .cms-theme-page #why .why-copy {
+    max-width: none !important;
+    min-width: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+  }
+  html body.page-cms .cms-theme-page #why .why-copy .lede,
+  html body.page-cms .cms-theme-page #why .lede {
+    max-width: none !important;
+  }
+  html body.page-cms .cms-theme-page #why .feat-list,
+  html body.page-cms .cms-theme-page .feat-list {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    grid-template-rows: 1fr 1fr !important;
+    width: 100% !important;
+    height: 100% !important;
+    max-width: none !important;
+    min-width: 0 !important;
+    overflow: visible !important;
+    gap: 16px !important;
+    flex-wrap: unset !important;
+    align-content: stretch !important;
+  }
+  html body.page-cms .cms-theme-page #why .feat-list > .feat,
+  html body.page-cms .cms-theme-page #why .feat-list > *,
+  html body.page-cms .cms-theme-page #why .feat {
+    flex: none !important;
+    width: auto !important;
+    min-width: 0 !important;
+    max-width: none !important;
+    height: 100% !important;
+  }
+}
+
+@media (min-width: 981px) {
+  html body.page-cms .cms-theme-page .why-mobile-carousel {
+    display: contents;
+  }
+  html body.page-cms .cms-theme-page #problem .grid {
+    display: grid !important;
+    width: 100% !important;
+    max-width: none !important;
+    overflow: visible !important;
+    flex-wrap: unset !important;
+  }
+  html body.page-cms .cms-theme-page #problem .grid > * {
+    flex: none !important;
+    width: auto !important;
+    min-width: 0 !important;
+    max-width: none !important;
+  }
+}
+
+/* ══════════════════════════════════════════════════════════════
+   Website Redesign Services — same motion as web-dev / CMS
+   Compact hero, carousels, sticky stacks, compare marks.
+   Content/sections unchanged.
+   ══════════════════════════════════════════════════════════════ */
+html body.page-redesign .redesign-theme-page,
+html body.page-redesign .redesign-theme-page.theme-html-root,
+html body.page-redesign .redesign-theme-page.webdev-ref {
+  overflow-x: clip !important;
+  overflow-y: visible !important;
+}
+
+html body.page-redesign .hero,
+html body.page-redesign section.hero {
+  min-height: auto !important;
+  height: auto !important;
+  align-items: flex-start !important;
+  padding-top: 64px !important;
+  padding-bottom: 0 !important;
+  display: block !important;
+}
+html body.page-redesign .nav-in {
+  height: 64px !important;
+  gap: 16px !important;
+}
+html body.page-redesign .hero > .wrap,
+html body.page-redesign .hero > .hero-in {
+  padding-top: 10px !important;
+  padding-bottom: clamp(16px, 2.4vw, 28px) !important;
+}
+html body.page-redesign .hero .hero-copy {
+  padding-top: 0 !important;
+  margin-top: 0 !important;
+  max-width: min(820px, 100%) !important;
+}
+html body.page-redesign .hero .breadcrumb {
+  margin-bottom: 10px !important;
+}
+html body.page-redesign .hero h1 {
+  margin-top: 0 !important;
+  margin-bottom: 10px !important;
+  letter-spacing: -0.04em !important;
+  line-height: 1.06 !important;
+}
+html body.page-redesign .hero .lede,
+html body.page-redesign .hero .sub,
+html body.page-redesign .hero .hero-sub {
+  margin-top: 0 !important;
+  margin-bottom: 14px !important;
+  line-height: 1.45 !important;
+}
+html body.page-redesign .hero-actions,
+html body.page-redesign .hero-ctas {
+  margin-top: 0 !important;
+  margin-bottom: 12px !important;
+  gap: 10px !important;
+}
+
+html body.page-redesign .redesign-theme-page #pain .pain {
+  background: #fff !important;
+  border: 1px solid var(--line, #e1e9e5) !important;
+  border-top: 3px solid var(--signal, #f47a1f) !important;
+  box-shadow: 0 1px 2px rgba(13, 32, 41, 0.04), 0 10px 28px -16px rgba(13, 32, 41, 0.16) !important;
+}
+html body.page-redesign .redesign-theme-page #process .step,
+html body.page-redesign .redesign-theme-page .svc {
+  overflow: visible !important;
+}
+
+/* Compare marks = 20px ✕ / ✓ circles */
+html body.page-redesign .redesign-theme-page .cmp li {
+  display: flex !important;
+  align-items: flex-start !important;
+  gap: 12px !important;
+}
+html body.page-redesign .redesign-theme-page .cmp li .mk {
+  flex: 0 0 20px !important;
+  width: 20px !important;
+  height: 20px !important;
+  min-width: 20px !important;
+  min-height: 20px !important;
+  margin: 2px 0 0 !important;
+  border-radius: 50% !important;
+  font-size: 0 !important;
+  line-height: 0 !important;
+  display: grid !important;
+  place-items: center !important;
+  position: relative !important;
+}
+html body.page-redesign .redesign-theme-page .cmp li .mk::after {
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  line-height: 1 !important;
+}
+html body.page-redesign .redesign-theme-page .cmp .x .mk,
+html body.page-redesign .redesign-theme-page .cmp li.x .mk {
+  background: rgba(226, 75, 75, 0.14) !important;
+  color: #d44545 !important;
+}
+html body.page-redesign .redesign-theme-page .cmp .x .mk::after,
+html body.page-redesign .redesign-theme-page .cmp li.x .mk::after {
+  content: "✕";
+  color: #d44545;
+}
+html body.page-redesign .redesign-theme-page .cmp .c .mk,
+html body.page-redesign .redesign-theme-page .cmp li.c .mk {
+  background: var(--signal, #f47a1f) !important;
+  color: #0a1a22 !important;
+}
+html body.page-redesign .redesign-theme-page .cmp .c .mk::after,
+html body.page-redesign .redesign-theme-page .cmp li.c .mk::after {
+  content: "✓";
+  color: #0a1a22;
+}
+
+@media (max-width: 767px) {
+  html body.page-redesign .redesign-theme-page #deliver .why-mobile-carousel,
+  html body.page-redesign .redesign-theme-page .sec-testi .why-mobile-carousel,
+  html body.page-redesign .redesign-theme-page .why-mobile-carousel:has(> .grid) {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    -webkit-overflow-scrolling: touch !important;
+    scroll-snap-type: x mandatory !important;
+    scrollbar-width: none !important;
+    touch-action: pan-x !important;
+  }
+  html body.page-redesign .redesign-theme-page .why-mobile-carousel::-webkit-scrollbar {
+    display: none !important;
+  }
+  html body.page-redesign .redesign-theme-page #deliver .why-mobile-carousel > .grid,
+  html body.page-redesign .redesign-theme-page .sec-testi .why-mobile-carousel > .grid {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    width: max-content !important;
+    max-width: none !important;
+    overflow: visible !important;
+    gap: 16px !important;
+    grid-template-columns: none !important;
+  }
+  html body.page-redesign .redesign-theme-page #deliver .why-mobile-carousel > .grid > *,
+  html body.page-redesign .redesign-theme-page .sec-testi .why-mobile-carousel > .grid > * {
+    flex: 0 0 85vw !important;
+    width: 85vw !important;
+    min-width: 85vw !important;
+    max-width: 85vw !important;
+    scroll-snap-align: start !important;
+  }
+}
+
+@media (max-width: 680px) {
+  html body.page-redesign .redesign-theme-page .stats {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 22px 16px !important;
+    text-align: left !important;
+  }
+  html body.page-redesign .redesign-theme-page .stat {
+    min-width: 0 !important;
+  }
+}
+
+@media (min-width: 768px) {
+  html body.page-redesign .redesign-theme-page #deliver .why-mobile-carousel,
+  html body.page-redesign .redesign-theme-page .sec-testi .why-mobile-carousel {
+    display: contents !important;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 980px) {
+  html body.page-redesign .redesign-theme-page .sec-testi .grid {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    width: 100% !important;
+    max-width: none !important;
+    overflow: visible !important;
+  }
+}
+
+@media (min-width: 981px) {
+  html body.page-redesign .redesign-theme-page .why-mobile-carousel {
+    display: contents;
+  }
+  html body.page-redesign .redesign-theme-page #pain .grid {
+    display: grid !important;
+    width: 100% !important;
+    max-width: none !important;
+    overflow: visible !important;
+    flex-wrap: unset !important;
+  }
+  html body.page-redesign .redesign-theme-page #pain .grid > * {
+    flex: none !important;
+    width: auto !important;
+    min-width: 0 !important;
+    max-width: none !important;
+  }
+}
+
+/* ══════════════════════════════════════════════════════════════
+   Electrician Website Design + SaaS Software Development
+   Compact hero, carousels, sticky stacks. Content unchanged.
+   ══════════════════════════════════════════════════════════════ */
+html body.page-elec .elec-theme-page,
+html body.page-elec .elec-theme-page.theme-html-root,
+html body.page-elec .elec-theme-page.webdev-ref,
+html body.page-saas .saas-theme-page,
+html body.page-saas .saas-theme-page.theme-html-root,
+html body.page-saas .saas-theme-page.webdev-ref {
+  overflow-x: clip !important;
+  overflow-y: visible !important;
+}
+
+html body.page-elec .hero,
+html body.page-elec section.hero,
+html body.page-saas .hero,
+html body.page-saas section.hero {
+  min-height: auto !important;
+  height: auto !important;
+  align-items: flex-start !important;
+  padding-top: 64px !important;
+  padding-bottom: 0 !important;
+  display: block !important;
+}
+html body.page-elec .nav-in,
+html body.page-saas .nav-in {
+  height: 64px !important;
+  gap: 16px !important;
+}
+html body.page-elec .hero > .wrap,
+html body.page-elec .hero > .hero-in,
+html body.page-saas .hero > .wrap,
+html body.page-saas .hero > .hero-in {
+  padding-top: 10px !important;
+  padding-bottom: clamp(16px, 2.4vw, 28px) !important;
+}
+html body.page-elec .hero .hero-copy,
+html body.page-saas .hero .hero-copy {
+  padding-top: 0 !important;
+  margin-top: 0 !important;
+  max-width: min(820px, 100%) !important;
+}
+html body.page-elec .hero .breadcrumb,
+html body.page-saas .hero .breadcrumb {
+  margin-bottom: 10px !important;
+}
+html body.page-elec .hero h1,
+html body.page-saas .hero h1 {
+  margin-top: 0 !important;
+  margin-bottom: 10px !important;
+  letter-spacing: -0.04em !important;
+  line-height: 1.06 !important;
+}
+html body.page-elec .hero .lede,
+html body.page-elec .hero .sub,
+html body.page-elec .hero .hero-sub,
+html body.page-saas .hero .lede,
+html body.page-saas .hero .sub,
+html body.page-saas .hero .hero-sub {
+  margin-top: 0 !important;
+  margin-bottom: 14px !important;
+  line-height: 1.45 !important;
+}
+html body.page-elec .hero-actions,
+html body.page-elec .hero-ctas,
+html body.page-saas .hero-actions,
+html body.page-saas .hero-ctas {
+  margin-top: 0 !important;
+  margin-bottom: 12px !important;
+  gap: 10px !important;
+}
+
+html body.page-elec .elec-theme-page .pain {
+  background: #fff !important;
+  border: 1px solid var(--line, #e1e9e5) !important;
+  border-top: 3px solid var(--signal, #f47a1f) !important;
+  box-shadow: 0 1px 2px rgba(13, 32, 41, 0.04), 0 10px 28px -16px rgba(13, 32, 41, 0.16) !important;
+}
+html body.page-elec .elec-theme-page #services .svc,
+html body.page-elec .elec-theme-page #process .proc,
+html body.page-saas .saas-theme-page #services .svc,
+html body.page-saas .saas-theme-page #process .step {
+  overflow: visible !important;
+}
+
+html body.page-saas .saas-theme-page #problems .pain {
+  border-top: 3px solid var(--signal, #f47a1f);
+}
+
+html body.page-saas .saas-theme-page .cmp li {
+  display: flex !important;
+  align-items: flex-start !important;
+  gap: 12px !important;
+}
+html body.page-saas .saas-theme-page .mk {
+  flex: 0 0 20px !important;
+  width: 20px !important;
+  height: 20px !important;
+  min-width: 20px !important;
+  min-height: 20px !important;
+  margin: 2px 0 0 !important;
+  border-radius: 50% !important;
+  font-size: 0 !important;
+  line-height: 0 !important;
+  display: grid !important;
+  place-items: center !important;
+  position: relative !important;
+}
+html body.page-saas .saas-theme-page .mk::after {
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  line-height: 1 !important;
+}
+html body.page-saas .saas-theme-page .mk.x {
+  background: rgba(226, 75, 75, 0.14) !important;
+  color: #d44545 !important;
+}
+html body.page-saas .saas-theme-page .mk.x::after {
+  content: "✕";
+  color: #d44545;
+}
+html body.page-saas .saas-theme-page .mk.c {
+  background: var(--signal, #f47a1f) !important;
+  color: #0a1a22 !important;
+}
+html body.page-saas .saas-theme-page .mk.c::after {
+  content: "✓";
+  color: #0a1a22;
+}
+
+html body.page-elec .elec-theme-page .cmp li .ic {
+  width: 20px !important;
+  height: 20px !important;
+  min-width: 20px !important;
+  min-height: 20px !important;
+}
+
+@media (max-width: 767px) {
+  html body.page-elec .elec-theme-page .why-mobile-carousel:has(> .pain-list),
+  html body.page-elec .elec-theme-page .why-mobile-carousel:has(> .edge-grid),
+  html body.page-saas .saas-theme-page .why-mobile-carousel:has(> .stack-groups) {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    -webkit-overflow-scrolling: touch !important;
+    scroll-snap-type: x mandatory !important;
+    scrollbar-width: none !important;
+    touch-action: pan-x !important;
+  }
+  html body.page-elec .elec-theme-page .why-mobile-carousel::-webkit-scrollbar,
+  html body.page-saas .saas-theme-page .why-mobile-carousel::-webkit-scrollbar {
+    display: none !important;
+  }
+  html body.page-elec .elec-theme-page .why-mobile-carousel > .pain-list,
+  html body.page-elec .elec-theme-page .why-mobile-carousel > .edge-grid,
+  html body.page-saas .saas-theme-page .why-mobile-carousel > .stack-groups {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    align-items: stretch !important;
+    width: max-content !important;
+    max-width: none !important;
+    overflow: visible !important;
+    gap: 16px !important;
+    grid-template-columns: none !important;
+  }
+  html body.page-elec .elec-theme-page .pain-list > .pain,
+  html body.page-elec .elec-theme-page .pain-list > *,
+  html body.page-elec .elec-theme-page .edge-grid > .edge,
+  html body.page-elec .elec-theme-page .edge-grid > *,
+  html body.page-saas .saas-theme-page .stack-groups > .stack-card,
+  html body.page-saas .saas-theme-page .stack-groups > * {
+    flex: 0 0 85vw !important;
+    width: 85vw !important;
+    min-width: 85vw !important;
+    max-width: 85vw !important;
+    box-sizing: border-box !important;
+    scroll-snap-align: start !important;
+  }
+}
+
+@media (max-width: 680px) {
+  html body.page-elec .elec-theme-page .stats-row {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 22px 16px !important;
+  }
+  html body.page-saas .saas-theme-page #why .stats {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 14px !important;
+  }
+}
+
+@media (min-width: 768px) {
+  html body.page-elec .elec-theme-page .why-mobile-carousel:has(> .pain-list),
+  html body.page-elec .elec-theme-page .why-mobile-carousel:has(> .edge-grid),
+  html body.page-saas .saas-theme-page .why-mobile-carousel:has(> .stack-groups) {
+    display: contents !important;
+  }
+  html body.page-elec .elec-theme-page .intro-grid {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr) !important;
+    align-items: start !important;
+    gap: clamp(24px, 4vw, 56px) !important;
+  }
+  html body.page-elec .elec-theme-page .pain-list {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 14px !important;
+    width: 100% !important;
+    max-width: none !important;
+    overflow: visible !important;
+  }
+  html body.page-elec .elec-theme-page .pain-list > .pain,
+  html body.page-elec .elec-theme-page .pain-list > * {
+    flex: none !important;
+    width: auto !important;
+    min-width: 0 !important;
+    max-width: none !important;
+  }
+  html body.page-saas .saas-theme-page #why,
+  html body.page-saas .saas-theme-page section#why.sec-ink {
+    overflow: visible !important;
+  }
+  html body.page-saas .saas-theme-page #why .wrap.why-grid,
+  html body.page-saas .saas-theme-page #why .why-grid {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 1.1fr) !important;
+    align-items: stretch !important;
+    gap: clamp(24px, 4vw, 56px) !important;
+    width: 100% !important;
+    max-width: var(--maxw, 1560px) !important;
+    min-width: 0 !important;
+    overflow: visible !important;
+  }
+  html body.page-saas .saas-theme-page #why .rev {
+    max-width: none !important;
+    min-width: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+  }
+  html body.page-saas .saas-theme-page #why .lede {
+    max-width: none !important;
+  }
+  html body.page-saas .saas-theme-page #why .stats {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    grid-template-rows: 1fr 1fr !important;
+    height: 100% !important;
+    align-content: stretch !important;
+    width: 100% !important;
+  }
+  html body.page-saas .saas-theme-page #why .stat {
+    height: 100% !important;
+  }
+}
+
+@media (max-width: 900px) {
+  html body.page-elec .elec-theme-page #services,
+  html body.page-elec .elec-theme-page #process,
+  html body.page-saas .saas-theme-page #services,
+  html body.page-saas .saas-theme-page #process {
+    overflow-x: clip !important;
+    overflow-y: visible !important;
+  }
+  html body.page-elec .elec-theme-page #services .svc,
+  html body.page-elec .elec-theme-page #process .proc,
+  html body.page-saas .saas-theme-page #services .svc,
+  html body.page-saas .saas-theme-page #process .step {
+    background: var(--paper, #fff) !important;
+    background-color: var(--paper, #fff) !important;
+  }
+}
+
+@media (min-width: 981px) {
+  html body.page-elec .elec-theme-page .why-mobile-carousel,
+  html body.page-saas .saas-theme-page .why-mobile-carousel {
+    display: contents;
+  }
+  html body.page-saas .saas-theme-page #problems .pain-grid {
+    display: grid !important;
+    width: 100% !important;
+    max-width: none !important;
+    overflow: visible !important;
+    flex-wrap: unset !important;
+  }
+  html body.page-saas .saas-theme-page #problems .pain-grid > * {
+    flex: none !important;
+    width: auto !important;
+    min-width: 0 !important;
+    max-width: none !important;
+  }
+}
+

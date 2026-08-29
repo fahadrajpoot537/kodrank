@@ -146,22 +146,28 @@ body.page-web-dev .page-svc-stack .svc-stack-pair{
   background:transparent;
   isolation:isolate;
 }
-.page-service .page-svc-stack .step,
-.page-service .page-svc-stack .proc,
-.page-service .page-svc-stack .process-step,
-.page-service .page-svc-stack .loop-card,
-.page-service .page-svc-stack .pain,
-.page-service .page-svc-stack .pain-card,
-.page-service .page-svc-stack .problem-card,
-.page-service .page-svc-stack .svc,
-.page-service .page-svc-stack .svc-card,
-.page-service .page-svc-stack .feat-card,
-.page-service .page-svc-stack .why-card,
-.page-service .page-svc-stack .why,
-.page-service .page-svc-stack .pstep,
-.page-service .page-svc-stack .compare-card,
-.page-service .page-svc-stack .ptile,
-.page-service .page-svc-stack .prob,
+.page-service:not(.page-theme-html) .page-svc-stack .step,
+.page-service:not(.page-theme-html) .page-svc-stack .proc,
+.page-service:not(.page-theme-html) .page-svc-stack .process-step,
+.page-service:not(.page-theme-html) .page-svc-stack .process-card,
+.page-service:not(.page-theme-html) .page-svc-stack .proc-card,
+.page-service:not(.page-theme-html) .page-svc-stack .proc-step,
+.page-service:not(.page-theme-html) .page-svc-stack .loop-card,
+.page-service:not(.page-theme-html) .page-svc-stack .pain,
+.page-service:not(.page-theme-html) .page-svc-stack .pain-card,
+.page-service:not(.page-theme-html) .page-svc-stack .problem-card,
+.page-service:not(.page-theme-html) .page-svc-stack .svc,
+.page-service:not(.page-theme-html) .page-svc-stack .svc-card,
+.page-service:not(.page-theme-html) .page-svc-stack .serv-card,
+.page-service:not(.page-theme-html) .page-svc-stack .feat-card,
+.page-service:not(.page-theme-html) .page-svc-stack .feat,
+.page-service:not(.page-theme-html) .page-svc-stack .why-card,
+.page-service:not(.page-theme-html) .page-svc-stack .why,
+.page-service:not(.page-theme-html) .page-svc-stack .pstep,
+.page-service:not(.page-theme-html) .page-svc-stack .compare-card,
+.page-service:not(.page-theme-html) .page-svc-stack .ptile,
+.page-service:not(.page-theme-html) .page-svc-stack .prob,
+.page-service:not(.page-theme-html) .page-svc-stack .edge,
 body.page-web-dev .page-svc-stack .step,
 body.page-web-dev .page-svc-stack .process-step,
 body.page-web-dev .page-svc-stack .pain-card,
@@ -176,40 +182,91 @@ body.page-web-dev .page-svc-stack .why-card{
   padding:28px 26px !important;
   -webkit-font-smoothing:antialiased;
 }
-.page-service .sec-ink .page-svc-stack .step,
-.page-service .sec-ink .page-svc-stack .proc,
-.page-service .sec-ink .page-svc-stack .pain,
-.page-service .sec-ink .page-svc-stack .pain-card,
-.page-service .sec-ink .page-svc-stack .problem-card,
-.page-service .sec-ink .page-svc-stack .svc,
-.page-service .sec-ink .page-svc-stack .svc-card,
-.page-service .page-svc-stack--ink .step,
-.page-service .page-svc-stack--ink .proc,
-.page-service .page-svc-stack--ink .pain,
-.page-service .page-svc-stack--ink .pain-card,
-.page-service .page-svc-stack--ink .problem-card,
-.page-service .page-svc-stack--ink .svc,
-.page-service .page-svc-stack--ink .svc-card{
+
+/* Theme-html process/loop cards: opaque white faces (stops text bleed while stacking) */
+.page-theme-html .page-svc-stack .svc-stack-item > .step,
+.page-theme-html [data-thm-stack] .svc-stack-item > .step,
+.page-theme-html .page-svc-stack .proc-card,
+.page-theme-html [data-thm-stack] .proc-card,
+.page-theme-html .page-svc-stack .proc-step,
+.page-theme-html [data-thm-stack] .proc-step,
+.page-theme-html .page-svc-stack .loop-card,
+.page-theme-html [data-thm-stack] .loop-card,
+.page-theme-html .page-svc-stack .svc-stack-item > .proc,
+.page-theme-html [data-thm-stack] .svc-stack-item > .proc,
+.page-theme-html .page-svc-stack .process-card,
+.page-theme-html [data-thm-stack] .process-card{
+  opacity:1 !important;
+  background:#fff !important;
+  background-color:#fff !important;
+  isolation:isolate;
+  overflow:hidden !important;
+  backface-visibility:hidden;
+}
+
+/* Featured large card stays ink on mobile/tablet stack */
+body.page-web-dev .page-svc-stack .service-card.svc-card-lg,
+body.page-web-dev .page-svc-stack .svc-card-lg,
+.page-service .page-svc-stack .svc-card-lg{
+  background:var(--ink, #0A1A22) !important;
+  background-color:var(--ink, #0A1A22) !important;
+  border-color:var(--line-dark, rgba(244,122,31,.16)) !important;
+  color:#fff !important;
+  box-shadow:0 12px 32px -18px rgba(0,0,0,.55) !important;
+}
+body.page-web-dev .page-svc-stack .service-card.svc-card-lg h3,
+body.page-web-dev .page-svc-stack .svc-card-lg h3,
+.page-service .page-svc-stack .svc-card-lg h3{
+  color:#fff !important;
+}
+body.page-web-dev .page-svc-stack .service-card.svc-card-lg p,
+body.page-web-dev .page-svc-stack .service-card.svc-card-lg .tag,
+.page-service .page-svc-stack .svc-card-lg p,
+.page-service .page-svc-stack .svc-card-lg .tag{
+  color:#B7CBD2 !important;
+}
+body.page-web-dev .page-svc-stack .service-card.svc-card-lg .tag{
+  background:rgba(255,255,255,.06) !important;
+  border-color:rgba(255,255,255,.12) !important;
+}
+body.page-web-dev .page-svc-stack .service-card.svc-card-lg .svc-icon{
+  background:rgba(244,122,31,.15) !important;
+  color:var(--signal, #F47A1F) !important;
+}
+.page-service:not(.page-theme-html) .sec-ink .page-svc-stack .step,
+.page-service:not(.page-theme-html) .sec-ink .page-svc-stack .proc,
+.page-service:not(.page-theme-html) .sec-ink .page-svc-stack .pain,
+.page-service:not(.page-theme-html) .sec-ink .page-svc-stack .pain-card,
+.page-service:not(.page-theme-html) .sec-ink .page-svc-stack .problem-card,
+.page-service:not(.page-theme-html) .sec-ink .page-svc-stack .svc,
+.page-service:not(.page-theme-html) .sec-ink .page-svc-stack .svc-card,
+.page-service:not(.page-theme-html) .page-svc-stack--ink .step,
+.page-service:not(.page-theme-html) .page-svc-stack--ink .proc,
+.page-service:not(.page-theme-html) .page-svc-stack--ink .pain,
+.page-service:not(.page-theme-html) .page-svc-stack--ink .pain-card,
+.page-service:not(.page-theme-html) .page-svc-stack--ink .problem-card,
+.page-service:not(.page-theme-html) .page-svc-stack--ink .svc,
+.page-service:not(.page-theme-html) .page-svc-stack--ink .svc-card{
   background:var(--ink-2, #0F2A33) !important;
   background-color:var(--ink-2, #0F2A33) !important;
   border-color:var(--line-dark, rgba(244,122,31,.16)) !important;
   box-shadow:0 12px 32px -18px rgba(0,0,0,.55) !important;
   color:#B7CBD2;
 }
-.page-service .sec-ink .page-svc-stack .step h4,
-.page-service .sec-ink .page-svc-stack .pain h4,
-.page-service .sec-ink .page-svc-stack .svc h4,
-.page-service .page-svc-stack--ink .step h4,
-.page-service .page-svc-stack--ink .pain h4,
-.page-service .page-svc-stack--ink .svc h4,
-.page-service .sec-ink .page-svc-stack .problem-card h4,
-.page-service .page-svc-stack--ink .problem-card h4{
+.page-service:not(.page-theme-html) .sec-ink .page-svc-stack .step h4,
+.page-service:not(.page-theme-html) .sec-ink .page-svc-stack .pain h4,
+.page-service:not(.page-theme-html) .sec-ink .page-svc-stack .svc h4,
+.page-service:not(.page-theme-html) .page-svc-stack--ink .step h4,
+.page-service:not(.page-theme-html) .page-svc-stack--ink .pain h4,
+.page-service:not(.page-theme-html) .page-svc-stack--ink .svc h4,
+.page-service:not(.page-theme-html) .sec-ink .page-svc-stack .problem-card h4,
+.page-service:not(.page-theme-html) .page-svc-stack--ink .problem-card h4{
   color:#fff !important;
 }
 /* Process steps in stack: keep number accent, kill bare top-rule look */
-.page-service .page-svc-stack .step,
-.page-service .page-svc-stack .proc,
-.page-service .page-svc-stack .process-step{
+.page-service:not(.page-theme-html) .page-svc-stack .step,
+.page-service:not(.page-theme-html) .page-svc-stack .proc,
+.page-service:not(.page-theme-html) .page-svc-stack .process-step{
   border-top-width:1px !important;
   padding-top:28px !important;
 }
@@ -259,4 +316,103 @@ body.page-web-dev .page-svc-stack .reveal{
 .page-service .ac-page .page-svc-stack .svc p,
 .page-service .ac-page .page-svc-stack .why p{
   color:var(--slate,#4B5B62) !important;
+}
+
+/* ============================================================
+   WP .why-bg ONLY — mobile horizontal swipe carousel
+   Loads last. Desktop: wrapper is transparent; grid unchanged.
+   ============================================================ */
+
+/* Desktop / tablet: wrapper does nothing */
+.page-wordpress .why-bg .why-mobile-carousel,
+.wpdev-theme-page .why-bg .why-mobile-carousel{
+  display:block;
+  width:100%;
+  max-width:100%;
+}
+
+@media (max-width:767px){
+  /* Scroll lives on the wrapper — survives .why-bg { overflow:hidden } */
+  .page-wordpress .why-bg .why-mobile-carousel,
+  .wpdev-theme-page .why-bg .why-mobile-carousel{
+    width:100%;
+    max-width:100%;
+    min-width:0;
+    overflow-x:auto;
+    overflow-y:hidden;
+    -webkit-overflow-scrolling:touch;
+    scroll-snap-type:x mandatory;
+    overscroll-behavior-x:contain;
+    scrollbar-width:none;
+    touch-action:pan-x;
+  }
+  .page-wordpress .why-bg .why-mobile-carousel::-webkit-scrollbar,
+  .wpdev-theme-page .why-bg .why-mobile-carousel::-webkit-scrollbar{
+    display:none;
+    height:0;
+  }
+
+  /* Kill the desktop/tablet grid — force one horizontal track */
+  .page-wordpress .why-bg .why-mobile-carousel .feature-grid,
+  .wpdev-theme-page .why-bg .why-mobile-carousel .feature-grid{
+    display:flex !important;
+    flex-direction:row !important;
+    flex-wrap:nowrap !important;
+    align-items:stretch;
+    gap:16px;
+    width:max-content !important;
+    max-width:none !important;
+    min-width:0;
+    margin:0;
+    padding:0;
+    grid-template-columns:none !important;
+    grid-template-rows:none !important;
+    overflow:visible !important;
+  }
+
+  /* One slide ≈ viewport; peek of next card */
+  .page-wordpress .why-bg .why-mobile-carousel .feat-card,
+  .wpdev-theme-page .why-bg .why-mobile-carousel .feat-card,
+  .wpdev-theme-page #why-us .why-mobile-carousel .why-card,
+  .wpdev-theme-page .why-mobile-carousel .why-grid > .why-card{
+    flex:0 0 85vw !important;
+    flex-shrink:0 !important;
+    width:85vw !important;
+    min-width:85vw !important;
+    max-width:85vw !important;
+    box-sizing:border-box !important;
+    scroll-snap-align:start;
+    scroll-snap-stop:normal;
+  }
+
+  .wpdev-theme-page #why-us .why-mobile-carousel,
+  .wpdev-theme-page .why-mobile-carousel:has(> .why-grid){
+    width:100%;
+    max-width:100%;
+    min-width:0;
+    overflow-x:auto;
+    overflow-y:hidden;
+    -webkit-overflow-scrolling:touch;
+    scroll-snap-type:x mandatory;
+    overscroll-behavior-x:contain;
+    scrollbar-width:none;
+    touch-action:pan-x;
+  }
+
+  .wpdev-theme-page #why-us .why-mobile-carousel .why-grid,
+  .wpdev-theme-page .why-mobile-carousel > .why-grid{
+    display:flex !important;
+    flex-direction:row !important;
+    flex-wrap:nowrap !important;
+    align-items:stretch;
+    gap:16px;
+    width:max-content !important;
+    max-width:none !important;
+    min-width:0;
+    margin:0;
+    padding:0;
+    grid-template-columns:none !important;
+    grid-template-rows:none !important;
+    overflow:visible !important;
+  }
 }

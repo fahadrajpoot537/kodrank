@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KodRank — Industries Mega Menu</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0A1A22; --ink-2:#0F2A33; --ink-3:#163B44;
+    --signal:#F47A1F; --signal-deep:#CD661A; --signal-ink:#0A1A22; --beam:#F6A54E;
+    --paper:#FFFFFF; --mist:#F1F5F3; --mist-2:#E8EFEB;
+    --line:#E1E9E5; --line-dark:rgba(244,122,31,.16);
+    --graphite:#0D2029; --slate:#4B5B62; --slate-2:#6B7A80;
+    --maxw:1560px; --pad:clamp(18px,3.2vw,40px);
+    --sh-sm:0 1px 2px rgba(13,32,41,.05), 0 6px 18px -8px rgba(13,32,41,.10);
+    --sh-md:0 2px 4px rgba(13,32,41,.05), 0 18px 40px -20px rgba(13,32,41,.22);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:"Poppins",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    color:var(--graphite); background:var(--paper); line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{text-decoration:none;color:inherit}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding-left:var(--pad);padding-right:var(--pad)}
+
+  /* ============ NAV ============ */
+  header.nav{
+    position:sticky;top:0;z-index:100;background:var(--paper);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-inner{display:flex;align-items:center;gap:34px;height:78px}
+  .logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:1.32rem;letter-spacing:-.01em;color:var(--graphite)}
+  .logo .mark{
+    width:34px;height:34px;border-radius:9px;display:grid;place-items:center;
+    background:var(--signal);color:var(--signal-ink);flex:0 0 auto;
+  }
+  .logo .mark svg{width:20px;height:20px}
+  .logo b{color:var(--signal-deep)}
+
+  .nav-links{display:flex;align-items:center;gap:6px;margin-left:8px}
+  .nav-links > a, .nav-item > .nav-trigger{
+    display:inline-flex;align-items:center;gap:6px;
+    font-weight:600;font-size:.95rem;color:var(--graphite);
+    padding:10px 14px;border-radius:10px;cursor:pointer;
+    background:none;border:none;font-family:inherit;
+    transition:color .18s ease,background .18s ease;
+  }
+  .nav-links > a:hover, .nav-item:hover > .nav-trigger, .nav-item.open > .nav-trigger{color:var(--signal-deep)}
+  .nav-trigger .caret{transition:transform .22s ease}
+  .nav-item:hover .caret, .nav-item.open .caret{transform:rotate(180deg)}
+
+  .nav-cta{margin-left:auto;display:flex;align-items:center;gap:14px}
+  .btn{
+    display:inline-flex;align-items:center;gap:9px;font-family:inherit;
+    font-weight:600;font-size:.95rem;border-radius:999px;padding:14px 24px;
+    cursor:pointer;border:1px solid transparent;transition:all .2s ease;white-space:nowrap;
+  }
+  .btn .arw{transition:transform .2s ease}
+  .btn:hover .arw{transform:translateX(4px)}
+  .btn-primary{background:var(--signal);color:var(--signal-ink)}
+  .btn-primary:hover{background:var(--beam);transform:translateY(-1px)}
+  .btn-ghost-dark{background:#fff;color:var(--graphite);border-color:var(--line)}
+  .btn-ghost-dark:hover{border-color:var(--signal);color:var(--signal-deep)}
+
+  /* ============ MEGA MENU ============ */
+  .nav-item{position:static}
+  .mega{
+    position:absolute;left:0;right:0;top:100%;
+    opacity:0;visibility:hidden;transform:translateY(10px);
+    transition:opacity .22s ease,transform .22s ease,visibility .22s;
+    z-index:90;
+  }
+  .nav-item:hover .mega, .nav-item.open .mega{opacity:1;visibility:visible;transform:translateY(0)}
+  .mega-panel{
+    background:var(--paper);border:1px solid var(--line);
+    border-radius:18px;box-shadow:var(--sh-md);overflow:hidden;
+    margin:12px auto 26px;
+    display:grid;grid-template-columns:minmax(300px,340px) 1fr;
+  }
+  /* left promo */
+  .mega-promo{
+    background:var(--mist);padding:38px 34px;border-right:1px solid var(--line);
+    display:flex;flex-direction:column;
+  }
+  .eyebrow{
+    font-size:.75rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;
+    color:var(--signal-deep);margin-bottom:16px;
+  }
+  .mega-promo h3{font-size:1.7rem;line-height:1.15;font-weight:700;color:var(--graphite);letter-spacing:-.01em}
+  .mega-promo h3 span{color:var(--signal-deep)}
+  .mega-promo p{margin-top:14px;color:var(--slate);font-size:.95rem;line-height:1.6;max-width:38ch}
+  .promo-stats{display:flex;gap:26px;margin-top:26px}
+  .promo-stats .st b{display:block;font-size:1.5rem;font-weight:800;color:var(--signal-deep);line-height:1}
+  .promo-stats .st small{display:block;margin-top:6px;font-size:.68rem;letter-spacing:.06em;text-transform:uppercase;color:var(--slate-2)}
+  .mega-promo .btn{margin-top:auto;align-self:flex-start}
+  .promo-spacer{flex:1;min-height:26px}
+
+  /* right grid */
+  .mega-grid{
+    padding:30px 34px 8px;
+    display:grid;grid-template-columns:repeat(3,1fr);column-gap:34px;
+  }
+  .ind{
+    display:block;padding:16px 12px 18px 0;border-bottom:1px solid var(--line);
+  }
+  .mega-grid .ind:nth-last-child(-n+3){border-bottom:none}
+  .ind .t{
+    display:inline-flex;align-items:center;gap:7px;
+    font-weight:600;font-size:1.04rem;color:var(--graphite);
+    transition:color .18s ease;letter-spacing:-.01em;
+  }
+  .ind .t .arw{opacity:0;transform:translateX(-4px);transition:all .2s ease;color:var(--signal-deep)}
+  .ind:hover .t{color:var(--signal-deep)}
+  .ind:hover .t .arw{opacity:1;transform:translateX(0)}
+  .ind p{margin-top:6px;color:var(--slate);font-size:.86rem;line-height:1.5;max-width:30ch}
+
+  /* mobile toggle */
+  .burger{display:none;margin-left:auto;background:none;border:1px solid var(--line);border-radius:10px;width:44px;height:44px;cursor:pointer;align-items:center;justify-content:center}
+  .burger svg{width:22px;height:22px;color:var(--graphite)}
+
+  /* ============ demo hero (context only) ============ */
+  .hero{padding:80px 0 120px;background:var(--paper)}
+  .hero .eyebrow{margin-bottom:14px}
+  .hero h1{font-size:clamp(2rem,5vw,3.4rem);font-weight:800;letter-spacing:-.02em;line-height:1.08;max-width:16ch}
+  .hero h1 span{color:var(--signal-deep)}
+  .hero p{margin-top:20px;color:var(--slate);font-size:1.05rem;max-width:52ch}
+  .hero .row{display:flex;gap:14px;margin-top:30px;flex-wrap:wrap}
+  .hint{margin-top:40px;font-size:.8rem;color:var(--slate-2);letter-spacing:.04em}
+
+  /* ============ RESPONSIVE ============ */
+  @media (max-width:1080px){
+    .mega-panel{grid-template-columns:1fr}
+    .mega-promo{border-right:none;border-bottom:1px solid var(--line)}
+    .mega-grid{grid-template-columns:repeat(2,1fr)}
+    .mega-grid .ind:nth-last-child(-n+3){border-bottom:1px solid var(--line)}
+    .mega-grid .ind:nth-last-child(-n+2){border-bottom:none}
+  }
+  @media (max-width:920px){
+    .nav-links,.nav-cta{display:none}
+    .burger{display:inline-flex}
+    /* mobile drawer */
+    .nav-links.mobile-open{
+      display:flex;flex-direction:column;align-items:stretch;gap:0;
+      position:absolute;left:0;right:0;top:100%;margin:0;
+      background:var(--paper);border-bottom:1px solid var(--line);
+      box-shadow:var(--sh-md);padding:10px var(--pad) 20px;max-height:80vh;overflow:auto;
+    }
+    .nav-links.mobile-open > a{padding:15px 4px;border-bottom:1px solid var(--line);border-radius:0}
+    .nav-links.mobile-open .nav-item{width:100%}
+    .nav-links.mobile-open .nav-trigger{width:100%;justify-content:space-between;padding:15px 4px;border-bottom:1px solid var(--line);border-radius:0}
+    .nav-links.mobile-open .mega{
+      position:static;opacity:1;visibility:visible;transform:none;
+      max-height:0;overflow:hidden;transition:max-height .3s ease;
+    }
+    .nav-links.mobile-open .nav-item.open .mega{max-height:2400px}
+    .nav-links.mobile-open .mega-panel{border:none;box-shadow:none;border-radius:0;margin:0;grid-template-columns:1fr}
+    .nav-links.mobile-open .mega-promo{background:var(--mist);border-radius:12px;padding:22px;border:none;margin:6px 0}
+    .nav-links.mobile-open .mega-promo .btn{margin-top:20px}
+    .nav-links.mobile-open .mega-grid{grid-template-columns:1fr;padding:4px 0 10px}
+    .nav-links.mobile-open .mega-grid .ind,
+    .nav-links.mobile-open .mega-grid .ind:nth-last-child(-n+3){border-bottom:1px solid var(--line)}
+    .nav-links.mobile-open .mega-grid .ind:last-child{border-bottom:none}
+    .mobile-cta{display:flex !important;flex-direction:column;gap:10px;padding-top:16px}
+    .mobile-cta .btn{width:100%;justify-content:center}
+    .promo-stats{gap:22px}
+  }
+  .mobile-cta{display:none}
+
+  @media (prefers-reduced-motion:reduce){*{transition:none !important}}
+  :focus-visible{outline:2px solid var(--beam);outline-offset:3px;border-radius:6px}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a href="#" class="logo" aria-label="KodRank home">
+      <span class="mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M4 20V4h4v7l6-7h5l-7 8 7 8h-5l-6-7v7z" fill="currentColor"/></svg>
+      </span>
+      Kod<b>Rank</b>
+    </a>
+
+    <nav class="nav-links" id="navLinks" aria-label="Primary">
+      <a href="#">Home</a>
+      <a href="#">Services</a>
+
+      <div class="nav-item" id="indItem">
+        <button class="nav-trigger" id="indTrigger" aria-expanded="false" aria-controls="indMega">
+          Industries
+          <svg class="caret" width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2.5 4.5L6 8l3.5-3.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+
+        <div class="mega" id="indMega" role="region" aria-label="Industries">
+          <div class="wrap">
+            <div class="mega-panel">
+              <!-- left promo -->
+              <div class="mega-promo">
+                <div class="eyebrow">— Industries</div>
+                <h3>Built to <span>Rank</span></h3>
+                <p>Search and web solutions tuned to how your market actually searches. We grow qualified traffic, leads, and revenue — one industry at a time.</p>
+                <div class="promo-stats">
+                  <div class="st"><b>9+</b><small>Industries served</small></div>
+                  <div class="st"><b>3.4×</b><small>Avg. traffic lift</small></div>
+                </div>
+                <div class="promo-spacer"></div>
+                <a href="#" class="btn btn-primary">Get a free audit <span class="arw">→</span></a>
+              </div>
+
+              <!-- right grid (rendered by JS) -->
+              <div class="mega-grid" id="megaGrid"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <a href="#">Technologies</a>
+      <a href="#">Insights</a>
+      <a href="#">Portfolio</a>
+
+      <div class="mobile-cta">
+        <a href="#" class="btn btn-ghost-dark">Call us <span class="arw">→</span></a>
+        <a href="#" class="btn btn-primary">Get A Quote <span class="arw">→</span></a>
+      </div>
+    </nav>
+
+    <div class="nav-cta">
+      <a href="#" class="btn btn-primary">Get A Quote <span class="arw">→</span></a>
+    </div>
+
+    <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    </button>
+  </div>
+</header>
+
+<!-- demo context so the dropdown has something to overlay -->
+<section class="hero">
+  <div class="wrap">
+    <div class="eyebrow">— SEO &amp; Web Development</div>
+    <h1>Rankings that turn into <span>revenue.</span></h1>
+    <p>Hover <strong>Industries</strong> in the nav to preview the mega-menu. On mobile, tap the menu icon and open the Industries accordion.</p>
+    <div class="row">
+      <a href="#" class="btn btn-primary">Get A Quote <span class="arw">→</span></a>
+      <a href="#" class="btn btn-ghost-dark">See our work <span class="arw">→</span></a>
+    </div>
+    <p class="hint">↑ This hero is just placeholder context — the deliverable is the Industries navigation above.</p>
+  </div>
+</section>
+
+<script>
+  const INDUSTRIES = [
+    ["B2B SEO",                   "Search strategies that turn traffic into qualified pipeline.", "#"],
+    ["Real Estate SEO",           "Rank listings and capture high-intent buyers locally.",       "#"],
+    ["Law Firm SEO",              "Own your practice areas and win case-ready clients.",         "#"],
+    ["SaaS SEO",                  "Content and search engineered to grow recurring revenue.",    "#"],
+    ["SaaS Software Development", "Custom SaaS products built to ship and scale.",                "#"],
+    ["Ecommerce SEO",             "Grow product visibility and organic store revenue.",          "#"],
+    ["Healthcare SEO",            "Compliant, trust-first SEO that reaches patients.",           "#"],
+    ["Restaurant SEO",            "Local search that fills tables and books covers.",            "#"],
+    ["Electrician Website Design","Fast, converting sites that book more jobs.",                 "#"],
+  ];
+
+  const grid = document.getElementById('megaGrid');
+  grid.innerHTML = INDUSTRIES.map(([title, desc, href]) => `
+    <a class="ind" href="${href}">
+      <span class="t">${title}<span class="arw">→</span></span>
+      <p>${desc}</p>
+    </a>`).join('');
+
+  // Mobile hamburger
+  const burger = document.getElementById('burger');
+  const navLinks = document.getElementById('navLinks');
+  burger.addEventListener('click', () => {
+    const open = navLinks.classList.toggle('mobile-open');
+    burger.setAttribute('aria-expanded', open);
+  });
+
+  // Industries accordion on mobile / click-toggle
+  const indItem = document.getElementById('indItem');
+  const indTrigger = document.getElementById('indTrigger');
+  indTrigger.addEventListener('click', () => {
+    const open = indItem.classList.toggle('open');
+    indTrigger.setAttribute('aria-expanded', open);
+  });
+
+  // Close mega on outside click (desktop click mode) + Esc
+  document.addEventListener('click', (e) => {
+    if(!indItem.contains(e.target)) { indItem.classList.remove('open'); indTrigger.setAttribute('aria-expanded', false); }
+  });
+  document.addEventListener('keydown', (e) => {
+    if(e.key === 'Escape'){ indItem.classList.remove('open'); indTrigger.setAttribute('aria-expanded', false); }
+  });
+</script>
+</body>
+</html>

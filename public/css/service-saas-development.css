@@ -1,0 +1,338 @@
+/* Auto-scoped theme body CSS */
+.saas-dev-page{
+--ink:#0A1A22; --ink-2:#0F2A33; --ink-3:#163B44;
+  --signal:#F47A1F; --signal-deep:#CD661A; --signal-ink:#0A1A22; --beam:#F6A54E;
+  --paper:#FFFFFF; --mist:#F1F5F3; --mist-2:#E8EFEB;
+  --line:#E1E9E5; --line-dark:rgba(244,122,31,.16);
+  --graphite:#0D2029; --slate:#4B5B62; --slate-2:#6B7A80;
+  --maxw:1560px;
+  --pad:clamp(18px,3.2vw,40px);
+  --sh-sm:0 1px 2px rgba(13,32,41,.05),0 6px 18px -8px rgba(13,32,41,.10);
+  --sh-md:0 2px 4px rgba(13,32,41,.05),0 18px 40px -20px rgba(13,32,41,.22);
+  --sec:clamp(54px,7vw,92px);
+  --sec:clamp(48px,6.5vw,96px);
+}
+
+
+
+
+
+.saas-dev-page img{max-width:100%;display:block}
+.saas-dev-page a{color:inherit;text-decoration:none}
+.saas-dev-page :focus-visible{outline:3px solid var(--beam);outline-offset:3px;border-radius:6px}
+
+.saas-dev-page .wrap{max-width:var(--maxw);margin:0 auto;padding-left:var(--pad);padding-right:var(--pad)}
+.saas-dev-page .sec{padding-top:var(--sec);padding-bottom:var(--sec)}
+.saas-dev-page .sec-ink{background:var(--ink);color:#B7CBD2}
+.saas-dev-page .sec-mist{background:var(--mist)}
+
+/* ---------- Eyebrow + headings (tight gap) ---------- */
+.saas-dev-page .eyebrow{
+  font-size:.75rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--signal-deep);margin:0 0 6px;display:block;
+}
+.saas-dev-page .sec-ink .eyebrow{color:var(--signal)}
+.saas-dev-page .eyebrow::before{content:"— "}
+.saas-dev-page h1, .saas-dev-page h2, .saas-dev-page h3, .saas-dev-page h4{line-height:1.12;color:var(--graphite);letter-spacing:-.01em}
+.saas-dev-page .sec-ink h1, .saas-dev-page .sec-ink h2, .saas-dev-page .sec-ink h3, .saas-dev-page .sec-ink h4{color:#fff}
+.saas-dev-page h1{font-weight:800;font-size:clamp(2.15rem,5vw,3.9rem)}
+.saas-dev-page h2{font-weight:700;font-size:clamp(1.8rem,3.4vw,2.9rem);margin:0}
+.saas-dev-page h3{font-weight:700;font-size:clamp(1.35rem,2.2vw,1.9rem);margin:0}
+.saas-dev-page .lede{font-size:clamp(1.02rem,1.3vw,1.18rem);color:var(--slate)}
+.saas-dev-page .sec-ink .lede{color:#9FB6BE}
+.saas-dev-page .o{color:var(--signal-deep);font-weight:600}
+.saas-dev-page .sec-ink .o{color:var(--signal)}
+.saas-dev-page .head-block{max-width:760px}
+.saas-dev-page .head-block .lede{margin-top:14px}
+.saas-dev-page .section-head{max-width:760px}
+.saas-dev-page .section-head .lede{margin-top:14px}
+
+/* ---------- Buttons ---------- */
+.saas-dev-page .btn{
+  display:inline-flex;align-items:center;gap:9px;border-radius:999px;
+  padding:14px 24px;font-weight:600;font-size:.95rem;font-family:inherit;
+  cursor:pointer;border:1px solid transparent;transition:.22s ease;white-space:nowrap;
+}
+.saas-dev-page .btn .arrow{transition:transform .22s ease}
+.saas-dev-page .btn:hover .arrow{transform:translateX(5px)}
+.saas-dev-page .btn-primary{background:var(--signal);color:var(--signal-ink)}
+.saas-dev-page .btn-primary:hover{background:#F69750;transform:translateY(-1px);box-shadow:var(--sh-md)}
+.saas-dev-page .btn-ghost-light{border-color:rgba(255,255,255,.28);color:#fff;background:rgba(255,255,255,.05);backdrop-filter:blur(6px)}
+.saas-dev-page .btn-ghost-light:hover{background:rgba(255,255,255,.12)}
+.saas-dev-page .btn-ghost-dark{border-color:var(--line);color:var(--graphite);background:#fff}
+.saas-dev-page .btn-ghost-dark:hover{border-color:var(--signal);color:var(--signal-deep)}
+.saas-dev-page .btn-ink{background:var(--ink);color:#fff}
+.saas-dev-page .btn-ink:hover{background:#16323D}
+.saas-dev-page .btn-sm{padding:10px 18px;font-size:.875rem}
+.saas-dev-page .tlink{
+  display:inline-flex;align-items:center;gap:7px;text-transform:uppercase;
+  font-size:.75rem;letter-spacing:.08em;font-weight:600;color:var(--signal-deep);
+}
+.saas-dev-page .sec-ink .tlink{color:var(--signal)}
+.saas-dev-page .tlink .arrow{transition:transform .22s ease}
+.saas-dev-page .tlink:hover .arrow{transform:translateX(4px)}
+
+/* ---------- Nav ---------- */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ---------- Hero ---------- */
+.saas-dev-page .hero{
+  position:relative;isolation:isolate;overflow:hidden;
+  min-height:0;height:auto;display:block;color:#fff;
+  padding-top:calc(84px + 16px);padding-bottom:clamp(44px,6vw,80px);
+}
+.saas-dev-page .hero .hero-bg,
+.saas-dev-page .hero .hero-veil{
+  position:absolute;inset:0;z-index:0;pointer-events:none;margin:0;
+}
+.saas-dev-page .hero .hero-bg{
+  background-size:cover;background-position:center right;background-repeat:no-repeat;opacity:.88;
+}
+.saas-dev-page .hero .hero-veil{
+  z-index:1;
+  background:
+    radial-gradient(120% 90% at 82% 45%, rgba(244,122,31,.10), transparent 55%),
+    linear-gradient(100deg, rgba(10,26,34,.97) 0%, rgba(10,26,34,.9) 40%, rgba(10,26,34,.62) 68%, rgba(10,26,34,.3) 100%);
+}
+.saas-dev-page .hero > .wrap,
+.saas-dev-page .hero .hero-copy{position:relative;z-index:2}
+.saas-dev-page .hero .hero-copy{
+  max-width:min(720px,100%);display:flex;flex-direction:column;align-items:flex-start;
+}
+.saas-dev-page .hero .breadcrumb{margin:0 0 18px;max-width:100%}
+.saas-dev-page .hero h1{
+  max-width:min(16ch,100%);width:100%;
+  font-size:clamp(2rem,4.2vw,3.35rem);line-height:1.12;letter-spacing:-.02em;
+  color:#fff;margin:0 0 18px;
+}
+.saas-dev-page .hero h1 .hl,
+.saas-dev-page .hero h1 .accent{color:var(--signal)}
+.saas-dev-page .hero .sub,
+.saas-dev-page .hero .lede{
+  max-width:38rem;color:#B7CBD2;font-size:clamp(1.02rem,1.35vw,1.15rem);
+  line-height:1.55;margin:0 0 22px;
+}
+.saas-dev-page .hero .hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin:0 0 28px}
+.saas-dev-page .hero .hero-trust{display:flex;flex-wrap:wrap;gap:clamp(18px,3vw,36px);margin-top:8px}
+.saas-dev-page .hero .hero-trust .ht{display:flex;flex-direction:column;gap:2px}
+.saas-dev-page .hero .hero-trust .ht b{color:#fff;font-size:1.25rem;font-weight:700;line-height:1.1}
+.saas-dev-page .hero .hero-trust .ht span{color:#9FB6BE;font-size:.8rem}
+.saas-dev-page .hb{display:inline}
+/* ---------- Intro ---------- */
+.saas-dev-page .intro-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:clamp(28px,5vw,72px);align-items:center}
+.saas-dev-page .intro-copy p+p{margin-top:14px}
+.saas-dev-page .intro-copy .lede{color:var(--graphite);font-weight:400}
+.saas-dev-page .intro-side{background:var(--ink);border-radius:18px;padding:30px;color:#B7CBD2;box-shadow:var(--sh-md)}
+.saas-dev-page .intro-side h4{color:#fff;font-size:1.05rem;font-weight:650;margin-bottom:14px}
+.saas-dev-page .intro-list{list-style:none;display:grid;gap:12px}
+.saas-dev-page .intro-list li{display:flex;gap:11px;font-size:.92rem;color:#B7CBD2}
+.saas-dev-page .tick{flex:0 0 20px;width:20px;height:20px;border-radius:50%;background:rgba(244,122,31,.15);color:var(--signal);display:grid;place-items:center;font-size:.7rem;margin-top:2px}
+
+/* ---------- Pain cards ---------- */
+.saas-dev-page .pain-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:38px}
+.saas-dev-page .pain{background:var(--ink-2);border:1px solid var(--line-dark);border-radius:18px;padding:26px 24px;transition:.22s}
+.saas-dev-page .pain:hover{transform:translateY(-3px);border-color:rgba(244,122,31,.4)}
+.saas-dev-page .pain .pi{width:42px;height:42px;border-radius:10px;background:rgba(244,122,31,.12);display:grid;place-items:center;margin-bottom:16px;color:var(--signal)}
+.saas-dev-page .pain .pi svg{width:22px;height:22px}
+.saas-dev-page .pain h4{color:#fff;font-size:1.08rem;font-weight:650;margin-bottom:8px}
+.saas-dev-page .pain p{font-size:.9rem;color:#9FB6BE;line-height:1.55}
+
+/* ---------- Service cards ---------- */
+.saas-dev-page .svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:38px}
+.saas-dev-page .svc{position:relative;background:#fff;border:1px solid var(--line);border-radius:18px;padding:28px 26px;box-shadow:var(--sh-sm);transition:.22s;display:flex;flex-direction:column}
+.saas-dev-page .svc:hover{transform:translateY(-4px);box-shadow:var(--sh-md);border-color:transparent}
+.saas-dev-page .svc-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:16px}
+.saas-dev-page .svc-icon{width:48px;height:48px;border-radius:12px;background:var(--mist);display:grid;place-items:center;color:var(--graphite);transition:.22s}
+.saas-dev-page .svc:hover .svc-icon{background:var(--signal);color:var(--signal-ink)}
+.saas-dev-page .svc-icon svg{width:24px;height:24px}
+.saas-dev-page .svc-badge{width:26px;height:26px;border-radius:50%;background:rgba(244,122,31,.12);color:var(--signal-deep);display:grid;place-items:center;font-size:.72rem;font-weight:700}
+.saas-dev-page .svc h4{font-size:1.15rem;font-weight:650;margin-bottom:8px}
+.saas-dev-page .svc p{font-size:.92rem;color:var(--slate);line-height:1.55;flex:1}
+.saas-dev-page .svc .tlink{margin-top:18px}
+
+/* ---------- Process ---------- */
+.saas-dev-page .proc-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-top:40px;counter-reset:step}
+.saas-dev-page .step{background:#fff;border:1px solid var(--line);border-radius:18px;padding:24px 20px;position:relative;overflow:hidden}
+.saas-dev-page .step::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:var(--signal)}
+.saas-dev-page .step .num{font-size:1.7rem;font-weight:800;color:var(--signal);line-height:1;margin-bottom:12px}
+.saas-dev-page .step h4{font-size:1rem;font-weight:650;margin-bottom:7px}
+.saas-dev-page .step p{font-size:.85rem;color:var(--slate);line-height:1.5}
+
+/* ---------- Why + stats ---------- */
+.saas-dev-page #why{position:relative;background:linear-gradient(100deg,var(--ink) 0%,rgba(10,26,34,.95) 33%,rgba(10,26,34,.74) 60%,rgba(10,26,34,.52) 100%),url("/media/services/saas-development/saas-software-development-section-background.webp") center right / cover no-repeat}
+.saas-dev-page #why .wrap{position:relative;z-index:2}
+.saas-dev-page #why .stat{background:rgba(15,42,51,.66);backdrop-filter:blur(8px);border:1px solid rgba(244,122,31,.24)}
+.saas-dev-page .why-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(30px,5vw,68px);align-items:center}
+.saas-dev-page .why-list{list-style:none;display:grid;gap:16px;margin-top:26px}
+.saas-dev-page .why-list li{display:flex;gap:13px}
+.saas-dev-page .why-list .tick{flex:0 0 24px;width:24px;height:24px;font-size:.78rem}
+.saas-dev-page .why-list b{display:block;color:#fff;font-weight:600;font-size:1rem;margin-bottom:2px}
+.saas-dev-page .why-list span{font-size:.9rem;color:#9FB6BE}
+.saas-dev-page .stats{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.saas-dev-page .stat{background:var(--ink-2);border:1px solid var(--line-dark);border-radius:18px;padding:28px 24px}
+.saas-dev-page .stat b{display:block;font-size:clamp(2rem,3.5vw,2.9rem);font-weight:800;color:var(--signal);line-height:1;letter-spacing:-.02em}
+.saas-dev-page .stat b.w{color:#fff}
+.saas-dev-page .stat span{display:block;margin-top:10px;font-size:.74rem;letter-spacing:.06em;text-transform:uppercase;color:#9FB6BE}
+
+/* ---------- Comparison ---------- */
+.saas-dev-page .cmp-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:38px}
+.saas-dev-page .cmp{background:var(--ink);border-radius:18px;padding:30px 28px;color:#B7CBD2}
+.saas-dev-page .cmp.win{border:1.5px solid var(--signal);box-shadow:0 24px 50px -26px rgba(244,122,31,.4)}
+.saas-dev-page .cmp .cmp-h{display:flex;align-items:center;gap:10px;margin-bottom:20px;padding-bottom:16px;border-bottom:1px solid var(--line-dark)}
+.saas-dev-page .cmp .cmp-h b{font-size:1.15rem;font-weight:650;color:#fff}
+.saas-dev-page .cmp.win .cmp-h b{color:var(--signal)}
+.saas-dev-page .cmp .tagm{margin-left:auto;font-size:.68rem;text-transform:uppercase;letter-spacing:.07em;padding:5px 10px;border-radius:999px;font-weight:600}
+.saas-dev-page .cmp .tagm.bad{background:rgba(255,255,255,.06);color:#9FB6BE}
+.saas-dev-page .cmp .tagm.good{background:rgba(244,122,31,.15);color:var(--signal)}
+.saas-dev-page .cmp ul{list-style:none;display:grid;gap:13px}
+.saas-dev-page .cmp li{display:flex;gap:12px;font-size:.93rem}
+.saas-dev-page .mk{flex:0 0 22px;width:22px;height:22px;border-radius:50%;display:grid;place-items:center;font-size:.72rem;margin-top:1px}
+.saas-dev-page .mk.x{background:rgba(220,90,80,.14);color:#E27A6E}
+.saas-dev-page .mk.c{background:rgba(244,122,31,.15);color:var(--signal)}
+
+/* ---------- Tech stack ---------- */
+.saas-dev-page .stack-groups{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:38px}
+.saas-dev-page .stack-card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:24px;box-shadow:var(--sh-sm)}
+.saas-dev-page .stack-card h4{font-size:.82rem;text-transform:uppercase;letter-spacing:.06em;color:var(--slate-2);font-weight:600;margin-bottom:14px}
+.saas-dev-page .pills{display:flex;flex-wrap:wrap;gap:8px}
+.saas-dev-page .pill{font-size:.82rem;font-weight:500;padding:7px 13px;border-radius:8px;background:var(--mist);color:var(--graphite);border:1px solid var(--line);transition:.18s}
+.saas-dev-page .pill:hover{background:var(--signal);color:var(--signal-ink);border-color:var(--signal)}
+
+/* ---------- FAQ ---------- */
+.saas-dev-page .faq-wrap{max-width:880px;margin:38px auto 0;display:grid;gap:12px}
+.saas-dev-page .faq{background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden;transition:.2s}
+.saas-dev-page .faq[open]{border-color:rgba(244,122,31,.4);box-shadow:var(--sh-sm)}
+.saas-dev-page .faq summary{list-style:none;cursor:pointer;padding:20px 24px;display:flex;align-items:center;gap:16px;font-weight:600;font-size:1.02rem;color:var(--graphite)}
+.saas-dev-page .faq summary::-webkit-details-marker{display:none}
+.saas-dev-page .faq .tog{margin-left:auto;flex:0 0 26px;width:26px;height:26px;border-radius:50%;background:rgba(244,122,31,.1);color:var(--signal-deep);display:grid;place-items:center;font-size:1.1rem;font-weight:600;transition:.2s}
+.saas-dev-page .faq[open] .tog{background:var(--signal);color:var(--signal-ink);transform:rotate(45deg)}
+.saas-dev-page .faq .ans{padding:0 24px 22px 24px;color:var(--slate);font-size:.95rem;line-height:1.6}
+.saas-dev-page .faq .ans p+p{margin-top:10px}
+
+/* ---------- Contact ---------- */
+.saas-dev-page .contact-grid{display:grid;grid-template-columns:1fr 1.05fr;gap:clamp(30px,5vw,64px);align-items:center}
+.saas-dev-page .contact-copy .lede{margin-top:14px;color:var(--slate)}
+.saas-dev-page .contact-points{list-style:none;display:grid;gap:14px;margin-top:26px}
+.saas-dev-page .contact-points li{display:flex;gap:12px;font-size:.95rem;color:var(--graphite)}
+.saas-dev-page .contact-points .tick{background:rgba(244,122,31,.12)}
+.saas-dev-page .form-card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:34px;box-shadow:var(--sh-md)}
+.saas-dev-page .field{margin-bottom:22px}
+.saas-dev-page .field label{display:block;font-size:.78rem;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--slate-2);margin-bottom:8px}
+.saas-dev-page .field input, .saas-dev-page .field textarea{
+  width:100%;border:none;border-bottom:1.5px solid var(--line);background:transparent;
+  font-family:inherit;font-size:1rem;color:var(--graphite);padding:8px 2px;transition:.2s;
+}
+.saas-dev-page .field input:focus, .saas-dev-page .field textarea:focus{outline:none;border-bottom-color:var(--signal)}
+.saas-dev-page .field textarea{resize:vertical;min-height:80px}
+.saas-dev-page .form-card .btn-primary{width:100%;justify-content:center;margin-top:4px}
+.saas-dev-page .form-note{font-size:.8rem;color:var(--slate-2);margin-top:14px;text-align:center}
+
+/* ---------- Footer ---------- */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ---------- Reveal ---------- */
+.saas-dev-page .rev{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
+.saas-dev-page .rev.in{opacity:1;transform:none}
+
+/* ---------- Responsive ---------- */
+@media(max-width:1080px){
+  .saas-dev-page .pain-grid, .saas-dev-page .svc-grid, .saas-dev-page .stack-groups{grid-template-columns:repeat(2,1fr)}
+  .saas-dev-page .proc-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:900px){
+  
+  
+  
+  .saas-dev-page .intro-grid, .saas-dev-page .why-grid, .saas-dev-page .cmp-grid, .saas-dev-page .contact-grid{grid-template-columns:1fr}
+  
+  
+  .saas-dev-page .hb{display:none}
+  
+}
+@media(max-width:620px){
+  .saas-dev-page .pain-grid, .saas-dev-page .svc-grid, .saas-dev-page .stack-groups, .saas-dev-page .proc-grid, .saas-dev-page .stats{grid-template-columns:1fr}
+  
+  
+  
+}
+@media(prefers-reduced-motion:reduce){.saas-dev-page .rev{opacity:1;transform:none}}
+
+/* mobile menu panel */
+
+
+
+
+
+
+
+
+.saas-dev-page section{padding-block:var(--sec)}
+.saas-dev-page .rv,.saas-dev-page .rev{opacity:1;transform:none}
+@media(max-width:860px){.saas-dev-page{--sec:clamp(40px,8vw,72px)}}
+@media(max-width:560px){.saas-dev-page{--pad:18px;--sec:clamp(36px,9vw,56px)}}
+
+/* Blade class aliases */
+.saas-dev-page .intro-side{background:var(--ink);border-radius:18px;padding:30px;color:#B7CBD2}
+.saas-dev-page .intro-list{list-style:none;display:grid;gap:12px}
+.saas-dev-page .stack-groups{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:38px}
+.saas-dev-page .pills{display:flex;flex-wrap:wrap;gap:8px}
+.saas-dev-page .pill{font-size:.82rem;font-weight:500;padding:7px 13px;border-radius:8px;background:var(--mist,#F1F5F3);border:1px solid var(--line,#E1E9E5)}
+@media(max-width:1080px){.saas-dev-page .stack-groups{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:620px){.saas-dev-page .stack-groups{grid-template-columns:1fr}}
+
+/* Carousel / stack inside saas-dev page */
+.saas-dev-page .page-svc-carousel,
+.saas-dev-page .page-svc-stack{margin-top:8px}
+.saas-dev-page .page-svc-carousel .svc-slide,
+.saas-dev-page .page-svc-stack .svc-slide{height:auto;min-height:100%;box-sizing:border-box}
+.saas-dev-page .page-svc-carousel .svc,
+.saas-dev-page .page-svc-stack .step,
+.saas-dev-page .page-svc-stack .pain{width:100%;height:100%;display:flex;flex-direction:column;box-sizing:border-box}
+.saas-dev-page .page-svc-carousel .svc-nav,
+.saas-dev-page .page-svc-stack .svc-nav{margin:0;padding:0;z-index:8}
+.saas-dev-page .page-svc-carousel .svc-dots,
+.saas-dev-page .page-svc-stack .svc-dots{margin-top:18px}
+.saas-dev-page .page-svc-carousel--ink .svc-nav,
+.saas-dev-page .page-svc-stack.page-svc-carousel--ink .svc-nav{color:#fff;border-color:rgba(255,255,255,.28)}
+.saas-dev-page .page-svc-carousel--ink .svc-nav:hover:not(:disabled),
+.saas-dev-page .page-svc-stack.page-svc-carousel--ink .svc-nav:hover:not(:disabled){background:rgba(255,255,255,.1)}
+.saas-dev-page .page-svc-carousel--ink .svc-dot,
+.saas-dev-page .page-svc-stack.page-svc-carousel--ink .svc-dot{background:rgba(255,255,255,.22)}
+.saas-dev-page .page-svc-carousel--ink .svc-dot.is-active,
+.saas-dev-page .page-svc-stack.page-svc-carousel--ink .svc-dot.is-active{background:var(--signal)}

@@ -81,6 +81,7 @@
           <textarea id="shop-message" name="message" rows="3" placeholder="{{ $fields['message_placeholder'] ?? '' }}" required>{{ old('message') }}</textarea>
           @error('message')<span class="field-err">{{ $message }}</span>@enderror
         </div>
+        @include('partials.recaptcha')
         <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center">{{ $d['submit_text'] ?? 'Send my teardown request' }}
           <svg class="arw" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14m-6-6 6 6-6 6"/></svg>
         </button>

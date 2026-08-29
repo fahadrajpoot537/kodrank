@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\CmsSection;
 use App\Models\ContactMessage;
+use App\Rules\Recaptcha;
 use App\Services\LeadNotificationService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -30,7 +31,7 @@ class ContactController extends Controller
         if ($request->filled('fax_number')) {
             return redirect()
                 ->to($this->safeRedirect($request) ?? route('contact'))
-                ->with('contact_success', 'Thanks — we received your message and will get back to you soon.');
+                ->with('contact_success', 'Thanks — we received your message. Our team will contact you within 24 hours.');
         }
 
         if (! $request->filled('name')) {
@@ -67,7 +68,9 @@ class ContactController extends Controller
             'phone' => ['nullable', 'string', 'max:40'],
             'website' => ['nullable', 'string', 'max:190'],
             'message' => ['required', 'string', 'max:5000'],
+            'g-recaptcha-response' => ['required', new Recaptcha],
         ]);
+        unset($data['g-recaptcha-response']);
 
         if (($data['website'] ?? '') === '') {
             $data['website'] = null;
@@ -78,22 +81,21 @@ class ContactController extends Controller
 
         $contact = ContactMessage::create($data);
 
-        $notifications->send('New KodRank contact form message', [
-            'A new contact form message was saved.',
-            'Name: '.$contact->name,
-            'Email: '.$contact->email,
-            'Phone: '.($contact->phone ?? '—'),
-            'Website: '.($contact->website ?? '—'),
-            '',
-            'Message:',
-            $contact->message,
+        $notifications->sendInquiryEmails([
+            'source' => 'Contact form',
+            'name' => $contact->name,
+            'email' => $contact->email,
+            'phone' => $contact->phone,
+            'website' => $contact->website,
+            'service' => $request->input('service') ?: $request->input('services'),
+            'message' => $contact->message,
         ]);
 
         $redirect = $this->safeRedirect($request);
 
         return redirect()
             ->to($redirect ?? url('/#contact'))
-            ->with('contact_success', 'Thanks — we received your message and will get back to you soon.');
+            ->with('contact_success', 'Thanks — we received your message. Our team will contact you within 24 hours.');
     }
 
     private function safeRedirect(Request $request): ?string

@@ -1,0 +1,1776 @@
+/* WordPress Development Services design system — shared overlay.
+   Source of truth: /wordpress-development-services (.wpdev-theme-page).
+   Scoped to .webdev-ref so the WP template itself is untouched.
+   Desktop grids match WP (≥768 / ≥981). Mobile carousel/stack: theme-html-mobile.css + service-page.js. */
+
+.webdev-ref,
+.theme-html-root.webdev-ref{
+  --ink:#0A1A22;
+  --ink-2:#0F2A33;
+  --ink-3:#163B44;
+  --signal:#F47A1F;
+  --signal-deep:#CD661A;
+  --signal-ink:#0A1A22;
+  --beam:#F6A54E;
+  --paper:#FFFFFF;
+  --mist:#F1F5F3;
+  --mist-2:#E8EFEB;
+  --line:#E1E9E5;
+  --line-dark:rgba(244,122,31,.16);
+  --graphite:#0D2029;
+  --slate:#4B5B62;
+  --slate-2:#6B7A80;
+  --shadow-sm:0 1px 2px rgba(13,32,41,.05),0 6px 18px -8px rgba(13,32,41,.10);
+  --shadow-md:0 2px 4px rgba(13,32,41,.05),0 18px 40px -20px rgba(13,32,41,.22);
+  --pad:clamp(18px,3.2vw,40px);
+  --max:1560px;
+  --r-card:18px;
+  /* WP /wordpress-development-services spacing tokens */
+  --sp-section:clamp(44px,7vw,100px);
+  --sp-trust:clamp(32px,4.5vw,52px);
+  --sp-head:clamp(24px,4vw,40px);
+  --sp-lede:16px;
+  --sp-eyebrow:18px;
+  --sp-card-y:clamp(24px,3vw,30px);
+  --sp-card-x:clamp(22px,2.5vw,26px);
+  --sp-card:var(--sp-card-y) var(--sp-card-x);
+  --sp-card-feat:clamp(26px,3.2vw,32px) clamp(22px,2.8vw,28px);
+  --sp-card-proc:clamp(24px,3vw,28px) clamp(22px,2.5vw,24px);
+  --sp-card-compare:clamp(28px,3vw,32px) clamp(22px,2.5vw,28px);
+  --sp-card-testi:clamp(24px,3vw,28px);
+  --sp-card-faq:6px 22px;
+  --sp-gap-pain:18px;
+  --sp-gap-svc:20px;
+  --sp-gap-proc:18px;
+  --sp-title-gap:10px;
+}
+
+.theme-html-root.webdev-ref .wrap,
+.webdev-ref .wrap{
+  max-width:var(--max);
+  margin:0 auto;
+  padding-left:var(--pad);
+  padding-right:var(--pad);
+}
+
+.theme-html-root.webdev-ref section:not(.hero):not(.trust),
+.theme-html-root.webdev-ref .sec:not(.hero):not(.trust),
+.theme-html-root.webdev-ref .section:not(.hero):not(.trust),
+.webdev-ref > section:not(.hero):not(.trust),
+.webdev-ref section:not(.hero):not(.trust){
+  padding-top:var(--sp-section) !important;
+  padding-bottom:var(--sp-section) !important;
+  padding-block:var(--sp-section) !important;
+}
+
+/* WP trust band is tighter than content sections */
+.theme-html-root.webdev-ref section.trust,
+.theme-html-root.webdev-ref .trust,
+.webdev-ref section.trust,
+.webdev-ref .trust{
+  padding:var(--sp-trust) 0;
+  padding-block:var(--sp-trust);
+  padding-top:var(--sp-trust) !important;
+  padding-bottom:var(--sp-trust) !important;
+}
+
+.theme-html-root.webdev-ref h2,
+.webdev-ref h2{
+  font-weight:700;
+  font-size:clamp(1.75rem,3.6vw,2.65rem);
+  letter-spacing:-.02em;
+  line-height:1.15;
+  margin-top:0;
+  margin-bottom:0;
+}
+.theme-html-root.webdev-ref h3,
+.webdev-ref h3{
+  font-weight:650;
+  font-size:clamp(1.15rem,1.8vw,1.45rem);
+  line-height:1.15;
+}
+.theme-html-root.webdev-ref h4,
+.webdev-ref h4{
+  font-weight:600;
+  font-size:1.05rem;
+}
+.theme-html-root.webdev-ref .lede,
+.webdev-ref .lede{
+  font-size:1rem;
+  line-height:1.7;
+  max-width:64ch;
+}
+.theme-html-root.webdev-ref h2 + .lede,
+.theme-html-root.webdev-ref h2 + p,
+.webdev-ref h2 + .lede,
+.webdev-ref h2 + p{
+  margin-top:var(--sp-lede);
+}
+.theme-html-root.webdev-ref .section-head,
+.webdev-ref .section-head{
+  max-width:820px;
+  margin:0 0 var(--sp-head);
+  text-align:left;
+}
+.theme-html-root.webdev-ref .svc-head,
+.theme-html-root.webdev-ref .proc-head,
+.theme-html-root.webdev-ref .pain-head,
+.theme-html-root.webdev-ref .faq-head,
+.theme-html-root.webdev-ref .tst-head,
+.theme-html-root.webdev-ref .intro-head,
+.theme-html-root.webdev-ref .head{
+  margin-bottom:var(--sp-head);
+}
+.theme-html-root.webdev-ref .section-head p,
+.theme-html-root.webdev-ref .svc-head p,
+.theme-html-root.webdev-ref .proc-head p,
+.theme-html-root.webdev-ref .head p,
+.theme-html-root.webdev-ref .section-head .lede,
+.webdev-ref .section-head p{margin-top:var(--sp-lede);font-size:1.05rem}
+
+.theme-html-root.webdev-ref .eyebrow,
+.webdev-ref .eyebrow{
+  font-size:.75rem;
+  font-weight:500;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  color:var(--signal-deep);
+  display:inline-block;
+  margin-bottom:var(--sp-eyebrow);
+}
+.theme-html-root.webdev-ref .sec-ink .eyebrow,
+.theme-html-root.webdev-ref .sec-ink .eyebrow::before,
+.webdev-ref .sec-ink .eyebrow,
+.webdev-ref .sec-ink .eyebrow::before{color:var(--signal)}
+
+.theme-html-root.webdev-ref .btn,
+.webdev-ref .btn{
+  display:inline-flex;
+  align-items:center;
+  gap:9px;
+  padding:14px 24px;
+  font-weight:600;
+  font-size:.95rem;
+  border-radius:999px;
+  transition:all .25s ease;
+  border:1px solid transparent;
+  white-space:nowrap;
+  cursor:pointer;
+}
+.theme-html-root.webdev-ref .btn-primary,
+.webdev-ref .btn-primary{background:var(--signal);color:var(--signal-ink)}
+.theme-html-root.webdev-ref .btn-primary:hover,
+.webdev-ref .btn-primary:hover{background:#F69750;transform:translateY(-1px);box-shadow:var(--shadow-sm)}
+.theme-html-root.webdev-ref .btn-ghost-light,
+.webdev-ref .btn-ghost-light{background:rgba(255,255,255,.05);color:#fff;border-color:rgba(255,255,255,.28)}
+.theme-html-root.webdev-ref .btn-ink,
+.webdev-ref .btn-ink{background:var(--ink);color:#fff}
+
+.theme-html-root.webdev-ref .sec-ink,
+.webdev-ref .sec-ink{background:var(--ink);color:#B7CBD2}
+.theme-html-root.webdev-ref .sec-mist,
+.webdev-ref .sec-mist,
+.theme-html-root.webdev-ref section.mist,
+.webdev-ref section.mist{background:var(--mist)}
+.theme-html-root.webdev-ref .sec-paper,
+.webdev-ref .sec-paper,
+.theme-html-root.webdev-ref section.paper,
+.webdev-ref section.paper{background:var(--paper)}
+.theme-html-root.webdev-ref .sec-ink h1,
+.theme-html-root.webdev-ref .sec-ink h2,
+.theme-html-root.webdev-ref .sec-ink h3,
+.theme-html-root.webdev-ref .sec-ink h4,
+.webdev-ref .sec-ink h1,
+.webdev-ref .sec-ink h2,
+.webdev-ref .sec-ink h3,
+.webdev-ref .sec-ink h4{color:#fff}
+.theme-html-root.webdev-ref .sec-ink p,
+.theme-html-root.webdev-ref .sec-ink .lede,
+.webdev-ref .sec-ink p,
+.webdev-ref .sec-ink .lede{color:#9FB6BE}
+
+/* Undo page-specific “light problem band” so ink sections match WP */
+.theme-html-root.webdev-ref .sec-ink.problem-bg{
+  background:var(--ink) !important;
+  color:#B7CBD2 !important;
+}
+.theme-html-root.webdev-ref .sec-ink.problem-bg h2,
+.theme-html-root.webdev-ref .sec-ink.problem-bg h3,
+.theme-html-root.webdev-ref .sec-ink.problem-bg h4,
+.theme-html-root.webdev-ref .sec-ink.problem-bg strong{
+  color:#fff !important;
+}
+.theme-html-root.webdev-ref .sec-ink.problem-bg p,
+.theme-html-root.webdev-ref .sec-ink.problem-bg .lede{
+  color:#9FB6BE !important;
+}
+
+/* Digital marketing: Problem stays white with black copy */
+.dm-theme-page.theme-html-root.webdev-ref .sec-ink.problem-bg,
+.dm-theme-page.webdev-ref .sec-ink.problem-bg{
+  background:#fff !important;
+  background-image:none !important;
+  color:#111 !important;
+}
+.dm-theme-page.theme-html-root.webdev-ref .sec-ink.problem-bg::before,
+.dm-theme-page.theme-html-root.webdev-ref .sec-ink.problem-bg::after{
+  display:none !important;
+  content:none !important;
+}
+.dm-theme-page.theme-html-root.webdev-ref .sec-ink.problem-bg h2,
+.dm-theme-page.theme-html-root.webdev-ref .sec-ink.problem-bg h3,
+.dm-theme-page.theme-html-root.webdev-ref .sec-ink.problem-bg h4,
+.dm-theme-page.theme-html-root.webdev-ref .sec-ink.problem-bg strong,
+.dm-theme-page.theme-html-root.webdev-ref .sec-ink.problem-bg .problem-card,
+.dm-theme-page.theme-html-root.webdev-ref .sec-ink.problem-bg .problem-card h3,
+.dm-theme-page.theme-html-root.webdev-ref .sec-ink.problem-bg .problem-card h4,
+.dm-theme-page.webdev-ref .sec-ink .problem-card h3,
+.dm-theme-page.webdev-ref .sec-ink .problem-card h4{
+  color:#111 !important;
+}
+.dm-theme-page.theme-html-root.webdev-ref .sec-ink.problem-bg p,
+.dm-theme-page.theme-html-root.webdev-ref .sec-ink.problem-bg .lede,
+.dm-theme-page.theme-html-root.webdev-ref .sec-ink.problem-bg .body-2,
+.dm-theme-page.theme-html-root.webdev-ref .sec-ink.problem-bg .problem-card p,
+.dm-theme-page.webdev-ref .sec-ink .problem-card p{
+  color:#111 !important;
+}
+.dm-theme-page.theme-html-root.webdev-ref .sec-ink.problem-bg .problem-card,
+.dm-theme-page.webdev-ref .sec-ink .problem-card{
+  background:#fff !important;
+  border:1px solid #E1E9E5 !important;
+  color:#111 !important;
+}
+
+/* ── Pain / problem cards (WP .problem-card) ── */
+@media (min-width:768px){
+  .theme-html-root.webdev-ref .problem-grid,
+  .theme-html-root.webdev-ref .pain-grid,
+  .theme-html-root.webdev-ref .pain-list,
+  .theme-html-root.webdev-ref .prob-grid:not(:has(.prob-panel)),
+  .theme-html-root.webdev-ref .grid:has(> .pain),
+  .theme-html-root.webdev-ref .grid:has(> .pain-card),
+  .theme-html-root.webdev-ref .grid:has(> .problem-card),
+  .webdev-ref .problem-grid,
+  .webdev-ref .pain-grid,
+  .webdev-ref .pain-list,
+  .webdev-ref .prob-grid:not(:has(.prob-panel)),
+  .webdev-ref #pain > .wrap > .grid,
+  .webdev-ref #problem > .wrap > .grid{
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:18px;
+  }
+}
+@media (min-width:981px){
+  .theme-html-root.webdev-ref .problem-grid,
+  .theme-html-root.webdev-ref .pain-grid,
+  .theme-html-root.webdev-ref .pain-list,
+  .theme-html-root.webdev-ref .prob-grid:not(:has(.prob-panel)),
+  .theme-html-root.webdev-ref .grid:has(> .pain),
+  .theme-html-root.webdev-ref .grid:has(> .pain-card),
+  .theme-html-root.webdev-ref .grid:has(> .problem-card),
+  .webdev-ref .problem-grid,
+  .webdev-ref .pain-grid,
+  .webdev-ref .pain-list,
+  .webdev-ref .prob-grid:not(:has(.prob-panel)),
+  .webdev-ref #pain > .wrap > .grid,
+  .webdev-ref #problem > .wrap > .grid{
+    grid-template-columns:repeat(3,minmax(0,1fr));
+  }
+}
+
+.theme-html-root.webdev-ref .problem-card,
+.theme-html-root.webdev-ref .pain-card,
+.theme-html-root.webdev-ref .pain-list > .pain,
+.theme-html-root.webdev-ref .pain-grid > .pain,
+.theme-html-root.webdev-ref .pain-grid > .pain-card,
+.theme-html-root.webdev-ref .grid > .pain,
+.theme-html-root.webdev-ref .grid > .pain-card,
+.theme-html-root.webdev-ref .prob-grid > .prob,
+.theme-html-root.webdev-ref .prob-grid > .prob-item,
+.theme-html-root.webdev-ref .prob-item,
+.webdev-ref .problem-card,
+.webdev-ref .pain-card,
+.webdev-ref .pain-list > .pain,
+.webdev-ref .pain-grid > .pain,
+.webdev-ref .pain-grid > .pain-card,
+.webdev-ref .prob-grid > .prob,
+.webdev-ref .prob-grid > .prob-item,
+.webdev-ref .prob{
+  border-radius:18px;
+  padding:clamp(24px,3vw,30px) clamp(22px,2.5vw,26px);
+  position:relative;
+  transition:all .3s ease;
+  box-sizing:border-box;
+}
+
+.theme-html-root.webdev-ref .sec-ink .problem-card,
+.theme-html-root.webdev-ref .sec-ink .pain-card,
+.theme-html-root.webdev-ref .sec-ink .pain,
+.theme-html-root.webdev-ref .sec-ink .prob,
+.theme-html-root.webdev-ref .sec-ink .prob-item,
+.webdev-ref .sec-ink .problem-card,
+.webdev-ref .sec-ink .pain-card,
+.webdev-ref .sec-ink .pain,
+.webdev-ref .sec-ink .prob,
+.webdev-ref .sec-ink .prob-item{
+  background:var(--ink-2);
+  border:1px solid var(--line-dark);
+  color:#B7CBD2;
+}
+.theme-html-root.webdev-ref .sec-ink .problem-card h3,
+.theme-html-root.webdev-ref .sec-ink .problem-card h4,
+.theme-html-root.webdev-ref .sec-ink .pain-card h3,
+.theme-html-root.webdev-ref .sec-ink .pain-card h4,
+.theme-html-root.webdev-ref .sec-ink .pain h3,
+.theme-html-root.webdev-ref .sec-ink .pain h4,
+.theme-html-root.webdev-ref .sec-ink .prob h3,
+.theme-html-root.webdev-ref .sec-ink .prob-item h3,
+.webdev-ref .sec-ink .problem-card h3,
+.webdev-ref .sec-ink .problem-card h4,
+.webdev-ref .sec-ink .pain-card h3,
+.webdev-ref .sec-ink .pain-card h4,
+.webdev-ref .sec-ink .pain h3,
+.webdev-ref .sec-ink .pain h4,
+.webdev-ref .sec-ink .prob h3,
+.webdev-ref .sec-ink .prob-item h3{
+  color:#fff;
+  margin-bottom:10px;
+  font-size:1.02rem;
+}
+.theme-html-root.webdev-ref .sec-ink .problem-card p,
+.theme-html-root.webdev-ref .sec-ink .pain-card p,
+.theme-html-root.webdev-ref .sec-ink .pain p,
+.theme-html-root.webdev-ref .sec-ink .prob p,
+.theme-html-root.webdev-ref .sec-ink .prob-item p,
+.webdev-ref .sec-ink .problem-card p,
+.webdev-ref .sec-ink .pain-card p,
+.webdev-ref .sec-ink .pain p,
+.webdev-ref .sec-ink .prob p,
+.webdev-ref .sec-ink .prob-item p{
+  font-size:.9rem;
+  color:#9FB6BE;
+  line-height:1.6;
+}
+
+.theme-html-root.webdev-ref section:not(.sec-ink) .problem-card,
+.theme-html-root.webdev-ref section:not(.sec-ink) .pain-card,
+.theme-html-root.webdev-ref section:not(.sec-ink) .pain,
+.theme-html-root.webdev-ref section:not(.sec-ink) .prob,
+.webdev-ref section:not(.sec-ink) .problem-card,
+.webdev-ref section:not(.sec-ink) .pain-card,
+.webdev-ref section:not(.sec-ink) .pain,
+.webdev-ref section:not(.sec-ink) .prob{
+  background:var(--paper);
+  border:1px solid var(--line);
+}
+.theme-html-root.webdev-ref section:not(.sec-ink) .pain-card h3,
+.theme-html-root.webdev-ref section:not(.sec-ink) .pain h3,
+.theme-html-root.webdev-ref section:not(.sec-ink) .problem-card h3,
+.theme-html-root.webdev-ref section:not(.sec-ink) .prob h3,
+.webdev-ref section:not(.sec-ink) .pain-card h3,
+.webdev-ref section:not(.sec-ink) .pain h3,
+.webdev-ref section:not(.sec-ink) .problem-card h3,
+.webdev-ref section:not(.sec-ink) .prob h3{
+  color:var(--graphite);
+}
+.theme-html-root.webdev-ref section:not(.sec-ink) .pain-card p,
+.theme-html-root.webdev-ref section:not(.sec-ink) .pain p,
+.theme-html-root.webdev-ref section:not(.sec-ink) .problem-card p,
+.theme-html-root.webdev-ref section:not(.sec-ink) .prob p,
+.webdev-ref section:not(.sec-ink) .pain-card p,
+.webdev-ref section:not(.sec-ink) .pain p,
+.webdev-ref section:not(.sec-ink) .problem-card p,
+.webdev-ref section:not(.sec-ink) .prob p{
+  color:var(--slate);
+  font-size:.9rem;
+}
+
+.theme-html-root.webdev-ref .problem-card .icon,
+.theme-html-root.webdev-ref .pain-card .icon,
+.theme-html-root.webdev-ref .pain-icon,
+.webdev-ref .problem-card .icon,
+.webdev-ref .pain-card .icon{
+  width:44px;height:44px;border-radius:12px;
+  background:rgba(244,122,31,.12);
+  display:grid;place-items:center;margin-bottom:18px;
+}
+
+/* ── Service cards (WP .svc-card) ── */
+@media (min-width:901px){
+  .theme-html-root.webdev-ref .service-grid,
+  .theme-html-root.webdev-ref .svc-grid,
+  .theme-html-root.webdev-ref .serv-grid,
+  .theme-html-root.webdev-ref .grid-cards,
+  .theme-html-root.webdev-ref .grid:has(> .svc),
+  .theme-html-root.webdev-ref .grid:has(> .svc-card),
+  .webdev-ref .service-grid,
+  .webdev-ref .svc-grid,
+  .webdev-ref .serv-grid,
+  .webdev-ref .grid-cards,
+  .webdev-ref #services > .wrap > .grid,
+  .webdev-ref #services > .wrap > .grid-cards{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+    gap:20px;
+  }
+}
+
+.theme-html-root.webdev-ref .svc-card,
+.theme-html-root.webdev-ref .serv-card,
+.theme-html-root.webdev-ref .svc-grid > .svc,
+.theme-html-root.webdev-ref .serv-grid > .serv-card,
+.theme-html-root.webdev-ref .grid > .svc,
+.theme-html-root.webdev-ref .service-card,
+.webdev-ref .svc-card,
+.webdev-ref .serv-card,
+.webdev-ref .grid-cards > .svc,
+.webdev-ref .svc-grid > .svc,
+.webdev-ref #services > .wrap > .grid > .svc,
+.webdev-ref #services .svc:not(.svc-nav):not(.svc-slide):not(.svc-stack-item),
+.webdev-ref .service-card{
+  border-radius:18px;
+  padding:clamp(24px,3vw,30px) clamp(22px,2.5vw,26px);
+  border:1px solid var(--line);
+  position:relative;
+  transition:all .3s ease;
+  display:flex;
+  flex-direction:column;
+  box-sizing:border-box;
+}
+.theme-html-root.webdev-ref .svc-card:hover,
+.theme-html-root.webdev-ref .serv-card:hover,
+.theme-html-root.webdev-ref .svc-grid > .svc:hover,
+.theme-html-root.webdev-ref .grid > .svc:hover,
+.theme-html-root.webdev-ref .service-card:hover,
+.webdev-ref .svc-card:hover,
+.webdev-ref .serv-card:hover,
+.webdev-ref .svc-grid > .svc:hover,
+.webdev-ref .service-card:hover{
+  transform:translateY(-3px);
+  box-shadow:var(--shadow-md);
+}
+
+.theme-html-root.webdev-ref section:not(.sec-ink) .svc-card,
+.theme-html-root.webdev-ref section:not(.sec-ink) .serv-card,
+.theme-html-root.webdev-ref section:not(.sec-ink) .svc-grid > .svc,
+.theme-html-root.webdev-ref section:not(.sec-ink) .grid > .svc,
+.theme-html-root.webdev-ref section:not(.sec-ink) .service-card,
+.webdev-ref section:not(.sec-ink) .svc-card,
+.webdev-ref section:not(.sec-ink) .serv-card,
+.webdev-ref section:not(.sec-ink) .svc-grid > .svc,
+.webdev-ref section:not(.sec-ink) .service-card{
+  background:var(--paper);
+  border-color:var(--line);
+}
+.theme-html-root.webdev-ref section:not(.sec-ink) .svc-card h3,
+.theme-html-root.webdev-ref section:not(.sec-ink) .serv-card h3,
+.theme-html-root.webdev-ref section:not(.sec-ink) .svc-grid > .svc h3,
+.theme-html-root.webdev-ref section:not(.sec-ink) .grid > .svc h3,
+.theme-html-root.webdev-ref section:not(.sec-ink) .service-card h3,
+.webdev-ref section:not(.sec-ink) .svc-card h3,
+.webdev-ref section:not(.sec-ink) .serv-card h3,
+.webdev-ref section:not(.sec-ink) .svc-grid > .svc h3,
+.webdev-ref section:not(.sec-ink) .service-card h3{
+  color:var(--graphite);
+  margin-bottom:10px;
+  font-weight:650;
+  font-size:1.15rem;
+}
+.theme-html-root.webdev-ref section:not(.sec-ink) .svc-card p,
+.theme-html-root.webdev-ref section:not(.sec-ink) .serv-card p,
+.theme-html-root.webdev-ref section:not(.sec-ink) .svc-grid > .svc p,
+.theme-html-root.webdev-ref section:not(.sec-ink) .grid > .svc p,
+.theme-html-root.webdev-ref section:not(.sec-ink) .service-card p,
+.webdev-ref section:not(.sec-ink) .svc-card p,
+.webdev-ref section:not(.sec-ink) .serv-card p,
+.webdev-ref section:not(.sec-ink) .svc-grid > .svc p,
+.webdev-ref section:not(.sec-ink) .service-card p{
+  color:var(--slate);
+  font-size:.9rem;
+  flex:1;
+  margin-bottom:0;
+}
+
+.theme-html-root.webdev-ref .sec-ink .svc-card,
+.theme-html-root.webdev-ref .sec-ink .serv-card,
+.theme-html-root.webdev-ref .sec-ink .svc-grid > .svc,
+.theme-html-root.webdev-ref .sec-ink .grid > .svc,
+.theme-html-root.webdev-ref .sec-ink .service-card,
+.webdev-ref .sec-ink .svc-card,
+.webdev-ref .sec-ink .serv-card,
+.webdev-ref .sec-ink .svc-grid > .svc,
+.webdev-ref .sec-ink .service-card{
+  background:var(--ink-2);
+  border-color:var(--line-dark);
+}
+.theme-html-root.webdev-ref .sec-ink .svc-card h3,
+.theme-html-root.webdev-ref .sec-ink .serv-card h3,
+.theme-html-root.webdev-ref .sec-ink .svc-grid > .svc h3,
+.theme-html-root.webdev-ref .sec-ink .grid > .svc h3,
+.theme-html-root.webdev-ref .sec-ink .service-card h3,
+.webdev-ref .sec-ink .svc-card h3,
+.webdev-ref .sec-ink .serv-card h3,
+.webdev-ref .sec-ink .svc-grid > .svc h3,
+.webdev-ref .sec-ink .service-card h3{
+  color:#fff;
+  margin-bottom:10px;
+  font-weight:650;
+  font-size:1.15rem;
+}
+.theme-html-root.webdev-ref .sec-ink .svc-card p,
+.theme-html-root.webdev-ref .sec-ink .serv-card p,
+.theme-html-root.webdev-ref .sec-ink .svc-grid > .svc p,
+.theme-html-root.webdev-ref .sec-ink .grid > .svc p,
+.theme-html-root.webdev-ref .sec-ink .service-card p,
+.webdev-ref .sec-ink .svc-card p,
+.webdev-ref .sec-ink .serv-card p,
+.webdev-ref .sec-ink .svc-grid > .svc p,
+.webdev-ref .sec-ink .service-card p{
+  color:#9FB6BE;
+  font-size:.9rem;
+}
+
+.theme-html-root.webdev-ref .svc-card .tile,
+.theme-html-root.webdev-ref .svc-grid > .svc .tile,
+.theme-html-root.webdev-ref .serv-card .tile,
+.theme-html-root.webdev-ref .svc-ico,
+.theme-html-root.webdev-ref .svc-icon,
+.webdev-ref .svc-card .tile,
+.webdev-ref .svc-grid > .svc .tile,
+.webdev-ref .serv-card .tile{
+  width:52px;
+  height:52px;
+  border-radius:12px;
+  display:grid;
+  place-items:center;
+  margin-bottom:20px;
+}
+.theme-html-root.webdev-ref section:not(.sec-ink) .tile,
+.webdev-ref section:not(.sec-ink) .tile{background:var(--mist)}
+.theme-html-root.webdev-ref .sec-ink .tile,
+.webdev-ref .sec-ink .tile{background:rgba(244,122,31,.12)}
+.theme-html-root.webdev-ref .svc-card:hover .tile,
+.webdev-ref .svc-card:hover .tile{background:var(--signal)}
+.theme-html-root.webdev-ref .svc-card:hover .tile svg,
+.webdev-ref .svc-card:hover .tile svg{stroke:var(--signal-ink)}
+
+.theme-html-root.webdev-ref .svc-card .check,
+.theme-html-root.webdev-ref .svc-badge,
+.webdev-ref .svc-card .check{
+  position:absolute;
+  top:24px;right:24px;
+  width:26px;height:26px;
+  border-radius:50%;
+  background:var(--signal);
+  color:var(--signal-ink);
+  display:grid;place-items:center;
+  font-size:.75rem;font-weight:700;
+}
+
+/* ── Feature / why cards (WP .feat-card) ── */
+@media (min-width:768px){
+  .theme-html-root.webdev-ref .feature-grid,
+  .theme-html-root.webdev-ref .edge-grid,
+  .theme-html-root.webdev-ref .grid:has(> .feat),
+  .theme-html-root.webdev-ref .grid:has(> .why),
+  .theme-html-root.webdev-ref .why-grid:not(:has(.stat)):not(:has(.stat-card)):not(:has(.stat-tile)):not(:has(.why-feats)):not(:has(.compare)):not(:has(.why-copy)):not(:has(.why-list)),
+  .webdev-ref .feature-grid,
+  .webdev-ref .edge-grid,
+  .webdev-ref .why-grid:not(:has(.stat)):not(:has(.stat-card)):not(:has(.stat-tile)):not(:has(.why-feats)):not(:has(.compare)){
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:20px;
+  }
+}
+@media (min-width:981px){
+  .theme-html-root.webdev-ref .feature-grid,
+  .theme-html-root.webdev-ref .edge-grid,
+  .theme-html-root.webdev-ref .grid:has(> .feat),
+  .theme-html-root.webdev-ref .grid:has(> .why),
+  .theme-html-root.webdev-ref .why-grid:not(:has(.stat)):not(:has(.stat-card)):not(:has(.stat-tile)):not(:has(> .feat:only-child)):not(:has(.why-feats)):not(:has(.compare)):not(:has(.why-copy)):not(:has(.why-list)),
+  .webdev-ref .feature-grid,
+  .webdev-ref .edge-grid,
+  .webdev-ref .why-grid:not(:has(.stat)):not(:has(.stat-card)):not(:has(.stat-tile)):not(:has(> .feat:only-child)):not(:has(.why-feats)):not(:has(.compare)){
+    grid-template-columns:repeat(3,minmax(0,1fr));
+  }
+}
+
+.theme-html-root.webdev-ref .feat-card,
+.theme-html-root.webdev-ref .feature-grid > .feat,
+.theme-html-root.webdev-ref .why-grid > .feat,
+.theme-html-root.webdev-ref .why-grid > .why,
+.theme-html-root.webdev-ref .why-grid > .why-card,
+.theme-html-root.webdev-ref .grid > .feat,
+.theme-html-root.webdev-ref .grid > .why,
+.theme-html-root.webdev-ref .edge-grid > .edge,
+.theme-html-root.webdev-ref .edge,
+.webdev-ref .feat-card,
+.webdev-ref .feature-grid > .feat,
+.webdev-ref .why-grid > .feat,
+.webdev-ref .why-grid > .why,
+.webdev-ref .why-grid > .why-card,
+.webdev-ref .edge-grid > .edge,
+.webdev-ref .edge{
+  border-radius:18px;
+  padding:clamp(26px,3.2vw,32px) clamp(22px,2.8vw,28px);
+  transition:all .3s ease;
+  position:relative;
+  box-sizing:border-box;
+}
+
+.theme-html-root.webdev-ref .sec-ink .feat-card,
+.theme-html-root.webdev-ref .sec-ink .feature-grid > .feat,
+.theme-html-root.webdev-ref .sec-ink .why-grid > .feat,
+.theme-html-root.webdev-ref .sec-ink .grid > .feat,
+.theme-html-root.webdev-ref .sec-ink .why,
+.theme-html-root.webdev-ref .sec-ink .why-card,
+.theme-html-root.webdev-ref .sec-ink .edge,
+.webdev-ref .sec-ink .feat-card,
+.webdev-ref .sec-ink .feature-grid > .feat,
+.webdev-ref .sec-ink .why-grid > .feat,
+.webdev-ref .sec-ink .why,
+.webdev-ref .sec-ink .why-card,
+.webdev-ref .sec-ink .edge{
+  background:var(--ink-2);
+  border:1px solid var(--line-dark);
+}
+.theme-html-root.webdev-ref .sec-ink .feat-card h3,
+.theme-html-root.webdev-ref .sec-ink .feat h3,
+.theme-html-root.webdev-ref .sec-ink .why h3,
+.theme-html-root.webdev-ref .sec-ink .why-card h3,
+.theme-html-root.webdev-ref .sec-ink .edge h3,
+.webdev-ref .sec-ink .feat-card h3,
+.webdev-ref .sec-ink .feat h3,
+.webdev-ref .sec-ink .why h3,
+.webdev-ref .sec-ink .why-card h3,
+.webdev-ref .sec-ink .edge h3{
+  color:#fff;
+  font-size:1.1rem;
+  margin-bottom:10px;
+}
+.theme-html-root.webdev-ref .sec-ink .feat-card p,
+.theme-html-root.webdev-ref .sec-ink .feat p,
+.theme-html-root.webdev-ref .sec-ink .why p,
+.theme-html-root.webdev-ref .sec-ink .why-card p,
+.theme-html-root.webdev-ref .sec-ink .edge p,
+.webdev-ref .sec-ink .feat-card p,
+.webdev-ref .sec-ink .feat p,
+.webdev-ref .sec-ink .why p,
+.webdev-ref .sec-ink .why-card p,
+.webdev-ref .sec-ink .edge p{
+  font-size:.9rem;
+  color:#B7CBD2;
+}
+
+.theme-html-root.webdev-ref section:not(.sec-ink) .feat-card,
+.theme-html-root.webdev-ref section:not(.sec-ink) .why-card,
+.theme-html-root.webdev-ref section:not(.sec-ink) .feat,
+.theme-html-root.webdev-ref section:not(.sec-ink) .why,
+.theme-html-root.webdev-ref section:not(.sec-ink) .edge,
+.webdev-ref section:not(.sec-ink) .feat-card,
+.webdev-ref section:not(.sec-ink) .why-card,
+.webdev-ref section:not(.sec-ink) .why-grid > .feat,
+.webdev-ref section:not(.sec-ink) .why-grid > .why,
+.webdev-ref section:not(.sec-ink) .edge{
+  background:var(--paper);
+  border:1px solid var(--line);
+}
+.theme-html-root.webdev-ref section:not(.sec-ink) .feat-card h3,
+.theme-html-root.webdev-ref section:not(.sec-ink) .why-card h3,
+.theme-html-root.webdev-ref section:not(.sec-ink) .feat h3,
+.theme-html-root.webdev-ref section:not(.sec-ink) .why h3,
+.theme-html-root.webdev-ref section:not(.sec-ink) .edge h3,
+.webdev-ref section:not(.sec-ink) .feat-card h3,
+.webdev-ref section:not(.sec-ink) .why-card h3,
+.webdev-ref section:not(.sec-ink) .feat h3,
+.webdev-ref section:not(.sec-ink) .why h3,
+.webdev-ref section:not(.sec-ink) .edge h3{
+  color:var(--graphite);
+}
+.theme-html-root.webdev-ref section:not(.sec-ink) .feat-card p,
+.theme-html-root.webdev-ref section:not(.sec-ink) .why-card p,
+.theme-html-root.webdev-ref section:not(.sec-ink) .feat p,
+.theme-html-root.webdev-ref section:not(.sec-ink) .why p,
+.theme-html-root.webdev-ref section:not(.sec-ink) .edge p,
+.webdev-ref section:not(.sec-ink) .feat-card p,
+.webdev-ref section:not(.sec-ink) .why-card p,
+.webdev-ref section:not(.sec-ink) .feat p,
+.webdev-ref section:not(.sec-ink) .why p,
+.webdev-ref section:not(.sec-ink) .edge p{
+  color:var(--slate);
+  font-size:.875rem;
+}
+
+.theme-html-root.webdev-ref .feat-card .ic,
+.theme-html-root.webdev-ref .why-card .tile,
+.webdev-ref .feat-card .ic,
+.webdev-ref .why-card .tile{
+  width:48px;height:48px;border-radius:12px;
+  background:rgba(244,122,31,.14);
+  display:grid;place-items:center;margin-bottom:20px;
+}
+
+/* ── Process cards (WP .proc) ── */
+@media (min-width:901px){
+  .theme-html-root.webdev-ref .process-list,
+  .theme-html-root.webdev-ref .process-grid,
+  .theme-html-root.webdev-ref .proc-grid,
+  .theme-html-root.webdev-ref .loop-grid,
+  .theme-html-root.webdev-ref .steps,
+  .theme-html-root.webdev-ref .grid:has(> .step),
+  .theme-html-root.webdev-ref .grid:has(> .proc-card),
+  .theme-html-root.webdev-ref .proc:has(> .proc-step),
+  .theme-html-root.webdev-ref .proc:has(> .pstep),
+  .theme-html-root.webdev-ref .proc:has(> .step),
+  .webdev-ref .process-list,
+  .webdev-ref .process-grid,
+  .webdev-ref .proc-grid,
+  .webdev-ref .loop-grid,
+  .webdev-ref .steps,
+  .webdev-ref .proc:has(> .proc-step),
+  .webdev-ref .proc:has(> .pstep),
+  .webdev-ref .proc:has(> .step),
+  .webdev-ref #process > .wrap > .grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:18px;
+  }
+}
+
+.theme-html-root.webdev-ref .process-list > .proc,
+.theme-html-root.webdev-ref .proc-grid > .step,
+.theme-html-root.webdev-ref .proc-grid > .proc-card,
+.theme-html-root.webdev-ref .proc-grid > .proc,
+.theme-html-root.webdev-ref .process-grid > .process-card,
+.theme-html-root.webdev-ref .process-grid > .step,
+.theme-html-root.webdev-ref .steps > .step,
+.theme-html-root.webdev-ref .loop-grid > .loop-card,
+.theme-html-root.webdev-ref .grid > .step,
+.theme-html-root.webdev-ref .grid > .proc-card,
+.theme-html-root.webdev-ref .proc > .proc-step,
+.theme-html-root.webdev-ref .proc > .pstep,
+.theme-html-root.webdev-ref .proc > .step,
+.webdev-ref .process-list > .proc,
+.webdev-ref .proc-grid > .step,
+.webdev-ref .proc-grid > .proc-card,
+.webdev-ref .process-grid > .process-card,
+.webdev-ref .process-grid > .step,
+.webdev-ref .steps > .step,
+.webdev-ref .loop-grid > .loop-card,
+.webdev-ref .proc > .proc-step,
+.webdev-ref .proc > .pstep,
+.webdev-ref .proc > .step,
+.webdev-ref #process > .wrap > .grid > .step,
+.webdev-ref #process .process-step{
+  background:var(--paper);
+  border-radius:18px;
+  padding:clamp(24px,3vw,28px) clamp(22px,2.5vw,24px);
+  border:1px solid var(--line);
+  border-top:2px solid var(--signal);
+  position:relative;
+  transition:all .3s ease;
+  box-sizing:border-box;
+}
+.theme-html-root.webdev-ref .process-list > .proc:hover,
+.theme-html-root.webdev-ref .proc-grid > .step:hover,
+.theme-html-root.webdev-ref .proc-grid > .proc:hover,
+.theme-html-root.webdev-ref .steps > .step:hover,
+.webdev-ref .process-list > .proc:hover,
+.webdev-ref .proc-grid > .step:hover,
+.webdev-ref .proc > .proc-step:hover,
+.webdev-ref .proc > .pstep:hover,
+.webdev-ref .steps > .step:hover{
+  box-shadow:var(--shadow-md);
+  transform:translateY(-2px);
+}
+
+.theme-html-root.webdev-ref .process-list > .proc h3,
+.theme-html-root.webdev-ref .process-list > .proc h4,
+.theme-html-root.webdev-ref .proc-grid > .step h3,
+.theme-html-root.webdev-ref .proc-grid > .proc h3,
+.theme-html-root.webdev-ref .proc-grid > .proc h4,
+.theme-html-root.webdev-ref .steps > .step h3,
+.theme-html-root.webdev-ref .grid > .step h3,
+.webdev-ref .process-list > .proc h3,
+.webdev-ref .process-list > .proc h4,
+.webdev-ref .proc-grid > .step h3,
+.webdev-ref .proc-grid > .step h4,
+.webdev-ref .proc > .proc-step h3,
+.webdev-ref .proc > .pstep h3,
+.webdev-ref .steps > .step h3,
+.webdev-ref #process .process-step h3{
+  color:var(--graphite);
+  font-size:1.05rem;
+  font-weight:650;
+  margin-bottom:8px;
+}
+.theme-html-root.webdev-ref .process-list > .proc p,
+.theme-html-root.webdev-ref .proc-grid > .step p,
+.theme-html-root.webdev-ref .proc-grid > .proc p,
+.theme-html-root.webdev-ref .steps > .step p,
+.webdev-ref .process-list > .proc p,
+.webdev-ref .proc-grid > .step p,
+.webdev-ref .proc > .proc-step p,
+.webdev-ref .proc > .pstep p,
+.webdev-ref .steps > .step p,
+.webdev-ref #process .process-step p{
+  color:var(--slate);
+  font-size:.9rem;
+}
+
+.theme-html-root.webdev-ref .proc .num,
+.theme-html-root.webdev-ref .proc-step .n,
+.theme-html-root.webdev-ref .pstep .n,
+.theme-html-root.webdev-ref .step .n,
+.theme-html-root.webdev-ref .process-step .num,
+.theme-html-root.webdev-ref .loop-card .num,
+.webdev-ref .proc .num,
+.webdev-ref .proc-step .n,
+.webdev-ref .pstep .n,
+.webdev-ref .step .n,
+.webdev-ref .process-step .num,
+.webdev-ref .loop-card .num{
+  font-size:2.5rem;
+  font-weight:800;
+  color:var(--signal);
+  line-height:1;
+  letter-spacing:-.03em;
+  margin-bottom:18px;
+  display:block;
+}
+
+.theme-html-root.webdev-ref .sec-ink .process-list > .proc,
+.theme-html-root.webdev-ref .sec-ink .proc-grid > .step,
+.theme-html-root.webdev-ref .sec-ink .proc-grid > .proc,
+.theme-html-root.webdev-ref .sec-ink .proc > .proc-step,
+.theme-html-root.webdev-ref .sec-ink .proc > .pstep,
+.theme-html-root.webdev-ref .sec-ink .steps > .step,
+.theme-html-root.webdev-ref .sec-ink .grid > .step,
+.webdev-ref .sec-ink .process-list > .proc,
+.webdev-ref .sec-ink .proc-grid > .step,
+.webdev-ref .sec-ink .proc > .proc-step,
+.webdev-ref .sec-ink .proc > .pstep,
+.webdev-ref .sec-ink .steps > .step{
+  background:var(--ink-2);
+  border-color:var(--line-dark);
+  border-top-color:var(--signal);
+}
+.theme-html-root.webdev-ref .sec-ink .process-list > .proc h3,
+.theme-html-root.webdev-ref .sec-ink .proc-grid > .step h3,
+.theme-html-root.webdev-ref .sec-ink .proc-grid > .proc h3,
+.theme-html-root.webdev-ref .sec-ink .steps > .step h3,
+.webdev-ref .sec-ink .process-list > .proc h3,
+.webdev-ref .sec-ink .proc-grid > .step h3,
+.webdev-ref .sec-ink .proc > .pstep h3,
+.webdev-ref .sec-ink .steps > .step h3{
+  color:#fff;
+}
+.theme-html-root.webdev-ref .sec-ink .process-list > .proc p,
+.theme-html-root.webdev-ref .sec-ink .proc-grid > .step p,
+.theme-html-root.webdev-ref .sec-ink .proc-grid > .proc p,
+.theme-html-root.webdev-ref .sec-ink .steps > .step p,
+.webdev-ref .sec-ink .process-list > .proc p,
+.webdev-ref .sec-ink .proc-grid > .step p,
+.webdev-ref .sec-ink .proc > .pstep p,
+.webdev-ref .sec-ink .steps > .step p{
+  color:#9FB6BE;
+}
+
+/* FAQ (WP) */
+.theme-html-root.webdev-ref .faq-list,
+.theme-html-root.webdev-ref .faq-wrap,
+.webdev-ref .faq-list{
+  max-width:820px;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+.theme-html-root.webdev-ref .faq-item,
+.theme-html-root.webdev-ref details.faq,
+.theme-html-root.webdev-ref .faq details,
+.theme-html-root.webdev-ref .faq-wrap .faq,
+.webdev-ref .faq-item,
+.webdev-ref details.faq,
+.webdev-ref .faq details{
+  background:var(--paper);
+  border:1px solid var(--line);
+  border-radius:14px;
+}
+.theme-html-root.webdev-ref .faq-item summary,
+.theme-html-root.webdev-ref details.faq summary,
+.theme-html-root.webdev-ref .faq details summary,
+.theme-html-root.webdev-ref .faq-q,
+.webdev-ref .faq-item summary,
+.webdev-ref details.faq summary,
+.webdev-ref .faq details summary{
+  color:var(--graphite);
+  font-weight:650;
+}
+
+/* Compare (WP .compare-card) */
+.theme-html-root.webdev-ref .compare-wrap,
+.theme-html-root.webdev-ref .cmp-grid,
+.theme-html-root.webdev-ref .cmp,
+.webdev-ref .compare-wrap{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:18px;
+}
+@media (max-width:820px){
+  .theme-html-root.webdev-ref .compare-wrap,
+  .theme-html-root.webdev-ref .cmp-grid,
+  .theme-html-root.webdev-ref .cmp,
+  .webdev-ref .compare-wrap{grid-template-columns:1fr}
+}
+.theme-html-root.webdev-ref .compare-card,
+.theme-html-root.webdev-ref .cmp-card,
+.theme-html-root.webdev-ref .comp-card,
+.webdev-ref .compare-card{
+  background:var(--ink-2);
+  border-radius:18px;
+  padding:clamp(28px,3vw,32px) clamp(22px,2.5vw,28px);
+  border:1px solid var(--line-dark);
+}
+.theme-html-root.webdev-ref .compare-card.pro,
+.theme-html-root.webdev-ref .cmp-card.win,
+.theme-html-root.webdev-ref .cmp-card.cmp-kod,
+.theme-html-root.webdev-ref .cmp-card.cmp-good,
+.theme-html-root.webdev-ref .comp-card.win,
+.theme-html-root.webdev-ref .cmp.win,
+.webdev-ref .compare-card.pro{
+  border:2px solid var(--signal);
+}
+
+/* Stats (WP .stat) */
+.theme-html-root.webdev-ref .stats,
+.theme-html-root.webdev-ref .stats-row,
+.theme-html-root.webdev-ref .stats-grid,
+.webdev-ref .stats{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
+  gap:24px;
+}
+.theme-html-root.webdev-ref .stat .num,
+.theme-html-root.webdev-ref .stat-num,
+.webdev-ref .stat .num{
+  font-size:clamp(2.3rem,4vw,3rem);
+  font-weight:800;
+  line-height:1;
+  letter-spacing:-.03em;
+}
+
+/* Testimonials (WP .testi) */
+.theme-html-root.webdev-ref .testi,
+.theme-html-root.webdev-ref .testi-card,
+.theme-html-root.webdev-ref .tst-card,
+.theme-html-root.webdev-ref .test-card,
+.theme-html-root.webdev-ref .tcard,
+.webdev-ref .testi{
+  background:var(--paper);
+  border:1px solid var(--line);
+  border-radius:18px;
+  padding:clamp(24px,3vw,28px);
+}
+
+/* Blade hub (web-design-and-development) — same card language as WP */
+body.page-web-dev .webdev-ref .sec-ink .pain-card,
+body.page-web-dev .webdev-ref .sec-ink .problem-card{
+  background:var(--ink-2) !important;
+  background-color:var(--ink-2) !important;
+  border:1px solid var(--line-dark) !important;
+  border-radius:18px;
+  padding:var(--sp-card) !important;
+  color:#B7CBD2 !important;
+  box-shadow:none !important;
+}
+body.page-web-dev .webdev-ref .sec-ink .pain-card h3,
+body.page-web-dev .webdev-ref .sec-ink .problem-card h3{color:#fff !important}
+body.page-web-dev .webdev-ref .sec-ink .pain-card p,
+body.page-web-dev .webdev-ref .sec-ink .problem-card p{color:#9FB6BE !important;font-size:.9rem}
+body.page-web-dev .webdev-ref .pain-num{color:var(--signal) !important}
+body.page-web-dev .webdev-ref .service-card,
+body.page-web-dev .webdev-ref .svc-card{
+  border-radius:18px;
+  padding:var(--sp-card) !important;
+  border:1px solid var(--line);
+  background:var(--paper);
+}
+body.page-web-dev .webdev-ref .sec-ink .why-card,
+body.page-web-dev .webdev-ref .sec-ink .feat-card{
+  background:var(--ink-2) !important;
+  background-color:var(--ink-2) !important;
+  border:1px solid var(--line-dark) !important;
+  border-radius:18px;
+  padding:var(--sp-card-feat) !important;
+  color:#B7CBD2 !important;
+  box-shadow:none !important;
+}
+body.page-web-dev .webdev-ref .sec-ink .why-card h3,
+body.page-web-dev .webdev-ref .sec-ink .feat-card h3{color:#fff !important}
+body.page-web-dev .webdev-ref .sec-ink .why-card p,
+body.page-web-dev .webdev-ref .sec-ink .feat-card p{color:#fff !important}
+body.page-web-dev .webdev-ref .why-num{color:var(--signal) !important}
+body.page-web-dev .webdev-ref .process-step{
+  background:var(--paper);
+  border:1px solid var(--line);
+  border-top:2px solid var(--signal);
+  border-radius:18px;
+  padding:clamp(24px,3vw,28px) clamp(22px,2.5vw,24px);
+  box-shadow:var(--shadow-sm);
+}
+body.page-web-dev .webdev-ref .process-step .step-badge{
+  width:auto;
+  height:auto;
+  border:none;
+  background:transparent;
+  box-shadow:none;
+  border-radius:0;
+  display:block;
+  font-size:2.5rem;
+  font-weight:800;
+  line-height:1;
+  letter-spacing:-.03em;
+  color:var(--signal);
+  margin-bottom:18px;
+  padding:0;
+}
+
+/* Shared KodRank hero on the web-dev hub — match WP/DM hero */
+body.page-web-dev > .hero,
+body.page-web-dev section.hero{
+  position:relative;
+  overflow:hidden;
+  min-height:auto;
+  background:var(--ink,#0A1A22);
+  color:#fff;
+  padding:0;
+}
+body.page-web-dev > .hero .hero-bg{
+  position:absolute;inset:0;
+  background-size:cover;
+  background-position:right center;
+  z-index:0;
+}
+body.page-web-dev > .hero .hero-veil{
+  position:absolute;inset:0;z-index:1;
+  background:linear-gradient(95deg,
+    rgba(10,26,34,1) 0%,
+    rgba(10,26,34,.96) 10%,
+    rgba(10,26,34,.82) 22%,
+    rgba(10,26,34,.58) 34%,
+    rgba(10,26,34,.34) 46%,
+    rgba(10,26,34,.15) 58%,
+    rgba(10,26,34,.04) 68%,
+    rgba(10,26,34,0) 78%);
+}
+body.page-web-dev > .hero .wrap{position:relative;z-index:2}
+body.page-web-dev > .hero h1{color:#fff}
+body.page-web-dev > .hero h1 .accent,
+body.page-web-dev > .hero h1 .hl{color:var(--signal,#F47A1F)}
+body.page-web-dev > .hero .sub{color:#B7CBD2}
+
+/* Shopify → same visual language as /wordpress-development-services
+   Pain = ink + dark cards | Services = paper + white cards | Why = ink feats | Process = paper procs */
+
+/* Pain (WP .sec-ink .problem-card) */
+.shopify-theme-page.webdev-ref section:has(> .wrap .pain-grid){
+  background:var(--ink) !important;
+  color:#B7CBD2 !important;
+}
+.shopify-theme-page.webdev-ref section:has(.pain-grid) .eyebrow,
+.shopify-theme-page.webdev-ref section:has(.pain-grid) .eyebrow::before{
+  color:var(--signal) !important;
+}
+.shopify-theme-page.webdev-ref section:has(.pain-grid) h2,
+.shopify-theme-page.webdev-ref section:has(.pain-grid) h3{
+  color:#fff !important;
+}
+.shopify-theme-page.webdev-ref section:has(.pain-grid) .lede,
+.shopify-theme-page.webdev-ref section:has(.pain-grid) .head-block p,
+.shopify-theme-page.webdev-ref section:has(.pain-grid) .head-block .lede{
+  color:#9FB6BE !important;
+}
+.shopify-theme-page.webdev-ref section:has(.pain-grid) .mark{
+  color:var(--signal) !important;
+}
+.shopify-theme-page.webdev-ref .pain-card{
+  background:var(--ink-2) !important;
+  background-color:var(--ink-2) !important;
+  border:1px solid var(--line-dark) !important;
+  color:#B7CBD2 !important;
+  box-shadow:none !important;
+}
+.shopify-theme-page.webdev-ref .pain-card h3{color:#fff !important}
+.shopify-theme-page.webdev-ref .pain-card p{color:#9FB6BE !important}
+.shopify-theme-page.webdev-ref .pain-card .ico{
+  background:rgba(244,122,31,.12) !important;
+  color:var(--signal) !important;
+}
+.shopify-theme-page.webdev-ref .pain-line{
+  background:var(--ink-2) !important;
+  border:1px solid var(--line-dark) !important;
+  color:#fff !important;
+}
+.shopify-theme-page.webdev-ref .pain-line p{color:#B7CBD2 !important}
+.shopify-theme-page.webdev-ref .pain-line b{color:#fff !important}
+.shopify-theme-page.webdev-ref .pain-line .mark,
+.shopify-theme-page.webdev-ref .pain-line .tlink{color:var(--signal) !important}
+
+/* Services (WP .sec-paper .svc-card) */
+.shopify-theme-page.webdev-ref #services{
+  background:var(--paper) !important;
+  color:var(--graphite) !important;
+}
+.shopify-theme-page.webdev-ref #services .eyebrow,
+.shopify-theme-page.webdev-ref #services .eyebrow::before{
+  color:var(--signal-deep) !important;
+}
+.shopify-theme-page.webdev-ref #services h2{color:var(--graphite) !important}
+.shopify-theme-page.webdev-ref #services .lede,
+.shopify-theme-page.webdev-ref #services .head-block p,
+.shopify-theme-page.webdev-ref #services .head-block .lede{
+  color:var(--slate) !important;
+}
+.shopify-theme-page.webdev-ref #services .mark{color:var(--signal-deep) !important}
+.shopify-theme-page.webdev-ref #services .svc-card,
+.shopify-theme-page.webdev-ref #services .svc-grid .svc-card{
+  background:var(--paper) !important;
+  background-color:var(--paper) !important;
+  border:1px solid var(--line) !important;
+  color:var(--graphite) !important;
+  box-shadow:var(--shadow-sm);
+}
+.shopify-theme-page.webdev-ref #services .svc-card h3{color:var(--graphite) !important}
+.shopify-theme-page.webdev-ref #services .svc-card p{color:var(--slate) !important}
+.shopify-theme-page.webdev-ref #services .svc-card .tlink{color:var(--signal-deep) !important}
+.shopify-theme-page.webdev-ref #services .svc-card .tile{
+  background:var(--mist-2) !important;
+  color:var(--graphite) !important;
+}
+.shopify-theme-page.webdev-ref #services .svc-card:hover .tile{
+  background:var(--signal) !important;
+  color:var(--signal-ink) !important;
+}
+.shopify-theme-page.webdev-ref #services .svc-card .tile svg{stroke:currentColor}
+
+/* Stats inside services = WP stats-bg band */
+.shopify-theme-page.webdev-ref #services .stats{
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:24px;
+  background:var(--ink) !important;
+  border:none !important;
+  border-radius:18px;
+  padding:clamp(28px,4vw,44px) clamp(20px,3vw,36px) !important;
+  margin-top:clamp(28px,4vw,48px) !important;
+}
+.shopify-theme-page.webdev-ref #services .stat .num{color:#fff !important}
+.shopify-theme-page.webdev-ref #services .stat .num .mark{color:var(--signal) !important}
+.shopify-theme-page.webdev-ref #services .stat .lbl{color:#7C949C !important}
+
+/* Process (WP .sec-paper .proc) */
+.shopify-theme-page.webdev-ref #process{
+  background:var(--paper) !important;
+}
+.shopify-theme-page.webdev-ref .proc{
+  background:transparent !important;
+  padding:0 !important;
+  border:none !important;
+  box-shadow:none !important;
+}
+.shopify-theme-page.webdev-ref .proc-step{
+  background:var(--paper) !important;
+  border:1px solid var(--line) !important;
+  border-top:2px solid var(--signal) !important;
+  border-radius:18px !important;
+  box-shadow:var(--shadow-sm);
+}
+.shopify-theme-page.webdev-ref .proc-step h3{color:var(--graphite) !important}
+.shopify-theme-page.webdev-ref .proc-step p{color:var(--slate) !important}
+.shopify-theme-page.webdev-ref .proc-step .n{
+  font-size:1.6rem !important;
+  margin-bottom:6px !important;
+  color:var(--signal) !important;
+}
+
+/* Why — WP feat-card colours; keep split layout */
+.shopify-theme-page.webdev-ref .why-grid{
+  display:grid !important;
+  grid-template-columns:1.05fr .95fr !important;
+  gap:40px !important;
+  align-items:start !important;
+  overflow:visible !important;
+}
+.shopify-theme-page.webdev-ref .why-feats{
+  display:grid;
+  gap:16px;
+}
+.shopify-theme-page.webdev-ref .feat{
+  display:flex !important;
+  flex-direction:row !important;
+  gap:16px;
+  padding:var(--sp-card-feat) !important;
+  background:rgba(15,42,51,.74) !important;
+  border:1px solid var(--line-dark) !important;
+  border-radius:18px;
+  width:auto !important;
+  min-width:0 !important;
+  max-width:none !important;
+}
+.shopify-theme-page.webdev-ref .feat h3{color:#fff !important;font-size:1.05rem;margin-bottom:5px}
+.shopify-theme-page.webdev-ref .feat p{color:#D5E4E8 !important;font-size:.9rem}
+.shopify-theme-page.webdev-ref .feat .fi{
+  width:42px;height:42px;flex:none;
+  border-radius:11px;background:rgba(244,122,31,.12);
+  display:grid;place-items:center;color:var(--signal);
+}
+.shopify-theme-page.webdev-ref .cmp{
+  background:rgba(15,42,51,.74) !important;
+  border:1px solid var(--line-dark) !important;
+  border-radius:18px !important;
+}
+.shopify-theme-page.webdev-ref .cmp.win{
+  background:var(--ink) !important;
+  border:1.5px solid var(--signal) !important;
+}
+
+/* Industries like WP svc-cards */
+.shopify-theme-page.webdev-ref .ind{
+  background:var(--paper) !important;
+  border:1px solid var(--line) !important;
+  border-radius:18px !important;
+  padding:var(--sp-card) !important;
+  box-shadow:var(--shadow-sm);
+}
+.shopify-theme-page.webdev-ref .ind h3{color:var(--graphite) !important}
+.shopify-theme-page.webdev-ref .ind p{color:var(--slate) !important}
+
+.shopify-theme-page.webdev-ref .svc-badge{
+  position:absolute !important;
+  top:22px !important;
+  right:22px !important;
+  width:26px !important;
+  height:26px !important;
+  min-width:26px !important;
+  min-height:26px !important;
+  max-width:26px !important;
+  max-height:26px !important;
+  border-radius:50% !important;
+  overflow:hidden;
+  flex:none !important;
+}
+
+@media (min-width:901px){
+  .shopify-theme-page.webdev-ref .svc-grid{
+    display:grid !important;
+    grid-template-columns:repeat(3,minmax(0,1fr)) !important;
+    gap:20px !important;
+  }
+  .shopify-theme-page.webdev-ref .proc{
+    display:grid !important;
+    grid-template-columns:repeat(3,minmax(0,1fr)) !important;
+    gap:18px !important;
+  }
+  .shopify-theme-page.webdev-ref .pain-grid{
+    display:grid !important;
+    grid-template-columns:repeat(3,minmax(0,1fr)) !important;
+    gap:18px !important;
+  }
+}
+
+@media (max-width:1024px){
+  .shopify-theme-page.webdev-ref .why-grid{
+    grid-template-columns:1fr !important;
+  }
+  .shopify-theme-page.webdev-ref #services .stats{
+    grid-template-columns:1fr 1fr;
+  }
+}
+@media (max-width:767px){
+  .shopify-theme-page.webdev-ref .feat{
+    flex:none !important;
+  }
+  .shopify-theme-page.webdev-ref #services .stats{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    text-align:left;
+  }
+}
+
+/* ── WP spacing system (tokens) — kill duplicate grid/head gaps + unify card padding ── */
+.theme-html-root.webdev-ref .problem-grid,
+.theme-html-root.webdev-ref .pain-grid,
+.theme-html-root.webdev-ref .pain-list,
+.theme-html-root.webdev-ref .prob-list,
+.theme-html-root.webdev-ref .service-grid,
+.theme-html-root.webdev-ref .svc-grid,
+.theme-html-root.webdev-ref .serv-grid,
+.theme-html-root.webdev-ref .feature-grid,
+.theme-html-root.webdev-ref .why-grid,
+.theme-html-root.webdev-ref .edge-grid,
+.theme-html-root.webdev-ref .industry-grid,
+.theme-html-root.webdev-ref .ind-grid,
+.theme-html-root.webdev-ref .process-list,
+.theme-html-root.webdev-ref .process-grid,
+.theme-html-root.webdev-ref .proc-grid,
+.theme-html-root.webdev-ref .loop-grid,
+.theme-html-root.webdev-ref .steps,
+.theme-html-root.webdev-ref .proc,
+.theme-html-root.webdev-ref .cmp,
+.theme-html-root.webdev-ref .grid-cards,
+.theme-html-root.webdev-ref .compare-wrap,
+.theme-html-root.webdev-ref .cmp-grid,
+.theme-html-root.webdev-ref .stats,
+.theme-html-root.webdev-ref .stats-row,
+.theme-html-root.webdev-ref .stats-grid,
+.theme-html-root.webdev-ref .tst-grid,
+.theme-html-root.webdev-ref .test-grid,
+.theme-html-root.webdev-ref .tgrid,
+.theme-html-root.webdev-ref .faq-list,
+.theme-html-root.webdev-ref .faq-wrap,
+.theme-html-root.webdev-ref .faq,
+.theme-html-root.webdev-ref .grid.g-2,
+.theme-html-root.webdev-ref .grid.g-3,
+.theme-html-root.webdev-ref .grid.g-4,
+.theme-html-root.webdev-ref .grid.g3,
+.theme-html-root.webdev-ref .grid.g4,
+.webdev-ref .problem-grid,
+.webdev-ref .pain-grid,
+.webdev-ref .service-grid,
+.webdev-ref .svc-grid,
+.webdev-ref .process-list,
+.webdev-ref .proc-grid,
+.webdev-ref .proc,
+.webdev-ref .steps{
+  margin-top:0 !important;
+}
+
+.theme-html-root.webdev-ref .problem-grid,
+.theme-html-root.webdev-ref .pain-grid,
+.theme-html-root.webdev-ref .pain-list,
+.webdev-ref .problem-grid,
+.webdev-ref .pain-grid{
+  gap:var(--sp-gap-pain);
+}
+.theme-html-root.webdev-ref .service-grid,
+.theme-html-root.webdev-ref .svc-grid,
+.theme-html-root.webdev-ref .serv-grid,
+.theme-html-root.webdev-ref .feature-grid,
+.webdev-ref .service-grid,
+.webdev-ref .svc-grid{
+  gap:var(--sp-gap-svc);
+}
+.theme-html-root.webdev-ref .process-list,
+.theme-html-root.webdev-ref .process-grid,
+.theme-html-root.webdev-ref .proc-grid,
+.theme-html-root.webdev-ref .steps,
+.webdev-ref .process-list,
+.webdev-ref .proc-grid,
+.webdev-ref .steps{
+  gap:var(--sp-gap-proc);
+}
+
+/* Pain / problem / generic .pain .svc .feat — WP card padding */
+.theme-html-root.webdev-ref .problem-card,
+.theme-html-root.webdev-ref .pain-card,
+.theme-html-root.webdev-ref .pain,
+.theme-html-root.webdev-ref .prob-item,
+.theme-html-root.webdev-ref .prob,
+.theme-html-root.webdev-ref .svc-card,
+.theme-html-root.webdev-ref .serv-card,
+.theme-html-root.webdev-ref .service-card,
+.theme-html-root.webdev-ref .svc:not(.svc-nav):not(.svc-slide):not(.svc-stack-item):not(.svc-grid):not(.svc-track):not(.svc-viewport):not(.svc-badge):not(.svc-icon):not(.svc-ico):not(.svc-head):not(.svc-top):not(.svc-num),
+.webdev-ref .problem-card,
+.webdev-ref .pain-card,
+.webdev-ref .svc-card,
+.webdev-ref .service-card{
+  padding:var(--sp-card) !important;
+  box-sizing:border-box;
+}
+
+.theme-html-root.webdev-ref .feat-card,
+.theme-html-root.webdev-ref .why-card,
+.theme-html-root.webdev-ref .feat,
+.theme-html-root.webdev-ref .why:not(.why-grid):not(.why-bg):not(.why-wrap):not(.why-copy):not(.why-list):not(.why-card):not(.why-feats):not(.why-item):not(.why-us),
+.theme-html-root.webdev-ref .edge,
+.theme-html-root.webdev-ref .wp-card,
+.theme-html-root.webdev-ref .def-card,
+.webdev-ref .feat-card,
+.webdev-ref .why-card{
+  padding:var(--sp-card-feat) !important;
+  box-sizing:border-box;
+}
+
+.theme-html-root.webdev-ref .process-list > .proc,
+.theme-html-root.webdev-ref .proc-grid > .proc,
+.theme-html-root.webdev-ref .proc-grid > .proc-card,
+.theme-html-root.webdev-ref .proc-grid > .step,
+.theme-html-root.webdev-ref .proc-card,
+.theme-html-root.webdev-ref .process-card,
+.theme-html-root.webdev-ref .proc-step,
+.theme-html-root.webdev-ref .pstep,
+.theme-html-root.webdev-ref .process-step,
+.theme-html-root.webdev-ref .loop-card,
+.theme-html-root.webdev-ref .steps > .step,
+.theme-html-root.webdev-ref .grid > .step,
+.theme-html-root.webdev-ref .step:not(.steps),
+.webdev-ref .process-list > .proc,
+.webdev-ref .proc-grid > .step{
+  padding:var(--sp-card-proc) !important;
+  box-sizing:border-box;
+}
+
+.theme-html-root.webdev-ref .compare-card,
+.theme-html-root.webdev-ref .cmp-card,
+.theme-html-root.webdev-ref .comp-card,
+.theme-html-root.webdev-ref .cmp-grid > .cmp,
+.webdev-ref .compare-card{
+  padding:var(--sp-card-compare) !important;
+  box-sizing:border-box;
+}
+
+.theme-html-root.webdev-ref .testi,
+.theme-html-root.webdev-ref .testi-card,
+.theme-html-root.webdev-ref .tst-card,
+.theme-html-root.webdev-ref .test-card,
+.theme-html-root.webdev-ref .tcard,
+.theme-html-root.webdev-ref .tst:not(.tst-grid):not(.tst-head),
+.webdev-ref .testi{
+  padding:var(--sp-card-testi) !important;
+  box-sizing:border-box;
+}
+
+.theme-html-root.webdev-ref .faq-item,
+.theme-html-root.webdev-ref details.faq,
+.webdev-ref .faq-item{
+  padding:var(--sp-card-faq) !important;
+}
+
+.theme-html-root.webdev-ref .stat-card,
+.theme-html-root.webdev-ref .intro-side{
+  padding:var(--sp-card) !important;
+  box-sizing:border-box;
+}
+
+.theme-html-root.webdev-ref .svc-card h3,
+.theme-html-root.webdev-ref .pain-card h3,
+.theme-html-root.webdev-ref .pain-card h4,
+.theme-html-root.webdev-ref .problem-card h3,
+.theme-html-root.webdev-ref .problem-card h4,
+.theme-html-root.webdev-ref .feat-card h3,
+.theme-html-root.webdev-ref .why-card h3,
+.webdev-ref .svc-card h3,
+.webdev-ref .pain-card h3{
+  margin-bottom:var(--sp-title-gap);
+}
+
+/* ── AI Chatbot → WP visual language (wordpress-development-services)
+   Pain = ink + dark cards | Services = paper + white cards
+   Why = ink + feat cards | Process = paper + white procs
+   Beats service-page-extra / generic .sec-ink .svc dark-card lock. ── */
+
+/* Problem (WP .sec-ink .problem-card) — HTML is still .sec-mist */
+.aibot-theme-page.webdev-ref #problem{
+  background:var(--ink) !important;
+  color:#B7CBD2 !important;
+}
+.aibot-theme-page.webdev-ref #problem .eyebrow,
+.aibot-theme-page.webdev-ref #problem .eyebrow::before,
+.aibot-theme-page.webdev-ref #problem .o,
+.aibot-theme-page.webdev-ref #problem h2 .o{
+  color:var(--signal) !important;
+}
+.aibot-theme-page.webdev-ref #problem h2,
+.aibot-theme-page.webdev-ref #problem h3{
+  color:#fff !important;
+}
+.aibot-theme-page.webdev-ref #problem .prob-grid > div > p,
+.aibot-theme-page.webdev-ref #problem p{
+  color:#9FB6BE !important;
+}
+.aibot-theme-page.webdev-ref #problem .prob-item,
+.theme-html-root.aibot-theme-page.webdev-ref #problem .prob-item{
+  background:var(--ink-2) !important;
+  background-color:var(--ink-2) !important;
+  border:1px solid var(--line-dark) !important;
+  color:#B7CBD2 !important;
+  box-shadow:none !important;
+}
+.aibot-theme-page.webdev-ref #problem .prob-item b{
+  color:#fff !important;
+}
+.aibot-theme-page.webdev-ref #problem .prob-item p{
+  color:#9FB6BE !important;
+}
+.aibot-theme-page.webdev-ref #problem .prob-x{
+  background:rgba(244,122,31,.14) !important;
+  color:var(--signal) !important;
+}
+.aibot-theme-page.webdev-ref #problem .prob-panel{
+  background:var(--ink-2) !important;
+  color:#B7CBD2 !important;
+  border:1px solid var(--line-dark);
+}
+.aibot-theme-page.webdev-ref #problem .prob-panel h3,
+.aibot-theme-page.webdev-ref #problem .prob-panel .flip{
+  color:#fff !important;
+}
+.aibot-theme-page.webdev-ref #problem .prob-panel p{
+  color:#9FB6BE !important;
+}
+.aibot-theme-page.webdev-ref #problem .prob-panel .big,
+.aibot-theme-page.webdev-ref #problem .prob-panel .o,
+.aibot-theme-page.webdev-ref #problem .prob-panel .flip .o{
+  color:var(--signal) !important;
+}
+
+/* Services (WP .sec-paper .svc-card) — HTML is still .sec-ink */
+.aibot-theme-page.webdev-ref #services{
+  background:var(--paper) !important;
+  color:var(--graphite) !important;
+}
+.aibot-theme-page.webdev-ref #services .eyebrow,
+.aibot-theme-page.webdev-ref #services .eyebrow::before{
+  color:var(--signal-deep) !important;
+}
+.aibot-theme-page.webdev-ref #services h2{
+  color:var(--graphite) !important;
+}
+.aibot-theme-page.webdev-ref #services .sec-head p,
+.aibot-theme-page.webdev-ref #services h2 .o,
+.aibot-theme-page.webdev-ref #services .o{
+  color:var(--signal-deep) !important;
+}
+.aibot-theme-page.webdev-ref #services .sec-head p{
+  color:var(--slate) !important;
+}
+.aibot-theme-page.webdev-ref #services .svc,
+.aibot-theme-page.webdev-ref #services .svc-grid > .svc,
+.theme-html-root.aibot-theme-page.webdev-ref #services .svc,
+.theme-html-root.aibot-theme-page.webdev-ref .sec-ink .svc-grid > .svc{
+  background:var(--paper) !important;
+  background-color:var(--paper) !important;
+  border:1px solid var(--line) !important;
+  color:var(--graphite) !important;
+  box-shadow:var(--shadow-sm);
+}
+.aibot-theme-page.webdev-ref #services .svc:hover{
+  border-color:transparent !important;
+  transform:translateY(-3px);
+  box-shadow:var(--shadow-md) !important;
+}
+.aibot-theme-page.webdev-ref #services .svc h3,
+.aibot-theme-page.webdev-ref #services .svc h4,
+.theme-html-root.aibot-theme-page.webdev-ref #services .svc h3{
+  color:var(--graphite) !important;
+}
+.aibot-theme-page.webdev-ref #services .svc p,
+.theme-html-root.aibot-theme-page.webdev-ref #services .svc p{
+  color:var(--slate) !important;
+}
+.aibot-theme-page.webdev-ref #services .svc .o,
+.aibot-theme-page.webdev-ref #services .svc p .o,
+.aibot-theme-page.webdev-ref #services .tlink{
+  color:var(--signal-deep) !important;
+}
+.aibot-theme-page.webdev-ref #services .svc-ico{
+  background:var(--mist-2) !important;
+  color:var(--graphite) !important;
+}
+.aibot-theme-page.webdev-ref #services .svc:hover .svc-ico{
+  background:var(--signal) !important;
+  color:var(--signal-ink) !important;
+}
+.aibot-theme-page.webdev-ref #services .svc-badge{
+  background:var(--signal) !important;
+  color:var(--signal-ink) !important;
+}
+
+/* Why (WP .sec-ink.why-bg .feat-card) */
+.aibot-theme-page.webdev-ref #why{
+  background:var(--ink) !important;
+  color:#B7CBD2 !important;
+}
+.aibot-theme-page.webdev-ref #why h2{
+  color:#fff !important;
+}
+.aibot-theme-page.webdev-ref #why .sec-head p{
+  color:#9FB6BE !important;
+}
+.aibot-theme-page.webdev-ref #why .eyebrow,
+.aibot-theme-page.webdev-ref #why .o,
+.aibot-theme-page.webdev-ref #why h2 .o{
+  color:var(--signal) !important;
+}
+.aibot-theme-page.webdev-ref #why .why,
+.theme-html-root.aibot-theme-page.webdev-ref #why .why{
+  background:var(--ink-2) !important;
+  background-color:var(--ink-2) !important;
+  border:1px solid var(--line-dark) !important;
+  color:#B7CBD2 !important;
+  box-shadow:none !important;
+}
+.aibot-theme-page.webdev-ref #why .why:hover{
+  border-color:rgba(244,122,31,.35) !important;
+  background:var(--ink-3) !important;
+  transform:translateY(-3px);
+  box-shadow:var(--shadow-md) !important;
+}
+.aibot-theme-page.webdev-ref #why .why h3{
+  color:#fff !important;
+}
+.aibot-theme-page.webdev-ref #why .why p{
+  color:#9FB6BE !important;
+}
+.aibot-theme-page.webdev-ref #why .why .o,
+.aibot-theme-page.webdev-ref #why .why p .o{
+  color:var(--signal) !important;
+}
+.aibot-theme-page.webdev-ref #why .why .num{
+  color:var(--signal) !important;
+}
+
+/* Process (WP .sec-paper .proc) */
+.aibot-theme-page.webdev-ref #process{
+  background:var(--paper) !important;
+}
+.aibot-theme-page.webdev-ref #process .proc{
+  background:transparent !important;
+  padding:0 !important;
+  border:none !important;
+  box-shadow:none !important;
+}
+.aibot-theme-page.webdev-ref #process .pstep,
+.aibot-theme-page.webdev-ref .pstep{
+  background:var(--paper) !important;
+  border:1px solid var(--line) !important;
+  border-top:2px solid var(--signal) !important;
+  border-radius:18px !important;
+  color:var(--graphite) !important;
+  box-shadow:var(--shadow-sm);
+}
+.aibot-theme-page.webdev-ref .pstep h4,
+.aibot-theme-page.webdev-ref .pstep h3{
+  color:var(--graphite) !important;
+}
+.aibot-theme-page.webdev-ref .pstep p{
+  color:var(--slate) !important;
+}
+.aibot-theme-page.webdev-ref .pstep .pn{
+  background:transparent !important;
+  color:var(--signal) !important;
+  width:auto !important;
+  height:auto !important;
+  font-size:1.6rem !important;
+  font-weight:800 !important;
+  justify-content:flex-start !important;
+  padding:0 !important;
+}
+
+/* Paper sections: testimonials / FAQ / tech / leftover mist (not #problem) */
+.aibot-theme-page.webdev-ref .tst,
+.aibot-theme-page.webdev-ref .qa{
+  background:#fff !important;
+  border-color:var(--line) !important;
+  color:var(--graphite) !important;
+}
+.aibot-theme-page.webdev-ref .tst q,
+.aibot-theme-page.webdev-ref .tst-who b,
+.aibot-theme-page.webdev-ref .qa summary,
+.aibot-theme-page.webdev-ref #tech h2,
+.aibot-theme-page.webdev-ref #tech b,
+.aibot-theme-page.webdev-ref .contact-info h2,
+.aibot-theme-page.webdev-ref .ci b,
+.aibot-theme-page.webdev-ref #process h2,
+.aibot-theme-page.webdev-ref section.sec-mist:not(#problem) h2,
+.aibot-theme-page.webdev-ref section.sec-mist:not(#problem) h3,
+.aibot-theme-page.webdev-ref section.sec-mist:not(#problem) h4{
+  color:var(--graphite) !important;
+}
+.aibot-theme-page.webdev-ref .tst-who span,
+.aibot-theme-page.webdev-ref .qa .ans,
+.aibot-theme-page.webdev-ref #tech p,
+.aibot-theme-page.webdev-ref .contact-info p,
+.aibot-theme-page.webdev-ref .ci span,
+.aibot-theme-page.webdev-ref #process .sec-head p,
+.aibot-theme-page.webdev-ref section.sec-mist:not(#problem) p,
+.aibot-theme-page.webdev-ref section.sec-mist:not(#problem) .sec-head p{
+  color:var(--slate) !important;
+}
+.aibot-theme-page.webdev-ref #tech .o,
+.aibot-theme-page.webdev-ref #process .o,
+.aibot-theme-page.webdev-ref #process .eyebrow,
+.aibot-theme-page.webdev-ref section.sec-mist:not(#problem) .o,
+.aibot-theme-page.webdev-ref section.sec-mist:not(#problem) .eyebrow{
+  color:var(--signal-deep) !important;
+}
+
+/* Compare — WP dark tiles on ink */
+.aibot-theme-page.webdev-ref .cmp-card{
+  background:var(--ink-2) !important;
+  border-color:var(--line-dark) !important;
+  color:#B7CBD2 !important;
+}
+.aibot-theme-page.webdev-ref .cmp-card.win{
+  border:2px solid var(--signal) !important;
+  background-color:var(--ink-2) !important;
+  background-image:linear-gradient(180deg,rgba(244,122,31,.1),transparent) !important;
+}
+.aibot-theme-page.webdev-ref .cmp-card h3{
+  color:#fff !important;
+}
+.aibot-theme-page.webdev-ref .cmp-card li{
+  color:#B7CBD2 !important;
+}
+.aibot-theme-page.webdev-ref .cmp-card.win li{
+  color:#DCE8EC !important;
+}
+
+/* Stats / CTA on ink */
+.aibot-theme-page.webdev-ref .sec-stats .stat:not(.hi) b,
+.aibot-theme-page.webdev-ref .cta-band h2{
+  color:#fff !important;
+}
+.aibot-theme-page.webdev-ref .sec-stats .stat.hi b,
+.aibot-theme-page.webdev-ref .cta-band h2 .o{
+  color:var(--signal) !important;
+}
+.aibot-theme-page.webdev-ref .sec-stats .stat span,
+.aibot-theme-page.webdev-ref .stats-note,
+.aibot-theme-page.webdev-ref .cta-band p{
+  color:#9FB6BE !important;
+}
+
+.aibot-theme-page.webdev-ref #tech,
+.aibot-theme-page.webdev-ref #faq{
+  background:var(--paper);
+}
+.aibot-theme-page.webdev-ref .chip{
+  background:#fff !important;
+  color:var(--graphite) !important;
+  border-color:var(--line) !important;
+}
+
+@media (min-width:901px){
+  .aibot-theme-page.webdev-ref .svc-grid{
+    display:grid !important;
+    grid-template-columns:repeat(3,minmax(0,1fr)) !important;
+    gap:22px !important;
+  }
+  .aibot-theme-page.webdev-ref .why-grid{
+    display:grid !important;
+    grid-template-columns:repeat(3,minmax(0,1fr)) !important;
+    gap:24px !important;
+  }
+  .aibot-theme-page.webdev-ref .proc{
+    display:grid !important;
+    grid-template-columns:repeat(5,minmax(0,1fr)) !important;
+    gap:18px !important;
+  }
+}
+@media (min-width:901px) and (max-width:1199px){
+  .aibot-theme-page.webdev-ref .proc{
+    grid-template-columns:repeat(3,minmax(0,1fr)) !important;
+  }
+}

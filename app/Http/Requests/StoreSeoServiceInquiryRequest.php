@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Rules\Recaptcha;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
@@ -39,6 +40,7 @@ class StoreSeoServiceInquiryRequest extends FormRequest
             'message' => ['required', 'string', 'max:5000'],
             'fax_number' => ['nullable', 'string', 'max:100'],
             'redirect_to' => ['nullable', 'string', 'max:500'],
+            'g-recaptcha-response' => ['required', new Recaptcha],
         ];
     }
 }

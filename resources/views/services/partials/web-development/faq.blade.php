@@ -1,7 +1,7 @@
 @php $d = $s['faq'] ?? []; @endphp
-<section class="sec-mist" id="faq">
+<section class="sec-paper" id="faq">
   <div class="wrap">
-    <div class="section-head center reveal">
+    <div class="section-head reveal">
       @if(!empty($d['eyebrow']))
         <span class="eyebrow">{{ $d['eyebrow'] }}</span>
       @endif

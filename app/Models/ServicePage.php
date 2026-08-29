@@ -44,6 +44,16 @@ class ServicePage extends Model
         return $this->children()->with(['sections', 'childrenRecursive']);
     }
 
+    /**
+     * Nested children for nav/mega menu — never load sections (can be multi‑MB HTML).
+     */
+    public function childrenNavRecursive(): HasMany
+    {
+        return $this->children()
+            ->where('is_active', true)
+            ->with(['childrenNavRecursive']);
+    }
+
     public function sections(): HasMany
     {
         return $this->hasMany(ServicePageSection::class)->orderBy('sort_order');
@@ -75,9 +85,11 @@ class ServicePage extends Model
     {
         $items = new Collection;
 
-        $children = $this->relationLoaded('childrenRecursive')
-            ? $this->childrenRecursive
-            : $this->children()->where('is_active', true)->with('childrenRecursive')->get();
+        $children = $this->relationLoaded('childrenNavRecursive')
+            ? $this->childrenNavRecursive
+            : ($this->relationLoaded('childrenRecursive')
+                ? $this->childrenRecursive
+                : $this->children()->where('is_active', true)->with('childrenNavRecursive')->get());
 
         foreach ($children as $child) {
             if (! $child->is_active) {
@@ -103,17 +115,18 @@ class ServicePage extends Model
      */
     public static function navTree(): Collection
     {
-        return Cache::remember('service_pages_nav_tree', 60, function () {
+        // File store avoids MySQL max_allowed_packet when CACHE_STORE=database.
+        return Cache::store('file')->remember('service_pages_nav_tree', 60, function () {
             return static::query()
                 ->whereNull('parent_id')
                 ->where('is_active', true)
                 ->orderBy('sort_order')
                 ->orderBy('name')
-                ->with([
-                    'childrenRecursive' => fn ($q) => $q->where('is_active', true),
-                ])
-                ->get()
-                ->filter(fn (self $page) => empty($page->seo['hide_from_nav']))
+                ->with('childrenNavRecursive')
+                ->get(['id', 'parent_id', 'slug', 'name', 'is_active', 'sort_order', 'seo'])
+                ->filter(fn (self $page) => empty($page->seo['hide_from_nav'])
+                    && strcasecmp((string) $page->slug, 'industries') !== 0
+                    && strcasecmp((string) $page->name, 'Industries') !== 0)
                 ->values();
         });
     }
@@ -161,11 +174,13 @@ class ServicePage extends Model
 
     public static function findBySlug(string $slug): ?self
     {
-        return Cache::remember("service_page_{$slug}", 60, function () use ($slug) {
+        // File store: theme-html pages can be multi‑MB and blow MySQL max_allowed_packet
+        // when CACHE_STORE=database.
+        return Cache::store('file')->remember("service_page_{$slug}", 60, function () use ($slug) {
             return static::query()
                 ->where('slug', $slug)
                 ->where('is_active', true)
-                ->with('sections')
+                ->with(['sections', 'parent:id,slug,name'])
                 ->first();
         });
     }
@@ -173,6 +188,7 @@ class ServicePage extends Model
     public static function forgetCache(string $slug): void
     {
         Cache::forget("service_page_{$slug}");
+        Cache::store('file')->forget("service_page_{$slug}");
         static::forgetNavCache();
     }
 
@@ -180,6 +196,8 @@ class ServicePage extends Model
     {
         Cache::forget('service_pages_nav');
         Cache::forget('service_pages_nav_tree');
+        Cache::store('file')->forget('service_pages_nav');
+        Cache::store('file')->forget('service_pages_nav_tree');
     }
 
     protected static function booted(): void

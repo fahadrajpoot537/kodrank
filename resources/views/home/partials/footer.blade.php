@@ -72,8 +72,8 @@
     <div class="f-bot">
       <span>{{ $c['site']['copyright'] ?? '' }}</span>
       <nav aria-label="Legal">
-        <a href="#top">Terms &amp; Conditions</a>
-        <a href="#top">Privacy Policy</a>
+        <a href="/terms-and-conditions">Terms &amp; Conditions</a>
+        <a href="/privacy-policy">Privacy Policy</a>
         <a href="{{ route('contact') }}">Contact Us</a>
       </nav>
     </div>

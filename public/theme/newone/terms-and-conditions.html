@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Terms &amp; Conditions | KodRank</title>
+<meta name="description" content="The terms and conditions that govern the web development and SEO services provided by KodRank to its clients.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://kodrank.com/terms-and-conditions">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --signal:#F47A1F;
+    --signal-deep:#CD661A;
+    --paper:#FFFFFF;
+    --line:#E1E9E5;
+    --graphite:#0D2029;
+    --slate:#4B5B62;
+    --slate-2:#6B7A80;
+    --maxw:820px;
+    --pad:clamp(18px,3.2vw,40px);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--graphite);
+    font-family:"Poppins",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    font-weight:400;
+    font-size:16px;
+    line-height:1.7;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{
+    max-width:var(--maxw);
+    margin:0 auto;
+    padding:clamp(40px,7vw,88px) var(--pad) clamp(56px,9vw,110px);
+  }
+
+  /* Breadcrumbs */
+  .crumbs{
+    font-size:.82rem;
+    font-weight:500;
+    margin:0 0 22px;
+    color:var(--slate-2);
+  }
+  .crumbs a{
+    color:var(--slate);
+    font-weight:500;
+  }
+  .crumbs a:hover{color:var(--signal-deep);text-decoration:none;}
+  .crumbs .sep{
+    color:var(--signal);
+    margin:0 9px;
+    font-weight:600;
+  }
+  .crumbs [aria-current="page"]{color:var(--graphite);font-weight:600;}
+
+  /* Header */
+  .eyebrow{
+    display:inline-block;
+    font-size:.75rem;
+    font-weight:500;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--signal-deep);
+    margin:0 0 14px;
+  }
+  h1{
+    font-weight:800;
+    font-size:clamp(2rem,5vw,2.9rem);
+    line-height:1.12;
+    letter-spacing:-.01em;
+    margin:0 0 18px;
+  }
+  .lede{
+    font-size:1.06rem;
+    color:var(--slate);
+    max-width:66ch;
+    margin:0 0 10px;
+  }
+  .updated{
+    font-size:.85rem;
+    color:var(--slate-2);
+    margin:18px 0 0;
+  }
+
+  hr{
+    border:0;
+    border-top:1px solid var(--line);
+    margin:clamp(32px,5vw,48px) 0;
+  }
+
+  /* Sections */
+  section{margin:0 0 clamp(30px,4.5vw,44px);}
+  h2{
+    font-weight:700;
+    font-size:1.32rem;
+    line-height:1.3;
+    letter-spacing:-.005em;
+    margin:0 0 6px;
+    scroll-margin-top:24px;
+  }
+  h2 .num{
+    color:var(--signal);
+    font-weight:800;
+    margin-right:12px;
+  }
+  h3{
+    font-weight:650;
+    font-size:1.02rem;
+    margin:22px 0 4px;
+    color:var(--graphite);
+  }
+  p{margin:0 0 14px;}
+  section p:last-child{margin-bottom:0;}
+
+  a{color:var(--signal-deep);text-decoration:none;font-weight:500;}
+  a:hover{text-decoration:underline;}
+
+  strong{font-weight:600;}
+  .accent{color:var(--signal-deep);font-weight:600;}
+
+  ul{margin:6px 0 14px;padding:0 0 0 2px;list-style:none;}
+  ul li{
+    position:relative;
+    padding:4px 0 4px 26px;
+    color:var(--slate);
+  }
+  ul li::before{
+    content:"";
+    position:absolute;
+    left:2px;
+    top:14px;
+    width:7px;height:7px;
+    border-radius:50%;
+    background:var(--signal);
+  }
+
+  /* Table of contents */
+  .toc{
+    border:1px solid var(--line);
+    border-radius:18px;
+    padding:24px clamp(20px,3vw,30px);
+    margin:0 0 clamp(36px,5vw,52px);
+  }
+  .toc h2{
+    font-size:.78rem;
+    font-weight:600;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--slate-2);
+    margin:0 0 14px;
+  }
+  .toc ol{
+    margin:0;
+    padding:0;
+    list-style:none;
+    counter-reset:toc;
+    columns:2;
+    column-gap:36px;
+  }
+  .toc li{
+    counter-increment:toc;
+    padding:5px 0;
+    break-inside:avoid;
+  }
+  .toc a{
+    color:var(--graphite);
+    font-weight:500;
+    font-size:.92rem;
+  }
+  .toc a::before{
+    content:counter(toc,decimal-leading-zero);
+    color:var(--signal);
+    font-weight:700;
+    margin-right:10px;
+    font-size:.82rem;
+  }
+  .toc a:hover{color:var(--signal-deep);text-decoration:none;}
+
+  /* Contact block */
+  .contact-box{
+    border:1px solid var(--line);
+    border-radius:18px;
+    padding:24px clamp(20px,3vw,30px);
+    margin-top:8px;
+  }
+  .contact-box p{margin:0 0 6px;color:var(--slate);}
+  .contact-box strong{color:var(--graphite);}
+
+  .note{
+    font-size:.9rem;
+    color:var(--slate-2);
+    font-style:italic;
+    border-left:3px solid var(--line);
+    padding:2px 0 2px 16px;
+    margin:18px 0;
+  }
+
+  @media (max-width:620px){
+    .toc ol{columns:1;}
+  }
+</style>
+</head>
+<body>
+<main class="wrap">
+
+  <nav class="crumbs" aria-label="Breadcrumb">
+    <a href="https://kodrank.com/">Home</a>
+    <span class="sep" aria-hidden="true">›</span>
+    <span aria-current="page">Terms &amp; Conditions</span>
+  </nav>
+
+  <header>
+    <span class="eyebrow">— Legal</span>
+    <h1>Terms &amp; Conditions</h1>
+    <p class="lede">These terms govern the web development and SEO services KodRank provides to its clients. Please read them carefully before engaging our services.</p>
+    <p class="updated">Last updated: 21 August 2026</p>
+  </header>
+
+  <hr>
+
+  <section id="intro">
+    <h2><span class="num">01</span>Introduction &amp; Acceptance</h2>
+    <p>These Terms &amp; Conditions ("Terms") apply to all services provided by <strong>KodRank</strong> ("we", "us", "our", or "the Agency") to you, the client ("you", "your", or "the Client"), including web development, web design, and search engine optimization (SEO) services.</p>
+    <p>By requesting, accepting a quotation for, or using our services, you confirm that you have read, understood, and agree to be bound by these Terms. If you do not agree with these Terms, you should not proceed with our services.</p>
+    <p>These Terms should be read alongside any written proposal, quotation, or statement of work agreed between the parties. Where a signed proposal conflicts with these Terms, the terms of the signed proposal take precedence to the extent of the conflict.</p>
+  </section>
+
+  <section id="definitions">
+    <h2><span class="num">02</span>Definitions</h2>
+    <ul>
+      <li><strong>"Services"</strong> means the web development, web design, SEO, content, and related digital services described in the agreed proposal or quotation.</li>
+      <li><strong>"Deliverables"</strong> means the websites, code, content, reports, audits, and other materials produced by the Agency for the Client.</li>
+      <li><strong>"Proposal"</strong> means the written quotation, statement of work, or project specification setting out the scope, deliverables, and charges.</li>
+      <li><strong>"Charges"</strong> means the fees payable by the Client for the Services as set out in the Proposal.</li>
+    </ul>
+  </section>
+
+  <section id="services">
+    <h2><span class="num">03</span>Scope of Services</h2>
+    <p>KodRank provides web development and SEO services engineered as a single build. Depending on the agreed Proposal, Services may include:</p>
+    <ul>
+      <li>Custom website design and development</li>
+      <li>E-commerce and CMS development</li>
+      <li>Website redesign and migration</li>
+      <li>Technical SEO, on-page SEO, and off-page SEO</li>
+      <li>Keyword research and content strategy</li>
+      <li>SEO content writing</li>
+      <li>Answer Engine Optimization (AEO) and Generative Engine Optimization (GEO)</li>
+      <li>Audits, reporting, and related consultancy</li>
+    </ul>
+    <p>The exact scope of Services for any engagement will be defined in the agreed Proposal. Any work outside that scope will be treated as additional work and quoted separately.</p>
+  </section>
+
+  <section id="quotes">
+    <h2><span class="num">04</span>Quotations &amp; Project Scope</h2>
+    <p>All quotations are valid for <span class="accent">30 days</span> from the date of issue unless otherwise stated. A quotation is based on the requirements known at the time of issue.</p>
+    <p>If the requirements of a project change after work has commenced — including additional pages, features, revisions beyond the agreed allowance, or expanded SEO scope — we reserve the right to revise the Charges. Any such changes will be confirmed in writing before the additional work begins.</p>
+  </section>
+
+  <section id="client">
+    <h2><span class="num">05</span>Client Responsibilities</h2>
+    <p>The success of any web development and SEO engagement depends on timely cooperation from the Client. You agree to:</p>
+    <ul>
+      <li>Provide accurate, complete information and materials in a timely manner</li>
+      <li>Supply text content, images, logos, and brand assets where these are to be provided by you</li>
+      <li>Grant reasonable access to your website, hosting, CMS, analytics, and Search Console where required</li>
+      <li>Review and approve drafts and deliverables within the agreed timeframes</li>
+      <li>Ensure you hold the rights to any materials you supply to us</li>
+      <li>Not make unauthorized changes to SEO-critical elements of the site during an active engagement without prior consultation</li>
+    </ul>
+    <p>We are not responsible for delays, additional costs, or performance shortfalls caused by the Client's failure to provide required information, access, or approvals on time.</p>
+  </section>
+
+  <section id="payment">
+    <h2><span class="num">06</span>Fees &amp; Payment</h2>
+    <p>Charges are set out in the agreed Proposal. Unless otherwise agreed in writing:</p>
+    <ul>
+      <li>A deposit may be required before work commences, and this deposit is non-refundable once work has begun.</li>
+      <li>Remaining balances are payable as set out in the Proposal — typically on project milestones or on completion prior to final handover.</li>
+      <li>Recurring services (such as ongoing SEO or maintenance) are invoiced on the agreed cycle and are payable by the due date stated on each invoice.</li>
+    </ul>
+    <p>We reserve the right to pause work on any project or service where payment is overdue. Deliverables, code, or content may be withheld from handover until all outstanding Charges have been paid in full.</p>
+  </section>
+
+  <section id="timelines">
+    <h2><span class="num">07</span>Timelines &amp; Delays</h2>
+    <p>Estimated timelines are provided in good faith and depend on the timely delivery of content, feedback, and approvals from the Client. Project timelines will be extended by any period during which we are waiting on required materials or sign-off from you.</p>
+    <p>Where a project is delayed for an extended period due to a lack of required information from the Client, we reserve the right to reschedule the work within our production calendar or to treat the outstanding balance as due.</p>
+  </section>
+
+  <section id="seo-disclaimer">
+    <h2><span class="num">08</span>SEO Performance Disclaimer</h2>
+    <p>We build websites that are technically sound and structured to rank, and we apply established best practices in all SEO work. However, search engine rankings, traffic, and visibility are influenced by factors outside our control.</p>
+    <p><strong>We cannot and do not guarantee specific rankings, positions, traffic volumes, or revenue outcomes.</strong> Results are affected by:</p>
+    <ul>
+      <li>Search engine algorithm changes by Google and other providers</li>
+      <li>Competitor activity and market conditions</li>
+      <li>The existing state, history, and authority of your website and domain</li>
+      <li>Changes made to the website by you or third parties after handover</li>
+    </ul>
+    <p>We are not affiliated with Google or any other search engine, and we have no control over their algorithms or indexing decisions.</p>
+  </section>
+
+  <section id="revisions">
+    <h2><span class="num">09</span>Revisions &amp; Approvals</h2>
+    <p>The number of revision rounds included in a project is defined in the agreed Proposal. Revisions requested beyond the included allowance, or changes to previously approved work, may be subject to additional Charges.</p>
+    <p>Once a deliverable has been formally approved or the site has gone live, subsequent change requests are treated as new work unless covered by an ongoing maintenance agreement.</p>
+  </section>
+
+  <section id="ip">
+    <h2><span class="num">10</span>Intellectual Property</h2>
+    <p>Any intellectual property created by KodRank during a project — including code, designs, content, reports, and audits — remains the property of the Agency until all Charges relating to that work have been paid in full. Upon receipt of full payment, ownership of the agreed final Deliverables transfers to the Client.</p>
+    <p>The Client retains ownership of all materials it supplies to us, including its own content, images, trademarks, and logos. You grant us a license to use these materials for the purpose of delivering the Services.</p>
+    <p>We reserve the right to retain and reuse underlying know-how, techniques, and generic code components, and to reference completed work in our portfolio and marketing unless otherwise agreed in writing.</p>
+  </section>
+
+  <section id="thirdparty">
+    <h2><span class="num">11</span>Third-Party Services</h2>
+    <p>Projects may rely on third-party platforms, frameworks, plugins, hosting, and tools (for example WordPress, Shopify, analytics providers, and CDN services). We are not responsible for the availability, performance, pricing, or policy changes of any third-party service, nor for issues arising from them.</p>
+    <p>Any licensing or subscription costs for third-party services are the responsibility of the Client unless expressly included in the Proposal.</p>
+  </section>
+
+  <section id="confidentiality">
+    <h2><span class="num">12</span>Confidentiality</h2>
+    <p>Both parties agree to keep confidential any proprietary or sensitive information shared during the engagement, including business plans, marketing strategies, credentials, and technical data. This obligation continues after the engagement ends. Confidential information may be disclosed only where required by law.</p>
+  </section>
+
+  <section id="warranties">
+    <h2><span class="num">13</span>Warranties &amp; Liability</h2>
+    <p>We provide the Services with reasonable skill and care. Except as expressly stated in these Terms, all other warranties, whether express or implied, are excluded to the fullest extent permitted by law.</p>
+    <p>We cannot accept responsibility for web pages or functionality that display or behave differently in browser versions released after a website has been handed over. We are not liable for loss of data, service interruptions, or issues caused by third-party services, hosting environments, or changes made by the Client or its agents after handover.</p>
+    <p>To the fullest extent permitted by law, our total liability arising out of or in connection with any engagement shall not exceed the total Charges paid by the Client for the Services giving rise to the claim. We shall not be liable for any indirect, incidental, or consequential loss, including loss of profit, revenue, or goodwill.</p>
+  </section>
+
+  <section id="term">
+    <h2><span class="num">14</span>Term &amp; Termination</h2>
+    <p>An engagement begins on the effective date stated in the Proposal or upon commencement of work, whichever is earlier, and continues until the Services are completed or the agreement is terminated.</p>
+    <p>Either party may terminate an engagement by written notice. Termination is effective on receipt of written notice; requests made by phone or informally are not effective until confirmed in writing.</p>
+    <p>On termination, the Client remains liable for all Charges for work completed up to the termination date, and any non-refundable deposits remain non-refundable. Recurring services may require the notice period stated in the relevant Proposal.</p>
+  </section>
+
+  <section id="force">
+    <h2><span class="num">15</span>Force Majeure</h2>
+    <p>Neither party shall be liable for any delay or failure to perform its obligations where such delay or failure results from events beyond its reasonable control, including but not limited to natural disasters, outages, cyber-attacks, changes in law, or failures of third-party infrastructure. Affected obligations will be suspended for the duration of the event.</p>
+  </section>
+
+  <section id="governing">
+    <h2><span class="num">16</span>Governing Law</h2>
+    <p>These Terms and any engagement between the parties are governed by the applicable laws of the jurisdiction in which KodRank operates. The parties agree to seek resolution of any dispute through good-faith discussion before pursuing formal legal remedies, and submit to the exclusive jurisdiction of the relevant courts in respect of any dispute arising from these Terms.</p>
+  </section>
+
+  <section id="changes">
+    <h2><span class="num">17</span>Changes to These Terms</h2>
+    <p>We may update these Terms from time to time to reflect changes in our services, legal requirements, or business practices. The version in effect at the time you engage our Services will apply to that engagement. We recommend reviewing this page periodically. The "last updated" date above indicates when these Terms were most recently revised.</p>
+  </section>
+
+  <section id="contact">
+    <h2><span class="num">18</span>Contact Us</h2>
+    <p>If you have any questions about these Terms &amp; Conditions, please get in touch:</p>
+    <div class="contact-box">
+      <p><strong>KodRank</strong></p>
+      <p>Email: <a href="mailto:info@kodrank.com">info@kodrank.com</a></p>
+      <p>Phone: <a href="tel:+923059202732">+92 305 9202732</a></p>
+    </div>
+  </section>
+
+</main>
+</body>
+</html>

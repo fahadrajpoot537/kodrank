@@ -49,7 +49,7 @@ class ServicePageController extends Controller
             'parent_id' => ['nullable', 'integer', 'exists:service_pages,id'],
             'is_active' => ['nullable', 'boolean'],
             'with_template' => ['nullable', 'boolean'],
-            'theme' => ['nullable', 'string', Rule::in(['digital-marketing', 'web-development', 'seo-service', 'about', 'wordpress', 'ai-chatbot', 'cms', 'website-redesign', 'shopify', 'saas-seo', 'monthly-seo', 'b2b-seo', 'ecommerce-seo', 'wordpress-seo'])],
+            'theme' => ['nullable', 'string', Rule::in(['digital-marketing', 'web-development', 'seo-service', 'about', 'wordpress', 'ai-chatbot', 'cms', 'website-redesign', 'shopify', 'saas-seo', 'monthly-seo', 'b2b-seo', 'ecommerce-seo', 'wordpress-seo', 'theme-html', 'industries', 'guest-posting', 'restaurant-seo', 'healthcare-seo', 'real-estate-seo', 'electrician', 'saas-development'])],
         ]);
 
         $slug = $data['slug'] ?? Str::slug($data['name']);

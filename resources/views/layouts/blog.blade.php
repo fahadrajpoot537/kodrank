@@ -55,6 +55,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="{{ asset('css/home.css') }}?v={{ @filemtime(public_path('css/home.css')) ?: time() }}">
 <link rel="stylesheet" href="{{ asset('css/home-extra.css') }}?v={{ @filemtime(public_path('css/home-extra.css')) ?: time() }}">
+<link rel="stylesheet" href="{{ asset('css/page-industries.css') }}?v={{ @filemtime(public_path('css/page-industries.css')) ?: time() }}">
 <link rel="stylesheet" href="{{ asset('css/service-page-extra.css') }}?v={{ @filemtime(public_path('css/service-page-extra.css')) ?: time() }}">
 <link rel="stylesheet" href="{{ asset('css/blog.css') }}?v={{ @filemtime(public_path('css/blog.css')) ?: time() }}">
 @stack('head')
@@ -65,6 +66,7 @@
 @yield('content')
 @include('home.partials.footer')
 <script src="{{ asset('js/home.js') }}?v={{ @filemtime(public_path('js/home.js')) ?: time() }}" defer></script>
+@include('partials.recaptcha-script')
 @stack('scripts')
 </body>
 </html>

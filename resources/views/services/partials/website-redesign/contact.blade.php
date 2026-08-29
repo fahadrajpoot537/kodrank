@@ -76,6 +76,7 @@
           <textarea id="rd-msg" name="message" placeholder="{{ $fields['message_placeholder'] ?? '' }}" required>{{ old('message') }}</textarea>
           @error('message')<span class="field-err">{{ $message }}</span>@enderror
         </div>
+        @include('partials.recaptcha')
         <button type="submit" class="btn btn-primary">{{ $d['submit_text'] ?? 'Get my free audit' }} <span class="ar">→</span></button>
       </form>
     </div>

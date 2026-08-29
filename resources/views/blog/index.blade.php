@@ -155,15 +155,18 @@
       @if(session('newsletter_success'))
         <p class="newsletter-status" role="status">{{ session('newsletter_success') }}</p>
       @endif
-      <form class="newsletter-form" method="post" action="{{ route('newsletter.store') }}">
+      <form class="newsletter-signup" method="post" action="{{ route('newsletter.store') }}">
         @csrf
         <input type="hidden" name="redirect_to" value="{{ url('/blogs') }}#news">
         <input type="hidden" name="fax_number" value="" tabindex="-1" autocomplete="off" aria-hidden="true">
-        <input type="email" name="email" value="{{ old('email') }}" placeholder="{{ $settings['newsletter_placeholder'] ?? 'you@company.com' }}" required aria-label="Email address">
-        <button type="submit" class="btn btn-primary btn-sm">
-          Subscribe
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
-        </button>
+        <div class="newsletter-form">
+          <input type="email" name="email" value="{{ old('email') }}" placeholder="{{ $settings['newsletter_placeholder'] ?? 'you@company.com' }}" required aria-label="Email address">
+          <button type="submit" class="btn btn-primary btn-sm">
+            Subscribe
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </button>
+        </div>
+        @include('partials.recaptcha', ['size' => 'compact'])
       </form>
       <div class="fine">{{ $settings['newsletter_fine'] ?? '' }}</div>
     </div>

@@ -1,5 +1,5 @@
 @php $d = $s['compare'] ?? []; $other = $d['other'] ?? []; $us = $d['us'] ?? []; @endphp
-<section class="sec-ink">
+<section class="sec-paper" id="compare">
   <div class="wrap">
     <div class="section-head reveal">
       @if(!empty($d['eyebrow']))

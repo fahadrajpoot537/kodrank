@@ -62,6 +62,8 @@
         <option value="b2b-seo" @selected($defaultTheme === 'b2b-seo')>B2B SEO layout</option>
         <option value="ecommerce-seo" @selected($defaultTheme === 'ecommerce-seo')>eCommerce SEO layout</option>
         <option value="wordpress-seo" @selected($defaultTheme === 'wordpress-seo')>WordPress SEO layout</option>
+        <option value="theme-html" @selected($defaultTheme === 'theme-html')>Full HTML import layout (theme pages)</option>
+        <option value="industries" @selected($defaultTheme === 'industries')>Industries hub layout</option>
       </select>
       <p class="admin-hint">Theme decide karti hai page ka design. Baad me SEO &amp; settings se bhi change kar sakte ho.</p>
     </div>

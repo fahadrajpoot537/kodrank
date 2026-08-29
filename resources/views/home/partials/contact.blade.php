@@ -96,6 +96,7 @@
         @else
           <p class="connect-consent">By submitting this form, you agree to our <a href="#top">Privacy Policy</a>.</p>
         @endif
+        @include('partials.recaptcha')
         <button class="btn btn-connect" type="submit">{{ $c['contact']['submit_text'] ?? 'Get In Touch' }}
           <svg viewBox="0 0 16 16" fill="none"><path d="M2 8h11m0 0-4.2-4.2M13 8l-4.2 4.2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </button>

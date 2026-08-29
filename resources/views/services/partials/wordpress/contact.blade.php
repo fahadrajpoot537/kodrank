@@ -89,6 +89,7 @@
           </div>
         </div>
 
+        @include('partials.recaptcha')
         <button type="submit" class="btn btn-primary form-submit">
           {{ $ct['submit_text'] ?? 'Send & Get A Personal Reply' }} {!! $arrow !!}
         </button>

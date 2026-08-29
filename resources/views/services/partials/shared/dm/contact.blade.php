@@ -117,6 +117,7 @@
             @error('message')<span class="field-err">{{ $message }}</span>@enderror
           </div>
         </div>
+        @include('partials.recaptcha')
         <button type="submit" class="btn btn-primary form-submit">
           {{ $ct['submit_text'] ?? 'Send & Get A Personal Reply' }}
           <span class="arw">→</span>

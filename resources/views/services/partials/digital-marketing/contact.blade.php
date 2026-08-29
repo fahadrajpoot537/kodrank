@@ -91,6 +91,7 @@
             @error('message')<span class="field-err">{{ $message }}</span>@enderror
           </div>
         </div>
+        @include('partials.recaptcha')
         <button type="submit" class="btn btn-primary form-submit">
           {{ $ct['submit_text'] ?? 'Send & Get A Personal Reply' }}
           @include('services.partials.digital-marketing.icon', ['key' => 'arrow', 'fillNone' => true, 'attrs' => 'stroke="currentColor" stroke-width="2.2"'])

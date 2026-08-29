@@ -48,9 +48,24 @@ class HomepageSeeder extends Seeder
                     'cta_url' => '/contact',
                     'links' => [
                         ['label' => 'Home', 'url' => '/'],
-                        ['label' => 'Industries', 'url' => '#industries'],
+                        ['label' => 'Industries', 'url' => '/industries'],
                         ['label' => 'Results', 'url' => '#work'],
                         ['label' => 'Insights', 'url' => '/blogs'],
+                    ],
+                    'industries_mega' => [
+                        'eyebrow' => '— Industries',
+                        'title_html' => 'Built to <span>Rank</span>',
+                        'body' => 'Search and web solutions tuned to how your market actually searches. We grow qualified traffic, leads, and revenue — one industry at a time.',
+                        'stats' => [
+                            ['value' => '9+', 'label' => 'Industries served'],
+                            ['value' => '3.4×', 'label' => 'Avg. traffic lift'],
+                        ],
+                        'cta_text' => 'Get a free audit',
+                        'cta_url' => '/contact',
+                        'items' => [
+                            ['title' => 'Law Firm SEO', 'body' => 'Own your practice areas and win case-ready clients.', 'url' => '/contact'],
+                            ['title' => 'View all services', 'body' => 'See the full list of SEO and web services we run for every industry.', 'url' => '/services'],
+                        ],
                     ],
                     'mega' => [
                         'eyebrow' => 'What we do',
@@ -553,7 +568,7 @@ class HomepageSeeder extends Seeder
                         ['value' => '+300%', 'label' => 'Avg. organic lift'],
                     ],
                     'form_title' => 'Get in Touch Now!',
-                    'consent_html' => 'By submitting this form, you agree to our <a href="#top">Privacy Policy</a>.',
+                    'consent_html' => 'By submitting this form, you agree to our <a href="/privacy-policy">Privacy Policy</a>.',
                     'submit_text' => 'Get In Touch',
                 ],
             ],
@@ -592,9 +607,12 @@ class HomepageSeeder extends Seeder
                             'links' => [
                                 ['label' => 'Blog', 'url' => '/blogs'],
                                 ['label' => 'About Us', 'url' => '/about-us'],
+                                ['label' => 'Industries', 'url' => '/industries'],
                                 ['label' => 'Our Process', 'url' => '#process'],
                                 ['label' => 'Results', 'url' => '#work'],
                                 ['label' => 'FAQ', 'url' => '/#faq'],
+                                ['label' => 'Privacy Policy', 'url' => '/privacy-policy'],
+                                ['label' => 'Terms & Conditions', 'url' => '/terms-and-conditions'],
                             ],
                         ],
                     ],

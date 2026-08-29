@@ -17,38 +17,27 @@
       @endif
     </div>
 
-    <div class="svc-carousel page-svc-carousel" data-sp-carousel data-per-desktop="3">
-      <button type="button" class="svc-nav svc-prev" aria-label="Previous services">
-        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M15 5 8 12l7 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </button>
-      <div class="svc-viewport">
-        <div class="svc-track">
-          @foreach($d['cards'] ?? [] as $card)
-            <div class="service-card svc-slide{{ !empty($card['large']) ? ' svc-card-lg' : '' }} reveal in">
-              <div class="svc-icon">
-                @include('services.partials.web-development.icon', ['key' => $card['icon_key'] ?? 'wordpress'])
-              </div>
-              <div class="svc-check">✓</div>
-              <h3>{{ $card['title'] ?? '' }}</h3>
-              <p>{{ $card['body'] ?? '' }}</p>
-              @if(!empty($card['tags']))
-                <div class="tags">
-                  @foreach($card['tags'] as $tag)
-                    <span class="tag">{{ $tag }}</span>
-                  @endforeach
-                </div>
-              @endif
-              <a href="{{ url($card['link_url'] ?? '#') }}" class="btn btn-primary btn-sm">
-                {{ $card['link_text'] ?? 'Explore Service' }} <span class="arrow">→</span>
-              </a>
+    <div class="service-grid">
+      @foreach($d['cards'] ?? [] as $card)
+        <div class="svc-card service-card{{ !empty($card['large']) ? ' svc-card-lg' : '' }} reveal in">
+          <div class="svc-icon">
+            @include('services.partials.web-development.icon', ['key' => $card['icon_key'] ?? 'wordpress'])
+          </div>
+          <div class="svc-check">✓</div>
+          <h3>{{ $card['title'] ?? '' }}</h3>
+          <p>{{ $card['body'] ?? '' }}</p>
+          @if(!empty($card['tags']))
+            <div class="tags">
+              @foreach($card['tags'] as $tag)
+                <span class="tag">{{ $tag }}</span>
+              @endforeach
             </div>
-          @endforeach
+          @endif
+          <a href="{{ url($card['link_url'] ?? '#') }}" class="btn btn-primary btn-sm">
+            {{ $card['link_text'] ?? 'Explore Service' }} <span class="arrow">→</span>
+          </a>
         </div>
-      </div>
-      <button type="button" class="svc-nav svc-next" aria-label="Next services">
-        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m9 5 7 7-7 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </button>
-      <div class="svc-dots" data-svc-dots aria-hidden="true"></div>
+      @endforeach
     </div>
   </div>
 </section>

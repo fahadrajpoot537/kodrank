@@ -98,6 +98,42 @@
     });
   }
 
+  // --- industries mega (hover CSS on desktop; click accordion on mobile) ---
+  (function(){
+    var roots=document.querySelectorAll('.has-industries-mega');
+    if(!roots.length) return;
+    var isMobileNav=function(){
+      return (window.innerWidth||document.documentElement.clientWidth||0)<=900;
+    };
+    roots.forEach(function(root){
+      var trigger=root.querySelector('.nav-mega-trigger');
+      if(!trigger) return;
+      trigger.addEventListener('click',function(e){
+        e.preventDefault();
+        e.stopPropagation();
+        if(!isMobileNav()) return; // desktop uses CSS :hover
+        var open=root.classList.toggle('open');
+        trigger.setAttribute('aria-expanded', String(open));
+      });
+    });
+    document.addEventListener('click',function(e){
+      if(e.target.closest('.has-industries-mega')) return;
+      roots.forEach(function(root){
+        root.classList.remove('open');
+        var t=root.querySelector('.nav-mega-trigger');
+        if(t) t.setAttribute('aria-expanded','false');
+      });
+    });
+    document.addEventListener('keydown',function(e){
+      if(e.key!=='Escape') return;
+      roots.forEach(function(root){
+        root.classList.remove('open');
+        var t=root.querySelector('.nav-mega-trigger');
+        if(t) t.setAttribute('aria-expanded','false');
+      });
+    });
+  })();
+
   // --- mobile burger: toggle .nav-links.is-open (CSS panel in home-extra.css) ---
   var burger=document.querySelector('.nav-burger');
   var links=document.querySelector('.nav-links');

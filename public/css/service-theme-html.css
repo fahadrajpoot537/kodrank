@@ -1,0 +1,21 @@
+/* Shared chrome for theme-html imported pages (site nav/footer already wrap). */
+.theme-html-root{
+  min-height:40vh;
+}
+.theme-html-root .nav,
+.theme-html-root header.nav,
+.theme-html-root .burger,
+.theme-html-root .mnav,
+.theme-html-root .mpanel,
+.theme-html-root .mobile-menu{
+  display:none !important;
+}
+/* Legal pages: match theme max width when wrap is missing */
+.legal-page.theme-html-root > .wrap,
+.legal-page.theme-html-root{
+  /* theme CSS owns layout */
+}
+body.page-theme-html .theme-html-root img{
+  max-width:100%;
+  height:auto;
+}

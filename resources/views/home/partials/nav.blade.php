@@ -41,6 +41,21 @@
       $restLinks[] = ['label' => 'Insights', 'url' => '/blogs'];
   }
   $mega = $c['nav']['mega'] ?? [];
+  $industriesMega = $c['nav']['industries_mega'] ?? [
+      'eyebrow' => '— Industries',
+      'title_html' => 'Built to <span>Rank</span>',
+      'body' => 'Search and web solutions tuned to how your market actually searches. We grow qualified traffic, leads, and revenue — one industry at a time.',
+      'stats' => [
+          ['value' => '9+', 'label' => 'Industries served'],
+          ['value' => '3.4×', 'label' => 'Avg. traffic lift'],
+      ],
+      'cta_text' => 'Get a free audit',
+      'cta_url' => '/contact',
+      'items' => [
+          ['title' => 'Law Firm SEO', 'body' => 'Own your practice areas and win case-ready clients.', 'url' => '/contact'],
+          ['title' => 'View all services', 'body' => 'See the full list of SEO and web services we run for every industry.', 'url' => '/services'],
+      ],
+  ];
   $mainServices = \App\Models\ServicePage::navTree();
   $arrow = '<svg viewBox="0 0 16 16" fill="none"><path d="M2 8h11m0 0-4.2-4.2M13 8l-4.2 4.2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>';
 @endphp
@@ -74,6 +89,7 @@
             </div>
 
             @forelse($mainServices as $main)
+              @continue(strcasecmp((string) $main->slug, 'industries') === 0 || strcasecmp((string) $main->name, 'Industries') === 0)
               @php $subs = $main->navDescendants(); @endphp
               <div class="mega-col">
                 <a class="mega-head" href="/{{ ltrim($main->slug, '/') }}">{{ $main->name }}</a>
@@ -109,7 +125,45 @@
       </div>
 
       @foreach($restLinks as $link)
-        <a href="{{ $navUrl($link['url'] ?? '#') }}">{{ $link['label'] ?? '' }}</a>
+        @php $labelLower = strtolower(trim((string) ($link['label'] ?? ''))); @endphp
+        @if($labelLower === 'industries')
+          <div class="nav-item has-industries-mega">
+            <button type="button" class="nav-mega-trigger" aria-expanded="false" aria-haspopup="true" aria-controls="industriesMega">
+              Industries
+              <svg class="nav-caret" viewBox="0 0 12 12" fill="none"><path d="M2.5 4.5 6 8l3.5-3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <div class="industries-mega" id="industriesMega" role="region" aria-label="Industries">
+              <div class="wrap">
+                <div class="mega-panel">
+                  <div class="mega-promo">
+                    <div class="eyebrow">{{ $industriesMega['eyebrow'] ?? '— Industries' }}</div>
+                    <h3>@if(!empty($industriesMega['title_html'])){!! $industriesMega['title_html'] !!}@else{{ $industriesMega['title'] ?? 'Built to Rank' }}@endif</h3>
+                    <p>{{ $industriesMega['body'] ?? '' }}</p>
+                    @if(!empty($industriesMega['stats']))
+                      <div class="promo-stats">
+                        @foreach($industriesMega['stats'] as $st)
+                          <div class="st"><b>{{ $st['value'] ?? '' }}</b><small>{{ $st['label'] ?? '' }}</small></div>
+                        @endforeach
+                      </div>
+                    @endif
+                    <div class="promo-spacer" style="flex:1;min-height:26px"></div>
+                    <a href="{{ $navUrl($industriesMega['cta_url'] ?? '/contact') }}" class="btn">{{ $industriesMega['cta_text'] ?? 'Get a free audit' }} <span class="arw">→</span></a>
+                  </div>
+                  <div class="mega-grid">
+                    @foreach($industriesMega['items'] ?? [] as $item)
+                      <a class="ind" href="{{ $navUrl($item['url'] ?? '/contact') }}">
+                        <span class="t">{{ $item['title'] ?? '' }}<span class="arw">→</span></span>
+                        <p>{{ $item['body'] ?? '' }}</p>
+                      </a>
+                    @endforeach
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        @else
+          <a href="{{ $navUrl($link['url'] ?? '#') }}">{{ $link['label'] ?? '' }}</a>
+        @endif
       @endforeach
     </nav>
     <div class="nav-cta">
