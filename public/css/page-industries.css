@@ -100,7 +100,7 @@
   .industries-mega .mega-grid .ind:nth-last-child(-n+3){border-bottom:1px solid #E1E9E5}
   .industries-mega .mega-grid .ind:nth-last-child(-n+2){border-bottom:none}
 }
-@media (max-width:920px){
+@media (max-width:900px){
   .industries-mega{position:static;opacity:1;visibility:visible;transform:none;max-height:0;overflow:hidden;pointer-events:none;transition:max-height .3s ease}
   .nav-item.has-industries-mega.open .industries-mega{max-height:2400px;pointer-events:auto}
   .industries-mega .mega-panel{border:none;box-shadow:none;border-radius:0;margin:0;grid-template-columns:1fr}

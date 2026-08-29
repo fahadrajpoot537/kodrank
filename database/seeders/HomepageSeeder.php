@@ -63,8 +63,15 @@ class HomepageSeeder extends Seeder
                         'cta_text' => 'Get a free audit',
                         'cta_url' => '/contact',
                         'items' => [
+                            ['title' => 'B2B SEO', 'body' => 'Search strategies that turn traffic into qualified pipeline.', 'url' => '/b2b-seo-services'],
+                            ['title' => 'Real Estate SEO', 'body' => 'Rank listings and capture high-intent buyers locally.', 'url' => '/real-estate-seo-services'],
                             ['title' => 'Law Firm SEO', 'body' => 'Own your practice areas and win case-ready clients.', 'url' => '/contact'],
-                            ['title' => 'View all services', 'body' => 'See the full list of SEO and web services we run for every industry.', 'url' => '/services'],
+                            ['title' => 'SaaS SEO', 'body' => 'Content and search engineered to grow recurring revenue.', 'url' => '/saas-seo-services'],
+                            ['title' => 'SaaS Software Development', 'body' => 'Custom SaaS products built to ship and scale.', 'url' => '/saas-software-development-services'],
+                            ['title' => 'Ecommerce SEO', 'body' => 'Grow product visibility and organic store revenue.', 'url' => '/ecommerce-seo-services'],
+                            ['title' => 'Healthcare SEO', 'body' => 'Compliant, trust-first SEO that reaches patients.', 'url' => '/healthcare-seo-services'],
+                            ['title' => 'Restaurant SEO', 'body' => 'Local search that fills tables and books covers.', 'url' => '/restaurant-seo-services'],
+                            ['title' => 'Electrician Website Design', 'body' => 'Fast, converting sites that book more jobs.', 'url' => '/electrician-website-design-services'],
                         ],
                     ],
                     'mega' => [

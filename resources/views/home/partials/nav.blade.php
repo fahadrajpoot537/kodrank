@@ -41,7 +41,18 @@
       $restLinks[] = ['label' => 'Insights', 'url' => '/blogs'];
   }
   $mega = $c['nav']['mega'] ?? [];
-  $industriesMega = $c['nav']['industries_mega'] ?? [
+  $defaultIndustryItems = [
+      ['title' => 'B2B SEO', 'body' => 'Search strategies that turn traffic into qualified pipeline.', 'url' => '/b2b-seo-services'],
+      ['title' => 'Real Estate SEO', 'body' => 'Rank listings and capture high-intent buyers locally.', 'url' => '/real-estate-seo-services'],
+      ['title' => 'Law Firm SEO', 'body' => 'Own your practice areas and win case-ready clients.', 'url' => '/contact'],
+      ['title' => 'SaaS SEO', 'body' => 'Content and search engineered to grow recurring revenue.', 'url' => '/saas-seo-services'],
+      ['title' => 'SaaS Software Development', 'body' => 'Custom SaaS products built to ship and scale.', 'url' => '/saas-software-development-services'],
+      ['title' => 'Ecommerce SEO', 'body' => 'Grow product visibility and organic store revenue.', 'url' => '/ecommerce-seo-services'],
+      ['title' => 'Healthcare SEO', 'body' => 'Compliant, trust-first SEO that reaches patients.', 'url' => '/healthcare-seo-services'],
+      ['title' => 'Restaurant SEO', 'body' => 'Local search that fills tables and books covers.', 'url' => '/restaurant-seo-services'],
+      ['title' => 'Electrician Website Design', 'body' => 'Fast, converting sites that book more jobs.', 'url' => '/electrician-website-design-services'],
+  ];
+  $industriesMega = array_merge([
       'eyebrow' => '— Industries',
       'title_html' => 'Built to <span>Rank</span>',
       'body' => 'Search and web solutions tuned to how your market actually searches. We grow qualified traffic, leads, and revenue — one industry at a time.',
@@ -51,11 +62,11 @@
       ],
       'cta_text' => 'Get a free audit',
       'cta_url' => '/contact',
-      'items' => [
-          ['title' => 'Law Firm SEO', 'body' => 'Own your practice areas and win case-ready clients.', 'url' => '/contact'],
-          ['title' => 'View all services', 'body' => 'See the full list of SEO and web services we run for every industry.', 'url' => '/services'],
-      ],
-  ];
+      'items' => $defaultIndustryItems,
+  ], $c['nav']['industries_mega'] ?? []);
+  if (count($industriesMega['items'] ?? []) < 9) {
+      $industriesMega['items'] = $defaultIndustryItems;
+  }
   $mainServices = \App\Models\ServicePage::navTree();
   $arrow = '<svg viewBox="0 0 16 16" fill="none"><path d="M2 8h11m0 0-4.2-4.2M13 8l-4.2 4.2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>';
 @endphp
@@ -124,46 +135,47 @@
         </div>
       </div>
 
-      @foreach($restLinks as $link)
-        @php $labelLower = strtolower(trim((string) ($link['label'] ?? ''))); @endphp
-        @if($labelLower === 'industries')
-          <div class="nav-item has-industries-mega">
-            <button type="button" class="nav-mega-trigger" aria-expanded="false" aria-haspopup="true" aria-controls="industriesMega">
-              Industries
-              <svg class="nav-caret" viewBox="0 0 12 12" fill="none"><path d="M2.5 4.5 6 8l3.5-3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </button>
-            <div class="industries-mega" id="industriesMega" role="region" aria-label="Industries">
-              <div class="wrap">
-                <div class="mega-panel">
-                  <div class="mega-promo">
-                    <div class="eyebrow">{{ $industriesMega['eyebrow'] ?? '— Industries' }}</div>
-                    <h3>@if(!empty($industriesMega['title_html'])){!! $industriesMega['title_html'] !!}@else{{ $industriesMega['title'] ?? 'Built to Rank' }}@endif</h3>
-                    <p>{{ $industriesMega['body'] ?? '' }}</p>
-                    @if(!empty($industriesMega['stats']))
-                      <div class="promo-stats">
-                        @foreach($industriesMega['stats'] as $st)
-                          <div class="st"><b>{{ $st['value'] ?? '' }}</b><small>{{ $st['label'] ?? '' }}</small></div>
-                        @endforeach
-                      </div>
-                    @endif
-                    <div class="promo-spacer" style="flex:1;min-height:26px"></div>
-                    <a href="{{ $navUrl($industriesMega['cta_url'] ?? '/contact') }}" class="btn">{{ $industriesMega['cta_text'] ?? 'Get a free audit' }} <span class="arw">→</span></a>
-                  </div>
-                  <div class="mega-grid">
-                    @foreach($industriesMega['items'] ?? [] as $item)
-                      <a class="ind" href="{{ $navUrl($item['url'] ?? '/contact') }}">
-                        <span class="t">{{ $item['title'] ?? '' }}<span class="arw">→</span></span>
-                        <p>{{ $item['body'] ?? '' }}</p>
-                      </a>
+      <div class="nav-item has-industries-mega" id="indItem">
+        <button type="button" class="nav-mega-trigger" id="indTrigger" aria-expanded="false" aria-haspopup="true" aria-controls="industriesMega">
+          Industries
+          <svg class="nav-caret" viewBox="0 0 12 12" fill="none"><path d="M2.5 4.5 6 8l3.5-3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="industries-mega" id="industriesMega" role="region" aria-label="Industries">
+          <div class="wrap">
+            <div class="mega-panel">
+              <div class="mega-promo">
+                <div class="eyebrow">{{ $industriesMega['eyebrow'] ?? '— Industries' }}</div>
+                <h3>@if(!empty($industriesMega['title_html'])){!! $industriesMega['title_html'] !!}@else{{ $industriesMega['title'] ?? 'Built to Rank' }}@endif</h3>
+                <p>{{ $industriesMega['body'] ?? '' }}</p>
+                @if(!empty($industriesMega['stats']))
+                  <div class="promo-stats">
+                    @foreach($industriesMega['stats'] as $st)
+                      <div class="st"><b>{{ $st['value'] ?? '' }}</b><small>{{ $st['label'] ?? '' }}</small></div>
                     @endforeach
                   </div>
-                </div>
+                @endif
+                <div class="promo-spacer"></div>
+                <a href="{{ $navUrl($industriesMega['cta_url'] ?? '/contact') }}" class="btn">{{ $industriesMega['cta_text'] ?? 'Get a free audit' }} <span class="arw">→</span></a>
+              </div>
+              <div class="mega-grid">
+                @foreach($industriesMega['items'] ?? [] as $item)
+                  <a class="ind" href="{{ $navUrl($item['url'] ?? '/contact') }}">
+                    <span class="t">{{ $item['title'] ?? '' }}<span class="arw">→</span></span>
+                    <p>{{ $item['body'] ?? '' }}</p>
+                  </a>
+                @endforeach
               </div>
             </div>
           </div>
-        @else
-          <a href="{{ $navUrl($link['url'] ?? '#') }}">{{ $link['label'] ?? '' }}</a>
+        </div>
+      </div>
+
+      @foreach($restLinks as $link)
+        @php $labelLower = strtolower(trim((string) ($link['label'] ?? ''))); @endphp
+        @if($labelLower === 'industries')
+          @continue
         @endif
+          <a href="{{ $navUrl($link['url'] ?? '#') }}">{{ $link['label'] ?? '' }}</a>
       @endforeach
     </nav>
     <div class="nav-cta">
