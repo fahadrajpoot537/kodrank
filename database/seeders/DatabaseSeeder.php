@@ -42,6 +42,8 @@ class DatabaseSeeder extends Seeder
         $this->call(B2bSeoServiceSeeder::class);
         $this->call(EcommerceSeoServiceSeeder::class);
         $this->call(WordPressSeoServiceSeeder::class);
+        $this->call(ShopifySeoServiceSeeder::class);
+        $this->call(WhiteLabelSeoServiceSeeder::class);
         $this->call(AboutUsSeeder::class);
         $this->call(NewonePagesSeeder::class);
         // Full theme HTML for ALL service pages (overwrites structured bodies — no missing content)

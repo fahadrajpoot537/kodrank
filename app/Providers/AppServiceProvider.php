@@ -23,6 +23,18 @@ class AppServiceProvider extends ServiceProvider
             \Illuminate\Support\Facades\URL::forceRootUrl(request()->root());
         }
 
+        View::composer(['errors.*', 'layouts.site'], function ($view) {
+            $data = $view->getData();
+            if (! isset($data['c']) || ! is_array($data['c']) || $data['c'] === []) {
+                if (Schema::hasTable('cms_sections')) {
+                    \App\Support\CmsPageDefaults::ensure();
+                    $view->with('c', CmsSection::getMap());
+                } else {
+                    $view->with('c', []);
+                }
+            }
+        });
+
         View::composer('admin.layout', function ($view) {
             if (! Schema::hasTable('cms_sections')) {
                 $view->with([

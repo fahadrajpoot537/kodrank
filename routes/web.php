@@ -24,6 +24,13 @@ use App\Models\ServicePage;
 use App\Services\SeoServiceImageSitemapService;
 use Illuminate\Support\Facades\Route;
 
+Route::get('/favicon.ico', function () {
+    $path = public_path('fav.png');
+    abort_unless(is_file($path), 404);
+
+    return response()->file($path, ['Content-Type' => 'image/png']);
+});
+
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/contact', [ContactController::class, 'show'])->name('contact');
 
