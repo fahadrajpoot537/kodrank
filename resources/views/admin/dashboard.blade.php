@@ -2,18 +2,28 @@
 
 @section('content')
 <h1 class="admin-h1">Dashboard</h1>
-<p class="admin-sub">Home, main services, aur sub-services ka saara content yahan se edit karein.</p>
+<p class="admin-sub">Home, services, contact, blogs — har page ka content, images, aur slugs yahan se handle karein.</p>
 
 <div class="grid2" style="margin-bottom:18px">
   <div class="admin-card">
-    <h3 style="margin:0 0 8px">Homepage</h3>
-    <p style="margin:0 0 14px;color:#4B5B62">Hero, nav, services, FAQ, footer, contact — har block editable.</p>
-    <a class="btn" href="{{ route('admin.homepage.index') }}">Edit homepage content</a>
+    <h3 style="margin:0 0 8px">Site &amp; homepage</h3>
+    <p style="margin:0 0 14px;color:#4B5B62">Logo, nav, hero, FAQ, footer, contact, /results, /services listing.</p>
+    <a class="btn" href="{{ route('admin.homepage.index') }}">Edit page content</a>
   </div>
   <div class="admin-card">
     <h3 style="margin:0 0 8px">Services &amp; sub-services</h3>
-    <p style="margin:0 0 14px;color:#4B5B62">Digital Marketing, On-Page SEO, Off-Page SEO, Web Design — har page / har section.</p>
+    <p style="margin:0 0 14px;color:#4B5B62">Har service page ka content, images, SEO, aur slug (old URL 301 redirect).</p>
     <a class="btn" href="{{ route('admin.service-pages.index') }}">Manage service pages</a>
+  </div>
+  <div class="admin-card">
+    <h3 style="margin:0 0 8px">Blogs</h3>
+    <p style="margin:0 0 14px;color:#4B5B62">Posts, categories, authors, images, SEO, publish. Slug change pe redirect.</p>
+    <a class="btn" href="{{ route('admin.blog.posts.index') }}">Manage blog posts</a>
+  </div>
+  <div class="admin-card">
+    <h3 style="margin:0 0 8px">Media library</h3>
+    <p style="margin:0 0 14px;color:#4B5B62">Upload / delete images for service and SEO use.</p>
+    <a class="btn" href="{{ route('admin.seo-media.index') }}">Open media library</a>
   </div>
 </div>
 

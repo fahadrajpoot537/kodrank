@@ -64,14 +64,18 @@ SVG,
       @foreach($c['work']['cases'] ?? [] as $i => $case)
         @php
           $title = $case['title'] ?? '';
-          $shot = $workShots[$title] ?? ($workShotFallback[$i] ?? null);
+          $img = trim((string) ($case['image'] ?? ''));
+          $imgUrl = $img === '' ? '' : (str_starts_with($img, 'http://') || str_starts_with($img, 'https://') ? $img : asset(ltrim($img, '/')));
+          $shot = $imgUrl !== '' ? null : ($workShots[$title] ?? ($workShotFallback[$i] ?? null));
           if ($shot && !empty($case['image_alt'])) {
               $shot = preg_replace('/aria-label="[^"]*"/', 'aria-label="'.e($case['image_alt']).'"', $shot, 1);
           }
         @endphp
         <article class="work-card rv">
-          <div class="work-shot @if(!$shot) placeholder tone-{{ ($i % 3) + 1 }} @endif">
-            @if($shot)
+          <div class="work-shot @if($imgUrl) has-img @elseif(!$shot) placeholder tone-{{ ($i % 3) + 1 }} @endif">
+            @if($imgUrl)
+              <img src="{{ $imgUrl }}" alt="{{ $case['image_alt'] ?? $title }}" loading="{{ $i === 0 ? 'eager' : 'lazy' }}">
+            @elseif($shot)
               {!! $shot !!}
             @endif
           </div>

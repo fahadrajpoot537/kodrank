@@ -16,6 +16,7 @@ use App\Http\Controllers\BlogController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\NewsletterController;
+use App\Http\Controllers\ResultsController;
 use App\Http\Controllers\SeoServiceInquiryController;
 use App\Http\Controllers\ServicePageController;
 use App\Models\BlogPost;
@@ -36,6 +37,7 @@ Route::middleware('throttle:12,1')->group(function () {
 Route::get('/clear-cache', [CacheController::class, 'clearPublic'])->name('cache.clear.public');
 
 Route::get('/services', [ServicePageController::class, 'index'])->name('services.index');
+Route::get('/results', [ResultsController::class, 'show'])->name('results');
 
 Route::get('/blogs', [BlogController::class, 'index'])->name('blog.index');
 Route::get('/blogs/{slug}', [BlogController::class, 'show'])
@@ -52,6 +54,7 @@ Route::get('/sitemap.xml', function () {
         ['loc' => url('/'), 'changefreq' => 'weekly', 'priority' => '1.0'],
         ['loc' => url('/contact'), 'changefreq' => 'monthly', 'priority' => '0.8'],
         ['loc' => url('/services'), 'changefreq' => 'weekly', 'priority' => '0.8'],
+        ['loc' => url('/results'), 'changefreq' => 'weekly', 'priority' => '0.8'],
         ['loc' => url('/blogs'), 'changefreq' => 'weekly', 'priority' => '0.8'],
     ];
 
@@ -168,5 +171,5 @@ Route::prefix('admin')->name('admin.')->group(function () {
 });
 
 Route::get('/{slug}', [ServicePageController::class, 'show'])
-    ->where('slug', '^(?!admin$|blog$|blogs$|services$|sitemap\\.xml$|image-sitemap\\.xml$|clear-cache$)[a-z0-9]+(?:-[a-z0-9]+)*$')
+    ->where('slug', '^(?!admin$|blog$|blogs$|services$|results$|contact$|sitemap\\.xml$|image-sitemap\\.xml$|clear-cache$)[a-z0-9]+(?:-[a-z0-9]+)*$')
     ->name('services.show');

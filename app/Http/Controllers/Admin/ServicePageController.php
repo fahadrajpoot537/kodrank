@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\ServicePage;
 use App\Models\ServicePageSection;
 use App\Support\ContentTemplates;
+use App\Support\ReservedSlugs;
+use App\Support\UrlRedirector;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile;
@@ -45,7 +47,7 @@ class ServicePageController extends Controller
     {
         $data = $request->validate([
             'name' => ['required', 'string', 'max:160'],
-            'slug' => ['nullable', 'string', 'max:180', 'regex:/^[a-z0-9]+(?:-[a-z0-9]+)*$/', 'unique:service_pages,slug'],
+            'slug' => ['nullable', 'string', 'max:180', 'regex:/^[a-z0-9]+(?:-[a-z0-9]+)*$/', 'unique:service_pages,slug', Rule::notIn(ReservedSlugs::all())],
             'parent_id' => ['nullable', 'integer', 'exists:service_pages,id'],
             'is_active' => ['nullable', 'boolean'],
             'with_template' => ['nullable', 'boolean'],
@@ -53,6 +55,9 @@ class ServicePageController extends Controller
         ]);
 
         $slug = $data['slug'] ?? Str::slug($data['name']);
+        if ($slug === '' || ReservedSlugs::contains($slug)) {
+            $slug = ($slug !== '' && ReservedSlugs::contains($slug) ? $slug.'-page' : 'service-'.Str::lower(Str::random(6)));
+        }
         if ($slug === '') {
             $slug = 'service-'.Str::lower(Str::random(6));
         }
@@ -155,11 +160,13 @@ class ServicePageController extends Controller
     {
         $validated = $request->validate([
             'name' => ['required', 'string', 'max:160'],
-            'slug' => ['required', 'string', 'max:180', 'regex:/^[a-z0-9]+(?:-[a-z0-9]+)*$/', Rule::unique('service_pages', 'slug')->ignore($page->id)],
+            'slug' => ['required', 'string', 'max:180', 'regex:/^[a-z0-9]+(?:-[a-z0-9]+)*$/', Rule::unique('service_pages', 'slug')->ignore($page->id), Rule::notIn(ReservedSlugs::all())],
             'parent_id' => ['nullable', 'integer', 'exists:service_pages,id', Rule::notIn([$page->id])],
             'is_active' => ['nullable', 'boolean'],
             'sort_order' => ['nullable', 'integer', 'min:0', 'max:9999'],
             'seo' => ['nullable', 'array'],
+            'og_image_file' => ['nullable', 'image', 'max:5120'],
+            'listing_icon_file' => ['nullable', 'image', 'max:5120'],
         ]);
 
         $parentId = $validated['parent_id'] ?? null;
@@ -171,6 +178,13 @@ class ServicePageController extends Controller
         $seo = is_array($validated['seo'] ?? null) ? $validated['seo'] : [];
         $seo['hide_from_nav'] = $request->boolean('hide_from_nav');
 
+        if ($request->hasFile('og_image_file')) {
+            $seo['og_image'] = $this->storeSectionImage($request->file('og_image_file'), $page);
+        }
+        if ($request->hasFile('listing_icon_file')) {
+            $seo['listing_icon'] = $this->storeSectionImage($request->file('listing_icon_file'), $page);
+        }
+
         $page->update([
             'name' => $validated['name'],
             'slug' => $validated['slug'],
@@ -180,13 +194,19 @@ class ServicePageController extends Controller
             'seo' => $seo,
         ]);
 
+        if ($oldSlug !== $page->slug) {
+            UrlRedirector::remember('/'.$oldSlug, '/'.$page->slug);
+        }
+
         ServicePage::forgetCache($oldSlug);
         ServicePage::forgetCache($page->slug);
         ServicePage::forgetNavCache();
 
         return redirect()
             ->route('admin.service-pages.seo', $page)
-            ->with('success', 'Page settings saved.');
+            ->with('success', $oldSlug !== $page->slug
+                ? 'Page settings saved. The old URL /'.$oldSlug.' now redirects here.'
+                : 'Page settings saved.');
     }
 
     public function createSection(ServicePage $page): View

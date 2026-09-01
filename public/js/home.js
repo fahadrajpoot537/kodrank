@@ -520,19 +520,26 @@
       var onMove=function(x){
         if(!dragging) return;
         deltaX=x-startX;
-        if(Math.abs(deltaX)>8) didSwipe=true;
+        if(Math.abs(deltaX)>24) didSwipe=true;
         track.style.transform='translate3d('+(-(index*(slideW+gap)-deltaX))+'px,0,0)';
       };
       var onUp=function(){
         if(!dragging) return;
         dragging=false; track.style.transition='';
-        if(Math.abs(deltaX)>40) step(deltaX<0?1:-1);
+        if(didSwipe && Math.abs(deltaX)>48) step(deltaX<0?1:-1);
         else { goTo(index); startAuto(); }
-        deltaX=0;
+        setTimeout(function(){ didSwipe=false; deltaX=0; },0);
       };
 
       if(window.PointerEvent){
-        track.addEventListener('pointerdown',function(e){ if(e.pointerType==='mouse'&&e.button!==0) return; onDown(e.clientX); try{track.setPointerCapture(e.pointerId);}catch(err){} });
+        track.addEventListener('pointerdown',function(e){
+          if(e.pointerType==='mouse'&&e.button!==0) return;
+          onDown(e.clientX);
+          // Mouse capture steals the click from card links — only capture touch/pen.
+          if(e.pointerType!=='mouse'){
+            try{track.setPointerCapture(e.pointerId);}catch(err){}
+          }
+        });
         track.addEventListener('pointermove',function(e){ onMove(e.clientX); });
         track.addEventListener('pointerup',onUp);
         track.addEventListener('pointercancel',onUp);

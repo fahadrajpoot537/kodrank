@@ -19,6 +19,7 @@ return Application::configure(basePath: dirname(__DIR__))
 
         // Security headers when Apache has not already set them (e.g. artisan serve)
         $middleware->append(\App\Http\Middleware\SecurityHeaders::class);
+        $middleware->append(\App\Http\Middleware\ResolveUrlRedirect::class);
 
         $middleware->redirectGuestsTo('/admin/login');
         $middleware->redirectUsersTo('/admin');

@@ -6,6 +6,7 @@ use App\Models\CmsSection;
 use App\Models\ContactMessage;
 use App\Rules\Recaptcha;
 use App\Services\LeadNotificationService;
+use App\Support\CmsPageDefaults;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -15,23 +16,27 @@ class ContactController extends Controller
     public function show(): View
     {
         $c = CmsSection::getMap();
+        $p = array_merge(CmsPageDefaults::contactPage(), is_array($c['contact_page'] ?? null) ? $c['contact_page'] : []);
 
         return view('contact.show', [
             'c' => $c,
+            'p' => $p,
             'navStuck' => false,
             'bodyClass' => 'page-contact',
-            'pageTitle' => 'Contact — KodRank',
-            'pageDescription' => 'Tell us what you\'re working on. We\'ll reply within 24 hours with a realistic scope, plain-English plan, and a number you can use.',
+            'pageTitle' => $p['seo_title'] ?? 'Contact — KodRank',
+            'pageDescription' => $p['seo_description'] ?? '',
         ]);
     }
 
     public function store(Request $request, LeadNotificationService $notifications): RedirectResponse
     {
         // Honeypot — bots fill this
+        $success = trim((string) ((CmsSection::getMap()['contact_page']['success_message'] ?? '') ?: 'Thanks — we received your message. Our team will contact you within 24 hours.'));
+
         if ($request->filled('fax_number')) {
             return redirect()
                 ->to($this->safeRedirect($request) ?? route('contact'))
-                ->with('contact_success', 'Thanks — we received your message. Our team will contact you within 24 hours.');
+                ->with('contact_success', $success);
         }
 
         if (! $request->filled('name')) {
@@ -95,7 +100,7 @@ class ContactController extends Controller
 
         return redirect()
             ->to($redirect ?? url('/#contact'))
-            ->with('contact_success', 'Thanks — we received your message. Our team will contact you within 24 hours.');
+            ->with('contact_success', $success);
     }
 
     private function safeRedirect(Request $request): ?string

@@ -11,7 +11,7 @@
 @endif
 
 <div class="admin-card">
-  <form method="post" action="{{ route('admin.service-pages.seo.update', $page) }}">
+  <form method="post" action="{{ route('admin.service-pages.seo.update', $page) }}" enctype="multipart/form-data">
     @csrf
     @method('PUT')
 
@@ -23,7 +23,7 @@
     <div class="field">
       <label>URL slug</label>
       <input type="text" name="slug" value="{{ old('slug', $page->slug) }}" required pattern="[a-z0-9]+(?:-[a-z0-9]+)*">
-      <p class="admin-hint">Live URL: <code>/{{ $page->slug }}</code></p>
+      <p class="admin-hint">Live URL: <code>/{{ $page->slug }}</code>. Changing this slug automatically 301-redirects the old URL so Google and bookmarks keep working.</p>
     </div>
 
     <div class="field">
@@ -47,6 +47,27 @@
     <div class="field">
       <label><input type="checkbox" name="hide_from_nav" value="1" @checked(old('hide_from_nav', !empty($seo['hide_from_nav'])))> Hide from Services dropdown</label>
       <p class="admin-hint">Page stays live and listed on View all services. It will not appear in the navbar mega menu.</p>
+    </div>
+
+    <div class="field">
+      <label>Services listing blurb</label>
+      <textarea name="seo[listing_blurb]" rows="3" placeholder="Short card copy on /services">{{ old('seo.listing_blurb', $seo['listing_blurb'] ?? '') }}</textarea>
+      <p class="admin-hint">Shown on the /services grid. Leave empty to use the built-in fallback or SEO description.</p>
+    </div>
+
+    <div class="field">
+      <label>Services listing tag</label>
+      <input type="text" name="seo[listing_tag]" value="{{ old('seo.listing_tag', $seo['listing_tag'] ?? '') }}" placeholder="e.g. For SaaS">
+    </div>
+
+    <div class="field">
+      <label>Listing icon path</label>
+      <input type="text" name="seo[listing_icon]" value="{{ old('seo.listing_icon', $seo['listing_icon'] ?? '') }}" placeholder="storage/service-media/...">
+      @if(!empty($seo['listing_icon']))
+        <div style="margin:8px 0"><img src="{{ asset(ltrim($seo['listing_icon'], '/')) }}" alt="" width="48" height="48" style="object-fit:contain;border:1px solid #E1E9E5;border-radius:8px;background:#fff;padding:6px"></div>
+      @endif
+      <label class="admin-hint" style="display:block;margin:8px 0 4px">Or upload a listing icon</label>
+      <input type="file" name="listing_icon_file" accept="image/jpeg,image/png,image/webp,image/gif">
     </div>
 
     @foreach([
@@ -73,6 +94,15 @@
         @endif
       </div>
     @endforeach
+
+    <div class="field">
+      <label>Upload OG image</label>
+      @if(!empty($seo['og_image']))
+        <div style="margin:0 0 10px"><img src="{{ asset(ltrim($seo['og_image'], '/')) }}" alt="" style="max-width:240px;max-height:120px;object-fit:cover;border-radius:10px;border:1px solid #E1E9E5"></div>
+      @endif
+      <input type="file" name="og_image_file" accept="image/jpeg,image/png,image/webp,image/gif">
+      <p class="admin-hint">Upload replaces the OG image path above after Save.</p>
+    </div>
 
     <div class="admin-actions">
       <button class="btn" type="submit">Save SEO</button>

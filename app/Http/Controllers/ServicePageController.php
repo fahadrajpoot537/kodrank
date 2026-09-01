@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\CmsSection;
 use App\Models\ServicePage;
+use App\Support\CmsPageDefaults;
 use Illuminate\Http\Response;
 use Illuminate\View\View;
 
@@ -12,6 +13,7 @@ class ServicePageController extends Controller
     public function index(): View
     {
         $c = CmsSection::getMap();
+        $idx = array_merge(CmsPageDefaults::servicesIndex(), is_array($c['services_index'] ?? null) ? $c['services_index'] : []);
         $groups = ServicePage::query()
             ->whereNull('parent_id')
             ->where('is_active', true)
@@ -24,9 +26,10 @@ class ServicePageController extends Controller
 
         return view('services.index', [
             'c' => $c,
+            'idx' => $idx,
             'groups' => $groups,
-            'pageTitle' => 'Our Services — KodRank | Web Development & SEO Agency',
-            'pageDescription' => 'Explore KodRank\'s full range of SEO and web development services — from monthly SEO and technical optimization to WordPress, Shopify, and custom AI chatbots.',
+            'pageTitle' => $idx['seo_title'] ?? 'Our Services — KodRank',
+            'pageDescription' => $idx['seo_description'] ?? '',
             'bodyClass' => 'page-services-index',
         ]);
     }

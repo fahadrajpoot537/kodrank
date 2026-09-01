@@ -2,31 +2,66 @@
 
 namespace App\Support;
 
+use App\Models\CmsSection;
+use Illuminate\Support\Str;
+
 class BlogAuthors
 {
     /**
-     * Fixed team authors available in the blog admin.
+     * Authors from CMS (Blog authors section), falling back to the seeded team.
      *
      * @return array<string, array{name:string, role:string, linkedin:string, image:string, bio:string}>
      */
     public static function all(): array
     {
-        return [
-            'hidayatul-haq' => [
-                'name' => 'Hidayatul Haq',
-                'role' => 'Founder, KodRank · SEO Strategist',
-                'linkedin' => 'https://www.linkedin.com/in/hidayatul-haq',
-                'image' => 'media/blog/hidayatul-haq.jpg',
-                'bio' => 'Hidayat is the <strong>founder of KodRank</strong> and a <strong>top-rated SEO strategist</strong> who has delivered <strong>150+ projects across the globe</strong> — spanning technical audits, crawl-budget recovery, on-page optimization, and full-scale organic growth programs for founders, agencies, and in-house teams.',
-            ],
-            'fahad-bin-khalid' => [
-                'name' => 'Fahad Bin Khalid',
-                'role' => 'Co-founder, KodRank',
-                'linkedin' => 'https://www.linkedin.com/in/fahad-bin-khalid-laravel',
-                'image' => 'media/blog/fahad-bin-khalid.jpg',
-                'bio' => 'Fahad is a <strong>co-founder of KodRank</strong>, building fast WordPress and custom web platforms with clean architecture, Core Web Vitals performance, and SEO-ready foundations from day one.',
-            ],
-        ];
+        static $cached = null;
+        if ($cached !== null) {
+            return $cached;
+        }
+
+        $fromCms = [];
+        $section = class_exists(CmsSection::class)
+            ? CmsSection::query()->where('key', 'blog_authors')->first()
+            : null;
+        $rows = is_array($section?->data['authors'] ?? null) ? $section->data['authors'] : [];
+
+        foreach ($rows as $row) {
+            if (! is_array($row)) {
+                continue;
+            }
+            $name = trim((string) ($row['name'] ?? ''));
+            if ($name === '') {
+                continue;
+            }
+            $key = Str::slug((string) ($row['key'] ?? '')) ?: Str::slug($name);
+            if ($key === '') {
+                continue;
+            }
+            $fromCms[$key] = [
+                'name' => $name,
+                'role' => (string) ($row['role'] ?? ''),
+                'linkedin' => (string) ($row['linkedin'] ?? ''),
+                'image' => (string) ($row['image'] ?? ''),
+                'bio' => (string) ($row['bio'] ?? ''),
+            ];
+        }
+
+        if ($fromCms !== []) {
+            return $cached = $fromCms;
+        }
+
+        $fallback = [];
+        foreach (CmsPageDefaults::defaultAuthors() as $author) {
+            $fallback[$author['key']] = [
+                'name' => $author['name'],
+                'role' => $author['role'],
+                'linkedin' => $author['linkedin'],
+                'image' => $author['image'],
+                'bio' => $author['bio'],
+            ];
+        }
+
+        return $cached = $fallback;
     }
 
     public static function options(): array
@@ -60,11 +95,11 @@ class BlogAuthors
         }
 
         if (stripos($name, 'Hidayat') !== false) {
-            return self::all()['hidayatul-haq'];
+            return self::all()['hidayatul-haq'] ?? null;
         }
 
         if (stripos($name, 'Fahad') !== false) {
-            return self::all()['fahad-bin-khalid'];
+            return self::all()['fahad-bin-khalid'] ?? null;
         }
 
         return null;
@@ -83,11 +118,11 @@ class BlogAuthors
             }
         }
 
-        if (stripos($name, 'Hidayat') !== false) {
+        if (stripos($name, 'Hidayat') !== false && isset(self::all()['hidayatul-haq'])) {
             return 'hidayatul-haq';
         }
 
-        if (stripos($name, 'Fahad') !== false) {
+        if (stripos($name, 'Fahad') !== false && isset(self::all()['fahad-bin-khalid'])) {
             return 'fahad-bin-khalid';
         }
 
@@ -103,6 +138,6 @@ class BlogAuthors
 
         $path = ltrim((string) $author['image'], '/');
 
-        return is_file(public_path($path)) ? $path : null;
+        return $path !== '' && is_file(public_path($path)) ? $path : null;
     }
 }

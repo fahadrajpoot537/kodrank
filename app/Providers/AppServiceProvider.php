@@ -34,6 +34,8 @@ class AppServiceProvider extends ServiceProvider
                 return;
             }
 
+            \App\Support\CmsPageDefaults::ensure();
+
             $view->with([
                 'sections' => CmsSection::query()->orderBy('sort_order')->get(['id', 'key', 'label', 'sort_order']),
                 'unread' => ContactMessage::query()->where('is_read', false)->count(),

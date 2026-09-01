@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\CmsSection;
+use App\Support\CmsPageDefaults;
 use App\Support\ContentTemplates;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -91,6 +92,11 @@ class SectionController extends Controller
 
     public function destroy(string $key): RedirectResponse
     {
+        $protected = array_merge(['site', 'nav', 'footer'], array_keys(CmsPageDefaults::sections()));
+        if (in_array($key, $protected, true)) {
+            return back()->with('success', 'This core section cannot be deleted. Clear or edit its fields instead.');
+        }
+
         $section = CmsSection::query()->where('key', $key)->firstOrFail();
         $section->delete();
 

@@ -1,8 +1,9 @@
 @extends('layouts.site')
 
 @php
-  $seoGroup = $groups->firstWhere('slug', 'digital-marketing-services');
-  $webGroup = $groups->firstWhere('slug', 'web-design-and-development-services');
+  $idx = $idx ?? array_merge(\App\Support\CmsPageDefaults::servicesIndex(), is_array($c['services_index'] ?? null) ? $c['services_index'] : []);
+  $seoGroup = $groups->firstWhere('slug', $idx['seo_group_slug'] ?? 'digital-marketing-services');
+  $webGroup = $groups->firstWhere('slug', $idx['web_group_slug'] ?? 'web-design-and-development-services');
 
   $blurbs = [
     'digital-marketing-services' => 'Full-funnel campaigns across search, social, and paid — built to turn traffic into pipeline, and pipeline into revenue.',
@@ -88,27 +89,27 @@
           ['label' => 'Services', 'url' => ''],
         ],
       ])
-      <h1>Everything you need to <span class="accent">rank higher</span> and <span class="accent">convert more</span>.</h1>
-      <p class="lede">From technical SEO to custom-built websites, KodRank ships work that moves rankings and revenue. Pick a service below — or let us build the plan for you.</p>
+      <h1>{{ $idx['hero_title'] ?? 'Everything you need to' }} <span class="accent">{{ $idx['hero_title_accent_1'] ?? 'rank higher' }}</span> {{ $idx['hero_title_and'] ?? 'and' }} <span class="accent">{{ $idx['hero_title_accent_2'] ?? 'convert more' }}</span>.</h1>
+      <p class="lede">{{ $idx['hero_lede'] ?? '' }}</p>
       <div class="svc-index-actions">
-        <a href="{{ route('contact') }}" class="svc-index-btn svc-index-btn-primary">Book A Free Audit <span class="arw">→</span></a>
-        <a href="#seo" class="svc-index-btn svc-index-btn-ghost">Browse Services <span class="arw">→</span></a>
+        <a href="{{ route('contact') }}" class="svc-index-btn svc-index-btn-primary">{{ $idx['cta_primary'] ?? 'Book A Free Audit' }} <span class="arw">→</span></a>
+        <a href="#seo" class="svc-index-btn svc-index-btn-ghost">{{ $idx['cta_secondary'] ?? 'Browse Services' }} <span class="arw">→</span></a>
       </div>
     </div>
     <div class="svc-index-stats">
-      <div class="stat"><div class="num">{{ $totalServices ?: 14 }}</div><div class="lbl">Specialist Services</div></div>
-      <div class="stat"><div class="num">2</div><div class="lbl">Core Disciplines</div></div>
-      <div class="stat"><div class="num">100%</div><div class="lbl">In-House Team</div></div>
+      <div class="stat"><div class="num">{{ $totalServices ?: 14 }}</div><div class="lbl">{{ $idx['stat_1_label'] ?? 'Specialist Services' }}</div></div>
+      <div class="stat"><div class="num">{{ $idx['stat_2_value'] ?? '2' }}</div><div class="lbl">{{ $idx['stat_2_label'] ?? 'Core Disciplines' }}</div></div>
+      <div class="stat"><div class="num">{{ $idx['stat_3_value'] ?? '100%' }}</div><div class="lbl">{{ $idx['stat_3_label'] ?? 'In-House Team' }}</div></div>
     </div>
   </div>
 </section>
 
 <div class="svc-index-jump">
   <div class="wrap svc-index-jump-inner">
-    <span class="jump-label">Jump to</span>
-    <a href="#seo" class="chip"><span class="dot"></span>SEO &amp; Search Growth</a>
-    <a href="#webdev" class="chip"><span class="dot"></span>Web Design &amp; Development</a>
-    <a href="#cta" class="chip"><span class="dot"></span>Talk To Us</a>
+    <span class="jump-label">{{ $idx['jump_label'] ?? 'Jump to' }}</span>
+    <a href="#seo" class="chip"><span class="dot"></span>{{ $idx['jump_seo'] ?? 'SEO & Search Growth' }}</a>
+    <a href="#webdev" class="chip"><span class="dot"></span>{{ $idx['jump_web'] ?? 'Web Design & Development' }}</a>
+    <a href="#cta" class="chip"><span class="dot"></span>{{ $idx['jump_cta'] ?? 'Talk To Us' }}</a>
   </div>
 </div>
 
@@ -116,22 +117,31 @@
 <section class="svc-index-sec sec-ink" id="seo">
   <div class="wrap">
     <div class="svc-index-head">
-      <span class="svc-index-eyebrow">SEO &amp; Search Growth</span>
-      <h2>Get found where your customers are <span class="accent">searching</span>.</h2>
-      <p>Classic search, AI answers, and generative results — we optimize for all of it, so your business shows up first no matter how people search.</p>
+      <span class="svc-index-eyebrow">{{ $idx['seo_eyebrow'] ?? 'SEO & Search Growth' }}</span>
+      <h2>{{ $idx['seo_title_h2'] ?? 'Get found where your customers are' }} <span class="accent">{{ $idx['seo_title_accent'] ?? 'searching' }}</span>.</h2>
+      <p>{{ $idx['seo_lede'] ?? '' }}</p>
     </div>
     <div class="svc-index-grid">
       @foreach($seoPages as $svc)
+        @php
+          $cardTag = trim((string) ($svc->seo['listing_tag'] ?? '')) ?: ($tags[$svc->slug] ?? '');
+          $cardBlurb = trim((string) ($svc->seo['listing_blurb'] ?? '')) ?: ($blurbs[$svc->slug] ?? (($svc->seo['seo_description'] ?? '') !== '' ? \Illuminate\Support\Str::limit($svc->seo['seo_description'], 120) : 'Explore how KodRank delivers this service end to end.'));
+          $cardIcon = trim((string) ($svc->seo['listing_icon'] ?? ''));
+        @endphp
         <a href="/{{ ltrim($svc->slug, '/') }}" class="svc-card svc-card-dark">
-          @if(!empty($tags[$svc->slug]))
-            <span class="svc-tag">{{ $tags[$svc->slug] }}</span>
+          @if($cardTag !== '')
+            <span class="svc-tag">{{ $cardTag }}</span>
           @endif
           <div class="icn-tile" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">{!! $icons[$svc->slug] ?? $defaultIcon !!}</svg>
+            @if($cardIcon !== '')
+              <img src="{{ asset(ltrim($cardIcon, '/')) }}" alt="" width="24" height="24">
+            @else
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">{!! $icons[$svc->slug] ?? $defaultIcon !!}</svg>
+            @endif
           </div>
           <h3>{{ $svc->name }}</h3>
-          <p>{{ $blurbs[$svc->slug] ?? (($svc->seo['seo_description'] ?? '') !== '' ? \Illuminate\Support\Str::limit($svc->seo['seo_description'], 120) : 'Explore how KodRank delivers this service end to end.') }}</p>
-          <span class="tlink">Explore service <span class="arw">→</span></span>
+          <p>{{ $cardBlurb }}</p>
+          <span class="tlink">{{ $idx['card_cta'] ?? 'Explore service' }} <span class="arw">→</span></span>
         </a>
       @endforeach
     </div>
@@ -143,22 +153,31 @@
 <section class="svc-index-sec sec-mist" id="webdev">
   <div class="wrap">
     <div class="svc-index-head">
-      <span class="svc-index-eyebrow">Web Design &amp; Development</span>
-      <h2>Websites built to <span class="accent-deep">perform</span>, not just look good.</h2>
-      <p>Fast, modern, conversion-focused builds on the platform that fits your business — from WordPress and Shopify to custom AI chatbots.</p>
+      <span class="svc-index-eyebrow">{{ $idx['web_eyebrow'] ?? 'Web Design & Development' }}</span>
+      <h2>{{ $idx['web_title_h2'] ?? 'Websites built to' }} <span class="accent-deep">{{ $idx['web_title_accent'] ?? 'perform' }}</span>{{ $idx['web_title_after'] ?? ', not just look good.' }}</h2>
+      <p>{{ $idx['web_lede'] ?? '' }}</p>
     </div>
     <div class="svc-index-grid">
       @foreach($webPages as $svc)
+        @php
+          $cardTag = trim((string) ($svc->seo['listing_tag'] ?? '')) ?: ($tags[$svc->slug] ?? '');
+          $cardBlurb = trim((string) ($svc->seo['listing_blurb'] ?? '')) ?: ($blurbs[$svc->slug] ?? (($svc->seo['seo_description'] ?? '') !== '' ? \Illuminate\Support\Str::limit($svc->seo['seo_description'], 120) : 'Explore how KodRank delivers this service end to end.'));
+          $cardIcon = trim((string) ($svc->seo['listing_icon'] ?? ''));
+        @endphp
         <a href="/{{ ltrim($svc->slug, '/') }}" class="svc-card svc-card-light">
-          @if(!empty($tags[$svc->slug]))
-            <span class="svc-tag">{{ $tags[$svc->slug] }}</span>
+          @if($cardTag !== '')
+            <span class="svc-tag">{{ $cardTag }}</span>
           @endif
           <div class="icn-tile" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">{!! $icons[$svc->slug] ?? $defaultIcon !!}</svg>
+            @if($cardIcon !== '')
+              <img src="{{ asset(ltrim($cardIcon, '/')) }}" alt="" width="24" height="24">
+            @else
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">{!! $icons[$svc->slug] ?? $defaultIcon !!}</svg>
+            @endif
           </div>
           <h3>{{ $svc->name }}</h3>
-          <p>{{ $blurbs[$svc->slug] ?? (($svc->seo['seo_description'] ?? '') !== '' ? \Illuminate\Support\Str::limit($svc->seo['seo_description'], 120) : 'Explore how KodRank delivers this service end to end.') }}</p>
-          <span class="tlink">Explore service <span class="arw">→</span></span>
+          <p>{{ $cardBlurb }}</p>
+          <span class="tlink">{{ $idx['card_cta'] ?? 'Explore service' }} <span class="arw">→</span></span>
         </a>
       @endforeach
     </div>
@@ -170,13 +189,13 @@
   <div class="wrap">
     <div class="svc-index-cta-card">
       <div>
-        <span class="svc-index-eyebrow">Ready When You Are</span>
-        <h2>Not sure which service you need? <span class="accent">Let's map it out.</span></h2>
-        <p>Tell us your goals and we'll recommend the exact mix of SEO and development to get you there — no pressure, no jargon.</p>
+        <span class="svc-index-eyebrow">{{ $idx['bottom_eyebrow'] ?? 'Ready When You Are' }}</span>
+        <h2>{{ $idx['bottom_title'] ?? 'Not sure which service you need?' }} <span class="accent">{{ $idx['bottom_title_accent'] ?? 'Let\'s map it out.' }}</span></h2>
+        <p>{{ $idx['bottom_lede'] ?? '' }}</p>
       </div>
       <div class="svc-index-cta-actions">
-        <a href="{{ route('contact') }}" class="svc-index-btn svc-index-btn-primary">Get A Free Quote <span class="arw">→</span></a>
-        <a href="{{ route('contact') }}" class="svc-index-btn svc-index-btn-ghost">Book A Strategy Call <span class="arw">→</span></a>
+        <a href="{{ route('contact') }}" class="svc-index-btn svc-index-btn-primary">{{ $idx['bottom_cta_primary'] ?? 'Get A Free Quote' }} <span class="arw">→</span></a>
+        <a href="{{ route('contact') }}" class="svc-index-btn svc-index-btn-ghost">{{ $idx['bottom_cta_secondary'] ?? 'Book A Strategy Call' }} <span class="arw">→</span></a>
       </div>
     </div>
   </div>

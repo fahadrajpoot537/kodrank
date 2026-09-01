@@ -22,6 +22,7 @@
     <div class="field">
       <label>Slug (optional)</label>
       <input type="text" name="slug" value="{{ old('slug', $post->slug) }}" placeholder="Auto from title">
+      <p class="admin-hint">Live at <code>/blogs/{{ $post->slug ?: '…' }}</code>. Changing the slug 301-redirects the old URL.</p>
     </div>
 
     <div class="field">
@@ -64,7 +65,8 @@
 
     <div class="field">
       <label>Author</label>
-      <select name="author_key" id="author_key" required>
+      <select name="author_key" id="author_key">
+        <option value="custom" @selected(old('author_key', $authorKey ?? '') === 'custom' || old('author_key', $authorKey ?? '') === '')>Custom (type name below)</option>
         @foreach(($authors ?? []) as $key => $author)
           <option
             value="{{ $key }}"
@@ -78,7 +80,7 @@
           >{{ $author['name'] }}</option>
         @endforeach
       </select>
-      <p class="admin-hint">Only two authors: Hidayatul Haq and Fahad Bin Khalid. Role, photo, LinkedIn, and default bio fill automatically.</p>
+      <p class="admin-hint">Roster authors live under <a href="{{ route('admin.sections.edit', 'blog_authors') }}">Blog authors</a>. Pick one, or choose Custom and fill name / photo / bio.</p>
     </div>
 
     <div class="field" style="display:flex;align-items:center;gap:14px">
@@ -89,7 +91,10 @@
       </div>
     </div>
 
-    <input type="hidden" name="author_name" id="author_name" value="{{ old('author_name', $post->author_name) }}">
+    <div class="field">
+      <label>Author name</label>
+      <input type="text" name="author_name" id="author_name" value="{{ old('author_name', $post->author_name) }}">
+    </div>
     <input type="hidden" name="author_image" id="author_image" value="{{ old('author_image', $post->author_image) }}">
 
     <div class="field">
@@ -106,6 +111,12 @@
     <div class="field">
       <label>Author LinkedIn URL</label>
       <input type="url" name="author_linkedin" id="author_linkedin" value="{{ old('author_linkedin', $post->author_linkedin) }}" placeholder="https://linkedin.com/in/...">
+    </div>
+
+    <div class="field">
+      <label>Upload author photo</label>
+      <input type="file" name="author_image_file" accept="image/*">
+      <p class="admin-hint">Optional. Overrides the roster photo for this post only.</p>
     </div>
 
     <div class="field">
@@ -222,9 +233,9 @@
 <script>
 document.addEventListener('DOMContentLoaded', () => {
   const authorSelect = document.getElementById('author_key');
-  const applyAuthor = () => {
+    const applyAuthor = () => {
     const option = authorSelect?.selectedOptions?.[0];
-    if (!option) return;
+    if (!option || option.value === 'custom') return;
 
     const name = option.dataset.name || '';
     const role = option.dataset.role || '';

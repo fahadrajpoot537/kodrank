@@ -127,7 +127,8 @@
 .page-services-index .svc-card-light:hover .icn-tile{background:var(--signal);color:var(--signal-ink)}
 .page-services-index .svc-card-dark .icn-tile{background:rgba(244,122,31,.12);color:var(--signal)}
 .page-services-index .svc-card-dark:hover .icn-tile{background:var(--signal);color:var(--signal-ink)}
-.page-services-index .icn-tile svg{width:24px;height:24px}
+.page-services-index .icn-tile svg,
+.page-services-index .icn-tile img{width:24px;height:24px;object-fit:contain;display:block}
 .page-services-index .svc-card h3{font-size:1.12rem;font-weight:650;margin:0 0 8px;line-height:1.25}
 .page-services-index .svc-card-dark h3{color:#fff}
 .page-services-index .svc-card p{font-size:.92rem;color:var(--slate);margin:0 0 18px;flex:1;line-height:1.55}

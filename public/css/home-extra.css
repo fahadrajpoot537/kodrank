@@ -17,6 +17,22 @@
 .hero-media video{z-index:1}
 .hero-media .hero-scrim{z-index:2}
 
+/* Work shot photos (laptop mockups from the homepage theme) */
+.work-shot.has-img,
+.work-shot:has(img){
+  padding:0;
+  aspect-ratio:16/10;
+  overflow:hidden;
+  background:#ececec;
+}
+.work-shot img{
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  object-position:center;
+  display:block;
+}
+
 /* Work shot placeholders */
 .work-shot.placeholder{
   min-height:180px;
@@ -125,11 +141,23 @@ a:focus-visible{
 
 /* Mobile nav panel via .is-open */
 @media(max-width:900px){
+  header.nav{
+    z-index:200;
+    overflow:visible;
+  }
+  /* backdrop-filter creates a containing block and clips the slide-down menu */
+  header.nav.stuck{
+    backdrop-filter:none;
+    -webkit-backdrop-filter:none;
+    background:#fff;
+  }
   .nav-in{
     position:relative;
     gap:8px;
     width:100%;
     height:64px;
+    overflow:visible;
+    flex-wrap:nowrap;
   }
   .nav-cta{
     display:flex !important;
@@ -148,6 +176,8 @@ a:focus-visible{
     margin-left:4px !important;
     order:10;
     flex:none;
+    position:relative;
+    z-index:2;
   }
   .nav-links{
     display:none;

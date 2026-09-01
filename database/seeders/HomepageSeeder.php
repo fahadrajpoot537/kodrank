@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\CmsSection;
+use App\Support\CmsPageDefaults;
 use Illuminate\Database\Seeder;
 
 class HomepageSeeder extends Seeder
@@ -34,6 +35,7 @@ class HomepageSeeder extends Seeder
                     'robots' => 'index, follow',
                     'keywords' => 'web development, SEO services, technical SEO, on-page SEO, local SEO, AEO, GEO, answer engine optimization, generative engine optimization, custom websites, e-commerce development, KodRank',
                     'brand_name' => 'KodRank',
+                    'logo' => 'logo.png',
                     'phone' => '+92 305 9202732',
                     'email' => 'info@kodrank.com',
                     'copyright' => '© 2026 KodRank. All rights reserved.',
@@ -49,7 +51,7 @@ class HomepageSeeder extends Seeder
                     'links' => [
                         ['label' => 'Home', 'url' => '/'],
                         ['label' => 'Industries', 'url' => '/industries'],
-                        ['label' => 'Results', 'url' => '#work'],
+                        ['label' => 'Results', 'url' => '/results'],
                         ['label' => 'Insights', 'url' => '/blogs'],
                     ],
                     'industries_mega' => [
@@ -62,17 +64,7 @@ class HomepageSeeder extends Seeder
                         ],
                         'cta_text' => 'Get a free audit',
                         'cta_url' => '/contact',
-                        'items' => [
-                            ['title' => 'B2B SEO', 'body' => 'Search strategies that turn traffic into qualified pipeline.', 'url' => '/b2b-seo-services'],
-                            ['title' => 'Real Estate SEO', 'body' => 'Rank listings and capture high-intent buyers locally.', 'url' => '/real-estate-seo-services'],
-                            ['title' => 'Law Firm SEO', 'body' => 'Own your practice areas and win case-ready clients.', 'url' => '/contact'],
-                            ['title' => 'SaaS SEO', 'body' => 'Content and search engineered to grow recurring revenue.', 'url' => '/saas-seo-services'],
-                            ['title' => 'SaaS Software Development', 'body' => 'Custom SaaS products built to ship and scale.', 'url' => '/saas-software-development-services'],
-                            ['title' => 'Ecommerce SEO', 'body' => 'Grow product visibility and organic store revenue.', 'url' => '/ecommerce-seo-services'],
-                            ['title' => 'Healthcare SEO', 'body' => 'Compliant, trust-first SEO that reaches patients.', 'url' => '/healthcare-seo-services'],
-                            ['title' => 'Restaurant SEO', 'body' => 'Local search that fills tables and books covers.', 'url' => '/restaurant-seo-services'],
-                            ['title' => 'Electrician Website Design', 'body' => 'Fast, converting sites that book more jobs.', 'url' => '/electrician-website-design-services'],
-                        ],
+                        'items' => CmsPageDefaults::industryNavItems(),
                     ],
                     'mega' => [
                         'eyebrow' => 'What we do',
@@ -255,102 +247,7 @@ class HomepageSeeder extends Seeder
                 'key' => 'services',
                 'label' => 'Services',
                 'sort_order' => 7,
-                'data' => [
-                    'eyebrow' => 'Our services',
-                    'title' => 'Web development and SEO services, à la carte or all at once.',
-                    'lede' => 'Whether you need a brand-new build, a technical rescue, or the complete package, here’s exactly what KodRank delivers.',
-                    'groups' => [
-                        [
-                            'title' => 'Web Development Services',
-                            'subtitle' => 'Built to be found',
-                            'items' => [
-                                [
-                                    'title' => 'Custom Website Development',
-                                    'body' => 'Hand-coded, fast, and secure websites built on modern frameworks — no bloated templates dragging down your speed or your rankings.',
-                                    'link_text' => 'Build my site',
-                                    'link_url' => '#',
-                                ],
-                                [
-                                    'title' => 'E-Commerce Development',
-                                    'body' => 'Shopify, WooCommerce, and custom stores engineered to load fast, rank for product searches, and turn browsers into buyers.',
-                                    'link_text' => 'Sell more online',
-                                    'link_url' => '#',
-                                ],
-                                [
-                                    'title' => 'Website Redesign & Migration',
-                                    'body' => 'Modernize an ageing site without losing your hard-won rankings. We migrate safely, preserving SEO equity every step of the way.',
-                                    'link_text' => 'Redesign safely',
-                                    'link_url' => '#',
-                                ],
-                            ],
-                        ],
-                        [
-                            'title' => 'SEO Services',
-                            'subtitle' => 'Ranking, not guesswork',
-                            'items' => [
-                                [
-                                    'title' => 'Technical SEO',
-                                    'body' => 'Schema markup, crawlability, indexing, site architecture, and clean code — the foundation search engines actually reward.',
-                                    'link_text' => 'Audit my tech',
-                                    'link_url' => '#',
-                                ],
-                                [
-                                    'title' => 'On-Page SEO',
-                                    'body' => 'Titles, meta descriptions, headings, internal links, and alt text optimized around the exact keywords your buyers are searching.',
-                                    'link_text' => 'Optimize my pages',
-                                    'link_url' => '#',
-                                ],
-                                [
-                                    'title' => 'Keyword Research & Strategy',
-                                    'body' => 'We map the terms your customers actually type, the intent behind them, and the gaps your competitors are leaving wide open.',
-                                    'link_text' => 'Find my keywords',
-                                    'link_url' => '#',
-                                ],
-                                [
-                                    'title' => 'SEO Content Writing',
-                                    'body' => 'Human-written pages and blogs mapped to search intent — engaging enough to read, structured to win featured snippets.',
-                                    'link_text' => 'Get content',
-                                    'link_url' => '#',
-                                ],
-                                [
-                                    'title' => 'Local SEO',
-                                    'body' => 'Google Business Profile, local citations, and location pages that put you on the map — literally — for buyers nearby.',
-                                    'link_text' => 'Rank locally',
-                                    'link_url' => '#',
-                                ],
-                                [
-                                    'title' => 'SEO Audit & Reporting',
-                                    'body' => 'A clear, jargon-free look under the hood of your current site — what’s holding rankings back and the exact plan to fix it.',
-                                    'link_text' => 'Get a free audit',
-                                    'link_url' => '#',
-                                ],
-                            ],
-                        ],
-                        [
-                            'title' => 'AI Search Optimization',
-                            'subtitle' => 'Rank in AI answers, not just Google',
-                            'layout' => 'aeo-geo',
-                            'items' => [
-                                [
-                                    'title' => 'AEO Services',
-                                    'body' => 'Answer Engine Optimization — structured content, schema, and FAQs built to win featured snippets and the direct answers people ask for.',
-                                    'link_text' => 'Own the answer',
-                                    'link_url' => '#',
-                                ],
-                                [
-                                    'title' => 'GEO Services',
-                                    'body' => 'Generative Engine Optimization — get cited inside AI Overviews, ChatGPT, and Gemini, where more of your buyers now start their search.',
-                                    'link_text' => 'Get cited by AI',
-                                    'link_url' => '#',
-                                ],
-                            ],
-                        ],
-                    ],
-                    'web_cta_text' => 'View all web development services',
-                    'web_cta_url' => '#',
-                    'seo_cta_text' => 'View all SEO services',
-                    'seo_cta_url' => '#',
-                ],
+                'data' => CmsPageDefaults::homepageServices(),
             ],
             [
                 'key' => 'difference',
@@ -411,43 +308,7 @@ class HomepageSeeder extends Seeder
                 'key' => 'work',
                 'label' => 'Selected work',
                 'sort_order' => 10,
-                'data' => [
-                    'eyebrow' => 'Selected work',
-                    'title' => 'Sites that were found, not just admired.',
-                    'lede' => 'Three recent builds where development and search were scoped together from the first call. <em style="color:var(--slate-2)">(Replace with your real case studies before launch.)</em>',
-                    'cases' => [
-                        [
-                            'tag' => 'Shopify build · E-commerce SEO',
-                            'title' => 'Northline Interiors',
-                            'body' => 'A furniture retailer whose category pages were invisible. Rebuilt on Shopify with a search-led category architecture and product schema throughout.',
-                            'image_alt' => 'E-commerce storefront mockup',
-                            'metric1_value' => '3.1×',
-                            'metric1_label' => 'Organic sessions',
-                            'metric2_value' => '1.1s',
-                            'metric2_label' => 'LCP, from 4.6s',
-                        ],
-                        [
-                            'tag' => 'Next.js build · Technical SEO',
-                            'title' => 'Verta Analytics',
-                            'body' => 'A B2B software firm migrating off a legacy CMS. Rebuilt headless with a full redirect map — and finished the migration ahead of the old site\'s traffic.',
-                            'image_alt' => 'Analytics dashboard mockup',
-                            'metric1_value' => '+186%',
-                            'metric1_label' => 'Non-brand clicks',
-                            'metric2_value' => '0',
-                            'metric2_label' => 'Rankings lost in migration',
-                        ],
-                        [
-                            'tag' => 'WordPress build · Local SEO',
-                            'title' => 'BrightPath Clinics',
-                            'body' => 'A six-site healthcare group with one thin page per location. Rebuilt with a scalable location template and a rebuilt Google Business Profile programme.',
-                            'image_alt' => 'Local search map pack mockup',
-                            'metric1_value' => '5 of 6',
-                            'metric1_label' => 'Sites in the map pack',
-                            'metric2_value' => '+240%',
-                            'metric2_label' => 'Direction requests',
-                        ],
-                    ],
-                ],
+                'data' => \App\Support\ResultsPageDefaults::homepageWork(),
             ],
             [
                 'key' => 'tech',
@@ -490,23 +351,7 @@ class HomepageSeeder extends Seeder
                 'key' => 'testimonials',
                 'label' => 'Testimonials',
                 'sort_order' => 13,
-                'data' => [
-                    'eyebrow' => 'Results, not promises',
-                    'title' => 'Businesses that stopped paying twice.',
-                    'lede' => 'Every engagement ends with a documented handover — and a client who can explain what was built and why.',
-                    'items' => [
-                        [
-                            'quote' => 'We’d already been burned once — a stunning site that never showed up on Google. KodRank rebuilt it with SEO baked in from the start. We hit page one for our main keyword within weeks, and there was no separate SEO bill waiting for us.',
-                            'name' => 'Rana Malik',
-                            'role' => 'Founder, Northline Interiors',
-                        ],
-                        [
-                            'quote' => 'What sold me was the honesty. They explained exactly why our old site couldn’t rank and fixed it at the source. Traffic is up over 3x and the site loads instantly. Finally one team that owns the whole outcome.',
-                            'name' => 'Sara Khan',
-                            'role' => 'Director, BrightPath Clinics',
-                        ],
-                    ],
-                ],
+                'data' => \App\Support\CmsPageDefaults::homepageTestimonials(),
             ],
             [
                 'key' => 'faq',
@@ -616,7 +461,7 @@ class HomepageSeeder extends Seeder
                                 ['label' => 'About Us', 'url' => '/about-us'],
                                 ['label' => 'Industries', 'url' => '/industries'],
                                 ['label' => 'Our Process', 'url' => '#process'],
-                                ['label' => 'Results', 'url' => '#work'],
+                                ['label' => 'Results', 'url' => '/results'],
                                 ['label' => 'FAQ', 'url' => '/#faq'],
                                 ['label' => 'Privacy Policy', 'url' => '/privacy-policy'],
                                 ['label' => 'Terms & Conditions', 'url' => '/terms-and-conditions'],
@@ -635,6 +480,15 @@ class HomepageSeeder extends Seeder
                 ],
             ],
         ];
+
+        foreach (\App\Support\CmsPageDefaults::sections() as $key => $def) {
+            $sections[] = [
+                'key' => $key,
+                'label' => $def['label'],
+                'sort_order' => $def['sort_order'],
+                'data' => $def['data'],
+            ];
+        }
 
         foreach ($sections as $section) {
             CmsSection::updateOrCreate(

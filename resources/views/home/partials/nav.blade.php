@@ -41,17 +41,7 @@
       $restLinks[] = ['label' => 'Insights', 'url' => '/blogs'];
   }
   $mega = $c['nav']['mega'] ?? [];
-  $defaultIndustryItems = [
-      ['title' => 'B2B SEO', 'body' => 'Search strategies that turn traffic into qualified pipeline.', 'url' => '/b2b-seo-services'],
-      ['title' => 'Real Estate SEO', 'body' => 'Rank listings and capture high-intent buyers locally.', 'url' => '/real-estate-seo-services'],
-      ['title' => 'Law Firm SEO', 'body' => 'Own your practice areas and win case-ready clients.', 'url' => '/contact'],
-      ['title' => 'SaaS SEO', 'body' => 'Content and search engineered to grow recurring revenue.', 'url' => '/saas-seo-services'],
-      ['title' => 'SaaS Software Development', 'body' => 'Custom SaaS products built to ship and scale.', 'url' => '/saas-software-development-services'],
-      ['title' => 'Ecommerce SEO', 'body' => 'Grow product visibility and organic store revenue.', 'url' => '/ecommerce-seo-services'],
-      ['title' => 'Healthcare SEO', 'body' => 'Compliant, trust-first SEO that reaches patients.', 'url' => '/healthcare-seo-services'],
-      ['title' => 'Restaurant SEO', 'body' => 'Local search that fills tables and books covers.', 'url' => '/restaurant-seo-services'],
-      ['title' => 'Electrician Website Design', 'body' => 'Fast, converting sites that book more jobs.', 'url' => '/electrician-website-design-services'],
-  ];
+  $defaultIndustryItems = \App\Support\CmsPageDefaults::industryNavItems();
   $industriesMega = array_merge([
       'eyebrow' => '— Industries',
       'title_html' => 'Built to <span>Rank</span>',
@@ -64,16 +54,24 @@
       'cta_url' => '/contact',
       'items' => $defaultIndustryItems,
   ], $c['nav']['industries_mega'] ?? []);
-  if (count($industriesMega['items'] ?? []) < 9) {
+  $industryItemsBroken = count($industriesMega['items'] ?? []) < 8;
+  foreach ($industriesMega['items'] ?? [] as $ii => $item) {
+      $itemUrl = strtolower(rtrim((string) ($item['url'] ?? ''), '/'));
+      if ($itemUrl === '' || $itemUrl === '#' || $itemUrl === '/contact' || $itemUrl === 'contact') {
+          $industryItemsBroken = true;
+          break;
+      }
+  }
+  if ($industryItemsBroken) {
       $industriesMega['items'] = $defaultIndustryItems;
   }
   $mainServices = \App\Models\ServicePage::navTree();
   $arrow = '<svg viewBox="0 0 16 16" fill="none"><path d="M2 8h11m0 0-4.2-4.2M13 8l-4.2 4.2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>';
 @endphp
-<header class="nav{{ !empty($navStuck) ? ' stuck' : '' }}" id="nav">
+<header class="nav{{ !empty($navStuck) ? ' stuck' : '' }}" id="nav"@if(!empty($navStuck)) data-always-stuck="1"@endif>
   <div class="nav-in">
     <a class="brand" href="/" aria-label="{{ $c['site']['brand_name'] ?? 'KodRank' }} home">
-      <img class="brand-logo" src="{{ asset('logo.png') }}" alt="{{ $c['site']['brand_name'] ?? 'KodRank' }}" width="168" height="40" decoding="async">
+      <img class="brand-logo" src="{{ asset(ltrim(($c['site']['logo'] ?? 'logo.png') !== '' ? ($c['site']['logo'] ?? 'logo.png') : 'logo.png', '/')) }}" alt="{{ $c['site']['brand_name'] ?? 'KodRank' }}" width="168" height="40" decoding="async">
     </a>
     <nav class="nav-links" aria-label="Primary">
       @if($homeLink)

@@ -11,20 +11,25 @@
     </div>
     <nav class="admin-nav">
       <a href="{{ route('admin.dashboard') }}" class="{{ request()->routeIs('admin.dashboard') ? 'active' : '' }}">Dashboard</a>
-      <a href="{{ route('admin.homepage.index') }}" class="{{ request()->routeIs('admin.homepage.*') || request()->routeIs('admin.sections.*') ? 'active' : '' }}">Homepage content</a>
+      <a href="{{ route('admin.homepage.index') }}" class="{{ request()->routeIs('admin.homepage.*') || request()->routeIs('admin.sections.*') ? 'active' : '' }}">Site &amp; page content</a>
+      <a href="{{ route('admin.sections.edit', 'site') }}">Site settings / logo</a>
+      <a href="{{ route('admin.sections.edit', 'contact_page') }}">Contact page</a>
+      <a href="{{ route('admin.sections.edit', 'services_index') }}">Services listing</a>
+      <a href="{{ route('admin.sections.edit', 'results_page') }}">Results page</a>
       <a href="{{ route('admin.service-pages.index') }}" class="{{ request()->routeIs('admin.service-pages.*') ? 'active' : '' }}">Services &amp; sub-services</a>
       <a href="{{ route('admin.service-pages.create') }}">+ Add service</a>
       <a href="{{ route('admin.blog.posts.index') }}" class="{{ request()->routeIs('admin.blog.posts.*') ? 'active' : '' }}">Blog posts</a>
       <a href="{{ route('admin.blog.posts.create') }}">+ New post</a>
       <a href="{{ route('admin.blog.categories.index') }}" class="{{ request()->routeIs('admin.blog.categories.*') ? 'active' : '' }}">Blog categories</a>
       <a href="{{ route('admin.blog.settings.edit') }}" class="{{ request()->routeIs('admin.blog.settings.*') ? 'active' : '' }}">Blog settings</a>
+      <a href="{{ route('admin.sections.edit', 'blog_authors') }}">Blog authors</a>
       <a href="{{ route('admin.newsletter.index') }}" class="{{ request()->routeIs('admin.newsletter.*') ? 'active' : '' }}">Newsletter subscribers</a>
       <a href="{{ route('admin.cache.clear') }}">Clear cache</a>
       <a href="{{ route('admin.messages.index') }}" class="{{ request()->routeIs('admin.messages.*') ? 'active' : '' }}">Messages @if(($unread ?? 0) > 0)<span class="badge">{{ $unread }}</span>@endif</a>
       <a href="{{ route('admin.seo-inquiries.index') }}" class="{{ request()->routeIs('admin.seo-inquiries.*') ? 'active' : '' }}">SEO inquiries @if(($unreadInquiries ?? 0) > 0)<span class="badge">{{ $unreadInquiries }}</span>@endif</a>
       <a href="{{ route('admin.seo-media.index') }}" class="{{ request()->routeIs('admin.seo-media.*') ? 'active' : '' }}">Media library</a>
 
-      <div class="nav-group-label">Homepage sections</div>
+      <div class="nav-group-label">All content blocks</div>
       <a href="{{ route('admin.sections.create') }}" class="{{ request()->routeIs('admin.sections.create') ? 'active' : '' }}">+ Add homepage section</a>
       @foreach(($sections ?? \App\Models\CmsSection::orderBy('sort_order')->get()) as $sec)
         <a href="{{ route('admin.sections.edit', $sec->key) }}" class="{{ request()->routeIs('admin.sections.edit') && request()->route('key') === $sec->key ? 'active' : '' }}">{{ $sec->label }}</a>

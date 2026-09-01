@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
+use App\Support\CmsPageDefaults;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Schema;
 
 class CmsSection extends Model
 {
@@ -18,6 +20,10 @@ class CmsSection extends Model
 
     public static function getMap(): array
     {
+        if (Schema::hasTable('cms_sections')) {
+            CmsPageDefaults::ensure();
+        }
+
         return Cache::remember('cms_sections_map', 60, function () {
             return static::query()
                 ->orderBy('sort_order')

@@ -15,10 +15,12 @@
       @foreach($c['testimonials']['items'] ?? [] as $t)
         @php
           $name = $t['name'] ?? '';
-          $parts = preg_split('/\s+/', trim($name)) ?: [];
-          $initials = '';
-          foreach (array_slice($parts, 0, 2) as $part) {
-              $initials .= mb_strtoupper(mb_substr($part, 0, 1));
+          $initials = trim((string) ($t['initials'] ?? ''));
+          if ($initials === '') {
+              $parts = preg_split('/\s+/', trim($name)) ?: [];
+              foreach (array_slice($parts, 0, 2) as $part) {
+                  $initials .= mb_strtoupper(mb_substr($part, 0, 1));
+              }
           }
         @endphp
         <figure class="quote rv" style="margin:0">

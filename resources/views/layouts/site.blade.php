@@ -10,7 +10,7 @@
   $seoDescription = $pageDescription ?? ($site['seo_description'] ?? ($site['meta_description'] ?? ''));
   $ogTitle = $site['og_title'] ?? $seoTitle;
   $ogDescription = $site['og_description'] ?? $seoDescription;
-  $ogImagePath = $site['og_image'] ?? 'media/hero-poster.jpg';
+  $ogImagePath = !empty($pageOgImage) ? $pageOgImage : ($site['og_image'] ?? 'media/hero-poster.jpg');
   $ogImage = str_starts_with($ogImagePath, 'http') ? $ogImagePath : asset(ltrim($ogImagePath, '/'));
   $canonical = !empty($site['canonical_url']) && empty($pageTitle) ? $site['canonical_url'] : url()->current();
   $robots = $site['robots'] ?? 'index, follow';

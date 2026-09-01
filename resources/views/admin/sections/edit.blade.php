@@ -2,7 +2,7 @@
 
 @section('content')
 <h1 class="admin-h1">{{ $section->label }}</h1>
-<p class="admin-sub">Update this homepage section. Use “Add item” for lists.</p>
+<p class="admin-sub">Update this content. Use “Add item” for lists. Image fields have an upload button — Save to apply.</p>
 
 <div class="admin-card">
   <form method="post" action="{{ route('admin.sections.update', $section->key) }}" enctype="multipart/form-data">
@@ -24,15 +24,23 @@
 
     <div class="admin-actions">
       <button class="btn" type="submit">Save section</button>
-      <a class="btn btn-ghost" href="{{ route('admin.homepage.index') }}">All homepage sections</a>
+      <a class="btn btn-ghost" href="{{ route('admin.homepage.index') }}">All content sections</a>
       <a class="btn btn-ghost" href="{{ route('home') }}" target="_blank" rel="noopener">Preview site</a>
+      @if($section->key === 'results_page')
+        <a class="btn btn-ghost" href="{{ route('results') }}" target="_blank" rel="noopener">Preview /results</a>
+      @endif
     </div>
   </form>
 
-  <form method="post" action="{{ route('admin.sections.destroy', $section->key) }}" class="danger-zone" onsubmit="return confirm('Delete this homepage section?');">
-    @csrf
-    @method('DELETE')
-    <button class="btn-link-danger" type="submit">Delete section</button>
-  </form>
+    @php
+      $protected = array_merge(['site', 'nav', 'footer'], array_keys(\App\Support\CmsPageDefaults::sections()));
+    @endphp
+    @unless(in_array($section->key, $protected, true))
+    <form method="post" action="{{ route('admin.sections.destroy', $section->key) }}" class="danger-zone" onsubmit="return confirm('Delete this section?');">
+      @csrf
+      @method('DELETE')
+      <button class="btn-link-danger" type="submit">Delete section</button>
+    </form>
+    @endunless
 </div>
 @endsection

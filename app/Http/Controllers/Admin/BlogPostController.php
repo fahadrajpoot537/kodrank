@@ -7,10 +7,10 @@ use App\Models\BlogCategory;
 use App\Models\BlogPost;
 use App\Support\BlogAuthors;
 use App\Support\BlogMedia;
+use App\Support\UrlRedirector;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
-use Illuminate\Validation\Rule;
 use Illuminate\View\View;
 
 class BlogPostController extends Controller
@@ -71,14 +71,21 @@ class BlogPostController extends Controller
     public function update(Request $request, BlogPost $post): RedirectResponse
     {
         $data = $this->validated($request, $post);
+        $oldSlug = $post->slug;
         $data['slug'] = $this->uniqueSlug($data['slug'] ?: Str::slug($data['title']), $post->id);
         $data = $this->applyUploads($request, $data, $post);
 
         $post->update($data);
 
+        if ($oldSlug !== $post->slug) {
+            UrlRedirector::remember('/blogs/'.$oldSlug, '/blogs/'.$post->slug);
+        }
+
         return redirect()
             ->route('admin.blog.posts.index')
-            ->with('success', 'Blog post updated.');
+            ->with('success', $oldSlug !== $post->slug
+                ? 'Blog post updated. /blogs/'.$oldSlug.' now redirects to the new slug.'
+                : 'Blog post updated.');
     }
 
     public function destroy(BlogPost $post): RedirectResponse
@@ -117,7 +124,7 @@ class BlogPostController extends Controller
             'inline_cta_body' => ['nullable', 'string', 'max:1000'],
             'inline_cta_text' => ['nullable', 'string', 'max:120'],
             'inline_cta_url' => ['nullable', 'string', 'max:255'],
-            'author_key' => ['required', Rule::in(array_keys(BlogAuthors::all()))],
+            'author_key' => ['nullable', 'string', 'max:80'],
             'author_name' => ['nullable', 'string', 'max:120'],
             'author_role' => ['nullable', 'string', 'max:255'],
             'author_bio' => ['nullable', 'string', 'max:20000'],
@@ -165,6 +172,8 @@ class BlogPostController extends Controller
             if (trim(strip_tags((string) ($data['author_bio'] ?? ''))) === '') {
                 $data['author_bio'] = $author['bio'];
             }
+        } else {
+            $data['author_name'] = trim((string) ($data['author_name'] ?? '')) ?: 'KodRank';
         }
 
         return $data;

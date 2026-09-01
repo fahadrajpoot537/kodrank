@@ -285,6 +285,9 @@ footer .brand-logo{
 .svc-card .card-link:hover{background:var(--signal);border-color:var(--signal);color:#fff;transform:translateY(-1px)}
 .svc-card .card-link svg{width:14px;height:14px}
 .svc-card{display:flex;flex-direction:column;position:relative;padding-top:30px}
+a.card.svc-card{text-decoration:none;color:inherit;cursor:pointer}
+a.card.svc-card h3{color:var(--graphite)}
+a.card.svc-card .card-link{pointer-events:none}
 .svc-ico{width:56px;height:56px;border-radius:14px;background:rgba(244,122,31,.08);border:1px solid rgba(244,122,31,.18);display:grid;place-items:center;margin-bottom:22px;transition:background .2s ease,transform .2s ease}
 .svc-ico svg{width:30px;height:30px;stroke:var(--signal);fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
 .svc-card:hover .svc-ico{background:var(--signal);transform:translateY(-2px)}
@@ -347,7 +350,7 @@ footer .brand-logo{
   transition:transform .4s cubic-bezier(.22,.61,.36,1);
   will-change:transform;
   touch-action:pan-x;
-  cursor:grab;
+  cursor:default;
 }
 .svc-slide{
   flex:0 0 calc((100% - (var(--svc-per) - 1) * var(--svc-gap)) / var(--svc-per));
@@ -621,9 +624,9 @@ footer .brand-logo{
 @media(max-width:680px){.stats{grid-template-columns:repeat(2,1fr);gap:32px 20px}}
 
 /* ---------- testimonials ---------- */
-.quotes{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px;max-width:940px}
+.quotes{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
 .quote{background:#fff;border:1px solid var(--line);border-radius:var(--r-lg);padding:32px;display:flex;flex-direction:column}
-.quote blockquote{margin:0;font-size:1rem;line-height:1.62;color:var(--graphite)}
+.quote blockquote{margin:0;font-size:.95rem;line-height:1.62;color:var(--graphite)}
 .stars{display:flex;gap:3px;margin-bottom:20px}
 .stars svg{width:15px;height:15px;fill:var(--signal-deep)}
 .who{display:flex;align-items:center;gap:12px;margin-top:auto;padding-top:24px}

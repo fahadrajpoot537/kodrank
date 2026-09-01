@@ -14,6 +14,10 @@
     'SEO Content Writing' => '<path d="M5 3h9l5 5v13H5z"/><path d="M14 3v5h5"/><path d="M8 12h8M8 15.5h8M8 19h5"/>',
     'Local SEO' => '<path d="M12 21s7-5.4 7-11a7 7 0 1 0-14 0c0 5.6 7 11 7 11Z"/><circle cx="12" cy="10" r="2.6"/>',
     'SEO Audit & Reporting' => '<rect x="3" y="4" width="18" height="16" rx="2"/><path d="M7 15l3-3 2.5 2.5L17 9"/><path d="M14 9h3v3"/>',
+    'Monthly SEO Services' => '<path d="M7 3v3M17 3v3"/><rect x="3.5" y="5.5" width="17" height="15" rx="2"/><path d="M3.5 10h17"/><path d="M8 14l2 2 3.5-3.5"/>',
+    'SaaS SEO Services' => '<rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/><path d="M8.5 10.5 11 8l2 2 2.5-3"/>',
+    'Healthcare SEO Services' => '<path d="M3.5 12h3l1.5-3.5 3 7 1.7-3.5H14"/><rect x="13.5" y="9" width="7" height="9" rx="1.6"/><path d="M17 11v5M14.5 13.5h5"/>',
+    'Guest Posting Services' => '<path d="M4 6h16v10H8l-4 3V6Z"/><path d="M8 10h8M8 13h5"/>',
     'AEO Services' => '<path d="M4 5h16a1.5 1.5 0 0 1 1.5 1.5v8A1.5 1.5 0 0 1 20 16h-6l-4 4v-4H4a1.5 1.5 0 0 1-1.5-1.5v-8A1.5 1.5 0 0 1 4 5Z"/><path d="M8 10.2 10 12l4-4"/>',
     'GEO Services' => '<path d="M12 3.5 13.6 8l4.5 1.6L13.6 11l-1.6 4.5L10.4 11 6 9.6 10.4 8 12 3.5Z"/><circle cx="18.5" cy="17.5" r="1.6"/><circle cx="5.5" cy="16.5" r="1.6"/><path d="M12 15.5 6.9 16.3M13.4 12.4l3.7 3.9"/>',
   ];
@@ -56,18 +60,19 @@
               @php
                 $svcTitle = $item['title'] ?? '';
                 $svcIcon = $svcIcons[$svcTitle] ?? $svcIconFallback;
+                $svcUrl = \App\Support\CmsPageDefaults::resolveHomepageServiceUrl($svcTitle, $item['link_url'] ?? '');
               @endphp
-              <article class="card svc-card svc-slide">
+              <a class="card svc-card svc-slide" href="{{ $svcUrl }}" @if($svcUrl !== '#') aria-label="{{ $svcTitle }}" @endif>
                 <span class="svc-check" aria-hidden="true">{!! $check !!}</span>
                 <span class="svc-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none">{!! $svcIcon !!}</svg></span>
                 <h3>{{ $svcTitle }}</h3>
                 <p>{{ $item['body'] ?? '' }}</p>
                 @if(!empty($item['link_text']))
-                  <a class="card-link textlink" href="{{ $item['link_url'] ?? '#' }}">{{ $item['link_text'] }}
+                  <span class="card-link textlink">{{ $item['link_text'] }}
                     {!! $arrow !!}
-                  </a>
+                  </span>
                 @endif
-              </article>
+              </a>
             @endforeach
           </div>
         </div>
@@ -79,14 +84,14 @@
 
       @if($gi === 0 && !empty($c['services']['web_cta_text']))
         <div class="svc-viewall rv">
-          <a class="btn btn-ghost-dark" href="{{ $c['services']['web_cta_url'] ?? '#' }}">{{ $c['services']['web_cta_text'] }}
+          <a class="btn btn-ghost-dark" href="{{ \App\Support\CmsPageDefaults::resolveHomepageServiceUrl($c['services']['web_cta_text'] ?? 'View all web development services', $c['services']['web_cta_url'] ?? '') }}">{{ $c['services']['web_cta_text'] }}
             {!! $arrow !!}
           </a>
         </div>
       @endif
       @if($gi === 1 && !empty($c['services']['seo_cta_text']))
         <div class="svc-viewall rv">
-          <a class="btn btn-ghost-dark" href="{{ $c['services']['seo_cta_url'] ?? '#' }}">{{ $c['services']['seo_cta_text'] }}
+          <a class="btn btn-ghost-dark" href="{{ \App\Support\CmsPageDefaults::resolveHomepageServiceUrl($c['services']['seo_cta_text'] ?? 'View all SEO services', $c['services']['seo_cta_url'] ?? '') }}">{{ $c['services']['seo_cta_text'] }}
             {!! $arrow !!}
           </a>
         </div>
