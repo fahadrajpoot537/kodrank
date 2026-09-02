@@ -7,7 +7,13 @@
 @endphp
 @if($theme === 'theme-html')
   {{-- KodRank shared hero + site nav/footer; theme HTML is body-only --}}
-  @include('services.partials.shared.dm.hero', ['h' => $s['hero'] ?? []])
+  @php
+    $themeHero = $s['hero'] ?? [];
+    if (($page->slug ?? '') === 'on-page-seo-services') {
+        unset($themeHero['eyebrow']);
+    }
+  @endphp
+  @include('services.partials.shared.dm.hero', ['h' => $themeHero])
   @include('services.partials.theme-html.body')
 @else
   @php

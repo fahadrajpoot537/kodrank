@@ -72,6 +72,12 @@ class ThemeHtmlImporter
         // Pull KodRank-shared hero fields, then drop theme hero markup.
         [$hero, $html] = self::extractAndStripHero($html, $css, $mediaPublicPrefix);
 
+        $stripBadges = self::extractStatStrip($html);
+        if ($stripBadges !== []) {
+            $existing = is_array($hero['badges'] ?? null) ? $hero['badges'] : [];
+            $hero['badges'] = array_merge($existing, $stripBadges);
+        }
+
         // Drop leftover nav/mobile fragments before the first real section.
         $html = self::trimBeforeFirstSection($html);
 
@@ -148,6 +154,34 @@ class ThemeHtmlImporter
     }
 
     /**
+     * Pull hero stat strip (e.g. off-page) into badge data and remove from body HTML.
+     *
+     * @return list<array{num: string, label: string}>
+     */
+    private static function extractStatStrip(string &$html): array
+    {
+        $badges = [];
+        if (! preg_match('/<div\b[^>]*class=["\'][^"\']*\bstatstrip\b[^"\']*["\'][^>]*>/is', $html)) {
+            return $badges;
+        }
+
+        if (preg_match_all('/<div class=["\']st["\'][^>]*>\s*<div class=["\']n["\']>(.*?)<\/div>\s*<div class=["\']l["\']>(.*?)<\/div>\s*<\/div>/is', $html, $rows, PREG_SET_ORDER)) {
+            foreach ($rows as $row) {
+                $num = trim(strip_tags($row[1]));
+                $label = trim(strip_tags($row[2]));
+                if ($num !== '' || $label !== '') {
+                    $badges[] = ['num' => $num, 'label' => $label];
+                }
+            }
+        }
+
+        $html = preg_replace('/<!--\s*stat strip\s*-->\s*/i', '', $html) ?? $html;
+        $html = preg_replace('/<div\b[^>]*class=["\'][^"\']*\bstatstrip\b[^"\']*["\'][^>]*>[\s\S]*?<\/div>\s*<\/div>\s*(?=\s*(?:<!--|<section))/i', '', $html, 1) ?? $html;
+
+        return $badges;
+    }
+
+    /**
      * @return array{0: array<string, mixed>, 1: string}
      */
     public static function extractAndStripHero(string $html, string $css = '', string $mediaPublicPrefix = ''): array
@@ -214,24 +248,47 @@ class ThemeHtmlImporter
         }
 
         $badges = [];
+        $trustPoints = [];
         if ($chunk !== '') {
-            // <b>num</b><span>label</span> or .n / .l pairs
-            if (preg_match_all('/<(?:div|li)\b[^>]*>\s*(?:<b>(.*?)<\/b>|<div class=["\']n["\']>(.*?)<\/div>)\s*(?:<span>(.*?)<\/span>|<div class=["\']l["\']>(.*?)<\/div>)/is', $chunk, $rows, PREG_SET_ORDER)) {
-                foreach ($rows as $row) {
-                    $num = trim(strip_tags($row[1] !== '' ? $row[1] : ($row[2] ?? '')));
-                    $label = trim(strip_tags($row[3] !== '' ? $row[3] : ($row[4] ?? '')));
-                    if ($num !== '' || $label !== '') {
-                        $badges[] = ['num' => $num, 'label' => $label];
+            if (preg_match('/<div\b[^>]*class=["\'][^"\']*\bhero-trust\b[^"\']*["\'][^>]*>(.*?)<\/div>/is', $chunk, $trustWrap)) {
+                $inner = $trustWrap[1];
+                if (preg_match_all('/<span[^>]*>\s*(?:<svg\b[^>]*>.*?<\/svg>\s*)?(.*?)<\/span>/is', $inner, $spans, PREG_SET_ORDER)) {
+                    foreach ($spans as $span) {
+                        $text = trim(strip_tags($span[1]));
+                        if ($text !== '') {
+                            $trustPoints[] = $text;
+                        }
+                    }
+                }
+                if ($trustPoints === [] && preg_match_all('/<div>\s*<div class=["\']num["\']>(.*?)<\/div>\s*<div class=["\']lbl["\']>(.*?)<\/div>\s*<\/div>/is', $inner, $trust, PREG_SET_ORDER)) {
+                    foreach ($trust as $row) {
+                        $num = trim(strip_tags($row[1]));
+                        $label = trim(strip_tags($row[2]));
+                        if ($num !== '' || $label !== '') {
+                            $badges[] = ['num' => $num, 'label' => $label];
+                        }
                     }
                 }
             }
-            // .hero-trust .num / .lbl pairs
-            if ($badges === [] && preg_match_all('/<div>\s*<div class=["\']num["\']>(.*?)<\/div>\s*<div class=["\']lbl["\']>(.*?)<\/div>\s*<\/div>/is', $chunk, $trust, PREG_SET_ORDER)) {
-                foreach ($trust as $row) {
-                    $num = trim(strip_tags($row[1]));
-                    $label = trim(strip_tags($row[2]));
-                    if ($num !== '' || $label !== '') {
-                        $badges[] = ['num' => $num, 'label' => $label];
+
+            if ($badges === []) {
+                // <b>num</b><span>label</span> or .n/.l / .num/.lbl pairs
+                if (preg_match_all('/<(?:div|li)\b[^>]*>\s*(?:<b>(.*?)<\/b>|<div class=["\'](?:n|num)["\']>(.*?)<\/div>)\s*(?:<span>(.*?)<\/span>|<div class=["\'](?:l|lbl)["\']>(.*?)<\/div>)/is', $chunk, $rows, PREG_SET_ORDER)) {
+                    foreach ($rows as $row) {
+                        $num = trim(strip_tags($row[1] !== '' ? $row[1] : ($row[2] ?? '')));
+                        $label = trim(strip_tags($row[3] !== '' ? $row[3] : ($row[4] ?? '')));
+                        if ($num !== '' || $label !== '') {
+                            $badges[] = ['num' => $num, 'label' => $label];
+                        }
+                    }
+                }
+                if ($badges === [] && preg_match_all('/<div>\s*<div class=["\']num["\']>(.*?)<\/div>\s*<div class=["\']lbl["\']>(.*?)<\/div>\s*<\/div>/is', $chunk, $trust, PREG_SET_ORDER)) {
+                    foreach ($trust as $row) {
+                        $num = trim(strip_tags($row[1]));
+                        $label = trim(strip_tags($row[2]));
+                        if ($num !== '' || $label !== '') {
+                            $badges[] = ['num' => $num, 'label' => $label];
+                        }
                     }
                 }
             }
@@ -247,6 +304,7 @@ class ThemeHtmlImporter
             'cta_text' => $ctaText,
             'cta_url' => $ctaUrl,
             'image' => $image,
+            'trust_points' => $trustPoints !== [] ? $trustPoints : null,
             'badges' => $badges !== [] ? $badges : null,
         ], static fn ($v) => $v !== null && $v !== '');
     }

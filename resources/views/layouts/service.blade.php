@@ -166,7 +166,7 @@
 @if(!empty($seo['css']) && $serviceTheme !== 'legal')
   <link rel="stylesheet" href="{{ asset($seo['css']) }}?v={{ @filemtime(public_path($seo['css'])) ?: time() }}">
 @endif
-@if(\App\Support\WpRefDesign::appliesTo($page->slug ?? ''))
+@if(\App\Support\WpRefDesign::appliesTo($page->slug ?? '') && ($page->slug ?? '') !== 'off-page-seo-services')
   <link rel="stylesheet" href="{{ asset('css/theme-webdev-ref.css') }}?v={{ @filemtime(public_path('css/theme-webdev-ref.css')) ?: time() }}">
 @endif
 {{-- Sticky stack CSS (Blade pages + theme-html) --}}

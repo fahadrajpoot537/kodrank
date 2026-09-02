@@ -301,6 +301,7 @@
       '.test-grid',
       '.testi-grid',
       '.tgrid',
+      '.grid-cards',
       '#testiTrack',
       '.carousel-track:has(> .testi)',
       '.testi-track',
@@ -388,9 +389,12 @@
       const STACK_SELS = isWpOnly ? STACK_SELS_WP : STACK_SELS_FULL;
       const CAROUSEL_SELS = isWpOnly ? CAROUSEL_SELS_WP : CAROUSEL_SELS_FULL;
 
+      const isOffpage = root.classList.contains('offpage-theme-page');
       const seenStack = new Set();
       Array.prototype.forEach.call(root.querySelectorAll(STACK_SELS), (grid) => {
         if (seenStack.has(grid) || skipCommon(grid)) return;
+        // Off-page: services + testimonials scroll as carousels (match on-page UX)
+        if (isOffpage && grid.classList.contains('grid-cards')) return;
         seenStack.add(grid);
         grid.setAttribute('data-thm-stack', '1');
       });
@@ -1392,6 +1396,10 @@
           '.elec-theme-page .edge-grid',
           '.saas-theme-page .pain-grid',
           '.saas-theme-page .stack-groups',
+          '.offpage-theme-page #why .pain-list',
+          '.offpage-theme-page .sec-ink .why-grid',
+          '.offpage-theme-page #services .grid-cards',
+          '.offpage-theme-page .tgrid',
         ].join(', ')
       ),
       (grid) => {
@@ -1420,6 +1428,9 @@
           '.why-mobile-carousel > .problem-grid',
           '.why-mobile-carousel > .why-grid',
           '.why-mobile-carousel > .grid',
+          '.why-mobile-carousel > .pain-list',
+          '.why-mobile-carousel > .grid-cards',
+          '.why-mobile-carousel > .tgrid',
         ].join(', ')
       )
     );
@@ -1433,6 +1444,9 @@
     } catch (e) {}
 
     const trackMq = (track) => {
+      if (track.closest('.offpage-theme-page')) {
+        return '(max-width: 980px)';
+      }
       if (track.classList.contains('feat-list')) {
         return '(max-width: 767px)';
       }

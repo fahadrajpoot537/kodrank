@@ -35,7 +35,7 @@ class StoreSeoServiceInquiryRequest extends FormRequest
             'service_name' => ['nullable', 'string', 'max:190'],
             'name' => ['required', 'string', 'max:120'],
             'email' => ['required', 'email', 'max:190'],
-            'phone' => ['nullable', 'string', 'max:40'],
+            'phone' => ['required', 'string', 'max:40'],
             'country' => ['required', 'string', Rule::in(Countries::names())],
             'company' => ['nullable', 'string', 'max:190'],
             'website' => ['nullable', 'string', 'max:190'],

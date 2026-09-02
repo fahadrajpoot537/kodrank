@@ -213,8 +213,32 @@
               'message_placeholder' => 'Tell us which pages or keywords matter most…',
           ],
           'phone_required' => true,
+          'page_type' => 'on_page',
           'default_service' => 'On-Page SEO Services',
           'submit_text' => 'Get My Free Audit',
+      ],
+      'off-page-seo-services' => [
+          'eyebrow' => 'Get started',
+          'title' => 'Tell us about your site',
+          'lede' => "Send us your domain and your biggest ranking headache. You'll get an honest audit and a plan back within two working days — not a sales script.",
+          'meta' => [
+              ['label' => 'Email us', 'value' => 'info@kodrank.com', 'icon_key' => 'email'],
+              ['label' => 'Call us', 'value' => '+92 305 9202732', 'icon_key' => 'phone'],
+              ['label' => 'Response time', 'value' => 'Audit back within 48 working hours', 'icon_key' => 'clock'],
+          ],
+          'fields' => [
+              'first_name_label' => 'First name',
+              'last_name_label' => 'Last name',
+              'email_label' => 'Work email',
+              'phone_label' => 'Phone',
+              'website_label' => 'Website URL',
+              'message_label' => 'How can we help?',
+              'message_placeholder' => 'e.g. Stuck on page two for our main service keyword…',
+          ],
+          'phone_required' => true,
+          'page_type' => 'off_page',
+          'default_service' => 'Off-Page SEO Services',
+          'submit_text' => 'Send & get my audit',
       ],
   ];
 
@@ -238,7 +262,7 @@
   );
 @endphp
 @php
-  $webdevRefClass = \App\Support\WpRefDesign::appliesTo($slug) ? ' webdev-ref' : '';
+  $webdevRefClass = (\App\Support\WpRefDesign::appliesTo($slug) && $slug !== 'off-page-seo-services') ? ' webdev-ref' : '';
 @endphp
 @if($html !== '')
   <div class="{{ $scope }} theme-html-root{{ $webdevRefClass }}">

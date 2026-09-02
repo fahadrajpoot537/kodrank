@@ -2,7 +2,7 @@
   $fieldId = $id ?? 'country';
   $fieldName = $name ?? 'country';
   $fieldLabel = $label ?? 'Country';
-  $fieldValue = old($fieldName, $value ?? '');
+  $fieldValue = old($fieldName, $selected ?? '');
   $variant = $variant ?? 'service';
   $required = $required ?? true;
   $countries = \App\Support\Countries::names();

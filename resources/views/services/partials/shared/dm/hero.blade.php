@@ -29,6 +29,14 @@
           ];
       }, $badges);
   }
+  $trustPoints = $h['trust_points'] ?? [];
+  if (empty($trustPoints) && !empty($badges)) {
+      $labelOnly = array_values(array_filter($badges, static fn ($badge) => ($badge['num'] ?? '') === '' && ($badge['label'] ?? '') !== ''));
+      if ($labelOnly !== [] && count($labelOnly) === count($badges)) {
+          $trustPoints = array_map(static fn ($badge) => $badge['label'], $labelOnly);
+          $badges = [];
+      }
+  }
   $lede = $h['lede'] ?? $h['hero_description'] ?? null;
   $ledeHtml = $h['lede_html'] ?? null;
   $titleHtml = $h['title_html'] ?? $h['titleHtml'] ?? null;
@@ -71,6 +79,16 @@
           <a href="{{ $h['secondary_url'] ?? '#contact' }}" class="btn btn-ghost-light">{{ $h['secondary_text'] }}</a>
         @endif
       </div>
+      @if(!empty($trustPoints))
+        <div class="hero-trust hero-trust-checks">
+          @foreach($trustPoints as $point)
+            <span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
+              {{ is_array($point) ? ($point['text'] ?? $point['label'] ?? '') : $point }}
+            </span>
+          @endforeach
+        </div>
+      @endif
     </div>
     @if(!empty($badges))
       <div class="hero-badges hero-trust" role="list">

@@ -13,15 +13,15 @@
         <div class="contact-meta">
           @foreach($ct['meta'] ?? [] as $meta)
             @php
-              $label = $meta['label'] ?? '';
-              $value = $meta['value'] ?? '';
-              if (stripos($label, 'email') !== false && empty($value)) { $value = $c['site']['email'] ?? ''; }
-              if ((stripos($label, 'phone') !== false || stripos($label, 'call') !== false) && empty($value)) { $value = $c['site']['phone'] ?? ''; }
-              $href = null;
-              if (stripos($label, 'email') !== false && $value !== '') {
-                  $href = 'mailto:'.$value;
-              } elseif ((stripos($label, 'phone') !== false || stripos($label, 'call') !== false) && $value !== '') {
-                  $href = 'tel:'.preg_replace('/[^\d+]/', '', $value);
+              $metaLabel = $meta['label'] ?? '';
+              $metaValue = $meta['value'] ?? '';
+              if (stripos($metaLabel, 'email') !== false && empty($metaValue)) { $metaValue = $c['site']['email'] ?? ''; }
+              if ((stripos($metaLabel, 'phone') !== false || stripos($metaLabel, 'call') !== false) && empty($metaValue)) { $metaValue = $c['site']['phone'] ?? ''; }
+              $metaHref = null;
+              if (stripos($metaLabel, 'email') !== false && $metaValue !== '') {
+                  $metaHref = 'mailto:'.$metaValue;
+              } elseif ((stripos($metaLabel, 'phone') !== false || stripos($metaLabel, 'call') !== false) && $metaValue !== '') {
+                  $metaHref = 'tel:'.preg_replace('/[^\d+]/', '', $metaValue);
               }
             @endphp
             <div class="cm-item">
@@ -29,12 +29,12 @@
                 @include('services.partials.digital-marketing.icon', ['key' => $meta['icon_key'] ?? 'email'])
               </div>
               <div>
-                <div class="label">{{ $label }}</div>
+                <div class="label">{{ $metaLabel }}</div>
                 <div class="value">
-                  @if($href)
-                    <a href="{{ $href }}">{{ $value }}</a>
+                  @if($metaHref)
+                    <a href="{{ $metaHref }}">{{ $metaValue }}</a>
                   @else
-                    {{ $value }}
+                    {{ $metaValue }}
                   @endif
                 </div>
               </div>
