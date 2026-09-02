@@ -77,15 +77,7 @@
             <label for="co">{{ $fields['company_label'] ?? 'Company' }}</label>
             <input type="text" id="co" name="company" value="{{ old('company') }}">
           </div>
-          <div class="form-field">
-            <label for="sv">{{ $fields['service_label'] ?? "I'm Interested In" }}</label>
-            <select id="sv" name="service" required>
-              <option value="">Select a service…</option>
-              @foreach($ct['service_options'] ?? [] as $opt)
-                <option value="{{ $opt }}" @selected(old('service') === $opt)>{{ $opt }}</option>
-              @endforeach
-            </select>
-          </div>
+          <input type="hidden" name="service" value="{{ $ct['default_service'] ?? 'Digital Marketing Services' }}">
           <div class="form-field full">
             <label for="ms">{{ $fields['message_label'] ?? "What's the main goal?" }}</label>
             <textarea id="ms" name="message" placeholder="{{ $fields['message_placeholder'] ?? '' }}" rows="4" required>{{ old('message') }}</textarea>

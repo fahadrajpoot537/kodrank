@@ -4854,6 +4854,32 @@ body.page-dm.page-service .section-head .lede{
   margin-top:20px;
 }
 
+/* On-page SEO — #pain: 4 cards in one row on desktop (beats webdev-ref 3-col) */
+@media (min-width: 981px) {
+  body.page-onpage.page-service .onpage-theme-page #pain .problem-grid,
+  body.page-onpage.page-service .webdev-ref #pain > .wrap > .grid.g-4,
+  body.page-onpage.page-service .webdev-ref #pain .problem-grid,
+  body.page-onpage.page-service .webdev-ref .why-mobile-carousel > .problem-grid {
+    display: grid !important;
+    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+    gap: 22px !important;
+    overflow: visible !important;
+    flex-direction: unset !important;
+    flex-wrap: unset !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    scroll-snap-type: none !important;
+  }
+  body.page-onpage.page-service .webdev-ref #pain .problem-grid > *,
+  body.page-onpage.page-service .webdev-ref .why-mobile-carousel > .problem-grid > * {
+    flex: unset !important;
+    min-width: 0 !important;
+    max-width: none !important;
+    width: auto !important;
+    scroll-snap-align: unset !important;
+  }
+}
+
 /* Digital Marketing + On-Page SEO: testimonial / mobile carousel dot buttons */
 body.page-dm.page-service .testi-controls,
 body.page-onpage.page-service .testi-controls{

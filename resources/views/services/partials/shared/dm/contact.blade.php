@@ -53,6 +53,9 @@
         <input type="hidden" name="page_type" value="{{ $ct['page_type'] ?? 'on_page' }}">
         <input type="hidden" name="fax_number" value="" tabindex="-1" autocomplete="off" aria-hidden="true">
         <input type="hidden" name="redirect_to" value="{{ url()->current() }}#contact">
+        @if(empty($ct['service_options']) && $defaultService !== '')
+          <input type="hidden" name="service_name" value="{{ $defaultService }}">
+        @endif
         @if($simple)
           <input type="hidden" name="firstName" value="">
           <input type="hidden" name="lastName" value="">
@@ -73,6 +76,7 @@
             <div class="form-field">
               <label for="fn">{{ $fields['first_name_label'] ?? 'First Name' }}</label>
               <input type="text" id="fn" name="firstName" value="{{ old('firstName') }}" required>
+              @error('name')<span class="field-err">{{ $message }}</span>@enderror
             </div>
             <div class="form-field">
               <label for="ln">{{ $fields['last_name_label'] ?? 'Last Name' }}</label>
@@ -87,7 +91,8 @@
           @if(!empty($fields['phone_label']) || !$simple)
             <div class="form-field">
               <label for="ph">{{ $fields['phone_label'] ?? 'Phone (Optional)' }}</label>
-              <input type="tel" id="ph" name="phone" value="{{ old('phone') }}">
+              <input type="tel" id="ph" name="phone" value="{{ old('phone') }}" @if(!empty($fields['phone_required']) || !empty($ct['phone_required'])) required @endif>
+              @error('phone')<span class="field-err">{{ $message }}</span>@enderror
             </div>
           @endif
           @if(!empty($fields['company_label']))
