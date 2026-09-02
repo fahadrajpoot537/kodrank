@@ -198,10 +198,10 @@
           'eyebrow' => 'Start here',
           'title' => 'Tell us where you want to rank.',
           'lede' => "Share a little about your site and goals. We'll come back with a plain-English read on your biggest on-page opportunities — usually within one business day.",
-          'points' => [
-              'Email us at hello@kodrank.com',
-              'Reply within one business day',
-              'No spam, no hard sell',
+          'meta' => [
+              ['label' => 'Email us', 'value' => 'info@kodrank.com', 'icon_key' => 'email'],
+              ['label' => 'Call us', 'value' => '+92 305 9202732', 'icon_key' => 'phone'],
+              ['label' => 'Response time', 'value' => 'Within one business day', 'icon_key' => 'clock'],
           ],
           'fields' => [
               'first_name_label' => 'First name',

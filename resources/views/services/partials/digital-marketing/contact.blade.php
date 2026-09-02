@@ -15,12 +15,12 @@
             @php
               $label = $meta['label'] ?? '';
               $value = $meta['value'] ?? '';
-              if ($label === 'Email' && empty($value)) { $value = $c['site']['email'] ?? ''; }
-              if ($label === 'Phone' && empty($value)) { $value = $c['site']['phone'] ?? ''; }
+              if (stripos($label, 'email') !== false && empty($value)) { $value = $c['site']['email'] ?? ''; }
+              if ((stripos($label, 'phone') !== false || stripos($label, 'call') !== false) && empty($value)) { $value = $c['site']['phone'] ?? ''; }
               $href = null;
-              if (strcasecmp($label, 'Email') === 0 && $value !== '') {
+              if (stripos($label, 'email') !== false && $value !== '') {
                   $href = 'mailto:'.$value;
-              } elseif (strcasecmp($label, 'Phone') === 0 && $value !== '') {
+              } elseif ((stripos($label, 'phone') !== false || stripos($label, 'call') !== false) && $value !== '') {
                   $href = 'tel:'.preg_replace('/[^\d+]/', '', $value);
               }
             @endphp
@@ -77,6 +77,7 @@
             <label for="co">{{ $fields['company_label'] ?? 'Company' }}</label>
             <input type="text" id="co" name="company" value="{{ old('company') }}">
           </div>
+          @include('partials.country-field', ['id' => 'dm-country', 'label' => $fields['country_label'] ?? 'Country'])
           <input type="hidden" name="service" value="{{ $ct['default_service'] ?? 'Digital Marketing Services' }}">
           <div class="form-field full">
             <label for="ms">{{ $fields['message_label'] ?? "What's the main goal?" }}</label>

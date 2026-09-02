@@ -79,6 +79,7 @@
           <label for="c-phone">Number</label>
           @error('phone')<span class="field-err">{{ $message }}</span>@enderror
         </div>
+        @include('partials.country-field', ['id' => 'c-country', 'variant' => 'home', 'label' => 'Country'])
         <div class="uf">
           <input id="c-site" name="website" type="text" placeholder=" " value="{{ old('website') }}">
           <label for="c-site">Your Website (optional)</label>

@@ -174,9 +174,6 @@
     var dotsWrap=root.querySelector('[data-ind-dots]');
     if(!viewport||!track||!slides.length) return;
 
-    if(prev){ prev.hidden=true; prev.setAttribute('aria-hidden','true'); }
-    if(next){ next.hidden=true; next.setAttribute('aria-hidden','true'); }
-
     var index=0;
     var per=1;
     var slideW=0;
@@ -211,7 +208,7 @@
         vw=Math.max(200,(root.getBoundingClientRect().width||root.clientWidth));
       }
       if(per===1){
-        slideW=Math.max(1,(vw-Math.max(gap,12))/1.1);
+        slideW=Math.max(1,vw-Math.max(gap,12));
       }else{
         slideW=Math.max(1, (vw - (per-1)*gap) / per);
       }
@@ -280,10 +277,25 @@
       }
     };
 
+    var syncNav=function(){
+      var show=maxIndex()>0;
+      if(prev){
+        prev.hidden=!show;
+        prev.style.display=show?'':'none';
+        prev.setAttribute('aria-hidden', show?'false':'true');
+      }
+      if(next){
+        next.hidden=!show;
+        next.style.display=show?'':'none';
+        next.setAttribute('aria-hidden', show?'false':'true');
+      }
+    };
+
     var refresh=function(){
       measure();
       buildDots();
       goTo(Math.min(index, maxIndex()));
+      syncNav();
       startAuto();
     };
 
@@ -426,9 +438,6 @@
       var dotsWrap=root.querySelector('[data-svc-dots]');
       if(!viewport||!track||!slides.length) return;
 
-      if(prev){ prev.hidden=true; prev.setAttribute('aria-hidden','true'); }
-      if(next){ next.hidden=true; next.setAttribute('aria-hidden','true'); }
-
       var desktopPer=parseInt(root.getAttribute('data-per-desktop')||'3',10)||3;
       var index=0, per=desktopPer, slideW=0, gap=20;
       var startX=0, deltaX=0, dragging=false, didSwipe=false, autoTimer=null;
@@ -470,7 +479,7 @@
         if(vw<2) vw=Math.max(200,(root.getBoundingClientRect().width||root.clientWidth));
         // Mobile: 1 full card + ~10% of the next card peeking
         if(per===1){
-          slideW=Math.max(1,(vw-gap)/1.1);
+          slideW=Math.max(1,vw-gap);
         }else{
           slideW=Math.max(1,(vw-(per-1)*gap)/per);
         }
@@ -524,7 +533,20 @@
         }
       };
 
-      var refresh=function(){ measure(); buildDots(); goTo(Math.min(index,maxIndex())); startAuto(); };
+      var syncNav=function(){
+        var show=maxIndex()>0;
+        if(prev){
+          prev.hidden=!show;
+          prev.style.display=show?'':'none';
+          prev.setAttribute('aria-hidden', show?'false':'true');
+        }
+        if(next){
+          next.hidden=!show;
+          next.style.display=show?'':'none';
+          next.setAttribute('aria-hidden', show?'false':'true');
+        }
+      };
+      var refresh=function(){ measure(); buildDots(); goTo(Math.min(index,maxIndex())); syncNav(); startAuto(); };
       var step=function(dir){
         measure();
         var i=index+dir*1; // one card — right btn moves cards left

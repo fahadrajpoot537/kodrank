@@ -7,6 +7,7 @@
 <div class="admin-card">
   <p><strong>Email:</strong> <a href="mailto:{{ $message->email }}">{{ $message->email }}</a></p>
   <p><strong>Phone:</strong> {{ $message->phone ?: '—' }}</p>
+  <p><strong>Country:</strong> {{ $message->country ?: '—' }}</p>
   <p><strong>Website:</strong> {{ $message->website ?: '—' }}</p>
   <p><strong>Message:</strong></p>
   <p style="white-space:pre-wrap">{{ $message->message }}</p>

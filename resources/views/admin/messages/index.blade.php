@@ -8,7 +8,7 @@
   <div class="table-wrap">
   <table class="table">
     <thead>
-      <tr><th>From</th><th>Email</th><th>Received</th><th></th></tr>
+      <tr><th>From</th><th>Email</th><th>Country</th><th>Received</th><th></th></tr>
     </thead>
     <tbody>
       @forelse($messages as $message)
@@ -18,11 +18,12 @@
             @unless($message->is_read)<span class="badge">new</span>@endunless
           </td>
           <td>{{ $message->email }}</td>
+          <td>{{ $message->country ?: '—' }}</td>
           <td>{{ $message->created_at->format('M j, Y g:ia') }}</td>
           <td><a class="btn btn-ghost" href="{{ route('admin.messages.show', $message) }}">Open</a></td>
         </tr>
       @empty
-        <tr><td colspan="4">No messages yet.</td></tr>
+        <tr><td colspan="5">No messages yet.</td></tr>
       @endforelse
     </tbody>
   </table>

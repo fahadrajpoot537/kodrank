@@ -9,6 +9,7 @@
   <p><strong>Service:</strong> {{ $inquiry->service_name ?: '—' }}</p>
   <p><strong>Email:</strong> <a href="mailto:{{ $inquiry->email }}">{{ $inquiry->email }}</a></p>
   <p><strong>Phone:</strong> {{ $inquiry->phone ?: '—' }}</p>
+  <p><strong>Country:</strong> {{ $inquiry->country ?: '—' }}</p>
   <p><strong>Company:</strong> {{ $inquiry->company ?: '—' }}</p>
   <p><strong>Website:</strong> {{ $inquiry->website ?: '—' }}</p>
   <p><strong>IP:</strong> {{ $inquiry->ip ?: '—' }}</p>

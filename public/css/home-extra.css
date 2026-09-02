@@ -253,7 +253,7 @@ a:focus-visible{
 
   /* Hero: less empty space above/between text */
   .hero-in{
-    padding:88px var(--pad) 36px !important;
+    padding:76px var(--pad) 28px !important;
   }
   .hero h1{
     max-width:100%;
@@ -293,7 +293,7 @@ a:focus-visible{
   .strip-item{font-size:.92rem}
   .hero-supporting,.hero-sub{max-width:100%}
   .hero-in{
-    padding:80px var(--pad) 32px !important;
+    padding:72px var(--pad) 24px !important;
   }
   .hero h1 em{margin-top:2px}
   .brand-txt{font-size:1.02rem}

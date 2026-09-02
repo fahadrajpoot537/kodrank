@@ -4,6 +4,7 @@
     'Name' => $lead['name'] ?? '—',
     'Email' => $lead['email'] ?? '—',
     'Phone' => $lead['phone'] ?? '—',
+    'Country' => $lead['country'] ?? '—',
     'Company' => $lead['company'] ?? '—',
     'Website' => $lead['website'] ?? '—',
     'Service' => $lead['service'] ?? '—',

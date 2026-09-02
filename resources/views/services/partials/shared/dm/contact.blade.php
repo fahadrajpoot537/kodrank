@@ -30,11 +30,11 @@
               @php
                 $label = $m['label'] ?? '';
                 $value = $m['value'] ?? '';
-                if ($label === 'Email' && $value === '') { $value = $c['site']['email'] ?? ''; }
-                if ($label === 'Phone' && $value === '') { $value = $c['site']['phone'] ?? ''; }
+                if (stripos($label, 'email') !== false && $value === '') { $value = $c['site']['email'] ?? ''; }
+                if ((stripos($label, 'phone') !== false || stripos($label, 'call') !== false) && $value === '') { $value = $c['site']['phone'] ?? ''; }
                 $href = null;
-                if (strcasecmp($label, 'Email') === 0 && $value !== '') { $href = 'mailto:'.$value; }
-                elseif (strcasecmp($label, 'Phone') === 0 && $value !== '') { $href = 'tel:'.preg_replace('/[^\d+]/', '', $value); }
+                if (stripos($label, 'email') !== false && $value !== '') { $href = 'mailto:'.$value; }
+                elseif ((stripos($label, 'phone') !== false || stripos($label, 'call') !== false) && $value !== '') { $href = 'tel:'.preg_replace('/[^\d+]/', '', $value); }
               @endphp
               <div class="cm-item">
                 <div class="cm-icon">@include('services.partials.digital-marketing.icon', ['key' => $m['icon_key'] ?? 'email'])</div>
@@ -101,6 +101,7 @@
               <input type="text" id="co" name="company" value="{{ old('company') }}">
             </div>
           @endif
+          @include('partials.country-field', ['id' => 'onpage-country', 'label' => $fields['country_label'] ?? 'Country'])
           <div class="form-field">
             <label for="web">{{ $fields['website_label'] ?? 'Website URL' }}</label>
             <input type="text" id="web" name="website" value="{{ old('website') }}" placeholder="https://">

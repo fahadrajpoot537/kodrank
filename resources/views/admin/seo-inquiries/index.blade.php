@@ -38,6 +38,7 @@
       <thead>
         <tr>
           <th>From</th>
+          <th>Country</th>
           <th>Page</th>
           <th>Service</th>
           <th>Status</th>
@@ -53,6 +54,7 @@
               @if($inquiry->status === 'new')<span class="badge">new</span>@endif
               <div style="font-size:.85rem;opacity:.75">{{ $inquiry->email }}</div>
             </td>
+            <td>{{ $inquiry->country ?: '—' }}</td>
             <td>{{ $inquiry->page_type === 'on_page' ? 'On-Page' : 'Off-Page' }}</td>
             <td>{{ $inquiry->service_name ?: '—' }}</td>
             <td>{{ $inquiry->status }}</td>
@@ -60,7 +62,7 @@
             <td><a class="btn btn-ghost" href="{{ route('admin.seo-inquiries.show', $inquiry) }}">Open</a></td>
           </tr>
         @empty
-          <tr><td colspan="6">No inquiries yet.</td></tr>
+          <tr><td colspan="7">No inquiries yet.</td></tr>
         @endforelse
       </tbody>
     </table>

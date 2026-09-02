@@ -34,6 +34,7 @@ class SeoServiceInquiryController extends Controller
             'name' => $inquiry->name,
             'email' => $inquiry->email,
             'phone' => $inquiry->phone,
+            'country' => $inquiry->country,
             'company' => $inquiry->company,
             'website' => $inquiry->website,
             'service' => $inquiry->service_name,

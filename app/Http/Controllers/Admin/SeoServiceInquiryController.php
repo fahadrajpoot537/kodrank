@@ -88,7 +88,7 @@ class SeoServiceInquiryController extends Controller
         return response()->streamDownload(function () use ($query) {
             $out = fopen('php://output', 'w');
             fputcsv($out, [
-                'ID', 'Page Type', 'Service', 'Name', 'Email', 'Phone', 'Company', 'Website',
+                'ID', 'Page Type', 'Service', 'Name', 'Email', 'Phone', 'Country', 'Company', 'Website',
                 'Message', 'Status', 'IP', 'Created At',
             ]);
 
@@ -101,6 +101,7 @@ class SeoServiceInquiryController extends Controller
                         $row->name,
                         $row->email,
                         $row->phone,
+                        $row->country,
                         $row->company,
                         $row->website,
                         $row->message,

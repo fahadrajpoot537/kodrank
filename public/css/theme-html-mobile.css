@@ -2,7 +2,7 @@
    mobile + tablet behavior.
 
    Reference (do not invent):
-   - Carousel ≤767: problem/pain + feature/why  (85vw snap, pan-x, 4s autoplay in JS)
+   - Carousel ≤767: problem/pain + feature/why  (100% snap, pan-x, 4s autoplay in JS)
    - Scroll-stack ≤900: services + process
    - Pain/feature 768–980: 2-col grid
    Desktop ≥901: ZERO rules in the .webdev-ref blocks below. */
@@ -143,12 +143,12 @@ body.page-theme-html.page-service section#included.has-page-svc-stack,
   .wpdev-theme-page.theme-html-root .why-bg .why-mobile-carousel .feat-card,
   .wpdev-theme-page .why-bg .why-mobile-carousel .feat-card,
   .wpdev-theme-page .why-bg .why-mobile-carousel .feature-grid > * {
-    flex: 0 0 85vw !important;
+    flex: 0 0 100% !important;
     flex-shrink: 0 !important;
     flex-grow: 0 !important;
-    width: 85vw !important;
-    min-width: 85vw !important;
-    max-width: 85vw !important;
+    width: 100% !important;
+    min-width: 100% !important;
+    max-width: 100% !important;
     height: auto !important;
     box-sizing: border-box !important;
     scroll-snap-align: start !important;
@@ -227,12 +227,12 @@ body.page-theme-html.page-service section#included.has-page-svc-stack,
   .wpdev-theme-page .why-grid > .why-card,
   .wpdev-theme-page #why-us .why-grid > *,
   .wpdev-theme-page .why-mobile-carousel .why-grid > * {
-    flex: 0 0 85vw !important;
+    flex: 0 0 100% !important;
     flex-shrink: 0 !important;
     flex-grow: 0 !important;
-    width: 85vw !important;
-    min-width: 85vw !important;
-    max-width: 85vw !important;
+    width: 100% !important;
+    min-width: 100% !important;
+    max-width: 100% !important;
     height: auto !important;
     box-sizing: border-box !important;
     scroll-snap-align: start !important;
@@ -277,12 +277,12 @@ body.page-theme-html.page-service section#included.has-page-svc-stack,
   body.page-theme-html .wpdev-theme-page .problem-grid .problem-card,
   .wpdev-theme-page.theme-html-root .problem-grid .problem-card,
   .wpdev-theme-page .problem-grid > .problem-card {
-    flex: 0 0 85vw !important;
+    flex: 0 0 100% !important;
     flex-shrink: 0 !important;
     flex-grow: 0 !important;
-    width: 85vw !important;
-    min-width: 85vw !important;
-    max-width: 85vw !important;
+    width: 100% !important;
+    min-width: 100% !important;
+    max-width: 100% !important;
     height: auto !important;
     box-sizing: border-box !important;
     scroll-snap-align: start !important;
@@ -528,7 +528,20 @@ body.page-theme-html.page-service section#included.has-page-svc-stack,
   }
 }
 
-/* Carousel ≤767 — identical to WP: flex row, 85vw snap, pan-x */
+/* Tablet: theme-html card grids fill the row (no squashed center column) */
+@media (min-width: 768px) and (max-width: 980px) {
+  html body.page-service .webdev-ref .industry-grid > *,
+  html body.page-service .webdev-ref .ind-grid > *,
+  html body.page-onpage .onpage-theme-page .industry-grid > *,
+  html body.page-dm .webdev-ref .industry-grid > * {
+    width: auto !important;
+    min-width: 0 !important;
+    max-width: none !important;
+    flex: none !important;
+  }
+}
+
+/* Carousel ≤767 — scrollport cards use full row width (no narrow centered column) */
 @media (max-width: 767px) {
   html body.page-service .webdev-ref .wrap:has([data-thm-carousel]),
   html body.page-service .webdev-ref .wrap:has(.problem-grid),
@@ -628,6 +641,28 @@ body.page-theme-html.page-service section#included.has-page-svc-stack,
     touch-action: pan-x !important;
   }
 
+  /* Scroll shell only on inner track — avoid nested horizontal scroll containers */
+  html body.page-service .webdev-ref .why-mobile-carousel.thm-mobile-carousel,
+  html body.page-onpage .onpage-theme-page .why-mobile-carousel.thm-mobile-carousel,
+  html body.page-dm .webdev-ref .why-mobile-carousel.thm-mobile-carousel {
+    display: block !important;
+    overflow: visible !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    touch-action: auto !important;
+    scroll-snap-type: none !important;
+  }
+  html body.page-service .webdev-ref .why-mobile-carousel > .problem-grid,
+  html body.page-service .webdev-ref .why-mobile-carousel > .why-grid,
+  html body.page-service .webdev-ref .why-mobile-carousel > .grid,
+  html body.page-onpage .onpage-theme-page .why-mobile-carousel > .problem-grid,
+  html body.page-onpage .onpage-theme-page .why-mobile-carousel > .why-grid,
+  html body.page-onpage .onpage-theme-page .why-mobile-carousel > .grid {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
   html body.page-service .webdev-ref .problem-grid::-webkit-scrollbar,
   html body.page-service .webdev-ref .pain-grid::-webkit-scrollbar,
   html body.page-service .webdev-ref .pain-list::-webkit-scrollbar,
@@ -695,12 +730,12 @@ body.page-theme-html.page-service section#included.has-page-svc-stack,
   html body.page-web-dev .webdev-ref #why .svc-stack-item,
   html body.page-web-dev .webdev-ref #why .feature-grid > *,
   html body.page-web-dev .webdev-ref #why .why-grid > * {
-    flex: 0 0 85vw !important;
+    flex: 0 0 100% !important;
     flex-shrink: 0 !important;
     flex-grow: 0 !important;
-    width: 85vw !important;
-    min-width: 85vw !important;
-    max-width: 85vw !important;
+    width: 100% !important;
+    min-width: 100% !important;
+    max-width: 100% !important;
     height: auto !important;
     box-sizing: border-box !important;
     scroll-snap-align: start !important;
@@ -1091,11 +1126,11 @@ html body.page-service .aeo-theme-page .faq-item {
   html body.page-service .aeo-theme-page #testiTrack > .testi,
   html body.page-service .aeo-theme-page .carousel-track > .testi,
   html body.page-service .webdev-ref #testiTrack > .testi {
-    flex: 0 0 85vw !important;
+    flex: 0 0 100% !important;
     flex-shrink: 0 !important;
-    width: 85vw !important;
-    min-width: 85vw !important;
-    max-width: 85vw !important;
+    width: 100% !important;
+    min-width: 100% !important;
+    max-width: 100% !important;
     scroll-snap-align: start !important;
     box-sizing: border-box !important;
   }
@@ -1414,10 +1449,10 @@ html body.page-service .hc-theme-page .proc-card p {
   }
   html body.page-service .gp-theme-page #results .tcard,
   html body.page-service .gp-theme-page .grid:has(> .tcard) > .tcard {
-    flex: 0 0 85vw !important;
-    width: 85vw !important;
-    min-width: 85vw !important;
-    max-width: 85vw !important;
+    flex: 0 0 100% !important;
+    width: 100% !important;
+    min-width: 100% !important;
+    max-width: 100% !important;
     scroll-snap-align: start !important;
     box-sizing: border-box !important;
     background: #fff !important;
@@ -1747,11 +1782,11 @@ html body.page-service .re-theme-page #process .svc-stack-item::after {
   html body.page-redesign .redesign-theme-page #pain .grid > *,
   html body.page-saas .saas-theme-page #problems .pain-grid > .pain,
   html body.page-saas .saas-theme-page #problems .pain-grid > * {
-    flex: 0 0 85vw !important;
+    flex: 0 0 100% !important;
     flex-shrink: 0 !important;
-    width: 85vw !important;
-    min-width: 85vw !important;
-    max-width: 85vw !important;
+    width: 100% !important;
+    min-width: 100% !important;
+    max-width: 100% !important;
     box-sizing: border-box !important;
     scroll-snap-align: start !important;
   }
@@ -1814,10 +1849,10 @@ html body.page-service .re-theme-page #process .svc-stack-item::after {
   }
   html body.page-web-dev .webdev-ref .included-grid > .include-tile,
   html body.page-web-dev .webdev-ref .included-grid > * {
-    flex: 0 0 85vw !important;
-    width: 85vw !important;
-    min-width: 85vw !important;
-    max-width: 85vw !important;
+    flex: 0 0 100% !important;
+    width: 100% !important;
+    min-width: 100% !important;
+    max-width: 100% !important;
     scroll-snap-align: start !important;
   }
 }
@@ -2216,10 +2251,10 @@ html body.page-shopify .shopify-theme-page .cmp.win li svg {
   html body.page-shopify .shopify-theme-page .why-mobile-carousel > .pain-grid > *,
   html body.page-shopify .shopify-theme-page .why-mobile-carousel > .ind-grid > *,
   html body.page-shopify .shopify-theme-page .why-mobile-carousel > .tst-grid > * {
-    flex: 0 0 85vw !important;
-    width: 85vw !important;
-    min-width: 85vw !important;
-    max-width: 85vw !important;
+    flex: 0 0 100% !important;
+    width: 100% !important;
+    min-width: 100% !important;
+    max-width: 100% !important;
     scroll-snap-align: start !important;
   }
   html body.page-shopify .shopify-theme-page .compare {
@@ -2547,10 +2582,10 @@ html body.page-aibot .aibot-theme-page #process .pstep {
   }
   html body.page-aibot .aibot-theme-page .why-mobile-carousel > .prob-list > *,
   html body.page-aibot .aibot-theme-page .why-mobile-carousel > .tst-grid > * {
-    flex: 0 0 85vw !important;
-    width: 85vw !important;
-    min-width: 85vw !important;
-    max-width: 85vw !important;
+    flex: 0 0 100% !important;
+    width: 100% !important;
+    min-width: 100% !important;
+    max-width: 100% !important;
     scroll-snap-align: start !important;
   }
   html body.page-aibot .aibot-theme-page .cmp {
@@ -2673,10 +2708,10 @@ html body.page-cms .cms-theme-page #process .step {
   }
   html body.page-cms .cms-theme-page .feat-list > .feat,
   html body.page-cms .cms-theme-page .feat-list > * {
-    flex: 0 0 85vw !important;
-    width: 85vw !important;
-    min-width: 85vw !important;
-    max-width: 85vw !important;
+    flex: 0 0 100% !important;
+    width: 100% !important;
+    min-width: 100% !important;
+    max-width: 100% !important;
     height: auto !important;
     scroll-snap-align: start !important;
   }
@@ -2962,10 +2997,10 @@ html body.page-redesign .redesign-theme-page .cmp li.c .mk::after {
   }
   html body.page-redesign .redesign-theme-page #deliver .why-mobile-carousel > .grid > *,
   html body.page-redesign .redesign-theme-page .sec-testi .why-mobile-carousel > .grid > * {
-    flex: 0 0 85vw !important;
-    width: 85vw !important;
-    min-width: 85vw !important;
-    max-width: 85vw !important;
+    flex: 0 0 100% !important;
+    width: 100% !important;
+    min-width: 100% !important;
+    max-width: 100% !important;
     scroll-snap-align: start !important;
   }
 }
@@ -3194,10 +3229,10 @@ html body.page-elec .elec-theme-page .cmp li .ic {
   html body.page-elec .elec-theme-page .edge-grid > *,
   html body.page-saas .saas-theme-page .stack-groups > .stack-card,
   html body.page-saas .saas-theme-page .stack-groups > * {
-    flex: 0 0 85vw !important;
-    width: 85vw !important;
-    min-width: 85vw !important;
-    max-width: 85vw !important;
+    flex: 0 0 100% !important;
+    width: 100% !important;
+    min-width: 100% !important;
+    max-width: 100% !important;
     box-sizing: border-box !important;
     scroll-snap-align: start !important;
   }

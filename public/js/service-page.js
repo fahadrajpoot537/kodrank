@@ -887,15 +887,6 @@
       const dotsWrap = root.querySelector('[data-svc-dots]');
       if (!viewport || !trackEl || !slides.length) return;
 
-      if (prev) {
-        prev.hidden = true;
-        prev.setAttribute('aria-hidden', 'true');
-      }
-      if (next) {
-        next.hidden = true;
-        next.setAttribute('aria-hidden', 'true');
-      }
-
       const desktopPer = parseInt(root.getAttribute('data-per-desktop') || '3', 10) || 3;
       let per = desktopPer;
       let index = 0;
@@ -935,6 +926,18 @@
 
       const maxIndex = () => Math.max(0, slides.length - per);
 
+      const syncNav = () => {
+        const mobileScroll =
+          root.hasAttribute('data-sp-mobile-scroll') && !isDesktopGrid();
+        const show = !isDesktopGrid() && !mobileScroll && maxIndex() > 0;
+        [prev, next].forEach((btn) => {
+          if (!btn) return;
+          btn.hidden = !show;
+          btn.style.display = show ? '' : 'none';
+          btn.setAttribute('aria-hidden', show ? 'false' : 'true');
+        });
+      };
+
       const clearCarouselStyles = () => {
         trackEl.style.removeProperty('transform');
         trackEl.style.removeProperty('width');
@@ -962,7 +965,7 @@
         }
         // Mobile: 1 full card + ~10% of the next card peeking
         if (per === 1) {
-          slideW = Math.max(1, (vw - gap) / 1.1);
+          slideW = Math.max(1, vw - gap);
         } else {
           slideW = Math.max(1, (vw - (per - 1) * gap) / per);
         }
@@ -993,6 +996,7 @@
           dotsWrap.hidden = true;
           dotsWrap.innerHTML = '';
         }
+        syncNav();
       };
 
       const applyCarousel = () => {
@@ -1005,6 +1009,7 @@
         buildDots();
         goTo(Math.min(index, maxIndex()));
         startAuto();
+        syncNav();
       };
 
       // Mobile-only native swipe row (scroll-snap) — reliable in DevTools device mode
@@ -1468,13 +1473,33 @@
       }
       track.dataset.thmCarouselReady = '1';
 
-      const scroller = track.closest('.why-mobile-carousel') || track;
+      const scroller = track;
+      const shell = track.closest('.why-mobile-carousel');
       const cards = Array.prototype.filter.call(track.children, (el) => el.nodeType === 1);
       if (cards.length < 2) return;
 
       let index = 0;
       let timer = null;
       let resumeTimer = null;
+
+      const navWrap = document.createElement('div');
+      navWrap.className = 'thm-carousel-nav-wrap';
+      navWrap.setAttribute('role', 'group');
+      navWrap.setAttribute('aria-label', 'Carousel navigation');
+      const prevBtn = document.createElement('button');
+      prevBtn.type = 'button';
+      prevBtn.className = 'thm-carousel-nav thm-carousel-prev';
+      prevBtn.setAttribute('aria-label', 'Previous slide');
+      prevBtn.innerHTML =
+        '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M15 5 8 12l7 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+      const nextBtn = document.createElement('button');
+      nextBtn.type = 'button';
+      nextBtn.className = 'thm-carousel-nav thm-carousel-next';
+      nextBtn.setAttribute('aria-label', 'Next slide');
+      nextBtn.innerHTML =
+        '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m9 5 7 7-7 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+      navWrap.appendChild(prevBtn);
+      navWrap.appendChild(nextBtn);
 
       const dotsWrap = document.createElement('div');
       dotsWrap.className = 'testi-dots thm-carousel-dots';
@@ -1495,9 +1520,17 @@
         });
         dotsWrap.appendChild(btn);
       });
-      if (scroller.parentElement) {
-        scroller.parentElement.insertBefore(dotsWrap, scroller.nextSibling);
+      const host = shell && shell.parentElement ? shell.parentElement : scroller.parentElement;
+      if (host) {
+        host.insertBefore(navWrap, (shell || scroller).nextSibling);
+        host.insertBefore(dotsWrap, navWrap.nextSibling);
       }
+
+      const syncNav = () => {
+        const show = isMobile(track) && cards.length > 1;
+        navWrap.hidden = !show;
+        navWrap.style.display = show ? 'flex' : 'none';
+      };
 
       const syncDots = () => {
         if (!dotsWrap) return;
@@ -1515,13 +1548,14 @@
       const syncCarouselClass = () => {
         if (isMobile(track)) {
           track.classList.add('thm-mobile-carousel');
-          scroller.classList.add('thm-mobile-carousel');
+          if (shell) shell.classList.remove('thm-mobile-carousel');
         } else {
           track.classList.remove('thm-mobile-carousel');
-          if (scroller !== track) scroller.classList.remove('thm-mobile-carousel');
+          if (shell) shell.classList.remove('thm-mobile-carousel');
           scroller.scrollTo({ left: 0, behavior: 'auto' });
           index = 0;
         }
+        syncNav();
         syncDots();
       };
 
@@ -1557,6 +1591,22 @@
         if (!isMobile(track)) return;
         goTo((index + 1) % cards.length, true);
       };
+
+      const prev = () => {
+        if (!isMobile(track)) return;
+        goTo((index - 1 + cards.length) % cards.length, true);
+      };
+
+      prevBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        prev();
+        pauseThenResume();
+      });
+      nextBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        next();
+        pauseThenResume();
+      });
 
       const start = () => {
         stop();

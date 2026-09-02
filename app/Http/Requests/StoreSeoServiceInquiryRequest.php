@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use App\Rules\Recaptcha;
+use App\Support\Countries;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
@@ -35,6 +36,7 @@ class StoreSeoServiceInquiryRequest extends FormRequest
             'name' => ['required', 'string', 'max:120'],
             'email' => ['required', 'email', 'max:190'],
             'phone' => ['nullable', 'string', 'max:40'],
+            'country' => ['required', 'string', Rule::in(Countries::names())],
             'company' => ['nullable', 'string', 'max:190'],
             'website' => ['nullable', 'string', 'max:190'],
             'message' => ['required', 'string', 'max:5000'],

@@ -19,6 +19,7 @@ class SeoServiceInquiry extends Model
         'name',
         'email',
         'phone',
+        'country',
         'company',
         'website',
         'message',
@@ -37,6 +38,7 @@ class SeoServiceInquiry extends Model
         return $query->where(function (Builder $q) use ($term) {
             $q->where('name', 'like', "%{$term}%")
                 ->orWhere('email', 'like', "%{$term}%")
+                ->orWhere('country', 'like', "%{$term}%")
                 ->orWhere('company', 'like', "%{$term}%")
                 ->orWhere('website', 'like', "%{$term}%")
                 ->orWhere('service_name', 'like', "%{$term}%")

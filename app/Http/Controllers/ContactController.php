@@ -7,8 +7,10 @@ use App\Models\ContactMessage;
 use App\Rules\Recaptcha;
 use App\Services\LeadNotificationService;
 use App\Support\CmsPageDefaults;
+use App\Support\Countries;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 use Illuminate\View\View;
 
 class ContactController extends Controller
@@ -71,6 +73,7 @@ class ContactController extends Controller
             'name' => ['required', 'string', 'max:120'],
             'email' => ['required', 'email', 'max:190'],
             'phone' => ['nullable', 'string', 'max:40'],
+            'country' => ['required', 'string', Rule::in(Countries::names())],
             'website' => ['nullable', 'string', 'max:190'],
             'message' => ['required', 'string', 'max:5000'],
             'g-recaptcha-response' => ['required', new Recaptcha],
@@ -91,6 +94,7 @@ class ContactController extends Controller
             'name' => $contact->name,
             'email' => $contact->email,
             'phone' => $contact->phone,
+            'country' => $contact->country,
             'website' => $contact->website,
             'service' => $request->input('service') ?: $request->input('services'),
             'message' => $contact->message,
