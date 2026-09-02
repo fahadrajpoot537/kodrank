@@ -27,10 +27,6 @@
     </div>
 
     <div class="ind-carousel rv" data-ind-carousel>
-      <button type="button" class="ind-nav ind-prev" aria-label="Previous industries">
-        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M15 5 8 12l7 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </button>
-
       <div class="ind-viewport">
         <div class="ind-track" role="list">
           @foreach($indItems as $item)
@@ -50,11 +46,17 @@
         </div>
       </div>
 
-      <button type="button" class="ind-nav ind-next" aria-label="Next industries">
-        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m9 5 7 7-7 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </button>
-
-      <div class="ind-dots" data-ind-dots aria-hidden="true"></div>
+      <div class="home-carousel-foot">
+        <div class="home-carousel-nav-wrap" role="group" aria-label="Industries carousel navigation">
+          <button type="button" class="home-carousel-nav ind-prev" aria-label="Previous industries">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M15 5 8 12l7 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <button type="button" class="home-carousel-nav ind-next" aria-label="Next industries">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m9 5 7 7-7 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </div>
+        <div class="ind-dots" data-ind-dots aria-hidden="true"></div>
+      </div>
     </div>
   </div>
 </section>

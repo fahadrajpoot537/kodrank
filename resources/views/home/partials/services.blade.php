@@ -51,9 +51,6 @@
       </div>
 
       <div class="svc-carousel rv{{ $isAeoGeo ? ' is-aeo' : '' }}" data-svc-carousel data-per-desktop="{{ $isAeoGeo ? 2 : 3 }}">
-        <button type="button" class="svc-nav svc-prev" aria-label="Previous services">
-          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M15 5 8 12l7 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </button>
         <div class="svc-viewport">
           <div class="svc-track">
             @foreach($items as $item)
@@ -76,10 +73,17 @@
             @endforeach
           </div>
         </div>
-        <button type="button" class="svc-nav svc-next" aria-label="Next services">
-          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m9 5 7 7-7 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </button>
-        <div class="svc-dots" data-svc-dots aria-hidden="true"></div>
+        <div class="home-carousel-foot">
+          <div class="home-carousel-nav-wrap" role="group" aria-label="Services carousel navigation">
+            <button type="button" class="home-carousel-nav svc-prev" aria-label="Previous services">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M15 5 8 12l7 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <button type="button" class="home-carousel-nav svc-next" aria-label="Next services">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m9 5 7 7-7 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+          </div>
+          <div class="svc-dots" data-svc-dots aria-hidden="true"></div>
+        </div>
       </div>
 
       @if($gi === 0 && !empty($c['services']['web_cta_text']))
