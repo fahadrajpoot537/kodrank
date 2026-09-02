@@ -194,6 +194,25 @@
           'default_service' => 'WordPress SEO Services',
           'submit_text' => 'Send my free audit request',
       ],
+      'on-page-seo-services' => [
+          'eyebrow' => 'Start here',
+          'title' => 'Tell us where you want to rank.',
+          'lede' => "Share a little about your site and goals. We'll come back with a plain-English read on your biggest on-page opportunities — usually within one business day.",
+          'points' => [
+              'Email us at hello@kodrank.com',
+              'Reply within one business day',
+              'No spam, no hard sell',
+          ],
+          'fields' => [
+              'name_label' => 'Your name',
+              'email_label' => 'Work email',
+              'website_label' => 'Website URL',
+              'message_label' => "What's not ranking?",
+              'message_placeholder' => 'Tell us which pages or keywords matter most…',
+          ],
+          'default_service' => 'On-Page SEO Services',
+          'submit_text' => 'Get My Free Audit',
+      ],
   ];
 
   $themeHtmlContact = array_merge(

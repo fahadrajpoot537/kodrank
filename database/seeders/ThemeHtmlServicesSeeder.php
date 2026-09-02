@@ -19,17 +19,7 @@ class ThemeHtmlServicesSeeder extends Seeder
 
         $pages = [
             // ── Digital marketing / SEO ──
-            [
-                'slug' => 'digital-marketing-services',
-                'name' => 'Digital Marketing Services',
-                'html' => $t.'/digital-marketing-services.html',
-                'mediaFrom' => $t,
-                'mediaTo' => 'media/services/digital-marketing',
-                'css' => 'css/theme-digital-marketing.css',
-                'scope' => 'dm-theme-page',
-                'parentSlug' => null,
-                'sort' => 10,
-            ],
+            // digital-marketing-services uses DigitalMarketingServiceSeeder + blade partials (not theme-html).
             [
                 'slug' => 'on-page-seo-services',
                 'name' => 'On-Page SEO Services',

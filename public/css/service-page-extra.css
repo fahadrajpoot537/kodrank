@@ -1641,6 +1641,12 @@ body.page-wordpress .wp-hero .wp-breadcrumb li:last-child{
 body.page-web-dev .hero .eyebrow.hero-eyebrow{
   display:none !important;
 }
+body.page-onpage.page-service .hero .hero-copy > .eyebrow,
+body.page-onpage.page-service .hero .hero-copy > .hero-eyebrow,
+body.page-offpage.page-service .hero .hero-copy > .eyebrow,
+body.page-offpage.page-service .hero .hero-copy > .hero-eyebrow{
+  display:inline-flex !important;
+}
 
 /* ---------- Hero + nav: tighter rhythm + mid-desktop headline fit ---------- */
 .page-service .hero .eyebrow,
@@ -4779,14 +4785,14 @@ body.page-dm.page-service .hero h1,
 body.page-dm.page-theme-html .hero h1{
   font-size:clamp(2.35rem,4.6vw,3.4rem) !important;
   line-height:1.08 !important;
-  margin:0 0 14px !important;
+  margin:0 0 18px !important;
 }
 body.page-dm.page-service .hero .lede,
 body.page-dm.page-service .hero p.sub,
 body.page-dm.page-service .hero .hero-sub{
   font-size:clamp(1.02rem,1.35vw,1.16rem) !important;
   max-width:38rem;
-  margin:0 0 20px !important;
+  margin:0 0 44px !important;
 }
 body.page-dm.page-service .hero .hero-actions,
 body.page-dm.page-service .hero .hero-cta{
@@ -4809,12 +4815,12 @@ body.page-dm.page-service .hero .hero-trust{
   body.page-dm.page-service .hero h1,
   body.page-dm.page-theme-html .hero h1{
     font-size:clamp(1.85rem,6.4vw,2.45rem) !important;
-    margin:0 0 10px !important;
+    margin:0 0 14px !important;
   }
   body.page-dm.page-service .hero .lede,
   body.page-dm.page-service .hero p.sub,
   body.page-dm.page-service .hero .hero-sub{
-    margin:0 0 16px !important;
+    margin:0 0 36px !important;
     font-size:1rem !important;
   }
   body.page-dm.page-service .hero .hero-badges,
@@ -4833,13 +4839,121 @@ body.page-dm.page-service .hero .hero-trust{
   }
   body.page-dm.page-service .hero h1,
   body.page-dm.page-theme-html .hero h1{
-    margin:0 0 8px !important;
+    margin:0 0 12px !important;
   }
   body.page-dm.page-service .hero .lede,
   body.page-dm.page-service .hero p.sub,
   body.page-dm.page-service .hero .hero-sub{
-    margin:0 0 14px !important;
+    margin:0 0 32px !important;
   }
+}
+
+/* Digital Marketing: section intro spacing below headings */
+body.page-dm.page-service .section-head p,
+body.page-dm.page-service .section-head .lede{
+  margin-top:20px;
+}
+
+/* Digital Marketing + On-Page SEO: testimonial / mobile carousel dot buttons */
+body.page-dm.page-service .testi-controls,
+body.page-onpage.page-service .testi-controls{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:16px;
+  margin-top:20px;
+}
+body.page-dm.page-service .testi-dots,
+body.page-onpage.page-service .testi-dots{
+  display:none;
+  justify-content:center;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:10px;
+  width:100%;
+  padding:4px 0;
+}
+body.page-dm.page-service .testi-dot,
+body.page-onpage.page-service .testi-dot,
+body.page-onpage.page-service .webdev-ref .thm-carousel-dots .testi-dot{
+  width:10px;
+  height:10px;
+  min-width:10px;
+  min-height:10px;
+  border-radius:50%;
+  padding:0;
+  margin:0;
+  border:2px solid transparent;
+  background:#C5D4CE;
+  cursor:pointer;
+  flex-shrink:0;
+  transition:transform .2s ease, background .2s ease, border-color .2s ease;
+  /* Larger tap target without changing visual dot size */
+  box-shadow:0 0 0 8px transparent;
+}
+body.page-dm.page-service .testi-dot.is-active,
+body.page-onpage.page-service .testi-dot.is-active,
+body.page-onpage.page-service .webdev-ref .thm-carousel-dots .testi-dot.is-active{
+  background:var(--signal,#F47A1F);
+  border-color:rgba(244,122,31,.25);
+  transform:scale(1.2);
+  box-shadow:0 0 0 6px rgba(244,122,31,.12);
+}
+body.page-dm.page-service .testi-dot:focus-visible,
+body.page-onpage.page-service .testi-dot:focus-visible,
+body.page-onpage.page-service .webdev-ref .thm-carousel-dots .testi-dot:focus-visible{
+  outline:2px solid var(--signal,#F47A1F);
+  outline-offset:3px;
+}
+
+/* Digital Marketing (blade partials): mobile carousel affordance */
+@media (max-width:900px){
+  body.page-dm.page-service:not(.page-theme-html) .page-svc-carousel .svc-dots:not([hidden]){
+    display:flex !important;
+    justify-content:center;
+    gap:10px;
+    margin-top:22px;
+    padding:4px 0;
+  }
+  body.page-dm.page-service:not(.page-theme-html) .page-svc-carousel .svc-dot{
+    width:9px;
+    height:9px;
+    border-radius:50%;
+    padding:0;
+    border:none;
+    background:#C5D4CE;
+    cursor:pointer;
+    transition:transform .2s, background .2s;
+  }
+  body.page-dm.page-service:not(.page-theme-html) .page-svc-carousel .svc-dot.is-active{
+    background:var(--signal,#F47A1F);
+    transform:scale(1.15);
+  }
+  body.page-dm.page-service:not(.page-theme-html) .page-svc-carousel[data-sp-mobile-scroll] .svc-viewport{
+    scroll-padding-inline:0;
+  }
+}
+@media (max-width:767px){
+  body.page-dm.page-service:not(.page-theme-html) .testi-dots,
+  body.page-dm.page-service .webdev-ref .testi-dots.thm-carousel-dots,
+  body.page-onpage.page-service .webdev-ref .testi-dots.thm-carousel-dots,
+  body.page-onpage.page-theme-html .onpage-theme-page .testi-dots.thm-carousel-dots{
+    display:flex !important;
+  }
+}
+body.page-dm.page-service .webdev-ref .testi-dots.thm-carousel-dots,
+body.page-onpage.page-service .webdev-ref .testi-dots.thm-carousel-dots,
+body.page-onpage.page-theme-html .onpage-theme-page .testi-dots.thm-carousel-dots{
+  justify-content:center;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:10px;
+  width:100%;
+  margin-top:18px;
+  padding:4px 0;
+}
+@media (min-width:901px){
+  body.page-dm.page-service .dm-carousel-hint{display:none}
 }
 
 /* Problem section: white bg, dark card copy */
@@ -5391,10 +5505,12 @@ body.page-seo-service .hero h1{
 
 @media (max-width:767px){
   html body.page-dm .dm-theme-page .testi-slider,
+  html body.page-dm.page-service:not(.page-theme-html) .testi-slider,
   html body.page-onpage .onpage-theme-page .testi-slider{
     position:relative;
   }
   html body.page-dm .dm-theme-page .testi-track,
+  html body.page-dm.page-service:not(.page-theme-html) .testi-track,
   html body.page-onpage .onpage-theme-page .testi-track{
     display:flex !important;
     flex-wrap:nowrap !important;
@@ -5408,15 +5524,18 @@ body.page-seo-service .hero h1{
     padding-bottom:4px !important;
   }
   html body.page-dm .dm-theme-page .testi-track::-webkit-scrollbar,
+  html body.page-dm.page-service:not(.page-theme-html) .testi-track::-webkit-scrollbar,
   html body.page-onpage .onpage-theme-page .testi-track::-webkit-scrollbar{display:none}
   html body.page-dm .dm-theme-page .testi-track .testi,
   html body.page-dm .dm-theme-page .testi,
+  html body.page-dm.page-service:not(.page-theme-html) .testi-track .testi,
+  html body.page-dm.page-service:not(.page-theme-html) .testi,
   html body.page-onpage .onpage-theme-page .testi-track .testi,
   html body.page-onpage .onpage-theme-page .testi{
-    flex:0 0 86% !important;
-    width:86% !important;
-    max-width:86% !important;
-    min-width:86% !important;
+    flex:0 0 84% !important;
+    width:84% !important;
+    max-width:84% !important;
+    min-width:84% !important;
     scroll-snap-align:start !important;
     box-sizing:border-box;
     background:#fff !important;
@@ -5443,13 +5562,15 @@ body.page-seo-service .hero h1{
     padding-top:14px !important;
   }
   html body.page-dm .dm-theme-page .testi-nav-wrap,
+  html body.page-dm.page-service:not(.page-theme-html) .testi-nav-wrap,
   html body.page-onpage .onpage-theme-page .testi-nav-wrap{
     display:flex !important;
     justify-content:center !important;
     gap:12px !important;
-    margin-top:22px !important;
+    margin-top:0 !important;
   }
   html body.page-dm .dm-theme-page .testi-nav,
+  html body.page-dm.page-service:not(.page-theme-html) .testi-nav,
   html body.page-onpage .onpage-theme-page .testi-nav{
     width:44px !important;
     height:44px !important;

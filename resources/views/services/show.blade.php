@@ -41,7 +41,8 @@
   <div class="webdev-ref">
   @endif
   @foreach($page->sections as $section)
-    @continue($section->key === 'hero' || $section->key === 'cta')
+    @continue($section->key === 'hero')
+    @continue(($page->slug ?? '') === 'digital-marketing-services' && $section->key === 'cta')
     @includeIf($partialBase.$section->key)
   @endforeach
   @if($webdevRefWrap)

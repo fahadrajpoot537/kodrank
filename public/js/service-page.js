@@ -7,7 +7,56 @@
     if (!track) return;
     const prev = slider.querySelector('.testi-nav[data-dir="prev"]');
     const next = slider.querySelector('.testi-nav[data-dir="next"]');
+    const dotsWrap = slider.querySelector('[data-testi-dots]');
     const cards = () => Array.from(track.querySelectorAll('.testi'));
+    const isMobileCarousel = () => {
+      try {
+        return window.matchMedia('(max-width: 767px)').matches;
+      } catch (e) {
+        return (window.innerWidth || 0) <= 767;
+      }
+    };
+
+    const setDotsVisible = () => {
+      if (!dotsWrap) return;
+      const show = isMobileCarousel() && cards().length > 1;
+      dotsWrap.hidden = !show;
+      dotsWrap.style.display = show ? 'flex' : 'none';
+    };
+
+    const bindDots = () => {
+      if (!dotsWrap) return;
+      dotsWrap.querySelectorAll('.testi-dot').forEach((btn, i) => {
+        if (btn.dataset.testiBound === '1') return;
+        btn.dataset.testiBound = '1';
+        btn.addEventListener('click', (e) => {
+          e.preventDefault();
+          const card = cards()[i];
+          if (card) {
+            track.scrollTo({ left: card.offsetLeft, behavior: 'smooth' });
+          }
+        });
+      });
+    };
+
+    const syncDots = () => {
+      if (!dotsWrap || dotsWrap.hidden) return;
+      const scrollLeft = track.scrollLeft;
+      let best = 0;
+      let bestDist = Infinity;
+      cards().forEach((card, i) => {
+        const dist = Math.abs(card.offsetLeft - scrollLeft);
+        if (dist < bestDist) {
+          bestDist = dist;
+          best = i;
+        }
+      });
+      dotsWrap.querySelectorAll('.testi-dot').forEach((d, i) => {
+        const active = i === best;
+        d.classList.toggle('is-active', active);
+        d.setAttribute('aria-selected', active ? 'true' : 'false');
+      });
+    };
 
     const step = () => {
       const card = track.querySelector('.testi');
@@ -32,12 +81,16 @@
       const max = maxScroll();
       if (prev) prev.disabled = max <= 4;
       if (next) next.disabled = max <= 4;
+      syncDots();
     };
 
     if (prev) prev.addEventListener('click', () => go(-1));
     if (next) next.addEventListener('click', () => go(1));
     track.addEventListener('scroll', updateBtns, { passive: true });
-    window.addEventListener('resize', updateBtns);
+    window.addEventListener('resize', () => {
+      setDotsVisible();
+      updateBtns();
+    });
 
     let timer = null;
     const prefersReduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -58,11 +111,9 @@
     slider.addEventListener('pointerleave', startAuto);
     track.addEventListener('touchstart', stopAuto, { passive: true });
     track.addEventListener('touchend', startAuto, { passive: true });
-    window.addEventListener('resize', () => {
-      updateBtns();
-      startAuto();
-    });
 
+    bindDots();
+    setDotsVisible();
     updateBtns();
     startAuto();
   });
@@ -1315,6 +1366,8 @@
           '.page-web-dev #why .why-grid',
           '.webdev-ref .problem-grid',
           '.page-web-dev .problem-grid',
+          '.webdev-ref #why-us .why-grid',
+          '.webdev-ref .why-grid',
           '.page-web-dev .included-grid',
           '.shopify-theme-page .pain-grid',
           '.shopify-theme-page .why-feats',
@@ -1355,7 +1408,15 @@
     );
 
     const tracks = Array.prototype.slice.call(
-      document.querySelectorAll('.theme-html-root [data-thm-carousel], .webdev-ref [data-thm-carousel]')
+      document.querySelectorAll(
+        [
+          '.theme-html-root [data-thm-carousel]',
+          '.webdev-ref [data-thm-carousel]',
+          '.why-mobile-carousel > .problem-grid',
+          '.why-mobile-carousel > .why-grid',
+          '.why-mobile-carousel > .grid',
+        ].join(', ')
+      )
     );
     if (!tracks.length) return;
 
@@ -1379,7 +1440,7 @@
       if (
         track.classList.contains('why-grid') ||
         track.classList.contains('prob-list') ||
-        track.closest('#why-us, #why, #problem')
+        track.closest('#why-us, #why, #problem, #pain')
       ) {
         return '(max-width: 980px)';
       }
@@ -1398,6 +1459,13 @@
     tracks.forEach((track) => {
       if (!track || track.dataset.thmCarouselReady === '1') return;
       if (track.hasAttribute('data-thm-stack')) return;
+      if (
+        track.closest('.testi-slider') ||
+        track.classList.contains('testi-track') ||
+        track.id === 'testiTrack'
+      ) {
+        return;
+      }
       track.dataset.thmCarouselReady = '1';
 
       const scroller = track.closest('.why-mobile-carousel') || track;
@@ -1407,6 +1475,42 @@
       let index = 0;
       let timer = null;
       let resumeTimer = null;
+
+      const dotsWrap = document.createElement('div');
+      dotsWrap.className = 'testi-dots thm-carousel-dots';
+      dotsWrap.setAttribute('data-thm-carousel-dots', '');
+      dotsWrap.setAttribute('role', 'tablist');
+      dotsWrap.setAttribute('aria-label', 'Carousel slides');
+      cards.forEach((_, i) => {
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'testi-dot' + (i === 0 ? ' is-active' : '');
+        btn.setAttribute('aria-label', 'Go to slide ' + (i + 1));
+        btn.setAttribute('aria-selected', i === 0 ? 'true' : 'false');
+        btn.setAttribute('role', 'tab');
+        btn.addEventListener('click', (e) => {
+          e.preventDefault();
+          goTo(i, true);
+          pauseThenResume();
+        });
+        dotsWrap.appendChild(btn);
+      });
+      if (scroller.parentElement) {
+        scroller.parentElement.insertBefore(dotsWrap, scroller.nextSibling);
+      }
+
+      const syncDots = () => {
+        if (!dotsWrap) return;
+        const show = isMobile(track);
+        dotsWrap.hidden = !show;
+        dotsWrap.style.display = show ? 'flex' : 'none';
+        if (!show) return;
+        dotsWrap.querySelectorAll('.testi-dot').forEach((d, i) => {
+          const active = i === index;
+          d.classList.toggle('is-active', active);
+          d.setAttribute('aria-selected', active ? 'true' : 'false');
+        });
+      };
 
       const syncCarouselClass = () => {
         if (isMobile(track)) {
@@ -1418,6 +1522,7 @@
           scroller.scrollTo({ left: 0, behavior: 'auto' });
           index = 0;
         }
+        syncDots();
       };
 
       const stop = () => {
@@ -1445,6 +1550,7 @@
           left: cardLeft(card),
           behavior: smooth === false ? 'auto' : 'smooth',
         });
+        syncDots();
       };
 
       const next = () => {
@@ -1475,6 +1581,7 @@
           }
         });
         index = best;
+        syncDots();
       };
 
       scroller.addEventListener('scroll', syncIndexFromScroll, { passive: true });

@@ -28,7 +28,6 @@
 .aeo-theme-page{
   font-family:"Poppins",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
   font-weight:400;font-size:16px;line-height:1.6;
-  overflow-x:clip;
   color:var(--graphite);background:var(--paper);
   -webkit-font-smoothing:antialiased;
 }
@@ -92,7 +91,7 @@
 .aeo-theme-page .breadcrumb a{color:#B7CBD2;transition:color .2s ease}
 .aeo-theme-page .breadcrumb a:hover{color:var(--signal)}
 .aeo-theme-page .breadcrumb [aria-current="page"]{color:var(--signal);font-weight:600}
-.aeo-theme-page .hero{background:var(--ink);color:#fff;padding:0;overflow:hidden;position:relative;min-height:0}
+.aeo-theme-page .hero{background:var(--ink);color:#fff;padding:0;overflow:hidden;position:relative;min-height:min(680px,88vh)}
 .aeo-theme-page .hero-grid{padding:clamp(24px,3.5vw,44px) 0 clamp(56px,7vw,96px);width:100%}
 .aeo-theme-page .hero-copy{position:relative;z-index:3;max-width:760px}
 .aeo-theme-page .hero h1{color:#fff;font-size:clamp(2.4rem,6vw,4.4rem);line-height:1.08;letter-spacing:-.03em;font-weight:800;margin:18px 0 22px;max-width:900px}
@@ -202,38 +201,9 @@
 .aeo-theme-page .stat .num{font-size:clamp(2.2rem,3.6vw,2.9rem);font-weight:800;line-height:1;letter-spacing:-.03em;color:#fff;display:block;margin-bottom:10px}
 .aeo-theme-page .stat .num.signal{color:var(--signal)}
 .aeo-theme-page .stat .lbl{font-size:.7rem;font-weight:500;letter-spacing:.07em;text-transform:uppercase;color:#7A929A}
-.aeo-theme-page .testi{flex:0 0 calc((100% - 40px) / 3);scroll-snap-align:start;min-width:260px;background:var(--paper);border-radius:18px;padding:clamp(20px,2.6vw,24px) clamp(18px,2.2vw,22px);border:1px solid var(--line);display:flex;flex-direction:column;gap:14px;transition:all .3s ease;box-sizing:border-box}
-@media(max-width:960px){
-  .aeo-theme-page .testi{flex:0 0 calc((100% - 20px) / 2);min-width:0}
-}
-@media(max-width:767px){
-  .aeo-theme-page #testiTrack,
-  .aeo-theme-page .carousel-track:has(> .testi){
-    display:flex !important;
-    flex-direction:row !important;
-    flex-wrap:nowrap !important;
-    gap:14px !important;
-    overflow-x:auto !important;
-    overflow-y:hidden !important;
-    scroll-snap-type:x mandatory !important;
-    -webkit-overflow-scrolling:touch !important;
-    scrollbar-width:none !important;
-    width:100% !important;
-    max-width:100% !important;
-    min-width:0 !important;
-  }
-  .aeo-theme-page #testiTrack .testi,
-  .aeo-theme-page .carousel-track > .testi{
-    flex:0 0 85vw !important;
-    width:85vw !important;
-    min-width:85vw !important;
-    max-width:85vw !important;
-    scroll-snap-align:start !important;
-  }
-  .aeo-theme-page .carousel:has(#testiTrack) .carousel-nav-wrap{
-    justify-content:center;
-  }
-}
+.aeo-theme-page .testi{flex:0 0 calc((100% - 40px) / 3);scroll-snap-align:start;min-width:260px;background:var(--paper);border-radius:18px;padding:clamp(20px,2.6vw,24px) clamp(18px,2.2vw,22px);border:1px solid var(--line);display:flex;flex-direction:column;gap:14px;transition:all .3s ease}
+@media(max-width:960px){.testi{flex-basis:calc((100% - 20px) / 2)}}
+@media(max-width:640px){.testi{flex-basis:88%}}
 .aeo-theme-page .testi:hover{box-shadow:var(--shadow-md)}
 .aeo-theme-page .stars{display:flex;gap:4px;color:var(--signal);font-size:.95rem;letter-spacing:2px}
 .aeo-theme-page .testi .quote{font-size:.95rem;color:var(--graphite);line-height:1.65;flex:1}
@@ -241,7 +211,7 @@
 .aeo-theme-page .avatar{width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,var(--signal),var(--signal-deep));color:var(--ink);display:grid;place-items:center;font-weight:700;font-size:.95rem;flex-shrink:0}
 .aeo-theme-page .testi-person .name{font-weight:650;font-size:.9rem;color:var(--graphite);line-height:1.3}
 .aeo-theme-page .testi-person .role{font-size:.78rem;color:var(--slate-2);margin-top:2px}
-.aeo-theme-page .faq{display:flex;flex-direction:column;gap:10px;max-width:820px;width:100%;margin:0 auto;text-align:left}
+.aeo-theme-page .faq{display:flex;flex-direction:column;gap:10px;max-width:900px;margin:0}
 .aeo-theme-page .faq-item{background:var(--paper);border:1px solid var(--line);border-radius:16px;overflow:hidden;transition:all .25s ease}
 .aeo-theme-page .faq-item[open]{border-color:rgba(244,122,31,.35);box-shadow:var(--shadow-sm)}
 .aeo-theme-page .faq-item summary{list-style:none;cursor:pointer;padding:18px 22px;display:flex;align-items:center;justify-content:space-between;gap:20px;font-weight:650;font-size:.98rem;color:var(--graphite)}
@@ -294,30 +264,3 @@
 .aeo-theme-page .form-field textarea{resize:vertical;min-height:96px}
 .aeo-theme-page .form-field select{appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8' fill='none'><path d='M1 1.5L6 6.5L11 1.5' stroke='%234B5B62' stroke-width='1.5'/></svg>");background-repeat:no-repeat;background-position:right 4px center}
 .aeo-theme-page .form-submit{margin-top:10px}
-
-/* KodRank: centered FAQ + hide mid-page FINAL CTA */
-.aeo-theme-page .wrap:has(> .faq) > .section-head,
-.aeo-theme-page #faq .section-head,
-.aeo-theme-page #faq .section-head.center{
-  margin-left:auto !important;
-  margin-right:auto !important;
-  text-align:center !important;
-  max-width:820px;
-}
-.aeo-theme-page .wrap:has(> .faq) > .section-head h2,
-.aeo-theme-page #faq .section-head h2{
-  text-align:center !important;
-}
-.aeo-theme-page #faq .faq,
-.aeo-theme-page .faq{
-  max-width:820px;
-  width:100%;
-  margin-left:auto !important;
-  margin-right:auto !important;
-}
-.aeo-theme-page .faq-item{
-  padding:0 !important;
-}
-.aeo-theme-page section.sec-ink.cta-bg{
-  display:none !important;
-}

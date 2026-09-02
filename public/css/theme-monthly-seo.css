@@ -18,7 +18,7 @@
   font-family:"Poppins",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
   color:var(--graphite); background:var(--paper);
   font-weight:400; line-height:1.6; -webkit-font-smoothing:antialiased;
-  overflow-x:clip;
+  overflow-x:hidden;
 }
 .monthly-theme-page img{max-width:100%;display:block}
 .monthly-theme-page a{color:inherit;text-decoration:none}
@@ -171,14 +171,14 @@
 .monthly-theme-page .svc-card h4{font-size:1.14rem;font-weight:650;margin-bottom:12px}
 .monthly-theme-page .svc-card p{font-size:.93rem;color:var(--slate);line-height:1.6}
 .monthly-theme-page .loop-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:14px}
-.monthly-theme-page .loop-card{background:#fff;border:1px solid var(--line);border-radius:var(--r-card);padding:28px 24px;transition:.22s;color:#111}
+.monthly-theme-page .loop-card{background:var(--ink-2);border:1px solid var(--line-dark);border-radius:var(--r-card);padding:28px 24px;transition:.22s}
 .monthly-theme-page .loop-card:hover{border-color:rgba(244,122,31,.4);transform:translateY(-4px)}
 .monthly-theme-page .loop-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px}
 .monthly-theme-page .loop-num{font-weight:800;font-size:.95rem;color:var(--signal);letter-spacing:.05em}
-.monthly-theme-page .loop-ico{width:44px;height:44px;border-radius:12px;background:var(--mist-2);display:grid;place-items:center}
+.monthly-theme-page .loop-ico{width:44px;height:44px;border-radius:12px;background:var(--ink-3);display:grid;place-items:center}
 .monthly-theme-page .loop-ico svg{width:22px;height:22px;color:var(--signal)}
-.monthly-theme-page .loop-card h4{color:#111;font-size:1.1rem;font-weight:650;margin-bottom:10px}
-.monthly-theme-page .loop-card p{color:#111;font-size:.9rem;line-height:1.55}
+.monthly-theme-page .loop-card h4{color:#fff;font-size:1.1rem;font-weight:650;margin-bottom:10px}
+.monthly-theme-page .loop-card p{color:#9FB6BE;font-size:.9rem;line-height:1.55}
 .monthly-theme-page .cmp-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px;max-width:1040px;margin:0 auto}
 .monthly-theme-page .cmp-card{border-radius:var(--r-card);padding:34px 32px}
 .monthly-theme-page .cmp-typical{background:var(--ink-2);border:1px solid var(--line-dark)}
@@ -303,18 +303,4 @@
 @media(prefers-reduced-motion:reduce){
   *{animation:none!important;transition:none!important;scroll-behavior:auto!important}
 .monthly-theme-page .reveal{opacity:1;transform:none}
-}
-
-/* Process loop cards: black copy on white tiles */
-.monthly-theme-page #process .loop-card,
-.monthly-theme-page .loop-card{
-  background:#fff !important;
-  border:1px solid var(--line, #E1E9E5) !important;
-  color:#111 !important;
-}
-.monthly-theme-page #process .loop-card h4,
-.monthly-theme-page .loop-card h4,
-.monthly-theme-page #process .loop-card p,
-.monthly-theme-page .loop-card p{
-  color:#111 !important;
 }

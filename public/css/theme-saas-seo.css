@@ -17,7 +17,7 @@
   font-family:"Poppins",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
   color:var(--graphite);background:var(--paper);line-height:1.6;
   -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
-  overflow-x:clip;
+  overflow-x:hidden;
 }
 .saasseo-theme-page .wrap{max-width:var(--maxw);margin:0 auto;padding-left:var(--pad);padding-right:var(--pad)}
 .saasseo-theme-page section{padding:clamp(64px,8vw,120px) 0}
@@ -125,19 +125,11 @@
 .saasseo-theme-page .svc h4{color:#fff;font-size:1.18rem;font-weight:650;margin-bottom:11px}
 .saasseo-theme-page .svc p{color:#9FB6BE;font-size:.95rem}
 .saasseo-theme-page .proc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
-.saasseo-theme-page .step{
-  position:relative;
-  background:#fff;
-  border:1px solid var(--line);
-  border-radius:var(--r-card);
-  padding:28px 24px;
-  box-shadow:var(--sh-sm);
-  isolation:isolate;
-}
-.saasseo-theme-page .step.on{border-color:var(--line);border-top:2px solid var(--signal)}
+.saasseo-theme-page .step{position:relative;padding-top:24px;border-top:2px solid var(--line)}
+.saasseo-theme-page .step.on{border-top-color:var(--signal)}
 .saasseo-theme-page .step .num{font-size:2.6rem;font-weight:800;color:var(--signal);letter-spacing:-.02em;line-height:1;margin-bottom:14px}
-.saasseo-theme-page .step h4{font-size:1.14rem;font-weight:650;color:#111;margin-bottom:9px}
-.saasseo-theme-page .step p{color:#111;font-size:.94rem}
+.saasseo-theme-page .step h4{font-size:1.14rem;font-weight:650;color:var(--graphite);margin-bottom:9px}
+.saasseo-theme-page .step p{color:var(--slate);font-size:.94rem}
 .saasseo-theme-page .stats-sec{position:relative;overflow:hidden;isolation:isolate}
 .saasseo-theme-page .stats-bg{position:absolute;inset:0;z-index:-2;background-size:cover;background-position:center right;opacity:.9}
 .saasseo-theme-page .stats-veil{position:absolute;inset:0;z-index:-1;
@@ -273,27 +265,6 @@
 .saasseo-theme-page .faq-a p{padding:0 20px 20px}
 }
 
-/* KodRank: dark service cards keep light text (beats paper-card lock) */
-.saasseo-theme-page #services .svc,
-.saasseo-theme-page .sec-ink .svc,
-.saasseo-theme-page .svc{
-  color:#C5D5DB !important;
-  background:var(--ink-2,#12303A) !important;
-}
-.saasseo-theme-page #services .svc h3,
-.saasseo-theme-page #services .svc h4,
-.saasseo-theme-page .sec-ink .svc h3,
-.saasseo-theme-page .sec-ink .svc h4,
-.saasseo-theme-page .svc h3,
-.saasseo-theme-page .svc h4{
-  color:#fff !important;
-}
-.saasseo-theme-page #services .svc p,
-.saasseo-theme-page .sec-ink .svc p,
-.saasseo-theme-page .svc p{
-  color:#C5D5DB !important;
-}
-
 
 @media(max-width:380px){
   .hero h1{font-size:1.78rem}
@@ -307,20 +278,4 @@
   *{scroll-behavior:auto!important}
 .saasseo-theme-page .rv{opacity:1;transform:none;transition:none}
 .saasseo-theme-page .btn:hover{transform:none}
-}
-
-/* Process steps: white cards so stack animation doesn't show through */
-.saasseo-theme-page #process .step,
-.saasseo-theme-page .proc-grid .step{
-  background:#fff !important;
-  background-color:#fff !important;
-  border:1px solid var(--line,#E1E9E5) !important;
-  color:#111 !important;
-  isolation:isolate;
-}
-.saasseo-theme-page #process .step h4,
-.saasseo-theme-page #process .step p,
-.saasseo-theme-page .proc-grid .step h4,
-.saasseo-theme-page .proc-grid .step p{
-  color:#111 !important;
 }

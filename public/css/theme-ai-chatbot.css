@@ -15,7 +15,7 @@
 .aibot-theme-page{
   font-family:"Poppins",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
   color:var(--graphite);background:var(--paper);line-height:1.6;
-  font-weight:400;-webkit-font-smoothing:antialiased;overflow-x:clip;overflow-y:visible;
+  font-weight:400;-webkit-font-smoothing:antialiased;overflow-x:hidden;
 }
 .aibot-theme-page h1, .aibot-theme-page h2, .aibot-theme-page h3, .aibot-theme-page h4{line-height:1.12;letter-spacing:-.02em}
 .aibot-theme-page a{color:inherit;text-decoration:none}
@@ -248,7 +248,7 @@
 
 
 @media(min-width:1600px){
-  .aibot-theme-page .hero{padding:118px 0}
+  .hero{padding:118px 0}
 }
 
 
@@ -270,6 +270,7 @@
 
 
 @media(max-width:900px){
+  .nav-links,.nav-cta .btn{display:none}
 .aibot-theme-page .burger{display:flex}
 .aibot-theme-page .nav-in{height:64px}
 .aibot-theme-page .hero{padding:54px 0 62px}
@@ -285,6 +286,7 @@
 
 
 @media(max-width:600px){
+  :root{--pad:16px}
 .aibot-theme-page section{padding:44px 0}
 .aibot-theme-page .svc-grid, .aibot-theme-page .why-grid, .aibot-theme-page .tst-grid, .aibot-theme-page .proc{grid-template-columns:1fr;gap:16px}
 .aibot-theme-page .stats{grid-template-columns:1fr 1fr;gap:28px 16px}
@@ -321,7 +323,7 @@
 
 
 @media(max-width:380px){
-  .aibot-theme-page .hero h1{font-size:1.85rem}
+  .hero h1{font-size:1.85rem}
 .aibot-theme-page .stats{grid-template-columns:1fr}
 .aibot-theme-page .hero-trust{gap:14px 18px}
 .aibot-theme-page .logo{font-size:1.15rem}

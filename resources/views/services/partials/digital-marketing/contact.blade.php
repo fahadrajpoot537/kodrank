@@ -69,8 +69,9 @@
             @error('email')<span class="field-err">{{ $message }}</span>@enderror
           </div>
           <div class="form-field">
-            <label for="ph">{{ $fields['phone_label'] ?? 'Phone (Optional)' }}</label>
-            <input type="tel" id="ph" name="phone" value="{{ old('phone') }}">
+            <label for="ph">{{ $fields['phone_label'] ?? 'Phone' }}</label>
+            <input type="tel" id="ph" name="phone" value="{{ old('phone') }}" required>
+            @error('phone')<span class="field-err">{{ $message }}</span>@enderror
           </div>
           <div class="form-field">
             <label for="co">{{ $fields['company_label'] ?? 'Company' }}</label>

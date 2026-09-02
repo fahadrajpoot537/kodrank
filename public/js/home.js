@@ -442,6 +442,25 @@
 
       var maxIndex=function(){ return Math.max(0, slides.length-per); };
 
+      var isQuotesCarousel=root.classList.contains('quotes-carousel');
+
+      var equalizeQuoteHeights=function(){
+        if(!isQuotesCarousel) return;
+        for(var s=0;s<slides.length;s++){
+          slides[s].style.removeProperty('min-height');
+          slides[s].style.removeProperty('height');
+        }
+        var maxH=0;
+        for(var h=0;h<slides.length;h++){
+          maxH=Math.max(maxH, slides[h].offsetHeight);
+        }
+        if(maxH<1) return;
+        for(var s=0;s<slides.length;s++){
+          slides[s].style.minHeight=maxH+'px';
+          slides[s].style.height=maxH+'px';
+        }
+      };
+
       var measure=function(){
         per=getPer();
         root.style.setProperty('--svc-per', String(per));
@@ -463,6 +482,7 @@
           slides[s].style.setProperty('max-width',slideW+'px','important');
         }
         track.style.width=(slideW*slides.length+gap*Math.max(0,slides.length-1))+'px';
+        equalizeQuoteHeights();
       };
 
       var stopAuto=function(){ if(autoTimer){ clearInterval(autoTimer); autoTimer=null; } };
@@ -513,38 +533,49 @@
         goTo(i); startAuto();
       };
 
-      if(prev) prev.addEventListener('click',function(e){ e.preventDefault(); step(-1); });
-      if(next) next.addEventListener('click',function(e){ e.preventDefault(); step(1); });
-
-      var onDown=function(x){ dragging=true; didSwipe=false; startX=x; deltaX=0; stopAuto(); track.style.transition='none'; };
-      var onMove=function(x){
+      var onDown=function(clientX, pointerId){
+        dragging=true;
+        didSwipe=false;
+        startX=clientX;
+        deltaX=0;
+        stopAuto();
+        track.style.transition='none';
+        track.classList.add('is-dragging');
+        if(pointerId!=null){
+          try{ track.setPointerCapture(pointerId); }catch(err){}
+        }
+      };
+      var onMove=function(clientX){
         if(!dragging) return;
-        deltaX=x-startX;
-        if(Math.abs(deltaX)>24) didSwipe=true;
+        deltaX=clientX-startX;
+        if(Math.abs(deltaX)>8) didSwipe=true;
         track.style.transform='translate3d('+(-(index*(slideW+gap)-deltaX))+'px,0,0)';
       };
       var onUp=function(){
         if(!dragging) return;
-        dragging=false; track.style.transition='';
-        if(didSwipe && Math.abs(deltaX)>48) step(deltaX<0?1:-1);
+        dragging=false;
+        track.style.transition='';
+        track.classList.remove('is-dragging');
+        if(didSwipe && Math.abs(deltaX)>40) step(deltaX<0?1:-1);
         else { goTo(index); startAuto(); }
         setTimeout(function(){ didSwipe=false; deltaX=0; },0);
       };
 
+      if(prev) prev.addEventListener('click',function(e){ e.preventDefault(); step(-1); });
+      if(next) next.addEventListener('click',function(e){ e.preventDefault(); step(1); });
+
+      track.addEventListener('dragstart',function(e){ e.preventDefault(); });
+
       if(window.PointerEvent){
         track.addEventListener('pointerdown',function(e){
           if(e.pointerType==='mouse'&&e.button!==0) return;
-          onDown(e.clientX);
-          // Mouse capture steals the click from card links — only capture touch/pen.
-          if(e.pointerType!=='mouse'){
-            try{track.setPointerCapture(e.pointerId);}catch(err){}
-          }
+          onDown(e.clientX, e.pointerId);
         });
         track.addEventListener('pointermove',function(e){ onMove(e.clientX); });
         track.addEventListener('pointerup',onUp);
         track.addEventListener('pointercancel',onUp);
       } else {
-        track.addEventListener('touchstart',function(e){ if(e.touches&&e.touches[0]) onDown(e.touches[0].clientX); },{passive:true});
+        track.addEventListener('touchstart',function(e){ if(e.touches&&e.touches[0]) onDown(e.touches[0].clientX, null); },{passive:true});
         track.addEventListener('touchmove',function(e){ if(dragging&&e.touches&&e.touches[0]){ onMove(e.touches[0].clientX); if(didSwipe&&e.cancelable) e.preventDefault(); } },{passive:false});
         track.addEventListener('touchend',onUp);
         track.addEventListener('touchcancel',onUp);

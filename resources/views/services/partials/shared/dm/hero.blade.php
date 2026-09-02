@@ -41,6 +41,9 @@
   <div class="wrap">
     <div class="hero-copy">
       @include('services.partials.shared.breadcrumb', ['crumbs' => $h['breadcrumb'] ?? null])
+      @if(!empty($h['eyebrow']))
+        <span class="eyebrow hero-eyebrow">{{ $h['eyebrow'] }}</span>
+      @endif
       <h1>
         @if(!empty($titleHtml))
           {!! $titleHtml !!}
@@ -57,7 +60,7 @@
       @if($ledeHtml)
         <p class="sub">{!! $ledeHtml !!}</p>
       @elseif($lede)
-        <p class="sub">{{ $lede }}</p>
+        <p class="sub lede">{{ $lede }}</p>
       @endif
       <div class="hero-actions">
         <a href="{{ $ctaUrl }}" class="btn btn-primary">

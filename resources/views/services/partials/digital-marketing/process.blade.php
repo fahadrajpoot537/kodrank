@@ -1,8 +1,4 @@
-@php
-  $pr = $s['process'] ?? [];
-  $arrow = '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M15 5 8 12l7 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>';
-  $arrowNext = '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m9 5 7 7-7 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>';
-@endphp
+@php $pr = $s['process'] ?? []; @endphp
 <section id="process" class="sec-paper">
   <div class="wrap">
     <div class="section-head">
@@ -17,21 +13,14 @@
       <p>{{ $pr['lede'] ?? '' }}</p>
     </div>
 
-    <div class="svc-carousel page-svc-stack page-svc-stack--pair" data-sp-stack data-per-desktop="3">
-      <button type="button" class="svc-nav svc-prev" aria-label="Previous steps">{!! $arrow !!}</button>
-      <div class="svc-viewport">
-        <div class="svc-track">
-          @foreach($pr['steps'] ?? [] as $step)
-            <div class="proc svc-slide">
-              <span class="num">{{ $step['num'] ?? '' }}</span>
-              <h4>{{ $step['title'] ?? '' }}</h4>
-              <p>{{ $step['body'] ?? '' }}</p>
-            </div>
-          @endforeach
+    <div class="process-list">
+      @foreach($pr['steps'] ?? [] as $step)
+        <div class="proc">
+          <span class="num">{{ $step['num'] ?? '' }}</span>
+          <h4>{{ $step['title'] ?? '' }}</h4>
+          <p>{{ $step['body'] ?? '' }}</p>
         </div>
-      </div>
-      <button type="button" class="svc-nav svc-next" aria-label="Next steps">{!! $arrowNext !!}</button>
-      <div class="svc-dots" data-svc-dots aria-hidden="true"></div>
+      @endforeach
     </div>
   </div>
 </section>

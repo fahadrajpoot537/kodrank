@@ -14,7 +14,7 @@
 }
 .redesign-theme-page *{box-sizing:border-box;margin:0;padding:0}
 .redesign-theme-page{scroll-behavior:smooth}
-.redesign-theme-page{font-family:var(--font);color:var(--graphite);background:var(--paper);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:clip;overflow-y:visible}
+.redesign-theme-page{font-family:var(--font);color:var(--graphite);background:var(--paper);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 .redesign-theme-page img{max-width:100%;display:block}
 .redesign-theme-page a{color:inherit;text-decoration:none}
 .redesign-theme-page h1, .redesign-theme-page h2, .redesign-theme-page h3, .redesign-theme-page h4{line-height:1.12;letter-spacing:-.01em}
@@ -197,19 +197,19 @@
 .redesign-theme-page .foot-col a:hover{color:var(--signal)}
 .redesign-theme-page .foot-bar{border-top:1px solid var(--line-dark);padding:22px 0;display:flex;flex-wrap:wrap;gap:14px;justify-content:space-between;font-size:.85rem;color:#6B7A80}
 .redesign-theme-page .foot-bar a:hover{color:var(--signal)}
-.redesign-theme-page .rv{opacity:1;transform:none}
+.redesign-theme-page .rv{opacity:0;transform:translateY(22px);transition:opacity .6s cubic-bezier(.22,.61,.36,1),transform .6s cubic-bezier(.22,.61,.36,1)}
 .redesign-theme-page .rv.in{opacity:1;transform:none}
 
 
 
 @media(max-width:1280px){
-.redesign-theme-page section{padding:clamp(58px,6vw,88px) 0}
+  section{padding:clamp(58px,6vw,88px) 0}
 .redesign-theme-page .stats{gap:20px}
 .redesign-theme-page .grid{gap:20px}
 }
 
 @media(max-width:1080px){
-.redesign-theme-page .g-4{grid-template-columns:repeat(2,1fr)}
+  .g-4{grid-template-columns:repeat(2,1fr)}
 .redesign-theme-page .steps{grid-template-columns:repeat(3,1fr)}
 .redesign-theme-page .stats{grid-template-columns:repeat(2,1fr);gap:28px 20px}
 .redesign-theme-page .foot-top{grid-template-columns:1fr 1fr}
@@ -218,13 +218,13 @@
 }
 
 @media(max-width:900px){
-.redesign-theme-page section{padding:clamp(50px,7vw,70px) 0}
+  section{padding:clamp(50px,7vw,70px) 0}
 .redesign-theme-page .sec-head{margin-bottom:30px}
 .redesign-theme-page .hero-trust{margin-top:34px;padding-top:26px}
 }
 
 @media(max-width:960px){
-.redesign-theme-page .hero-overlay{background:
+  .hero-overlay{background:
     radial-gradient(80% 60% at 50% 20%,rgba(244,122,31,.14),transparent 60%),
     linear-gradient(180deg,rgba(10,26,34,.72) 0%,rgba(10,26,34,.88) 55%,var(--ink) 100%)}
 .redesign-theme-page .hero-bg{background-position:center 28%}
@@ -235,7 +235,7 @@
     linear-gradient(180deg,rgba(10,26,34,.84),rgba(10,26,34,.95))}
 }
 @media(max-width:820px){
-.redesign-theme-page .nav-links, .redesign-theme-page .nav-cta .btn{display:none}
+  .nav-links,.nav-cta .btn{display:none}
 .redesign-theme-page .burger{display:flex}
 .redesign-theme-page .g-3, .redesign-theme-page .g-2{grid-template-columns:1fr}
 .redesign-theme-page .g-4{grid-template-columns:1fr 1fr}
@@ -250,7 +250,7 @@
 }
 
 @media(max-width:560px){
-.redesign-theme-page section{padding:46px 0}
+  section{padding:46px 0}
 .redesign-theme-page .g-4{grid-template-columns:1fr}
 .redesign-theme-page .steps{grid-template-columns:1fr}
 .redesign-theme-page .stats{grid-template-columns:1fr 1fr;gap:24px 18px}
@@ -263,18 +263,18 @@
 .redesign-theme-page .ci-item{margin-top:16px}
 }
 @media(max-width:380px){
-.redesign-theme-page .stats{grid-template-columns:1fr}
+  .stats{grid-template-columns:1fr}
 .redesign-theme-page .hero-trust>div{min-width:44%}
 }
 .redesign-theme-page .mnav{display:none}
-@media(max-width:820px){.redesign-theme-page .mnav{display:flex}}
+@media(max-width:820px){.mnav{display:flex}}
 .redesign-theme-page .mnav-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:24px}
 .redesign-theme-page .mnav a{color:#E4EEF1;font-weight:600;font-size:1.15rem;padding:14px 0;border-bottom:1px solid var(--line-dark)}
 .redesign-theme-page .mnav .btn{margin-top:20px;justify-content:center}
 .redesign-theme-page .mnav-close{background:none;border:none;color:#fff;font-size:1.8rem;cursor:pointer;line-height:1}
 
 @media(prefers-reduced-motion:reduce){
-.redesign-theme-page *{transition:none!important;animation:none!important}
+  *{transition:none!important;animation:none!important}
 .redesign-theme-page{scroll-behavior:auto}
 .redesign-theme-page .rv{opacity:1;transform:none}
 }

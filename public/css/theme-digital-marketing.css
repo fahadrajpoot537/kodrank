@@ -636,10 +636,10 @@
 .dm-theme-page .testi-nav svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 
 @media(max-width:960px){
-  .dm-theme-page .testi-track .testi{flex:0 0 calc((100% - 20px) / 2)}
+  .testi-track .testi{flex-basis:calc((100% - 20px) / 2)}
 }
 @media(max-width:640px){
-  .dm-theme-page .testi-track .testi{flex:0 0 86%;width:86%;max-width:86%;min-width:86%}
+  .testi-track .testi{flex-basis:100%}
 }
 .dm-theme-page .testi{
   background:var(--paper);
@@ -920,10 +920,9 @@
 .dm-theme-page .hero-grid{padding:20px 0 44px}
 .dm-theme-page .hero h1{font-size:clamp(1.85rem,10vw,2.6rem);letter-spacing:-.02em}
 .dm-theme-page .hero .lede{font-size:.95rem}
-.dm-theme-page .stats{grid-template-columns:repeat(2,minmax(0,1fr));gap:20px 16px}
-.dm-theme-page .stat{padding:8px 0 8px 14px;text-align:left}
-.dm-theme-page .stat:nth-child(odd){border-left:none !important;padding-left:0 !important}
-.dm-theme-page .stat .num{font-size:1.65rem}
+.dm-theme-page .stats{grid-template-columns:1fr;gap:20px}
+.dm-theme-page .stat{border-left:none !important;padding-left:0 !important;text-align:left}
+.dm-theme-page .stat .num{font-size:1.85rem}
 .dm-theme-page .trust-logos{gap:12px 20px}
 .dm-theme-page .trust-logo{font-size:.85rem}
 .dm-theme-page .btn{padding:12px 20px;font-size:.9rem}
@@ -1003,35 +1002,3 @@
 .dm-theme-page .faq-item[open] .faq-body{color:#000 !important}
 .dm-theme-page .accent, .dm-theme-page .hl{color:#000 !important}
 }
-
-/* Live overrides: light Problem + hide Ready When You Are CTA */
-.dm-theme-page .sec-ink.problem-bg{
-  background:#fff !important;
-  background-image:none !important;
-  color:#0D2029 !important;
-}
-.dm-theme-page .sec-ink.problem-bg::before,
-.dm-theme-page .sec-ink.problem-bg::after{
-  display:none !important;
-  content:none !important;
-}
-.dm-theme-page .sec-ink.problem-bg h2,
-.dm-theme-page .sec-ink.problem-bg h3,
-.dm-theme-page .sec-ink.problem-bg h4,
-.dm-theme-page .sec-ink.problem-bg strong{
-  color:#111 !important;
-}
-.dm-theme-page .sec-ink.problem-bg p,
-.dm-theme-page .sec-ink.problem-bg .lede,
-.dm-theme-page .sec-ink.problem-bg .body-2{
-  color:#111 !important;
-}
-.dm-theme-page .sec-ink.problem-bg .problem-card,
-.dm-theme-page .problem-card{
-  background:#fff !important;
-  border:1px solid #E1E9E5 !important;
-  backdrop-filter:none !important;
-}
-.dm-theme-page .problem-card h4{color:#111 !important}
-.dm-theme-page .problem-card p{color:#111 !important}
-.dm-theme-page .sec-ink.cta-bg{display:none !important}

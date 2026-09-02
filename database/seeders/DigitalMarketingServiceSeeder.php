@@ -18,6 +18,7 @@ class DigitalMarketingServiceSeeder extends Seeder
                 'is_active' => true,
                 'sort_order' => 0,
                 'seo' => [
+                    'theme' => 'digital-marketing',
                     'seo_title' => 'Digital Marketing Services That Grow Revenue - KodRank',
                     'seo_description' => 'KodRank delivers digital marketing services built around a single outcome — pipeline. On-page, off-page, technical, AEO, GEO, and industry-specific SEO under one roof, one strategist, one monthly report.',
                     'og_title' => 'Digital Marketing Services That Grow Revenue - KodRank',
@@ -570,7 +571,7 @@ class DigitalMarketingServiceSeeder extends Seeder
                         'first_name_label' => 'First Name',
                         'last_name_label' => 'Last Name',
                         'email_label' => 'Work Email',
-                        'phone_label' => 'Phone (Optional)',
+                        'phone_label' => 'Phone',
                         'company_label' => 'Company',
                         'service_label' => 'I\'m Interested In',
                         'message_label' => 'What\'s the main goal?',
@@ -596,6 +597,9 @@ class DigitalMarketingServiceSeeder extends Seeder
                 ],
             ],
         ];
+
+        $keys = array_column($sections, 'key');
+        $page->sections()->whereNotIn('key', $keys)->delete();
 
         foreach ($sections as $section) {
             ServicePageSection::query()->updateOrCreate(

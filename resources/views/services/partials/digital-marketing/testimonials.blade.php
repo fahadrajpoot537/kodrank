@@ -29,13 +29,27 @@
           </div>
         @endforeach
       </div>
-      <div class="testi-nav-wrap">
-        <button class="testi-nav" data-dir="prev" aria-label="Previous testimonial" type="button">
-          <svg viewBox="0 0 24 24"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
-        </button>
-        <button class="testi-nav" data-dir="next" aria-label="Next testimonial" type="button">
-          <svg viewBox="0 0 24 24"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
-        </button>
+      <div class="testi-controls">
+        <div class="testi-dots" data-testi-dots role="tablist" aria-label="Testimonial slides">
+          @foreach($tm['items'] ?? [] as $index => $item)
+            <button
+              type="button"
+              class="testi-dot{{ $index === 0 ? ' is-active' : '' }}"
+              data-testi-dot="{{ $index }}"
+              aria-label="Go to review {{ $index + 1 }}"
+              aria-selected="{{ $index === 0 ? 'true' : 'false' }}"
+              role="tab"
+            ></button>
+          @endforeach
+        </div>
+        <div class="testi-nav-wrap">
+          <button class="testi-nav" data-dir="prev" aria-label="Previous testimonial" type="button">
+            <svg viewBox="0 0 24 24"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+          </button>
+          <button class="testi-nav" data-dir="next" aria-label="Next testimonial" type="button">
+            <svg viewBox="0 0 24 24"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </button>
+        </div>
       </div>
     </div>
   </div>

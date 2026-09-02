@@ -208,6 +208,11 @@ class ThemeHtmlImporter
             $ctaUrl = '/contact';
         }
 
+        $eyebrow = '';
+        if ($chunk !== '' && preg_match('/<span\b[^>]*class=["\'][^"\']*\beyebrow\b[^"\']*["\'][^>]*>(.*?)<\/span>/is', $chunk, $m)) {
+            $eyebrow = trim(html_entity_decode(strip_tags($m[1]), ENT_QUOTES | ENT_HTML5, 'UTF-8'));
+        }
+
         $badges = [];
         if ($chunk !== '') {
             // <b>num</b><span>label</span> or .n / .l pairs
@@ -220,6 +225,16 @@ class ThemeHtmlImporter
                     }
                 }
             }
+            // .hero-trust .num / .lbl pairs
+            if ($badges === [] && preg_match_all('/<div>\s*<div class=["\']num["\']>(.*?)<\/div>\s*<div class=["\']lbl["\']>(.*?)<\/div>\s*<\/div>/is', $chunk, $trust, PREG_SET_ORDER)) {
+                foreach ($trust as $row) {
+                    $num = trim(strip_tags($row[1]));
+                    $label = trim(strip_tags($row[2]));
+                    if ($num !== '' || $label !== '') {
+                        $badges[] = ['num' => $num, 'label' => $label];
+                    }
+                }
+            }
         }
 
         $image = self::findHeroImage($chunk, $css, $mediaPublicPrefix);
@@ -227,6 +242,7 @@ class ThemeHtmlImporter
         return array_filter([
             'title' => $title,
             'title_html' => $titleHtml !== '' ? $titleHtml : null,
+            'eyebrow' => $eyebrow,
             'lede' => $lede,
             'cta_text' => $ctaText,
             'cta_url' => $ctaUrl,
@@ -237,6 +253,23 @@ class ThemeHtmlImporter
 
     private static function findHeroImage(string $chunk, string $css, string $mediaPublicPrefix): string
     {
+        // 0) Theme HTML comment names the hero file; persist inline data URI to that filename
+        if ($chunk !== '' && preg_match('/BACKGROUND IMAGE[^|]*\|\s*file:\s*[^\|]*?([^\s\/\|]+\.(?:webp|jpe?g|png|gif|avif))/i', $chunk, $comment)) {
+            $filename = basename($comment[1]);
+            if (preg_match('/background(?:-image)?\s*:\s*[^;]*url\(\s*[\'"]?(data:image\/[^\'"\)]+)/i', $chunk, $dataMatch)) {
+                $saved = self::writeDataUriToMedia($dataMatch[1], $filename, $mediaPublicPrefix);
+                if ($saved !== '') {
+                    return $saved;
+                }
+            }
+            if ($mediaPublicPrefix !== '') {
+                $named = trim(str_replace('\\', '/', $mediaPublicPrefix), '/').'/'.$filename;
+                if (is_file(public_path($named))) {
+                    return $named;
+                }
+            }
+        }
+
         // 1) <img src="…file…"> (skip data URIs)
         if ($chunk !== '' && preg_match_all('/<img\b[^>]*\bsrc=["\']([^"\']+)["\']/i', $chunk, $imgs)) {
             foreach ($imgs[1] as $src) {
@@ -300,6 +333,31 @@ class ThemeHtmlImporter
         }
 
         return 'media/services/on-page-seo/on-page-seo-services-agency-banner.jpg';
+    }
+
+    private static function writeDataUriToMedia(string $dataUri, string $filename, string $mediaPublicPrefix): string
+    {
+        if ($mediaPublicPrefix === '' || ! preg_match('#^data:image/(png|jpe?g|webp|gif|avif);base64,(.+)$#is', $dataUri, $m)) {
+            return '';
+        }
+
+        $bin = base64_decode($m[2], true);
+        if ($bin === false || $bin === '') {
+            return '';
+        }
+
+        $dir = public_path(trim(str_replace('\\', '/', $mediaPublicPrefix), '/'));
+        if (! is_dir($dir)) {
+            mkdir($dir, 0775, true);
+        }
+
+        $filename = basename(str_replace('\\', '/', $filename));
+        $path = $dir.DIRECTORY_SEPARATOR.$filename;
+        if (! is_file($path)) {
+            file_put_contents($path, $bin);
+        }
+
+        return trim(str_replace('\\', '/', $mediaPublicPrefix), '/').'/'.$filename;
     }
 
     private static function normalizeMediaPath(string $src, string $mediaPublicPrefix): string

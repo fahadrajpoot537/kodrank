@@ -18,7 +18,6 @@
   font-family:"Poppins",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
   color:var(--graphite);background:var(--paper);line-height:1.6;
   -webkit-font-smoothing:antialiased;font-weight:400;
-  overflow-x:clip;
 }
 .gp-theme-page img{max-width:100%;display:block}
 .gp-theme-page a{text-decoration:none;color:inherit}

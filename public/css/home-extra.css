@@ -126,7 +126,7 @@ a:focus-visible{
   .head-split .lede{margin-top:16px}
   .chart-split{grid-template-columns:minmax(0,1fr);gap:28px}
   .compare{grid-template-columns:minmax(0,1fr)}
-  .g3,.work,.quotes,.tech{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .g3,.work,.tech{grid-template-columns:repeat(2,minmax(0,1fr))}
   .g4{grid-template-columns:repeat(2,minmax(0,1fr))}
   .ind-grid{/* carousel handles layout */}
   .connect-in{grid-template-columns:minmax(0,1fr)}
@@ -253,7 +253,7 @@ a:focus-visible{
 
   /* Hero: less empty space above/between text */
   .hero-in{
-    padding:92px var(--pad) 36px !important;
+    padding:88px var(--pad) 36px !important;
   }
   .hero h1{
     max-width:100%;
@@ -286,14 +286,14 @@ a:focus-visible{
 
 @media(max-width:680px){
   .aeo-geo-grid{grid-template-columns:minmax(0,1fr)!important}
-  .tech,.g2,.g3,.g4,.work,.quotes,.compare{grid-template-columns:minmax(0,1fr)!important}
+  .tech,.g2,.g3,.g4,.work,.compare{grid-template-columns:minmax(0,1fr)!important}
   .band-list{margin-top:28px}
   .f-bot{flex-direction:column;align-items:flex-start}
   .f-bot nav{flex-wrap:wrap;gap:14px 18px}
   .strip-item{font-size:.92rem}
   .hero-supporting,.hero-sub{max-width:100%}
   .hero-in{
-    padding:84px var(--pad) 32px !important;
+    padding:80px var(--pad) 32px !important;
   }
   .hero h1 em{margin-top:2px}
   .brand-txt{font-size:1.02rem}
