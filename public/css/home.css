@@ -368,7 +368,6 @@ a.svc-card.svc-slide{-webkit-user-drag:none}
 .svc-nav{
   display:none;
 }
-.svc-prev,.svc-next{display:none}
 .home-carousel-foot{display:none}
 .home-carousel-nav-wrap{
   display:flex;
@@ -408,8 +407,16 @@ a.svc-card.svc-slide{-webkit-user-drag:none}
   .ind-viewport{
     width:100% !important;
     max-width:100% !important;
-    overflow:hidden !important;
+    overflow-x:auto !important;
+    overflow-y:hidden !important;
+    scroll-snap-type:x mandatory !important;
+    -webkit-overflow-scrolling:touch;
+    overscroll-behavior-x:contain;
+    scrollbar-width:none;
+    touch-action:pan-x !important;
   }
+  .svc-viewport::-webkit-scrollbar,
+  .ind-viewport::-webkit-scrollbar{display:none;height:0}
   #services .svc-carousel,
   #industries .ind-carousel,
   #testimonials .svc-carousel{
@@ -420,35 +427,48 @@ a.svc-card.svc-slide{-webkit-user-drag:none}
     display:block;
     margin-top:14px;
   }
+  .home-carousel-foot .home-carousel-nav{
+    display:grid !important;
+    pointer-events:auto !important;
+  }
   .home-carousel-foot .svc-dots,
   .home-carousel-foot .ind-dots{
     margin-top:10px;
+  }
+  .svc-viewport,
+  .ind-viewport{
+    container-type:inline-size;
+    container-name:home-carousel;
   }
   #services .svc-track,
   #industries .ind-track,
   #testimonials .svc-track{
     display:flex !important;
     flex-wrap:nowrap !important;
-    overflow-x:auto !important;
-    overflow-y:hidden !important;
-    scroll-snap-type:x mandatory !important;
-    -webkit-overflow-scrolling:touch;
-    overscroll-behavior-x:contain;
-    scrollbar-width:none;
-    width:100% !important;
-    max-width:100% !important;
+    overflow:visible !important;
+    width:max-content !important;
+    max-width:none !important;
+    min-width:100% !important;
     transform:none !important;
     transition:none !important;
     gap:16px !important;
-    touch-action:pan-x !important;
     cursor:grab;
   }
-  #services .svc-track::-webkit-scrollbar,
-  #industries .ind-track::-webkit-scrollbar,
-  #testimonials .svc-track::-webkit-scrollbar{display:none;height:0}
   #services .svc-track.is-dragging,
   #industries .ind-track.is-dragging,
   #testimonials .svc-track.is-dragging{cursor:grabbing}
+  #services .svc-slide,
+  #industries .ind-slide,
+  #testimonials .svc-slide{
+    flex:0 0 100cqw !important;
+    width:100cqw !important;
+    min-width:100cqw !important;
+    max-width:100cqw !important;
+    scroll-snap-align:start !important;
+    scroll-snap-stop:always;
+    box-sizing:border-box !important;
+  }
+@supports not (width:1cqw){
   #services .svc-slide,
   #industries .ind-slide,
   #testimonials .svc-slide{
@@ -456,10 +476,8 @@ a.svc-card.svc-slide{-webkit-user-drag:none}
     width:100% !important;
     min-width:100% !important;
     max-width:100% !important;
-    scroll-snap-align:start !important;
-    scroll-snap-stop:always;
-    box-sizing:border-box !important;
   }
+}
   #industries .ind-viewport{
     border-radius:var(--r-lg);
   }

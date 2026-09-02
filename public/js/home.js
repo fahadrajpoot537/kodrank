@@ -187,6 +187,10 @@
 
       root.dataset.homeCarouselReady='1';
 
+      var getScroller=function(){
+        return isMobile()?viewport:track;
+      };
+
       var desktopPer=parseInt(root.getAttribute('data-per-desktop')||String(opts.desktopPer||3),10)||3;
       var AUTO_MS=opts.autoMs||4000;
       var dotClass=opts.dotClass||'svc-dot';
@@ -237,9 +241,10 @@
       };
 
       var cardLeft=function(card){
-        var sRect=track.getBoundingClientRect();
+        var scroller=getScroller();
+        var sRect=scroller.getBoundingClientRect();
         var cRect=card.getBoundingClientRect();
-        return cRect.left-sRect.left+track.scrollLeft;
+        return cRect.left-sRect.left+scroller.scrollLeft;
       };
 
       var syncDots=function(){
@@ -280,11 +285,13 @@
         }
         if(prev){
           prev.hidden=!show;
-          prev.style.display=show?'':'none';
+          prev.style.display=show?'grid':'none';
+          prev.disabled=false;
         }
         if(next){
           next.hidden=!show;
-          next.style.display=show?'':'none';
+          next.style.display=show?'grid':'none';
+          next.disabled=false;
         }
         if(dotsWrap && !show) dotsWrap.hidden=true;
       };
@@ -344,9 +351,10 @@
       var goTo=function(i, smooth){
         if(isMobile()){
           var card=slides[i];
-          if(!card) return;
+          var scroller=getScroller();
+          if(!card||!scroller) return;
           index=i;
-          track.scrollTo({ left: cardLeft(card), behavior: smooth===false?'auto':'smooth' });
+          scroller.scrollTo({ left: cardLeft(card), behavior: smooth===false?'auto':'smooth' });
           syncDots();
           return;
         }
@@ -358,7 +366,8 @@
 
       var syncIndexFromScroll=function(){
         if(!isMobile()) return;
-        var left=track.scrollLeft;
+        var scroller=getScroller();
+        var left=scroller.scrollLeft;
         var best=0, bestDist=Infinity;
         for(var i=0;i<slides.length;i++){
           var dist=Math.abs(cardLeft(slides[i])-left);
@@ -440,9 +449,10 @@
         }
         track.addEventListener('click', function(e){ if(didSwipe){ e.preventDefault(); e.stopPropagation(); didSwipe=false; } }, true);
       }else{
-        track.addEventListener('scroll', syncIndexFromScroll, {passive:true});
-        track.addEventListener('touchstart', pauseThenResume, {passive:true});
-        track.addEventListener('pointerdown', pauseThenResume, {passive:true});
+        var scroller=getScroller();
+        scroller.addEventListener('scroll', syncIndexFromScroll, {passive:true});
+        scroller.addEventListener('touchstart', pauseThenResume, {passive:true});
+        scroller.addEventListener('pointerdown', pauseThenResume, {passive:true});
       }
 
       var canHover=false;
@@ -469,8 +479,8 @@
       viewportSel: '.ind-viewport',
       trackSel: '.ind-track',
       slideSel: '.ind-slide',
-      prevSel: '.ind-prev',
-      nextSel: '.ind-next',
+      prevSel: '.home-carousel-prev',
+      nextSel: '.home-carousel-next',
       dotsSel: '[data-ind-dots]',
       dotClass: 'ind-dot',
       desktopPer: 5,
@@ -483,8 +493,8 @@
         viewportSel: '.svc-viewport',
         trackSel: '.svc-track',
         slideSel: '.svc-slide',
-        prevSel: '.svc-prev',
-        nextSel: '.svc-next',
+        prevSel: '.home-carousel-prev',
+        nextSel: '.home-carousel-next',
         dotsSel: '[data-svc-dots]',
         dotClass: 'svc-dot',
         desktopPer: parseInt(svcRoots[r].getAttribute('data-per-desktop')||'3',10)||3,
