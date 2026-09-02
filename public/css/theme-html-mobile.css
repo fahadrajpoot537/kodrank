@@ -1224,6 +1224,82 @@ html body.page-offpage .offpage-theme-page .cmp {
   }
 }
 
+/* Digital marketing blade — #services cards as mobile/tablet carousel (not stack) */
+@media (max-width: 980px) {
+  html body.page-dm.page-service .webdev-ref section#services:has([data-thm-carousel]),
+  html body.page-dm.page-service .webdev-ref section#services:has(.why-mobile-carousel) {
+    overflow-x: clip !important;
+    overflow-y: visible !important;
+  }
+
+  html body.page-dm.page-service .webdev-ref #services .why-mobile-carousel:has(> .service-grid) {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    overflow: visible !important;
+    touch-action: auto !important;
+    scroll-snap-type: none !important;
+  }
+
+  html body.page-dm.page-service .webdev-ref #services .service-grid[data-thm-carousel],
+  html body.page-dm.page-service .webdev-ref #services .why-mobile-carousel > .service-grid {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    align-items: stretch !important;
+    gap: 16px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    -webkit-overflow-scrolling: touch !important;
+    scroll-snap-type: x mandatory !important;
+    overscroll-behavior-x: contain !important;
+    grid-template-columns: none !important;
+    grid-template-rows: none !important;
+    scrollbar-width: none !important;
+    touch-action: pan-x !important;
+  }
+
+  html body.page-dm.page-service .webdev-ref #services .service-grid[data-thm-carousel]::-webkit-scrollbar,
+  html body.page-dm.page-service .webdev-ref #services .why-mobile-carousel > .service-grid::-webkit-scrollbar {
+    display: none !important;
+  }
+
+  html body.page-dm.page-service .webdev-ref #services .service-grid[data-thm-carousel] > .svc-card,
+  html body.page-dm.page-service .webdev-ref #services .why-mobile-carousel > .service-grid > .svc-card {
+    flex: 0 0 100% !important;
+    flex-shrink: 0 !important;
+    width: 100% !important;
+    min-width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    box-sizing: border-box !important;
+    scroll-snap-align: start !important;
+    scroll-snap-stop: always !important;
+    transform: none !important;
+    opacity: 1 !important;
+  }
+
+  html body.page-dm.page-service .webdev-ref #services .wrap > .thm-carousel-nav-wrap {
+    margin-top: 20px !important;
+    margin-bottom: 0 !important;
+  }
+
+  html body.page-dm.page-service .webdev-ref #services .wrap > .testi-dots.thm-carousel-dots {
+    margin-top: 12px !important;
+    min-height: 18px !important;
+  }
+}
+
+@media (min-width: 981px) {
+  html body.page-dm.page-service .webdev-ref #services .why-mobile-carousel:has(> .service-grid) {
+    display: contents !important;
+  }
+}
+
 /* Shared Digital Marketing motion: clip overflow so sticky stacks work */
 html body.page-dm-motion .theme-html-root,
 html body.page-dm-motion .webdev-ref{

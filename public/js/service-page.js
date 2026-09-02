@@ -390,11 +390,22 @@
       const CAROUSEL_SELS = isWpOnly ? CAROUSEL_SELS_WP : CAROUSEL_SELS_FULL;
 
       const isOffpage = root.classList.contains('offpage-theme-page');
+      const isDmServicesCarousel =
+        root.classList.contains('webdev-ref') &&
+        document.body.classList.contains('page-dm');
       const seenStack = new Set();
       Array.prototype.forEach.call(root.querySelectorAll(STACK_SELS), (grid) => {
         if (seenStack.has(grid) || skipCommon(grid)) return;
         // Off-page: services + testimonials scroll as carousels (match on-page UX)
         if (isOffpage && grid.classList.contains('grid-cards')) return;
+        // Digital marketing blade: #services cards carousel on mobile/tablet
+        if (
+          isDmServicesCarousel &&
+          grid.classList.contains('service-grid') &&
+          grid.closest('#services')
+        ) {
+          return;
+        }
         seenStack.add(grid);
         grid.setAttribute('data-thm-stack', '1');
       });
@@ -435,6 +446,9 @@
           }
         );
         Array.prototype.forEach.call(root.querySelectorAll('.included-grid, #why .why-grid'), markCarousel);
+        if (document.body.classList.contains('page-dm')) {
+          Array.prototype.forEach.call(root.querySelectorAll('#services .service-grid'), markCarousel);
+        }
       }
     });
   })();
@@ -1400,6 +1414,7 @@
           '.offpage-theme-page .sec-ink .why-grid',
           '.offpage-theme-page #services .grid-cards',
           '.offpage-theme-page .tgrid',
+          '.page-dm .webdev-ref #services .service-grid',
         ].join(', ')
       ),
       (grid) => {
@@ -1431,6 +1446,7 @@
           '.why-mobile-carousel > .pain-list',
           '.why-mobile-carousel > .grid-cards',
           '.why-mobile-carousel > .tgrid',
+          '.why-mobile-carousel > .service-grid',
         ].join(', ')
       )
     );
@@ -1445,6 +1461,13 @@
 
     const trackMq = (track) => {
       if (track.closest('.offpage-theme-page')) {
+        return '(max-width: 980px)';
+      }
+      if (
+        document.body.classList.contains('page-dm') &&
+        track.classList.contains('service-grid') &&
+        track.closest('#services')
+      ) {
         return '(max-width: 980px)';
       }
       if (track.classList.contains('feat-list')) {
