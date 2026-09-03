@@ -946,10 +946,7 @@ html body.page-onpage.page-service .sec-mist .def-card p{
     flex-direction: column !important;
   }
   html body.page-onpage .onpage-theme-page .testi-nav-wrap {
-    display: flex !important;
-    justify-content: center !important;
-    gap: 12px !important;
-    margin-top: 22px !important;
+    display: none !important;
   }
 }
 
@@ -961,14 +958,23 @@ html body.page-onpage.page-service .sec-mist .def-card p{
 
   html body.page-onpage .onpage-theme-page #pain .wrap > .thm-carousel-nav-wrap,
   html body.page-onpage .onpage-theme-page #why .wrap > .thm-carousel-nav-wrap {
-    margin-top: 20px !important;
-    margin-bottom: 0 !important;
+    display: none !important;
   }
 
   html body.page-onpage .onpage-theme-page #pain .wrap > .testi-dots.thm-carousel-dots,
   html body.page-onpage .onpage-theme-page #why .wrap > .testi-dots.thm-carousel-dots {
     margin-top: 12px !important;
     min-height: 18px !important;
+  }
+
+  html body.page-onpage .onpage-theme-page #testimonials .testi-dots,
+  html body.page-onpage .onpage-theme-page .testi-slider .testi-dots {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: 10px !important;
+    margin-top: 18px !important;
+    width: 100% !important;
   }
 }
 
@@ -1192,8 +1198,7 @@ html body.page-offpage .offpage-theme-page .cmp {
   }
 
   html body.page-offpage .offpage-theme-page .wrap > .thm-carousel-nav-wrap {
-    margin-top: 20px !important;
-    margin-bottom: 0 !important;
+    display: none !important;
   }
 
   html body.page-offpage .offpage-theme-page .wrap > .testi-dots.thm-carousel-dots {
@@ -1303,13 +1308,17 @@ html body.page-offpage .offpage-theme-page .cmp {
   }
 
   html body.page-dm.page-service .webdev-ref #services .wrap > .thm-carousel-nav-wrap {
-    margin-top: 20px !important;
-    margin-bottom: 0 !important;
+    display: none !important;
   }
 
   html body.page-dm.page-service .webdev-ref #services .wrap > .testi-dots.thm-carousel-dots {
     margin-top: 12px !important;
     min-height: 18px !important;
+  }
+
+  html body.page-dm.page-service .webdev-ref .thm-carousel-nav-wrap,
+  html body.page-dm.page-service .webdev-ref .testi-nav-wrap {
+    display: none !important;
   }
 }
 

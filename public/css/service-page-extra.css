@@ -2459,20 +2459,47 @@ body.page-wordpress .sec-mist .hl{
 .page-service .sec-mist .loop-card p{
   color:var(--kr-muted) !important;
 }
+/* Process / pain / loop nums stay orange text — not a full-width orange bar */
 .page-service .sec-paper .proc .num,
 .page-service .sec-mist .proc .num,
 .page-service .sec-paper .pain-num,
 .page-service .sec-mist .pain-num,
 .page-service .sec-paper .loop-num,
-.page-service .sec-mist .loop-num,
-.page-service .sec-paper .compare-list .mark.v,
-.page-service .sec-mist .compare-list .mark.v{
-  color:var(--kr-orange) !important;
+.page-service .sec-mist .loop-num{
+  color:var(--signal,#F47A1F) !important;
+  background:transparent !important;
 }
 
-/* Compare tiles are dark â€” light copy (do NOT force dark text) */
+/* Process step index as circle badge (DM + webdev-ref) */
+.page-service .webdev-ref #process .proc > .num,
+.page-service .dm-theme-page #process .proc > .num,
+.page-service.page-dm .webdev-ref #process .proc > .num{
+  display:inline-grid !important;
+  place-items:center;
+  width:48px;
+  height:48px;
+  min-width:48px;
+  border-radius:50%;
+  font-size:1rem !important;
+  font-weight:800;
+  letter-spacing:-.02em;
+  line-height:1;
+  margin-bottom:16px;
+  color:var(--signal-ink,#0A1A22) !important;
+  background:var(--signal,#F47A1F) !important;
+}
+
+/* Compare ticks only — circle badge with dark ink on orange */
+.page-service .sec-paper .compare-list .mark.v,
+.page-service .sec-mist .compare-list .mark.v{
+  color:var(--signal-ink,#0A1A22) !important;
+  background:var(--signal,#F47A1F) !important;
+}
+
+/* Compare tiles are dark — tick must contrast on orange badge */
 .page-service .compare-card .mark.v{
-  color:var(--kr-orange) !important;
+  color:var(--signal-ink,#0A1A22) !important;
+  background:var(--signal,#F47A1F) !important;
 }
 
 /* FAQ on light */
@@ -2834,7 +2861,8 @@ body.page-seo-service #compare .compare-sub{
 }
 .page-service #compare .mark.v,
 .page-service .compare-wrap .mark.v{
-  color:var(--signal,#F47A1F) !important;
+  color:var(--signal-ink,#0A1A22) !important;
+  background:var(--signal,#F47A1F) !important;
 }
 
 /* OFFPAGE-LIGHT-FIX â€” close panel light copy */
@@ -4996,8 +5024,18 @@ body.page-offpage.page-theme-html .offpage-theme-page .thm-carousel-dots .testi-
   body.page-dm.page-service .webdev-ref .testi-dots.thm-carousel-dots,
   body.page-onpage.page-service .webdev-ref .testi-dots.thm-carousel-dots,
   body.page-onpage.page-theme-html .onpage-theme-page .testi-dots.thm-carousel-dots,
-  body.page-offpage.page-theme-html .offpage-theme-page .testi-dots.thm-carousel-dots{
+  body.page-offpage.page-theme-html .offpage-theme-page .testi-dots.thm-carousel-dots,
+  body.page-onpage.page-theme-html .onpage-theme-page .testi-slider .testi-dots,
+  body.page-onpage.page-theme-html .onpage-theme-page [data-testi-dots]{
     display:flex !important;
+  }
+  body.page-dm.page-service .testi-nav-wrap,
+  body.page-onpage.page-service .testi-nav-wrap,
+  body.page-offpage.page-service .testi-nav-wrap,
+  body.page-dm.page-service .thm-carousel-nav-wrap,
+  body.page-onpage.page-service .thm-carousel-nav-wrap,
+  body.page-offpage.page-service .thm-carousel-nav-wrap{
+    display:none !important;
   }
 }
 @media (max-width:980px){
@@ -5205,6 +5243,7 @@ body.page-offpage.page-service .hero .hero-trust-checks{
   flex-wrap:wrap !important;
   gap:10px 22px !important;
   margin-top:30px !important;
+  margin-bottom:8px !important;
   padding-top:26px !important;
   border-top:1px solid rgba(255,255,255,.08) !important;
 }
@@ -5228,7 +5267,7 @@ body.page-offpage.page-service .hero .hero-badges.hero-trust{
   gap:1px !important;
   background:rgba(255,255,255,.08) !important;
   border-top:1px solid rgba(255,255,255,.08) !important;
-  margin-top:0 !important;
+  margin-top:28px !important;
   padding-top:0 !important;
 }
 body.page-offpage.page-service .hero .hero-badges.hero-trust .hero-badge{
@@ -5727,32 +5766,19 @@ body.page-seo-service .hero h1{
   html body.page-dm .dm-theme-page .testi-nav-wrap,
   html body.page-dm.page-service:not(.page-theme-html) .testi-nav-wrap,
   html body.page-onpage .onpage-theme-page .testi-nav-wrap{
-    display:flex !important;
-    justify-content:center !important;
-    gap:12px !important;
-    margin-top:0 !important;
+    display:none !important;
   }
   html body.page-dm .dm-theme-page .testi-nav,
   html body.page-dm.page-service:not(.page-theme-html) .testi-nav,
   html body.page-onpage .onpage-theme-page .testi-nav{
-    width:44px !important;
-    height:44px !important;
-    border:1px solid #E1E9E5 !important;
-    background:#fff !important;
-    color:#0D2029 !important;
-    box-shadow:0 4px 14px rgba(13,32,41,.08) !important;
+    display:none !important;
   }
 }
 
 /* Theme-html mobile carousel nav (on-page, DM webdev-ref grids) */
 @media (max-width: 980px) {
   .thm-carousel-nav-wrap{
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    gap:12px;
-    width:100%;
-    margin-top:14px;
+    display:none !important;
   }
   .thm-carousel-nav-wrap[hidden]{
     display:none !important;

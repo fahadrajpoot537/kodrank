@@ -9,4 +9,8 @@
       <p class="field-err kr-recaptcha-err">{{ $message }}</p>
     @enderror
   </div>
+@elseif(app()->environment(['local', 'development', 'testing']))
+  <div class="kr-recaptcha">
+    <p class="field-err kr-recaptcha-err">reCAPTCHA is not configured. Set RECAPTCHA_SITE_KEY in .env.</p>
+  </div>
 @endif

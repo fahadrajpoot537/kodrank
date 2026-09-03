@@ -7,8 +7,34 @@
     if (!track) return;
     const prev = slider.querySelector('.testi-nav[data-dir="prev"]');
     const next = slider.querySelector('.testi-nav[data-dir="next"]');
-    const dotsWrap = slider.querySelector('[data-testi-dots]');
     const cards = () => Array.from(track.querySelectorAll('.testi'));
+    const dotsWrap = (() => {
+      let wrap = slider.querySelector('[data-testi-dots]');
+      if (wrap) return wrap;
+      const list = cards();
+      if (list.length < 2) return null;
+      wrap = document.createElement('div');
+      wrap.className = 'testi-dots';
+      wrap.setAttribute('data-testi-dots', '');
+      wrap.setAttribute('role', 'tablist');
+      wrap.setAttribute('aria-label', 'Testimonial slides');
+      list.forEach((_, i) => {
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'testi-dot' + (i === 0 ? ' is-active' : '');
+        btn.setAttribute('aria-label', 'Go to review ' + (i + 1));
+        btn.setAttribute('aria-selected', i === 0 ? 'true' : 'false');
+        btn.setAttribute('role', 'tab');
+        wrap.appendChild(btn);
+      });
+      const nav = slider.querySelector('.testi-nav-wrap');
+      if (nav && nav.parentElement) {
+        nav.parentElement.insertBefore(wrap, nav);
+      } else {
+        slider.appendChild(wrap);
+      }
+      return wrap;
+    })();
     const isMobileCarousel = () => {
       try {
         return window.matchMedia('(max-width: 767px)').matches;
@@ -390,18 +416,20 @@
       const CAROUSEL_SELS = isWpOnly ? CAROUSEL_SELS_WP : CAROUSEL_SELS_FULL;
 
       const isOffpage = root.classList.contains('offpage-theme-page');
+      const isServicesCarouselPage =
+        document.body.classList.contains('page-dm') ||
+        document.body.classList.contains('page-techseo');
       const isDmServicesCarousel =
-        root.classList.contains('webdev-ref') &&
-        document.body.classList.contains('page-dm');
+        root.classList.contains('webdev-ref') && isServicesCarouselPage;
       const seenStack = new Set();
       Array.prototype.forEach.call(root.querySelectorAll(STACK_SELS), (grid) => {
         if (seenStack.has(grid) || skipCommon(grid)) return;
         // Off-page: services + testimonials scroll as carousels (match on-page UX)
         if (isOffpage && grid.classList.contains('grid-cards')) return;
-        // Digital marketing blade: #services cards carousel on mobile/tablet
+        // DM + Technical SEO: #services cards carousel on mobile/tablet (not sticky stack)
         if (
           isDmServicesCarousel &&
-          grid.classList.contains('service-grid') &&
+          (grid.classList.contains('service-grid') || grid.classList.contains('svc-grid')) &&
           grid.closest('#services')
         ) {
           return;
@@ -446,8 +474,11 @@
           }
         );
         Array.prototype.forEach.call(root.querySelectorAll('.included-grid, #why .why-grid'), markCarousel);
-        if (document.body.classList.contains('page-dm')) {
-          Array.prototype.forEach.call(root.querySelectorAll('#services .service-grid'), markCarousel);
+        if (isServicesCarouselPage) {
+          Array.prototype.forEach.call(
+            root.querySelectorAll('#services .service-grid, #services .svc-grid'),
+            markCarousel
+          );
         }
       }
     });
@@ -1463,6 +1494,9 @@
       if (track.closest('.offpage-theme-page')) {
         return '(max-width: 980px)';
       }
+      if (track.closest('.techseo-theme-page') || document.body.classList.contains('page-techseo')) {
+        return '(max-width: 980px)';
+      }
       if (
         document.body.classList.contains('page-dm') &&
         track.classList.contains('service-grid') &&
@@ -1564,9 +1598,9 @@
       }
 
       const syncNav = () => {
-        const show = isMobile(track) && cards.length > 1;
-        navWrap.hidden = !show;
-        navWrap.style.display = show ? 'flex' : 'none';
+        // Prev/next arrows removed — dots-only carousel UX
+        navWrap.hidden = true;
+        navWrap.style.display = 'none';
       };
 
       const syncDots = () => {

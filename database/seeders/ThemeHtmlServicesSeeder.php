@@ -52,6 +52,8 @@ class ThemeHtmlServicesSeeder extends Seeder
                 'scope' => 'techseo-theme-page',
                 'parentSlug' => 'digital-marketing-services',
                 'sort' => 13,
+                // Handled by TechnicalSeoThemeHtmlSeeder (CTA skip + page CSS + hero badges)
+                'delegate' => TechnicalSeoThemeHtmlSeeder::class,
             ],
             [
                 'slug' => 'aeo-services',
@@ -258,6 +260,12 @@ class ThemeHtmlServicesSeeder extends Seeder
         $ok = 0;
         $fail = 0;
         foreach ($pages as $cfg) {
+            if (! empty($cfg['delegate']) && is_string($cfg['delegate'])) {
+                $this->call($cfg['delegate']);
+                $ok++;
+
+                continue;
+            }
             if ($this->import($cfg)) {
                 $ok++;
             } else {

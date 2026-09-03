@@ -1,0 +1,193 @@
+/**
+ * Technical SEO page-only extras.
+ * Loaded only when seo.extra_css points here (TechnicalSeoThemeHtmlSeeder).
+ * All selectors are scoped to body.page-techseo / .techseo-theme-page —
+ * does not change other service pages. Keeps the existing live design language.
+ */
+body.page-techseo .techseo-theme-page.theme-html-root {
+  /* namespace hook — intentional no visual reset */
+}
+
+/* Preserve theme section rhythm without overriding shared KodRank chrome */
+body.page-techseo .techseo-theme-page .sec-paper,
+body.page-techseo .techseo-theme-page .sec-mist,
+body.page-techseo .techseo-theme-page .sec-ink {
+  position: relative;
+}
+
+/* Hero trust badges already styled by shared DM hero — slight spacing only */
+body.page-techseo .hero-badges.hero-trust,
+body.page-techseo .hero-trust.hero-badges {
+  margin-top: 1.25rem;
+}
+
+/* Contact points from theme copy — match existing DM contact list look */
+body.page-techseo .contact-side .compare-list,
+body.page-techseo .dm-contact .points,
+body.page-techseo .contact-points {
+  list-style: none;
+}
+
+/* ── Carousel dots (same pattern as on-page / off-page / DM) ── */
+body.page-techseo .techseo-theme-page .testi-dots.thm-carousel-dots,
+body.page-techseo .testi-dots.thm-carousel-dots {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  width: 100%;
+  margin-top: 18px;
+  padding: 4px 0;
+  min-height: 18px;
+}
+
+body.page-techseo .techseo-theme-page .thm-carousel-dots .testi-dot,
+body.page-techseo .thm-carousel-dots .testi-dot {
+  width: 10px;
+  height: 10px;
+  min-width: 10px;
+  min-height: 10px;
+  border-radius: 50%;
+  padding: 0;
+  margin: 0;
+  border: 2px solid transparent;
+  background: #c5d4ce;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+  box-shadow: 0 0 0 8px transparent;
+}
+
+body.page-techseo .techseo-theme-page .thm-carousel-dots .testi-dot.is-active,
+body.page-techseo .thm-carousel-dots .testi-dot.is-active {
+  background: var(--signal, #f47a1f);
+  border-color: rgba(244, 122, 31, 0.25);
+  transform: scale(1.2);
+  box-shadow: 0 0 0 6px rgba(244, 122, 31, 0.12);
+}
+
+body.page-techseo .techseo-theme-page .thm-carousel-dots .testi-dot:focus-visible,
+body.page-techseo .thm-carousel-dots .testi-dot:focus-visible {
+  outline: 2px solid var(--signal, #f47a1f);
+  outline-offset: 3px;
+}
+
+body.page-techseo .thm-carousel-nav-wrap,
+body.page-techseo .techseo-theme-page .thm-carousel-nav-wrap {
+  display: none !important;
+}
+
+@media (max-width: 980px) {
+  body.page-techseo .techseo-theme-page .testi-dots.thm-carousel-dots,
+  body.page-techseo .testi-dots.thm-carousel-dots {
+    display: flex !important;
+  }
+
+  /* Clip horizontal bleed; keep vertical stack/scroll natural */
+  body.page-techseo .techseo-theme-page section:has([data-thm-carousel]),
+  body.page-techseo .techseo-theme-page section:has(.why-mobile-carousel) {
+    overflow-x: clip !important;
+    overflow-y: visible !important;
+  }
+
+  body.page-techseo .techseo-theme-page .why-mobile-carousel:has(> .pain-grid),
+  body.page-techseo .techseo-theme-page .why-mobile-carousel:has(> .svc-grid),
+  body.page-techseo .techseo-theme-page .why-mobile-carousel:has(> .testi-grid) {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    overflow: visible !important;
+    touch-action: auto !important;
+    scroll-snap-type: none !important;
+  }
+
+  /* Pain + services + testimonials — 1 card per row swipe carousel */
+  body.page-techseo .techseo-theme-page .pain-grid[data-thm-carousel],
+  body.page-techseo .techseo-theme-page .why-mobile-carousel > .pain-grid,
+  body.page-techseo .techseo-theme-page .pain-grid.thm-mobile-carousel,
+  body.page-techseo .techseo-theme-page #services .svc-grid[data-thm-carousel],
+  body.page-techseo .techseo-theme-page #services .why-mobile-carousel > .svc-grid,
+  body.page-techseo .techseo-theme-page #services .svc-grid.thm-mobile-carousel,
+  body.page-techseo .techseo-theme-page .testi-grid[data-thm-carousel],
+  body.page-techseo .techseo-theme-page .why-mobile-carousel > .testi-grid,
+  body.page-techseo .techseo-theme-page .testi-grid.thm-mobile-carousel {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    align-items: stretch !important;
+    gap: 16px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    -webkit-overflow-scrolling: touch !important;
+    scroll-snap-type: x mandatory !important;
+    overscroll-behavior-x: contain !important;
+    grid-template-columns: none !important;
+    grid-template-rows: none !important;
+    scrollbar-width: none !important;
+    touch-action: pan-x !important;
+  }
+
+  body.page-techseo .techseo-theme-page .pain-grid[data-thm-carousel]::-webkit-scrollbar,
+  body.page-techseo .techseo-theme-page .pain-grid.thm-mobile-carousel::-webkit-scrollbar,
+  body.page-techseo .techseo-theme-page #services .svc-grid[data-thm-carousel]::-webkit-scrollbar,
+  body.page-techseo .techseo-theme-page #services .svc-grid.thm-mobile-carousel::-webkit-scrollbar,
+  body.page-techseo .techseo-theme-page .testi-grid[data-thm-carousel]::-webkit-scrollbar,
+  body.page-techseo .techseo-theme-page .testi-grid.thm-mobile-carousel::-webkit-scrollbar {
+    display: none !important;
+  }
+
+  body.page-techseo .techseo-theme-page .pain-grid[data-thm-carousel] > .pain-card,
+  body.page-techseo .techseo-theme-page .pain-grid.thm-mobile-carousel > .pain-card,
+  body.page-techseo .techseo-theme-page #services .svc-grid[data-thm-carousel] > .svc-card,
+  body.page-techseo .techseo-theme-page #services .svc-grid.thm-mobile-carousel > .svc-card,
+  body.page-techseo .techseo-theme-page .testi-grid[data-thm-carousel] > .testi-card,
+  body.page-techseo .techseo-theme-page .testi-grid.thm-mobile-carousel > .testi-card {
+    flex: 0 0 100% !important;
+    flex-shrink: 0 !important;
+    width: 100% !important;
+    min-width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    box-sizing: border-box !important;
+    scroll-snap-align: start !important;
+    scroll-snap-stop: always !important;
+    transform: none !important;
+    opacity: 1 !important;
+  }
+
+  /* Services cards readable on dark section */
+  body.page-techseo .techseo-theme-page #services .svc-grid[data-thm-carousel] > .svc-card,
+  body.page-techseo .techseo-theme-page #services .svc-grid.thm-mobile-carousel > .svc-card {
+    min-height: 0 !important;
+  }
+
+  body.page-techseo .techseo-theme-page .wrap > .thm-carousel-nav-wrap {
+    display: none !important;
+  }
+
+  body.page-techseo .techseo-theme-page .wrap > .testi-dots.thm-carousel-dots {
+    margin-top: 12px !important;
+  }
+
+  /* Dark section dots — inactive slightly brighter */
+  body.page-techseo .techseo-theme-page .sec-ink .thm-carousel-dots .testi-dot:not(.is-active) {
+    background: rgba(255, 255, 255, 0.35);
+  }
+}
+
+@media (min-width: 981px) {
+  body.page-techseo .techseo-theme-page .why-mobile-carousel:has(> .pain-grid),
+  body.page-techseo .techseo-theme-page .why-mobile-carousel:has(> .svc-grid),
+  body.page-techseo .techseo-theme-page .why-mobile-carousel:has(> .testi-grid) {
+    display: contents !important;
+  }
+
+  body.page-techseo .techseo-theme-page .testi-dots.thm-carousel-dots {
+    display: none !important;
+  }
+}

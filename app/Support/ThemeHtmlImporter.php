@@ -250,7 +250,23 @@ class ThemeHtmlImporter
         $badges = [];
         $trustPoints = [];
         if ($chunk !== '') {
-            if (preg_match('/<div\b[^>]*class=["\'][^"\']*\bhero-trust\b[^"\']*["\'][^>]*>(.*?)<\/div>/is', $chunk, $trustWrap)) {
+            // Nested .hero-trust children: <div><strong>187%</strong><span>label</span></div>
+            if (preg_match_all(
+                '/<(?:div|li)\b[^>]*>\s*<(?:strong|b)>(.*?)<\/(?:strong|b)>\s*<span\b[^>]*>(.*?)<\/span>\s*<\/(?:div|li)>/is',
+                $chunk,
+                $strongRows,
+                PREG_SET_ORDER
+            )) {
+                foreach ($strongRows as $row) {
+                    $num = trim(strip_tags($row[1]));
+                    $label = trim(strip_tags($row[2]));
+                    if ($num !== '' || $label !== '') {
+                        $badges[] = ['num' => $num, 'label' => $label];
+                    }
+                }
+            }
+
+            if ($badges === [] && preg_match('/<div\b[^>]*class=["\'][^"\']*\bhero-trust\b[^"\']*["\'][^>]*>(.*?)<\/div>/is', $chunk, $trustWrap)) {
                 $inner = $trustWrap[1];
                 if (preg_match_all('/<span[^>]*>\s*(?:<svg\b[^>]*>.*?<\/svg>\s*)?(.*?)<\/span>/is', $inner, $spans, PREG_SET_ORDER)) {
                     foreach ($spans as $span) {
@@ -393,7 +409,11 @@ class ThemeHtmlImporter
         return 'media/services/on-page-seo/on-page-seo-services-agency-banner.jpg';
     }
 
-    private static function writeDataUriToMedia(string $dataUri, string $filename, string $mediaPublicPrefix): string
+    /**
+     * Public helper: persist a data URI into public/$mediaPublicPrefix/$filename.
+     * Used by banner-only seeders. Overwrites when $force is true.
+     */
+    public static function writeDataUriPublic(string $dataUri, string $filename, string $mediaPublicPrefix, bool $force = true): string
     {
         if ($mediaPublicPrefix === '' || ! preg_match('#^data:image/(png|jpe?g|webp|gif|avif);base64,(.+)$#is', $dataUri, $m)) {
             return '';
@@ -411,11 +431,16 @@ class ThemeHtmlImporter
 
         $filename = basename(str_replace('\\', '/', $filename));
         $path = $dir.DIRECTORY_SEPARATOR.$filename;
-        if (! is_file($path)) {
+        if ($force || ! is_file($path)) {
             file_put_contents($path, $bin);
         }
 
         return trim(str_replace('\\', '/', $mediaPublicPrefix), '/').'/'.$filename;
+    }
+
+    private static function writeDataUriToMedia(string $dataUri, string $filename, string $mediaPublicPrefix): string
+    {
+        return self::writeDataUriPublic($dataUri, $filename, $mediaPublicPrefix, false);
     }
 
     private static function normalizeMediaPath(string $src, string $mediaPublicPrefix): string

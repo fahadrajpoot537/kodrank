@@ -240,6 +240,34 @@
           'default_service' => 'Off-Page SEO Services',
           'submit_text' => 'Send & get my audit',
       ],
+      'technical-seo-services' => [
+          'eyebrow' => '— Talk to Us',
+          'title' => 'Get Your Free Technical SEO Audit',
+          'lede' => "Tell us about your site and we'll come back with real findings — not a generic sales pitch.",
+          'points' => [
+              'A real technical SEO specialist reviews your site — not an automated report generator.',
+              "You'll hear back within one business day with next steps.",
+              'No lock-in contracts — start with a single audit if that\'s all you need.',
+          ],
+          'meta' => [
+              ['label' => 'Email us', 'value' => 'info@kodrank.com', 'icon_key' => 'email'],
+              ['label' => 'Call us', 'value' => '+92 305 9202732', 'icon_key' => 'phone'],
+              ['label' => 'Response time', 'value' => 'Within one business day', 'icon_key' => 'clock'],
+          ],
+          'fields' => [
+              'first_name_label' => 'First name',
+              'last_name_label' => 'Last name',
+              'email_label' => 'Work email',
+              'phone_label' => 'Phone',
+              'website_label' => 'Website URL',
+              'message_label' => "What's going on with your rankings?",
+              'message_placeholder' => 'Tell us what prompted you to look for technical SEO services…',
+          ],
+          'phone_required' => true,
+          'page_type' => 'technical',
+          'default_service' => 'Technical SEO Services',
+          'submit_text' => 'Request My Free Audit',
+      ],
   ];
 
   $themeHtmlContact = array_merge(

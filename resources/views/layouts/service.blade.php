@@ -166,6 +166,9 @@
 @if(!empty($seo['css']) && $serviceTheme !== 'legal')
   <link rel="stylesheet" href="{{ asset($seo['css']) }}?v={{ @filemtime(public_path($seo['css'])) ?: time() }}">
 @endif
+@if(!empty($seo['extra_css']) && $serviceTheme !== 'legal')
+  <link rel="stylesheet" href="{{ asset($seo['extra_css']) }}?v={{ @filemtime(public_path($seo['extra_css'])) ?: time() }}">
+@endif
 @if(\App\Support\WpRefDesign::appliesTo($page->slug ?? '') && ($page->slug ?? '') !== 'off-page-seo-services')
   <link rel="stylesheet" href="{{ asset('css/theme-webdev-ref.css') }}?v={{ @filemtime(public_path('css/theme-webdev-ref.css')) ?: time() }}">
 @endif
@@ -201,7 +204,7 @@
       $bodyExtras .= ' page-guest-posting';
   }
 @endphp
-<body class="page-service{{ $cssTheme === 'web-development' ? ' page-web-dev' : '' }}{{ $bodyExtras }}{{ $serviceTheme === 'theme-html' ? ' page-theme-html' : '' }}{{ $serviceTheme === 'industries' ? ' page-industries' : '' }}{{ $serviceTheme === 'legal' ? ' page-legal' : '' }}{{ ($page->slug ?? '') === 'digital-marketing-services' ? ' page-dm' : '' }}{{ ($page->slug ?? '') === 'on-page-seo-services' ? ' page-onpage' : '' }}{{ ($page->slug ?? '') === 'off-page-seo-services' ? ' page-offpage' : '' }}{{ ($page->slug ?? '') === 'geo-services' ? ' page-geo' : '' }}{{ ($page->slug ?? '') === 'shopify-development-services' ? ' page-shopify' : '' }}{{ ($page->slug ?? '') === 'ai-chatbot-development-services' ? ' page-aibot' : '' }}{{ ($page->slug ?? '') === 'cms-development-services' ? ' page-cms' : '' }}{{ ($page->slug ?? '') === 'website-redesign-services' ? ' page-redesign' : '' }}{{ ($page->slug ?? '') === 'electrician-website-design-services' ? ' page-elec' : '' }}{{ ($page->slug ?? '') === 'saas-software-development-services' ? ' page-saas' : '' }}{{ \App\Support\WpRefDesign::usesSeoMotion($page->slug ?? null) ? ' page-dm-motion' : '' }}">
+<body class="page-service{{ $cssTheme === 'web-development' ? ' page-web-dev' : '' }}{{ $bodyExtras }}{{ $serviceTheme === 'theme-html' ? ' page-theme-html' : '' }}{{ $serviceTheme === 'industries' ? ' page-industries' : '' }}{{ $serviceTheme === 'legal' ? ' page-legal' : '' }}{{ ($page->slug ?? '') === 'digital-marketing-services' ? ' page-dm' : '' }}{{ ($page->slug ?? '') === 'on-page-seo-services' ? ' page-onpage' : '' }}{{ ($page->slug ?? '') === 'off-page-seo-services' ? ' page-offpage' : '' }}{{ ($page->slug ?? '') === 'technical-seo-services' ? ' page-techseo' : '' }}{{ ($page->slug ?? '') === 'geo-services' ? ' page-geo' : '' }}{{ ($page->slug ?? '') === 'shopify-development-services' ? ' page-shopify' : '' }}{{ ($page->slug ?? '') === 'ai-chatbot-development-services' ? ' page-aibot' : '' }}{{ ($page->slug ?? '') === 'cms-development-services' ? ' page-cms' : '' }}{{ ($page->slug ?? '') === 'website-redesign-services' ? ' page-redesign' : '' }}{{ ($page->slug ?? '') === 'electrician-website-design-services' ? ' page-elec' : '' }}{{ ($page->slug ?? '') === 'saas-software-development-services' ? ' page-saas' : '' }}{{ \App\Support\WpRefDesign::usesSeoMotion($page->slug ?? null) ? ' page-dm-motion' : '' }}">
 @php $navStuck = false; @endphp
 @include('home.partials.nav')
 @php

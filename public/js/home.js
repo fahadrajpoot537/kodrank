@@ -284,13 +284,13 @@
           foot.style.display=show?'':'none';
         }
         if(prev){
-          prev.hidden=!show;
-          prev.style.display=show?'grid':'none';
+          prev.hidden=true;
+          prev.style.display='none';
           prev.disabled=false;
         }
         if(next){
-          next.hidden=!show;
-          next.style.display=show?'grid':'none';
+          next.hidden=true;
+          next.style.display='none';
           next.disabled=false;
         }
         if(dotsWrap && !show) dotsWrap.hidden=true;

@@ -315,6 +315,19 @@ a:focus-visible{
   width:100%;
   flex-basis:100%;
   min-width:0;
+  min-height:78px;
+  display:block !important;
+  visibility:visible !important;
+  opacity:1 !important;
+  overflow:visible !important;
+}
+.page-service .kr-recaptcha,
+.page-service .contact-form .kr-recaptcha,
+.page-service form .kr-recaptcha{
+  display:block !important;
+  visibility:visible !important;
+  margin:18px 0 10px !important;
+  min-height:78px;
 }
 .kr-recaptcha .g-recaptcha{display:inline-block;max-width:100%}
 .kr-recaptcha-err{
