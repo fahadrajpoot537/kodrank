@@ -65,6 +65,8 @@ class ThemeHtmlServicesSeeder extends Seeder
                 'scope' => 'aeo-theme-page',
                 'parentSlug' => 'digital-marketing-services',
                 'sort' => 14,
+                // Handled by AeoThemeHtmlSeeder (eyebrow skip + page CSS + hero badges)
+                'delegate' => AeoThemeHtmlSeeder::class,
             ],
             [
                 'slug' => 'geo-services',
@@ -76,6 +78,8 @@ class ThemeHtmlServicesSeeder extends Seeder
                 'scope' => 'geo-theme-page',
                 'parentSlug' => 'digital-marketing-services',
                 'sort' => 15,
+                // Handled by GeoThemeHtmlSeeder (eyebrow + final CTA skip + page CSS)
+                'delegate' => GeoThemeHtmlSeeder::class,
             ],
             [
                 'slug' => 'monthly-seo-services',

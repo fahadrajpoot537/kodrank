@@ -130,28 +130,59 @@
   }
 
   // Strip mid-page FINAL CTA bands from all theme-html bodies.
+  // GEO CTA embeds multi-MB base64 — use comment/class anchored cuts, not naive .*? regex.
   if ($html !== '') {
-      $html = preg_replace(
-          '/<!--\s*[^>]*FINAL CTA[^>]*-->\s*<section\b[^>]*>.*?<\/section>\s*/is',
-          '',
-          $html
-      ) ?? $html;
+      if (preg_match('/<!--\s*FINAL CTA\s*-->/i', $html, $m, PREG_OFFSET_CAPTURE)) {
+          $start = (int) $m[0][1];
+          $after = substr($html, $start);
+          if (preg_match('/^<!--\s*FINAL CTA\s*-->\s*<section\b[^>]*>/i', $after, $open)) {
+              $rest = substr($after, strlen($open[0]));
+              $endPos = stripos($rest, '</section>');
+              if ($endPos !== false) {
+                  $endPos += strlen('</section>');
+                  while ($endPos < strlen($rest) && ctype_space($rest[$endPos])) {
+                      $endPos++;
+                  }
+                  $html = substr($html, 0, $start).substr($rest, $endPos);
+              }
+          }
+      }
       $html = preg_replace(
           '/<!--\s*[^>]*CTA BAND[^>]*-->\s*<section\b[^>]*>.*?<\/section>\s*/is',
           '',
           $html
       ) ?? $html;
-      $html = preg_replace(
-          '/<section\b[^>]*\b(?:cta-bg|cta-band|cta-sec|sec-cta-bg|sec-cta|ctaband|cta-final)\b[^>]*>.*?<\/section>\s*/is',
-          '',
-          $html
-      ) ?? $html;
+      // Lightweight class anchors (skip if already removed)
+      foreach (['cta-final', 'cta-sec', 'cta-bg', 'cta-band', 'sec-cta-bg', 'sec-cta'] as $ctaClass) {
+          if (! str_contains($html, $ctaClass)) {
+              continue;
+          }
+          if (preg_match('/<section\b[^>]*\b'.preg_quote($ctaClass, '/').'\b[^>]*>/i', $html, $m, PREG_OFFSET_CAPTURE)) {
+              $start = (int) $m[0][1];
+              $rest = substr($html, $start + strlen($m[0][0]));
+              $endPos = stripos($rest, '</section>');
+              if ($endPos !== false) {
+                  $endPos += strlen('</section>');
+                  while ($endPos < strlen($rest) && ctype_space($rest[$endPos])) {
+                      $endPos++;
+                  }
+                  $html = substr($html, 0, $start).substr($rest, $endPos);
+              }
+          }
+      }
       // Replace theme HTML contact blocks with the shared Laravel form below.
-      $html = preg_replace(
-          '/<section\b[^>]*\bid=["\']contact["\'][^>]*>.*?<\/section>\s*/is',
-          '',
-          $html
-      ) ?? $html;
+      if (preg_match('/<section\b[^>]*\bid=["\']contact["\'][^>]*>/i', $html, $m, PREG_OFFSET_CAPTURE)) {
+          $start = (int) $m[0][1];
+          $rest = substr($html, $start + strlen($m[0][0]));
+          $endPos = stripos($rest, '</section>');
+          if ($endPos !== false) {
+              $endPos += strlen('</section>');
+              while ($endPos < strlen($rest) && ctype_space($rest[$endPos])) {
+                  $endPos++;
+              }
+              $html = substr($html, 0, $start).substr($rest, $endPos);
+          }
+      }
   }
 
   $contactDefaultsBySlug = [
@@ -267,6 +298,52 @@
           'page_type' => 'technical',
           'default_service' => 'Technical SEO Services',
           'submit_text' => 'Request My Free Audit',
+      ],
+      'aeo-services' => [
+          'eyebrow' => 'Get In Touch',
+          'title' => "Tell Us What You Sell. We'll Show You Where AEO Services Would Help First.",
+          'lede' => "Fill this out and within one business day you'll get a personal note from a strategist — with three specific things we found in your AI visibility audit, not a form-letter pitch.",
+          'meta' => [
+              ['label' => 'Email us', 'value' => 'info@kodrank.com', 'icon_key' => 'email'],
+              ['label' => 'Call us', 'value' => '+92 305 9202732', 'icon_key' => 'phone'],
+              ['label' => 'Response time', 'value' => 'Within 1 Business Day', 'icon_key' => 'clock'],
+          ],
+          'fields' => [
+              'first_name_label' => 'First name',
+              'last_name_label' => 'Last name',
+              'email_label' => 'Work email',
+              'phone_label' => 'Phone (optional)',
+              'website_label' => 'Website URL',
+              'message_label' => 'What do you need most?',
+              'message_placeholder' => 'e.g. Free AI Visibility Audit, schema, citations…',
+          ],
+          'phone_required' => false,
+          'page_type' => 'aeo',
+          'default_service' => 'AEO Services',
+          'submit_text' => 'Get My Free AI Visibility Audit',
+      ],
+      'geo-services' => [
+          'eyebrow' => 'GET IN TOUCH',
+          'title' => "Let's find out if you need GEO services.",
+          'lede' => "Tell us a little about your business and we'll run your free AI visibility audit — real answers from real AI platforms, no obligation attached.",
+          'meta' => [
+              ['label' => 'Email us', 'value' => 'info@kodrank.com', 'icon_key' => 'email'],
+              ['label' => 'Call us', 'value' => '+92 305 9202732', 'icon_key' => 'phone'],
+              ['label' => 'Response time', 'value' => 'Within one business day', 'icon_key' => 'clock'],
+          ],
+          'fields' => [
+              'first_name_label' => 'First name',
+              'last_name_label' => 'Last name',
+              'email_label' => 'Work email',
+              'phone_label' => 'Phone (optional)',
+              'website_label' => 'Website URL',
+              'message_label' => "What's prompting the search? (optional)",
+              'message_placeholder' => 'e.g. Invisible in ChatGPT, losing AI Overview citations…',
+          ],
+          'phone_required' => false,
+          'page_type' => 'geo',
+          'default_service' => 'GEO Services',
+          'submit_text' => 'Send it, get my audit',
       ],
   ];
 

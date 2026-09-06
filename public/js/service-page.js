@@ -418,7 +418,10 @@
       const isOffpage = root.classList.contains('offpage-theme-page');
       const isServicesCarouselPage =
         document.body.classList.contains('page-dm') ||
-        document.body.classList.contains('page-techseo');
+        document.body.classList.contains('page-techseo') ||
+        document.body.classList.contains('page-aeo') ||
+        document.body.classList.contains('page-geo');
+      const isAeo = document.body.classList.contains('page-aeo');
       const isDmServicesCarousel =
         root.classList.contains('webdev-ref') && isServicesCarouselPage;
       const seenStack = new Set();
@@ -426,10 +429,12 @@
         if (seenStack.has(grid) || skipCommon(grid)) return;
         // Off-page: services + testimonials scroll as carousels (match on-page UX)
         if (isOffpage && grid.classList.contains('grid-cards')) return;
-        // DM + Technical SEO: #services cards carousel on mobile/tablet (not sticky stack)
+        // DM + Technical SEO + AEO + GEO: #services cards carousel on mobile/tablet (not sticky stack)
         if (
           isDmServicesCarousel &&
-          (grid.classList.contains('service-grid') || grid.classList.contains('svc-grid')) &&
+          (grid.classList.contains('service-grid') ||
+            grid.classList.contains('svc-grid') ||
+            grid.classList.contains('serv-grid')) &&
           grid.closest('#services')
         ) {
           return;
@@ -470,13 +475,20 @@
           (grid) => {
             if (kids(grid).length < 2) return;
             if (grid.hasAttribute('data-thm-carousel')) return;
+            // AEO theme uses #svcTrack carousel — swipe carousel on mobile, not sticky stack
+            if (isAeo) {
+              grid.setAttribute('data-thm-carousel', '1');
+              return;
+            }
             grid.setAttribute('data-thm-stack', '1');
           }
         );
         Array.prototype.forEach.call(root.querySelectorAll('.included-grid, #why .why-grid'), markCarousel);
         if (isServicesCarouselPage) {
           Array.prototype.forEach.call(
-            root.querySelectorAll('#services .service-grid, #services .svc-grid'),
+            root.querySelectorAll(
+              '#services .service-grid, #services .svc-grid, #services .serv-grid'
+            ),
             markCarousel
           );
         }
@@ -1446,6 +1458,12 @@
           '.offpage-theme-page #services .grid-cards',
           '.offpage-theme-page .tgrid',
           '.page-dm .webdev-ref #services .service-grid',
+          '.page-aeo .aeo-theme-page #services .carousel-track',
+          '.page-aeo .aeo-theme-page #services #svcTrack',
+          '.page-techseo .techseo-theme-page #services .svc-grid',
+          '.page-geo .geo-theme-page #problem .pain-grid',
+          '.page-geo .geo-theme-page #services .serv-grid',
+          '.page-geo .geo-theme-page .test-grid',
         ].join(', ')
       ),
       (grid) => {
@@ -1495,6 +1513,12 @@
         return '(max-width: 980px)';
       }
       if (track.closest('.techseo-theme-page') || document.body.classList.contains('page-techseo')) {
+        return '(max-width: 980px)';
+      }
+      if (track.closest('.aeo-theme-page') || document.body.classList.contains('page-aeo')) {
+        return '(max-width: 980px)';
+      }
+      if (track.closest('.geo-theme-page') || document.body.classList.contains('page-geo')) {
         return '(max-width: 980px)';
       }
       if (

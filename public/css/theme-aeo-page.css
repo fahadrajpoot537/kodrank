@@ -1,0 +1,192 @@
+/**
+ * AEO Services page-only extras.
+ * Loaded only via seo.extra_css from AeoThemeHtmlSeeder.
+ * Scoped to body.page-aeo / .aeo-theme-page — does not affect other pages.
+ */
+body.page-aeo .aeo-theme-page.theme-html-root {
+  /* namespace hook */
+}
+
+body.page-aeo .aeo-theme-page .sec-paper,
+body.page-aeo .aeo-theme-page .sec-mist,
+body.page-aeo .aeo-theme-page .sec-ink,
+body.page-aeo .aeo-theme-page .trust {
+  position: relative;
+}
+
+/* Keep shared KodRank hero; no theme "AEO Services" eyebrow */
+body.page-aeo .hero-eyebrow {
+  display: none !important;
+}
+
+body.page-aeo .hero-badges.hero-trust,
+body.page-aeo .hero-trust.hero-badges {
+  margin-top: 1.25rem;
+}
+
+/* ── Carousel dots (same pattern as on-page / techseo) ── */
+body.page-aeo .aeo-theme-page .testi-dots.thm-carousel-dots,
+body.page-aeo .testi-dots.thm-carousel-dots {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  width: 100%;
+  margin-top: 18px;
+  padding: 4px 0;
+  min-height: 18px;
+}
+
+body.page-aeo .aeo-theme-page .thm-carousel-dots .testi-dot,
+body.page-aeo .thm-carousel-dots .testi-dot {
+  width: 10px;
+  height: 10px;
+  min-width: 10px;
+  min-height: 10px;
+  border-radius: 50%;
+  padding: 0;
+  margin: 0;
+  border: 2px solid transparent;
+  background: #c5d4ce;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+  box-shadow: 0 0 0 8px transparent;
+}
+
+body.page-aeo .aeo-theme-page .thm-carousel-dots .testi-dot.is-active,
+body.page-aeo .thm-carousel-dots .testi-dot.is-active {
+  background: var(--signal, #f47a1f);
+  border-color: rgba(244, 122, 31, 0.25);
+  transform: scale(1.2);
+  box-shadow: 0 0 0 6px rgba(244, 122, 31, 0.12);
+}
+
+body.page-aeo .thm-carousel-nav-wrap,
+body.page-aeo .aeo-theme-page .thm-carousel-nav-wrap {
+  display: none !important;
+}
+
+@media (max-width: 980px) {
+  body.page-aeo .aeo-theme-page .testi-dots.thm-carousel-dots,
+  body.page-aeo .testi-dots.thm-carousel-dots {
+    display: flex !important;
+  }
+
+  body.page-aeo .aeo-theme-page section#services,
+  body.page-aeo .aeo-theme-page section:has([data-thm-carousel]),
+  body.page-aeo .aeo-theme-page section:has(.why-mobile-carousel) {
+    overflow-x: clip !important;
+    overflow-y: visible !important;
+  }
+
+  body.page-aeo .aeo-theme-page #services .why-mobile-carousel:has(> .carousel-track),
+  body.page-aeo .aeo-theme-page #services .why-mobile-carousel:has(> #svcTrack),
+  body.page-aeo .aeo-theme-page #services .carousel {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    overflow: visible !important;
+    touch-action: auto !important;
+    scroll-snap-type: none !important;
+  }
+
+  /* Beat webdev-ref sticky-stack rules — keep horizontal swipe carousel */
+  html body.page-aeo.page-service .aeo-theme-page.webdev-ref #services .carousel-track,
+  html body.page-aeo.page-service .aeo-theme-page.webdev-ref #services #svcTrack,
+  html body.page-aeo.page-service .aeo-theme-page #services .carousel-track[data-thm-carousel],
+  html body.page-aeo.page-service .aeo-theme-page #services #svcTrack[data-thm-carousel],
+  html body.page-aeo.page-service .aeo-theme-page #services .carousel-track.thm-mobile-carousel,
+  html body.page-aeo.page-service .aeo-theme-page #services #svcTrack.thm-mobile-carousel,
+  html body.page-aeo.page-service .aeo-theme-page #services .why-mobile-carousel > .carousel-track,
+  html body.page-aeo.page-service .aeo-theme-page #services .why-mobile-carousel > #svcTrack {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    align-items: stretch !important;
+    gap: 16px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    -webkit-overflow-scrolling: touch !important;
+    scroll-snap-type: x mandatory !important;
+    overscroll-behavior-x: contain !important;
+    grid-template-columns: none !important;
+    grid-template-rows: none !important;
+    scrollbar-width: none !important;
+    touch-action: pan-x !important;
+    position: relative !important;
+    transform: none !important;
+    filter: none !important;
+    contain: none !important;
+  }
+
+  html body.page-aeo.page-service .aeo-theme-page #services .carousel-track::-webkit-scrollbar,
+  html body.page-aeo.page-service .aeo-theme-page #services #svcTrack::-webkit-scrollbar {
+    display: none !important;
+  }
+
+  /* One full-width card per swipe (card or leftover stack wrapper) */
+  html body.page-aeo.page-service .aeo-theme-page #services .carousel-track > .svc-card,
+  html body.page-aeo.page-service .aeo-theme-page #services #svcTrack > .svc-card,
+  html body.page-aeo.page-service .aeo-theme-page #services .carousel-track > .svc-stack-item,
+  html body.page-aeo.page-service .aeo-theme-page #services #svcTrack > .svc-stack-item,
+  html body.page-aeo.page-service .aeo-theme-page #services .carousel-track > .svc-slide,
+  html body.page-aeo.page-service .aeo-theme-page #services #svcTrack > .svc-slide {
+    flex: 0 0 100% !important;
+    flex-shrink: 0 !important;
+    width: 100% !important;
+    min-width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    min-height: 0 !important;
+    box-sizing: border-box !important;
+    scroll-snap-align: start !important;
+    scroll-snap-stop: always !important;
+    position: relative !important;
+    top: auto !important;
+    transform: none !important;
+    opacity: 1 !important;
+    margin: 0 !important;
+  }
+
+  html body.page-aeo.page-service .aeo-theme-page #services .carousel-track > .svc-stack-item > .svc-card,
+  html body.page-aeo.page-service .aeo-theme-page #services #svcTrack > .svc-stack-item > .svc-card,
+  html body.page-aeo.page-service .aeo-theme-page #services .carousel-track > .svc-slide > .svc-card,
+  html body.page-aeo.page-service .aeo-theme-page #services #svcTrack > .svc-slide > .svc-card {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    flex-basis: auto !important;
+    transform: none !important;
+    opacity: 1 !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Hide theme prev/next — dots only on mobile */
+  body.page-aeo .aeo-theme-page #services .carousel-nav-wrap,
+  body.page-aeo .aeo-theme-page #services .carousel-nav {
+    display: none !important;
+  }
+
+  body.page-aeo .aeo-theme-page #services .wrap > .testi-dots.thm-carousel-dots,
+  body.page-aeo .aeo-theme-page #services .carousel + .testi-dots.thm-carousel-dots,
+  body.page-aeo .aeo-theme-page #services .why-mobile-carousel + .testi-dots.thm-carousel-dots {
+    margin-top: 12px !important;
+  }
+}
+
+@media (min-width: 981px) {
+  body.page-aeo .aeo-theme-page #services .why-mobile-carousel:has(> .carousel-track),
+  body.page-aeo .aeo-theme-page #services .why-mobile-carousel:has(> #svcTrack) {
+    display: contents !important;
+  }
+
+  body.page-aeo .aeo-theme-page .testi-dots.thm-carousel-dots {
+    display: none !important;
+  }
+}

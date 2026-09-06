@@ -288,6 +288,24 @@ class ThemeHtmlImporter
             }
 
             if ($badges === []) {
+                // <span class="num">…</span><span class="lbl">…</span> (AEO / similar heroes)
+                if (preg_match_all(
+                    '/<span\b[^>]*class=["\'][^"\']*\bnum\b[^"\']*["\'][^>]*>(.*?)<\/span>\s*<span\b[^>]*class=["\'][^"\']*\blbl\b[^"\']*["\'][^>]*>(.*?)<\/span>/is',
+                    $chunk,
+                    $numLbl,
+                    PREG_SET_ORDER
+                )) {
+                    foreach ($numLbl as $row) {
+                        $num = trim(strip_tags($row[1]));
+                        $label = trim(strip_tags($row[2]));
+                        if ($num !== '' || $label !== '') {
+                            $badges[] = ['num' => $num, 'label' => $label];
+                        }
+                    }
+                }
+            }
+
+            if ($badges === []) {
                 // <b>num</b><span>label</span> or .n/.l / .num/.lbl pairs
                 if (preg_match_all('/<(?:div|li)\b[^>]*>\s*(?:<b>(.*?)<\/b>|<div class=["\'](?:n|num)["\']>(.*?)<\/div>)\s*(?:<span>(.*?)<\/span>|<div class=["\'](?:l|lbl)["\']>(.*?)<\/div>)/is', $chunk, $rows, PREG_SET_ORDER)) {
                     foreach ($rows as $row) {
