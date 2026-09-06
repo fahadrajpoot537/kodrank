@@ -24,6 +24,37 @@ body.page-aeo .hero-trust.hero-badges {
   margin-top: 1.25rem;
 }
 
+/* Compare ticks — orange circle with visible check (beats shared orange-on-orange lock) */
+body.page-aeo .aeo-theme-page .compare-list {
+  list-style: none;
+}
+body.page-aeo .aeo-theme-page .compare-list li {
+  position: relative;
+  padding-left: 30px;
+  line-height: 1.5;
+}
+body.page-aeo .aeo-theme-page .compare-list li .mark {
+  position: absolute;
+  left: 0;
+  top: 2px;
+  width: 19px;
+  height: 19px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-size: 0.65rem;
+  font-weight: 700;
+  line-height: 1;
+}
+body.page-aeo .aeo-theme-page .compare-list li .mark.v {
+  background: var(--signal, #f47a1f) !important;
+  color: var(--signal-ink, #0a1a22) !important;
+}
+body.page-aeo .aeo-theme-page .compare-list li .mark.x {
+  background: rgba(255, 80, 80, 0.12) !important;
+  color: #ff7676 !important;
+}
+
 /* ── Carousel dots (same pattern as on-page / techseo) ── */
 body.page-aeo .aeo-theme-page .testi-dots.thm-carousel-dots,
 body.page-aeo .testi-dots.thm-carousel-dots {

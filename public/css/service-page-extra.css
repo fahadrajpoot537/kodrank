@@ -3030,10 +3030,25 @@ body.page-wordpress .sec-ink p{
 .page-service .sec-ink .emph,
 .page-service .sec-ink .eyebrow,
 .page-service .hero .hl,
-.page-service .compare-card .mark.v,
 .page-service .why-card .hl,
 .page-service .seo-close .hl{
   color:var(--kr-orange,var(--signal,#F47A1F)) !important;
+}
+
+/* Compare ticks: dark ink on orange badge (never orange-on-orange) */
+.page-service .compare-card .mark.v,
+.page-service .compare-wrap .mark.v,
+.page-service .sec-ink .compare-list .mark.v,
+body.page-aeo .aeo-theme-page .compare-list .mark.v{
+  color:var(--signal-ink,#0A1A22) !important;
+  background:var(--signal,#F47A1F) !important;
+}
+.page-service .compare-card .mark.x,
+.page-service .compare-wrap .mark.x,
+.page-service .sec-ink .compare-list .mark.x,
+body.page-aeo .aeo-theme-page .compare-list .mark.x{
+  color:#FF7676 !important;
+  background:rgba(255,80,80,.12) !important;
 }
 
 /* ============================================================
