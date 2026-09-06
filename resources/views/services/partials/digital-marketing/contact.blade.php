@@ -78,6 +78,11 @@
             <input type="text" id="co" name="company" value="{{ old('company') }}">
           </div>
           @include('partials.country-field', ['id' => 'dm-country', 'label' => $fields['country_label'] ?? 'Country'])
+          <div class="form-field">
+            <label for="web">{{ $fields['website_label'] ?? 'Website URL' }} <span class="opt">(optional)</span></label>
+            <input type="text" id="web" name="website" value="{{ old('website') }}" placeholder="https://" autocomplete="url">
+            @error('website')<span class="field-err">{{ $message }}</span>@enderror
+          </div>
           <input type="hidden" name="service" value="{{ $ct['default_service'] ?? 'Digital Marketing Services' }}">
           <div class="form-field full">
             <label for="ms">{{ $fields['message_label'] ?? "What's the main goal?" }}</label>

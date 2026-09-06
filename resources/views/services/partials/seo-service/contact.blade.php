@@ -80,8 +80,9 @@
             <input type="text" id="co" name="company" value="{{ old('company') }}">
           </div>
           <div class="form-field">
-            <label for="web">{{ $fields['website_label'] ?? 'Website URL' }}</label>
-            <input type="url" id="web" name="website" value="{{ old('website') }}" placeholder="https://">
+            <label for="web">{{ $fields['website_label'] ?? 'Website URL' }} <span class="opt">(optional)</span></label>
+            <input type="text" id="web" name="website" value="{{ old('website') }}" placeholder="https://" autocomplete="url">
+            @error('website')<span class="field-err">{{ $message }}</span>@enderror
           </div>
           <div class="form-field">
             <label for="sv">{{ $fields['service_label'] ?? "I'm Interested In" }}</label>

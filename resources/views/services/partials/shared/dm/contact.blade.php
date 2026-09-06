@@ -103,8 +103,9 @@
           @endif
           @include('partials.country-field', ['id' => ($page->slug ?? 'service').'-country', 'label' => $fields['country_label'] ?? 'Country'])
           <div class="form-field">
-            <label for="web">{{ $fields['website_label'] ?? 'Website URL' }}</label>
-            <input type="text" id="web" name="website" value="{{ old('website') }}" placeholder="https://">
+            <label for="web">{{ $fields['website_label'] ?? 'Website URL' }} <span class="opt">(optional)</span></label>
+            <input type="text" id="web" name="website" value="{{ old('website') }}" placeholder="https://" autocomplete="url" @if(!empty($fields['website_required']) || !empty($ct['website_required'])) required @endif>
+            @error('website')<span class="field-err">{{ $message }}</span>@enderror
           </div>
           @if(!empty($ct['service_options']))
             <div class="form-field">

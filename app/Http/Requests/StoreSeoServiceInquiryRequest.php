@@ -23,6 +23,14 @@ class StoreSeoServiceInquiryRequest extends FormRequest
                 $this->merge(['name' => trim($first.' '.$last)]);
             }
         }
+
+        if (trim((string) $this->input('website', '')) === '') {
+            $this->merge(['website' => null]);
+        }
+
+        if (trim((string) $this->input('phone', '')) === '') {
+            $this->merge(['phone' => null]);
+        }
     }
 
     /**
@@ -31,11 +39,11 @@ class StoreSeoServiceInquiryRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'page_type' => ['required', Rule::in(['on_page', 'off_page'])],
+            'page_type' => ['required', 'string', 'max:32'],
             'service_name' => ['nullable', 'string', 'max:190'],
             'name' => ['required', 'string', 'max:120'],
             'email' => ['required', 'email', 'max:190'],
-            'phone' => ['required', 'string', 'max:40'],
+            'phone' => ['nullable', 'string', 'max:40'],
             'country' => ['required', 'string', Rule::in(Countries::names())],
             'company' => ['nullable', 'string', 'max:190'],
             'website' => ['nullable', 'string', 'max:190'],
