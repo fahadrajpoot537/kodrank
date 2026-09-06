@@ -5181,7 +5181,7 @@ body.page-dm.page-service .sec-ink.problem-bg .problem-card .icon,
 body.page-onpage.page-service .hero,
 body.page-offpage.page-service .hero{
   min-height:0 !important;
-  padding-top:calc(84px + 18px) !important;
+  padding-top:calc(84px + 24px) !important;
   padding-bottom:clamp(36px,4.5vw,64px) !important;
   display:flex !important;
   align-items:flex-start !important;
@@ -5328,11 +5328,20 @@ body.page-offpage.page-service .hero .hero-badges.hero-trust .hero-badge .lbl{
 /* Compact KodRank hero for all Digital-Marketing-motion SEO pages */
 body.page-dm-motion.page-service .hero{
   min-height:0 !important;
-  padding-top:calc(84px + 18px) !important;
+  padding-top:calc(84px + 24px) !important;
   padding-bottom:clamp(36px,4.5vw,64px) !important;
   display:flex !important;
   align-items:flex-start !important;
   justify-content:flex-start !important;
+}
+
+/* Match nav→hero gap on the five core SEO service pages (beats any earlier 18px) */
+body.page-onpage.page-service .hero,
+body.page-offpage.page-service .hero,
+body.page-techseo.page-service .hero,
+body.page-aeo.page-service .hero,
+body.page-geo.page-service .hero{
+  padding-top:calc(84px + 24px) !important;
 }
 body.page-dm-motion.page-service .hero > .wrap{
   width:100%;
