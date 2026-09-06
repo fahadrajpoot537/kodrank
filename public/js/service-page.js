@@ -420,8 +420,10 @@
         document.body.classList.contains('page-dm') ||
         document.body.classList.contains('page-techseo') ||
         document.body.classList.contains('page-aeo') ||
-        document.body.classList.contains('page-geo');
+        document.body.classList.contains('page-geo') ||
+        document.body.classList.contains('page-monthly');
       const isAeo = document.body.classList.contains('page-aeo');
+      const isMonthly = document.body.classList.contains('page-monthly');
       const isDmServicesCarousel =
         root.classList.contains('webdev-ref') && isServicesCarouselPage;
       const seenStack = new Set();
@@ -439,15 +441,37 @@
         ) {
           return;
         }
+        // Monthly SEO: included + process grids carousel with dots (not sticky stack)
+        if (
+          isMonthly &&
+          ((grid.classList.contains('svc-grid') && grid.closest('#included')) ||
+            (grid.classList.contains('loop-grid') && grid.closest('#process')))
+        ) {
+          return;
+        }
         seenStack.add(grid);
         grid.setAttribute('data-thm-stack', '1');
       });
+
+      // Monthly SEO: #services pain cards → same sticky stack as on-page #included
+      if (isMonthly) {
+        Array.prototype.forEach.call(
+          root.querySelectorAll('#services .pain-grid, section#services .pain-grid'),
+          (grid) => {
+            if (seenStack.has(grid) || skipCommon(grid)) return;
+            seenStack.add(grid);
+            grid.setAttribute('data-thm-stack', '1');
+          }
+        );
+      }
 
       const markCarousel = (track) => {
         if (seenCar.has(track) || skipCommon(track)) return;
         if (track.hasAttribute('data-thm-stack')) return;
         if (isStatsOnly(track)) return;
         if (isLayoutComposite(track)) return;
+        // Monthly pain cards: sticky stack (not carousel)
+        if (isMonthly && track.classList.contains('pain-grid')) return;
         seenCar.add(track);
         track.setAttribute('data-thm-carousel', '1');
       };
@@ -488,6 +512,14 @@
           Array.prototype.forEach.call(
             root.querySelectorAll(
               '#services .service-grid, #services .svc-grid, #services .serv-grid'
+            ),
+            markCarousel
+          );
+        }
+        if (isMonthly) {
+          Array.prototype.forEach.call(
+            root.querySelectorAll(
+              '#included .svc-grid, #process .loop-grid, #work .tst-grid, .tst-grid'
             ),
             markCarousel
           );
@@ -1464,6 +1496,9 @@
           '.page-geo .geo-theme-page #problem .pain-grid',
           '.page-geo .geo-theme-page #services .serv-grid',
           '.page-geo .geo-theme-page .test-grid',
+          '.page-monthly .monthly-theme-page #included .svc-grid',
+          '.page-monthly .monthly-theme-page #process .loop-grid',
+          '.page-monthly .monthly-theme-page #work .tst-grid',
         ].join(', ')
       ),
       (grid) => {
@@ -1519,6 +1554,9 @@
         return '(max-width: 980px)';
       }
       if (track.closest('.geo-theme-page') || document.body.classList.contains('page-geo')) {
+        return '(max-width: 980px)';
+      }
+      if (track.closest('.monthly-theme-page') || document.body.classList.contains('page-monthly')) {
         return '(max-width: 980px)';
       }
       if (

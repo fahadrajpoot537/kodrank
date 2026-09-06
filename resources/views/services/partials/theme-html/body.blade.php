@@ -345,6 +345,27 @@
           'default_service' => 'GEO Services',
           'submit_text' => 'Send it, get my audit',
       ],
+      'monthly-seo-services' => [
+          'eyebrow' => 'Start now',
+          'title' => 'Get Your Free Monthly SEO Plan',
+          'lede' => "Tell us about your site and where you want to grow. We'll send back a straight-talking plan — the keywords worth chasing, what's holding you back, and how our monthly SEO services would get you there.",
+          'points' => [
+              'A free audit of your biggest ranking gaps',
+              'Upfront pricing — no obligation, no pressure',
+              'A reply from a real SEO strategist, not a bot',
+          ],
+          'fields' => [
+              'name_label' => 'Full name',
+              'email_label' => 'Work email',
+              'website_label' => 'Website URL',
+              'message_label' => 'Anything else? (optional)',
+              'message_placeholder' => 'e.g. Grow organic traffic, recover lost rankings…',
+          ],
+          'phone_required' => false,
+          'page_type' => 'monthly',
+          'default_service' => 'Monthly SEO Services',
+          'submit_text' => 'Send Me My Free Plan',
+      ],
   ];
 
   $themeHtmlContact = array_merge(

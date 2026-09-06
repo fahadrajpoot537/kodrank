@@ -91,6 +91,8 @@ class ThemeHtmlServicesSeeder extends Seeder
                 'scope' => 'monthly-theme-page',
                 'parentSlug' => 'digital-marketing-services',
                 'sort' => 16,
+                // Handled by MonthlySeoThemeHtmlSeeder (eyebrow skip + page CSS + carousels)
+                'delegate' => MonthlySeoThemeHtmlSeeder::class,
             ],
             [
                 'slug' => 'saas-seo-services',

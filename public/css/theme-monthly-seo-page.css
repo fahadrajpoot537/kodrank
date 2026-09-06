@@ -1,0 +1,298 @@
+/**
+ * Monthly SEO Services page-only extras.
+ * Loaded only via seo.extra_css from MonthlySeoThemeHtmlSeeder.
+ * Scoped to body.page-monthly / .monthly-theme-page — does not affect other pages.
+ */
+body.page-monthly .monthly-theme-page.theme-html-root {
+  /* namespace hook */
+}
+
+body.page-monthly .monthly-theme-page .sec-paper,
+body.page-monthly .monthly-theme-page .sec-mist,
+body.page-monthly .monthly-theme-page .sec-ink {
+  position: relative;
+}
+
+/* Keep shared KodRank hero; no theme "Monthly SEO Services" eyebrow */
+body.page-monthly .hero-eyebrow {
+  display: none !important;
+}
+
+/* A little more air above + below hero copy */
+html body.page-monthly.page-service .hero {
+  padding-top: calc(84px + 36px) !important;
+  padding-bottom: clamp(44px, 5vw, 72px) !important;
+}
+html body.page-monthly.page-service .hero .breadcrumb,
+html body.page-monthly.page-service .hero .crumbs {
+  margin: 0 0 18px !important;
+}
+html body.page-monthly.page-service .hero h1 {
+  margin: 0 0 18px !important;
+}
+html body.page-monthly.page-service .hero .lede,
+html body.page-monthly.page-service .hero p.sub,
+html body.page-monthly.page-service .hero .hero-sub {
+  margin: 0 0 28px !important;
+}
+html body.page-monthly.page-service .hero .hero-actions,
+html body.page-monthly.page-service .hero .hero-cta {
+  margin-top: 4px !important;
+}
+html body.page-monthly.page-service .hero .hero-badges,
+html body.page-monthly.page-service .hero .hero-trust {
+  margin-top: 36px !important;
+}
+@media (max-width: 900px) {
+  html body.page-monthly.page-service .hero {
+    padding-top: calc(64px + 24px) !important;
+    padding-bottom: 36px !important;
+  }
+  html body.page-monthly.page-service .hero .lede,
+  html body.page-monthly.page-service .hero p.sub {
+    margin: 0 0 24px !important;
+  }
+}
+
+/* Shared hero accent word from theme title_html */
+html body.page-monthly.page-service .hero h1 .pop,
+html body.page-monthly.page-service .hero h1 span.pop {
+  color: var(--signal, #f47a1f) !important;
+  font-weight: 800 !important;
+}
+
+body.page-monthly .hero-badges.hero-trust,
+body.page-monthly .hero-trust.hero-badges {
+  margin-top: 1.25rem;
+}
+
+/* ── Carousel dots (pain / included / process / testimonials) ── */
+body.page-monthly .monthly-theme-page .testi-dots.thm-carousel-dots,
+body.page-monthly .testi-dots.thm-carousel-dots {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  width: 100%;
+  margin-top: 18px;
+  padding: 4px 0;
+  min-height: 18px;
+}
+
+body.page-monthly .monthly-theme-page .thm-carousel-dots .testi-dot,
+body.page-monthly .thm-carousel-dots .testi-dot {
+  width: 10px;
+  height: 10px;
+  min-width: 10px;
+  min-height: 10px;
+  border-radius: 50%;
+  padding: 0;
+  margin: 0;
+  border: 2px solid transparent;
+  background: #c5d4ce;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+  box-shadow: 0 0 0 8px transparent;
+}
+
+body.page-monthly .monthly-theme-page .thm-carousel-dots .testi-dot.is-active,
+body.page-monthly .thm-carousel-dots .testi-dot.is-active {
+  background: var(--signal, #f47a1f);
+  border-color: rgba(244, 122, 31, 0.25);
+  transform: scale(1.2);
+  box-shadow: 0 0 0 6px rgba(244, 122, 31, 0.12);
+}
+
+body.page-monthly .thm-carousel-nav-wrap,
+body.page-monthly .monthly-theme-page .thm-carousel-nav-wrap {
+  display: none !important;
+}
+
+/* Sticky stack needs clip (not hidden) — overflow-x:hidden creates a scrollport and kills sticky */
+html body.page-monthly.page-service .monthly-theme-page {
+  overflow-x: clip;
+}
+
+/* Pain cards: desktop grid; mobile sticky stack (same as on-page #included .svc) */
+@media (min-width: 901px) {
+  html body.page-monthly.page-service .monthly-theme-page #services .pain-grid,
+  html body.page-monthly.page-service .monthly-theme-page .pain-grid {
+    display: grid !important;
+    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+    gap: 20px !important;
+    overflow: visible !important;
+    flex-direction: unset !important;
+    flex-wrap: unset !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    scroll-snap-type: none !important;
+    touch-action: auto !important;
+  }
+  html body.page-monthly.page-service .monthly-theme-page .pain-grid > .pain-card {
+    flex: unset !important;
+    width: auto !important;
+    min-width: 0 !important;
+    max-width: none !important;
+    scroll-snap-align: unset !important;
+  }
+}
+
+@media (max-width: 900px) {
+  html body.page-monthly.page-service .monthly-theme-page section#services.has-page-svc-stack {
+    overflow-x: clip !important;
+    overflow-y: visible !important;
+  }
+
+  html body.page-monthly.page-service .monthly-theme-page #services .pain-grid[data-thm-stack],
+  html body.page-monthly.page-service .monthly-theme-page #services .pain-grid.page-svc-stack,
+  html body.page-monthly.page-service .monthly-theme-page .pain-grid[data-thm-stack],
+  html body.page-monthly.page-service .monthly-theme-page .pain-grid.page-svc-stack {
+    display: block !important;
+    grid-template-columns: none !important;
+    grid-template-rows: none !important;
+    gap: 0 !important;
+    overflow: visible !important;
+    transform: none !important;
+    filter: none !important;
+    contain: none !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    flex-direction: unset !important;
+    flex-wrap: unset !important;
+    align-items: stretch !important;
+    scroll-snap-type: none !important;
+    touch-action: auto !important;
+    height: auto !important;
+  }
+
+  html body.page-monthly.page-service .monthly-theme-page #services .pain-grid .svc-stack-item,
+  html body.page-monthly.page-service .monthly-theme-page .pain-grid .svc-stack-item,
+  html body.page-monthly.page-service .monthly-theme-page #services .pain-grid[data-thm-stack] > *,
+  html body.page-monthly.page-service .monthly-theme-page .pain-grid.page-svc-stack > * {
+    position: sticky !important;
+    top: calc(var(--svc-stack-nav, 68px) + (var(--index0, 0) * var(--svc-stack-peek, 14px))) !important;
+    display: block !important;
+    flex: none !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    height: auto !important;
+    margin: 0 0 var(--svc-stack-gap, 20px) !important;
+    padding: 0 !important;
+    scroll-snap-align: unset !important;
+    box-sizing: border-box !important;
+  }
+
+  html body.page-monthly.page-service .monthly-theme-page #services .pain-grid .svc-stack-item:last-child,
+  html body.page-monthly.page-service .monthly-theme-page .pain-grid .svc-stack-item:last-child {
+    margin-bottom: 0 !important;
+  }
+
+  html body.page-monthly.page-service .monthly-theme-page #services .pain-grid .svc-stack-item > .pain-card,
+  html body.page-monthly.page-service .monthly-theme-page .pain-grid .svc-stack-item > .pain-card {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    flex: none !important;
+    opacity: 1 !important;
+    box-sizing: border-box !important;
+  }
+
+  html body.page-monthly.page-service .monthly-theme-page #services .pain-grid .svc-stack-item > *:hover,
+  html body.page-monthly.page-service .monthly-theme-page .pain-grid .svc-stack-item > *:hover {
+    transform: none !important;
+  }
+}
+
+@media (max-width: 980px) {
+  body.page-monthly .monthly-theme-page .testi-dots.thm-carousel-dots,
+  body.page-monthly .testi-dots.thm-carousel-dots {
+    display: flex !important;
+  }
+
+  body.page-monthly .monthly-theme-page section#included,
+  body.page-monthly .monthly-theme-page section#process,
+  body.page-monthly .monthly-theme-page section#work,
+  body.page-monthly .monthly-theme-page section:has(.svc-grid),
+  body.page-monthly .monthly-theme-page section:has(.loop-grid),
+  body.page-monthly .monthly-theme-page section:has(.tst-grid),
+  body.page-monthly .monthly-theme-page section:has([data-thm-carousel]),
+  body.page-monthly .monthly-theme-page section:has(.why-mobile-carousel) {
+    overflow-x: clip !important;
+    overflow-y: visible !important;
+  }
+
+  body.page-monthly .monthly-theme-page .why-mobile-carousel:has(> .svc-grid),
+  body.page-monthly .monthly-theme-page .why-mobile-carousel:has(> .loop-grid),
+  body.page-monthly .monthly-theme-page .why-mobile-carousel:has(> .tst-grid) {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    overflow: visible !important;
+    touch-action: auto !important;
+    scroll-snap-type: none !important;
+  }
+
+  /* Beat webdev-ref sticky-stack — 1 card per swipe (not pain-grid) */
+  html body.page-monthly.page-service .monthly-theme-page #included .svc-grid[data-thm-carousel],
+  html body.page-monthly.page-service .monthly-theme-page #included .svc-grid.thm-mobile-carousel,
+  html body.page-monthly.page-service .monthly-theme-page #included .svc-grid,
+  html body.page-monthly.page-service .monthly-theme-page #process .loop-grid[data-thm-carousel],
+  html body.page-monthly.page-service .monthly-theme-page #process .loop-grid.thm-mobile-carousel,
+  html body.page-monthly.page-service .monthly-theme-page #process .loop-grid,
+  html body.page-monthly.page-service .monthly-theme-page #work .tst-grid[data-thm-carousel],
+  html body.page-monthly.page-service .monthly-theme-page #work .tst-grid.thm-mobile-carousel,
+  html body.page-monthly.page-service .monthly-theme-page #work .tst-grid,
+  html body.page-monthly.page-service .monthly-theme-page .why-mobile-carousel > .svc-grid,
+  html body.page-monthly.page-service .monthly-theme-page .why-mobile-carousel > .loop-grid,
+  html body.page-monthly.page-service .monthly-theme-page .why-mobile-carousel > .tst-grid {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    gap: 14px !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    scroll-snap-type: x mandatory !important;
+    -webkit-overflow-scrolling: touch !important;
+    scrollbar-width: none !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    padding-bottom: 4px !important;
+    touch-action: pan-x !important;
+  }
+
+  html body.page-monthly.page-service .monthly-theme-page .svc-grid::-webkit-scrollbar,
+  html body.page-monthly.page-service .monthly-theme-page .loop-grid::-webkit-scrollbar,
+  html body.page-monthly.page-service .monthly-theme-page .tst-grid::-webkit-scrollbar {
+    display: none !important;
+  }
+
+  html body.page-monthly.page-service .monthly-theme-page .svc-grid > .svc-card,
+  html body.page-monthly.page-service .monthly-theme-page .loop-grid > .loop-card,
+  html body.page-monthly.page-service .monthly-theme-page .tst-grid > .tst-card,
+  html body.page-monthly.page-service .monthly-theme-page .why-mobile-carousel > .svc-grid > *,
+  html body.page-monthly.page-service .monthly-theme-page .why-mobile-carousel > .loop-grid > *,
+  html body.page-monthly.page-service .monthly-theme-page .why-mobile-carousel > .tst-grid > * {
+    flex: 0 0 min(86vw, 320px) !important;
+    width: min(86vw, 320px) !important;
+    max-width: min(86vw, 320px) !important;
+    min-width: min(86vw, 320px) !important;
+    scroll-snap-align: start !important;
+  }
+
+  body.page-monthly .monthly-theme-page #included .wrap > .testi-dots.thm-carousel-dots,
+  body.page-monthly .monthly-theme-page #process .wrap > .testi-dots.thm-carousel-dots,
+  body.page-monthly .monthly-theme-page #work .wrap > .testi-dots.thm-carousel-dots,
+  body.page-monthly .monthly-theme-page .why-mobile-carousel + .testi-dots.thm-carousel-dots {
+    display: flex !important;
+  }
+
+  body.page-monthly .monthly-theme-page .testi-dots.thm-carousel-dots {
+    justify-content: center;
+  }
+}
+

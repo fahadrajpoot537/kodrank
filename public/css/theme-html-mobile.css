@@ -330,7 +330,11 @@ body.page-theme-html.page-service section#included.has-page-svc-stack,
   html body.page-service .webdev-ref #services [data-thm-stack],
   html body.page-service .webdev-ref #services .carousel-track,
   html body.page-service .webdev-ref #services [data-thm-stack],
-  html body.page-service .webdev-ref #included [data-thm-stack] {
+  html body.page-service .webdev-ref #included [data-thm-stack],
+  html body.page-service .webdev-ref #services .pain-grid[data-thm-stack],
+  html body.page-service .webdev-ref #services .pain-grid.page-svc-stack,
+  html body.page-service .webdev-ref .pain-grid[data-thm-stack],
+  html body.page-service .webdev-ref .pain-grid.page-svc-stack {
     display: block !important;
     grid-template-columns: none !important;
     grid-template-rows: none !important;
@@ -339,6 +343,10 @@ body.page-theme-html.page-service section#included.has-page-svc-stack,
     transform: none !important;
     filter: none !important;
     contain: none !important;
+    flex-direction: unset !important;
+    flex-wrap: unset !important;
+    scroll-snap-type: none !important;
+    touch-action: auto !important;
   }
 
   html body.page-service .webdev-ref .page-svc-stack .svc-stack-item,
@@ -577,9 +585,9 @@ body.page-theme-html.page-service section#included.has-page-svc-stack,
     overflow-y: visible !important;
   }
 
-  html body.page-service .webdev-ref .problem-grid,
-  html body.page-service .webdev-ref .pain-grid,
-  html body.page-service .webdev-ref .pain-list,
+  html body.page-service .webdev-ref .problem-grid:not(.page-svc-stack):not([data-thm-stack]),
+  html body.page-service .webdev-ref .pain-grid:not(.page-svc-stack):not([data-thm-stack]),
+  html body.page-service .webdev-ref .pain-list:not(.page-svc-stack):not([data-thm-stack]),
   html body.page-service .webdev-ref .prob-list,
   html body.page-service .webdev-ref .feature-grid,
   html body.page-service .webdev-ref .why-bg .feature-grid,
@@ -693,10 +701,10 @@ body.page-theme-html.page-service section#included.has-page-svc-stack,
     height: 0 !important;
   }
 
-  html body.page-service .webdev-ref .problem-grid > *,
-  html body.page-service .webdev-ref .pain-grid > *,
-  html body.page-service .webdev-ref .pain-list > *,
-  html body.page-service .webdev-ref .prob-list > *,
+  html body.page-service .webdev-ref .problem-grid:not(.page-svc-stack):not([data-thm-stack]) > *,
+  html body.page-service .webdev-ref .pain-grid:not(.page-svc-stack):not([data-thm-stack]) > *,
+  html body.page-service .webdev-ref .pain-list:not(.page-svc-stack):not([data-thm-stack]) > *,
+  html body.page-service .webdev-ref .prob-list:not(.page-svc-stack):not([data-thm-stack]) > *,
   html body.page-service .webdev-ref .feature-grid > *,
   html body.page-service .webdev-ref .why-feats > *,
   html body.page-service .webdev-ref .why-grid:not(:has(.stat)):not(:has(.why-feats)):not(:has(.compare)):not(:has(.why-copy)) > *,
@@ -752,8 +760,8 @@ body.page-theme-html.page-service section#included.has-page-svc-stack,
     margin: 0 !important;
   }
 
-  html body.page-service .webdev-ref .problem-grid > *:hover,
-  html body.page-service .webdev-ref .pain-grid > *:hover,
+  html body.page-service .webdev-ref .problem-grid:not(.page-svc-stack):not([data-thm-stack]) > *:hover,
+  html body.page-service .webdev-ref .pain-grid:not(.page-svc-stack):not([data-thm-stack]) > *:hover,
   html body.page-service .webdev-ref .feature-grid > *:hover,
   html body.page-service .webdev-ref .why-feats > *:hover,
   html body.page-service .webdev-ref [data-thm-carousel] > *:hover {

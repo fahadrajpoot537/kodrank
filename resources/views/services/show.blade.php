@@ -9,7 +9,7 @@
   {{-- KodRank shared hero + site nav/footer; theme HTML is body-only --}}
   @php
     $themeHero = $s['hero'] ?? [];
-    if (in_array($page->slug ?? '', ['on-page-seo-services', 'off-page-seo-services', 'aeo-services', 'geo-services'], true)) {
+    if (in_array($page->slug ?? '', ['on-page-seo-services', 'off-page-seo-services', 'aeo-services', 'geo-services', 'monthly-seo-services'], true)) {
         unset($themeHero['eyebrow']);
     }
   @endphp
