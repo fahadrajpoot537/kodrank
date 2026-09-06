@@ -4859,7 +4859,7 @@ body.page-dm.page-service .hero p.sub,
 body.page-dm.page-service .hero .hero-sub{
   font-size:clamp(1.02rem,1.35vw,1.16rem) !important;
   max-width:38rem;
-  margin:0 0 52px !important;
+  margin:0 0 57px !important;
 }
 body.page-dm.page-service .hero .hero-actions,
 body.page-dm.page-service .hero .hero-cta{
@@ -4887,7 +4887,7 @@ body.page-dm.page-service .hero .hero-trust{
   body.page-dm.page-service .hero .lede,
   body.page-dm.page-service .hero p.sub,
   body.page-dm.page-service .hero .hero-sub{
-    margin:0 0 44px !important;
+    margin:0 0 49px !important;
     font-size:1rem !important;
   }
   body.page-dm.page-service .hero .hero-badges,
@@ -4911,7 +4911,7 @@ body.page-dm.page-service .hero .hero-trust{
   body.page-dm.page-service .hero .lede,
   body.page-dm.page-service .hero p.sub,
   body.page-dm.page-service .hero .hero-sub{
-    margin:0 0 40px !important;
+    margin:0 0 45px !important;
   }
 }
 
@@ -5237,7 +5237,7 @@ body.page-offpage.page-service .hero p.sub,
 body.page-offpage.page-service .hero .hero-sub{
   font-size:clamp(1.02rem,1.35vw,1.16rem) !important;
   max-width:38rem;
-  margin:0 0 20px !important;
+  margin:0 0 25px !important;
 }
 body.page-onpage.page-service .hero .hero-actions,
 body.page-onpage.page-service .hero .hero-cta,
@@ -5328,7 +5328,7 @@ body.page-offpage.page-service .hero .hero-badges.hero-trust .hero-badge .lbl{
   body.page-onpage.page-service .hero p.sub,
   body.page-offpage.page-service .hero .lede,
   body.page-offpage.page-service .hero p.sub{
-    margin:0 0 16px !important;
+    margin:0 0 21px !important;
     font-size:1rem !important;
   }
 }
@@ -5350,13 +5350,51 @@ body.page-dm-motion.page-service .hero{
   justify-content:flex-start !important;
 }
 
-/* Match nav→hero gap on the five core SEO service pages (beats any earlier 18px) */
-body.page-onpage.page-service .hero,
-body.page-offpage.page-service .hero,
-body.page-techseo.page-service .hero,
-body.page-aeo.page-service .hero,
-body.page-geo.page-service .hero{
-  padding-top:calc(84px + 24px) !important;
+/* Related SEO services strip (hub pages) */
+.page-service .kr-related-services{
+  padding-block:clamp(48px,6vw,72px) !important;
+}
+.page-service .kr-related-list{
+  list-style:none;
+  margin:0;
+  padding:0;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+  gap:12px 18px;
+}
+.page-service .kr-related-list a{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  padding:16px 18px;
+  border:1px solid var(--line,#E1E9E5);
+  border-radius:14px;
+  background:var(--paper,#fff);
+  color:var(--graphite,#0A1A22) !important;
+  font-weight:600;
+  font-size:.95rem;
+  text-decoration:none !important;
+  transition:border-color .2s ease, transform .2s ease;
+}
+.page-service .kr-related-list a:hover{
+  border-color:var(--signal,#F47A1F);
+  transform:translateY(-1px);
+}
+.page-service .kr-related-list .arw{
+  color:var(--signal,#F47A1F);
+  font-weight:700;
+}
+
+/* Theme HTML body: related-service internal links stay readable */
+.page-service .theme-html-root p a[href^="/"],
+.page-service .theme-html-root li a[href^="/"],
+.page-service .theme-html-root .faq-a a[href^="/"],
+.page-service .theme-html-root .faq-body a[href^="/"],
+.page-service .theme-html-root .ans a[href^="/"]{
+  color:var(--signal,#F47A1F) !important;
+  text-decoration:underline;
+  text-underline-offset:2px;
 }
 body.page-dm-motion.page-service .hero > .wrap{
   width:100%;
@@ -5383,7 +5421,7 @@ body.page-dm-motion.page-service .hero p.sub,
 body.page-dm-motion.page-service .hero .hero-sub{
   font-size:clamp(1.02rem,1.35vw,1.16rem) !important;
   max-width:38rem;
-  margin:0 0 52px !important;
+  margin:0 0 57px !important;
 }
 body.page-dm-motion.page-service .hero .hero-actions,
 body.page-dm-motion.page-service .hero .hero-cta{
@@ -5407,7 +5445,7 @@ body.page-dm-motion.page-service .hero .hero-trust{
   }
   body.page-dm-motion.page-service .hero .lede,
   body.page-dm-motion.page-service .hero p.sub{
-    margin:0 0 44px !important;
+    margin:0 0 49px !important;
     font-size:1rem !important;
   }
 }
@@ -5418,7 +5456,7 @@ body.page-dm-motion.page-service .hero .hero-trust{
   }
   body.page-dm-motion.page-service .hero .lede,
   body.page-dm-motion.page-service .hero p.sub{
-    margin:0 0 40px !important;
+    margin:0 0 45px !important;
   }
 }
 

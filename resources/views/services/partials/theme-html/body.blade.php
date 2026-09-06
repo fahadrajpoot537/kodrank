@@ -370,8 +370,12 @@
   $webdevRefClass = (\App\Support\WpRefDesign::appliesTo($slug) && $slug !== 'off-page-seo-services') ? ' webdev-ref' : '';
 @endphp
 @if($html !== '')
+  @php
+    $html = \App\Support\ServiceInternalLinks::linkifyHtml($html, $slug);
+  @endphp
   <div class="{{ $scope }} theme-html-root{{ $webdevRefClass }}">
     {!! $html !!}
   </div>
 @endif
+@include('services.partials.shared.related-services', ['page' => $page])
 @include('services.partials.shared.dm.contact', ['ct' => $themeHtmlContact])

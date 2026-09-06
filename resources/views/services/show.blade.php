@@ -49,6 +49,9 @@
   @foreach($page->sections as $section)
     @continue($section->key === 'hero')
     @continue(($page->slug ?? '') === 'digital-marketing-services' && $section->key === 'cta')
+    @if($section->key === 'contact')
+      @include('services.partials.shared.related-services', ['page' => $page])
+    @endif
     @includeIf($partialBase.$section->key)
   @endforeach
   @if($webdevRefWrap)

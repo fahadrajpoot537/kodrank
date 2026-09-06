@@ -104,7 +104,33 @@ class ThemeHtmlImporter
         }
 
         // Fix absolute marketing-site crumbs to local roots.
+        $html = str_replace('https://www.kodrank.com/', '/', $html);
         $html = str_replace('https://kodrank.com/', '/', $html);
+        $html = str_replace([
+            'href="/services/on-page-seo/"',
+            'href="/services/on-page-seo"',
+            'href="/services/technical-seo/"',
+            'href="/services/technical-seo"',
+            'href="/services/off-page-seo/"',
+            'href="/services/off-page-seo"',
+            'href="/services/aeo/"',
+            'href="/services/aeo"',
+            'href="/services/geo/"',
+            'href="/services/geo"',
+            'href="/services/"',
+        ], [
+            'href="/on-page-seo-services"',
+            'href="/on-page-seo-services"',
+            'href="/technical-seo-services"',
+            'href="/technical-seo-services"',
+            'href="/off-page-seo-services"',
+            'href="/off-page-seo-services"',
+            'href="/aeo-services"',
+            'href="/aeo-services"',
+            'href="/geo-services"',
+            'href="/geo-services"',
+            'href="/services"',
+        ], $html);
         $html = str_replace('href="#"', 'href="/contact"', $html);
 
         return [

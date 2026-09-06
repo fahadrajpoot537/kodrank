@@ -35,7 +35,13 @@
           <h3>{{ $card['title'] ?? '' }}</h3>
           <p>{{ $card['body'] ?? '' }}</p>
           @if(!empty($card['link_text']))
-            <a href="{{ $card['link_url'] ?? '#contact' }}" class="tlink">
+            @php
+              $cardUrl = \App\Support\ServiceInternalLinks::urlForCard(
+                  (string) ($card['title'] ?? ''),
+                  $card['link_url'] ?? '#contact'
+              );
+            @endphp
+            <a href="{{ $cardUrl }}" class="tlink">
               {{ $card['link_text'] }}
               @include('services.partials.digital-marketing.icon', ['key' => 'arrow', 'fillNone' => true, 'attrs' => 'stroke="currentColor" stroke-width="2.4"'])
             </a>

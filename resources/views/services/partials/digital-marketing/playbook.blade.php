@@ -29,7 +29,13 @@
             </ul>
           @endif
           @if(!empty($card['link_text']))
-            <a href="{{ $card['link_url'] ?? '#' }}" class="ind-cta">
+            @php
+              $cardUrl = \App\Support\ServiceInternalLinks::urlForCard(
+                  (string) ($card['title'] ?? ''),
+                  $card['link_url'] ?? '#contact'
+              );
+            @endphp
+            <a href="{{ $cardUrl }}" class="ind-cta">
               {{ $card['link_text'] }}
               @include('services.partials.digital-marketing.icon', ['key' => 'arrow'])
             </a>
