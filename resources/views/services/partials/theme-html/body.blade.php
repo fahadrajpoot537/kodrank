@@ -354,9 +354,15 @@
               'Upfront pricing — no obligation, no pressure',
               'A reply from a real SEO strategist, not a bot',
           ],
+          'meta' => [
+              ['label' => 'Email us', 'value' => 'info@kodrank.com', 'icon_key' => 'email'],
+              ['label' => 'Call us', 'value' => '+92 305 9202732', 'icon_key' => 'phone'],
+              ['label' => 'Response time', 'value' => 'Within one business day', 'icon_key' => 'clock'],
+          ],
           'fields' => [
               'name_label' => 'Full name',
               'email_label' => 'Work email',
+              'phone_label' => 'Phone (optional)',
               'website_label' => 'Website URL',
               'message_label' => 'Anything else? (optional)',
               'message_placeholder' => 'e.g. Grow organic traffic, recover lost rankings…',

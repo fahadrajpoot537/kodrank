@@ -18,6 +18,11 @@ body.page-monthly .hero-eyebrow {
   display: none !important;
 }
 
+/* Contact points: black checkmarks (not orange) */
+html body.page-monthly.page-service #contact .contact-side .compare-list .mark.v {
+  color: var(--graphite, #0d2029) !important;
+}
+
 /* A little more air above + below hero copy */
 html body.page-monthly.page-service .hero {
   padding-top: calc(84px + 36px) !important;
