@@ -9,7 +9,22 @@
   {{-- KodRank shared hero + site nav/footer; theme HTML is body-only --}}
   @php
     $themeHero = $s['hero'] ?? [];
-    if (in_array($page->slug ?? '', ['on-page-seo-services', 'off-page-seo-services', 'aeo-services', 'geo-services', 'monthly-seo-services'], true)) {
+    if (in_array($page->slug ?? '', [
+        'on-page-seo-services',
+        'off-page-seo-services',
+        'aeo-services',
+        'geo-services',
+        'monthly-seo-services',
+        'saas-seo-services',
+        'b2b-seo-services',
+        'ecommerce-seo-services',
+        'wordpress-seo-services',
+        'shopify-seo-services',
+        'guest-posting-services',
+        'restaurant-seo-services',
+        'healthcare-seo-services',
+        'real-estate-seo-services',
+    ], true)) {
         unset($themeHero['eyebrow']);
     }
   @endphp

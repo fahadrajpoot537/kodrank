@@ -1,0 +1,272 @@
+/**
+ * B2B SEO Services page-only extras.
+ * Loaded only via seo.extra_css — scoped so other pages are unaffected.
+ */
+html body.page-b2bseo.page-service .b2b-theme-page.theme-html-root {
+  /* namespace hook */
+}
+
+html body.page-b2bseo.page-service .b2b-theme-page .sec-paper,
+html body.page-b2bseo.page-service .b2b-theme-page .sec-mist,
+html body.page-b2bseo.page-service .b2b-theme-page .sec-ink {
+  position: relative;
+}
+
+html body.page-b2bseo.page-service .hero-eyebrow { display: none !important; }
+
+html body.page-b2bseo.page-service .hero-badges.hero-trust,
+html body.page-b2bseo.page-service .hero-trust.hero-badges {
+  margin-top: 1.25rem;
+}
+
+html body.page-b2bseo.page-service #contact .contact-side .compare-list .mark.v {
+  color: var(--graphite, #0d2029) !important;
+}
+
+/* Force reveal nodes visible (theme .rv starts at opacity:0) */
+html body.page-b2bseo.page-service .b2b-theme-page .rv,
+html body.page-b2bseo.page-service .b2b-theme-page .reveal,
+html body.page-b2bseo.page-service .b2b-theme-page .rev,
+html body.page-b2bseo.page-service .b2b-theme-page .fade-up {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+/* Card faces stay opaque / readable inside sticky stacks */
+html body.page-b2bseo.page-service .b2b-theme-page .svc-stack-item > .pain,
+html body.page-b2bseo.page-service .b2b-theme-page .svc-stack-item > .pain-card,
+html body.page-b2bseo.page-service .b2b-theme-page .svc-stack-item > .svc,
+html body.page-b2bseo.page-service .b2b-theme-page .svc-stack-item > .svc-card,
+html body.page-b2bseo.page-service .b2b-theme-page .svc-stack-item > .proc-step,
+html body.page-b2bseo.page-service .b2b-theme-page .svc-stack-item > .step,
+html body.page-b2bseo.page-service .b2b-theme-page .svc-stack-item > .loop-card,
+html body.page-b2bseo.page-service .b2b-theme-page .svc-stack-item > .tst,
+html body.page-b2bseo.page-service .b2b-theme-page .svc-stack-item > .tst-card {
+  opacity: 1 !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+/* —— KodRank lock: visible content + GEO hero spacing + mobile cards —— */
+html body.page-service .b2b-theme-page .rv,
+html body.page-service .b2b-theme-page .rev,
+html body.page-service .b2b-theme-page .reveal,
+html body.page-service .b2b-theme-page .fade-up {
+  opacity: 1 !important;
+  transform: none !important;
+  visibility: visible !important;
+}
+html body.page-b2bseo.page-service .hero {
+  min-height: 0 !important;
+  padding-top: calc(84px + 24px) !important;
+  padding-bottom: clamp(36px, 4.5vw, 64px) !important;
+  align-items: flex-start !important;
+}
+@media (max-width: 900px) {
+  html body.page-b2bseo.page-service .hero {
+    padding-top: calc(64px + 16px) !important;
+    padding-bottom: 32px !important;
+  }
+}
+@media (max-width: 767px) {
+  html body.page-b2bseo.page-service .b2b-theme-page {
+    min-width: 0 !important;
+    box-sizing: border-box !important;
+  }
+  html body.page-b2bseo.page-service .b2b-theme-page .wrap {
+    max-width: var(--maxw) !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    padding-left: var(--pad) !important;
+    padding-right: var(--pad) !important;
+    min-width: 0 !important;
+    box-sizing: border-box !important;
+  }
+  html body.page-b2bseo.page-service .b2b-theme-page section {
+    overflow-x: clip !important;
+  }
+  html body.page-b2bseo.page-service .b2b-theme-page .pain-grid:not([data-thm-carousel]):not(.thm-mobile-carousel),
+  html body.page-b2bseo.page-service .b2b-theme-page .svc-grid:not([data-thm-carousel]):not(.thm-mobile-carousel):not(.page-svc-stack),
+  html body.page-b2bseo.page-service .b2b-theme-page .serv-grid:not([data-thm-carousel]):not(.thm-mobile-carousel),
+  html body.page-b2bseo.page-service .b2b-theme-page .proc-grid:not([data-thm-stack]):not(.page-svc-stack):not([data-thm-carousel]),
+  html body.page-b2bseo.page-service .b2b-theme-page .proc:not([data-thm-stack]):not(.page-svc-stack):not([data-thm-carousel]),
+  html body.page-b2bseo.page-service .b2b-theme-page .loop-grid:not([data-thm-carousel]):not(.thm-mobile-carousel),
+  html body.page-b2bseo.page-service .b2b-theme-page .tst-grid:not([data-thm-carousel]):not(.thm-mobile-carousel),
+  html body.page-b2bseo.page-service .b2b-theme-page .test-grid:not([data-thm-carousel]):not(.thm-mobile-carousel),
+  html body.page-b2bseo.page-service .b2b-theme-page .feature-grid:not([data-thm-carousel]):not(.thm-mobile-carousel),
+  html body.page-b2bseo.page-service .b2b-theme-page .why-grid:not([data-thm-carousel]):not(.thm-mobile-carousel),
+  html body.page-b2bseo.page-service .b2b-theme-page .industry-grid:not([data-thm-carousel]):not(.thm-mobile-carousel),
+  html body.page-b2bseo.page-service .b2b-theme-page .ind-grid:not([data-thm-carousel]):not(.thm-mobile-carousel) {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    gap: 14px !important;
+    box-sizing: border-box !important;
+  }
+  html body.page-b2bseo.page-service .b2b-theme-page .pain,
+  html body.page-b2bseo.page-service .b2b-theme-page .pain-card,
+  html body.page-b2bseo.page-service .b2b-theme-page .svc,
+  html body.page-b2bseo.page-service .b2b-theme-page .svc-card,
+  html body.page-b2bseo.page-service .b2b-theme-page .serv-card,
+  html body.page-b2bseo.page-service .b2b-theme-page .proc-step,
+  html body.page-b2bseo.page-service .b2b-theme-page .proc-card,
+  html body.page-b2bseo.page-service .b2b-theme-page .step,
+  html body.page-b2bseo.page-service .b2b-theme-page .loop-card,
+  html body.page-b2bseo.page-service .b2b-theme-page .tst,
+  html body.page-b2bseo.page-service .b2b-theme-page .tst-card,
+  html body.page-b2bseo.page-service .b2b-theme-page .test-card,
+  html body.page-b2bseo.page-service .b2b-theme-page .feat,
+  html body.page-b2bseo.page-service .b2b-theme-page .feat-card {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    box-sizing: border-box !important;
+    overflow-wrap: anywhere !important;
+  }
+}
+
+
+/* —— Mobile motion: carousel + swipe-up stack (desktop untouched) —— */
+/* Width only — do not restyle desktop process cards */
+html body.page-b2bseo.page-service .b2b-theme-page #process .proc-step,
+html body.page-b2bseo.page-service .b2b-theme-page #process .svc-stack-item > .proc-step,
+html body.page-b2bseo.page-service .b2b-theme-page #process .step,
+html body.page-b2bseo.page-service .b2b-theme-page #process .svc-stack-item > .step,
+html body.page-b2bseo.page-service .b2b-theme-page #process .pstep,
+html body.page-b2bseo.page-service .b2b-theme-page #process .svc-stack-item > .pstep,
+html body.page-b2bseo.page-service .b2b-theme-page #process .proc-card,
+html body.page-b2bseo.page-service .b2b-theme-page #process .svc-stack-item > .proc-card {
+  width: 100% !important;
+  max-width: 100% !important;
+  min-width: 0 !important;
+  box-sizing: border-box !important;
+}
+
+@media (max-width: 980px) {
+  /* Horizontal carousels — pain / services / testimonials */
+  html body.page-b2bseo.page-service .b2b-theme-page #pain .pain-grid.thm-mobile-carousel[data-thm-carousel],
+  html body.page-b2bseo.page-service .b2b-theme-page .pain-grid.thm-mobile-carousel[data-thm-carousel],
+  html body.page-b2bseo.page-service .b2b-theme-page #services .svc-grid.thm-mobile-carousel[data-thm-carousel],
+  html body.page-b2bseo.page-service .b2b-theme-page #services .serv-grid.thm-mobile-carousel[data-thm-carousel],
+  html body.page-b2bseo.page-service .b2b-theme-page .tst-grid.thm-mobile-carousel[data-thm-carousel],
+  html body.page-b2bseo.page-service .b2b-theme-page .test-grid.thm-mobile-carousel[data-thm-carousel],
+  html body.page-b2bseo.page-service .b2b-theme-page .ind-grid.thm-mobile-carousel[data-thm-carousel] {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    align-items: stretch !important;
+    gap: 14px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    height: auto !important;
+    margin-top: 0 !important;
+    padding: 0 2px 6px !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    -webkit-overflow-scrolling: touch !important;
+    scroll-snap-type: x mandatory !important;
+    overscroll-behavior-x: contain !important;
+    grid-template-columns: none !important;
+    grid-template-rows: none !important;
+    scrollbar-width: none !important;
+    touch-action: pan-x !important;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+  }
+  html body.page-b2bseo.page-service .b2b-theme-page #pain .pain-grid.thm-mobile-carousel[data-thm-carousel]::-webkit-scrollbar,
+  html body.page-b2bseo.page-service .b2b-theme-page .pain-grid.thm-mobile-carousel[data-thm-carousel]::-webkit-scrollbar,
+  html body.page-b2bseo.page-service .b2b-theme-page #services .svc-grid.thm-mobile-carousel[data-thm-carousel]::-webkit-scrollbar,
+  html body.page-b2bseo.page-service .b2b-theme-page #services .serv-grid.thm-mobile-carousel[data-thm-carousel]::-webkit-scrollbar,
+  html body.page-b2bseo.page-service .b2b-theme-page .tst-grid.thm-mobile-carousel[data-thm-carousel]::-webkit-scrollbar,
+  html body.page-b2bseo.page-service .b2b-theme-page .test-grid.thm-mobile-carousel[data-thm-carousel]::-webkit-scrollbar,
+  html body.page-b2bseo.page-service .b2b-theme-page .ind-grid.thm-mobile-carousel[data-thm-carousel]::-webkit-scrollbar {
+    display: none !important;
+    height: 0 !important;
+  }
+  html body.page-b2bseo.page-service .b2b-theme-page #pain .pain-grid.thm-mobile-carousel[data-thm-carousel] > *,
+  html body.page-b2bseo.page-service .b2b-theme-page .pain-grid.thm-mobile-carousel[data-thm-carousel] > *,
+  html body.page-b2bseo.page-service .b2b-theme-page #services .svc-grid.thm-mobile-carousel[data-thm-carousel] > *,
+  html body.page-b2bseo.page-service .b2b-theme-page #services .serv-grid.thm-mobile-carousel[data-thm-carousel] > *,
+  html body.page-b2bseo.page-service .b2b-theme-page .tst-grid.thm-mobile-carousel[data-thm-carousel] > *,
+  html body.page-b2bseo.page-service .b2b-theme-page .test-grid.thm-mobile-carousel[data-thm-carousel] > *,
+  html body.page-b2bseo.page-service .b2b-theme-page .ind-grid.thm-mobile-carousel[data-thm-carousel] > * {
+    flex: 0 0 100% !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    height: auto !important;
+    box-sizing: border-box !important;
+    scroll-snap-align: start !important;
+    scroll-snap-stop: always !important;
+    overflow-wrap: anywhere !important;
+  }
+  html body.page-b2bseo.page-service .b2b-theme-page .wrap > .testi-dots.thm-carousel-dots,
+  html body.page-b2bseo.page-service .b2b-theme-page .why-mobile-carousel + .testi-dots.thm-carousel-dots {
+    display: flex !important;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 16px;
+  }
+
+  /* Process: sticky swipe-up stack (shell transparent; faces opaque) */
+  html body.page-b2bseo.page-service .b2b-theme-page #process .proc-grid.page-svc-stack,
+  html body.page-b2bseo.page-service .b2b-theme-page #process .proc.page-svc-stack,
+  html body.page-b2bseo.page-service .b2b-theme-page #process .steps.page-svc-stack,
+  html body.page-b2bseo.page-service .b2b-theme-page #process .proc-grid[data-thm-stack],
+  html body.page-b2bseo.page-service .b2b-theme-page #process .proc[data-thm-stack],
+  html body.page-b2bseo.page-service .b2b-theme-page #process .steps[data-thm-stack] {
+    display: block !important;
+    grid-template-columns: none !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    overflow: visible !important;
+  }
+  html body.page-b2bseo.page-service .b2b-theme-page #process .svc-stack-item {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    background: transparent !important;
+    border: 0 !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+  }
+  html body.page-b2bseo.page-service .b2b-theme-page #process .proc-step,
+html body.page-b2bseo.page-service .b2b-theme-page #process .svc-stack-item > .proc-step,
+html body.page-b2bseo.page-service .b2b-theme-page #process .step,
+html body.page-b2bseo.page-service .b2b-theme-page #process .svc-stack-item > .step,
+html body.page-b2bseo.page-service .b2b-theme-page #process .pstep,
+html body.page-b2bseo.page-service .b2b-theme-page #process .svc-stack-item > .pstep,
+html body.page-b2bseo.page-service .b2b-theme-page #process .proc-card,
+html body.page-b2bseo.page-service .b2b-theme-page #process .svc-stack-item > .proc-card {
+    background: #fff !important;
+    border: 1px solid var(--line, #e1e9e5) !important;
+    border-top: 3px solid var(--signal, #f47a1f) !important;
+    border-radius: 18px !important;
+    box-shadow: 0 1px 2px rgba(13, 32, 41, 0.04), 0 10px 28px -16px rgba(13, 32, 41, 0.16) !important;
+    padding: 24px 20px !important;
+    color: var(--graphite, #0d2029) !important;
+    isolation: isolate;
+    overflow: hidden !important;
+  }
+  html body.page-b2bseo.page-service .b2b-theme-page #process .proc-step h4,
+html body.page-b2bseo.page-service .b2b-theme-page #process .step h4,
+html body.page-b2bseo.page-service .b2b-theme-page #process .pstep h4,
+html body.page-b2bseo.page-service .b2b-theme-page #process .proc-card h4 {
+    color: var(--graphite, #0d2029) !important;
+  }
+  html body.page-b2bseo.page-service .b2b-theme-page #process .proc-step p,
+html body.page-b2bseo.page-service .b2b-theme-page #process .step p,
+html body.page-b2bseo.page-service .b2b-theme-page #process .pstep p,
+html body.page-b2bseo.page-service .b2b-theme-page #process .proc-card p {
+    color: var(--slate, #4b5b62) !important;
+  }
+}

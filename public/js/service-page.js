@@ -37,9 +37,9 @@
     })();
     const isMobileCarousel = () => {
       try {
-        return window.matchMedia('(max-width: 767px)').matches;
+        return window.matchMedia('(max-width: 900px)').matches;
       } catch (e) {
-        return (window.innerWidth || 0) <= 767;
+        return (window.innerWidth || 0) <= 900;
       }
     };
 
@@ -123,7 +123,7 @@
     const startAuto = () => {
       stopAuto();
       if (prefersReduce || cards().length < 2) return;
-      if (window.innerWidth > 767) return;
+      if (!isMobileCarousel()) return;
       timer = window.setInterval(() => go(1), 5000);
     };
     const stopAuto = () => {
@@ -174,6 +174,26 @@
     });
   });
 
+  // Theme-html details.faq accordion (healthcare / similar)
+  document.querySelectorAll('details.faq').forEach((item) => {
+    item.addEventListener('toggle', () => {
+      if (!item.open) return;
+      const root = item.closest('.faq-wrap, #faq, .theme-html-root') || document;
+      root.querySelectorAll('details.faq[open]').forEach((other) => {
+        if (other !== item) other.open = false;
+      });
+    });
+  });
+  // Legacy: button nested in summary — toggle parent details on click
+  document.querySelectorAll('details.faq > summary > button').forEach((btn) => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const item = btn.closest('details.faq');
+      if (!item) return;
+      item.open = !item.open;
+    });
+  });
+
   // Website redesign theme FAQ (.faq > button + .faq-body)
   document.querySelectorAll('.redesign-theme-page .faq > button').forEach((btn) => {
     btn.addEventListener('click', () => {
@@ -219,9 +239,10 @@
   });
 
   // Theme reveal (.reveal / .fade-up / .rv / .rev → .in)
-  // WP reference cards are always visible; keep IO but don't leave nodes at opacity:0.
+  // Always reveal immediately — theme CSS starts at opacity:0 and must never hide content.
   try {
     const nodes = document.querySelectorAll('.reveal, .fade-up, .rv, .rev');
+    nodes.forEach((n) => n.classList.add('in'));
     if (nodes.length && 'IntersectionObserver' in window) {
       const io = new IntersectionObserver((entries) => {
         entries.forEach((e) => {
@@ -232,9 +253,6 @@
         });
       }, { threshold: 0.12, rootMargin: '0px 0px -6% 0px' });
       nodes.forEach((n) => io.observe(n));
-      setTimeout(() => nodes.forEach((n) => n.classList.add('in')), 400);
-    } else {
-      nodes.forEach((n) => n.classList.add('in'));
     }
   } catch (e) {}
 
@@ -421,24 +439,26 @@
         document.body.classList.contains('page-techseo') ||
         document.body.classList.contains('page-aeo') ||
         document.body.classList.contains('page-geo') ||
-        document.body.classList.contains('page-monthly');
+        document.body.classList.contains('page-monthly') ||
+        document.body.classList.contains('page-wpseo') ||
+        document.body.classList.contains('page-shopifyseo') ||
+        document.body.classList.contains('page-saasseo') ||
+        document.body.classList.contains('page-b2bseo') ||
+        document.body.classList.contains('page-ecomseo') ||
+        document.body.classList.contains('page-gpseo') ||
+        document.body.classList.contains('page-restseo') ||
+        document.body.classList.contains('page-hcseo') ||
+        document.body.classList.contains('page-reseo') ||
+        document.body.classList.contains('page-dm-motion');
       const isAeo = document.body.classList.contains('page-aeo');
       const isMonthly = document.body.classList.contains('page-monthly');
-      const isDmServicesCarousel =
-        root.classList.contains('webdev-ref') && isServicesCarouselPage;
       const seenStack = new Set();
       Array.prototype.forEach.call(root.querySelectorAll(STACK_SELS), (grid) => {
         if (seenStack.has(grid) || skipCommon(grid)) return;
         // Off-page: services + testimonials scroll as carousels (match on-page UX)
         if (isOffpage && grid.classList.contains('grid-cards')) return;
-        // DM + Technical SEO + AEO + GEO: #services cards carousel on mobile/tablet (not sticky stack)
-        if (
-          isDmServicesCarousel &&
-          (grid.classList.contains('service-grid') ||
-            grid.classList.contains('svc-grid') ||
-            grid.classList.contains('serv-grid')) &&
-          grid.closest('#services')
-        ) {
+        // Niche / DM SEO pages: #services / #included → mobile carousel (not sticky stack)
+        if (isServicesCarouselPage && grid.closest('#services, #included')) {
           return;
         }
         // Monthly SEO: included + process grids carousel with dots (not sticky stack)
@@ -511,7 +531,16 @@
         if (isServicesCarouselPage) {
           Array.prototype.forEach.call(
             root.querySelectorAll(
-              '#services .service-grid, #services .svc-grid, #services .serv-grid'
+              [
+                '#services .service-grid',
+                '#services .svc-grid',
+                '#services .serv-grid',
+                '#services .grid-cards',
+                '#services .grid',
+                '#included .svc-grid',
+                '#included .grid-cards',
+                '#included .grid',
+              ].join(', ')
             ),
             markCarousel
           );
@@ -828,6 +857,11 @@
     };
 
     const start = (stack) => {
+      // Theme-html sticky stacks are mobile-only — restore native grid on desktop
+      if (isDesktop() && (stack.themeHtml || stack.root.hasAttribute('data-thm-stack'))) {
+        deactivateThemeHtmlDesktop(stack);
+        return;
+      }
       if (isDesktop()) {
         stack.root.classList.add('is-desktop-static');
         clearScales(stack);
@@ -1105,9 +1139,7 @@
         syncNav();
       };
 
-      // Mobile-only native swipe row (scroll-snap) — reliable in DevTools device mode
-      const useMobileScroll = () =>
-        root.hasAttribute('data-sp-mobile-scroll') && !isDesktopGrid();
+      const useMobileScroll = () => !isDesktopGrid();
 
       const syncScrollDots = () => {
         if (!dotsWrap || dotsWrap.hidden) return;
@@ -1140,15 +1172,19 @@
         trackEl.style.setProperty('gap', '16px', 'important');
         trackEl.style.setProperty('transform', 'none', 'important');
         trackEl.style.setProperty('transition', 'none', 'important');
+        trackEl.style.setProperty('touch-action', 'pan-x', 'important');
+        trackEl.style.setProperty('cursor', 'grab', 'important');
         viewport.style.setProperty('overflow-x', 'auto', 'important');
         viewport.style.setProperty('overflow-y', 'hidden', 'important');
         viewport.style.setProperty('scroll-snap-type', 'x mandatory', 'important');
-        viewport.style.setProperty('-webkit-overflow-scrolling', 'touch');
+        viewport.style.setProperty('-webkit-overflow-scrolling', 'touch', 'important');
+        viewport.style.setProperty('touch-action', 'pan-x', 'important');
         viewport.style.setProperty('width', '100%', 'important');
+        viewport.style.setProperty('max-width', '100%', 'important');
 
         const vw = viewport.clientWidth || root.clientWidth || 320;
-        const cardPx = Math.round(Math.min(vw * 0.88, 340));
         const gapPx = 16;
+        const cardPx = Math.max(240, Math.round(Math.min(vw * 0.88, vw - gapPx)));
         slides.forEach((slide) => {
           slide.style.setProperty('flex', '0 0 ' + cardPx + 'px', 'important');
           slide.style.setProperty('width', cardPx + 'px', 'important');
@@ -1187,7 +1223,11 @@
           viewport.addEventListener('touchend', () => {
             setTimeout(startScrollAuto, 3500);
           }, { passive: true });
+          viewport.addEventListener('pointerdown', stopScrollAuto, { passive: true });
         }
+        // Reset any mid-carousel transform offset so swipe starts from a clean track
+        viewport.scrollLeft = 0;
+        index = 0;
         syncScrollDots();
         startScrollAuto();
       };
@@ -1471,6 +1511,26 @@
           '.shopify-theme-page .why-feats',
           '.shopify-theme-page .ind-grid',
           '.shopify-theme-page .tst-grid',
+          '.shopifyseo-theme-page .pain-grid',
+          '.shopifyseo-theme-page #services .svc-grid',
+          '.shopifyseo-theme-page .tst-grid',
+          '.shopifyseo-theme-page .ind-grid',
+          '.wpseo-theme-page .pain-grid',
+          '.wpseo-theme-page #services .svc-grid',
+          '.ecom-theme-page .pain-grid',
+          '.ecom-theme-page #services .svc-grid',
+          '.b2b-theme-page .pain-grid',
+          '.b2b-theme-page #services .svc-grid',
+          '.saasseo-theme-page .pain-grid',
+          '.saasseo-theme-page #services .svc-grid',
+          '.gp-theme-page .pain-grid',
+          '.gp-theme-page #services .svc-grid',
+          '.rest-theme-page .pain-grid',
+          '.rest-theme-page #services .svc-grid',
+          '.hc-theme-page .pain-grid',
+          '.hc-theme-page #services .svc-grid',
+          '.re-theme-page .pain-grid',
+          '.re-theme-page #services .svc-grid',
           '.aibot-theme-page .prob-list',
           '.aibot-theme-page #why .why-grid',
           '.aibot-theme-page .tst-grid',
@@ -1563,6 +1623,19 @@
         document.body.classList.contains('page-dm') &&
         track.classList.contains('service-grid') &&
         track.closest('#services')
+      ) {
+        return '(max-width: 980px)';
+      }
+      if (
+        document.body.classList.contains('page-shopifyseo') ||
+        document.body.classList.contains('page-wpseo') ||
+        document.body.classList.contains('page-ecomseo') ||
+        document.body.classList.contains('page-b2bseo') ||
+        document.body.classList.contains('page-saasseo') ||
+        document.body.classList.contains('page-gpseo') ||
+        document.body.classList.contains('page-restseo') ||
+        document.body.classList.contains('page-hcseo') ||
+        document.body.classList.contains('page-reseo')
       ) {
         return '(max-width: 980px)';
       }
@@ -1744,6 +1817,8 @@
       const start = () => {
         stop();
         if (!isMobile(track) || reduce) return;
+        // Process strips: swipe only — no autoplay
+        if (track.hasAttribute('data-thm-swipe-only')) return;
         timer = setInterval(next, AUTO_MS);
       };
 
@@ -1786,6 +1861,45 @@
 
       syncCarouselClass();
       if (isMobile(track)) start();
+    });
+  })();
+
+  // Related services: keep RTL marquee seamless if set widths drift
+  (function initKrRelatedMarquee() {
+    const shells = document.querySelectorAll('[data-kr-related-marquee]');
+    if (!shells.length) return;
+
+    const reduce =
+      window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    shells.forEach((shell) => {
+      const track = shell.querySelector('[data-kr-related-track]');
+      if (!track) return;
+      const sets = track.querySelectorAll('.kr-related-set');
+      if (sets.length < 2) return;
+
+      if (reduce) {
+        track.style.animation = 'none';
+        return;
+      }
+
+      // Pause while pointer is down / touch-dragging the strip
+      let resumeTimer = 0;
+      const pause = () => {
+        track.style.animationPlayState = 'paused';
+        if (resumeTimer) window.clearTimeout(resumeTimer);
+      };
+      const resume = () => {
+        if (resumeTimer) window.clearTimeout(resumeTimer);
+        resumeTimer = window.setTimeout(() => {
+          track.style.animationPlayState = '';
+        }, 900);
+      };
+      shell.addEventListener('pointerdown', pause, { passive: true });
+      shell.addEventListener('pointerup', resume, { passive: true });
+      shell.addEventListener('pointerleave', resume, { passive: true });
+      shell.addEventListener('touchstart', pause, { passive: true });
+      shell.addEventListener('touchend', resume, { passive: true });
     });
   })();
 })();

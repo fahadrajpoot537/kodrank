@@ -23,8 +23,7 @@ class WpRefDesign
             'monthly-seo-services',
             'saas-seo-services',
             'b2b-seo-services',
-            'ecommerce-seo-services',
-            'wordpress-seo-services',
+            // wordpress / ecommerce / shopify SEO: keep pure theme CSS (webdev-ref was hiding cards)
             'guest-posting-services',
             'restaurant-seo-services',
             'healthcare-seo-services',
@@ -62,8 +61,7 @@ class WpRefDesign
             'monthly-seo-services',
             'saas-seo-services',
             'b2b-seo-services',
-            'ecommerce-seo-services',
-            'wordpress-seo-services',
+            // wordpress / ecommerce / shopify SEO: own CSS (dm-motion carousels hid body cards)
             'guest-posting-services',
             'restaurant-seo-services',
             'healthcare-seo-services',

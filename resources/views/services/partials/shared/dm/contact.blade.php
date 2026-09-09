@@ -5,6 +5,12 @@
   $simple = $simple ?? (!empty($fields['name_label']) || empty($fields['first_name_label']));
   $points = $ct['points'] ?? [];
   $meta = $ct['meta'] ?? [];
+  if (empty($meta) || ! is_array($meta)) {
+      $meta = [
+          ['label' => 'Email us', 'value' => $c['site']['email'] ?? 'info@kodrank.com', 'icon_key' => 'email'],
+          ['label' => 'Call us', 'value' => $c['site']['phone'] ?? '+92 305 9202732', 'icon_key' => 'phone'],
+      ];
+  }
 @endphp
 <section id="contact" class="sec-mist">
   <div class="wrap">
@@ -24,28 +30,26 @@
           </ul>
         @endif
 
-        @if(!empty($meta))
-          <div class="contact-meta">
-            @foreach($meta as $m)
-              @php
-                $metaLabel = $m['label'] ?? '';
-                $metaValue = $m['value'] ?? '';
-                if (stripos($metaLabel, 'email') !== false && $metaValue === '') { $metaValue = $c['site']['email'] ?? ''; }
-                if ((stripos($metaLabel, 'phone') !== false || stripos($metaLabel, 'call') !== false) && $metaValue === '') { $metaValue = $c['site']['phone'] ?? ''; }
-                $metaHref = null;
-                if (stripos($metaLabel, 'email') !== false && $metaValue !== '') { $metaHref = 'mailto:'.$metaValue; }
-                elseif ((stripos($metaLabel, 'phone') !== false || stripos($metaLabel, 'call') !== false) && $metaValue !== '') { $metaHref = 'tel:'.preg_replace('/[^\d+]/', '', $metaValue); }
-              @endphp
-              <div class="cm-item">
-                <div class="cm-icon">@include('services.partials.digital-marketing.icon', ['key' => $m['icon_key'] ?? 'email'])</div>
-                <div>
-                  <div class="label">{{ $metaLabel }}</div>
-                  <div class="value">@if($metaHref)<a href="{{ $metaHref }}">{{ $metaValue }}</a>@else{{ $metaValue }}@endif</div>
-                </div>
+        <div class="contact-meta">
+          @foreach($meta as $m)
+            @php
+              $metaLabel = $m['label'] ?? '';
+              $metaValue = $m['value'] ?? '';
+              if (stripos($metaLabel, 'email') !== false && $metaValue === '') { $metaValue = $c['site']['email'] ?? 'info@kodrank.com'; }
+              if ((stripos($metaLabel, 'phone') !== false || stripos($metaLabel, 'call') !== false) && $metaValue === '') { $metaValue = $c['site']['phone'] ?? '+92 305 9202732'; }
+              $metaHref = null;
+              if (stripos($metaLabel, 'email') !== false && $metaValue !== '') { $metaHref = 'mailto:'.$metaValue; }
+              elseif ((stripos($metaLabel, 'phone') !== false || stripos($metaLabel, 'call') !== false) && $metaValue !== '') { $metaHref = 'tel:'.preg_replace('/[^\d+]/', '', $metaValue); }
+            @endphp
+            <div class="cm-item">
+              <div class="cm-icon">@include('services.partials.digital-marketing.icon', ['key' => $m['icon_key'] ?? 'email'])</div>
+              <div>
+                <div class="label">{{ $metaLabel }}</div>
+                <div class="value">@if($metaHref)<a href="{{ $metaHref }}">{{ $metaValue }}</a>@else{{ $metaValue }}@endif</div>
               </div>
-            @endforeach
-          </div>
-        @endif
+            </div>
+          @endforeach
+        </div>
       </div>
 
       <form class="contact-card" method="POST" action="{{ route('seo-services.inquiry.store') }}">

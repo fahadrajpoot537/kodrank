@@ -1343,6 +1343,21 @@ html body.page-dm-motion .webdev-ref{
   overflow-y:visible !important;
 }
 
+/* Niche SEO theme roots (not all get page-dm-motion) — same sticky fix */
+html body.page-shopifyseo .shopifyseo-theme-page.theme-html-root,
+html body.page-ecomseo .ecom-theme-page.theme-html-root,
+html body.page-wpseo .wpseo-theme-page.theme-html-root,
+html body.page-saasseo .saasseo-theme-page.theme-html-root,
+html body.page-b2bseo .b2b-theme-page.theme-html-root,
+html body.page-gpseo .gp-theme-page.theme-html-root,
+html body.page-restseo .rest-theme-page.theme-html-root,
+html body.page-hcseo .hc-theme-page.theme-html-root,
+html body.page-reseo .re-theme-page.theme-html-root,
+html body.page-theme-html .theme-html-root {
+  overflow-x: clip !important;
+  overflow-y: visible !important;
+}
+
 /* KodRank layout hero is the only hero — hide leftover imported theme heroes */
 html body.page-dm-motion .theme-html-root > section.hero,
 html body.page-dm-motion .theme-html-root > .hero {
@@ -3669,3 +3684,500 @@ html body.page-elec .elec-theme-page .cmp li .ic {
   }
 }
 
+
+/* ========== Niche SEO safety (loads last) ========== */
+/* Never leave theme reveal nodes invisible */
+html body.page-theme-html .theme-html-root .rv,
+html body.page-theme-html .theme-html-root .rev,
+html body.page-theme-html .theme-html-root .reveal,
+html body.page-theme-html .theme-html-root .fade-up,
+html body.page-dm-motion .theme-html-root .rv,
+html body.page-dm-motion .theme-html-root .rev,
+html body.page-dm-motion .theme-html-root .reveal,
+html body.page-dm-motion .theme-html-root .fade-up {
+  opacity: 1 !important;
+  transform: none !important;
+  visibility: visible !important;
+}
+
+/* GEO-matching hero spacing for every SEO motion page */
+html body.page-dm-motion.page-service .hero {
+  min-height: 0 !important;
+  padding-top: calc(84px + 24px) !important;
+  padding-bottom: clamp(36px, 4.5vw, 64px) !important;
+  display: flex !important;
+  align-items: flex-start !important;
+  justify-content: flex-start !important;
+}
+@media (max-width: 900px) {
+  html body.page-dm-motion.page-service .hero {
+    padding-top: calc(64px + 16px) !important;
+    padding-bottom: 32px !important;
+  }
+}
+@media (max-width: 680px) {
+  html body.page-dm-motion.page-service .hero {
+    padding-top: calc(56px + 12px) !important;
+    padding-bottom: 28px !important;
+  }
+}
+
+/* Mobile: stop card grids overflowing — keep logo-aligned .wrap gutters */
+@media (max-width: 767px) {
+  html body.page-theme-html .theme-html-root {
+    min-width: 0 !important;
+    box-sizing: border-box !important;
+  }
+  html body.page-theme-html .theme-html-root .wrap {
+    max-width: var(--maxw) !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    padding-left: var(--pad) !important;
+    padding-right: var(--pad) !important;
+    min-width: 0 !important;
+    box-sizing: border-box !important;
+  }
+  html body.page-theme-html .theme-html-root section {
+    overflow-x: clip !important;
+  }
+  html body.page-theme-html .theme-html-root .pain-grid:not([data-thm-carousel]):not(.thm-mobile-carousel),
+  html body.page-theme-html .theme-html-root .svc-grid:not([data-thm-carousel]):not(.thm-mobile-carousel):not(.page-svc-stack),
+  html body.page-theme-html .theme-html-root .serv-grid:not([data-thm-carousel]):not(.thm-mobile-carousel),
+  html body.page-theme-html .theme-html-root .proc-grid:not([data-thm-stack]):not(.page-svc-stack):not([data-thm-carousel]):not(.thm-mobile-carousel),
+  html body.page-theme-html .theme-html-root .proc:not([data-thm-stack]):not(.page-svc-stack):not([data-thm-carousel]):not(.thm-mobile-carousel),
+  html body.page-theme-html .theme-html-root .loop-grid:not([data-thm-carousel]):not(.thm-mobile-carousel),
+  html body.page-theme-html .theme-html-root .tst-grid:not([data-thm-carousel]):not(.thm-mobile-carousel),
+  html body.page-theme-html .theme-html-root .test-grid:not([data-thm-carousel]):not(.thm-mobile-carousel),
+  html body.page-theme-html .theme-html-root .feature-grid:not([data-thm-carousel]):not(.thm-mobile-carousel),
+  html body.page-theme-html .theme-html-root .why-grid:not([data-thm-carousel]):not(.thm-mobile-carousel),
+  html body.page-theme-html .theme-html-root .industry-grid:not([data-thm-carousel]):not(.thm-mobile-carousel),
+  html body.page-theme-html .theme-html-root .ind-grid:not([data-thm-carousel]):not(.thm-mobile-carousel),
+  html body.page-theme-html .theme-html-root .grid.g-3:not([data-thm-carousel]),
+  html body.page-theme-html .theme-html-root .grid.g-4:not([data-thm-carousel]),
+  html body.page-theme-html .theme-html-root .grid.g3:not([data-thm-carousel]) {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    gap: 14px !important;
+    box-sizing: border-box !important;
+  }
+  html body.page-theme-html .theme-html-root .pain,
+  html body.page-theme-html .theme-html-root .pain-card,
+  html body.page-theme-html .theme-html-root .svc,
+  html body.page-theme-html .theme-html-root .svc-card,
+  html body.page-theme-html .theme-html-root .serv-card,
+  html body.page-theme-html .theme-html-root .proc-step,
+  html body.page-theme-html .theme-html-root .proc-card,
+  html body.page-theme-html .theme-html-root .step,
+  html body.page-theme-html .theme-html-root .loop-card,
+  html body.page-theme-html .theme-html-root .tst,
+  html body.page-theme-html .theme-html-root .tst-card,
+  html body.page-theme-html .theme-html-root .test-card,
+  html body.page-theme-html .theme-html-root .feat,
+  html body.page-theme-html .theme-html-root .feat-card {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    box-sizing: border-box !important;
+    overflow-wrap: anywhere !important;
+  }
+}
+
+/* Carousel cards must stay inside the viewport width */
+@media (max-width: 767px) {
+  html body.page-dm-motion .webdev-ref .pain-grid > *,
+  html body.page-dm-motion .webdev-ref .svc-grid > *,
+  html body.page-dm-motion .webdev-ref .proc-grid > *,
+  html body.page-dm-motion .webdev-ref .tst-grid > *,
+  html body.page-dm-motion .webdev-ref .test-grid > *,
+  html body.page-dm-motion .webdev-ref .feature-grid > *,
+  html body.page-dm-motion .webdev-ref [data-thm-carousel] > * {
+    flex: 0 0 100% !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    box-sizing: border-box !important;
+  }
+}
+
+/* Logo-aligned content shell (beats any max-width:100% leftovers) */
+html body.page-theme-html.page-service .theme-html-root .wrap,
+html body.page-dm-motion.page-service .theme-html-root .wrap,
+html body.page-service .hero > .wrap {
+  max-width: var(--maxw) !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  padding-left: var(--pad) !important;
+  padding-right: var(--pad) !important;
+  box-sizing: border-box !important;
+}
+
+/*
+ * DM sheet styles bare .proc as one card. Niche themes that use
+ * .proc as a grid of .proc-step / .pstep children must stay shell-only.
+ */
+html body.page-theme-html.page-service .theme-html-root .proc:has(> .proc-step),
+html body.page-theme-html.page-service .theme-html-root .proc:has(> .pstep),
+html body.page-theme-html.page-service .theme-html-root #process .proc:has(> article) {
+  background: transparent !important;
+  background-color: transparent !important;
+  border: none !important;
+  border-top: none !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  transform: none !important;
+}
+html body.page-theme-html.page-service .theme-html-root .proc:has(> .proc-step):hover,
+html body.page-theme-html.page-service .theme-html-root .proc:has(> .pstep):hover,
+html body.page-theme-html.page-service .theme-html-root #process .proc:has(> article):hover {
+  box-shadow: none !important;
+  transform: none !important;
+}
+
+/* ── Niche theme-html: mobile card carousels / swipe strips ── */
+@media (max-width: 980px) {
+  html body.page-theme-html.page-service .theme-html-root .pain-grid.thm-mobile-carousel[data-thm-carousel],
+  html body.page-theme-html.page-service .theme-html-root .svc-grid.thm-mobile-carousel[data-thm-carousel],
+  html body.page-theme-html.page-service .theme-html-root .serv-grid.thm-mobile-carousel[data-thm-carousel],
+  html body.page-theme-html.page-service .theme-html-root .proc.thm-mobile-carousel[data-thm-carousel],
+  html body.page-theme-html.page-service .theme-html-root .proc-grid.thm-mobile-carousel[data-thm-carousel],
+  html body.page-theme-html.page-service .theme-html-root .loop-grid.thm-mobile-carousel[data-thm-carousel],
+  html body.page-theme-html.page-service .theme-html-root .tst-grid.thm-mobile-carousel[data-thm-carousel],
+  html body.page-theme-html.page-service .theme-html-root .ind-grid.thm-mobile-carousel[data-thm-carousel],
+  html body.page-theme-html.page-service .theme-html-root #industries .ind-grid.thm-mobile-carousel[data-thm-carousel],
+  html body.page-theme-html.page-service .theme-html-root #industries .why-mobile-carousel > .ind-grid,
+  html body.page-theme-html.page-service .theme-html-root [data-thm-carousel].thm-mobile-carousel,
+  html body.page-theme-html.page-service .theme-html-root #process .proc.thm-mobile-carousel[data-thm-carousel],
+  html body.page-theme-html.page-service .theme-html-root #services .svc-grid.thm-mobile-carousel[data-thm-carousel] {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    align-items: stretch !important;
+    gap: 14px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    height: auto !important;
+    margin-top: 0 !important;
+    padding: 0 2px 6px !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    -webkit-overflow-scrolling: touch !important;
+    scroll-snap-type: x mandatory !important;
+    overscroll-behavior-x: contain !important;
+    grid-template-columns: none !important;
+    grid-template-rows: none !important;
+    scrollbar-width: none !important;
+    touch-action: pan-x !important;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+  }
+
+  html body.page-theme-html.page-service .theme-html-root [data-thm-carousel].thm-mobile-carousel::-webkit-scrollbar {
+    display: none !important;
+    height: 0 !important;
+  }
+
+  html body.page-theme-html.page-service .theme-html-root .pain-grid.thm-mobile-carousel[data-thm-carousel] > *,
+  html body.page-theme-html.page-service .theme-html-root .svc-grid.thm-mobile-carousel[data-thm-carousel] > *,
+  html body.page-theme-html.page-service .theme-html-root .serv-grid.thm-mobile-carousel[data-thm-carousel] > *,
+  html body.page-theme-html.page-service .theme-html-root .proc.thm-mobile-carousel[data-thm-carousel] > *,
+  html body.page-theme-html.page-service .theme-html-root .proc-grid.thm-mobile-carousel[data-thm-carousel] > *,
+  html body.page-theme-html.page-service .theme-html-root .loop-grid.thm-mobile-carousel[data-thm-carousel] > *,
+  html body.page-theme-html.page-service .theme-html-root .tst-grid.thm-mobile-carousel[data-thm-carousel] > *,
+  html body.page-theme-html.page-service .theme-html-root .ind-grid.thm-mobile-carousel[data-thm-carousel] > *,
+  html body.page-theme-html.page-service .theme-html-root #industries .ind-grid.thm-mobile-carousel[data-thm-carousel] > *,
+  html body.page-theme-html.page-service .theme-html-root [data-thm-carousel].thm-mobile-carousel > * {
+    flex: 0 0 100% !important;
+    width: 100% !important;
+    min-width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    min-height: 0 !important;
+    box-sizing: border-box !important;
+    scroll-snap-align: start !important;
+    scroll-snap-stop: always !important;
+    overflow-wrap: anywhere !important;
+    word-break: break-word !important;
+  }
+
+  /* Stack leftovers never paint a second outer card on carousel children */
+  html body.page-theme-html.page-service .theme-html-root [data-thm-carousel].thm-mobile-carousel > .svc-stack-item,
+  html body.page-theme-html.page-service .theme-html-root [data-thm-carousel].thm-mobile-carousel > .svc-stack-pair {
+    flex: 0 0 100% !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: transparent !important;
+    border: 0 !important;
+    box-shadow: none !important;
+    position: relative !important;
+    top: auto !important;
+    transform: none !important;
+  }
+
+  html body.page-theme-html.page-service .theme-html-root .why-mobile-carousel {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    overflow: visible !important;
+  }
+
+  html body.page-theme-html.page-service .theme-html-root .wrap > .testi-dots.thm-carousel-dots,
+  html body.page-theme-html.page-service .theme-html-root .why-mobile-carousel + .testi-dots.thm-carousel-dots,
+  html body.page-theme-html.page-service .theme-html-root [data-thm-carousel] + .thm-carousel-nav-wrap + .testi-dots.thm-carousel-dots,
+  html body.page-theme-html.page-service .theme-html-root [data-thm-carousel] + .testi-dots.thm-carousel-dots,
+  html body.page-theme-html.page-service .theme-html-root .testi-dots.thm-carousel-dots:not([hidden]) {
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    width: 100%;
+    margin-top: 18px;
+    padding: 4px 0;
+    min-height: 18px;
+  }
+
+  html body.page-theme-html.page-service .theme-html-root .wrap > .thm-carousel-nav-wrap,
+  html body.page-theme-html.page-service .theme-html-root .thm-carousel-nav-wrap {
+    display: none !important;
+  }
+
+  html body.page-theme-html.page-service .theme-html-root .thm-carousel-dots .testi-dot {
+    width: 10px !important;
+    height: 10px !important;
+    min-width: 10px !important;
+    min-height: 10px !important;
+    border-radius: 50% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    border: 2px solid transparent !important;
+    background: #c5d4ce !important;
+    cursor: pointer;
+    flex-shrink: 0;
+    appearance: none;
+    -webkit-appearance: none;
+    font-size: 0 !important;
+    line-height: 0 !important;
+    color: transparent !important;
+    transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+    box-shadow: 0 0 0 8px transparent;
+  }
+  html body.page-theme-html.page-service .theme-html-root .thm-carousel-dots .testi-dot.is-active {
+    background: var(--signal, #f47a1f) !important;
+    border-color: rgba(244, 122, 31, 0.25) !important;
+    transform: scale(1.2);
+    box-shadow: 0 0 0 6px rgba(244, 122, 31, 0.12);
+  }
+  html body.page-theme-html.page-service .theme-html-root .sec-ink .thm-carousel-dots .testi-dot:not(.is-active),
+  html body.page-theme-html.page-service .theme-html-root .sec.sec-ink .thm-carousel-dots .testi-dot:not(.is-active) {
+    background: rgba(255, 255, 255, 0.45) !important;
+  }
+
+  /* Keep process card chrome intact inside swipe strip */
+  html body.page-theme-html.page-service .theme-html-root #process .proc.thm-mobile-carousel[data-thm-carousel] > .proc-step,
+  html body.page-theme-html.page-service .theme-html-root #process .proc.thm-mobile-carousel[data-thm-carousel] > .svc-stack-item > .proc-step {
+    background: #fff !important;
+    border: 1px solid var(--line, #e1e9e5) !important;
+    border-top: 3px solid var(--signal, #f47a1f) !important;
+    border-radius: 18px !important;
+    padding: 24px 20px !important;
+    box-shadow: 0 1px 2px rgba(13, 32, 41, 0.04), 0 10px 28px -16px rgba(13, 32, 41, 0.16) !important;
+  }
+
+  /* Process stack shell — only when .page-svc-stack is active (not bare data-thm-stack) */
+  html body.page-theme-html.page-service .theme-html-root #process .proc-grid.page-svc-stack,
+  html body.page-theme-html.page-service .theme-html-root #process .proc.page-svc-stack,
+  html body.page-theme-html.page-service .theme-html-root #process .steps.page-svc-stack,
+  html body.page-theme-html.page-service .theme-html-root.webdev-ref #process .proc-grid.page-svc-stack,
+  html body.page-theme-html.page-service .theme-html-root.webdev-ref #process .steps.page-svc-stack {
+    display: block !important;
+    grid-template-columns: none !important;
+    grid-template-rows: none !important;
+    gap: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    overflow: visible !important;
+  }
+  html body.page-theme-html.page-service .theme-html-root #process .page-svc-stack .svc-stack-item {
+    position: sticky !important;
+    top: calc(var(--svc-stack-nav, 68px) + (var(--index0, 0) * var(--svc-stack-peek, 14px))) !important;
+    z-index: calc(1 + var(--index0, 0)) !important;
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    height: auto !important;
+    margin: 0 0 var(--svc-stack-gap, 20px) !important;
+    padding: 0 !important;
+    box-sizing: border-box !important;
+    background: transparent !important;
+    border: 0 !important;
+    box-shadow: none !important;
+    transform: none !important;
+  }
+  html body.page-theme-html.page-service .theme-html-root #process .page-svc-stack .svc-stack-item:last-child {
+    margin-bottom: 0 !important;
+  }
+  html body.page-theme-html.page-service .theme-html-root #process .page-svc-stack .svc-stack-item > .proc-step,
+  html body.page-theme-html.page-service .theme-html-root #process .page-svc-stack .svc-stack-item > .step,
+  html body.page-theme-html.page-service .theme-html-root #process .page-svc-stack .svc-stack-item > .proc-card {
+    width: 100% !important;
+    max-width: 100% !important;
+    transform-origin: center top !important;
+  }
+
+  /* Services dark cards stay inside viewport */
+  html body.page-theme-html.page-service .theme-html-root #services .svc-grid.thm-mobile-carousel[data-thm-carousel] > .svc-card,
+  html body.page-theme-html.page-service .theme-html-root #services .svc-grid.thm-mobile-carousel[data-thm-carousel] > .svc,
+  html body.page-theme-html.page-service .theme-html-root #services .svc-grid.thm-mobile-carousel[data-thm-carousel] > .svc-stack-item > .svc-card {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    box-sizing: border-box !important;
+  }
+}
+
+/* WP SEO desktop process: white cards (beats home.css .step + loads last) */
+@media (min-width: 981px) {
+  html body.page-wpseo.page-service .wpseo-theme-page #process .proc-grid:not(.page-svc-stack),
+  html body.page-wpseo.page-service .wpseo-theme-page #process .proc-grid[data-thm-stack]:not(.page-svc-stack) {
+    display: grid !important;
+    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+    gap: 22px !important;
+  }
+  html body.page-wpseo.page-service .wpseo-theme-page #process .proc-grid:not(.page-svc-stack) > .step,
+  html body.page-wpseo.page-service .wpseo-theme-page #process .proc-grid[data-thm-stack]:not(.page-svc-stack) > .step {
+    background: #fff !important;
+    background-color: #fff !important;
+    border: 1px solid var(--line, #e1e9e5) !important;
+    border-top: 3px solid var(--signal, #f47a1f) !important;
+    border-radius: 18px !important;
+    box-shadow: 0 1px 2px rgba(13, 32, 41, 0.05), 0 6px 18px -8px rgba(13, 32, 41, 0.1) !important;
+    padding: 28px 24px !important;
+    color: var(--graphite, #0d2029) !important;
+    overflow: hidden !important;
+  }
+  html body.page-wpseo.page-service .wpseo-theme-page #process .proc-grid:not(.page-svc-stack) > .step::before,
+  html body.page-wpseo.page-service .wpseo-theme-page #process .proc-grid[data-thm-stack]:not(.page-svc-stack) > .step::before {
+    content: none !important;
+    display: none !important;
+  }
+  html body.page-wpseo.page-service .wpseo-theme-page #process .proc-grid:not(.page-svc-stack) .step h4 {
+    color: var(--graphite, #0d2029) !important;
+  }
+  html body.page-wpseo.page-service .wpseo-theme-page #process .proc-grid:not(.page-svc-stack) .step p {
+    color: var(--slate, #4b5b62) !important;
+  }
+  html body.page-wpseo.page-service .wpseo-theme-page #process .proc-grid:not(.page-svc-stack) .step .num {
+    color: var(--signal-deep, #c45e12) !important;
+    background: transparent !important;
+  }
+}
+@media (min-width: 981px) and (max-width: 1080px) {
+  html body.page-wpseo.page-service .wpseo-theme-page #process .proc-grid:not(.page-svc-stack),
+  html body.page-wpseo.page-service .wpseo-theme-page #process .proc-grid[data-thm-stack]:not(.page-svc-stack) {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 20px !important;
+  }
+}
+
+/* SaaS development: services card text black + compare medium layout */
+html body.page-saas.page-service .saas-theme-page #services .svc,
+html body.page-saas.page-service .saas-theme-page #services .svc-grid > .svc,
+html body.page-saas.page-service .saas-theme-page.webdev-ref #services .svc,
+html body.page-saas.page-service .saas-theme-page #services .why-mobile-carousel .svc,
+html body.page-saas.page-service .saas-theme-page #services .why-mobile-carousel .svc-grid > .svc {
+  color: #000 !important;
+}
+html body.page-saas.page-service .saas-theme-page #services .svc h4,
+html body.page-saas.page-service .saas-theme-page #services .svc-grid > .svc h4,
+html body.page-saas.page-service .saas-theme-page.webdev-ref #services .svc h4,
+html body.page-saas.page-service .saas-theme-page #services .why-mobile-carousel .svc h4,
+html body.page-saas.page-service .saas-theme-page #services article.svc h4 {
+  color: #000 !important;
+  -webkit-text-fill-color: #000 !important;
+}
+html body.page-saas.page-service .saas-theme-page #services .svc p,
+html body.page-saas.page-service .saas-theme-page #services .svc-grid > .svc p,
+html body.page-saas.page-service .saas-theme-page.webdev-ref #services .svc p,
+html body.page-saas.page-service .saas-theme-page #services .why-mobile-carousel .svc p,
+html body.page-saas.page-service .saas-theme-page #services article.svc p {
+  color: #000 !important;
+  -webkit-text-fill-color: #000 !important;
+}
+
+/* Compare cards: stack on medium; never treat .cmp as a 2-col grid */
+html body.page-saas.page-service .saas-theme-page #compare .cmp-grid,
+html body.page-saas.page-service .saas-theme-page.webdev-ref #compare .cmp-grid {
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  gap: 18px !important;
+  width: 100% !important;
+}
+html body.page-saas.page-service .saas-theme-page #compare .cmp,
+html body.page-saas.page-service .saas-theme-page.webdev-ref #compare .cmp,
+html body.page-saas.page-service .saas-theme-page #compare .cmp-grid > .cmp {
+  display: block !important;
+  grid-template-columns: none !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+}
+html body.page-saas.page-service .saas-theme-page #compare .cmp .cmp-h {
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  width: 100% !important;
+  margin-bottom: 20px !important;
+  padding-bottom: 16px !important;
+  border-bottom: 1px solid var(--line-dark, rgba(244, 122, 31, 0.16)) !important;
+}
+html body.page-saas.page-service .saas-theme-page #compare .cmp ul {
+  display: grid !important;
+  gap: 13px !important;
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  list-style: none !important;
+}
+@media (max-width: 1080px) {
+  html body.page-saas.page-service .saas-theme-page #compare .cmp-grid,
+  html body.page-saas.page-service .saas-theme-page.webdev-ref #compare .cmp-grid {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+}
+
+/* SaaS SEO services cards: black text on white tiles (not dark-ink white copy) */
+html body.page-saasseo.page-service .saasseo-theme-page #services .svc,
+html body.page-saasseo.page-service .saasseo-theme-page #services .svc-grid > .svc,
+html body.page-saasseo.page-service .saasseo-theme-page #services article.svc,
+html body.page-saasseo.page-service .saasseo-theme-page.webdev-ref #services .svc,
+html body.page-saasseo.page-service .saasseo-theme-page #services .why-mobile-carousel .svc {
+  color: #000 !important;
+}
+html body.page-saasseo.page-service .saasseo-theme-page #services .svc h3,
+html body.page-saasseo.page-service .saasseo-theme-page #services .svc h4,
+html body.page-saasseo.page-service .saasseo-theme-page #services article.svc h4,
+html body.page-saasseo.page-service .saasseo-theme-page.webdev-ref #services .svc h4,
+html body.page-saasseo.page-service .saasseo-theme-page #services .why-mobile-carousel .svc h4 {
+  color: #000 !important;
+  -webkit-text-fill-color: #000 !important;
+}
+html body.page-saasseo.page-service .saasseo-theme-page #services .svc p,
+html body.page-saasseo.page-service .saasseo-theme-page #services article.svc p,
+html body.page-saasseo.page-service .saasseo-theme-page.webdev-ref #services .svc p,
+html body.page-saasseo.page-service .saasseo-theme-page #services .why-mobile-carousel .svc p {
+  color: #000 !important;
+  -webkit-text-fill-color: #000 !important;
+}

@@ -23,10 +23,12 @@ html body.page-monthly.page-service #contact .contact-side .compare-list .mark.v
   color: var(--graphite, #0d2029) !important;
 }
 
-/* A little more air above + below hero copy */
+/* A little more air above + below hero copy — match GEO / dm-motion */
 html body.page-monthly.page-service .hero {
-  padding-top: calc(84px + 36px) !important;
-  padding-bottom: clamp(44px, 5vw, 72px) !important;
+  min-height: 0 !important;
+  padding-top: calc(84px + 24px) !important;
+  padding-bottom: clamp(36px, 4.5vw, 64px) !important;
+  align-items: flex-start !important;
 }
 html body.page-monthly.page-service .hero .breadcrumb,
 html body.page-monthly.page-service .hero .crumbs {
@@ -50,8 +52,8 @@ html body.page-monthly.page-service .hero .hero-trust {
 }
 @media (max-width: 900px) {
   html body.page-monthly.page-service .hero {
-    padding-top: calc(64px + 24px) !important;
-    padding-bottom: 36px !important;
+    padding-top: calc(64px + 16px) !important;
+    padding-bottom: 32px !important;
   }
   html body.page-monthly.page-service .hero .lede,
   html body.page-monthly.page-service .hero p.sub {

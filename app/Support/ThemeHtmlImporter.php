@@ -294,15 +294,45 @@ class ThemeHtmlImporter
 
             if ($badges === [] && preg_match('/<div\b[^>]*class=["\'][^"\']*\bhero-trust\b[^"\']*["\'][^>]*>(.*?)<\/div>/is', $chunk, $trustWrap)) {
                 $inner = $trustWrap[1];
-                if (preg_match_all('/<span[^>]*>\s*(?:<svg\b[^>]*>.*?<\/svg>\s*)?(.*?)<\/span>/is', $inner, $spans, PREG_SET_ORDER)) {
+                // Real-estate / similar: .t-num + .t-lab
+                if (preg_match_all(
+                    '/<(?:div|span)\b[^>]*class=["\'][^"\']*\bt-num\b[^"\']*["\'][^>]*>(.*?)<\/(?:div|span)>\s*<(?:div|span)\b[^>]*class=["\'][^"\']*\bt-lab\b[^"\']*["\'][^>]*>(.*?)<\/(?:div|span)>/is',
+                    $inner,
+                    $tRows,
+                    PREG_SET_ORDER
+                )) {
+                    foreach ($tRows as $row) {
+                        $num = trim(html_entity_decode(strip_tags($row[1]), ENT_QUOTES | ENT_HTML5, 'UTF-8'));
+                        $label = trim(html_entity_decode(strip_tags($row[2]), ENT_QUOTES | ENT_HTML5, 'UTF-8'));
+                        if ($num !== '' || $label !== '') {
+                            $badges[] = ['num' => $num, 'label' => $label];
+                        }
+                    }
+                }
+                // B2B-style: .n + .l
+                if ($badges === [] && preg_match_all(
+                    '/<(?:div|span)\b[^>]*class=["\'][^"\']*\bn\b[^"\']*["\'][^>]*>(.*?)<\/(?:div|span)>\s*<(?:div|span)\b[^>]*class=["\'][^"\']*\bl\b[^"\']*["\'][^>]*>(.*?)<\/(?:div|span)>/is',
+                    $inner,
+                    $nRows,
+                    PREG_SET_ORDER
+                )) {
+                    foreach ($nRows as $row) {
+                        $num = trim(html_entity_decode(strip_tags($row[1]), ENT_QUOTES | ENT_HTML5, 'UTF-8'));
+                        $label = trim(html_entity_decode(strip_tags($row[2]), ENT_QUOTES | ENT_HTML5, 'UTF-8'));
+                        if ($num !== '' || $label !== '') {
+                            $badges[] = ['num' => $num, 'label' => $label];
+                        }
+                    }
+                }
+                if ($badges === [] && preg_match_all('/<span[^>]*>\s*(?:<svg\b[^>]*>.*?<\/svg>\s*)?(.*?)<\/span>/is', $inner, $spans, PREG_SET_ORDER)) {
                     foreach ($spans as $span) {
-                        $text = trim(strip_tags($span[1]));
+                        $text = trim(html_entity_decode(strip_tags($span[1]), ENT_QUOTES | ENT_HTML5, 'UTF-8'));
                         if ($text !== '') {
                             $trustPoints[] = $text;
                         }
                     }
                 }
-                if ($trustPoints === [] && preg_match_all('/<div>\s*<div class=["\']num["\']>(.*?)<\/div>\s*<div class=["\']lbl["\']>(.*?)<\/div>\s*<\/div>/is', $inner, $trust, PREG_SET_ORDER)) {
+                if ($trustPoints === [] && $badges === [] && preg_match_all('/<div>\s*<div class=["\']num["\']>(.*?)<\/div>\s*<div class=["\']lbl["\']>(.*?)<\/div>\s*<\/div>/is', $inner, $trust, PREG_SET_ORDER)) {
                     foreach ($trust as $row) {
                         $num = trim(strip_tags($row[1]));
                         $label = trim(strip_tags($row[2]));
@@ -350,6 +380,42 @@ class ThemeHtmlImporter
                             $badges[] = ['num' => $num, 'label' => $label];
                         }
                     }
+                }
+            }
+
+            // WordPress / niche: .hero-stats > .st > .sn + .sl
+            if ($badges === [] && preg_match_all(
+                '/<(?:div|article)\b[^>]*class=["\'][^"\']*\bst\b[^"\']*["\'][^>]*>\s*<(?:div|span)\b[^>]*class=["\'][^"\']*\bsn\b[^"\']*["\'][^>]*>(.*?)<\/(?:div|span)>\s*<(?:div|span)\b[^>]*class=["\'][^"\']*\bsl\b[^"\']*["\'][^>]*>(.*?)<\/(?:div|span)>/is',
+                $chunk,
+                $stRows,
+                PREG_SET_ORDER
+            )) {
+                foreach ($stRows as $row) {
+                    $num = trim(html_entity_decode(strip_tags($row[1]), ENT_QUOTES | ENT_HTML5, 'UTF-8'));
+                    $label = trim(html_entity_decode(strip_tags($row[2]), ENT_QUOTES | ENT_HTML5, 'UTF-8'));
+                    if ($num !== '' || $label !== '') {
+                        $badges[] = ['num' => $num, 'label' => $label];
+                    }
+                }
+            }
+
+            // eCommerce / niche: ul.hero-list > li trust ticks
+            if ($trustPoints === [] && preg_match('/<ul\b[^>]*class=["\'][^"\']*\bhero-list\b[^"\']*["\'][^>]*>(.*?)<\/ul>/is', $chunk, $listWrap)) {
+                if (preg_match_all('/<li\b[^>]*>(.*?)<\/li>/is', $listWrap[1], $lis, PREG_SET_ORDER)) {
+                    foreach ($lis as $li) {
+                        $text = trim(html_entity_decode(strip_tags($li[1]), ENT_QUOTES | ENT_HTML5, 'UTF-8'));
+                        if ($text !== '') {
+                            $trustPoints[] = $text;
+                        }
+                    }
+                }
+            }
+
+            // WordPress: p.hero-note under CTA
+            if ($trustPoints === [] && preg_match('/<p\b[^>]*class=["\'][^"\']*\bhero-note\b[^"\']*["\'][^>]*>(.*?)<\/p>/is', $chunk, $note)) {
+                $text = trim(html_entity_decode(strip_tags($note[1]), ENT_QUOTES | ENT_HTML5, 'UTF-8'));
+                if ($text !== '') {
+                    $trustPoints[] = $text;
                 }
             }
         }
@@ -600,6 +666,22 @@ class ThemeHtmlImporter
             $body = self::scopeCss($body, $scopeClass);
             $body = "/* imported theme CSS — scoped to .{$scopeClass} (site nav/footer/hero stay KodRank) */\n".$body;
         }
+
+        // Theme reveal classes must never hide content (JS may lag; KodRank strips theme IO scripts).
+        $body = preg_replace(
+            '/(\.(?:rv|rev|reveal|fade-up)\b[^{]*\{[^}]*?)opacity\s*:\s*0\s*;/i',
+            '$1opacity:1;',
+            $body
+        ) ?? $body;
+        $body .= "\n/* KodRank: keep reveal nodes visible */\n"
+            .($scopeClass !== '' ? '.'.ltrim($scopeClass, '.').' ' : '')
+            .".rv,\n"
+            .($scopeClass !== '' ? '.'.ltrim($scopeClass, '.').' ' : '')
+            .".rev,\n"
+            .($scopeClass !== '' ? '.'.ltrim($scopeClass, '.').' ' : '')
+            .".reveal,\n"
+            .($scopeClass !== '' ? '.'.ltrim($scopeClass, '.').' ' : '')
+            .".fade-up{opacity:1!important;transform:none!important;visibility:visible!important}\n";
 
         file_put_contents($path, $body);
     }

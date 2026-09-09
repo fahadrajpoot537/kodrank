@@ -145,6 +145,10 @@ class WhiteLabelSeoServiceSeeder extends Seeder
                 'title_html' => 'Apply to become a <span class="hl">SEO partner</span>',
                 'lede' => 'Tell us about your agency, typical client size, and how many accounts you want to onboard.',
                 'points' => ['Partner inquiry — not a client lead form.', 'We reply within 1 business day.'],
+                'meta' => [
+                    ['label' => 'Email us', 'value' => 'info@kodrank.com', 'icon_key' => 'email'],
+                    ['label' => 'Call us', 'value' => '+92 305 9202732', 'icon_key' => 'phone'],
+                ],
                 'fields' => [
                     'name_label' => 'Your name',
                     'email_label' => 'Agency email',

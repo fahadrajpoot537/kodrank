@@ -30,12 +30,19 @@
       <div class="svc-viewport">
         <div class="svc-track">
           @foreach($cards as $card)
-            <article class="svc-card svc-slide">
+            @php
+              $cardTitle = trim((string) ($card['title'] ?? ''));
+              $cardBody = trim((string) ($card['body'] ?? $card['text'] ?? ''));
+              $titleOnly = $cardBody === '';
+            @endphp
+            <article class="svc-card svc-slide{{ $titleOnly ? ' svc-card--title' : '' }}">
               <div class="tile">
                 @include('services.partials.digital-marketing.icon', ['key' => $card['icon_key'] ?? 'onpage'])
               </div>
-              <h3>{{ $card['title'] ?? '' }}</h3>
-              <p>{{ $card['body'] ?? $card['text'] ?? '' }}</p>
+              <h3>{{ $cardTitle }}</h3>
+              @if(!$titleOnly)
+                <p>{{ $cardBody }}</p>
+              @endif
               @if(!empty($card['bullets']))
                 <ul class="compare-list" style="margin-top:14px">
                   @foreach($card['bullets'] as $bullet)

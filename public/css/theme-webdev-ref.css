@@ -47,10 +47,11 @@
 
 .theme-html-root.webdev-ref .wrap,
 .webdev-ref .wrap{
-  max-width:var(--max);
-  margin:0 auto;
-  padding-left:var(--pad);
-  padding-right:var(--pad);
+  max-width:var(--maxw, var(--max, 1600px)) !important;
+  margin:0 auto !important;
+  padding-left:var(--pad) !important;
+  padding-right:var(--pad) !important;
+  box-sizing:border-box !important;
 }
 
 .theme-html-root.webdev-ref section:not(.hero):not(.trust),
@@ -909,20 +910,20 @@
   font-weight:650;
 }
 
-/* Compare (WP .compare-card) */
+/* Compare (WP .compare-card) — only the grid shell, never .cmp card faces */
 .theme-html-root.webdev-ref .compare-wrap,
 .theme-html-root.webdev-ref .cmp-grid,
-.theme-html-root.webdev-ref .cmp,
-.webdev-ref .compare-wrap{
+.webdev-ref .compare-wrap,
+.webdev-ref .cmp-grid{
   display:grid;
   grid-template-columns:1fr 1fr;
   gap:18px;
 }
-@media (max-width:820px){
+@media (max-width:1080px){
   .theme-html-root.webdev-ref .compare-wrap,
   .theme-html-root.webdev-ref .cmp-grid,
-  .theme-html-root.webdev-ref .cmp,
-  .webdev-ref .compare-wrap{grid-template-columns:1fr}
+  .webdev-ref .compare-wrap,
+  .webdev-ref .cmp-grid{grid-template-columns:1fr}
 }
 .theme-html-root.webdev-ref .compare-card,
 .theme-html-root.webdev-ref .cmp-card,

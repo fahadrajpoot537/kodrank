@@ -261,7 +261,7 @@
 .monthly-theme-page .foot-bottom .fb-contact{display:flex;gap:26px;flex-wrap:wrap}
 .monthly-theme-page .foot-bottom .fb-contact a{color:#B7CBD2;font-size:.85rem;display:flex;align-items:center;gap:7px}
 .monthly-theme-page .foot-bottom .fb-contact svg{width:15px;height:15px;color:var(--signal)}
-.monthly-theme-page .reveal{opacity:0;transform:translateY(22px);transition:opacity .6s ease,transform .6s ease}
+.monthly-theme-page .reveal{opacity:1;transform:none;transition:opacity .6s ease,transform .6s ease}
 .monthly-theme-page .reveal.in{opacity:1;transform:none}
 
 

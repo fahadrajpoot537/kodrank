@@ -1,0 +1,339 @@
+/**
+ * Real Estate SEO Services page-only extras.
+ * Loaded only via seo.extra_css — scoped so other pages are unaffected.
+ */
+html body.page-reseo.page-service .re-theme-page.theme-html-root {
+  /* namespace hook */
+}
+
+html body.page-reseo.page-service .re-theme-page .sec-paper,
+html body.page-reseo.page-service .re-theme-page .sec-mist,
+html body.page-reseo.page-service .re-theme-page .sec-ink {
+  position: relative;
+}
+
+html body.page-reseo.page-service .hero-eyebrow { display: none !important; }
+
+html body.page-reseo.page-service .hero-badges.hero-trust,
+html body.page-reseo.page-service .hero-trust.hero-badges {
+  margin-top: 1.25rem;
+}
+
+html body.page-reseo.page-service #contact .contact-side .compare-list .mark.v {
+  color: var(--graphite, #0d2029) !important;
+}
+
+/* Force reveal nodes visible (theme .rv starts at opacity:0) */
+html body.page-reseo.page-service .re-theme-page .rv,
+html body.page-reseo.page-service .re-theme-page .reveal,
+html body.page-reseo.page-service .re-theme-page .rev,
+html body.page-reseo.page-service .re-theme-page .fade-up {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+/* Carousel dots chrome (JS inserts .thm-carousel-dots; visible on mobile) */
+html body.page-reseo.page-service .re-theme-page .testi-dots.thm-carousel-dots {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  width: 100%;
+  margin-top: 18px;
+  padding: 4px 0;
+  min-height: 18px;
+}
+html body.page-reseo.page-service .re-theme-page .thm-carousel-dots .testi-dot {
+  width: 10px;
+  height: 10px;
+  min-width: 10px;
+  min-height: 10px;
+  border-radius: 50%;
+  padding: 0;
+  margin: 0;
+  border: 2px solid transparent;
+  background: #c5d4ce;
+  cursor: pointer;
+  flex-shrink: 0;
+  appearance: none;
+  -webkit-appearance: none;
+  font-size: 0;
+  line-height: 0;
+  color: transparent;
+  transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+  box-shadow: 0 0 0 8px transparent;
+}
+html body.page-reseo.page-service .re-theme-page .thm-carousel-dots .testi-dot.is-active {
+  background: var(--signal, #f47a1f);
+  border-color: rgba(244, 122, 31, 0.25);
+  transform: scale(1.2);
+  box-shadow: 0 0 0 6px rgba(244, 122, 31, 0.12);
+}
+html body.page-reseo.page-service .re-theme-page .thm-carousel-nav-wrap {
+  display: none !important;
+}
+
+/* Card faces stay opaque / readable inside sticky stacks */
+html body.page-reseo.page-service .re-theme-page .svc-stack-item > .pain,
+html body.page-reseo.page-service .re-theme-page .svc-stack-item > .pain-card,
+html body.page-reseo.page-service .re-theme-page .svc-stack-item > .svc,
+html body.page-reseo.page-service .re-theme-page .svc-stack-item > .svc-card,
+html body.page-reseo.page-service .re-theme-page .svc-stack-item > .proc-step,
+html body.page-reseo.page-service .re-theme-page .svc-stack-item > .step,
+html body.page-reseo.page-service .re-theme-page .svc-stack-item > .loop-card,
+html body.page-reseo.page-service .re-theme-page .svc-stack-item > .tst,
+html body.page-reseo.page-service .re-theme-page .svc-stack-item > .tst-card {
+  opacity: 1 !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+/* —— KodRank lock: visible content + GEO hero spacing + mobile cards —— */
+html body.page-service .re-theme-page .rv,
+html body.page-service .re-theme-page .rev,
+html body.page-service .re-theme-page .reveal,
+html body.page-service .re-theme-page .fade-up {
+  opacity: 1 !important;
+  transform: none !important;
+  visibility: visible !important;
+}
+html body.page-reseo.page-service .hero {
+  min-height: 0 !important;
+  padding-top: calc(84px + 24px) !important;
+  padding-bottom: clamp(36px, 4.5vw, 64px) !important;
+  align-items: flex-start !important;
+}
+@media (max-width: 900px) {
+  html body.page-reseo.page-service .hero {
+    padding-top: calc(64px + 16px) !important;
+    padding-bottom: 32px !important;
+  }
+}
+@media (max-width: 767px) {
+  html body.page-reseo.page-service .re-theme-page {
+    min-width: 0 !important;
+    box-sizing: border-box !important;
+  }
+  html body.page-reseo.page-service .re-theme-page .wrap {
+    max-width: var(--maxw) !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    padding-left: var(--pad) !important;
+    padding-right: var(--pad) !important;
+    min-width: 0 !important;
+    box-sizing: border-box !important;
+  }
+  html body.page-reseo.page-service .re-theme-page section {
+    overflow-x: clip !important;
+  }
+  html body.page-reseo.page-service .re-theme-page .pain-grid:not([data-thm-carousel]):not(.thm-mobile-carousel),
+  html body.page-reseo.page-service .re-theme-page .svc-grid:not([data-thm-carousel]):not(.thm-mobile-carousel):not(.page-svc-stack),
+  html body.page-reseo.page-service .re-theme-page .serv-grid:not([data-thm-carousel]):not(.thm-mobile-carousel),
+  html body.page-reseo.page-service .re-theme-page .proc-grid:not([data-thm-stack]):not(.page-svc-stack):not([data-thm-carousel]),
+  html body.page-reseo.page-service .re-theme-page .proc:not([data-thm-stack]):not(.page-svc-stack):not([data-thm-carousel]),
+  html body.page-reseo.page-service .re-theme-page .loop-grid:not([data-thm-carousel]):not(.thm-mobile-carousel),
+  html body.page-reseo.page-service .re-theme-page .tst-grid:not([data-thm-carousel]):not(.thm-mobile-carousel),
+  html body.page-reseo.page-service .re-theme-page .test-grid:not([data-thm-carousel]):not(.thm-mobile-carousel),
+  html body.page-reseo.page-service .re-theme-page .feature-grid:not([data-thm-carousel]):not(.thm-mobile-carousel),
+  html body.page-reseo.page-service .re-theme-page .why-grid:not([data-thm-carousel]):not(.thm-mobile-carousel),
+  html body.page-reseo.page-service .re-theme-page .industry-grid:not([data-thm-carousel]):not(.thm-mobile-carousel),
+  html body.page-reseo.page-service .re-theme-page .ind-grid:not([data-thm-carousel]):not(.thm-mobile-carousel) {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    gap: 14px !important;
+    box-sizing: border-box !important;
+  }
+  html body.page-reseo.page-service .re-theme-page .pain,
+  html body.page-reseo.page-service .re-theme-page .pain-card,
+  html body.page-reseo.page-service .re-theme-page .svc,
+  html body.page-reseo.page-service .re-theme-page .svc-card,
+  html body.page-reseo.page-service .re-theme-page .serv-card,
+  html body.page-reseo.page-service .re-theme-page .proc-step,
+  html body.page-reseo.page-service .re-theme-page .proc-card,
+  html body.page-reseo.page-service .re-theme-page .step,
+  html body.page-reseo.page-service .re-theme-page .loop-card,
+  html body.page-reseo.page-service .re-theme-page .tst,
+  html body.page-reseo.page-service .re-theme-page .tst-card,
+  html body.page-reseo.page-service .re-theme-page .test-card,
+  html body.page-reseo.page-service .re-theme-page .feat,
+  html body.page-reseo.page-service .re-theme-page .feat-card {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    box-sizing: border-box !important;
+    overflow-wrap: anywhere !important;
+  }
+}
+
+
+/* —— Mobile motion: carousel + swipe-up stack (desktop untouched) —— */
+/* Width only — do not restyle desktop process cards */
+html body.page-reseo.page-service .re-theme-page #process .proc-step,
+html body.page-reseo.page-service .re-theme-page #process .svc-stack-item > .proc-step,
+html body.page-reseo.page-service .re-theme-page #process .step,
+html body.page-reseo.page-service .re-theme-page #process .svc-stack-item > .step {
+  width: 100% !important;
+  max-width: 100% !important;
+  min-width: 0 !important;
+  box-sizing: border-box !important;
+}
+
+@media (max-width: 980px) {
+  /* Horizontal carousels — pain / services / testimonials */
+  html body.page-reseo.page-service .re-theme-page #pain .pain-grid.thm-mobile-carousel[data-thm-carousel],
+  html body.page-reseo.page-service .re-theme-page .pain-grid.thm-mobile-carousel[data-thm-carousel],
+  html body.page-reseo.page-service .re-theme-page #services .svc-grid.thm-mobile-carousel[data-thm-carousel],
+  html body.page-reseo.page-service .re-theme-page #services .svc-card.thm-mobile-carousel[data-thm-carousel],
+  html body.page-reseo.page-service .re-theme-page .tst-grid.thm-mobile-carousel[data-thm-carousel],
+  html body.page-reseo.page-service .re-theme-page .test-grid.thm-mobile-carousel[data-thm-carousel],
+  html body.page-reseo.page-service .re-theme-page .ind-grid.thm-mobile-carousel[data-thm-carousel] {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    align-items: stretch !important;
+    gap: 14px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    height: auto !important;
+    margin-top: 0 !important;
+    padding: 0 2px 6px !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    -webkit-overflow-scrolling: touch !important;
+    scroll-snap-type: x mandatory !important;
+    overscroll-behavior-x: contain !important;
+    grid-template-columns: none !important;
+    grid-template-rows: none !important;
+    scrollbar-width: none !important;
+    touch-action: pan-x !important;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+  }
+  html body.page-reseo.page-service .re-theme-page #pain .pain-grid.thm-mobile-carousel[data-thm-carousel]::-webkit-scrollbar,
+  html body.page-reseo.page-service .re-theme-page .pain-grid.thm-mobile-carousel[data-thm-carousel]::-webkit-scrollbar,
+  html body.page-reseo.page-service .re-theme-page #services .svc-grid.thm-mobile-carousel[data-thm-carousel]::-webkit-scrollbar,
+  html body.page-reseo.page-service .re-theme-page #services .svc-card.thm-mobile-carousel[data-thm-carousel]::-webkit-scrollbar,
+  html body.page-reseo.page-service .re-theme-page .tst-grid.thm-mobile-carousel[data-thm-carousel]::-webkit-scrollbar,
+  html body.page-reseo.page-service .re-theme-page .test-grid.thm-mobile-carousel[data-thm-carousel]::-webkit-scrollbar,
+  html body.page-reseo.page-service .re-theme-page .ind-grid.thm-mobile-carousel[data-thm-carousel]::-webkit-scrollbar {
+    display: none !important;
+    height: 0 !important;
+  }
+  html body.page-reseo.page-service .re-theme-page #pain .pain-grid.thm-mobile-carousel[data-thm-carousel] > *,
+  html body.page-reseo.page-service .re-theme-page .pain-grid.thm-mobile-carousel[data-thm-carousel] > *,
+  html body.page-reseo.page-service .re-theme-page #services .svc-grid.thm-mobile-carousel[data-thm-carousel] > *,
+  html body.page-reseo.page-service .re-theme-page #services .svc-card.thm-mobile-carousel[data-thm-carousel] > *,
+  html body.page-reseo.page-service .re-theme-page .tst-grid.thm-mobile-carousel[data-thm-carousel] > *,
+  html body.page-reseo.page-service .re-theme-page .test-grid.thm-mobile-carousel[data-thm-carousel] > *,
+  html body.page-reseo.page-service .re-theme-page .ind-grid.thm-mobile-carousel[data-thm-carousel] > * {
+    flex: 0 0 100% !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    height: auto !important;
+    box-sizing: border-box !important;
+    scroll-snap-align: start !important;
+    scroll-snap-stop: always !important;
+    overflow-wrap: anywhere !important;
+  }
+  html body.page-reseo.page-service .re-theme-page .wrap > .testi-dots.thm-carousel-dots,
+  html body.page-reseo.page-service .re-theme-page .why-mobile-carousel + .testi-dots.thm-carousel-dots,
+  html body.page-reseo.page-service .re-theme-page [data-thm-carousel] + .thm-carousel-nav-wrap + .testi-dots.thm-carousel-dots,
+  html body.page-reseo.page-service .re-theme-page [data-thm-carousel] + .testi-dots.thm-carousel-dots,
+  html body.page-reseo.page-service .re-theme-page .testi-dots.thm-carousel-dots:not([hidden]) {
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    width: 100%;
+    margin-top: 18px;
+    padding: 4px 0;
+    min-height: 18px;
+  }
+  html body.page-reseo.page-service .re-theme-page .thm-carousel-nav-wrap {
+    display: none !important;
+  }
+  html body.page-reseo.page-service .re-theme-page .thm-carousel-dots .testi-dot {
+    width: 10px !important;
+    height: 10px !important;
+    min-width: 10px !important;
+    min-height: 10px !important;
+    border-radius: 50% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    border: 2px solid transparent !important;
+    background: #c5d4ce !important;
+    cursor: pointer;
+    flex-shrink: 0;
+    appearance: none;
+    -webkit-appearance: none;
+    font-size: 0 !important;
+    line-height: 0 !important;
+    transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+    box-shadow: 0 0 0 8px transparent;
+  }
+  html body.page-reseo.page-service .re-theme-page .thm-carousel-dots .testi-dot.is-active {
+    background: var(--signal, #f47a1f) !important;
+    border-color: rgba(244, 122, 31, 0.25) !important;
+    transform: scale(1.2);
+    box-shadow: 0 0 0 6px rgba(244, 122, 31, 0.12);
+  }
+  html body.page-reseo.page-service .re-theme-page .sec-ink .thm-carousel-dots .testi-dot:not(.is-active) {
+    background: rgba(255, 255, 255, 0.45) !important;
+  }
+
+  /* Process: sticky swipe-up stack (shell transparent; faces opaque) */
+  html body.page-reseo.page-service .re-theme-page #process .proc.page-svc-stack,
+  html body.page-reseo.page-service .re-theme-page #process .proc-grid.page-svc-stack,
+  html body.page-reseo.page-service .re-theme-page #process .proc[data-thm-stack],
+  html body.page-reseo.page-service .re-theme-page #process .proc-grid[data-thm-stack] {
+    display: block !important;
+    grid-template-columns: none !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    overflow: visible !important;
+  }
+  html body.page-reseo.page-service .re-theme-page #process .svc-stack-item {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    background: transparent !important;
+    border: 0 !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+  }
+  html body.page-reseo.page-service .re-theme-page #process .proc-step,
+html body.page-reseo.page-service .re-theme-page #process .svc-stack-item > .proc-step,
+html body.page-reseo.page-service .re-theme-page #process .step,
+html body.page-reseo.page-service .re-theme-page #process .svc-stack-item > .step {
+    background: #fff !important;
+    border: 1px solid var(--line, #e1e9e5) !important;
+    border-top: 3px solid var(--signal, #f47a1f) !important;
+    border-radius: 18px !important;
+    box-shadow: 0 1px 2px rgba(13, 32, 41, 0.04), 0 10px 28px -16px rgba(13, 32, 41, 0.16) !important;
+    padding: 24px 20px !important;
+    color: var(--graphite, #0d2029) !important;
+    isolation: isolate;
+    overflow: hidden !important;
+  }
+  html body.page-reseo.page-service .re-theme-page #process .proc-step h4,
+html body.page-reseo.page-service .re-theme-page #process .step h4 {
+    color: var(--graphite, #0d2029) !important;
+  }
+  html body.page-reseo.page-service .re-theme-page #process .proc-step p,
+html body.page-reseo.page-service .re-theme-page #process .step p {
+    color: var(--slate, #4b5b62) !important;
+  }
+}

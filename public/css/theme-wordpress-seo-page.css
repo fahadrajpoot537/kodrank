@@ -1,0 +1,434 @@
+/**
+ * WordPress SEO Services page-only extras.
+ * Loaded only via seo.extra_css — scoped so other pages are unaffected.
+ */
+html body.page-wpseo.page-service .wpseo-theme-page.theme-html-root {
+  /* namespace hook */
+}
+
+html body.page-wpseo.page-service .wpseo-theme-page .sec-paper,
+html body.page-wpseo.page-service .wpseo-theme-page .sec-mist,
+html body.page-wpseo.page-service .wpseo-theme-page .sec-ink {
+  position: relative;
+}
+
+html body.page-wpseo.page-service .hero-eyebrow { display: none !important; }
+
+html body.page-wpseo.page-service .hero-badges.hero-trust,
+html body.page-wpseo.page-service .hero-trust.hero-badges {
+  margin-top: 1.25rem;
+}
+
+html body.page-wpseo.page-service #contact .contact-side .compare-list .mark.v {
+  color: var(--graphite, #0d2029) !important;
+}
+
+/* Force reveal nodes visible (theme .rv starts at opacity:0) */
+html body.page-wpseo.page-service .wpseo-theme-page .rv,
+html body.page-wpseo.page-service .wpseo-theme-page .reveal,
+html body.page-wpseo.page-service .wpseo-theme-page .rev,
+html body.page-wpseo.page-service .wpseo-theme-page .fade-up {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+/* Card faces stay opaque / readable inside sticky stacks */
+html body.page-wpseo.page-service .wpseo-theme-page .svc-stack-item > .pain,
+html body.page-wpseo.page-service .wpseo-theme-page .svc-stack-item > .pain-card,
+html body.page-wpseo.page-service .wpseo-theme-page .svc-stack-item > .svc,
+html body.page-wpseo.page-service .wpseo-theme-page .svc-stack-item > .svc-card,
+html body.page-wpseo.page-service .wpseo-theme-page .svc-stack-item > .proc-step,
+html body.page-wpseo.page-service .wpseo-theme-page .svc-stack-item > .step,
+html body.page-wpseo.page-service .wpseo-theme-page .svc-stack-item > .loop-card,
+html body.page-wpseo.page-service .wpseo-theme-page .svc-stack-item > .tst,
+html body.page-wpseo.page-service .wpseo-theme-page .svc-stack-item > .tst-card {
+  opacity: 1 !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+/* —— KodRank lock: visible content + GEO hero spacing + mobile cards —— */
+html body.page-service .wpseo-theme-page .rv,
+html body.page-service .wpseo-theme-page .rev,
+html body.page-service .wpseo-theme-page .reveal,
+html body.page-service .wpseo-theme-page .fade-up {
+  opacity: 1 !important;
+  transform: none !important;
+  visibility: visible !important;
+}
+html body.page-wpseo.page-service .hero {
+  min-height: 0 !important;
+  padding-top: calc(84px + 24px) !important;
+  padding-bottom: clamp(36px, 4.5vw, 64px) !important;
+  align-items: flex-start !important;
+}
+@media (max-width: 900px) {
+  html body.page-wpseo.page-service .hero {
+    padding-top: calc(64px + 16px) !important;
+    padding-bottom: 32px !important;
+  }
+}
+@media (max-width: 767px) {
+  html body.page-wpseo.page-service .wpseo-theme-page {
+    min-width: 0 !important;
+    box-sizing: border-box !important;
+  }
+  html body.page-wpseo.page-service .wpseo-theme-page .wrap {
+    max-width: var(--maxw) !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    padding-left: var(--pad) !important;
+    padding-right: var(--pad) !important;
+    min-width: 0 !important;
+    box-sizing: border-box !important;
+  }
+  html body.page-wpseo.page-service .wpseo-theme-page section {
+    overflow-x: clip !important;
+  }
+  html body.page-wpseo.page-service .wpseo-theme-page .pain-grid:not([data-thm-carousel]):not(.thm-mobile-carousel),
+  html body.page-wpseo.page-service .wpseo-theme-page .svc-grid:not([data-thm-carousel]):not(.thm-mobile-carousel):not(.page-svc-stack),
+  html body.page-wpseo.page-service .wpseo-theme-page .serv-grid:not([data-thm-carousel]):not(.thm-mobile-carousel),
+  html body.page-wpseo.page-service .wpseo-theme-page .proc-grid:not([data-thm-stack]):not(.page-svc-stack):not([data-thm-carousel]),
+  html body.page-wpseo.page-service .wpseo-theme-page .proc:not([data-thm-stack]):not(.page-svc-stack):not([data-thm-carousel]),
+  html body.page-wpseo.page-service .wpseo-theme-page .loop-grid:not([data-thm-carousel]):not(.thm-mobile-carousel),
+  html body.page-wpseo.page-service .wpseo-theme-page .tst-grid:not([data-thm-carousel]):not(.thm-mobile-carousel),
+  html body.page-wpseo.page-service .wpseo-theme-page .test-grid:not([data-thm-carousel]):not(.thm-mobile-carousel),
+  html body.page-wpseo.page-service .wpseo-theme-page .feature-grid:not([data-thm-carousel]):not(.thm-mobile-carousel),
+  html body.page-wpseo.page-service .wpseo-theme-page .why-grid:not([data-thm-carousel]):not(.thm-mobile-carousel),
+  html body.page-wpseo.page-service .wpseo-theme-page .industry-grid:not([data-thm-carousel]):not(.thm-mobile-carousel),
+  html body.page-wpseo.page-service .wpseo-theme-page .ind-grid:not([data-thm-carousel]):not(.thm-mobile-carousel) {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    gap: 14px !important;
+    box-sizing: border-box !important;
+  }
+  html body.page-wpseo.page-service .wpseo-theme-page .pain,
+  html body.page-wpseo.page-service .wpseo-theme-page .pain-card,
+  html body.page-wpseo.page-service .wpseo-theme-page .svc,
+  html body.page-wpseo.page-service .wpseo-theme-page .svc-card,
+  html body.page-wpseo.page-service .wpseo-theme-page .serv-card,
+  html body.page-wpseo.page-service .wpseo-theme-page .proc-step,
+  html body.page-wpseo.page-service .wpseo-theme-page .proc-card,
+  html body.page-wpseo.page-service .wpseo-theme-page .step,
+  html body.page-wpseo.page-service .wpseo-theme-page .loop-card,
+  html body.page-wpseo.page-service .wpseo-theme-page .tst,
+  html body.page-wpseo.page-service .wpseo-theme-page .tst-card,
+  html body.page-wpseo.page-service .wpseo-theme-page .test-card,
+  html body.page-wpseo.page-service .wpseo-theme-page .feat,
+  html body.page-wpseo.page-service .wpseo-theme-page .feat-card {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    box-sizing: border-box !important;
+    overflow-wrap: anywhere !important;
+  }
+}
+
+/* Force all body content visible (beats leftover motion/stack CSS) */
+html body.page-wpseo.page-service .wpseo-theme-page,
+html body.page-wpseo.page-service .wpseo-theme-page section,
+html body.page-wpseo.page-service .wpseo-theme-page .wrap,
+html body.page-wpseo.page-service .wpseo-theme-page .pain-grid:not([data-thm-carousel]):not(.thm-mobile-carousel),
+html body.page-wpseo.page-service .wpseo-theme-page .svc-grid:not([data-thm-carousel]):not(.thm-mobile-carousel):not(.page-svc-stack),
+html body.page-wpseo.page-service .wpseo-theme-page .proc-grid:not([data-thm-stack]):not(.page-svc-stack):not([data-thm-carousel]),
+html body.page-wpseo.page-service .wpseo-theme-page .tst-grid {
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: none !important;
+}
+html body.page-wpseo.page-service .wpseo-theme-page .pain,
+html body.page-wpseo.page-service .wpseo-theme-page .svc,
+html body.page-wpseo.page-service .wpseo-theme-page .step,
+html body.page-wpseo.page-service .wpseo-theme-page .tst,
+html body.page-wpseo.page-service .wpseo-theme-page .rv {
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: none !important;
+}
+html body.page-wpseo.page-service .wpseo-theme-page .pain-grid {
+  display: grid !important;
+  grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+  gap: 22px !important;
+}
+html body.page-wpseo.page-service .wpseo-theme-page .svc-grid {
+  display: grid !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  gap: 22px !important;
+}
+html body.page-wpseo.page-service .wpseo-theme-page .proc-grid,
+html body.page-wpseo.page-service .wpseo-theme-page #process .proc-grid,
+html body.page-wpseo.page-service .wpseo-theme-page #process .proc-grid[data-thm-stack]:not(.page-svc-stack) {
+  display: grid !important;
+  grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+  gap: 22px !important;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  overflow: visible !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  transform: none !important;
+  filter: none !important;
+}
+/* Desktop/tablet: white process cards (not flat timeline / not home.css dark tiles) */
+html body.page-wpseo.page-service .wpseo-theme-page #process .proc-grid:not(.page-svc-stack) > .step,
+html body.page-wpseo.page-service .wpseo-theme-page #process .proc-grid[data-thm-stack]:not(.page-svc-stack) > .step {
+  width: auto !important;
+  max-width: none !important;
+  min-width: 0 !important;
+  height: auto !important;
+  padding: 28px 24px !important;
+  margin: 0 !important;
+  background: #fff !important;
+  background-color: #fff !important;
+  border: 1px solid var(--line, #e1e9e5) !important;
+  border-top: 3px solid var(--signal, #f47a1f) !important;
+  border-radius: var(--r-card, 18px) !important;
+  box-shadow: var(--sh-sm, 0 1px 2px rgba(13, 32, 41, 0.05), 0 6px 18px -8px rgba(13, 32, 41, 0.1)) !important;
+  position: relative !important;
+  isolation: isolate !important;
+  overflow: hidden !important;
+  color: var(--graphite, #0d2029) !important;
+  box-sizing: border-box !important;
+  transition: transform 0.25s ease, box-shadow 0.25s ease !important;
+}
+html body.page-wpseo.page-service .wpseo-theme-page #process .proc-grid:not(.page-svc-stack) > .step:hover,
+html body.page-wpseo.page-service .wpseo-theme-page #process .proc-grid[data-thm-stack]:not(.page-svc-stack) > .step:hover {
+  transform: translateY(-4px) !important;
+  box-shadow: var(--sh-md, 0 2px 4px rgba(13, 32, 41, 0.05), 0 18px 40px -20px rgba(13, 32, 41, 0.22)) !important;
+}
+html body.page-wpseo.page-service .wpseo-theme-page #process .proc-grid:not(.page-svc-stack) > .step:not(:last-child),
+html body.page-wpseo.page-service .wpseo-theme-page #process .proc-grid[data-thm-stack]:not(.page-svc-stack) > .step:not(:last-child) {
+  padding-right: 24px !important;
+}
+html body.page-wpseo.page-service .wpseo-theme-page #process .proc-grid:not(.page-svc-stack) > .step::before,
+html body.page-wpseo.page-service .wpseo-theme-page #process .proc-grid[data-thm-stack]:not(.page-svc-stack) > .step::before {
+  content: none !important;
+  display: none !important;
+}
+html body.page-wpseo.page-service .wpseo-theme-page #process .proc-grid:not(.page-svc-stack) .step .num {
+  font-size: 0.8rem !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.08em !important;
+  color: var(--signal-deep, #c45e12) !important;
+  text-transform: uppercase !important;
+  background: transparent !important;
+  display: block !important;
+  width: auto !important;
+  height: auto !important;
+  border-radius: 0 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+html body.page-wpseo.page-service .wpseo-theme-page #process .proc-grid:not(.page-svc-stack) .step h4 {
+  font-size: 1.25rem !important;
+  font-weight: 650 !important;
+  margin: 14px 0 10px !important;
+  color: var(--graphite, #0d2029) !important;
+}
+html body.page-wpseo.page-service .wpseo-theme-page #process .proc-grid:not(.page-svc-stack) .step p {
+  font-size: 0.93rem !important;
+  color: var(--slate, #4b5b62) !important;
+  margin: 0 !important;
+  line-height: 1.58 !important;
+}
+html body.page-wpseo.page-service .wpseo-theme-page .tst-grid {
+  display: grid !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  gap: 22px !important;
+}
+html body.page-wpseo.page-service .wpseo-theme-page #services.sec-ink .svc,
+html body.page-wpseo.page-service .wpseo-theme-page .sec-ink .svc {
+  background: var(--ink-2, #0f2a33) !important;
+  border: 1px solid rgba(244, 122, 31, 0.16) !important;
+  color: #b7cbd2 !important;
+}
+html body.page-wpseo.page-service .wpseo-theme-page #services.sec-ink .svc h4,
+html body.page-wpseo.page-service .wpseo-theme-page .sec-ink .svc h4 {
+  color: #fff !important;
+}
+html body.page-wpseo.page-service .wpseo-theme-page #services.sec-ink .svc p,
+html body.page-wpseo.page-service .wpseo-theme-page #services.sec-ink .svc li {
+  color: #b7cbd2 !important;
+}
+html body.page-wpseo.page-service .wpseo-theme-page #why .pain,
+html body.page-wpseo.page-service .wpseo-theme-page .sec-paper .pain {
+  background: #fff !important;
+  border: 1px solid var(--line, #e1e9e5) !important;
+  border-top: 3px solid var(--signal, #f47a1f) !important;
+  color: var(--graphite, #0d2029) !important;
+}
+html body.page-wpseo.page-service .wpseo-theme-page #why .pain h4 {
+  color: var(--graphite, #0d2029) !important;
+}
+html body.page-wpseo.page-service .wpseo-theme-page #why .pain p {
+  color: var(--slate, #4b5b62) !important;
+}
+@media (max-width: 1080px) {
+  html body.page-wpseo.page-service .wpseo-theme-page .pain-grid:not([data-thm-carousel]):not(.thm-mobile-carousel),
+  html body.page-wpseo.page-service .wpseo-theme-page .svc-grid:not([data-thm-carousel]):not(.thm-mobile-carousel):not(.page-svc-stack),
+  html body.page-wpseo.page-service .wpseo-theme-page .proc-grid:not(.page-svc-stack),
+  html body.page-wpseo.page-service .wpseo-theme-page #process .proc-grid[data-thm-stack]:not(.page-svc-stack),
+  html body.page-wpseo.page-service .wpseo-theme-page .tst-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+  html body.page-wpseo.page-service .wpseo-theme-page .proc-grid:not(.page-svc-stack),
+  html body.page-wpseo.page-service .wpseo-theme-page #process .proc-grid[data-thm-stack]:not(.page-svc-stack) {
+    gap: 20px !important;
+  }
+  html body.page-wpseo.page-service .wpseo-theme-page #process .proc-grid:not(.page-svc-stack) > .step:not(:last-child),
+  html body.page-wpseo.page-service .wpseo-theme-page #process .proc-grid[data-thm-stack]:not(.page-svc-stack) > .step:not(:last-child) {
+    padding-right: 24px !important;
+  }
+}
+@media (max-width: 760px) {
+  html body.page-wpseo.page-service .wpseo-theme-page .pain-grid:not([data-thm-carousel]):not(.thm-mobile-carousel),
+  html body.page-wpseo.page-service .wpseo-theme-page .svc-grid:not([data-thm-carousel]):not(.thm-mobile-carousel):not(.page-svc-stack),
+  html body.page-wpseo.page-service .wpseo-theme-page .proc-grid:not(.page-svc-stack),
+  html body.page-wpseo.page-service .wpseo-theme-page #process .proc-grid[data-thm-stack]:not(.page-svc-stack),
+  html body.page-wpseo.page-service .wpseo-theme-page .tst-grid {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+}
+
+
+/* —— Mobile motion: carousel + swipe-up stack (desktop untouched) —— */
+/* Width helpers only for active mobile stack faces */
+html body.page-wpseo.page-service .wpseo-theme-page #process .page-svc-stack .step,
+html body.page-wpseo.page-service .wpseo-theme-page #process .page-svc-stack .svc-stack-item > .step,
+html body.page-wpseo.page-service .wpseo-theme-page #process .page-svc-stack .proc-step,
+html body.page-wpseo.page-service .wpseo-theme-page #process .page-svc-stack .svc-stack-item > .proc-step {
+  width: 100% !important;
+  max-width: 100% !important;
+  min-width: 0 !important;
+  box-sizing: border-box !important;
+}
+
+@media (max-width: 980px) {
+  /* Horizontal carousels — pain / services / testimonials */
+  html body.page-wpseo.page-service .wpseo-theme-page #pain .pain-grid.thm-mobile-carousel[data-thm-carousel],
+  html body.page-wpseo.page-service .wpseo-theme-page .pain-grid.thm-mobile-carousel[data-thm-carousel],
+  html body.page-wpseo.page-service .wpseo-theme-page #services .svc-grid.thm-mobile-carousel[data-thm-carousel],
+  html body.page-wpseo.page-service .wpseo-theme-page #services .svc-card.thm-mobile-carousel[data-thm-carousel],
+  html body.page-wpseo.page-service .wpseo-theme-page .tst-grid.thm-mobile-carousel[data-thm-carousel],
+  html body.page-wpseo.page-service .wpseo-theme-page .test-grid.thm-mobile-carousel[data-thm-carousel],
+  html body.page-wpseo.page-service .wpseo-theme-page .ind-grid.thm-mobile-carousel[data-thm-carousel] {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    align-items: stretch !important;
+    gap: 14px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    height: auto !important;
+    margin-top: 0 !important;
+    padding: 0 2px 6px !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    -webkit-overflow-scrolling: touch !important;
+    scroll-snap-type: x mandatory !important;
+    overscroll-behavior-x: contain !important;
+    grid-template-columns: none !important;
+    grid-template-rows: none !important;
+    scrollbar-width: none !important;
+    touch-action: pan-x !important;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+  }
+  html body.page-wpseo.page-service .wpseo-theme-page #pain .pain-grid.thm-mobile-carousel[data-thm-carousel]::-webkit-scrollbar,
+  html body.page-wpseo.page-service .wpseo-theme-page .pain-grid.thm-mobile-carousel[data-thm-carousel]::-webkit-scrollbar,
+  html body.page-wpseo.page-service .wpseo-theme-page #services .svc-grid.thm-mobile-carousel[data-thm-carousel]::-webkit-scrollbar,
+  html body.page-wpseo.page-service .wpseo-theme-page #services .svc-card.thm-mobile-carousel[data-thm-carousel]::-webkit-scrollbar,
+  html body.page-wpseo.page-service .wpseo-theme-page .tst-grid.thm-mobile-carousel[data-thm-carousel]::-webkit-scrollbar,
+  html body.page-wpseo.page-service .wpseo-theme-page .test-grid.thm-mobile-carousel[data-thm-carousel]::-webkit-scrollbar,
+  html body.page-wpseo.page-service .wpseo-theme-page .ind-grid.thm-mobile-carousel[data-thm-carousel]::-webkit-scrollbar {
+    display: none !important;
+    height: 0 !important;
+  }
+  html body.page-wpseo.page-service .wpseo-theme-page #pain .pain-grid.thm-mobile-carousel[data-thm-carousel] > *,
+  html body.page-wpseo.page-service .wpseo-theme-page .pain-grid.thm-mobile-carousel[data-thm-carousel] > *,
+  html body.page-wpseo.page-service .wpseo-theme-page #services .svc-grid.thm-mobile-carousel[data-thm-carousel] > *,
+  html body.page-wpseo.page-service .wpseo-theme-page #services .svc-card.thm-mobile-carousel[data-thm-carousel] > *,
+  html body.page-wpseo.page-service .wpseo-theme-page .tst-grid.thm-mobile-carousel[data-thm-carousel] > *,
+  html body.page-wpseo.page-service .wpseo-theme-page .test-grid.thm-mobile-carousel[data-thm-carousel] > *,
+  html body.page-wpseo.page-service .wpseo-theme-page .ind-grid.thm-mobile-carousel[data-thm-carousel] > * {
+    flex: 0 0 100% !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    height: auto !important;
+    box-sizing: border-box !important;
+    scroll-snap-align: start !important;
+    scroll-snap-stop: always !important;
+    overflow-wrap: anywhere !important;
+  }
+  html body.page-wpseo.page-service .wpseo-theme-page .wrap > .testi-dots.thm-carousel-dots,
+  html body.page-wpseo.page-service .wpseo-theme-page .why-mobile-carousel + .testi-dots.thm-carousel-dots {
+    display: flex !important;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 16px;
+  }
+
+  /* Process: sticky swipe-up stack — only when stack is active */
+  html body.page-wpseo.page-service .wpseo-theme-page #process .proc.page-svc-stack,
+  html body.page-wpseo.page-service .wpseo-theme-page #process .proc-grid.page-svc-stack,
+  html body.page-wpseo.page-service .wpseo-theme-page #process .loop-grid.page-svc-stack {
+    display: block !important;
+    grid-template-columns: none !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    overflow: visible !important;
+    gap: 0 !important;
+  }
+  html body.page-wpseo.page-service .wpseo-theme-page #process .page-svc-stack .svc-stack-item {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    background: transparent !important;
+    border: 0 !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+  }
+  html body.page-wpseo.page-service .wpseo-theme-page #process .page-svc-stack .step,
+  html body.page-wpseo.page-service .wpseo-theme-page #process .page-svc-stack .svc-stack-item > .step,
+  html body.page-wpseo.page-service .wpseo-theme-page #process .page-svc-stack .proc-step,
+  html body.page-wpseo.page-service .wpseo-theme-page #process .page-svc-stack .svc-stack-item > .proc-step {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    box-sizing: border-box !important;
+    background: #fff !important;
+    border: 1px solid var(--line, #e1e9e5) !important;
+    border-top: 3px solid var(--signal, #f47a1f) !important;
+    border-radius: 18px !important;
+    box-shadow: 0 1px 2px rgba(13, 32, 41, 0.04), 0 10px 28px -16px rgba(13, 32, 41, 0.16) !important;
+    padding: 24px 20px !important;
+    color: var(--graphite, #0d2029) !important;
+    isolation: isolate;
+    overflow: hidden !important;
+  }
+  html body.page-wpseo.page-service .wpseo-theme-page #process .page-svc-stack .step::before,
+  html body.page-wpseo.page-service .wpseo-theme-page #process .page-svc-stack .proc-step::before {
+    display: none !important;
+  }
+  html body.page-wpseo.page-service .wpseo-theme-page #process .page-svc-stack .step h4,
+  html body.page-wpseo.page-service .wpseo-theme-page #process .page-svc-stack .proc-step h4 {
+    color: var(--graphite, #0d2029) !important;
+  }
+  html body.page-wpseo.page-service .wpseo-theme-page #process .page-svc-stack .step p,
+  html body.page-wpseo.page-service .wpseo-theme-page #process .page-svc-stack .proc-step p {
+    color: var(--slate, #4b5b62) !important;
+  }
+}

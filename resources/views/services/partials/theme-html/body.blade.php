@@ -128,6 +128,9 @@
   if ($slug === 'real-estate-seo-services') {
       $scope = 're-theme-page';
   }
+  if ($slug === 'shopify-seo-services') {
+      $scope = 'shopifyseo-theme-page';
+  }
 
   // Strip mid-page FINAL CTA bands from all theme-html bodies.
   // GEO CTA embeds multi-MB base64 — use comment/class anchored cuts, not naive .*? regex.
@@ -170,20 +173,53 @@
               }
           }
       }
-      // Replace theme HTML contact blocks with the shared Laravel form below.
-      if (preg_match('/<section\b[^>]*\bid=["\']contact["\'][^>]*>/i', $html, $m, PREG_OFFSET_CAPTURE)) {
-          $start = (int) $m[0][1];
-          $rest = substr($html, $start + strlen($m[0][0]));
-          $endPos = stripos($rest, '</section>');
-          if ($endPos !== false) {
-              $endPos += strlen('</section>');
-              while ($endPos < strlen($rest) && ctype_space($rest[$endPos])) {
-                  $endPos++;
+      // Replace theme HTML contact / quote / form blocks with the shared Laravel form below.
+      foreach (['contact', 'quote'] as $formId) {
+          if (preg_match('/<section\b[^>]*\bid=["\']'.preg_quote($formId, '/').'["\'][^>]*>/i', $html, $m, PREG_OFFSET_CAPTURE)) {
+              $start = (int) $m[0][1];
+              $rest = substr($html, $start + strlen($m[0][0]));
+              $endPos = stripos($rest, '</section>');
+              if ($endPos !== false) {
+                  $endPos += strlen('</section>');
+                  while ($endPos < strlen($rest) && ctype_space($rest[$endPos])) {
+                      $endPos++;
+                  }
+                  $html = substr($html, 0, $start).substr($rest, $endPos);
               }
-              $html = substr($html, 0, $start).substr($rest, $endPos);
           }
       }
+      // Any leftover section that still embeds a <form> (theme contact clones).
+      while (preg_match('/<section\b[^>]*>[\s\S]*?<form\b/i', $html, $m, PREG_OFFSET_CAPTURE)) {
+          $start = (int) $m[0][1];
+          if (! preg_match('/<section\b[^>]*>/i', substr($html, $start), $open)) {
+              break;
+          }
+          $rest = substr($html, $start + strlen($open[0]));
+          $endPos = stripos($rest, '</section>');
+          if ($endPos === false) {
+              break;
+          }
+          $endPos += strlen('</section>');
+          while ($endPos < strlen($rest) && ctype_space($rest[$endPos])) {
+              $endPos++;
+          }
+          $html = substr($html, 0, $start).substr($rest, $endPos);
+      }
+
+      // details.faq: unwrap <summary><button>…</button></summary> so native accordion works
+      // (interactive button inside summary blocks toggle in Chromium/WebKit).
+      $html = preg_replace(
+          '/(<summary[^>]*>)\s*<button\b[^>]*>(.*?)<\/button>\s*(<\/summary>)/is',
+          '$1$2$3',
+          $html
+      ) ?? $html;
   }
+
+  $defaultContactMeta = [
+      ['label' => 'Email us', 'value' => 'info@kodrank.com', 'icon_key' => 'email'],
+      ['label' => 'Call us', 'value' => '+92 305 9202732', 'icon_key' => 'phone'],
+      ['label' => 'Response time', 'value' => 'Within one business day', 'icon_key' => 'clock'],
+  ];
 
   $contactDefaultsBySlug = [
       'guest-posting-services' => [
@@ -194,6 +230,11 @@
               'Free link plan within one business day',
               'Real publishers — you approve every site',
               'No spam, no lock-in contracts',
+          ],
+          'meta' => [
+              ['label' => 'Email us', 'value' => 'info@kodrank.com', 'icon_key' => 'email'],
+              ['label' => 'Call us', 'value' => '+92 305 9202732', 'icon_key' => 'phone'],
+              ['label' => 'Response time', 'value' => 'Within one business day', 'icon_key' => 'clock'],
           ],
           'fields' => [
               'name_label' => 'Full name',
@@ -215,9 +256,15 @@
               'Reply within one business day',
               'No contracts, no obligation',
           ],
+          'meta' => [
+              ['label' => 'Email us', 'value' => 'info@kodrank.com', 'icon_key' => 'email'],
+              ['label' => 'Call us', 'value' => '+92 305 9202732', 'icon_key' => 'phone'],
+              ['label' => 'Response time', 'value' => 'Within one business day', 'icon_key' => 'clock'],
+          ],
           'fields' => [
               'name_label' => 'Name',
               'email_label' => 'Email',
+              'phone_label' => 'Phone (optional)',
               'website_label' => 'Website URL',
               'message_label' => "What's your biggest SEO frustration?",
               'message_placeholder' => 'e.g. Slow site, stuck rankings, no organic leads…',
@@ -379,6 +426,7 @@
           'eyebrow' => 'Get In Touch',
           'title' => 'Tell us about your '.($page->name ?? 'project'),
           'lede' => 'Share a few details and we\'ll reply within one business day with clear next steps — no spam, no hard sell.',
+          'meta' => $defaultContactMeta,
           'fields' => [
               'name_label' => 'Full name',
               'email_label' => 'Work email',
@@ -392,6 +440,10 @@
       $contactDefaultsBySlug[$slug] ?? [],
       $s['contact'] ?? []
   );
+  // Always keep phone/email visible even if a slug override omitted meta.
+  if (empty($themeHtmlContact['meta']) || ! is_array($themeHtmlContact['meta'])) {
+      $themeHtmlContact['meta'] = $defaultContactMeta;
+  }
 @endphp
 @php
   $webdevRefClass = (\App\Support\WpRefDesign::appliesTo($slug) && $slug !== 'off-page-seo-services') ? ' webdev-ref' : '';

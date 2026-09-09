@@ -37,6 +37,33 @@
           $badges = [];
       }
   }
+  // Mis-parsed stats (e.g. ["3.2x","Avg. Organic Lead Growth"]) → badge, not ticks
+  if (!empty($trustPoints) && count($trustPoints) === 2 && empty($badges)) {
+      $a = trim(html_entity_decode((string) (is_array($trustPoints[0]) ? ($trustPoints[0]['text'] ?? $trustPoints[0]['label'] ?? '') : $trustPoints[0]), ENT_QUOTES | ENT_HTML5, 'UTF-8'));
+      $b = trim(html_entity_decode((string) (is_array($trustPoints[1]) ? ($trustPoints[1]['text'] ?? $trustPoints[1]['label'] ?? '') : $trustPoints[1]), ENT_QUOTES | ENT_HTML5, 'UTF-8'));
+      $looksMetric = $a !== '' && preg_match('/^[\d.+×xX%+\-–—\/\s]+$/u', $a) && mb_strlen($a) <= 12;
+      $looksLabel = $b !== '' && mb_strlen($b) > 8 && ! preg_match('/^[\d.+×xX%+\-–—\/\s]+$/u', $b);
+      if ($looksMetric && $looksLabel) {
+          $badges = [['num' => $a, 'label' => $b]];
+          $trustPoints = [];
+      }
+  }
+  // Decode entities in trust lines (&amp; etc.)
+  if (!empty($trustPoints)) {
+      $trustPoints = array_map(static function ($point) {
+          if (is_array($point)) {
+              foreach (['text', 'label'] as $k) {
+                  if (isset($point[$k]) && is_string($point[$k])) {
+                      $point[$k] = html_entity_decode($point[$k], ENT_QUOTES | ENT_HTML5, 'UTF-8');
+                  }
+              }
+
+              return $point;
+          }
+
+          return html_entity_decode((string) $point, ENT_QUOTES | ENT_HTML5, 'UTF-8');
+      }, $trustPoints);
+  }
   $lede = $h['lede'] ?? $h['hero_description'] ?? null;
   $ledeHtml = $h['lede_html'] ?? null;
   $titleHtml = $h['title_html'] ?? $h['titleHtml'] ?? null;
@@ -85,7 +112,7 @@
         <div class="hero-trust hero-trust-checks">
           @foreach($trustPoints as $point)
             <span>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
               {{ is_array($point) ? ($point['text'] ?? $point['label'] ?? '') : $point }}
             </span>
           @endforeach

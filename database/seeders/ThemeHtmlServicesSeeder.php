@@ -97,13 +97,14 @@ class ThemeHtmlServicesSeeder extends Seeder
             [
                 'slug' => 'saas-seo-services',
                 'name' => 'SaaS SEO Services',
-                'html' => $t.'/New folder/saas-seo-services-images/saas-seo-services.html',
-                'mediaFrom' => $t.'/New folder/saas-seo-services-images',
+                'html' => $t.'/newone/saas-software-development/kodrank-saas-development.html',
+                'mediaFrom' => $t.'/newone/saas-software-development',
                 'mediaTo' => 'media/services/saas-seo',
                 'css' => 'css/theme-saas-seo.css',
                 'scope' => 'saasseo-theme-page',
                 'parentSlug' => 'digital-marketing-services',
                 'sort' => 17,
+                'delegate' => SaasSeoThemeHtmlSeeder::class,
             ],
             [
                 'slug' => 'b2b-seo-services',
@@ -115,6 +116,7 @@ class ThemeHtmlServicesSeeder extends Seeder
                 'scope' => 'b2b-theme-page',
                 'parentSlug' => 'digital-marketing-services',
                 'sort' => 18,
+                'delegate' => B2bSeoThemeHtmlSeeder::class,
             ],
             [
                 'slug' => 'ecommerce-seo-services',
@@ -126,6 +128,7 @@ class ThemeHtmlServicesSeeder extends Seeder
                 'scope' => 'ecom-theme-page',
                 'parentSlug' => 'digital-marketing-services',
                 'sort' => 19,
+                'delegate' => EcommerceSeoThemeHtmlSeeder::class,
             ],
             [
                 'slug' => 'wordpress-seo-services',
@@ -137,6 +140,19 @@ class ThemeHtmlServicesSeeder extends Seeder
                 'scope' => 'wpseo-theme-page',
                 'parentSlug' => 'digital-marketing-services',
                 'sort' => 20,
+                'delegate' => WordpressSeoThemeHtmlSeeder::class,
+            ],
+            [
+                'slug' => 'shopify-seo-services',
+                'name' => 'Shopify SEO Services',
+                'html' => $t.'/shopify/shopify-development-services (1).html',
+                'mediaFrom' => $t.'/shopify',
+                'mediaTo' => 'media/services/shopify-seo',
+                'css' => 'css/theme-shopify-seo.css',
+                'scope' => 'shopifyseo-theme-page',
+                'parentSlug' => 'digital-marketing-services',
+                'sort' => 21,
+                'delegate' => ShopifySeoThemeHtmlSeeder::class,
             ],
             [
                 'slug' => 'guest-posting-services',
@@ -148,6 +164,7 @@ class ThemeHtmlServicesSeeder extends Seeder
                 'scope' => 'gp-theme-page',
                 'parentSlug' => 'digital-marketing-services',
                 'sort' => 40,
+                'delegate' => GuestPostingThemeHtmlSeeder::class,
             ],
             [
                 'slug' => 'restaurant-seo-services',
@@ -159,6 +176,7 @@ class ThemeHtmlServicesSeeder extends Seeder
                 'scope' => 'rest-theme-page',
                 'parentSlug' => 'digital-marketing-services',
                 'sort' => 41,
+                'delegate' => RestaurantSeoThemeHtmlSeeder::class,
             ],
             [
                 'slug' => 'healthcare-seo-services',
@@ -170,6 +188,7 @@ class ThemeHtmlServicesSeeder extends Seeder
                 'scope' => 'hc-theme-page',
                 'parentSlug' => 'digital-marketing-services',
                 'sort' => 42,
+                'delegate' => HealthcareSeoThemeHtmlSeeder::class,
             ],
             [
                 'slug' => 'real-estate-seo-services',
@@ -181,6 +200,7 @@ class ThemeHtmlServicesSeeder extends Seeder
                 'scope' => 're-theme-page',
                 'parentSlug' => 'digital-marketing-services',
                 'sort' => 43,
+                'delegate' => RealEstateSeoThemeHtmlSeeder::class,
             ],
 
             // ── Web development ──
@@ -402,6 +422,7 @@ class ThemeHtmlServicesSeeder extends Seeder
             'b2b-seo-services',
             'ecommerce-seo-services',
             'wordpress-seo-services',
+            'shopify-seo-services',
             'guest-posting-services',
             'restaurant-seo-services',
             'healthcare-seo-services',

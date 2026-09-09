@@ -265,3 +265,8 @@
 }
 @media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
 .ecom-theme-page :focus-visible{outline:3px solid var(--beam);outline-offset:2px;border-radius:4px}
+/* KodRank: keep reveal nodes visible */
+.ecom-theme-page .rv,
+.ecom-theme-page .rev,
+.ecom-theme-page .reveal,
+.ecom-theme-page .fade-up{opacity:1!important;transform:none!important;visibility:visible!important}
