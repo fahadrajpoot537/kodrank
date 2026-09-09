@@ -97,8 +97,8 @@ class ThemeHtmlServicesSeeder extends Seeder
             [
                 'slug' => 'saas-seo-services',
                 'name' => 'SaaS SEO Services',
-                'html' => $t.'/newone/saas-software-development/kodrank-saas-development.html',
-                'mediaFrom' => $t.'/newone/saas-software-development',
+                'html' => $t.'/New folder/saas-seo-services-images/saas-seo-services.html',
+                'mediaFrom' => $t.'/New folder/saas-seo-services-images',
                 'mediaTo' => 'media/services/saas-seo',
                 'css' => 'css/theme-saas-seo.css',
                 'scope' => 'saasseo-theme-page',
@@ -143,10 +143,11 @@ class ThemeHtmlServicesSeeder extends Seeder
                 'delegate' => WordpressSeoThemeHtmlSeeder::class,
             ],
             [
+                // No theme-html source for Shopify SEO — structured ecommerce-seo page.
                 'slug' => 'shopify-seo-services',
                 'name' => 'Shopify SEO Services',
-                'html' => $t.'/shopify/shopify-development-services (1).html',
-                'mediaFrom' => $t.'/shopify',
+                'html' => '',
+                'mediaFrom' => '',
                 'mediaTo' => 'media/services/shopify-seo',
                 'css' => 'css/theme-shopify-seo.css',
                 'scope' => 'shopifyseo-theme-page',

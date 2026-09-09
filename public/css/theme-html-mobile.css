@@ -4158,26 +4158,29 @@ html body.page-saas.page-service .saas-theme-page #compare .cmp ul {
   }
 }
 
-/* SaaS SEO services cards: black text on white tiles (not dark-ink white copy) */
+/* SaaS SEO services cards: white text on dark ink tiles */
 html body.page-saasseo.page-service .saasseo-theme-page #services .svc,
 html body.page-saasseo.page-service .saasseo-theme-page #services .svc-grid > .svc,
 html body.page-saasseo.page-service .saasseo-theme-page #services article.svc,
+html body.page-saasseo.page-service .saasseo-theme-page #services div.svc,
 html body.page-saasseo.page-service .saasseo-theme-page.webdev-ref #services .svc,
 html body.page-saasseo.page-service .saasseo-theme-page #services .why-mobile-carousel .svc {
-  color: #000 !important;
+  color: #fff !important;
 }
 html body.page-saasseo.page-service .saasseo-theme-page #services .svc h3,
 html body.page-saasseo.page-service .saasseo-theme-page #services .svc h4,
 html body.page-saasseo.page-service .saasseo-theme-page #services article.svc h4,
+html body.page-saasseo.page-service .saasseo-theme-page #services div.svc h4,
 html body.page-saasseo.page-service .saasseo-theme-page.webdev-ref #services .svc h4,
 html body.page-saasseo.page-service .saasseo-theme-page #services .why-mobile-carousel .svc h4 {
-  color: #000 !important;
-  -webkit-text-fill-color: #000 !important;
+  color: #fff !important;
+  -webkit-text-fill-color: #fff !important;
 }
 html body.page-saasseo.page-service .saasseo-theme-page #services .svc p,
 html body.page-saasseo.page-service .saasseo-theme-page #services article.svc p,
+html body.page-saasseo.page-service .saasseo-theme-page #services div.svc p,
 html body.page-saasseo.page-service .saasseo-theme-page.webdev-ref #services .svc p,
 html body.page-saasseo.page-service .saasseo-theme-page #services .why-mobile-carousel .svc p {
-  color: #000 !important;
-  -webkit-text-fill-color: #000 !important;
+  color: #fff !important;
+  -webkit-text-fill-color: #fff !important;
 }

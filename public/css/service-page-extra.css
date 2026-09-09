@@ -4868,22 +4868,25 @@ body.page-saas.page-service .saas-theme-page #services .svc-grid > .svc p{
   color:#000 !important;
 }
 
-/* SaaS SEO services cards — white tiles need black copy (not ink white) */
+/* SaaS SEO services cards — dark ink tiles need white copy */
 body.page-saasseo.page-service .saasseo-theme-page #services .svc,
 body.page-saasseo.page-service .saasseo-theme-page #services .svc-grid > .svc,
-body.page-saasseo.page-service .saasseo-theme-page #services article.svc{
-  color:#000 !important;
+body.page-saasseo.page-service .saasseo-theme-page #services article.svc,
+body.page-saasseo.page-service .saasseo-theme-page #services div.svc{
+  color:#fff !important;
 }
 body.page-saasseo.page-service .saasseo-theme-page #services .svc h3,
 body.page-saasseo.page-service .saasseo-theme-page #services .svc h4,
 body.page-saasseo.page-service .saasseo-theme-page #services article.svc h4,
+body.page-saasseo.page-service .saasseo-theme-page #services div.svc h4,
 body.page-saasseo.page-service .saasseo-theme-page #services .svc-grid > .svc h4{
-  color:#000 !important;
+  color:#fff !important;
 }
 body.page-saasseo.page-service .saasseo-theme-page #services .svc p,
 body.page-saasseo.page-service .saasseo-theme-page #services article.svc p,
+body.page-saasseo.page-service .saasseo-theme-page #services div.svc p,
 body.page-saasseo.page-service .saasseo-theme-page #services .svc-grid > .svc p{
-  color:#000 !important;
+  color:#fff !important;
 }
 
 /* ========== All service heroes: responsive H1 + breadcrumbs ========== */
@@ -5876,9 +5879,11 @@ body.page-dm-motion.page-service .hero .hero-trust{
   }
 }
 
-/* White Label SEO — compact hero (beats tall page-seo-service min-height/centering) */
+/* White Label + Shopify SEO — compact hero (beats tall page-seo-service min-height/centering) */
 body.page-wlseo.page-service .hero,
-body.page-wlseo.page-seo-service .hero{
+body.page-wlseo.page-seo-service .hero,
+body.page-shopifyseo.page-service .hero,
+body.page-shopifyseo.page-seo-service .hero{
   min-height:0 !important;
   height:auto !important;
   padding-top:calc(84px + 24px) !important;
@@ -5888,22 +5893,36 @@ body.page-wlseo.page-seo-service .hero{
   justify-content:flex-start !important;
 }
 body.page-wlseo.page-service .hero > .wrap,
-body.page-wlseo.page-seo-service .hero > .wrap{
+body.page-wlseo.page-seo-service .hero > .wrap,
+body.page-shopifyseo.page-service .hero > .wrap,
+body.page-shopifyseo.page-seo-service .hero > .wrap{
   width:100%;
   padding-top:0 !important;
   padding-bottom:0 !important;
 }
 body.page-wlseo.page-service .hero .hero-copy,
-body.page-wlseo.page-seo-service .hero .hero-copy{
+body.page-wlseo.page-seo-service .hero .hero-copy,
+body.page-shopifyseo.page-service .hero .hero-copy,
+body.page-shopifyseo.page-seo-service .hero .hero-copy{
   padding:0 !important;
   max-width:760px;
 }
 body.page-wlseo.page-service .hero .breadcrumb,
-body.page-wlseo.page-seo-service .hero .breadcrumb{
+body.page-wlseo.page-seo-service .hero .breadcrumb,
+body.page-shopifyseo.page-service .hero .breadcrumb,
+body.page-shopifyseo.page-seo-service .hero .breadcrumb{
   margin:0 0 12px !important;
 }
+body.page-shopifyseo.page-service .hero .hero-eyebrow,
+body.page-shopifyseo.page-seo-service .hero .hero-eyebrow,
+body.page-shopifyseo.page-service .hero .eyebrow,
+body.page-shopifyseo.page-seo-service .hero .eyebrow{
+  margin:0 0 10px !important;
+}
 body.page-wlseo.page-service .hero h1,
-body.page-wlseo.page-seo-service .hero h1{
+body.page-wlseo.page-seo-service .hero h1,
+body.page-shopifyseo.page-service .hero h1,
+body.page-shopifyseo.page-seo-service .hero h1{
   margin:0 0 16px !important;
 }
 body.page-wlseo.page-service .hero .lede,
@@ -5911,44 +5930,68 @@ body.page-wlseo.page-service .hero p.sub,
 body.page-wlseo.page-service .hero .hero-sub,
 body.page-wlseo.page-seo-service .hero .lede,
 body.page-wlseo.page-seo-service .hero p.sub,
-body.page-wlseo.page-seo-service .hero .hero-sub{
+body.page-wlseo.page-seo-service .hero .hero-sub,
+body.page-shopifyseo.page-service .hero .lede,
+body.page-shopifyseo.page-service .hero p.sub,
+body.page-shopifyseo.page-service .hero .hero-sub,
+body.page-shopifyseo.page-seo-service .hero .lede,
+body.page-shopifyseo.page-seo-service .hero p.sub,
+body.page-shopifyseo.page-seo-service .hero .hero-sub{
   margin:0 0 28px !important;
 }
 body.page-wlseo.page-service .hero .hero-actions,
 body.page-wlseo.page-service .hero .hero-cta,
 body.page-wlseo.page-seo-service .hero .hero-actions,
-body.page-wlseo.page-seo-service .hero .hero-cta{
+body.page-wlseo.page-seo-service .hero .hero-cta,
+body.page-shopifyseo.page-service .hero .hero-actions,
+body.page-shopifyseo.page-service .hero .hero-cta,
+body.page-shopifyseo.page-seo-service .hero .hero-actions,
+body.page-shopifyseo.page-seo-service .hero .hero-cta{
   margin:0 !important;
 }
 body.page-wlseo.page-service .hero .hero-badges,
 body.page-wlseo.page-service .hero .hero-trust,
 body.page-wlseo.page-seo-service .hero .hero-badges,
-body.page-wlseo.page-seo-service .hero .hero-trust{
+body.page-wlseo.page-seo-service .hero .hero-trust,
+body.page-shopifyseo.page-service .hero .hero-badges,
+body.page-shopifyseo.page-service .hero .hero-trust,
+body.page-shopifyseo.page-seo-service .hero .hero-badges,
+body.page-shopifyseo.page-seo-service .hero .hero-trust{
   margin-top:28px !important;
   padding-top:22px !important;
 }
 @media (max-width:900px){
   body.page-wlseo.page-service .hero,
-  body.page-wlseo.page-seo-service .hero{
+  body.page-wlseo.page-seo-service .hero,
+  body.page-shopifyseo.page-service .hero,
+  body.page-shopifyseo.page-seo-service .hero{
     padding-top:calc(64px + 16px) !important;
     padding-bottom:32px !important;
     min-height:0 !important;
   }
   body.page-wlseo.page-service .hero .lede,
-  body.page-wlseo.page-seo-service .hero .lede{
+  body.page-wlseo.page-seo-service .hero .lede,
+  body.page-shopifyseo.page-service .hero .lede,
+  body.page-shopifyseo.page-seo-service .hero .lede{
     margin:0 0 24px !important;
   }
   body.page-wlseo.page-service .hero .hero-badges,
   body.page-wlseo.page-service .hero .hero-trust,
   body.page-wlseo.page-seo-service .hero .hero-badges,
-  body.page-wlseo.page-seo-service .hero .hero-trust{
+  body.page-wlseo.page-seo-service .hero .hero-trust,
+  body.page-shopifyseo.page-service .hero .hero-badges,
+  body.page-shopifyseo.page-service .hero .hero-trust,
+  body.page-shopifyseo.page-seo-service .hero .hero-badges,
+  body.page-shopifyseo.page-seo-service .hero .hero-trust{
     margin-top:22px !important;
     padding-top:16px !important;
   }
 }
 @media (max-width:680px){
   body.page-wlseo.page-service .hero,
-  body.page-wlseo.page-seo-service .hero{
+  body.page-wlseo.page-seo-service .hero,
+  body.page-shopifyseo.page-service .hero,
+  body.page-shopifyseo.page-seo-service .hero{
     padding-top:calc(56px + 12px) !important;
     padding-bottom:28px !important;
   }

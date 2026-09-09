@@ -7,7 +7,7 @@ use Illuminate\Database\Seeder;
 
 /**
  * SaaS SEO Services — imports theme HTML into /saas-seo-services.
- * Skips hero text: "Web Development & SEO · Built for SaaS"
+ * Source: public/theme/New folder/saas-seo-services-images/saas-seo-services.html
  *
  * Run: php artisan db:seed --class=SaasSeoThemeHtmlSeeder
  */
@@ -18,8 +18,8 @@ class SaasSeoThemeHtmlSeeder extends Seeder
         ThemeHtmlNichePageImporter::import([
             'slug' => 'saas-seo-services',
             'name' => 'SaaS SEO Services',
-            'htmlPath' => public_path('theme/newone/saas-software-development/kodrank-saas-development.html'),
-            'mediaFrom' => public_path('theme/newone/saas-software-development'),
+            'htmlPath' => public_path('theme/New folder/saas-seo-services-images/saas-seo-services.html'),
+            'mediaFrom' => public_path('theme/New folder/saas-seo-services-images'),
             'mediaTo' => 'media/services/saas-seo',
             'cssRel' => 'css/theme-saas-seo.css',
             'extraCssRel' => 'css/theme-saas-seo-page.css',
@@ -29,12 +29,12 @@ class SaasSeoThemeHtmlSeeder extends Seeder
             'hideFromNav' => true,
             'clearEyebrow' => true,
             'excludeHeroTexts' => [
-                'Web Development & SEO · Built for SaaS',
-                'Web Development & SEO - Built for SaaS',
+                'SaaS SEO Agency',
+                'SaaS SEO Services',
             ],
             'ctaText' => 'Get My Free SaaS SEO Plan',
             'heroImageFilename' => 'saas-seo-hero.jpg',
-            'keywords' => 'SaaS SEO services, SaaS SEO agency, B2B SaaS SEO, KodRank',
+            'keywords' => 'SaaS SEO services, SaaS SEO agency, B2B SaaS SEO, organic pipeline, KodRank',
         ], fn ($msg) => str_starts_with($msg, 'ERROR:')
             ? $this->command?->error(substr($msg, 7))
             : $this->command?->info($msg));

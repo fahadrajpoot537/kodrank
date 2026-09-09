@@ -2,38 +2,23 @@
 
 namespace Database\Seeders;
 
-use App\Support\ThemeHtmlNichePageImporter;
 use Illuminate\Database\Seeder;
 
 /**
- * Shopify SEO Services — imports theme HTML into /shopify-seo-services.
- * Source is shopify development theme content adapted to existing KodRank SEO page shell.
+ * Shopify SEO Services — restores the structured Shopify SEO page
+ * (NOT Shopify Development theme HTML).
+ *
+ * Theme-html import was pointing at shopify-development HTML by mistake.
+ * Correct content lives in ShopifySeoServiceSeeder (ecommerce-seo theme).
  *
  * Run: php artisan db:seed --class=ShopifySeoThemeHtmlSeeder
+ *  or: php artisan db:seed --class=ShopifySeoServiceSeeder
  */
 class ShopifySeoThemeHtmlSeeder extends Seeder
 {
     public function run(): void
     {
-        ThemeHtmlNichePageImporter::import([
-            'slug' => 'shopify-seo-services',
-            'name' => 'Shopify SEO Services',
-            'htmlPath' => public_path('theme/shopify/shopify-development-services (1).html'),
-            'mediaFrom' => public_path('theme/shopify'),
-            'mediaTo' => 'media/services/shopify-seo',
-            'cssRel' => 'css/theme-shopify-seo.css',
-            'extraCssRel' => 'css/theme-shopify-seo-page.css',
-            'scope' => 'shopifyseo-theme-page',
-            'bodyClass' => 'page-shopifyseo',
-            'sort' => 21,
-            'hideFromNav' => true,
-            'clearEyebrow' => false,
-            'excludeHeroTexts' => [],
-            'ctaText' => 'Get My Free Shopify SEO Audit',
-            'heroImageFilename' => 'shopify-seo-hero.jpg',
-            'keywords' => 'Shopify SEO services, Shopify SEO agency, Shopify search optimization, KodRank',
-        ], fn ($msg) => str_starts_with($msg, 'ERROR:')
-            ? $this->command?->error(substr($msg, 7))
-            : $this->command?->info($msg));
+        $this->call(ShopifySeoServiceSeeder::class);
+        $this->command?->info('Shopify SEO Services restored via ShopifySeoServiceSeeder (ecommerce-seo theme).');
     }
 }

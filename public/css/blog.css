@@ -1,7 +1,7 @@
 
-/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
-   KodRank â€” Brand Tokens (fixed)
-   â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+/* Ã¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢Â
+   KodRank Ã¢â¬â Brand Tokens (fixed)
+   Ã¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢Â */
 :root{
   --ink:#0A1A22;
   --ink-2:#0F2A33;
@@ -60,7 +60,7 @@ p{color:var(--slate);font-size:1rem;line-height:1.7}
   color:var(--signal-deep);display:inline-block;margin-bottom:18px;
 }
 .sec-ink .eyebrow{color:var(--signal)}
-.eyebrow::before{content:"â€” ";margin-right:2px}
+.eyebrow::before{content:"Ã¢â¬â ";margin-right:2px}
 .eyebrow.center{text-align:center;width:100%}
 
 strong{font-weight:650;color:var(--graphite)}
@@ -90,14 +90,14 @@ strong{font-weight:650;color:var(--graphite)}
 .tlink svg{width:12px;height:12px;transition:transform .25s ease}
 .tlink:hover svg{transform:translateX(4px)}
 
-/* â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
-   NAV / FOOTER â€” use shared home + service-page-extra.css
+/* Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬
+   NAV / FOOTER Ã¢â¬â use shared home + service-page-extra.css
    (do not restyle site header.nav / footer here)
-   â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+   Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬ */
 
-/* â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+/* Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬
    BLOG HERO
-   â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+   Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬ */
 .blog-hero{
   background:var(--ink) var(--blog-hero-bg, url('../media/blog/hero-background.jpg')) center right / cover no-repeat;
   color:#fff;text-align:center;overflow:hidden;position:relative;
@@ -135,9 +135,9 @@ strong{font-weight:650;color:var(--graphite)}
 .cat-pill.active{background:var(--signal);color:var(--signal-ink);border-color:var(--signal)}
 .cat-pill:not(.active):hover{border-color:var(--signal);color:#fff}
 
-/* â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+/* Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬
    Web Development section background image
-   â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+   Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬ */
 #webdev.sec-ink{
   background:var(--ink) url('../media/blog/webdev-background.jpg') center right / cover no-repeat;
   position:relative;overflow:hidden;
@@ -149,16 +149,16 @@ strong{font-weight:650;color:var(--graphite)}
 #webdev.sec-ink .wrap{position:relative;z-index:1}
 #webdev.sec-ink h2{text-shadow:0 2px 20px rgba(10,26,34,.7)}
 
-/* â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+/* Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬
    Section head
-   â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+   Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬ */
 .section-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;margin-bottom:clamp(32px,4vw,48px)}
 .section-head .htext{max-width:640px}
 .section-head p{margin-top:14px;font-size:1.02rem}
 
-/* â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+/* Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬
    Blog cards / grid
-   â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+   Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬ */
 .blog-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
 .blog-grid.cols-2{grid-template-columns:repeat(2,1fr)}
 .blog-grid.cols-4{grid-template-columns:repeat(4,1fr)}
@@ -225,9 +225,9 @@ strong{font-weight:650;color:var(--graphite)}
 
 .load-more-wrap{display:flex;justify-content:center;margin-top:48px}
 
-/* â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+/* Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬
    Category sections (sidebar + grid)
-   â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+   Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬ */
 .cat-section-grid{display:grid;grid-template-columns:250px 1fr;gap:44px;margin-top:44px;align-items:start}
 .cat-sidebar{position:sticky;top:96px}
 .cat-sidebar .cs-title{font-size:.72rem;font-weight:650;letter-spacing:.08em;text-transform:uppercase;color:var(--slate-2);margin-bottom:16px}
@@ -251,9 +251,9 @@ strong{font-weight:650;color:var(--graphite)}
   .cat-sidebar a .n{display:none}
 }
 
-/* â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+/* Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬
    Newsletter CTA (dark)
-   â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+   Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬ */
 .news-cta{text-align:center;max-width:640px;margin:0 auto}
 .news-cta h2{margin-bottom:16px}
 .news-cta p{font-size:1.05rem;margin-bottom:32px;max-width:520px;margin-left:auto;margin-right:auto}
@@ -271,9 +271,9 @@ strong{font-weight:650;color:var(--graphite)}
   .newsletter-form .btn{width:100%;justify-content:center}
 }
 
-/* â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+/* Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬
    Footer
-   â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+   Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬ */
 
 /* Site footer: home.partials.footer + home.css */
 
@@ -289,7 +289,7 @@ strong{font-weight:650;color:var(--graphite)}
   .blog-search svg{display:none}
 }
 
-/* Shared site nav (transparent → white on scroll) */
+/* Shared site nav (transparent â white on scroll) */
 .page-blog .blog-hero{
   padding:calc(84px + clamp(40px,6vw,72px)) 0 clamp(56px,8vw,88px);
 }
@@ -507,4 +507,200 @@ body.page-blog .content .author-card .author-bio p{margin:0 0 1em;color:#fff !im
 @media(max-width:560px){
   .author-bio figure.align-left,
   .author-bio figure.align-right{float:none;max-width:100%;margin:16px 0}
+}
+
+/* Blog detail: contain export HTML (.grid + width="1280" imgs) on mobile */
+html:has(body.page-blog),
+html body.page-blog,
+html body.page-blog.page-service {
+  overflow-x: clip;
+  max-width: 100%;
+}
+html body.page-blog .blog-article,
+html body.page-blog .article-wrap,
+html body.page-blog .article-wrap .wrap,
+html body.page-blog .article-grid,
+html body.page-blog .content,
+html body.page-blog .side-stack,
+html body.page-blog .side-cta,
+html body.page-blog .share-under-hero,
+html body.page-blog .hero-grad-inner {
+  max-width: 100%;
+  box-sizing: border-box;
+  min-width: 0;
+}
+html body.page-blog .content {
+  width: 100%;
+  overflow-x: clip;
+}
+/* Claude/chat export wrappers: flatten so absolute/h-full chrome can't expand page */
+html body.page-blog .content [class*="absolute"],
+html body.page-blog .content [class*="fixed"],
+html body.page-blog .content [class*="inset-"],
+html body.page-blog .content [class*="h-full"],
+html body.page-blog .content [class*="overflow-"],
+html body.page-blog .content [class*="flex-1"],
+html body.page-blog .content [class*="min-h-0"] {
+  position: static !important;
+  inset: auto !important;
+  height: auto !important;
+  max-height: none !important;
+  overflow: visible !important;
+  flex: none !important;
+}
+html body.page-blog .content [data-testid="chat-stale-nav-shield"],
+html body.page-blog .content [data-testid="chat-stale-nav-body"] > [class*="print:hidden"] {
+  display: none !important;
+}
+/* home.css .grid expands to image HTML width — force shrinkable column */
+html body.page-blog .content .grid,
+html body.page-blog .content [class*="standard-markdown"] {
+  display: block !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  min-width: 0 !important;
+}
+html body.page-blog .content * {
+  max-width: 100% !important;
+  min-width: 0 !important;
+  box-sizing: border-box;
+}
+html body.page-blog .content img:not(.author-avatar),
+html body.page-blog .content figure,
+html body.page-blog .content video,
+html body.page-blog .content iframe,
+html body.page-blog .content pre,
+html body.page-blog .content table {
+  width: auto !important;
+  max-width: 100% !important;
+  height: auto !important;
+}
+html body.page-blog .content img[width]:not(.author-avatar) {
+  width: 100% !important;
+}
+html body.page-blog .content table {
+  display: block;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+html body.page-blog .content p,
+html body.page-blog .content li,
+html body.page-blog .content h1,
+html body.page-blog .content h2,
+html body.page-blog .content h3,
+html body.page-blog .content h4,
+html body.page-blog .content h5,
+html body.page-blog .content h6 {
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+/* Keep author chrome sized — broad content img/* rules above must not blow these up */
+html body.page-blog .content .author-avatar,
+html body.page-blog .author-card .author-avatar,
+html body.page-blog #author .author-avatar {
+  width: 84px !important;
+  height: 84px !important;
+  max-width: 84px !important;
+  max-height: 84px !important;
+  border-radius: 50% !important;
+  object-fit: cover !important;
+  flex-shrink: 0 !important;
+  display: block !important;
+}
+html body.page-blog .content .author-socials svg,
+html body.page-blog .author-card .author-socials svg {
+  width: 15px !important;
+  height: 15px !important;
+  max-width: 15px !important;
+  max-height: 15px !important;
+}
+
+@media (max-width: 980px) {
+  html body.page-blog .article-grid {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) !important;
+    width: 100% !important;
+    gap: 24px !important;
+  }
+  html body.page-blog .article-wrap {
+    padding: 32px 0 !important;
+  }
+  html body.page-blog .article-wrap .wrap {
+    width: 100% !important;
+    max-width: var(--maxw) !important;
+    padding-left: var(--pad) !important;
+    padding-right: var(--pad) !important;
+  }
+  html body.page-blog .side-stack,
+  html body.page-blog .side-cta,
+  html body.page-blog .content,
+  html body.page-blog .toc {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+  html body.page-blog .side-cta {
+    padding: 22px 18px !important;
+  }
+  html body.page-blog .hero-grad-title,
+  html body.page-blog .hero-grad-meta {
+    margin-left: 0 !important;
+    max-width: 100% !important;
+  }
+  html body.page-blog .hero-grad-title {
+    font-size: clamp(1.55rem, 7.2vw, 2.15rem) !important;
+    line-height: 1.18 !important;
+    word-break: break-word;
+  }
+  html body.page-blog .hero-grad-inner {
+    padding-top: calc(64px + 20px) !important;
+    padding-bottom: 24px !important;
+  }
+  html body.page-blog .share-under-hero {
+    justify-content: flex-start !important;
+    flex-wrap: wrap !important;
+    gap: 10px !important;
+    padding: 16px 0 !important;
+  }
+  html body.page-blog .share-row {
+    flex-wrap: wrap !important;
+    gap: 8px !important;
+  }
+  html body.page-blog .breadcrumb-hero ol {
+    flex-wrap: wrap;
+    row-gap: 4px;
+  }
+  html body.page-blog .cta-inline {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 16px !important;
+  }
+  html body.page-blog .cta-inline .btn {
+    width: 100%;
+    justify-content: center;
+  }
+  html body.page-blog .author-card,
+  html body.page-blog .related-grid {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+  html body.page-blog .content h2,
+  html body.page-blog .content h3,
+  html body.page-blog .content p {
+    overflow-wrap: anywhere;
+  }
+}
+
+@media (max-width: 640px) {
+  html body.page-blog .related-grid {
+    grid-template-columns: 1fr !important;
+  }
+  html body.page-blog .news-box {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 18px;
+  }
+  html body.page-blog .news-form input {
+    min-width: 0 !important;
+    width: 100%;
+  }
 }
