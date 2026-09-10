@@ -181,7 +181,7 @@
 .elec-theme-page .foot-bottom .fb-contact{display:flex;gap:24px;flex-wrap:wrap}
 .elec-theme-page .foot-bottom .fb-contact a{color:#9FB6BE;font-size:.86rem}
 .elec-theme-page .foot-bottom .fb-contact a:hover{color:var(--signal)}
-.elec-theme-page .rv{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
+.elec-theme-page .rv{opacity:1;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
 .elec-theme-page .rv.in{opacity:1;transform:none}
 @media(prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}
 .elec-theme-page .btn, .elec-theme-page .svc, .elec-theme-page .foot-social a{transition:none}}
@@ -239,3 +239,8 @@
   .logo{font-size:1.12rem}
 .elec-theme-page .hero-trust .t-num{font-size:1.4rem}
 }
+/* KodRank: keep reveal nodes visible */
+.elec-theme-page .rv,
+.elec-theme-page .rev,
+.elec-theme-page .reveal,
+.elec-theme-page .fade-up{opacity:1!important;transform:none!important;visibility:visible!important}

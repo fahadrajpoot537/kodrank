@@ -1,0 +1,298 @@
+/**
+ * WordPress Development Services page-only extras.
+ * Loaded only via seo.extra_css — scoped so other pages are unaffected.
+ */
+body.page-wpdev .wpdev-theme-page.theme-html-root {
+  /* namespace hook */
+}
+
+body.page-wpdev .wpdev-theme-page .sec-paper,
+body.page-wpdev .wpdev-theme-page .sec-mist,
+body.page-wpdev .wpdev-theme-page .sec-ink {
+  position: relative;
+}
+
+body.page-wpdev .hero-eyebrow {
+  display: none !important;
+}
+
+body.page-wpdev .hero-badges.hero-trust,
+body.page-wpdev .hero-trust.hero-badges {
+  margin-top: 1.25rem;
+}
+
+/* ─── #services: mobile swipe-up sticky stack ─── */
+@media (max-width: 900px) {
+  html body.page-wpdev.page-service .wpdev-theme-page section#services,
+  html body.page-wpdev.page-service .wpdev-theme-page section#services.has-page-svc-stack {
+    overflow-x: clip !important;
+    overflow-y: visible !important;
+  }
+
+  html body.page-wpdev.page-service .wpdev-theme-page #services .wrap {
+    max-width: 100% !important;
+    min-width: 0 !important;
+    overflow: visible !important;
+  }
+
+  html body.page-wpdev.page-service .wpdev-theme-page #services .service-grid.page-svc-stack,
+  html body.page-wpdev.page-service .wpdev-theme-page #services .service-grid[data-thm-stack] {
+    display: block !important;
+    grid-template-columns: none !important;
+    gap: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: visible !important;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+  }
+
+  html body.page-wpdev.page-service .wpdev-theme-page #services .service-grid.page-svc-stack > .svc-stack-item {
+    position: sticky !important;
+    top: calc(var(--svc-stack-nav, 68px) + (var(--index0, 0) * var(--svc-stack-peek, 14px))) !important;
+    z-index: calc(1 + var(--index0, 0)) !important;
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    margin: 0 0 var(--svc-stack-gap, 18px) !important;
+    padding: 0 !important;
+    background: transparent !important;
+    border: 0 !important;
+    box-shadow: none !important;
+    transform: none !important;
+  }
+
+  html body.page-wpdev.page-service .wpdev-theme-page #services .service-grid.page-svc-stack > .svc-stack-item:last-child {
+    margin-bottom: 0 !important;
+  }
+
+  html body.page-wpdev.page-service .wpdev-theme-page #services .service-grid.page-svc-stack .svc-card,
+  html body.page-wpdev.page-service .wpdev-theme-page #services .service-grid.page-svc-stack .svc-stack-item > .svc-card {
+    display: flex !important;
+    flex-direction: column !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    height: auto !important;
+    min-height: 160px !important;
+    margin: 0 !important;
+    padding: 22px 18px 24px !important;
+    box-sizing: border-box !important;
+    background: #fff !important;
+    border: 1px solid var(--line, #e1e9e5) !important;
+    border-radius: 18px !important;
+    box-shadow:
+      0 1px 2px rgba(13, 32, 41, 0.05),
+      0 14px 32px -16px rgba(13, 32, 41, 0.22) !important;
+    opacity: 1 !important;
+    transform: none !important;
+    overflow: hidden !important;
+    isolation: isolate;
+  }
+
+  html body.page-wpdev.page-service .wpdev-theme-page #services .svc-card h3,
+  html body.page-wpdev.page-service .wpdev-theme-page #services .svc-card p {
+    max-width: 100% !important;
+    overflow-wrap: anywhere !important;
+    word-break: break-word !important;
+  }
+
+  html body.page-wpdev.page-service .wpdev-theme-page #services .svc-card h3 {
+    font-size: 1.08rem !important;
+    line-height: 1.3 !important;
+    margin: 0 0 8px !important;
+    padding-right: 36px !important;
+  }
+
+  html body.page-wpdev.page-service .wpdev-theme-page #services .svc-card p {
+    font-size: 0.9rem !important;
+    line-height: 1.55 !important;
+    margin: 0 !important;
+  }
+
+  html body.page-wpdev.page-service .wpdev-theme-page #services .svc-card .tile {
+    width: 48px !important;
+    height: 48px !important;
+    margin-bottom: 16px !important;
+  }
+
+  html body.page-wpdev.page-service .wpdev-theme-page #services .svc-card .check {
+    top: 18px !important;
+    right: 18px !important;
+  }
+}
+
+/* ─── #why-us: fix broken carousel card widths ─── */
+@media (max-width: 980px) {
+  html body.page-wpdev.page-service .wpdev-theme-page #why-us .wrap {
+    max-width: 100% !important;
+    min-width: 0 !important;
+    overflow: visible !important;
+  }
+
+  html body.page-wpdev.page-service .wpdev-theme-page #why-us .why-mobile-carousel {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    -webkit-overflow-scrolling: touch !important;
+    scroll-snap-type: x mandatory !important;
+    overscroll-behavior-x: contain !important;
+    scrollbar-width: none !important;
+    touch-action: pan-x !important;
+  }
+
+  html body.page-wpdev.page-service .wpdev-theme-page #why-us .why-mobile-carousel::-webkit-scrollbar {
+    display: none !important;
+    height: 0 !important;
+  }
+
+  html body.page-wpdev.page-service .wpdev-theme-page #why-us .why-grid,
+  html body.page-wpdev.page-service .wpdev-theme-page #why-us .why-grid.thm-mobile-carousel,
+  html body.page-wpdev.page-service .wpdev-theme-page #why-us .why-mobile-carousel > .why-grid {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    align-items: stretch !important;
+    gap: 14px !important;
+    width: max-content !important;
+    max-width: none !important;
+    min-width: 0 !important;
+    margin: 0 !important;
+    padding: 0 2px 6px !important;
+    overflow: visible !important;
+    grid-template-columns: none !important;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+  }
+
+  html body.page-wpdev.page-service .wpdev-theme-page #why-us .why-grid > .why-card,
+  html body.page-wpdev.page-service .wpdev-theme-page #why-us .why-grid > * {
+    flex: 0 0 min(340px, calc(100vw - 48px)) !important;
+    flex-shrink: 0 !important;
+    flex-grow: 0 !important;
+    width: min(340px, calc(100vw - 48px)) !important;
+    min-width: min(340px, calc(100vw - 48px)) !important;
+    max-width: min(340px, calc(100vw - 48px)) !important;
+    height: auto !important;
+    box-sizing: border-box !important;
+    scroll-snap-align: start !important;
+    scroll-snap-stop: always !important;
+    overflow-wrap: anywhere !important;
+    word-break: break-word !important;
+  }
+
+  html body.page-wpdev.page-service .wpdev-theme-page #why-us .why-card h3,
+  html body.page-wpdev.page-service .wpdev-theme-page #why-us .why-card p {
+    max-width: 100% !important;
+    overflow-wrap: anywhere !important;
+  }
+
+  html body.page-wpdev.page-service .wpdev-theme-page #why-us .thm-carousel-nav-wrap {
+    display: none !important;
+  }
+
+  html body.page-wpdev.page-service .wpdev-theme-page #why-us .testi-dots.thm-carousel-dots,
+  html body.page-wpdev.page-service .wpdev-theme-page #why-us .wrap > .testi-dots.thm-carousel-dots {
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 18px 0 0 !important;
+  }
+}
+
+/* ─── Testimonials: full-bleed mobile cards + dots (hide arrows) ─── */
+@media (max-width: 900px) {
+  html body.page-wpdev.page-service .wpdev-theme-page .testi-wrap {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+  }
+
+  html body.page-wpdev.page-service .wpdev-theme-page .testi-track,
+  html body.page-wpdev.page-service .wpdev-theme-page #testiTrack {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    align-items: stretch !important;
+    gap: 14px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    padding: 0 0 4px !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    -webkit-overflow-scrolling: touch !important;
+    scroll-snap-type: x mandatory !important;
+    overscroll-behavior-x: contain !important;
+    scrollbar-width: none !important;
+    touch-action: pan-x !important;
+  }
+
+  html body.page-wpdev.page-service .wpdev-theme-page .testi-track::-webkit-scrollbar,
+  html body.page-wpdev.page-service .wpdev-theme-page #testiTrack::-webkit-scrollbar {
+    display: none !important;
+    height: 0 !important;
+  }
+
+  html body.page-wpdev.page-service .wpdev-theme-page .testi-track > .testi,
+  html body.page-wpdev.page-service .wpdev-theme-page #testiTrack > .testi {
+    flex: 0 0 100% !important;
+    width: 100% !important;
+    min-width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    box-sizing: border-box !important;
+    scroll-snap-align: start !important;
+    scroll-snap-stop: always !important;
+    padding: 22px 18px !important;
+    overflow-wrap: anywhere !important;
+    word-break: break-word !important;
+  }
+
+  html body.page-wpdev.page-service .wpdev-theme-page .testi-controls,
+  html body.page-wpdev.page-service .wpdev-theme-page .testi-nav-wrap {
+    display: none !important;
+  }
+
+  html body.page-wpdev.page-service .wpdev-theme-page .testi-wrap > .testi-dots,
+  html body.page-wpdev.page-service .wpdev-theme-page .testi-dots[data-testi-dots] {
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 18px 0 0 !important;
+  }
+
+  html body.page-wpdev.page-service .wpdev-theme-page .testi-dots .testi-dot {
+    width: 8px !important;
+    height: 8px !important;
+    padding: 0 !important;
+    border: 0 !important;
+    border-radius: 999px !important;
+    background: rgba(13, 32, 41, 0.22) !important;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.2s ease;
+  }
+
+  html body.page-wpdev.page-service .wpdev-theme-page .testi-dots .testi-dot.is-active {
+    background: var(--signal, #f47a1f) !important;
+    transform: scale(1.15);
+  }
+}
+
+@media (min-width: 901px) {
+  html body.page-wpdev.page-service .wpdev-theme-page .testi-dots[data-testi-dots] {
+    display: none !important;
+  }
+}

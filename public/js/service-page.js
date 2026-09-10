@@ -1,20 +1,24 @@
 (function () {
   'use strict';
 
-  // Testimonials carousel (DM + any .testi-slider)
-  document.querySelectorAll('.testi-slider').forEach((slider) => {
+  // Testimonials carousel (DM .testi-slider + theme-html .testi-wrap)
+  document
+    .querySelectorAll('.testi-slider, .theme-html-root .testi-wrap, .wpdev-theme-page .testi-wrap')
+    .forEach((slider) => {
+    if (slider.dataset.testiReady === '1') return;
+    slider.dataset.testiReady = '1';
     const track = slider.querySelector('.testi-track') || slider.querySelector('#testiTrack');
     if (!track) return;
     const prev = slider.querySelector('.testi-nav[data-dir="prev"]');
     const next = slider.querySelector('.testi-nav[data-dir="next"]');
-    const cards = () => Array.from(track.querySelectorAll('.testi'));
+    const cards = () => Array.from(track.querySelectorAll(':scope > .testi, :scope > .testimonial'));
     const dotsWrap = (() => {
-      let wrap = slider.querySelector('[data-testi-dots]');
+      let wrap = slider.querySelector('[data-testi-dots], .testi-dots');
       if (wrap) return wrap;
       const list = cards();
       if (list.length < 2) return null;
       wrap = document.createElement('div');
-      wrap.className = 'testi-dots';
+      wrap.className = 'testi-dots thm-carousel-dots';
       wrap.setAttribute('data-testi-dots', '');
       wrap.setAttribute('role', 'tablist');
       wrap.setAttribute('aria-label', 'Testimonial slides');
@@ -27,9 +31,9 @@
         btn.setAttribute('role', 'tab');
         wrap.appendChild(btn);
       });
-      const nav = slider.querySelector('.testi-nav-wrap');
-      if (nav && nav.parentElement) {
-        nav.parentElement.insertBefore(wrap, nav);
+      const controls = slider.querySelector('.testi-controls, .testi-nav-wrap');
+      if (controls && controls.parentElement) {
+        controls.parentElement.insertBefore(wrap, controls);
       } else {
         slider.appendChild(wrap);
       }
@@ -48,6 +52,11 @@
       const show = isMobileCarousel() && cards().length > 1;
       dotsWrap.hidden = !show;
       dotsWrap.style.display = show ? 'flex' : 'none';
+      const controls = slider.querySelector('.testi-controls, .testi-nav-wrap');
+      if (controls) {
+        controls.hidden = show;
+        controls.style.display = show ? 'none' : '';
+      }
     };
 
     const bindDots = () => {

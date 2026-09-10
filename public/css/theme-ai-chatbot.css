@@ -329,3 +329,8 @@
 .aibot-theme-page .logo{font-size:1.15rem}
 .aibot-theme-page .btn{padding:13px 20px;font-size:.9rem}
 }
+/* KodRank: keep reveal nodes visible */
+.aibot-theme-page .rv,
+.aibot-theme-page .rev,
+.aibot-theme-page .reveal,
+.aibot-theme-page .fade-up{opacity:1!important;transform:none!important;visibility:visible!important}

@@ -64,7 +64,11 @@ class ThemeHtmlNichePageImporter
         $excludeHeroTexts = array_values(array_filter(array_map('strval', $cfg['excludeHeroTexts'] ?? [])));
         $ctaDefault = (string) ($cfg['ctaText'] ?? 'Get A Free Proposal');
         $heroImageFilename = (string) ($cfg['heroImageFilename'] ?? ($slug.'-hero.jpg'));
-        $parentSlug = (string) ($cfg['parentSlug'] ?? 'digital-marketing-services');
+        if (array_key_exists('parentSlug', $cfg)) {
+            $parentSlug = (string) ($cfg['parentSlug'] ?? '');
+        } else {
+            $parentSlug = 'digital-marketing-services';
+        }
         $keywords = (string) ($cfg['keywords'] ?? $name.', KodRank');
 
         try {
@@ -97,7 +101,9 @@ class ThemeHtmlNichePageImporter
             $html
         ) ?? $html;
 
-        $parentId = ServicePage::query()->where('slug', $parentSlug)->value('id');
+        $parentId = $parentSlug !== ''
+            ? ServicePage::query()->where('slug', $parentSlug)->value('id')
+            : null;
         $title = ($extracted['title'] ?? '') !== '' ? $extracted['title'] : ($name.' | KodRank');
         $desc = $extracted['description'] ?? '';
         $hero = is_array($extracted['hero'] ?? null) ? $extracted['hero'] : [];

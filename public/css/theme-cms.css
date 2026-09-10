@@ -284,3 +284,8 @@
 .cms-theme-page .hero-cta{width:100%}
   }
   @media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+/* KodRank: keep reveal nodes visible */
+.cms-theme-page .rv,
+.cms-theme-page .rev,
+.cms-theme-page .reveal,
+.cms-theme-page .fade-up{opacity:1!important;transform:none!important;visibility:visible!important}

@@ -12,8 +12,8 @@ body.page-web-dev{
 }
 
 .page-service .hero {
-  padding-top: calc(72px + 48px);
-  padding-bottom: clamp(64px, 8vw, 110px);
+  padding-top: calc(72px + 72px);
+  padding-bottom: clamp(80px, 9vw, 128px);
   margin-top: 0 !important;
   position: relative;
   min-height: min(720px, 92vh) !important;
@@ -73,8 +73,8 @@ body.page-web-dev .hero > .wrap{
 .page-service .re-page .hero,
 .page-service .elec-page .hero,
 .page-service .saas-dev-page .hero{
-  padding-top:calc(72px + 48px);
-  padding-bottom:clamp(64px,8vw,110px);
+  padding-top:calc(72px + 72px);
+  padding-bottom:clamp(80px,9vw,128px);
   min-height:min(720px,92vh);
   display:flex;
   align-items:center;
@@ -6490,6 +6490,47 @@ body.page-service [class*="sec-ink"] .thm-carousel-dots .testi-dot:not(.is-activ
     margin-top: 18px;
     padding: 4px 0;
     min-height: 18px;
+  }
+}
+
+/* ========== Hero copy breathing room (all service pages) ========== */
+.page-service .hero .hero-copy,
+.page-service .hero .hero-inner,
+.page-service .wp-hero .wp-hero-copy,
+.page-service .wp-hero .hero-copy,
+body.page-theme-html .hero .hero-copy,
+body.page-seo-service .hero .hero-copy,
+body.page-web-dev .hero-copy,
+body.page-web-dev .hero-inner{
+  padding-top: clamp(18px, 2.4vw, 36px) !important;
+  padding-bottom: clamp(18px, 2.4vw, 36px) !important;
+}
+.page-service .hero h1,
+.page-service .wp-hero h1,
+body.page-theme-html .hero h1,
+body.page-seo-service .hero h1,
+body.page-web-dev .hero h1{
+  margin-top: 0.35em !important;
+  margin-bottom: 0.55em !important;
+}
+.page-service .hero .lede,
+.page-service .hero p.sub,
+.page-service .hero .hero-sub,
+.page-service .wp-hero .lede,
+body.page-theme-html .hero .lede,
+body.page-theme-html .hero p.sub,
+body.page-seo-service .hero .lede,
+body.page-seo-service .hero p.sub{
+  margin-bottom: clamp(22px, 2.8vw, 36px) !important;
+}
+@media (max-width: 900px) {
+  .page-service .hero .hero-copy,
+  .page-service .hero .hero-inner,
+  .page-service .wp-hero .wp-hero-copy,
+  body.page-theme-html .hero .hero-copy,
+  body.page-seo-service .hero .hero-copy{
+    padding-top: 14px !important;
+    padding-bottom: 16px !important;
   }
 }
 

@@ -266,7 +266,10 @@ class ThemeHtmlImporter
         }
         $ctaText = trim(html_entity_decode($ctaText, ENT_QUOTES | ENT_HTML5, 'UTF-8'));
         $ctaText = trim(preg_replace('/\s*(?:→|->|»|›|\x{2192})+\s*$/u', '', $ctaText) ?? $ctaText);
-        // Keep in-page anchors (#quote / #contact); only fill empty CTAs.
+        // Shared KodRank form uses #contact (theme may use #cta).
+        if ($ctaUrl === '#cta') {
+            $ctaUrl = '#contact';
+        }
         if ($ctaUrl === '') {
             $ctaUrl = '/contact';
         }
@@ -395,6 +398,40 @@ class ThemeHtmlImporter
                 PREG_SET_ORDER
             )) {
                 foreach ($stRows as $row) {
+                    $num = trim(html_entity_decode(strip_tags($row[1]), ENT_QUOTES | ENT_HTML5, 'UTF-8'));
+                    $label = trim(html_entity_decode(strip_tags($row[2]), ENT_QUOTES | ENT_HTML5, 'UTF-8'));
+                    if ($num !== '' || $label !== '') {
+                        $badges[] = ['num' => $num, 'label' => $label];
+                    }
+                }
+            }
+
+            // Label-only hero badges: <div class="hero-badge"><span class="dot"></span> text</div>
+            if ($badges === [] && $trustPoints === [] && preg_match_all(
+                '/<div\b[^>]*class=["\'][^"\']*\bhero-badge\b[^"\']*["\'][^>]*>(.*?)<\/div>/is',
+                $chunk,
+                $labelBadges,
+                PREG_SET_ORDER
+            )) {
+                foreach ($labelBadges as $row) {
+                    if (preg_match('/\bnum\b|\blbl\b/i', $row[0])) {
+                        continue;
+                    }
+                    $text = trim(html_entity_decode(strip_tags($row[1]), ENT_QUOTES | ENT_HTML5, 'UTF-8'));
+                    if ($text !== '') {
+                        $trustPoints[] = $text;
+                    }
+                }
+            }
+
+            // Shopify / niche: .hero-stats .hn + .hl
+            if ($badges === [] && preg_match_all(
+                '/class=["\'][^"\']*\bhn\b[^"\']*["\'][^>]*>(.*?)<\/[^>]+>\s*<[^>]+class=["\'][^"\']*\bhl\b[^"\']*["\'][^>]*>(.*?)<\//is',
+                $chunk,
+                $hnRows,
+                PREG_SET_ORDER
+            )) {
+                foreach ($hnRows as $row) {
                     $num = trim(html_entity_decode(strip_tags($row[1]), ENT_QUOTES | ENT_HTML5, 'UTF-8'));
                     $label = trim(html_entity_decode(strip_tags($row[2]), ENT_QUOTES | ENT_HTML5, 'UTF-8'));
                     if ($num !== '' || $label !== '') {

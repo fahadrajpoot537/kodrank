@@ -14,6 +14,14 @@ class ServiceInternalLinks
      */
     public static function phraseMap(): array
     {
+        return array_merge(self::seoPhraseMap(), self::devPhraseMap());
+    }
+
+    /**
+     * @return array<string, string>
+     */
+    public static function seoPhraseMap(): array
+    {
         return [
             'Answer Engine Optimization (AEO)' => '/aeo-services',
             'Generative Engine Optimization (GEO)' => '/geo-services',
@@ -33,6 +41,49 @@ class ServiceInternalLinks
             'technical SEO' => '/technical-seo-services',
             'digital marketing services' => '/digital-marketing-services',
         ];
+    }
+
+    /**
+     * @return array<string, string>
+     */
+    public static function devPhraseMap(): array
+    {
+        return [
+            'Web Design and Development Services' => '/web-design-and-development-services',
+            'WordPress Development Services' => '/wordpress-development-services',
+            'Shopify Development Services' => '/shopify-development-services',
+            'AI Chatbot Development Services' => '/ai-chatbot-development-services',
+            'CMS Development Services' => '/cms-development-services',
+            'Website Redesign Services' => '/website-redesign-services',
+            'Electrician Website Design Services' => '/electrician-website-design-services',
+            'SaaS Software Development Services' => '/saas-software-development-services',
+            'WordPress Development' => '/wordpress-development-services',
+            'Shopify Development' => '/shopify-development-services',
+            'Website Redesign' => '/website-redesign-services',
+            'CMS Development' => '/cms-development-services',
+        ];
+    }
+
+    /**
+     * @return list<string>
+     */
+    public static function developmentSlugs(): array
+    {
+        return [
+            'web-design-and-development-services',
+            'wordpress-development-services',
+            'shopify-development-services',
+            'ai-chatbot-development-services',
+            'cms-development-services',
+            'website-redesign-services',
+            'electrician-website-design-services',
+            'saas-software-development-services',
+        ];
+    }
+
+    public static function isDevelopmentSlug(?string $slug): bool
+    {
+        return in_array(trim((string) $slug, '/'), self::developmentSlugs(), true);
     }
 
     /**
@@ -102,8 +153,11 @@ class ServiceInternalLinks
         }
 
         $currentSlug = trim((string) $currentSlug, '/');
+        $phraseSource = self::isDevelopmentSlug($currentSlug)
+            ? self::devPhraseMap()
+            : self::seoPhraseMap();
         $candidates = [];
-        foreach (self::phraseMap() as $phrase => $path) {
+        foreach ($phraseSource as $phrase => $path) {
             $slug = trim($path, '/');
             if ($currentSlug !== '' && strcasecmp($slug, $currentSlug) === 0) {
                 continue;

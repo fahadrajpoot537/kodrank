@@ -1,0 +1,433 @@
+/**
+ * SaaS Software Development Services page-only extras.
+ * Loaded only via seo.extra_css — scoped so other pages are unaffected.
+ */
+body.page-saas .saas-theme-page.theme-html-root {
+  /* namespace hook */
+}
+
+body.page-saas .saas-theme-page .sec-paper,
+body.page-saas .saas-theme-page .sec-mist,
+body.page-saas .saas-theme-page .sec-ink {
+  position: relative;
+}
+
+body.page-saas .hero-eyebrow {
+  display: none !important;
+}
+
+body.page-saas .hero-badges.hero-trust,
+body.page-saas .hero-trust.hero-badges {
+  margin-top: 1.25rem;
+}
+
+/* ─── Hero: light breathing room ─── */
+html body.page-saas.page-service .hero,
+html body.page-saas.page-service section.hero {
+  padding-top: 72px !important;
+  padding-bottom: clamp(24px, 3vw, 40px) !important;
+}
+
+html body.page-saas.page-service .hero > .wrap,
+html body.page-saas.page-service .hero > .hero-in,
+html body.page-saas.page-service .hero > .container {
+  padding-top: 8px !important;
+  padding-bottom: clamp(12px, 2vw, 24px) !important;
+}
+
+html body.page-saas.page-service .hero .hero-copy,
+html body.page-saas.page-service .hero .hero-inner {
+  padding-top: 8px !important;
+  padding-bottom: clamp(14px, 2vw, 28px) !important;
+  margin-top: 0 !important;
+}
+
+html body.page-saas.page-service .hero h1 {
+  margin-top: 0.2em !important;
+  margin-bottom: 0.45em !important;
+  line-height: 1.12 !important;
+}
+
+html body.page-saas.page-service .hero .lede,
+html body.page-saas.page-service .hero p.sub,
+html body.page-saas.page-service .hero .hero-sub {
+  margin-top: 0 !important;
+  margin-bottom: clamp(18px, 2.4vw, 28px) !important;
+  line-height: 1.55 !important;
+}
+
+html body.page-saas.page-service .hero-actions,
+html body.page-saas.page-service .hero-ctas {
+  margin-top: 0 !important;
+  margin-bottom: clamp(12px, 1.8vw, 20px) !important;
+}
+
+@media (max-width: 900px) {
+  html body.page-saas.page-service .hero,
+  html body.page-saas.page-service section.hero {
+    padding-top: 72px !important;
+    padding-bottom: 24px !important;
+  }
+
+  html body.page-saas.page-service .hero > .wrap,
+  html body.page-saas.page-service .hero > .hero-in,
+  html body.page-saas.page-service .hero > .container {
+    padding-top: 6px !important;
+  }
+
+  html body.page-saas.page-service .hero .hero-copy,
+  html body.page-saas.page-service .hero .hero-inner {
+    padding-top: 6px !important;
+    padding-bottom: 14px !important;
+  }
+}
+
+/* ─── #problems: fix broken carousel card widths ─── */
+@media (max-width: 980px) {
+  html body.page-saas.page-service .saas-theme-page #problems .wrap {
+    max-width: 100% !important;
+    min-width: 0 !important;
+    overflow: visible !important;
+  }
+
+  html body.page-saas.page-service .saas-theme-page #problems .why-mobile-carousel {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    -webkit-overflow-scrolling: touch !important;
+    scroll-snap-type: x mandatory !important;
+    overscroll-behavior-x: contain !important;
+    scrollbar-width: none !important;
+    touch-action: pan-x !important;
+  }
+
+  html body.page-saas.page-service .saas-theme-page #problems .why-mobile-carousel::-webkit-scrollbar {
+    display: none !important;
+    height: 0 !important;
+  }
+
+  html body.page-saas.page-service .saas-theme-page #problems .pain-grid,
+  html body.page-saas.page-service .saas-theme-page #problems .pain-grid.thm-mobile-carousel,
+  html body.page-saas.page-service .saas-theme-page #problems .why-mobile-carousel > .pain-grid {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    align-items: stretch !important;
+    gap: 14px !important;
+    width: max-content !important;
+    max-width: none !important;
+    min-width: 0 !important;
+    margin: 0 !important;
+    padding: 0 2px 6px !important;
+    overflow: visible !important;
+    grid-template-columns: none !important;
+  }
+
+  html body.page-saas.page-service .saas-theme-page #problems .pain-grid > .pain,
+  html body.page-saas.page-service .saas-theme-page #problems .pain-grid > * {
+    flex: 0 0 min(340px, calc(100vw - 48px)) !important;
+    flex-shrink: 0 !important;
+    flex-grow: 0 !important;
+    width: min(340px, calc(100vw - 48px)) !important;
+    min-width: min(340px, calc(100vw - 48px)) !important;
+    max-width: min(340px, calc(100vw - 48px)) !important;
+    height: auto !important;
+    box-sizing: border-box !important;
+    scroll-snap-align: start !important;
+    scroll-snap-stop: always !important;
+    overflow-wrap: anywhere !important;
+    word-break: break-word !important;
+  }
+
+  html body.page-saas.page-service .saas-theme-page #problems .pain h4,
+  html body.page-saas.page-service .saas-theme-page #problems .pain p {
+    max-width: 100% !important;
+    overflow-wrap: anywhere !important;
+  }
+
+  html body.page-saas.page-service .saas-theme-page #problems .thm-carousel-nav-wrap {
+    display: none !important;
+  }
+
+  html body.page-saas.page-service .saas-theme-page #problems .testi-dots.thm-carousel-dots,
+  html body.page-saas.page-service .saas-theme-page #problems .wrap > .testi-dots.thm-carousel-dots {
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 18px 0 0 !important;
+  }
+}
+
+/* ─── #services: mobile swipe-up sticky stack ─── */
+@media (max-width: 900px) {
+  html body.page-saas.page-service .saas-theme-page section#services,
+  html body.page-saas.page-service .saas-theme-page section#services.has-page-svc-stack {
+    overflow-x: clip !important;
+    overflow-y: visible !important;
+  }
+
+  html body.page-saas.page-service .saas-theme-page #services .wrap {
+    max-width: 100% !important;
+    min-width: 0 !important;
+    overflow: visible !important;
+  }
+
+  html body.page-saas.page-service .saas-theme-page #services .svc-grid.page-svc-stack,
+  html body.page-saas.page-service .saas-theme-page #services .svc-grid[data-thm-stack] {
+    display: block !important;
+    grid-template-columns: none !important;
+    gap: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: visible !important;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+  }
+
+  html body.page-saas.page-service .saas-theme-page #services .svc-grid.page-svc-stack > .svc-stack-item {
+    position: sticky !important;
+    top: calc(var(--svc-stack-nav, 68px) + (var(--index0, 0) * var(--svc-stack-peek, 14px))) !important;
+    z-index: calc(1 + var(--index0, 0)) !important;
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    margin: 0 0 var(--svc-stack-gap, 18px) !important;
+    padding: 0 !important;
+    background: transparent !important;
+    border: 0 !important;
+    box-shadow: none !important;
+    transform: none !important;
+  }
+
+  html body.page-saas.page-service .saas-theme-page #services .svc-grid.page-svc-stack > .svc-stack-item:last-child {
+    margin-bottom: 0 !important;
+  }
+
+  html body.page-saas.page-service .saas-theme-page #services .svc-grid.page-svc-stack .svc,
+  html body.page-saas.page-service .saas-theme-page #services .svc-grid.page-svc-stack .svc-stack-item > .svc,
+  html body.page-saas.page-service .saas-theme-page #services .svc-grid[data-thm-stack] .svc {
+    display: flex !important;
+    flex-direction: column !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    height: auto !important;
+    min-height: 160px !important;
+    margin: 0 !important;
+    padding: 22px 18px 24px !important;
+    box-sizing: border-box !important;
+    background: #fff !important;
+    background-color: #fff !important;
+    border: 1px solid var(--line, #e1e9e5) !important;
+    border-radius: 18px !important;
+    box-shadow:
+      0 1px 2px rgba(13, 32, 41, 0.05),
+      0 14px 32px -16px rgba(13, 32, 41, 0.22) !important;
+    opacity: 1 !important;
+    transform: none !important;
+    overflow: hidden !important;
+    isolation: isolate;
+    color: #0d2029 !important;
+  }
+
+  html body.page-saas.page-service .saas-theme-page #services .svc h4 {
+    color: #0d2029 !important;
+    -webkit-text-fill-color: #0d2029 !important;
+    font-size: 1.08rem !important;
+    margin: 0 0 8px !important;
+    overflow-wrap: anywhere !important;
+  }
+
+  html body.page-saas.page-service .saas-theme-page #services .svc p {
+    color: #3a4a50 !important;
+    -webkit-text-fill-color: #3a4a50 !important;
+    font-size: 0.9rem !important;
+    line-height: 1.55 !important;
+    overflow-wrap: anywhere !important;
+  }
+}
+
+@media (min-width: 901px) {
+  html body.page-saas.page-service .saas-theme-page #services .svc-grid.page-svc-stack,
+  html body.page-saas.page-service .saas-theme-page #services .svc-grid[data-thm-stack] {
+    display: grid !important;
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: 18px !important;
+  }
+
+  html body.page-saas.page-service .saas-theme-page #services .svc-grid.page-svc-stack > .svc-stack-item {
+    position: relative !important;
+    top: auto !important;
+    margin: 0 !important;
+    transform: none !important;
+  }
+}
+
+@media (min-width: 901px) and (max-width: 1100px) {
+  html body.page-saas.page-service .saas-theme-page #services .svc-grid.page-svc-stack,
+  html body.page-saas.page-service .saas-theme-page #services .svc-grid[data-thm-stack] {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+}
+
+/* ─── #process: card design (desktop) + swipe-up stack (mobile) ─── */
+html body.page-saas.page-service .saas-theme-page #process .proc-grid {
+  gap: 16px !important;
+}
+
+html body.page-saas.page-service .saas-theme-page #process .step {
+  background: #fff !important;
+  border: 1px solid var(--line, #e1e9e5) !important;
+  border-radius: 18px !important;
+  padding: 24px 20px 22px !important;
+  box-shadow:
+    0 1px 2px rgba(13, 32, 41, 0.04),
+    0 10px 28px -16px rgba(13, 32, 41, 0.16) !important;
+  box-sizing: border-box !important;
+  position: relative !important;
+  overflow: hidden !important;
+}
+
+html body.page-saas.page-service .saas-theme-page #process .step::before {
+  content: "" !important;
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  height: 3px !important;
+  background: var(--signal, #f47a1f) !important;
+}
+
+html body.page-saas.page-service .saas-theme-page #process .step .num {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 42px !important;
+  height: 42px !important;
+  border-radius: 12px !important;
+  background: var(--ink, #0a1a22) !important;
+  color: var(--signal, #f47a1f) !important;
+  font-size: 0.95rem !important;
+  font-weight: 800 !important;
+  margin: 0 0 14px !important;
+}
+
+html body.page-saas.page-service .saas-theme-page #process .step h4 {
+  color: #0d2029 !important;
+  font-size: 1.05rem !important;
+  margin: 0 0 8px !important;
+}
+
+html body.page-saas.page-service .saas-theme-page #process .step p {
+  color: #4b5b62 !important;
+  font-size: 0.9rem !important;
+  line-height: 1.55 !important;
+  margin: 0 !important;
+}
+
+@media (min-width: 901px) {
+  html body.page-saas.page-service .saas-theme-page #process .proc-grid.page-svc-stack,
+  html body.page-saas.page-service .saas-theme-page #process .proc-grid[data-thm-stack] {
+    display: grid !important;
+    grid-template-columns: repeat(5, minmax(0, 1fr)) !important;
+    gap: 14px !important;
+  }
+
+  html body.page-saas.page-service .saas-theme-page #process .proc-grid.page-svc-stack > .svc-stack-item {
+    position: relative !important;
+    top: auto !important;
+    margin: 0 !important;
+    transform: none !important;
+    height: 100% !important;
+  }
+
+  html body.page-saas.page-service .saas-theme-page #process .proc-grid.page-svc-stack .step {
+    height: 100% !important;
+  }
+}
+
+@media (min-width: 901px) and (max-width: 1200px) {
+  html body.page-saas.page-service .saas-theme-page #process .proc-grid.page-svc-stack,
+  html body.page-saas.page-service .saas-theme-page #process .proc-grid[data-thm-stack] {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  }
+}
+
+@media (max-width: 900px) {
+  html body.page-saas.page-service .saas-theme-page section#process,
+  html body.page-saas.page-service .saas-theme-page section#process.has-page-svc-stack {
+    overflow-x: clip !important;
+    overflow-y: visible !important;
+  }
+
+  html body.page-saas.page-service .saas-theme-page #process .wrap {
+    max-width: 100% !important;
+    min-width: 0 !important;
+    overflow: visible !important;
+  }
+
+  html body.page-saas.page-service .saas-theme-page #process .proc-grid.page-svc-stack,
+  html body.page-saas.page-service .saas-theme-page #process .proc-grid[data-thm-stack] {
+    display: block !important;
+    grid-template-columns: none !important;
+    gap: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: visible !important;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+  }
+
+  html body.page-saas.page-service .saas-theme-page #process .proc-grid.page-svc-stack > .svc-stack-item {
+    position: sticky !important;
+    top: calc(var(--svc-stack-nav, 68px) + (var(--index0, 0) * var(--svc-stack-peek, 14px))) !important;
+    z-index: calc(1 + var(--index0, 0)) !important;
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    margin: 0 0 var(--svc-stack-gap, 18px) !important;
+    padding: 0 !important;
+    background: transparent !important;
+    border: 0 !important;
+    box-shadow: none !important;
+    transform: none !important;
+  }
+
+  html body.page-saas.page-service .saas-theme-page #process .proc-grid.page-svc-stack > .svc-stack-item:last-child {
+    margin-bottom: 0 !important;
+  }
+
+  html body.page-saas.page-service .saas-theme-page #process .proc-grid.page-svc-stack .step,
+  html body.page-saas.page-service .saas-theme-page #process .proc-grid.page-svc-stack .svc-stack-item > .step {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    height: auto !important;
+    min-height: 140px !important;
+    margin: 0 !important;
+    padding: 22px 18px 24px !important;
+    opacity: 1 !important;
+    transform: none !important;
+    overflow: hidden !important;
+    isolation: isolate;
+  }
+
+  html body.page-saas.page-service .saas-theme-page #process .step h4,
+  html body.page-saas.page-service .saas-theme-page #process .step p {
+    overflow-wrap: anywhere !important;
+    word-break: break-word !important;
+  }
+}

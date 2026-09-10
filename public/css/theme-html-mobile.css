@@ -2111,13 +2111,15 @@ html body.page-service .re-theme-page #process .svc-stack-item::after {
   html body.page-redesign .redesign-theme-page #pain .grid > *,
   html body.page-saas .saas-theme-page #problems .pain-grid > .pain,
   html body.page-saas .saas-theme-page #problems .pain-grid > * {
-    flex: 0 0 100% !important;
+    flex: 0 0 min(340px, calc(100vw - 48px)) !important;
     flex-shrink: 0 !important;
-    width: 100% !important;
-    min-width: 100% !important;
-    max-width: 100% !important;
+    flex-grow: 0 !important;
+    width: min(340px, calc(100vw - 48px)) !important;
+    min-width: min(340px, calc(100vw - 48px)) !important;
+    max-width: min(340px, calc(100vw - 48px)) !important;
     box-sizing: border-box !important;
     scroll-snap-align: start !important;
+    scroll-snap-stop: always !important;
   }
 }
 

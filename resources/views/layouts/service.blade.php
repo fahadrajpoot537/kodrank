@@ -167,7 +167,8 @@
 @if(!empty($seo['css']) && $serviceTheme !== 'legal')
   <link rel="stylesheet" href="{{ asset($seo['css']) }}?v={{ @filemtime(public_path($seo['css'])) ?: time() }}">
 @endif
-@if(!empty($seo['extra_css']) && $serviceTheme !== 'legal')
+{{-- Non-theme-html page polish: early is fine. theme-html extra_css loads after mobile (below). --}}
+@if(!empty($seo['extra_css']) && $serviceTheme !== 'legal' && $serviceTheme !== 'theme-html')
   <link rel="stylesheet" href="{{ asset($seo['extra_css']) }}?v={{ @filemtime(public_path($seo['extra_css'])) ?: time() }}">
 @endif
 @if(\App\Support\WpRefDesign::appliesTo($page->slug ?? '') && ($page->slug ?? '') !== 'off-page-seo-services')
@@ -179,9 +180,12 @@
 @if(($page->slug ?? '') === 'wordpress-development-services')
   <link rel="stylesheet" href="{{ asset('css/theme-wordpress-development-mobile.css') }}?v={{ @filemtime(public_path('css/theme-wordpress-development-mobile.css')) ?: time() }}">
 @endif
-{{-- Mobile/tablet carousel + stack MUST load last so WP snap/stack beats theme !important --}}
+{{-- Mobile/tablet carousel + stack — then page polish so compare/process overrides win --}}
 @if($serviceTheme === 'theme-html' || \App\Support\WpRefDesign::appliesTo($page->slug ?? ''))
   <link rel="stylesheet" href="{{ asset('css/theme-html-mobile.css') }}?v={{ @filemtime(public_path('css/theme-html-mobile.css')) ?: time() }}">
+@endif
+@if(!empty($seo['extra_css']) && $serviceTheme === 'theme-html')
+  <link rel="stylesheet" href="{{ asset($seo['extra_css']) }}?v={{ @filemtime(public_path($seo['extra_css'])) ?: time() }}">
 @endif
 @stack('head')
 </head>
@@ -205,7 +209,7 @@
       $bodyExtras .= ' page-guest-posting';
   }
 @endphp
-<body class="page-service{{ $cssTheme === 'web-development' ? ' page-web-dev' : '' }}{{ $bodyExtras }}{{ $serviceTheme === 'theme-html' ? ' page-theme-html' : '' }}{{ $serviceTheme === 'industries' ? ' page-industries' : '' }}{{ $serviceTheme === 'legal' ? ' page-legal' : '' }}{{ ($page->slug ?? '') === 'digital-marketing-services' ? ' page-dm' : '' }}{{ ($page->slug ?? '') === 'on-page-seo-services' ? ' page-onpage' : '' }}{{ ($page->slug ?? '') === 'off-page-seo-services' ? ' page-offpage' : '' }}{{ ($page->slug ?? '') === 'technical-seo-services' ? ' page-techseo' : '' }}{{ ($page->slug ?? '') === 'aeo-services' ? ' page-aeo' : '' }}{{ ($page->slug ?? '') === 'geo-services' ? ' page-geo' : '' }}{{ ($page->slug ?? '') === 'monthly-seo-services' ? ' page-monthly' : '' }}{{ ($page->slug ?? '') === 'saas-seo-services' ? ' page-saasseo' : '' }}{{ ($page->slug ?? '') === 'b2b-seo-services' ? ' page-b2bseo' : '' }}{{ ($page->slug ?? '') === 'ecommerce-seo-services' ? ' page-ecomseo' : '' }}{{ ($page->slug ?? '') === 'wordpress-seo-services' ? ' page-wpseo' : '' }}{{ ($page->slug ?? '') === 'shopify-seo-services' ? ' page-shopifyseo' : '' }}{{ ($page->slug ?? '') === 'guest-posting-services' ? ' page-gpseo' : '' }}{{ ($page->slug ?? '') === 'restaurant-seo-services' ? ' page-restseo' : '' }}{{ ($page->slug ?? '') === 'healthcare-seo-services' ? ' page-hcseo' : '' }}{{ ($page->slug ?? '') === 'real-estate-seo-services' ? ' page-reseo' : '' }}{{ ($page->slug ?? '') === 'shopify-development-services' ? ' page-shopify' : '' }}{{ ($page->slug ?? '') === 'ai-chatbot-development-services' ? ' page-aibot' : '' }}{{ ($page->slug ?? '') === 'cms-development-services' ? ' page-cms' : '' }}{{ ($page->slug ?? '') === 'website-redesign-services' ? ' page-redesign' : '' }}{{ ($page->slug ?? '') === 'electrician-website-design-services' ? ' page-elec' : '' }}{{ ($page->slug ?? '') === 'saas-software-development-services' ? ' page-saas' : '' }}{{ ($page->slug ?? '') === 'white-label-seo-services' ? ' page-wlseo' : '' }}{{ \App\Support\WpRefDesign::usesSeoMotion($page->slug ?? null) ? ' page-dm-motion' : '' }}">
+<body class="page-service{{ $cssTheme === 'web-development' ? ' page-web-dev' : '' }}{{ $bodyExtras }}{{ $serviceTheme === 'theme-html' ? ' page-theme-html' : '' }}{{ $serviceTheme === 'industries' ? ' page-industries' : '' }}{{ $serviceTheme === 'legal' ? ' page-legal' : '' }}{{ ($page->slug ?? '') === 'digital-marketing-services' ? ' page-dm' : '' }}{{ ($page->slug ?? '') === 'on-page-seo-services' ? ' page-onpage' : '' }}{{ ($page->slug ?? '') === 'off-page-seo-services' ? ' page-offpage' : '' }}{{ ($page->slug ?? '') === 'technical-seo-services' ? ' page-techseo' : '' }}{{ ($page->slug ?? '') === 'aeo-services' ? ' page-aeo' : '' }}{{ ($page->slug ?? '') === 'geo-services' ? ' page-geo' : '' }}{{ ($page->slug ?? '') === 'monthly-seo-services' ? ' page-monthly' : '' }}{{ ($page->slug ?? '') === 'saas-seo-services' ? ' page-saasseo' : '' }}{{ ($page->slug ?? '') === 'b2b-seo-services' ? ' page-b2bseo' : '' }}{{ ($page->slug ?? '') === 'ecommerce-seo-services' ? ' page-ecomseo' : '' }}{{ ($page->slug ?? '') === 'wordpress-seo-services' ? ' page-wpseo' : '' }}{{ ($page->slug ?? '') === 'shopify-seo-services' ? ' page-shopifyseo' : '' }}{{ ($page->slug ?? '') === 'guest-posting-services' ? ' page-gpseo' : '' }}{{ ($page->slug ?? '') === 'restaurant-seo-services' ? ' page-restseo' : '' }}{{ ($page->slug ?? '') === 'healthcare-seo-services' ? ' page-hcseo' : '' }}{{ ($page->slug ?? '') === 'real-estate-seo-services' ? ' page-reseo' : '' }}{{ ($page->slug ?? '') === 'web-design-and-development-services' ? ' page-webdesign' : '' }}{{ ($page->slug ?? '') === 'wordpress-development-services' ? ' page-wpdev' : '' }}{{ ($page->slug ?? '') === 'shopify-development-services' ? ' page-shopify' : '' }}{{ ($page->slug ?? '') === 'ai-chatbot-development-services' ? ' page-aibot' : '' }}{{ ($page->slug ?? '') === 'cms-development-services' ? ' page-cms' : '' }}{{ ($page->slug ?? '') === 'website-redesign-services' ? ' page-redesign' : '' }}{{ ($page->slug ?? '') === 'electrician-website-design-services' ? ' page-elec' : '' }}{{ ($page->slug ?? '') === 'saas-software-development-services' ? ' page-saas' : '' }}{{ ($page->slug ?? '') === 'white-label-seo-services' ? ' page-wlseo' : '' }}{{ \App\Support\WpRefDesign::usesSeoMotion($page->slug ?? null) ? ' page-dm-motion' : '' }}">
 @php $navStuck = false; @endphp
 @include('home.partials.nav')
 @php

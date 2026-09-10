@@ -183,7 +183,7 @@ body.page-web-dev .page-svc-stack .why-card{
   -webkit-font-smoothing:antialiased;
 }
 
-/* Theme-html process/loop cards: opaque white faces (stops text bleed while stacking) */
+/* Theme-html process/loop/service cards: opaque white faces (stops text bleed while stacking) */
 .page-theme-html .page-svc-stack .svc-stack-item > .step,
 .page-theme-html [data-thm-stack] .svc-stack-item > .step,
 .page-theme-html .page-svc-stack .proc-card,
@@ -195,7 +195,19 @@ body.page-web-dev .page-svc-stack .why-card{
 .page-theme-html .page-svc-stack .svc-stack-item > .proc,
 .page-theme-html [data-thm-stack] .svc-stack-item > .proc,
 .page-theme-html .page-svc-stack .process-card,
-.page-theme-html [data-thm-stack] .process-card{
+.page-theme-html [data-thm-stack] .process-card,
+.page-theme-html .page-svc-stack .svc-card,
+.page-theme-html [data-thm-stack] .svc-card,
+.page-theme-html .page-svc-stack .svc-stack-item > .svc-card,
+.page-theme-html [data-thm-stack] .svc-stack-item > .svc-card,
+.page-theme-html .page-svc-stack .svc,
+.page-theme-html [data-thm-stack] .svc,
+.page-theme-html .page-svc-stack .svc-stack-item > .svc,
+.page-theme-html [data-thm-stack] .svc-stack-item > .svc,
+.page-theme-html .page-svc-stack .step,
+.page-theme-html [data-thm-stack] .step,
+.page-theme-html .page-svc-stack .svc-stack-item > .step,
+.page-theme-html [data-thm-stack] .svc-stack-item > .step{
   opacity:1 !important;
   background:#fff !important;
   background-color:#fff !important;

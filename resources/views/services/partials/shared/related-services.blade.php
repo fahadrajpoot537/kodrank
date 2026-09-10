@@ -4,6 +4,18 @@
 
   $currentSlug = trim((string) ($page->slug ?? $currentSlug ?? ''), '/');
 
+  $devSlugs = [
+      'web-design-and-development-services',
+      'wordpress-development-services',
+      'shopify-development-services',
+      'ai-chatbot-development-services',
+      'cms-development-services',
+      'website-redesign-services',
+      'electrician-website-design-services',
+      'saas-software-development-services',
+  ];
+  $isDevRelated = in_array($currentSlug, $devSlugs, true);
+
   $icons = [
       'digital-marketing-services' => '<path d="m3 11 18-5v12L3 14v-3z"/><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/>',
       'monthly-seo-services' => '<path d="M3 3v18h18"/><path d="M7 14l4-4 3 3 5-6"/>',
@@ -22,39 +34,83 @@
       'healthcare-seo-services' => '<path d="M22 12h-4l-3 9L9 3l-3 9H2"/>',
       'real-estate-seo-services' => '<path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/>',
       'white-label-seo-services' => '<rect x="3" y="3" width="18" height="18" rx="2"/><path d="M8 12h8M12 8v8"/>',
+      'web-design-and-development-services' => '<rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/>',
+      'wordpress-development-services' => '<circle cx="12" cy="12" r="10"/><path d="m5 8 4 10 3-8 3 8 4-10"/>',
+      'shopify-development-services' => '<path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><path d="M3 6h18M16 10a4 4 0 0 1-8 0"/>',
+      'ai-chatbot-development-services' => '<rect x="3" y="8" width="18" height="12" rx="3"/><path d="M12 8V5M8 3h8M8 14h.01M16 14h.01"/>',
+      'cms-development-services' => '<ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14a9 3 0 0 0 18 0V5"/><path d="M3 12a9 3 0 0 0 18 0"/>',
+      'website-redesign-services' => '<path d="M21 12a9 9 0 1 1-3-6.7L21 8"/><path d="M21 3v5h-5"/>',
+      'electrician-website-design-services' => '<path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/>',
+      'saas-software-development-services' => '<path d="M22 12h-4l-3 9L9 3l-3 9H2"/>',
   ];
   $defaultIcon = '<rect x="3" y="3" width="18" height="18" rx="2"/><path d="M8 12h8"/>';
 
-  $seoGroup = ServicePage::query()
-      ->where('slug', 'digital-marketing-services')
-      ->where('is_active', true)
-      ->with(['children' => static fn ($q) => $q->where('is_active', true)->orderBy('sort_order')])
-      ->first();
-
   $relatedPages = collect();
-  if ($seoGroup) {
-      $relatedPages->push($seoGroup);
-      $relatedPages = $relatedPages->merge($seoGroup->children ?? []);
-  }
 
-  $extraSlugs = [
-      'shopify-seo-services',
-      'guest-posting-services',
-      'restaurant-seo-services',
-      'healthcare-seo-services',
-      'real-estate-seo-services',
-      'white-label-seo-services',
-      'monthly-seo-services',
-  ];
-  $have = $relatedPages->pluck('slug')->all();
-  foreach ($extraSlugs as $extraSlug) {
-      if (in_array($extraSlug, $have, true)) {
-          continue;
+  if ($isDevRelated) {
+      $webGroup = ServicePage::query()
+          ->where('slug', 'web-design-and-development-services')
+          ->where('is_active', true)
+          ->with(['children' => static fn ($q) => $q->where('is_active', true)->orderBy('sort_order')])
+          ->first();
+
+      if ($webGroup) {
+          $relatedPages->push($webGroup);
+          $relatedPages = $relatedPages->merge($webGroup->children ?? []);
       }
-      $extra = ServicePage::query()->where('slug', $extraSlug)->where('is_active', true)->first();
-      if ($extra) {
-          $relatedPages->push($extra);
+
+      // Ensure every development page appears even if parent/children link is missing.
+      $have = $relatedPages->pluck('slug')->all();
+      foreach ($devSlugs as $extraSlug) {
+          if (in_array($extraSlug, $have, true)) {
+              continue;
+          }
+          $extra = ServicePage::query()->where('slug', $extraSlug)->where('is_active', true)->first();
+          if ($extra) {
+              $relatedPages->push($extra);
+          }
       }
+
+      $relatedEyebrow = 'Web Design &amp; Development';
+      $relatedTitle = 'Build faster. Convert more. <span class="hl">Ship better</span>.';
+      $relatedLede = 'From custom sites and WordPress to Shopify, CMS, AI chatbots, and SaaS — development services engineered for speed, clarity, and growth.';
+      $relatedAria = 'Related development services';
+  } else {
+      $seoGroup = ServicePage::query()
+          ->where('slug', 'digital-marketing-services')
+          ->where('is_active', true)
+          ->with(['children' => static fn ($q) => $q->where('is_active', true)->orderBy('sort_order')])
+          ->first();
+
+      if ($seoGroup) {
+          $relatedPages->push($seoGroup);
+          $relatedPages = $relatedPages->merge($seoGroup->children ?? []);
+      }
+
+      $extraSlugs = [
+          'shopify-seo-services',
+          'guest-posting-services',
+          'restaurant-seo-services',
+          'healthcare-seo-services',
+          'real-estate-seo-services',
+          'white-label-seo-services',
+          'monthly-seo-services',
+      ];
+      $have = $relatedPages->pluck('slug')->all();
+      foreach ($extraSlugs as $extraSlug) {
+          if (in_array($extraSlug, $have, true)) {
+              continue;
+          }
+          $extra = ServicePage::query()->where('slug', $extraSlug)->where('is_active', true)->first();
+          if ($extra) {
+              $relatedPages->push($extra);
+          }
+      }
+
+      $relatedEyebrow = 'SEO &amp; Search Growth';
+      $relatedTitle = 'Get found where your customers are <span class="hl">searching</span>.';
+      $relatedLede = 'Classic search, AI answers, and generative results — we optimize for all of it, so your business shows up first no matter how people search.';
+      $relatedAria = 'Related SEO services';
   }
 
   $relatedPages = $relatedPages
@@ -63,12 +119,12 @@
       ->values();
 @endphp
 @if($relatedPages->isNotEmpty())
-<section class="sec-ink kr-related-services" aria-label="Related SEO services">
+<section class="sec-ink kr-related-services" aria-label="{{ $relatedAria }}">
   <div class="wrap">
     <div class="kr-related-head">
-      <span class="eyebrow">SEO &amp; Search Growth</span>
-      <h2>Get found where your customers are <span class="hl">searching</span>.</h2>
-      <p class="lede">Classic search, AI answers, and generative results — we optimize for all of it, so your business shows up first no matter how people search.</p>
+      <span class="eyebrow">{!! $relatedEyebrow !!}</span>
+      <h2>{!! $relatedTitle !!}</h2>
+      <p class="lede">{{ $relatedLede }}</p>
     </div>
   </div>
   <div class="kr-related-carousel" data-kr-related-marquee>

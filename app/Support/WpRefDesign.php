@@ -28,13 +28,7 @@ class WpRefDesign
             'restaurant-seo-services',
             'healthcare-seo-services',
             'real-estate-seo-services',
-            'web-design-and-development-services',
-            'shopify-development-services',
-            'ai-chatbot-development-services',
-            'cms-development-services',
-            'website-redesign-services',
-            'electrician-website-design-services',
-            'saas-software-development-services',
+            // Development pages use their own theme CSS (not shared webdev-ref).
         ];
     }
 

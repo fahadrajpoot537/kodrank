@@ -1,0 +1,540 @@
+/**
+ * Web Design and Development Services page-only extras.
+ * Loaded only via seo.extra_css — scoped so other pages are unaffected.
+ */
+body.page-webdesign .webdesign-theme-page.theme-html-root {
+  /* namespace hook */
+}
+
+body.page-webdesign .webdesign-theme-page .sec-paper,
+body.page-webdesign .webdesign-theme-page .sec-mist,
+body.page-webdesign .webdesign-theme-page .sec-ink {
+  position: relative;
+}
+
+body.page-webdesign .hero-eyebrow {
+  display: none !important;
+}
+
+body.page-webdesign .hero-badges.hero-trust,
+body.page-webdesign .hero-trust.hero-badges {
+  margin-top: 1.25rem;
+}
+
+/* ─── Process steps: cards + mobile swipe-up stack ─── */
+body.page-webdesign .webdesign-theme-page .process-wrap {
+  position: relative;
+  margin-top: 8px;
+}
+
+body.page-webdesign .webdesign-theme-page .process-line {
+  display: block !important;
+  position: absolute;
+  top: 58px;
+  left: 10%;
+  right: 10%;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--signal, #f47a1f) 12%,
+    var(--signal, #f47a1f) 88%,
+    transparent
+  );
+  opacity: 0.35;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Desktop: 4-col card grid (stack deactivated by JS on ≥901px) */
+@media (min-width: 901px) {
+  body.page-webdesign .webdesign-theme-page .process-grid,
+  body.page-webdesign .webdesign-theme-page .process-grid[data-thm-stack] {
+    display: grid !important;
+    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+    gap: 22px !important;
+    position: relative;
+    z-index: 1;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    overflow: visible !important;
+    transform: none !important;
+  }
+
+  body.page-webdesign .webdesign-theme-page .process-grid > .svc-stack-item,
+  body.page-webdesign .webdesign-theme-page .process-grid > .svc-stack-pair {
+    display: contents !important;
+    position: static !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    height: auto !important;
+    transform: none !important;
+  }
+}
+
+@media (min-width: 901px) and (max-width: 1100px) {
+  body.page-webdesign .webdesign-theme-page .process-grid,
+  body.page-webdesign .webdesign-theme-page .process-grid[data-thm-stack] {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 18px !important;
+  }
+  body.page-webdesign .webdesign-theme-page .process-line {
+    display: none !important;
+  }
+}
+
+body.page-webdesign .webdesign-theme-page .process-step,
+body.page-webdesign .webdesign-theme-page .process-grid .process-step,
+body.page-webdesign .webdesign-theme-page .process-grid .svc-stack-item > .process-step {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+  text-align: left !important;
+  height: 100% !important;
+  min-height: 0 !important;
+  margin: 0 !important;
+  padding: 28px 24px 30px !important;
+  background: #fff !important;
+  border: 1px solid var(--line, #e1e9e5) !important;
+  border-radius: 18px !important;
+  box-shadow:
+    0 1px 2px rgba(13, 32, 41, 0.04),
+    0 12px 28px -18px rgba(13, 32, 41, 0.18) !important;
+  box-sizing: border-box !important;
+  opacity: 1 !important;
+  transform: none !important;
+  isolation: isolate;
+  overflow: hidden !important;
+  transition:
+    transform 0.22s ease,
+    box-shadow 0.22s ease,
+    border-color 0.22s ease;
+}
+
+@media (min-width: 901px) {
+  body.page-webdesign .webdesign-theme-page .process-step:hover {
+    transform: translateY(-3px) !important;
+    border-color: rgba(244, 122, 31, 0.35) !important;
+    box-shadow:
+      0 2px 4px rgba(13, 32, 41, 0.05),
+      0 18px 36px -20px rgba(13, 32, 41, 0.22) !important;
+  }
+}
+
+body.page-webdesign .webdesign-theme-page .process-step .step-badge {
+  width: 64px !important;
+  height: 64px !important;
+  min-width: 64px !important;
+  border-radius: 50% !important;
+  background: #fff !important;
+  border: 2px solid var(--signal, #f47a1f) !important;
+  display: grid !important;
+  place-items: center !important;
+  margin: 0 0 20px !important;
+  padding: 0 !important;
+  font-size: 1.35rem !important;
+  font-weight: 800 !important;
+  line-height: 1 !important;
+  color: var(--signal-deep, #cd661a) !important;
+  letter-spacing: -0.02em !important;
+  box-shadow: 0 1px 2px rgba(13, 32, 41, 0.05), 0 6px 18px -8px rgba(13, 32, 41, 0.12) !important;
+  position: relative;
+  z-index: 1;
+}
+
+body.page-webdesign .webdesign-theme-page .process-step h3 {
+  color: var(--graphite, #0d2029) !important;
+  font-size: 1.15rem !important;
+  font-weight: 700 !important;
+  line-height: 1.25 !important;
+  margin: 0 0 10px !important;
+  padding: 0 !important;
+}
+
+body.page-webdesign .webdesign-theme-page .process-step p {
+  color: var(--slate, #4b5b62) !important;
+  font-size: 0.92rem !important;
+  line-height: 1.6 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  flex: 1 1 auto;
+}
+
+body.page-webdesign .webdesign-theme-page .process-step.reveal,
+body.page-webdesign .webdesign-theme-page .process-step.reveal.in {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+/* Mobile/tablet: sticky swipe-up stack */
+@media (max-width: 900px) {
+  body.page-webdesign .webdesign-theme-page .process-line {
+    display: none !important;
+  }
+
+  body.page-webdesign .webdesign-theme-page .process-grid.page-svc-stack,
+  body.page-webdesign .webdesign-theme-page .process-grid[data-thm-stack].page-svc-stack {
+    display: block !important;
+    grid-template-columns: none !important;
+    gap: 0 !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    overflow: visible !important;
+  }
+
+  body.page-webdesign .webdesign-theme-page .process-grid.page-svc-stack > .svc-stack-item {
+    position: sticky !important;
+    top: calc(var(--svc-stack-nav, 68px) + (var(--index0, 0) * var(--svc-stack-peek, 14px))) !important;
+    z-index: calc(1 + var(--index0, 0)) !important;
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 0 var(--svc-stack-gap, 18px) !important;
+    padding: 0 !important;
+    background: transparent !important;
+    border: 0 !important;
+    box-shadow: none !important;
+    transform: none !important;
+  }
+
+  body.page-webdesign .webdesign-theme-page .process-grid.page-svc-stack > .svc-stack-item:last-child {
+    margin-bottom: 0 !important;
+  }
+
+  body.page-webdesign .webdesign-theme-page .process-grid.page-svc-stack .process-step,
+  body.page-webdesign .webdesign-theme-page .process-grid.page-svc-stack .svc-stack-item > .process-step {
+    width: 100% !important;
+    height: auto !important;
+    min-height: 180px !important;
+    padding: 22px 18px 24px !important;
+    transform-origin: center top !important;
+    background: #fff !important;
+    border: 1px solid var(--line, #e1e9e5) !important;
+    border-radius: 18px !important;
+    box-shadow:
+      0 1px 2px rgba(13, 32, 41, 0.05),
+      0 14px 32px -16px rgba(13, 32, 41, 0.22) !important;
+  }
+
+  body.page-webdesign .webdesign-theme-page .process-step .step-badge {
+    width: 56px !important;
+    height: 56px !important;
+    min-width: 56px !important;
+    margin: 0 0 16px !important;
+    font-size: 1.2rem !important;
+  }
+
+  body.page-webdesign .webdesign-theme-page .process-step h3 {
+    margin: 0 0 8px !important;
+    font-size: 1.08rem !important;
+  }
+
+  body.page-webdesign .webdesign-theme-page .process-step p {
+    font-size: 0.9rem !important;
+  }
+
+  body.page-webdesign .webdesign-theme-page section:has(.process-grid.page-svc-stack) {
+    overflow-x: clip !important;
+    overflow-y: visible !important;
+  }
+}
+
+/* Compare cards (The Difference) — light vs KodRank contrast */
+html body.page-webdesign.page-service .webdesign-theme-page .sec-ink:has(> .container > .compare-grid) {
+  background: #fff !important;
+  color: var(--graphite, #0d2029);
+  overflow: visible !important;
+}
+
+html body.page-webdesign.page-service .webdesign-theme-page .sec-ink:has(> .container > .compare-grid) > .container {
+  max-width: var(--maxw, 1560px) !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  padding-left: var(--pad, clamp(18px, 3.2vw, 40px)) !important;
+  padding-right: var(--pad, clamp(18px, 3.2vw, 40px)) !important;
+  box-sizing: border-box !important;
+  width: 100% !important;
+  overflow: visible !important;
+}
+
+html body.page-webdesign.page-service .webdesign-theme-page .sec-ink:has(> .container > .compare-grid) .section-head h2,
+html body.page-webdesign.page-service .webdesign-theme-page .sec-ink:has(> .container > .compare-grid) .section-head h2 .accent {
+  color: var(--graphite, #0d2029) !important;
+}
+
+html body.page-webdesign.page-service .webdesign-theme-page .sec-ink:has(> .container > .compare-grid) .section-head .lede,
+html body.page-webdesign.page-service .webdesign-theme-page .sec-ink:has(> .container > .compare-grid) .section-head p {
+  color: var(--slate, #4b5b62) !important;
+}
+
+html body.page-webdesign.page-service .webdesign-theme-page .compare-grid {
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  gap: 22px !important;
+  align-items: stretch !important;
+  width: 100% !important;
+  margin: 8px 0 0 !important;
+  padding-top: 6px !important;
+}
+
+html body.page-webdesign.page-service .webdesign-theme-page .compare-card,
+html body.page-webdesign.page-service .webdesign-theme-page .compare-card.other,
+html body.page-webdesign.page-service .webdesign-theme-page .compare-card.us {
+  position: relative !important;
+  display: flex !important;
+  flex-direction: column !important;
+  height: auto !important;
+  min-height: 0 !important;
+  margin: 0 !important;
+  padding: 36px 30px 32px !important;
+  border-radius: 18px !important;
+  box-sizing: border-box !important;
+  overflow: visible !important;
+  opacity: 1 !important;
+  transform: none !important;
+  isolation: isolate;
+  box-shadow: 0 10px 28px -18px rgba(13, 32, 41, 0.28) !important;
+}
+
+html body.page-webdesign.page-service .webdesign-theme-page .compare-card.other {
+  background: #f1f5f3 !important;
+  border: 1px solid #e1e9e5 !important;
+  color: var(--graphite, #0d2029) !important;
+}
+
+html body.page-webdesign.page-service .webdesign-theme-page .compare-card.us {
+  background: var(--ink, #0a1a22) !important;
+  border: 2px solid var(--signal, #f47a1f) !important;
+  padding-top: 48px !important;
+  color: #fff !important;
+  box-shadow:
+    0 0 0 1px rgba(244, 122, 31, 0.12),
+    0 16px 36px -20px rgba(244, 122, 31, 0.4) !important;
+}
+
+html body.page-webdesign.page-service .webdesign-theme-page .compare-tag {
+  position: absolute !important;
+  top: -14px !important;
+  left: 28px !important;
+  z-index: 3;
+  display: inline-flex !important;
+  align-items: center !important;
+  background: var(--signal, #f47a1f) !important;
+  color: var(--signal-ink, #0a1a22) !important;
+  padding: 7px 16px !important;
+  border-radius: 999px !important;
+  font-size: 0.72rem !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.06em !important;
+  text-transform: uppercase !important;
+  line-height: 1 !important;
+  white-space: nowrap !important;
+  box-shadow: 0 6px 16px -8px rgba(244, 122, 31, 0.7) !important;
+}
+
+html body.page-webdesign.page-service .webdesign-theme-page .compare-card h3 {
+  font-size: clamp(1.15rem, 1.5vw, 1.35rem) !important;
+  font-weight: 700 !important;
+  line-height: 1.3 !important;
+  margin: 0 0 18px !important;
+  padding: 0 !important;
+}
+
+html body.page-webdesign.page-service .webdesign-theme-page .compare-card.other h3 {
+  color: var(--slate-2, #6b7a80) !important;
+}
+
+html body.page-webdesign.page-service .webdesign-theme-page .compare-card.us h3 {
+  color: #fff !important;
+}
+
+html body.page-webdesign.page-service .webdesign-theme-page .compare-list {
+  list-style: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 0 !important;
+  flex: 1 1 auto;
+}
+
+html body.page-webdesign.page-service .webdesign-theme-page .compare-list li {
+  display: flex !important;
+  align-items: flex-start !important;
+  gap: 12px !important;
+  margin: 0 !important;
+  padding: 11px 0 !important;
+  padding-left: 0 !important;
+  position: relative !important;
+  border-bottom: 1px solid #e1e9e5 !important;
+  color: var(--slate, #4b5b62) !important;
+  font-size: 0.94rem !important;
+  line-height: 1.5 !important;
+}
+
+html body.page-webdesign.page-service .webdesign-theme-page .compare-list li:last-child {
+  border-bottom: none !important;
+  padding-bottom: 0 !important;
+}
+
+html body.page-webdesign.page-service .webdesign-theme-page .compare-card.us .compare-list li {
+  color: #fff !important;
+  border-bottom-color: rgba(255, 255, 255, 0.12) !important;
+}
+
+/* Beat service-digital-marketing.css absolute marks (they overlap text) */
+html body.page-webdesign.page-service .webdesign-theme-page .compare-list li .mark,
+html body.page-webdesign.page-service .webdesign-theme-page .compare-list .mark {
+  position: relative !important;
+  left: auto !important;
+  top: auto !important;
+  right: auto !important;
+  bottom: auto !important;
+  float: none !important;
+  flex: 0 0 20px !important;
+  width: 20px !important;
+  height: 20px !important;
+  min-width: 20px !important;
+  max-width: 20px !important;
+  margin: 2px 0 0 !important;
+  padding: 0 !important;
+  border-radius: 50% !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-size: 0.7rem !important;
+  font-weight: 800 !important;
+  line-height: 1 !important;
+  transform: none !important;
+  z-index: auto !important;
+}
+
+html body.page-webdesign.page-service .webdesign-theme-page .compare-list .mark-x {
+  background: rgba(255, 90, 90, 0.14) !important;
+  color: #e25555 !important;
+}
+
+html body.page-webdesign.page-service .webdesign-theme-page .compare-list .mark-check {
+  background: var(--signal, #f47a1f) !important;
+  color: var(--signal-ink, #0a1a22) !important;
+}
+
+html body.page-webdesign.page-service .webdesign-theme-page .compare-card.reveal,
+html body.page-webdesign.page-service .webdesign-theme-page .compare-card.reveal.in {
+  opacity: 1 !important;
+  transform: none !important;
+  visibility: visible !important;
+}
+
+html body.page-webdesign.page-service .webdesign-theme-page .stats-band {
+  display: grid !important;
+  grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+  gap: 28px 20px !important;
+  margin-top: 40px !important;
+  padding: 36px 0 4px !important;
+  border-top: 1px solid #e1e9e5 !important;
+  border-bottom: none !important;
+}
+
+html body.page-webdesign.page-service .webdesign-theme-page .stats-band .stat-item .num {
+  color: var(--signal, #f47a1f) !important;
+  font-size: clamp(2rem, 3.2vw, 2.8rem) !important;
+  font-weight: 800 !important;
+  line-height: 1 !important;
+  display: block !important;
+  margin: 0 0 10px !important;
+}
+
+html body.page-webdesign.page-service .webdesign-theme-page .stats-band .stat-item .num.white {
+  color: var(--graphite, #0d2029) !important;
+}
+
+html body.page-webdesign.page-service .webdesign-theme-page .stats-band .stat-item .lab {
+  color: var(--slate, #4b5b62) !important;
+  font-size: 0.72rem !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.04em !important;
+  text-transform: uppercase !important;
+  line-height: 1.4 !important;
+}
+
+@media (max-width: 768px) {
+  html body.page-webdesign.page-service .webdesign-theme-page .compare-grid {
+    grid-template-columns: 1fr !important;
+    gap: 28px !important;
+    padding-top: 10px !important;
+  }
+
+  html body.page-webdesign.page-service .webdesign-theme-page .compare-card,
+  html body.page-webdesign.page-service .webdesign-theme-page .compare-card.other,
+  html body.page-webdesign.page-service .webdesign-theme-page .compare-card.us {
+    padding: 30px 22px 26px !important;
+  }
+
+  html body.page-webdesign.page-service .webdesign-theme-page .compare-card.us {
+    padding-top: 44px !important;
+  }
+
+  html body.page-webdesign.page-service .webdesign-theme-page .compare-tag {
+    left: 20px !important;
+  }
+
+  html body.page-webdesign.page-service .webdesign-theme-page .compare-card h3 {
+    font-size: 1.15rem !important;
+    margin-bottom: 16px !important;
+  }
+
+  html body.page-webdesign.page-service .webdesign-theme-page .compare-list li {
+    font-size: 0.92rem !important;
+    padding: 11px 0 !important;
+    gap: 11px !important;
+  }
+
+  html body.page-webdesign.page-service .webdesign-theme-page .stats-band {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 26px 16px !important;
+    margin-top: 32px !important;
+    padding-top: 32px !important;
+    text-align: left !important;
+  }
+}
+
+@media (max-width: 520px) {
+  html body.page-webdesign.page-service .webdesign-theme-page .stats-band {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 22px 12px !important;
+  }
+
+  html body.page-webdesign.page-service .webdesign-theme-page .stats-band .stat-item .num {
+    font-size: 2rem !important;
+  }
+}
+
+
+/* ─── CTA band: force white copy ─── */
+body.page-webdesign .webdesign-theme-page #cta .cta-card h2,
+body.page-webdesign .webdesign-theme-page section#cta .cta-card h2,
+body.page-webdesign .webdesign-theme-page #cta h2,
+html body.page-webdesign.page-service .webdesign-theme-page #cta .cta-card h2 {
+  color: #fff !important;
+}
+
+body.page-webdesign .webdesign-theme-page #cta .cta-card p,
+body.page-webdesign .webdesign-theme-page section#cta .cta-card p,
+body.page-webdesign .webdesign-theme-page #cta p,
+html body.page-webdesign.page-service .webdesign-theme-page #cta .cta-card p {
+  color: #fff !important;
+}
+
+body.page-webdesign .webdesign-theme-page #cta .cta-card .accent,
+body.page-webdesign .webdesign-theme-page #cta .accent {
+  color: var(--signal, #f47a1f) !important;
+}

@@ -137,8 +137,8 @@
 .saas-theme-page .svc:hover .svc-icon{background:var(--signal);color:var(--signal-ink)}
 .saas-theme-page .svc-icon svg{width:24px;height:24px}
 .saas-theme-page .svc-badge{width:26px;height:26px;border-radius:50%;background:rgba(244,122,31,.12);color:var(--signal-deep);display:grid;place-items:center;font-size:.72rem;font-weight:700}
-.saas-theme-page .svc h4{font-size:1.15rem;font-weight:650;margin-bottom:8px;color:#000}
-.saas-theme-page .svc p{font-size:.92rem;color:#000;line-height:1.55;flex:1}
+.saas-theme-page .svc h4{font-size:1.15rem;font-weight:650;margin-bottom:8px}
+.saas-theme-page .svc p{font-size:.92rem;color:var(--slate);line-height:1.55;flex:1}
 .saas-theme-page .svc .tlink{margin-top:18px}
 .saas-theme-page .proc-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-top:40px;counter-reset:step}
 .saas-theme-page .step{background:#fff;border:1px solid var(--line);border-radius:18px;padding:24px 20px;position:relative;overflow:hidden}
@@ -221,7 +221,7 @@
 .saas-theme-page .foot-bottom a{color:#9FB6BE}
 .saas-theme-page .foot-bottom a:hover{color:var(--signal)}
 .saas-theme-page .foot-contact{display:flex;gap:22px;flex-wrap:wrap}
-.saas-theme-page .rev{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
+.saas-theme-page .rev{opacity:1;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
 .saas-theme-page .rev.in{opacity:1;transform:none}
 
 
@@ -254,3 +254,8 @@
 .saas-theme-page .mpanel details summary::-webkit-details-marker{display:none}
 .saas-theme-page .mpanel details .sub a{font-size:.95rem;font-weight:500;color:var(--slate);padding-left:14px}
 .saas-theme-page .mpanel .btn-primary{width:100%;justify-content:center;margin-top:22px}
+/* KodRank: keep reveal nodes visible */
+.saas-theme-page .rv,
+.saas-theme-page .rev,
+.saas-theme-page .reveal,
+.saas-theme-page .fade-up{opacity:1!important;transform:none!important;visibility:visible!important}

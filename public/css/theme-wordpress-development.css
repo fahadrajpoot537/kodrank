@@ -328,3 +328,8 @@
 .wpdev-theme-page .form-field textarea{resize:vertical}
 .wpdev-theme-page .form-submit{margin-top:26px;width:100%;justify-content:center}
 @media(max-width:560px){.form-row{grid-template-columns:1fr}}
+/* KodRank: keep reveal nodes visible */
+.wpdev-theme-page .rv,
+.wpdev-theme-page .rev,
+.wpdev-theme-page .reveal,
+.wpdev-theme-page .fade-up{opacity:1!important;transform:none!important;visibility:visible!important}

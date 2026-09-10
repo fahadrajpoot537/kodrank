@@ -197,7 +197,7 @@
 .redesign-theme-page .foot-col a:hover{color:var(--signal)}
 .redesign-theme-page .foot-bar{border-top:1px solid var(--line-dark);padding:22px 0;display:flex;flex-wrap:wrap;gap:14px;justify-content:space-between;font-size:.85rem;color:#6B7A80}
 .redesign-theme-page .foot-bar a:hover{color:var(--signal)}
-.redesign-theme-page .rv{opacity:0;transform:translateY(22px);transition:opacity .6s cubic-bezier(.22,.61,.36,1),transform .6s cubic-bezier(.22,.61,.36,1)}
+.redesign-theme-page .rv{opacity:1;transform:translateY(22px);transition:opacity .6s cubic-bezier(.22,.61,.36,1),transform .6s cubic-bezier(.22,.61,.36,1)}
 .redesign-theme-page .rv.in{opacity:1;transform:none}
 
 
@@ -278,3 +278,8 @@
 .redesign-theme-page{scroll-behavior:auto}
 .redesign-theme-page .rv{opacity:1;transform:none}
 }
+/* KodRank: keep reveal nodes visible */
+.redesign-theme-page .rv,
+.redesign-theme-page .rev,
+.redesign-theme-page .reveal,
+.redesign-theme-page .fade-up{opacity:1!important;transform:none!important;visibility:visible!important}
