@@ -166,6 +166,40 @@ html body.page-gpseo.page-service .gp-theme-page .sec-ink {
   position: relative;
 }
 
+/* #vetting .g4 — 4 feature cards in one row on medium/large desktop
+   (beats webdev-ref .grid:has(> .feat) → 3-col auto layout) */
+@media (min-width: 901px) {
+  html body.page-gpseo.page-service .gp-theme-page #vetting .grid.g4,
+  html body.page-gpseo.page-service .gp-theme-page.webdev-ref #vetting .grid.g4,
+  html body.page-gpseo.page-service .gp-theme-page #vetting .grid:has(> .feat),
+  html body.page-gpseo.page-service .gp-theme-page.webdev-ref #vetting .grid:has(> .feat) {
+    display: grid !important;
+    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+    gap: 20px !important;
+    width: 100% !important;
+  }
+  html body.page-gpseo.page-service .gp-theme-page #vetting .grid.g4 > .feat,
+  html body.page-gpseo.page-service .gp-theme-page.webdev-ref #vetting .grid.g4 > .feat {
+    width: auto !important;
+    max-width: none !important;
+    min-width: 0 !important;
+  }
+}
+
+/* Stats: numbers white, only .u suffix (+ % days) orange */
+html body.page-gpseo.page-service .gp-theme-page .sec-ink .stat .num,
+html body.page-gpseo.page-service .gp-theme-page .stats .stat .num {
+  color: #fff !important;
+}
+html body.page-gpseo.page-service .gp-theme-page .sec-ink .stat .num .u,
+html body.page-gpseo.page-service .gp-theme-page .stats .stat .num .u {
+  color: var(--signal, #F47A1F) !important;
+}
+html body.page-gpseo.page-service .gp-theme-page .sec-ink .stat .lbl,
+html body.page-gpseo.page-service .gp-theme-page .stats .stat .lbl {
+  color: #8FA6AE !important;
+}
+
 html body.page-gpseo.page-service .hero-eyebrow { display: none !important; }
 
 html body.page-gpseo.page-service .hero-badges.hero-trust,

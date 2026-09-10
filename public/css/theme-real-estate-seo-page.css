@@ -12,7 +12,46 @@ html body.page-reseo.page-service .re-theme-page .sec-ink {
   position: relative;
 }
 
-html body.page-reseo.page-service .hero-eyebrow { display: none !important; }
+/* Show theme hero eyebrow (beats global .page-service hero eyebrow hide) */
+html body.page-reseo.page-service .hero .hero-copy > .eyebrow.hero-eyebrow,
+html body.page-reseo.page-service .hero .hero-copy > .hero-eyebrow {
+  display: inline-flex !important;
+  color: var(--signal, #F47A1F) !important;
+  margin-bottom: 10px !important;
+}
+
+/* Pain cards: 4 in one row on medium/large desktop (beats webdev-ref 3-col) */
+@media (min-width: 901px) {
+  html body.page-reseo.page-service .re-theme-page #pain .pain-grid,
+  html body.page-reseo.page-service .re-theme-page.webdev-ref #pain .pain-grid,
+  html body.page-reseo.page-service .re-theme-page #pain .pain-grid:not(.thm-mobile-carousel) {
+    display: grid !important;
+    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+    gap: 18px !important;
+    width: 100% !important;
+  }
+  html body.page-reseo.page-service .re-theme-page #pain .pain-grid > .pain-card,
+  html body.page-reseo.page-service .re-theme-page.webdev-ref #pain .pain-grid > .pain-card {
+    width: auto !important;
+    max-width: none !important;
+    min-width: 0 !important;
+  }
+}
+
+/* FAQ section heading — center */
+html body.page-reseo.page-service .re-theme-page #faq .head {
+  text-align: center !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  max-width: 46rem !important;
+}
+html body.page-reseo.page-service .re-theme-page #faq .head .eyebrow {
+  justify-content: center !important;
+}
+html body.page-reseo.page-service .re-theme-page #faq .head .lede {
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
 
 html body.page-reseo.page-service .hero-badges.hero-trust,
 html body.page-reseo.page-service .hero-trust.hero-badges {

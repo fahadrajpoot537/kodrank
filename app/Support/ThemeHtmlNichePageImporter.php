@@ -157,7 +157,12 @@ class ThemeHtmlNichePageImporter
             ['label' => 'Services', 'url' => '/services'],
             ['label' => $name, 'url' => ''],
         ];
-        $hero['cta_url'] = '#contact';
+        $ctaFromTheme = trim((string) ($hero['cta_url'] ?? ''));
+        if ($ctaFromTheme === '' || (! str_starts_with($ctaFromTheme, '#') && ! str_starts_with($ctaFromTheme, '/'))) {
+            $hero['cta_url'] = '#contact';
+        } elseif (str_starts_with($ctaFromTheme, '#')) {
+            $hero['cta_url'] = $ctaFromTheme;
+        }
         if (($hero['cta_text'] ?? '') === '') {
             $hero['cta_text'] = $ctaDefault;
         } else {

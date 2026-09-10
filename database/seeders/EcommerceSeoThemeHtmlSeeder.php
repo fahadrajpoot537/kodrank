@@ -7,7 +7,6 @@ use Illuminate\Database\Seeder;
 
 /**
  * eCommerce SEO Services — imports theme HTML into /ecommerce-seo-services.
- * Skips hero text: "eCommerce SEO Agency"
  *
  * Run: php artisan db:seed --class=EcommerceSeoThemeHtmlSeeder
  */
@@ -17,7 +16,7 @@ class EcommerceSeoThemeHtmlSeeder extends Seeder
     {
         ThemeHtmlNichePageImporter::import([
             'slug' => 'ecommerce-seo-services',
-            'name' => 'Ecommerce SEO Services',
+            'name' => 'eCommerce SEO Services',
             'htmlPath' => public_path('theme/New folder (2)/ecommerce-seo-services/ecommerce-seo-services.html'),
             'mediaFrom' => public_path('theme/New folder (2)/ecommerce-seo-services'),
             'mediaTo' => 'media/services/ecommerce-seo',
@@ -27,9 +26,9 @@ class EcommerceSeoThemeHtmlSeeder extends Seeder
             'bodyClass' => 'page-ecomseo',
             'sort' => 19,
             'hideFromNav' => true,
-            'clearEyebrow' => true,
-            'excludeHeroTexts' => ['eCommerce SEO Agency', 'Ecommerce SEO Agency'],
-            'ctaText' => 'Get My Free eCommerce SEO Audit',
+            'clearEyebrow' => false,
+            'excludeHeroTexts' => [],
+            'ctaText' => 'Get a free store audit',
             'heroImageFilename' => 'ecommerce-seo-hero.jpg',
             'keywords' => 'ecommerce SEO services, eCommerce SEO agency, product page SEO, KodRank',
         ], fn ($msg) => str_starts_with($msg, 'ERROR:')

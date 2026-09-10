@@ -99,15 +99,6 @@
       @elseif($lede)
         <p class="sub lede">{{ $lede }}</p>
       @endif
-      <div class="hero-actions">
-        <a href="{{ $ctaUrl }}" class="btn btn-primary">
-          {{ $ctaText }}
-          <span class="arw">→</span>
-        </a>
-        @if(!empty($h['secondary_text']))
-          <a href="{{ $h['secondary_url'] ?? '#contact' }}" class="btn btn-ghost-light">{{ $h['secondary_text'] }}</a>
-        @endif
-      </div>
       @if(!empty($trustPoints))
         <div class="hero-trust hero-trust-checks">
           @foreach($trustPoints as $point)
@@ -118,16 +109,38 @@
           @endforeach
         </div>
       @endif
+      <div class="hero-actions">
+        <a href="{{ $ctaUrl }}" class="btn btn-primary">
+          {{ $ctaText }}
+          <span class="arw">→</span>
+        </a>
+        @if(!empty($h['secondary_text']))
+          <a href="{{ $h['secondary_url'] ?? '#contact' }}" class="btn btn-ghost-light">{{ $h['secondary_text'] }}</a>
+        @endif
+        @if(!empty($h['proof_chip']))
+          @php $proof = is_array($h['proof_chip']) ? $h['proof_chip'] : ['text' => (string) $h['proof_chip']]; @endphp
+          <div class="proof-chip">
+            @if(!empty($proof['stars']))
+              <span class="stars">{{ trim(preg_replace('/\s+/u', '', (string) $proof['stars'])) }}</span>
+            @endif
+            @if(!empty($proof['html']))
+              <small>{!! $proof['html'] !!}</small>
+            @elseif(!empty($proof['text']))
+              <small>{{ trim(preg_replace('/\s+/u', ' ', (string) $proof['text'])) }}</small>
+            @endif
+          </div>
+        @endif
+      </div>
     </div>
     @if(!empty($badges))
       <div class="hero-badges hero-trust" role="list">
         @foreach($badges as $badge)
           <div class="hero-badge ht" role="listitem">
             @if(($badge['num'] ?? '') !== '')
-              <span class="num">{{ $badge['num'] }}</span>
+              <span class="num">{{ html_entity_decode((string) ($badge['num'] ?? ''), ENT_QUOTES | ENT_HTML5, 'UTF-8') }}</span>
             @endif
             @if(($badge['label'] ?? '') !== '')
-              <span class="lbl">{{ $badge['label'] }}</span>
+              <span class="lbl">{{ html_entity_decode((string) ($badge['label'] ?? ''), ENT_QUOTES | ENT_HTML5, 'UTF-8') }}</span>
             @endif
           </div>
         @endforeach

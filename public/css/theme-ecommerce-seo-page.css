@@ -12,7 +12,80 @@ html body.page-ecomseo.page-service .ecom-theme-page .sec-ink {
   position: relative;
 }
 
-html body.page-ecomseo.page-service .hero-eyebrow { display: none !important; }
+html body.page-ecomseo.page-service .hero .hero-copy > .eyebrow.hero-eyebrow,
+html body.page-ecomseo.page-service .hero .hero-copy > .hero-eyebrow {
+  display: inline-flex !important;
+  color: var(--signal, #F47A1F) !important;
+  margin-bottom: 10px !important;
+}
+
+html body.page-ecomseo.page-service .hero .hero-trust-checks {
+  margin-top: 22px !important;
+  margin-bottom: 0 !important;
+  padding-top: 0 !important;
+  border-top: none !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+  gap: 12px !important;
+}
+
+html body.page-ecomseo.page-service .hero .hero-actions {
+  margin-top: 28px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+  gap: 18px !important;
+}
+
+html body.page-ecomseo.page-service .hero .proof-chip {
+  display: inline-flex !important;
+  flex-direction: row !important;
+  flex-wrap: nowrap !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  gap: 10px !important;
+  padding: 10px 16px !important;
+  border: 1px solid rgba(244, 122, 31, 0.16) !important;
+  border-radius: 999px !important;
+  background: rgba(255, 255, 255, 0.04) !important;
+  width: fit-content !important;
+  line-height: 1 !important;
+  box-sizing: border-box !important;
+}
+
+html body.page-ecomseo.page-service .hero .proof-chip .stars {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  flex: 0 0 auto !important;
+  color: #F6A54E !important;
+  letter-spacing: 1px !important;
+  font-size: 0.85rem !important;
+  line-height: 1 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  height: auto !important;
+  white-space: nowrap !important;
+}
+
+html body.page-ecomseo.page-service .hero .proof-chip small {
+  display: inline-flex !important;
+  align-items: center !important;
+  flex: 0 1 auto !important;
+  color: #B7CBD2 !important;
+  font-weight: 500 !important;
+  font-size: 0.82rem !important;
+  line-height: 1.2 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  white-space: nowrap !important;
+}
+
+html body.page-ecomseo.page-service .hero .proof-chip b {
+  color: #fff !important;
+  font-weight: 700 !important;
+  line-height: inherit !important;
+}
 
 html body.page-ecomseo.page-service .hero-badges.hero-trust,
 html body.page-ecomseo.page-service .hero-trust.hero-badges {

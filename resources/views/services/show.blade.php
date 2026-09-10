@@ -17,13 +17,11 @@
         'monthly-seo-services',
         'saas-seo-services',
         'b2b-seo-services',
-        'ecommerce-seo-services',
         'wordpress-seo-services',
         'shopify-seo-services',
         'guest-posting-services',
         'restaurant-seo-services',
         'healthcare-seo-services',
-        'real-estate-seo-services',
     ], true)) {
         unset($themeHero['eyebrow']);
     }

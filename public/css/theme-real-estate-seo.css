@@ -267,3 +267,8 @@
 .re-theme-page .faq details p{padding:0 18px 18px}
 .re-theme-page .field input, .re-theme-page .field select, .re-theme-page .field textarea{font-size:16px}
 }
+/* KodRank: keep reveal nodes visible */
+.re-theme-page .rv,
+.re-theme-page .rev,
+.re-theme-page .reveal,
+.re-theme-page .fade-up{opacity:1!important;transform:none!important;visibility:visible!important}

@@ -7,7 +7,6 @@ use Illuminate\Database\Seeder;
 
 /**
  * Real Estate SEO Services — imports theme HTML into /real-estate-seo-services.
- * Skips hero text: "Real Estate SEO Services"
  *
  * Run: php artisan db:seed --class=RealEstateSeoThemeHtmlSeeder
  */
@@ -27,9 +26,9 @@ class RealEstateSeoThemeHtmlSeeder extends Seeder
             'bodyClass' => 'page-reseo',
             'sort' => 43,
             'hideFromNav' => true,
-            'clearEyebrow' => true,
-            'excludeHeroTexts' => ['Real Estate SEO Services'],
-            'ctaText' => 'Get My Free Real Estate SEO Audit',
+            'clearEyebrow' => false,
+            'excludeHeroTexts' => [],
+            'ctaText' => 'Get My Free SEO Audit',
             'heroImageFilename' => 'real-estate-seo-hero.jpg',
             'keywords' => 'real estate SEO services, realtor SEO, property SEO, KodRank',
         ], fn ($msg) => str_starts_with($msg, 'ERROR:')

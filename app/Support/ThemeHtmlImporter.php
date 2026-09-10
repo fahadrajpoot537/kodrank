@@ -193,8 +193,8 @@ class ThemeHtmlImporter
 
         if (preg_match_all('/<div class=["\']st["\'][^>]*>\s*<div class=["\']n["\']>(.*?)<\/div>\s*<div class=["\']l["\']>(.*?)<\/div>\s*<\/div>/is', $html, $rows, PREG_SET_ORDER)) {
             foreach ($rows as $row) {
-                $num = trim(strip_tags($row[1]));
-                $label = trim(strip_tags($row[2]));
+                $num = trim(html_entity_decode(strip_tags($row[1]), ENT_QUOTES | ENT_HTML5, 'UTF-8'));
+                $label = trim(html_entity_decode(strip_tags($row[2]), ENT_QUOTES | ENT_HTML5, 'UTF-8'));
                 if ($num !== '' || $label !== '') {
                     $badges[] = ['num' => $num, 'label' => $label];
                 }
@@ -264,7 +264,10 @@ class ThemeHtmlImporter
             $ctaUrl = trim($m[1]) !== '' ? trim($m[1]) : $ctaUrl;
             $ctaText = trim(preg_replace('/\s+/', ' ', strip_tags($m[2])) ?? '') ?: $ctaText;
         }
-        if (str_starts_with($ctaUrl, '#')) {
+        $ctaText = trim(html_entity_decode($ctaText, ENT_QUOTES | ENT_HTML5, 'UTF-8'));
+        $ctaText = trim(preg_replace('/\s*(?:→|->|»|›|\x{2192})+\s*$/u', '', $ctaText) ?? $ctaText);
+        // Keep in-page anchors (#quote / #contact); only fill empty CTAs.
+        if ($ctaUrl === '') {
             $ctaUrl = '/contact';
         }
 
@@ -276,16 +279,32 @@ class ThemeHtmlImporter
         $badges = [];
         $trustPoints = [];
         if ($chunk !== '') {
-            // Nested .hero-trust children: <div><strong>187%</strong><span>label</span></div>
+            // Real-estate style: .t-num + .t-lab (scan full hero — nested </div> breaks hero-trust wrap)
             if (preg_match_all(
+                '/<(?:div|span)\b[^>]*class=["\'][^"\']*\bt-num\b[^"\']*["\'][^>]*>(.*?)<\/(?:div|span)>\s*<(?:div|span)\b[^>]*class=["\'][^"\']*\bt-lab\b[^"\']*["\'][^>]*>(.*?)<\/(?:div|span)>/is',
+                $chunk,
+                $tRows,
+                PREG_SET_ORDER
+            )) {
+                foreach ($tRows as $row) {
+                    $num = trim(html_entity_decode(strip_tags($row[1]), ENT_QUOTES | ENT_HTML5, 'UTF-8'));
+                    $label = trim(html_entity_decode(strip_tags($row[2]), ENT_QUOTES | ENT_HTML5, 'UTF-8'));
+                    if ($num !== '' || $label !== '') {
+                        $badges[] = ['num' => $num, 'label' => $label];
+                    }
+                }
+            }
+
+            // Nested .hero-trust children: <div><strong>187%</strong><span>label</span></div>
+            if ($badges === [] && preg_match_all(
                 '/<(?:div|li)\b[^>]*>\s*<(?:strong|b)>(.*?)<\/(?:strong|b)>\s*<span\b[^>]*>(.*?)<\/span>\s*<\/(?:div|li)>/is',
                 $chunk,
                 $strongRows,
                 PREG_SET_ORDER
             )) {
                 foreach ($strongRows as $row) {
-                    $num = trim(strip_tags($row[1]));
-                    $label = trim(strip_tags($row[2]));
+                    $num = trim(html_entity_decode(strip_tags($row[1]), ENT_QUOTES | ENT_HTML5, 'UTF-8'));
+                    $label = trim(html_entity_decode(strip_tags($row[2]), ENT_QUOTES | ENT_HTML5, 'UTF-8'));
                     if ($num !== '' || $label !== '') {
                         $badges[] = ['num' => $num, 'label' => $label];
                     }
@@ -294,23 +313,8 @@ class ThemeHtmlImporter
 
             if ($badges === [] && preg_match('/<div\b[^>]*class=["\'][^"\']*\bhero-trust\b[^"\']*["\'][^>]*>(.*?)<\/div>/is', $chunk, $trustWrap)) {
                 $inner = $trustWrap[1];
-                // Real-estate / similar: .t-num + .t-lab
-                if (preg_match_all(
-                    '/<(?:div|span)\b[^>]*class=["\'][^"\']*\bt-num\b[^"\']*["\'][^>]*>(.*?)<\/(?:div|span)>\s*<(?:div|span)\b[^>]*class=["\'][^"\']*\bt-lab\b[^"\']*["\'][^>]*>(.*?)<\/(?:div|span)>/is',
-                    $inner,
-                    $tRows,
-                    PREG_SET_ORDER
-                )) {
-                    foreach ($tRows as $row) {
-                        $num = trim(html_entity_decode(strip_tags($row[1]), ENT_QUOTES | ENT_HTML5, 'UTF-8'));
-                        $label = trim(html_entity_decode(strip_tags($row[2]), ENT_QUOTES | ENT_HTML5, 'UTF-8'));
-                        if ($num !== '' || $label !== '') {
-                            $badges[] = ['num' => $num, 'label' => $label];
-                        }
-                    }
-                }
                 // B2B-style: .n + .l
-                if ($badges === [] && preg_match_all(
+                if (preg_match_all(
                     '/<(?:div|span)\b[^>]*class=["\'][^"\']*\bn\b[^"\']*["\'][^>]*>(.*?)<\/(?:div|span)>\s*<(?:div|span)\b[^>]*class=["\'][^"\']*\bl\b[^"\']*["\'][^>]*>(.*?)<\/(?:div|span)>/is',
                     $inner,
                     $nRows,
@@ -334,8 +338,8 @@ class ThemeHtmlImporter
                 }
                 if ($trustPoints === [] && $badges === [] && preg_match_all('/<div>\s*<div class=["\']num["\']>(.*?)<\/div>\s*<div class=["\']lbl["\']>(.*?)<\/div>\s*<\/div>/is', $inner, $trust, PREG_SET_ORDER)) {
                     foreach ($trust as $row) {
-                        $num = trim(strip_tags($row[1]));
-                        $label = trim(strip_tags($row[2]));
+                        $num = trim(html_entity_decode(strip_tags($row[1]), ENT_QUOTES | ENT_HTML5, 'UTF-8'));
+                        $label = trim(html_entity_decode(strip_tags($row[2]), ENT_QUOTES | ENT_HTML5, 'UTF-8'));
                         if ($num !== '' || $label !== '') {
                             $badges[] = ['num' => $num, 'label' => $label];
                         }
@@ -352,8 +356,8 @@ class ThemeHtmlImporter
                     PREG_SET_ORDER
                 )) {
                     foreach ($numLbl as $row) {
-                        $num = trim(strip_tags($row[1]));
-                        $label = trim(strip_tags($row[2]));
+                        $num = trim(html_entity_decode(strip_tags($row[1]), ENT_QUOTES | ENT_HTML5, 'UTF-8'));
+                        $label = trim(html_entity_decode(strip_tags($row[2]), ENT_QUOTES | ENT_HTML5, 'UTF-8'));
                         if ($num !== '' || $label !== '') {
                             $badges[] = ['num' => $num, 'label' => $label];
                         }
@@ -365,8 +369,8 @@ class ThemeHtmlImporter
                 // <b>num</b><span>label</span> or .n/.l / .num/.lbl pairs
                 if (preg_match_all('/<(?:div|li)\b[^>]*>\s*(?:<b>(.*?)<\/b>|<div class=["\'](?:n|num)["\']>(.*?)<\/div>)\s*(?:<span>(.*?)<\/span>|<div class=["\'](?:l|lbl)["\']>(.*?)<\/div>)/is', $chunk, $rows, PREG_SET_ORDER)) {
                     foreach ($rows as $row) {
-                        $num = trim(strip_tags($row[1] !== '' ? $row[1] : ($row[2] ?? '')));
-                        $label = trim(strip_tags($row[3] !== '' ? $row[3] : ($row[4] ?? '')));
+                        $num = trim(html_entity_decode(strip_tags($row[1] !== '' ? $row[1] : ($row[2] ?? '')), ENT_QUOTES | ENT_HTML5, 'UTF-8'));
+                        $label = trim(html_entity_decode(strip_tags($row[3] !== '' ? $row[3] : ($row[4] ?? '')), ENT_QUOTES | ENT_HTML5, 'UTF-8'));
                         if ($num !== '' || $label !== '') {
                             $badges[] = ['num' => $num, 'label' => $label];
                         }
@@ -374,8 +378,8 @@ class ThemeHtmlImporter
                 }
                 if ($badges === [] && preg_match_all('/<div>\s*<div class=["\']num["\']>(.*?)<\/div>\s*<div class=["\']lbl["\']>(.*?)<\/div>\s*<\/div>/is', $chunk, $trust, PREG_SET_ORDER)) {
                     foreach ($trust as $row) {
-                        $num = trim(strip_tags($row[1]));
-                        $label = trim(strip_tags($row[2]));
+                        $num = trim(html_entity_decode(strip_tags($row[1]), ENT_QUOTES | ENT_HTML5, 'UTF-8'));
+                        $label = trim(html_entity_decode(strip_tags($row[2]), ENT_QUOTES | ENT_HTML5, 'UTF-8'));
                         if ($num !== '' || $label !== '') {
                             $badges[] = ['num' => $num, 'label' => $label];
                         }
@@ -420,6 +424,26 @@ class ThemeHtmlImporter
             }
         }
 
+        $proofChip = null;
+        if ($chunk !== '' && preg_match('/<div\b[^>]*class=["\'][^"\']*\bproof-chip\b[^"\']*["\'][^>]*>(.*?)<\/div>/is', $chunk, $proof)) {
+            $stars = '';
+            if (preg_match('/class=["\'][^"\']*\bstars\b[^"\']*["\'][^>]*>(.*?)<\//is', $proof[1], $sm)) {
+                $stars = trim(html_entity_decode(strip_tags($sm[1]), ENT_QUOTES | ENT_HTML5, 'UTF-8'));
+            }
+            $htmlInner = '';
+            if (preg_match('/<small\b[^>]*>(.*?)<\/small>/is', $proof[1], $sm)) {
+                $htmlInner = trim($sm[1]);
+            }
+            $text = trim(html_entity_decode(strip_tags($proof[1]), ENT_QUOTES | ENT_HTML5, 'UTF-8'));
+            if ($stars !== '' || $htmlInner !== '' || $text !== '') {
+                $proofChip = array_filter([
+                    'stars' => $stars !== '' ? $stars : null,
+                    'html' => $htmlInner !== '' ? $htmlInner : null,
+                    'text' => $text !== '' ? $text : null,
+                ], static fn ($v) => $v !== null && $v !== '');
+            }
+        }
+
         $image = self::findHeroImage($chunk, $css, $mediaPublicPrefix);
 
         return array_filter([
@@ -432,6 +456,7 @@ class ThemeHtmlImporter
             'image' => $image,
             'trust_points' => $trustPoints !== [] ? $trustPoints : null,
             'badges' => $badges !== [] ? $badges : null,
+            'proof_chip' => $proofChip,
         ], static fn ($v) => $v !== null && $v !== '');
     }
 
