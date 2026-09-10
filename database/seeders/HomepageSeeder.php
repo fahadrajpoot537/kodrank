@@ -340,7 +340,7 @@ class HomepageSeeder extends Seeder
                 'sort_order' => 12,
                 'data' => [
                     'items' => [
-                        ['value' => '100%', 'accent' => true, 'label' => 'Sites launched SEO-ready'],
+                        ['value' => '100', 'suffix' => '%', 'label' => 'Sites launched SEO-ready'],
                         ['value' => '0.9', 'suffix' => 's', 'label' => 'Average page load speed'],
                         ['value' => '1', 'label' => 'Package — dev & SEO combined'],
                         ['value' => '+300', 'suffix' => '%', 'label' => 'Typical organic traffic lift'],
