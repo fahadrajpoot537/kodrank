@@ -1,5 +1,11 @@
 @php $h = $s['hero'] ?? []; @endphp
 <header class="hero">
+  <div class="hero-visual" role="img" aria-label="{{ $h['visual_aria_label'] ?? '' }}">
+    <img class="hero-img"
+         src="{{ asset($h['image'] ?? 'media/services/digital-marketing/hero.png') }}"
+         alt="{{ $h['image_alt'] ?? 'Digital marketing services' }}"
+         loading="eager">
+  </div>
   <div class="wrap">
     <div class="hero-grid">
       <div class="hero-copy">
@@ -31,12 +37,6 @@
             @endforeach
           </div>
         @endif
-      </div>
-      <div class="hero-visual" role="img" aria-label="{{ $h['visual_aria_label'] ?? '' }}">
-        <img class="hero-img"
-             src="{{ asset($h['image'] ?? 'media/services/digital-marketing/hero.png') }}"
-             alt="{{ $h['image_alt'] ?? 'Digital marketing services' }}"
-             loading="eager">
       </div>
     </div>
   </div>
