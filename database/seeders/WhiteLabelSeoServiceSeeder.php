@@ -6,11 +6,18 @@ use App\Models\ServicePage;
 use App\Models\ServicePageSection;
 use Illuminate\Database\Seeder;
 
+/**
+ * White Label SEO Services — content from public/replace/white-label-seo.html
+ * Design stays ecommerce-seo theme; page polish via css/white-label-seo-page.css
+ *
+ * Run: php artisan db:seed --class=WhiteLabelSeoServiceSeeder
+ */
 class WhiteLabelSeoServiceSeeder extends Seeder
 {
     public function run(): void
     {
         $parent = ServicePage::query()->where('slug', 'digital-marketing-services')->first();
+        $heroImage = 'media/services/white-label-seo/white-label-seo-services-hero.jpg';
 
         $page = ServicePage::query()->updateOrCreate(
             ['slug' => 'white-label-seo-services'],
@@ -22,12 +29,13 @@ class WhiteLabelSeoServiceSeeder extends Seeder
                 'seo' => [
                     'theme' => 'ecommerce-seo',
                     'hide_from_nav' => true,
-                    'seo_title' => 'White Label SEO Services | Scale Your Agency Under Your Brand | KodRank',
-                    'seo_description' => 'White label SEO for agencies and consultants — fully branded deliverables, dedicated account managers, and reliable delivery under your logo. Partner with KodRank.',
-                    'og_title' => 'White Label SEO Services | KodRank',
-                    'og_description' => 'Ship SEO under your brand with white-labeled reports, Slack support, and senior strategists behind the scenes.',
-                    'og_image' => 'media/services/digital-marketing/digital-marketing-services-hero.webp',
-                    'keywords' => 'white label SEO services, agency SEO partner, reseller SEO, KodRank',
+                    'extra_css' => 'css/white-label-seo-page.css',
+                    'seo_title' => 'White Label SEO Services for Agencies | KodRank',
+                    'seo_description' => 'KodRank\'s white label SEO services let your agency deliver rankings under your own brand — no in-house hires, no tools to manage. You keep the client, the credit, and the margins.',
+                    'og_title' => 'White Label SEO Services for Agencies | KodRank',
+                    'og_description' => 'Deliver SEO under your brand. Audits, content, links, and branded reports — NDA-backed fulfillment for agencies.',
+                    'og_image' => $heroImage,
+                    'keywords' => 'white label SEO services, agency SEO partner, reseller SEO, white label SEO, KodRank',
                     'robots' => 'index, follow',
                     'canonical_url' => '',
                 ],
@@ -38,128 +46,243 @@ class WhiteLabelSeoServiceSeeder extends Seeder
 
         $sections = [
             ['hero', 'Hero', [
-                'eyebrow' => 'White Label SEO Services',
-                'title_html' => 'White Label SEO<br>Your clients think it\'s you.<br><span class="hl">We deliver behind the scenes.</span>',
-                'lede' => 'For agencies, freelancers, and consultancies who want to sell SEO without hiring a full in-house team. Branded reports, reliable delivery, and senior strategists on your timeline.',
-                'cta_text' => 'Become a partner',
+                'eyebrow' => 'Built for agencies & resellers',
+                'title_html' => 'White Label SEO Services that rank <span class="hl">under your brand.</span>',
+                'lede_html' => 'You close the client. We do the SEO. Every audit, backlink, and ranking report ships with <span class="hl">your logo on it</span> — so your agency looks bigger, ships faster, and keeps the margins. Your clients never know we exist.',
+                'cta_text' => 'Get Your White Label Quote',
                 'cta_url' => '#contact',
-                'trust' => [
-                    ['value' => '100%', 'label' => 'White-labeled deliverables'],
-                    ['value' => '1:1', 'label' => 'Dedicated partner manager'],
-                    ['value' => 'Scale', 'label' => 'Up or down monthly'],
+                'image' => $heroImage,
+                'trust_points' => [
+                    '150+ agency partners',
+                    '100% white-labeled',
+                    'NDA-backed fulfillment',
                 ],
             ]],
             ['intro', 'Introduction', [
-                'eyebrow' => 'Introduction',
-                'title' => 'White Label SEO Services That Protect Your Brand and Your Margins',
-                'kicker' => 'Partner-ready SEO — you keep the relationship, we do the work.',
+                'eyebrow' => 'Your brand, our engine',
+                'title' => '',
+                'lead_html' => 'White Label SEO Services built for agencies that are scaling faster than they can hire.',
                 'paragraphs_html' => [
-                    ['html' => 'Your clients expect SEO results under your agency name. We operate as your backend team — audits, content, links, and reporting delivered with your branding and your voice.'],
-                    ['html' => 'No subcontractor roulette. One dedicated partner manager, shared Slack, and deliverables you can forward without rewriting.'],
+                    ['html' => 'KodRank is the SEO team behind the curtain. We plug straight into your workflow and handle keyword research, technical fixes, content, and link building as a <span class="hl">seamless extension of your agency</span> — never a vendor your client sees. You stay the single point of contact. We stay invisible. The rankings show up with your name on the report.'],
+                    ['html' => 'No new salaries. No tool stack to babysit. No SEO expertise to build from scratch. Just <span class="hl">done-for-you fulfillment</span> you can resell at your own price.'],
                 ],
-                'card_value' => '92%',
-                'card_label' => 'Partner retention rate',
-                'card_rows' => [
-                    'Fully white-labeled PDF & slide decks',
-                    'Shared Slack + weekly syncs',
-                    'Scale capacity without new hires',
+                'stats' => [
+                    ['num' => '2–3x', 'label' => 'Recurring revenue growth for partner agencies'],
+                    ['num' => '14', 'label' => 'Days to first client campaign live'],
+                    ['num' => '100%', 'label' => 'Branded reports — your logo, your colors'],
+                    ['num' => '0', 'label' => 'Direct contact between us and your client'],
                 ],
             ]],
-            ['pain', 'Sound familiar?', [
-                'eyebrow' => 'Sound familiar?',
-                'title_html' => 'Why agencies struggle to scale SEO',
-                'lede' => 'If you\'ve tried outsourcing before, these will feel familiar.',
+            ['pain', 'The agency squeeze', [
+                'section_class' => 'sec-mist',
+                'eyebrow' => 'The agency squeeze',
+                'title_html' => 'Winning the client was easy. <span class="hl">Delivering the SEO is where it breaks.</span>',
+                'lede' => 'You sold the retainer. Now they want rankings, traffic, and a report every month — and SEO isn\'t something you can hand to just anyone. Sound familiar?',
                 'cards' => [
-                    ['title' => 'Freelancers who disappear', 'body' => 'Inconsistent quality and missed deadlines erode client trust — and your reputation.'],
-                    ['title' => 'Reports you have to rewrite', 'body' => 'Generic exports that don\'t match your brand force hours of cleanup before clients see them.'],
-                    ['title' => 'No one owns the outcome', 'body' => 'When rankings stall, you\'re stuck mediating between the client and a faceless vendor.'],
-                    ['title' => 'Hiring is slow and expensive', 'body' => 'Building an in-house SEO bench takes months — while clients expect results now.'],
+                    [
+                        'title' => 'Your team is already maxed out',
+                        'body' => 'Every new SEO client stretches a small team thinner. Audits, keyword research, and content pile up — and delivery quality is the first thing to slip.',
+                        'icon_key' => 'team',
+                    ],
+                    [
+                        'title' => 'Reporting eats your week',
+                        'body' => 'Pulling rankings, formatting dashboards, writing the recap — hours gone every month on work that doesn\'t win you a single new deal.',
+                        'icon_key' => 'report',
+                    ],
+                    [
+                        'title' => 'Hiring in-house is slow and expensive',
+                        'body' => 'A senior SEO costs a full salary plus a stack of paid tools, and takes months to find. That\'s a heavy bet for a service line you\'re still testing.',
+                        'icon_key' => 'clock',
+                    ],
+                    [
+                        'title' => 'Results are inconsistent',
+                        'body' => 'One campaign flies, the next stalls. Without a repeatable process, quality swings — and your client starts questioning the invoice.',
+                        'icon_key' => 'traffic',
+                    ],
+                    [
+                        'title' => 'You\'re turning good clients away',
+                        'body' => 'Demand you can\'t fulfill is revenue you hand to a competitor. Saying "no" to SEO work quietly caps how far your agency can grow.',
+                        'icon_key' => 'links',
+                    ],
+                    [
+                        'title' => 'Overpromising, then scrambling',
+                        'body' => 'To close the deal you said yes to everything. Now you\'re stitching SEO together on the fly and hoping the numbers move before the renewal call.',
+                        'icon_key' => 'structure',
+                    ],
+                ],
+            ]],
+            ['cost', 'The math on hiring', [
+                'eyebrow' => 'The math on hiring',
+                'title' => 'Building an SEO department in-house is the expensive way to solve this.',
+                'lede' => 'Before you post that job listing, here\'s what going in-house actually costs you — in cash, time, and focus:',
+                'image' => $heroImage,
+                'list' => [
+                    ['html' => '<b>A full senior salary</b> for one experienced SEO — before benefits, before you\'ve served a single extra client.'],
+                    ['html' => '<b>Months of hiring and onboarding</b> before that person is productive and trusted with client accounts.'],
+                    ['html' => '<b>A paid tool stack</b> — rank trackers, audit crawlers, backlink data — stacking up every month whether you win work or not.'],
+                    ['html' => '<b>Your own attention</b> pulled off sales and client relationships to manage deliverables instead.'],
+                ],
+                'closing_html' => 'Our <span class="hl">white label SEO services</span> give you the whole team — strategists, writers, link builders, and a dedicated account lead — for a fraction of that, with none of the fixed risk.',
+                'items' => [
+                    ['value' => '62%', 'label' => 'Lower cost vs. a first in-house SEO hire'],
+                    ['value' => '10k+', 'label' => 'Campaigns delivered behind the scenes'],
+                    ['value' => '92%', 'label' => 'On-time delivery across partner accounts'],
+                    ['value' => '4–8', 'label' => 'Months to visible ranking movement'],
                 ],
             ]],
             ['services', 'What\'s included', [
                 'eyebrow' => 'What\'s included',
-                'title_html' => 'Everything your agency needs to resell SEO',
-                'lede' => 'Pick the modules you need — technical, content, links, or full retainers.',
+                'title_html' => 'Our White Label SEO Services — <span class="hl">the full stack, under your name.</span>',
+                'lede' => 'Resell any piece or the whole program. Every deliverable ships white-labeled and ready to hand to your client as your own.',
                 'cards' => [
-                    ['title' => 'White-Labeled Audits & Roadmaps', 'body' => 'Technical and content audits formatted with your logo, colors, and executive summary.'],
-                    ['title' => 'Monthly SEO Delivery', 'body' => 'On-page, technical fixes, content, and link building executed to your client\'s roadmap.'],
-                    ['title' => 'Branded Reporting', 'body' => 'Rankings, traffic, and actions taken — ready to send without editing.'],
-                    ['title' => 'Dedicated Partner Manager', 'body' => 'One point of contact who knows your clients, SLAs, and communication style.'],
-                    ['title' => 'Slack & Async Updates', 'body' => 'Shared channels for fast questions, approvals, and status — no ticket black holes.'],
-                    ['title' => 'Flexible Capacity', 'body' => 'Add clients or pull back month to month without long-term lock-ins.'],
+                    ['title' => 'SEO Audits & Keyword Research', 'body' => 'Full technical and content audits, plus intent-mapped keyword targets and competitor gap analysis to set the strategy.', 'icon_key' => 'audit'],
+                    ['title' => 'On-Page Optimization', 'body' => 'Meta, headings, internal links, and content structure tuned for both search engines and the humans who convert.', 'icon_key' => 'onpage'],
+                    ['title' => 'Technical SEO', 'body' => 'Site speed, Core Web Vitals, crawlability, indexation, and schema fixes that clear the way for rankings to land.', 'icon_key' => 'technical'],
+                    ['title' => 'Link Building', 'body' => 'White-hat outreach and genuine high-authority placements — no PBNs, no spam — that build lasting domain authority.', 'icon_key' => 'links'],
+                    ['title' => 'Content Writing', 'body' => 'Human-written, SEO-driven blogs, landing pages, and service copy built for readers first and rankings second.', 'icon_key' => 'content'],
+                    ['title' => 'Local SEO', 'body' => 'Google Business Profile optimization, citations, and location targeting that gets your client into the map pack.', 'icon_key' => 'local'],
+                    ['title' => 'Branded Reporting', 'body' => 'Clean, client-ready reports with your logo and colors — rankings, traffic, and wins that prove your value.', 'icon_key' => 'report'],
+                    ['title' => 'Dedicated Account Lead', 'body' => 'One point of contact who knows your agency, your clients, and your goals — so nothing gets lost in handoff.', 'icon_key' => 'human'],
                 ],
             ]],
-            ['process', 'How we work', [
-                'eyebrow' => 'How we work',
-                'title_html' => 'Onboarding to delivery in days, not months',
-                'lede' => 'A partner workflow designed for agencies that move fast.',
+            ['process', 'How it works', [
+                'section_class' => 'sec-mist',
+                'per_desktop' => 4,
+                'eyebrow' => 'How it works',
+                'title_html' => 'From handshake to first ranking report in <span class="hl">four steps.</span>',
+                'lede' => 'No heavy onboarding, no learning curve on your side. You bring the client relationship — we handle everything behind it.',
                 'steps' => [
-                    ['num' => '01', 'title' => 'Partner onboarding', 'body' => 'Brand assets, report templates, communication rules, and client intake process.'],
-                    ['num' => '02', 'title' => 'Client kickoff', 'body' => 'We audit under your brand and deliver the roadmap you present to the client.'],
-                    ['num' => '03', 'title' => 'Monthly delivery', 'body' => 'Execution, QA, and white-labeled reporting on your schedule.'],
-                    ['num' => '04', 'title' => 'Sync & refine', 'body' => 'Weekly or bi-weekly partner calls to adjust priorities and capacity.'],
-                    ['num' => '05', 'title' => 'Grow together', 'body' => 'Add seats, services, or clients as your agency scales.'],
+                    ['num' => '01', 'title' => 'Tell us the account', 'body' => 'Share the client\'s site, niche, and goals. We run the initial audit and map out the opportunity — no cost to you.'],
+                    ['num' => '02', 'title' => 'Approve the strategy', 'body' => 'You get a clear roadmap with deliverables, timelines, and KPIs. Nothing ships until it matches what you sold.'],
+                    ['num' => '03', 'title' => 'We execute quietly', 'body' => 'Audits, on-page, content, and links get done under your brand while you focus on closing the next deal.'],
+                    ['num' => '04', 'title' => 'You present the wins', 'body' => 'Branded reports land on schedule. You share the results, keep the credit, and grow the retainer.'],
                 ],
             ]],
-            ['stats', 'Why KodRank', [
-                'eyebrow' => 'Why KodRank',
-                'title_html' => 'A partner team agencies actually keep',
-                'lede' => 'Built for agencies who\'ve been burned by outsourcing before.',
-                'points' => [
-                    ['title' => 'Your brand, always', 'body' => 'Clients never see KodRank unless you want them to. Deliverables ship under your identity.'],
-                    ['title' => 'Senior execution', 'body' => 'Strategists and developers who\'ve run retainers for years — not offshore task workers.'],
-                    ['title' => 'Transparent partner pricing', 'body' => 'Wholesale rates that protect your margin with clear scope per client.'],
+            ['why', 'Why KodRank', [
+                'section_class' => 'sec-ink',
+                'eyebrow' => 'Why partner with KodRank',
+                'title_html' => 'A fulfillment partner that acts like <span class="hl">part of your team.</span>',
+                'lede' => 'Plenty of providers will take your order. Fewer will protect your brand, hit your deadlines, and make you look good to the client every single month.',
+                'cards' => [
+                    ['title' => '100% invisible to your client', 'body' => 'Reports, dashboards, emails, deliverables — all under your brand. We stay behind the scenes, always, backed by a strict NDA.', 'icon_key' => 'whitelabel'],
+                    ['title' => 'Data-driven, not guesswork', 'body' => 'Every campaign runs on a proven playbook and real analytics — keyword relevance, technical precision, and links that move rankings.', 'icon_key' => 'report'],
+                    ['title' => 'Consistent, on-time delivery', 'body' => 'Deadlines you can build client promises around. No dropped balls, no last-minute scrambling before the renewal call.', 'icon_key' => 'clock'],
+                    ['title' => 'Tailored to every niche', 'body' => 'Local service business or competitive national brand — we adapt the strategy to the client instead of forcing a template.', 'icon_key' => 'structure'],
+                    ['title' => 'Full team, one roof', 'body' => 'Strategists, writers, technical specialists, and link builders — all the roles you\'d have to hire, without the payroll.', 'icon_key' => 'team'],
+                    ['title' => 'Scales with you', 'body' => 'Add or pause campaigns as your client list moves. No hiring, no firing — just fulfillment that flexes to your pipeline.', 'icon_key' => 'traffic'],
                 ],
+            ]],
+            ['compare', 'Compare', [
+                'eyebrow' => 'The honest comparison',
+                'title_html' => 'Doing it alone vs. <span class="hl">partnering with KodRank.</span>',
+                'other' => [
+                    'tag' => 'Going it alone',
+                    'title' => 'In-house or DIY',
+                    'items' => [
+                        'Full salary plus paid tools before you serve one client',
+                        'Months of hiring and training before anything ships',
+                        'Quality swings with whoever has capacity that week',
+                        'Hours lost to reporting instead of selling',
+                        'Growth capped by your team\'s bandwidth',
+                    ],
+                ],
+                'us' => [
+                    'tag' => 'The KodRank way',
+                    'title' => 'White label partnership',
+                    'items' => [
+                        'One predictable cost you mark up at your own margin',
+                        'First campaign live in about two weeks',
+                        'A proven playbook and a full team on every account',
+                        'Branded reports done for you, on schedule',
+                        'Take on every client — fulfillment scales with you',
+                    ],
+                ],
+            ]],
+            ['testimonials', 'Partner agencies', [
+                'eyebrow' => 'Partner agencies',
+                'title_html' => 'Agencies that stopped saying <span class="hl">"no" to SEO work.</span>',
                 'items' => [
-                    ['value' => '92%', 'label' => 'Partner retention'],
-                    ['value' => '48hr', 'label' => 'Typical audit turnaround'],
-                    ['value' => '40+', 'label' => 'Agency partners'],
-                    ['value' => '6yr', 'label' => 'Avg. strategist tenure'],
-                ],
-            ]],
-            ['platforms', 'Partner types', [
-                'eyebrow' => 'Who we partner with',
-                'title' => 'Built for agency workflows',
-                'lede' => 'From solo consultants to multi-service shops.',
-                'items' => ['Digital agencies', 'Web studios', 'Freelance consultants', 'Marketing collectives', 'B2B SaaS agencies'],
-            ]],
-            ['testimonials', 'In their words', [
-                'eyebrow' => 'In their words',
-                'title' => 'Partners who scale without hiring',
-                'items' => [
-                    ['quote' => 'Two years white-labeling with KodRank. My clients think I have a 20-person SEO team. Delivery is on time and the reports need zero cleanup.', 'initials' => 'AP', 'name' => 'Agency Partner', 'role' => 'Digital agency owner'],
-                    ['quote' => 'The Slack channel and dedicated manager changed everything. I finally have a backend I trust with enterprise clients.', 'initials' => 'RC', 'name' => 'Rachel C.', 'role' => 'Consultancy founder'],
+                    [
+                        'quote' => 'We were turning away SEO retainers because we couldn\'t staff them. Now KodRank runs fulfillment and we just sell. Same team, double the accounts.',
+                        'initials' => 'DM',
+                        'name' => 'Daniel M.',
+                        'role' => 'Founder, Web & Marketing Studio',
+                    ],
+                    [
+                        'quote' => 'The reports come back branded and on time, every month. I present them like our own work — because to the client, it is. That trust is everything.',
+                        'initials' => 'SR',
+                        'name' => 'Sara R.',
+                        'role' => 'SEO Lead, Growth Agency',
+                    ],
+                    [
+                        'quote' => 'Consistency was our problem — some campaigns worked, some didn\'t. KodRank\'s process fixed that. Retention is up and I finally offer SEO with confidence.',
+                        'initials' => 'AK',
+                        'name' => 'Adam K.',
+                        'role' => 'Director, Digital Agency',
+                    ],
                 ],
             ]],
             ['faq', 'FAQ', [
-                'eyebrow' => 'Questions',
-                'title_html' => 'White label SEO, answered',
+                'eyebrow' => 'Common questions',
+                'title_html' => 'White Label SEO Services, <span class="hl">answered.</span>',
                 'items' => [
-                    ['q' => 'Will my clients know about KodRank?', 'a' => 'No — unless you choose to introduce us. All deliverables and reports are white-labeled under your agency brand.'],
-                    ['q' => 'How is pricing structured?', 'a' => 'Wholesale monthly rates per client based on scope — audits, content volume, and link building tiers. We quote after a quick partner call.'],
-                    ['q' => 'Can we start with one client?', 'a' => 'Yes. Many partners onboard a single account to test workflow, then scale once delivery rhythm is proven.'],
+                    [
+                        'q' => 'What exactly are white label SEO services?',
+                        'a' => 'White label SEO services let your agency sell SEO under your own brand while a specialist partner does the work behind the scenes. You own the client relationship, set the pricing, and present the results. We handle audits, keyword research, content, technical fixes, link building, and reporting — all delivered under your name. Your client sees you; they never see us.',
+                    ],
+                    [
+                        'q' => 'Will my clients ever find out you\'re involved?',
+                        'a' => 'No. Every report, dashboard, and deliverable carries your logo and branding, and our partnership is protected by an NDA. We never contact your clients directly. You stay the single point of contact and take full credit for the results.',
+                    ],
+                    [
+                        'q' => 'How is this different from hiring an in-house SEO?',
+                        'a' => 'Instead of one salaried hire plus a paid tool stack, you get an entire team — strategists, writers, technical specialists, link builders, and a dedicated account lead — for a fraction of the cost. There\'s nothing to recruit, train, or manage, and you can scale campaigns up or down as your client list changes without touching your payroll.',
+                    ],
+                    [
+                        'q' => 'What\'s included in the program?',
+                        'a' => 'Full-service fulfillment: technical and content audits, keyword research, on-page optimization, technical SEO, content writing, white-hat link building, local SEO, and fully branded reporting. You can resell the complete program or pick the individual services you need for each account.',
+                    ],
+                    [
+                        'q' => 'How quickly can we onboard a new client?',
+                        'a' => 'Most accounts go from kickoff to a live campaign in about two weeks. Once you share the client\'s site and goals, we run the initial audit, build the strategy for your approval, and start execution under your brand — usually within a few business days of sign-off.',
+                    ],
+                    [
+                        'q' => 'Can the reports match my agency\'s branding?',
+                        'a' => 'Yes. Reports are fully white-labeled with your logo, colors, and preferred metrics. You can set the reporting frequency and the level of detail so what your client receives always looks like it came straight from your team.',
+                    ],
+                    [
+                        'q' => 'How much involvement do I need to have?',
+                        'a' => 'As much or as little as you want. You set the goals, pricing, and brand standards; we handle execution and keep you updated through your dedicated account lead. Most partners stay focused on selling and client relationships while we run fulfillment quietly in the background.',
+                    ],
                 ],
             ]],
             ['contact', 'Contact', [
-                'eyebrow' => 'Contact',
-                'title_html' => 'Apply to become a <span class="hl">SEO partner</span>',
-                'lede' => 'Tell us about your agency, typical client size, and how many accounts you want to onboard.',
-                'points' => ['Partner inquiry — not a client lead form.', 'We reply within 1 business day.'],
-                'meta' => [
-                    ['label' => 'Email us', 'value' => 'info@kodrank.com', 'icon_key' => 'email'],
-                    ['label' => 'Call us', 'value' => '+92 305 9202732', 'icon_key' => 'phone'],
+                'eyebrow' => 'Let\'s talk fulfillment',
+                'title_html' => 'Ready to deliver SEO <span class="hl">without hiring for it?</span>',
+                'lede' => 'Tell us about your agency and the accounts you want to serve. We\'ll come back with a white-label plan and pricing you can mark up as your own — no obligation, no hard sell.',
+                'points' => [
+                    'NDA-backed & confidential',
+                    'Reply within one business day',
                 ],
+                'form_title' => 'Get your white label quote',
                 'fields' => [
-                    'name_label' => 'Your name',
-                    'email_label' => 'Agency email',
+                    'name_label' => 'Full name',
+                    'email_label' => 'Work email',
                     'website_label' => 'Agency website',
-                    'service_label' => 'Partner type',
-                    'message_label' => 'Tell us about your agency',
-                    'message_placeholder' => 'Client count, services you sell, and what you need from a white label partner…',
+                    'service_label' => 'What do you need?',
+                    'message_label' => 'Your message',
+                    'message_placeholder' => 'Tell us about your clients, timelines, monthly volume, or anything specific you want us to know…',
                 ],
-                'service_options' => ['Digital agency', 'Web studio', 'Freelancer', 'Other'],
-                'default_service' => 'Digital agency',
-                'submit_text' => 'Start partner conversation',
+                'service_options' => [
+                    'Full white label SEO program',
+                    'Link building only',
+                    'Content writing only',
+                    'Technical SEO / audits',
+                    'Local SEO',
+                    'Not sure yet — advise me',
+                ],
+                'default_service' => 'Full white label SEO program',
+                'submit_text' => 'Send & get my quote',
             ]],
         ];
 

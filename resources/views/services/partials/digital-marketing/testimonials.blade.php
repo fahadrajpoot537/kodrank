@@ -29,20 +29,24 @@
           </div>
         @endforeach
       </div>
-      <div class="testi-controls">
-        <div class="testi-dots" data-testi-dots role="tablist" aria-label="Testimonial slides">
-          @foreach($tm['items'] ?? [] as $index => $item)
-            <button
-              type="button"
-              class="testi-dot{{ $index === 0 ? ' is-active' : '' }}"
-              data-testi-dot="{{ $index }}"
-              aria-label="Go to review {{ $index + 1 }}"
-              aria-selected="{{ $index === 0 ? 'true' : 'false' }}"
-              role="tab"
-            ></button>
-          @endforeach
-        </div>
+      <div class="testi-dots thm-carousel-dots" data-testi-dots role="tablist" aria-label="Testimonial slides">
+        @foreach($tm['items'] ?? [] as $index => $item)
+          <button
+            type="button"
+            class="testi-dot{{ $index === 0 ? ' is-active' : '' }}"
+            data-testi-dot="{{ $index }}"
+            aria-label="Go to review {{ $index + 1 }}"
+            aria-selected="{{ $index === 0 ? 'true' : 'false' }}"
+            role="tab"
+          ></button>
+        @endforeach
       </div>
+      @if(!empty($tm['show_arrows']))
+        <div class="testi-controls testi-nav-wrap">
+          <button type="button" class="testi-nav" data-dir="prev" aria-label="Previous review">‹</button>
+          <button type="button" class="testi-nav" data-dir="next" aria-label="Next review">›</button>
+        </div>
+      @endif
     </div>
   </div>
 </section>

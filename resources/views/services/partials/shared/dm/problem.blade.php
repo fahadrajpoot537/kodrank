@@ -37,5 +37,14 @@
       <button type="button" class="svc-nav svc-next" aria-label="Next cards">{!! $arrowNext !!}</button>
       <div class="svc-dots" data-svc-dots aria-hidden="true"></div>
     </div>
+    @if(!empty($p['foot_html']) || !empty($p['foot']))
+      <div class="pain-foot">
+        @if(!empty($p['foot_html']))
+          <span>{!! $p['foot_html'] !!}</span>
+        @else
+          <span>{{ $p['foot'] }}</span>
+        @endif
+      </div>
+    @endif
   </div>
 </section>

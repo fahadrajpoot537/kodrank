@@ -3,4 +3,5 @@
   'secId' => 'services',
   'secClass' => 'sec-mist',
   'ink' => false,
+  'stack' => false,
 ])

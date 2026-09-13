@@ -109,6 +109,7 @@
 <link rel="stylesheet" href="{{ asset('css/home.css') }}?v={{ @filemtime(public_path('css/home.css')) ?: time() }}">
 <link rel="stylesheet" href="{{ asset('css/home-extra.css') }}?v={{ @filemtime(public_path('css/home-extra.css')) ?: time() }}">
 <link rel="stylesheet" href="{{ asset('css/page-industries.css') }}?v={{ @filemtime(public_path('css/page-industries.css')) ?: time() }}">
+@include('partials.clarity')
 @stack('head')
 </head>
 @php $bodyClassAttr = $bodyClass !== '' ? ' class="'.e($bodyClass).'"' : ''; @endphp

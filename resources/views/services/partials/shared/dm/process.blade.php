@@ -1,10 +1,15 @@
 @php
   $pr = $pr ?? [];
+  $secClass = $pr['section_class'] ?? ($secClass ?? 'sec-paper');
+  $perDesktop = (int) ($pr['per_desktop'] ?? ($perDesktop ?? 3));
+  if ($perDesktop < 1) {
+      $perDesktop = 3;
+  }
   $arrow = '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M15 5 8 12l7 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>';
   $arrowNext = '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m9 5 7 7-7 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>';
   $steps = $pr['steps'] ?? $pr['cards'] ?? [];
 @endphp
-<section id="process" class="sec-paper">
+<section id="process" class="{{ $secClass }}">
   <div class="wrap">
     <div class="section-head">
       <span class="eyebrow">{{ $pr['eyebrow'] ?? 'How We Work' }}</span>
@@ -13,7 +18,7 @@
       </h2>
       @if(!empty($pr['lede']))<p>{{ $pr['lede'] }}</p>@endif
     </div>
-    <div class="svc-carousel page-svc-stack page-svc-stack--pair" data-sp-stack data-per-desktop="3">
+    <div class="svc-carousel page-svc-stack page-svc-stack--pair" data-sp-stack data-per-desktop="{{ $perDesktop }}">
       <button type="button" class="svc-nav svc-prev" aria-label="Previous steps">{!! $arrow !!}</button>
       <div class="svc-viewport">
         <div class="svc-track">

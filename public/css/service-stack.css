@@ -428,3 +428,145 @@ body.page-web-dev .page-svc-stack .reveal{
     overflow:visible !important;
   }
 }
+
+/* ========== Shopify SEO hub overrides (load last — beat stack defaults) ========== */
+@media (min-width:901px){
+  /* All blade stacks: static grid on desktop (overrides sticky display:block) */
+  html body.page-service .page-svc-stack.is-desktop-static .svc-viewport{
+    display:block !important;
+    width:100% !important;
+    max-width:100% !important;
+    height:auto !important;
+    overflow:visible !important;
+    transform:none !important;
+  }
+  html body.page-service .page-svc-stack.is-desktop-static .svc-track{
+    display:grid !important;
+    width:100% !important;
+    max-width:100% !important;
+    height:auto !important;
+    overflow:visible !important;
+    transform:none !important;
+    gap:18px !important;
+    touch-action:auto !important;
+    cursor:default !important;
+    grid-template-columns:repeat(3,minmax(0,1fr)) !important;
+  }
+  html body.page-service .page-svc-stack.is-desktop-static[data-per-desktop="2"] .svc-track{
+    grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+  }
+  html body.page-service .page-svc-stack.is-desktop-static[data-per-desktop="4"] .svc-track{
+    grid-template-columns:repeat(4,minmax(0,1fr)) !important;
+  }
+  html body.page-service .page-svc-stack.is-desktop-static .svc-stack-item,
+  html body.page-service .page-svc-stack.is-desktop-static .svc-stack-pair{
+    display:contents !important;
+    position:static !important;
+    top:auto !important;
+    margin:0 !important;
+    width:auto !important;
+    height:auto !important;
+  }
+  html body.page-service .page-svc-stack.is-desktop-static .svc-slide,
+  html body.page-service .page-svc-stack.is-desktop-static .proc,
+  html body.page-service .page-svc-stack.is-desktop-static .svc-card{
+    width:100% !important;
+    min-width:0 !important;
+    max-width:none !important;
+    height:100% !important;
+    margin:0 !important;
+    position:relative !important;
+    top:auto !important;
+    transform:none !important;
+  }
+
+  html body.page-shopifyseo.page-service #services .page-svc-carousel .svc-track,
+  html body.page-shopifyseo.page-service #services .page-svc-carousel.is-desktop-grid .svc-track{
+    display:grid !important;
+    grid-template-columns:repeat(3,minmax(0,1fr)) !important;
+    gap:18px !important;
+    width:100% !important;
+    max-width:100% !important;
+    transform:none !important;
+    touch-action:auto !important;
+    cursor:default !important;
+    transition:none !important;
+  }
+  html body.page-shopifyseo.page-service #services .page-svc-carousel .svc-viewport{
+    overflow:visible !important;
+  }
+  html body.page-shopifyseo.page-service #services .svc-slide,
+  html body.page-shopifyseo.page-service #services .svc-card{
+    width:100% !important;
+    min-width:0 !important;
+    max-width:100% !important;
+    height:auto !important;
+    min-height:100% !important;
+    max-height:none !important;
+    flex:none !important;
+    overflow:hidden !important;
+    overflow-wrap:anywhere !important;
+    word-break:break-word !important;
+    white-space:normal !important;
+    box-sizing:border-box !important;
+  }
+  html body.page-shopifyseo.page-service #services .svc-card h3,
+  html body.page-shopifyseo.page-service #services .svc-card p{
+    max-width:100% !important;
+    white-space:normal !important;
+    overflow-wrap:anywhere !important;
+    word-break:break-word !important;
+  }
+  html body.page-shopifyseo.page-service #process .page-svc-stack.is-desktop-static .svc-track,
+  html body.page-shopifyseo.page-service #process .page-svc-stack .svc-track{
+    display:grid !important;
+    grid-template-columns:repeat(4,minmax(0,1fr)) !important;
+    gap:16px !important;
+    width:100% !important;
+    transform:none !important;
+  }
+  html body.page-shopifyseo.page-service #process .page-svc-stack.is-desktop-static .svc-viewport,
+  html body.page-shopifyseo.page-service #process .page-svc-stack .svc-viewport{
+    display:block !important;
+    overflow:visible !important;
+  }
+  html body.page-shopifyseo.page-service #process .page-svc-stack.is-desktop-static .svc-stack-item,
+  html body.page-shopifyseo.page-service #process .page-svc-stack .svc-stack-item{
+    display:contents !important;
+    position:relative !important;
+    top:auto !important;
+    z-index:auto !important;
+    width:auto !important;
+    max-width:none !important;
+    margin:0 !important;
+    height:auto !important;
+  }
+  html body.page-shopifyseo.page-service #process.sec-ink .page-svc-stack .proc,
+  html body.page-shopifyseo.page-service #process.sec-ink .page-svc-stack .svc-stack-item > .proc{
+    background:var(--ink-2,#0F2A33) !important;
+    background-color:var(--ink-2,#0F2A33) !important;
+    border-color:rgba(255,255,255,.08) !important;
+    color:#B7CBD2 !important;
+  }
+}
+@media (min-width:901px) and (max-width:1100px){
+  html body.page-shopifyseo.page-service #services .page-svc-carousel .svc-track{
+    grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+  }
+  html body.page-shopifyseo.page-service #process .page-svc-stack .svc-track,
+  html body.page-service .page-svc-stack.is-desktop-static[data-per-desktop="4"] .svc-track{
+    grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+  }
+}
+@media (max-width:900px){
+  html body.page-shopifyseo.page-service #process.sec-ink .page-svc-stack .proc,
+  html body.page-shopifyseo.page-service #process.sec-ink .page-svc-stack .svc-stack-item > .proc{
+    background:var(--ink-2,#0F2A33) !important;
+    background-color:var(--ink-2,#0F2A33) !important;
+    border-color:rgba(255,255,255,.08) !important;
+    color:#B7CBD2 !important;
+  }
+  html body.page-shopifyseo.page-service #process.sec-ink .proc h4{color:#fff !important;}
+  html body.page-shopifyseo.page-service #process.sec-ink .proc p{color:#9FB6BE !important;}
+  html body.page-shopifyseo.page-service #process.sec-ink .proc .num{color:var(--signal,#F47A1F) !important;}
+}

@@ -502,7 +502,7 @@ body.page-theme-html.page-service section#included.has-page-svc-stack,
   html body.page-service .webdev-ref .prob-list:not(.page-svc-stack):not([data-thm-stack]),
   html body.page-service .webdev-ref .tgrid:not(.page-svc-stack):not([data-thm-stack]),
   html body.page-service .webdev-ref .testi-grid:not(.page-svc-stack):not([data-thm-stack]),
-  html body.page-service .webdev-ref .why-grid:not(:has(.stat)):not(:has(.why-feats)):not(:has(.compare)):not(:has(.why-copy)):not(:has(.why-list)):not(.page-svc-stack) {
+  html body.page-service .webdev-ref .why-grid:not(:has(.stat)):not(:has(.why-feats)):not(:has(.compare)):not(:has(.why-copy)):not(:has(.why-list)):not(.page-svc-stack):not([data-thm-stack]) {
     display: grid !important;
     grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
     gap: 18px !important;
@@ -592,7 +592,7 @@ body.page-theme-html.page-service section#included.has-page-svc-stack,
   html body.page-service .webdev-ref .feature-grid,
   html body.page-service .webdev-ref .why-bg .feature-grid,
   html body.page-service .webdev-ref .why-feats,
-  html body.page-service .webdev-ref .why-grid:not(:has(.stat)):not(:has(.stat-card)):not(:has(.why-feats)):not(:has(.compare)):not(:has(.why-copy)):not(:has(.why-list)),
+  html body.page-service .webdev-ref .why-grid:not(:has(.stat)):not(:has(.stat-card)):not(:has(.why-feats)):not(:has(.compare)):not(:has(.why-copy)):not(:has(.why-list)):not(.page-svc-stack):not([data-thm-stack]),
   html body.page-service .webdev-ref .edge-grid,
   html body.page-service .webdev-ref .industry-grid,
   html body.page-service .webdev-ref .ind-grid,
@@ -600,7 +600,7 @@ body.page-theme-html.page-service section#included.has-page-svc-stack,
   html body.page-service .webdev-ref .grid.g3:has(> .pain),
   html body.page-service .webdev-ref .grid.g-3:has(> .pain),
   html body.page-service .webdev-ref .grid.g-4:has(> .pain),
-  html body.page-service .webdev-ref .grid:has(> .pain-card),
+  html body.page-service .webdev-ref .grid:has(> .pain-card):not(.page-svc-stack):not([data-thm-stack]),
   html body.page-service .webdev-ref .grid:has(> .feat),
   html body.page-service .webdev-ref .grid:has(> .why),
   html body.page-service .webdev-ref .grid:has(> .problem-card),
@@ -614,16 +614,16 @@ body.page-theme-html.page-service section#included.has-page-svc-stack,
   html body.page-service .webdev-ref .plat-grid,
   html body.page-service .webdev-ref .grid:has(> .tcard),
   html body.page-service .webdev-ref .carousel-track:has(> .testi),
-  html body.page-service .webdev-ref #pain > .wrap > .grid,
+  html body.page-service .webdev-ref #pain > .wrap > .grid:not(.page-svc-stack):not([data-thm-stack]),
   html body.page-service .webdev-ref #problem > .wrap > .grid,
-  html body.page-service .webdev-ref section#pain .grid.g-3,
-  html body.page-service .webdev-ref section#pain .grid.g-4,
+  html body.page-service .webdev-ref section#pain .grid.g-3:not(.page-svc-stack):not([data-thm-stack]),
+  html body.page-service .webdev-ref section#pain .grid.g-4:not(.page-svc-stack):not([data-thm-stack]),
   html body.page-service .webdev-ref section#deliver > .wrap > .grid,
   html body.page-service .webdev-ref .thm-mobile-carousel,
   html body.page-service .webdev-ref [data-thm-carousel],
   html body.page-web-dev .webdev-ref #pain .svc-track,
   html body.page-web-dev .webdev-ref #pain [data-thm-carousel],
-  html body.page-web-dev .webdev-ref #pain .problem-grid,
+  html body.page-web-dev .webdev-ref #pain .problem-grid:not(.page-svc-stack):not([data-thm-stack]),
   html body.page-web-dev .webdev-ref #why .svc-track,
   html body.page-web-dev .webdev-ref #why [data-thm-carousel],
   html body.page-web-dev .webdev-ref #why .feature-grid,
@@ -701,48 +701,48 @@ body.page-theme-html.page-service section#included.has-page-svc-stack,
     height: 0 !important;
   }
 
-  html body.page-service .webdev-ref .problem-grid:not(.page-svc-stack):not([data-thm-stack]) > *,
-  html body.page-service .webdev-ref .pain-grid:not(.page-svc-stack):not([data-thm-stack]) > *,
-  html body.page-service .webdev-ref .pain-list:not(.page-svc-stack):not([data-thm-stack]) > *,
-  html body.page-service .webdev-ref .prob-list:not(.page-svc-stack):not([data-thm-stack]) > *,
-  html body.page-service .webdev-ref .feature-grid > *,
-  html body.page-service .webdev-ref .why-feats > *,
-  html body.page-service .webdev-ref .why-grid:not(:has(.stat)):not(:has(.why-feats)):not(:has(.compare)):not(:has(.why-copy)) > *,
-  html body.page-service .webdev-ref .edge-grid > *,
-  html body.page-service .webdev-ref .industry-grid > *,
-  html body.page-service .webdev-ref .ind-grid > *,
-  html body.page-service .webdev-ref .grid:has(> .pain) > *,
-  html body.page-service .webdev-ref .grid.g3:has(> .pain) > *,
-  html body.page-service .webdev-ref .grid.g-3:has(> .pain) > *,
-  html body.page-service .webdev-ref .grid.g-4:has(> .pain) > *,
-  html body.page-service .webdev-ref .grid:has(> .pain-card) > *,
-  html body.page-service .webdev-ref .grid:has(> .feat) > *,
-  html body.page-service .webdev-ref .grid:has(> .why) > *,
-  html body.page-service .webdev-ref .grid:has(> .problem-card) > *,
-  html body.page-service .webdev-ref .feat-list:has(> .feat) > *,
-  html body.page-service .webdev-ref .tst-grid > *,
-  html body.page-service .webdev-ref .test-grid > *,
-  html body.page-service .webdev-ref .testi-grid > *,
-  html body.page-service .webdev-ref .tgrid > *,
-  html body.page-service .webdev-ref #testiTrack > *,
-  html body.page-service .webdev-ref .testi-track > *,
-  html body.page-service .webdev-ref .plat-grid > *,
-  html body.page-service .webdev-ref .grid:has(> .tcard) > *,
-  html body.page-service .webdev-ref .carousel-track:has(> .testi) > *,
-  html body.page-service .webdev-ref #pain > .wrap > .grid > *,
-  html body.page-service .webdev-ref #problem > .wrap > .grid > *,
-  html body.page-service .webdev-ref section#pain .grid.g-3 > *,
-  html body.page-service .webdev-ref section#pain .grid.g-4 > *,
-  html body.page-service .webdev-ref section#deliver > .wrap > .grid > *,
-  html body.page-service .webdev-ref .thm-mobile-carousel > *,
-  html body.page-service .webdev-ref [data-thm-carousel] > *,
-  html body.page-web-dev .webdev-ref #pain .svc-track > *,
+  html body.page-service .webdev-ref .problem-grid:not(.page-svc-stack):not([data-thm-stack]) > *:not(.testi-dots):not(.thm-carousel-nav-wrap):not(.thm-carousel-dots),
+  html body.page-service .webdev-ref .pain-grid:not(.page-svc-stack):not([data-thm-stack]) > *:not(.testi-dots):not(.thm-carousel-nav-wrap):not(.thm-carousel-dots),
+  html body.page-service .webdev-ref .pain-list:not(.page-svc-stack):not([data-thm-stack]) > *:not(.testi-dots):not(.thm-carousel-nav-wrap):not(.thm-carousel-dots),
+  html body.page-service .webdev-ref .prob-list:not(.page-svc-stack):not([data-thm-stack]) > *:not(.testi-dots):not(.thm-carousel-nav-wrap):not(.thm-carousel-dots),
+  html body.page-service .webdev-ref .feature-grid > *:not(.testi-dots):not(.thm-carousel-nav-wrap),
+  html body.page-service .webdev-ref .why-feats > *:not(.testi-dots):not(.thm-carousel-nav-wrap),
+  html body.page-service .webdev-ref .why-grid:not(:has(.stat)):not(:has(.why-feats)):not(:has(.compare)):not(:has(.why-copy)):not(.page-svc-stack):not([data-thm-stack]) > *:not(.testi-dots):not(.thm-carousel-nav-wrap),
+  html body.page-service .webdev-ref .edge-grid > *:not(.testi-dots):not(.thm-carousel-nav-wrap),
+  html body.page-service .webdev-ref .industry-grid > *:not(.testi-dots):not(.thm-carousel-nav-wrap),
+  html body.page-service .webdev-ref .ind-grid > *:not(.testi-dots):not(.thm-carousel-nav-wrap),
+  html body.page-service .webdev-ref .grid:has(> .pain) > *:not(.testi-dots):not(.thm-carousel-nav-wrap),
+  html body.page-service .webdev-ref .grid.g3:has(> .pain) > *:not(.testi-dots):not(.thm-carousel-nav-wrap),
+  html body.page-service .webdev-ref .grid.g-3:has(> .pain) > *:not(.testi-dots):not(.thm-carousel-nav-wrap),
+  html body.page-service .webdev-ref .grid.g-4:has(> .pain) > *:not(.testi-dots):not(.thm-carousel-nav-wrap),
+  html body.page-service .webdev-ref .grid:has(> .pain-card):not(.page-svc-stack):not([data-thm-stack]) > *:not(.testi-dots):not(.thm-carousel-nav-wrap),
+  html body.page-service .webdev-ref .grid:has(> .feat) > *:not(.testi-dots):not(.thm-carousel-nav-wrap),
+  html body.page-service .webdev-ref .grid:has(> .why) > *:not(.testi-dots):not(.thm-carousel-nav-wrap),
+  html body.page-service .webdev-ref .grid:has(> .problem-card) > *:not(.testi-dots):not(.thm-carousel-nav-wrap),
+  html body.page-service .webdev-ref .feat-list:has(> .feat) > *:not(.testi-dots):not(.thm-carousel-nav-wrap),
+  html body.page-service .webdev-ref .tst-grid > *:not(.testi-dots):not(.thm-carousel-nav-wrap),
+  html body.page-service .webdev-ref .test-grid > *:not(.testi-dots):not(.thm-carousel-nav-wrap),
+  html body.page-service .webdev-ref .testi-grid > *:not(.testi-dots):not(.thm-carousel-nav-wrap),
+  html body.page-service .webdev-ref .tgrid > *:not(.testi-dots):not(.thm-carousel-nav-wrap),
+  html body.page-service .webdev-ref #testiTrack > *:not(.testi-dots):not(.thm-carousel-nav-wrap),
+  html body.page-service .webdev-ref .testi-track > *:not(.testi-dots):not(.thm-carousel-nav-wrap),
+  html body.page-service .webdev-ref .plat-grid > *:not(.testi-dots):not(.thm-carousel-nav-wrap),
+  html body.page-service .webdev-ref .grid:has(> .tcard) > *:not(.testi-dots):not(.thm-carousel-nav-wrap),
+  html body.page-service .webdev-ref .carousel-track:has(> .testi) > *:not(.testi-dots):not(.thm-carousel-nav-wrap),
+  html body.page-service .webdev-ref #pain > .wrap > .grid:not(.page-svc-stack):not([data-thm-stack]) > *:not(.testi-dots):not(.thm-carousel-nav-wrap),
+  html body.page-service .webdev-ref #problem > .wrap > .grid > *:not(.testi-dots):not(.thm-carousel-nav-wrap),
+  html body.page-service .webdev-ref section#pain .grid.g-3:not(.page-svc-stack):not([data-thm-stack]) > *:not(.testi-dots):not(.thm-carousel-nav-wrap),
+  html body.page-service .webdev-ref section#pain .grid.g-4:not(.page-svc-stack):not([data-thm-stack]) > *:not(.testi-dots):not(.thm-carousel-nav-wrap),
+  html body.page-service .webdev-ref section#deliver > .wrap > .grid > *:not(.testi-dots):not(.thm-carousel-nav-wrap),
+  html body.page-service .webdev-ref .thm-mobile-carousel > *:not(.testi-dots):not(.thm-carousel-nav-wrap):not(.thm-carousel-dots),
+  html body.page-service .webdev-ref [data-thm-carousel] > *:not(.testi-dots):not(.thm-carousel-nav-wrap):not(.thm-carousel-dots):not(.svc-nav):not(.svc-dots),
+  html body.page-web-dev .webdev-ref #pain .svc-track > *:not(.testi-dots),
   html body.page-web-dev .webdev-ref #pain .svc-stack-item,
-  html body.page-web-dev .webdev-ref #pain .problem-grid > *,
-  html body.page-web-dev .webdev-ref #why .svc-track > *,
+  html body.page-web-dev .webdev-ref #pain .problem-grid > *:not(.testi-dots),
+  html body.page-web-dev .webdev-ref #why .svc-track > *:not(.testi-dots),
   html body.page-web-dev .webdev-ref #why .svc-stack-item,
-  html body.page-web-dev .webdev-ref #why .feature-grid > *,
-  html body.page-web-dev .webdev-ref #why .why-grid > * {
+  html body.page-web-dev .webdev-ref #why .feature-grid > *:not(.testi-dots),
+  html body.page-web-dev .webdev-ref #why .why-grid > *:not(.testi-dots) {
     flex: 0 0 100% !important;
     flex-shrink: 0 !important;
     flex-grow: 0 !important;
@@ -959,17 +959,17 @@ html body.page-onpage.page-service .sec-mist .def-card p{
 }
 
 @media (max-width: 980px) {
-  html body.page-onpage .onpage-theme-page #pain .why-mobile-carousel,
+  html body.page-onpage .onpage-theme-page #pain .why-mobile-carousel:not(:has([data-thm-stack])):not(:has(.page-svc-stack)),
   html body.page-onpage .onpage-theme-page #why .why-mobile-carousel {
     margin-top: 22px !important;
   }
 
-  html body.page-onpage .onpage-theme-page #pain .wrap > .thm-carousel-nav-wrap,
+  html body.page-onpage .onpage-theme-page #pain:not(:has(.page-svc-stack)):not(:has([data-thm-stack])) .wrap > .thm-carousel-nav-wrap,
   html body.page-onpage .onpage-theme-page #why .wrap > .thm-carousel-nav-wrap {
     display: none !important;
   }
 
-  html body.page-onpage .onpage-theme-page #pain .wrap > .testi-dots.thm-carousel-dots,
+  html body.page-onpage .onpage-theme-page #pain:not(:has(.page-svc-stack)):not(:has([data-thm-stack])) .wrap > .testi-dots.thm-carousel-dots,
   html body.page-onpage .onpage-theme-page #why .wrap > .testi-dots.thm-carousel-dots {
     margin-top: 12px !important;
     min-height: 18px !important;
@@ -1256,83 +1256,399 @@ html body.page-offpage .offpage-theme-page .cmp {
   }
 }
 
-/* Digital marketing blade — #services cards as mobile/tablet carousel (not stack) */
-@media (max-width: 980px) {
-  html body.page-dm.page-service .webdev-ref section#services:has([data-thm-carousel]),
-  html body.page-dm.page-service .webdev-ref section#services:has(.why-mobile-carousel) {
+/* Digital marketing hub — #services swipe-up sticky stack on mobile/tablet */
+@media (max-width: 900px) {
+  html body.page-dm.page-service .webdev-ref section#services,
+  html body.page-dm.page-service .webdev-ref section#services.has-page-svc-stack {
     overflow-x: clip !important;
     overflow-y: visible !important;
   }
 
+  html body.page-dm.page-service .webdev-ref #services .wrap {
+    max-width: 100% !important;
+    min-width: 0 !important;
+    overflow: visible !important;
+  }
+
+  /* Flatten old carousel shell in CSS only as fallback — JS unwraps for sticky */
   html body.page-dm.page-service .webdev-ref #services .why-mobile-carousel:has(> .service-grid) {
     display: block !important;
     width: 100% !important;
     max-width: 100% !important;
-    min-width: 0 !important;
     overflow: visible !important;
-    touch-action: auto !important;
-    scroll-snap-type: none !important;
   }
 
-  html body.page-dm.page-service .webdev-ref #services .service-grid[data-thm-carousel],
-  html body.page-dm.page-service .webdev-ref #services .why-mobile-carousel > .service-grid {
-    display: flex !important;
-    flex-direction: row !important;
-    flex-wrap: nowrap !important;
-    align-items: stretch !important;
-    gap: 16px !important;
+  html body.page-dm.page-service .webdev-ref #services .service-grid.page-svc-stack,
+  html body.page-dm.page-service .webdev-ref #services .service-grid[data-thm-stack] {
+    display: block !important;
+    grid-template-columns: none !important;
+    gap: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: visible !important;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    flex-direction: unset !important;
+    flex-wrap: unset !important;
+    scroll-snap-type: none !important;
+    touch-action: auto !important;
+  }
+
+  html body.page-dm.page-service .webdev-ref #services .service-grid.page-svc-stack > .svc-stack-item,
+  html body.page-dm.page-service .webdev-ref #services .service-grid[data-thm-stack] > .svc-stack-item {
+    position: sticky !important;
+    top: calc(var(--svc-stack-nav, 68px) + (var(--index0, 0) * var(--svc-stack-peek, 14px))) !important;
+    z-index: calc(1 + var(--index0, 0)) !important;
+    display: block !important;
     width: 100% !important;
     max-width: 100% !important;
     min-width: 0 !important;
-    overflow-x: auto !important;
-    overflow-y: hidden !important;
-    -webkit-overflow-scrolling: touch !important;
-    scroll-snap-type: x mandatory !important;
-    overscroll-behavior-x: contain !important;
-    grid-template-columns: none !important;
-    grid-template-rows: none !important;
-    scrollbar-width: none !important;
-    touch-action: pan-x !important;
-  }
-
-  html body.page-dm.page-service .webdev-ref #services .service-grid[data-thm-carousel]::-webkit-scrollbar,
-  html body.page-dm.page-service .webdev-ref #services .why-mobile-carousel > .service-grid::-webkit-scrollbar {
-    display: none !important;
-  }
-
-  html body.page-dm.page-service .webdev-ref #services .service-grid[data-thm-carousel] > .svc-card,
-  html body.page-dm.page-service .webdev-ref #services .why-mobile-carousel > .service-grid > .svc-card {
-    flex: 0 0 100% !important;
-    flex-shrink: 0 !important;
-    width: 100% !important;
-    min-width: 100% !important;
-    max-width: 100% !important;
-    height: auto !important;
-    box-sizing: border-box !important;
-    scroll-snap-align: start !important;
-    scroll-snap-stop: always !important;
+    margin: 0 0 var(--svc-stack-gap, 18px) !important;
+    padding: 0 !important;
+    background: transparent !important;
+    border: 0 !important;
+    box-shadow: none !important;
     transform: none !important;
+  }
+
+  html body.page-dm.page-service .webdev-ref #services .service-grid.page-svc-stack > .svc-stack-item:last-child {
+    margin-bottom: 0 !important;
+  }
+
+  html body.page-dm.page-service .webdev-ref #services .service-grid.page-svc-stack .svc-card,
+  html body.page-dm.page-service .webdev-ref #services .service-grid.page-svc-stack .svc-stack-item > .svc-card {
+    display: flex !important;
+    flex-direction: column !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    height: auto !important;
+    min-height: 160px !important;
+    margin: 0 !important;
+    box-sizing: border-box !important;
+    background: #fff !important;
+    background-color: #fff !important;
     opacity: 1 !important;
+    transform: none !important;
+    overflow: hidden !important;
+    isolation: isolate;
   }
 
-  html body.page-dm.page-service .webdev-ref #services .wrap > .thm-carousel-nav-wrap {
-    display: none !important;
-  }
-
-  html body.page-dm.page-service .webdev-ref #services .wrap > .testi-dots.thm-carousel-dots {
-    margin-top: 12px !important;
-    min-height: 18px !important;
-  }
-
-  html body.page-dm.page-service .webdev-ref .thm-carousel-nav-wrap,
-  html body.page-dm.page-service .webdev-ref .testi-nav-wrap {
+  html body.page-dm.page-service .webdev-ref #services .thm-carousel-nav-wrap,
+  html body.page-dm.page-service .webdev-ref #services .testi-dots.thm-carousel-dots {
     display: none !important;
   }
 }
 
-@media (min-width: 981px) {
+@media (min-width: 901px) {
   html body.page-dm.page-service .webdev-ref #services .why-mobile-carousel:has(> .service-grid) {
     display: contents !important;
+  }
+
+  html body.page-dm.page-service .webdev-ref #services .service-grid.page-svc-stack,
+  html body.page-dm.page-service .webdev-ref #services .service-grid[data-thm-stack] {
+    display: grid !important;
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: 18px !important;
+  }
+
+  html body.page-dm.page-service .webdev-ref #services .service-grid.page-svc-stack > .svc-stack-item {
+    position: relative !important;
+    top: auto !important;
+    margin: 0 !important;
+    transform: none !important;
+    height: 100% !important;
+  }
+}
+
+@media (min-width: 901px) and (max-width: 1100px) {
+  html body.page-dm.page-service .webdev-ref #services .service-grid.page-svc-stack,
+  html body.page-dm.page-service .webdev-ref #services .service-grid[data-thm-stack] {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+}
+
+/* Digital marketing hub — #why-us swipe-up sticky stack on mobile/tablet */
+@media (max-width: 900px) {
+  html body.page-dm.page-service .webdev-ref section#why-us,
+  html body.page-dm.page-service .webdev-ref section#why-us.has-page-svc-stack {
+    overflow-x: clip !important;
+    overflow-y: visible !important;
+  }
+
+  html body.page-dm.page-service .webdev-ref #why-us .wrap {
+    max-width: 100% !important;
+    min-width: 0 !important;
+    overflow: visible !important;
+  }
+
+  html body.page-dm.page-service .webdev-ref #why-us .why-mobile-carousel:has(> .why-grid) {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow: visible !important;
+  }
+
+  html body.page-dm.page-service .webdev-ref #why-us .why-grid.page-svc-stack,
+  html body.page-dm.page-service .webdev-ref #why-us .why-grid[data-thm-stack] {
+    display: block !important;
+    grid-template-columns: none !important;
+    gap: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: visible !important;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    flex-direction: unset !important;
+    flex-wrap: unset !important;
+    scroll-snap-type: none !important;
+    touch-action: auto !important;
+  }
+
+  html body.page-dm.page-service .webdev-ref #why-us .why-grid.page-svc-stack > .svc-stack-item,
+  html body.page-dm.page-service .webdev-ref #why-us .why-grid[data-thm-stack] > .svc-stack-item {
+    position: sticky !important;
+    top: calc(var(--svc-stack-nav, 68px) + (var(--index0, 0) * var(--svc-stack-peek, 14px))) !important;
+    z-index: calc(1 + var(--index0, 0)) !important;
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    margin: 0 0 var(--svc-stack-gap, 18px) !important;
+    padding: 0 !important;
+    background: transparent !important;
+    border: 0 !important;
+    box-shadow: none !important;
+    transform: none !important;
+  }
+
+  html body.page-dm.page-service .webdev-ref #why-us .why-grid.page-svc-stack > .svc-stack-item:last-child {
+    margin-bottom: 0 !important;
+  }
+
+  html body.page-dm.page-service .webdev-ref #why-us .why-grid.page-svc-stack .why-card,
+  html body.page-dm.page-service .webdev-ref #why-us .why-grid.page-svc-stack .svc-stack-item > .why-card {
+    display: flex !important;
+    flex-direction: column !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    height: auto !important;
+    min-height: 160px !important;
+    margin: 0 !important;
+    box-sizing: border-box !important;
+    background: var(--ink, #0a1a22) !important;
+    background-color: var(--ink, #0a1a22) !important;
+    opacity: 1 !important;
+    transform: none !important;
+    overflow: hidden !important;
+    isolation: isolate;
+  }
+
+  html body.page-dm.page-service .webdev-ref #why-us .why-grid.page-svc-stack .why-card:hover,
+  html body.page-dm.page-service .webdev-ref #why-us .why-grid.page-svc-stack .svc-stack-item > .why-card:hover {
+    transform: none !important;
+    box-shadow: none !important;
+  }
+
+  html body.page-dm.page-service .webdev-ref #why-us .thm-carousel-nav-wrap,
+  html body.page-dm.page-service .webdev-ref #why-us .testi-dots.thm-carousel-dots {
+    display: none !important;
+  }
+}
+
+@media (min-width: 901px) {
+  html body.page-dm.page-service .webdev-ref #why-us .why-mobile-carousel:has(> .why-grid) {
+    display: contents !important;
+  }
+
+  html body.page-dm.page-service .webdev-ref #why-us .why-grid.page-svc-stack,
+  html body.page-dm.page-service .webdev-ref #why-us .why-grid[data-thm-stack] {
+    display: grid !important;
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: 18px !important;
+  }
+
+  html body.page-dm.page-service .webdev-ref #why-us .why-grid.page-svc-stack > .svc-stack-item {
+    position: relative !important;
+    top: auto !important;
+    margin: 0 !important;
+    transform: none !important;
+    height: 100% !important;
+  }
+}
+
+@media (min-width: 901px) and (max-width: 1100px) {
+  html body.page-dm.page-service .webdev-ref #why-us .why-grid.page-svc-stack,
+  html body.page-dm.page-service .webdev-ref #why-us .why-grid[data-thm-stack] {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+}
+
+/* On-page SEO — #pain swipe-up sticky stack on mobile/tablet */
+@media (max-width: 900px) {
+  html body.page-onpage.page-service .onpage-theme-page section#pain,
+  html body.page-onpage.page-service .onpage-theme-page section#pain.has-page-svc-stack,
+  html body.page-onpage .onpage-theme-page section#pain,
+  html body.page-onpage .onpage-theme-page section#pain.has-page-svc-stack {
+    overflow-x: clip !important;
+    overflow-y: visible !important;
+  }
+
+  html body.page-onpage.page-service .onpage-theme-page #pain .wrap,
+  html body.page-onpage .onpage-theme-page #pain .wrap {
+    max-width: 100% !important;
+    min-width: 0 !important;
+    overflow: visible !important;
+  }
+
+  html body.page-onpage.page-service .onpage-theme-page #pain .why-mobile-carousel:has(> .problem-grid),
+  html body.page-onpage.page-service .onpage-theme-page #pain .why-mobile-carousel:has(> .grid),
+  html body.page-onpage .onpage-theme-page #pain .why-mobile-carousel:has(> .problem-grid),
+  html body.page-onpage .onpage-theme-page #pain .why-mobile-carousel:has(> .grid) {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow: visible !important;
+  }
+
+  html body.page-onpage.page-service .onpage-theme-page #pain .problem-grid.page-svc-stack,
+  html body.page-onpage.page-service .onpage-theme-page #pain .problem-grid[data-thm-stack],
+  html body.page-onpage.page-service .onpage-theme-page #pain .grid.page-svc-stack,
+  html body.page-onpage.page-service .onpage-theme-page #pain .grid[data-thm-stack],
+  html body.page-onpage .onpage-theme-page #pain .problem-grid.page-svc-stack,
+  html body.page-onpage .onpage-theme-page #pain .problem-grid[data-thm-stack],
+  html body.page-onpage .onpage-theme-page #pain .grid.page-svc-stack,
+  html body.page-onpage .onpage-theme-page #pain .grid[data-thm-stack] {
+    display: block !important;
+    grid-template-columns: none !important;
+    gap: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: visible !important;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    flex-direction: unset !important;
+    flex-wrap: unset !important;
+    scroll-snap-type: none !important;
+    touch-action: auto !important;
+  }
+
+  html body.page-onpage.page-service .onpage-theme-page #pain .problem-grid.page-svc-stack > .svc-stack-item,
+  html body.page-onpage.page-service .onpage-theme-page #pain .grid.page-svc-stack > .svc-stack-item,
+  html body.page-onpage.page-service .onpage-theme-page #pain .problem-grid[data-thm-stack] > .svc-stack-item,
+  html body.page-onpage.page-service .onpage-theme-page #pain .grid[data-thm-stack] > .svc-stack-item,
+  html body.page-onpage .onpage-theme-page #pain .problem-grid.page-svc-stack > .svc-stack-item,
+  html body.page-onpage .onpage-theme-page #pain .grid.page-svc-stack > .svc-stack-item {
+    position: sticky !important;
+    top: calc(var(--svc-stack-nav, 68px) + (var(--index0, 0) * var(--svc-stack-peek, 14px))) !important;
+    z-index: calc(1 + var(--index0, 0)) !important;
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    margin: 0 0 var(--svc-stack-gap, 18px) !important;
+    padding: 0 !important;
+    background: transparent !important;
+    border: 0 !important;
+    box-shadow: none !important;
+    transform: none !important;
+  }
+
+  html body.page-onpage.page-service .onpage-theme-page #pain .problem-grid.page-svc-stack > .svc-stack-item:last-child,
+  html body.page-onpage.page-service .onpage-theme-page #pain .grid.page-svc-stack > .svc-stack-item:last-child,
+  html body.page-onpage .onpage-theme-page #pain .problem-grid.page-svc-stack > .svc-stack-item:last-child,
+  html body.page-onpage .onpage-theme-page #pain .grid.page-svc-stack > .svc-stack-item:last-child {
+    margin-bottom: 0 !important;
+  }
+
+  html body.page-onpage.page-service .onpage-theme-page #pain .page-svc-stack .pain-card,
+  html body.page-onpage.page-service .onpage-theme-page #pain .page-svc-stack .svc-stack-item > .pain-card,
+  html body.page-onpage .onpage-theme-page #pain .page-svc-stack .pain-card,
+  html body.page-onpage .onpage-theme-page #pain .page-svc-stack .svc-stack-item > .pain-card {
+    display: flex !important;
+    flex-direction: column !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    height: auto !important;
+    min-height: 160px !important;
+    margin: 0 !important;
+    box-sizing: border-box !important;
+    background: #0f2a33 !important;
+    background-color: #0f2a33 !important;
+    opacity: 1 !important;
+    transform: none !important;
+    overflow: hidden !important;
+    isolation: isolate;
+  }
+
+  html body.page-onpage.page-service .onpage-theme-page #pain .page-svc-stack .pain-card:hover,
+  html body.page-onpage .onpage-theme-page #pain .page-svc-stack .pain-card:hover {
+    transform: none !important;
+    box-shadow: none !important;
+  }
+
+  html body.page-onpage.page-service .onpage-theme-page #pain .thm-carousel-nav-wrap,
+  html body.page-onpage.page-service .onpage-theme-page #pain .testi-dots.thm-carousel-dots,
+  html body.page-onpage .onpage-theme-page #pain .thm-carousel-nav-wrap,
+  html body.page-onpage .onpage-theme-page #pain .testi-dots.thm-carousel-dots {
+    display: none !important;
+  }
+}
+
+@media (min-width: 901px) {
+  html body.page-onpage.page-service .onpage-theme-page #pain .why-mobile-carousel:has(> .problem-grid),
+  html body.page-onpage.page-service .onpage-theme-page #pain .why-mobile-carousel:has(> .grid),
+  html body.page-onpage .onpage-theme-page #pain .why-mobile-carousel:has(> .problem-grid),
+  html body.page-onpage .onpage-theme-page #pain .why-mobile-carousel:has(> .grid) {
+    display: contents !important;
+  }
+
+  html body.page-onpage.page-service .onpage-theme-page #pain .problem-grid.page-svc-stack,
+  html body.page-onpage.page-service .onpage-theme-page #pain .problem-grid[data-thm-stack],
+  html body.page-onpage.page-service .onpage-theme-page #pain .grid.page-svc-stack,
+  html body.page-onpage.page-service .onpage-theme-page #pain .grid[data-thm-stack],
+  html body.page-onpage .onpage-theme-page #pain .problem-grid.page-svc-stack,
+  html body.page-onpage .onpage-theme-page #pain .problem-grid[data-thm-stack],
+  html body.page-onpage .onpage-theme-page #pain .grid.page-svc-stack,
+  html body.page-onpage .onpage-theme-page #pain .grid[data-thm-stack] {
+    display: grid !important;
+    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+    gap: 18px !important;
+  }
+
+  html body.page-onpage.page-service .onpage-theme-page #pain .problem-grid.page-svc-stack > .svc-stack-item,
+  html body.page-onpage.page-service .onpage-theme-page #pain .grid.page-svc-stack > .svc-stack-item,
+  html body.page-onpage .onpage-theme-page #pain .problem-grid.page-svc-stack > .svc-stack-item,
+  html body.page-onpage .onpage-theme-page #pain .grid.page-svc-stack > .svc-stack-item {
+    position: relative !important;
+    top: auto !important;
+    margin: 0 !important;
+    transform: none !important;
+    height: 100% !important;
+  }
+}
+
+@media (min-width: 901px) and (max-width: 1100px) {
+  html body.page-onpage.page-service .onpage-theme-page #pain .problem-grid.page-svc-stack,
+  html body.page-onpage.page-service .onpage-theme-page #pain .problem-grid[data-thm-stack],
+  html body.page-onpage.page-service .onpage-theme-page #pain .grid.page-svc-stack,
+  html body.page-onpage.page-service .onpage-theme-page #pain .grid[data-thm-stack],
+  html body.page-onpage .onpage-theme-page #pain .problem-grid.page-svc-stack,
+  html body.page-onpage .onpage-theme-page #pain .problem-grid[data-thm-stack],
+  html body.page-onpage .onpage-theme-page #pain .grid.page-svc-stack,
+  html body.page-onpage .onpage-theme-page #pain .grid[data-thm-stack] {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
   }
 }
 

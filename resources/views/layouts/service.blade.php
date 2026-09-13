@@ -187,6 +187,7 @@
 @if(!empty($seo['extra_css']) && $serviceTheme === 'theme-html')
   <link rel="stylesheet" href="{{ asset($seo['extra_css']) }}?v={{ @filemtime(public_path($seo['extra_css'])) ?: time() }}">
 @endif
+@include('partials.clarity')
 @stack('head')
 </head>
 @php

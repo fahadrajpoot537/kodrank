@@ -1,7 +1,7 @@
-﻿/* Service page extras ÃƒÂ¢Ã‚Â€Ã‚Â” shared chrome lock + medium polish */
+﻿/* Service page extras ÃÂ¢ÃÂÃÂ shared chrome lock + medium polish */
 
 /*
- * Side gutters ÃƒÂ¢Ã‚Â€Ã‚Â” single source in home.css (:root --pad / --maxw).
+ * Side gutters ÃÂ¢ÃÂÃÂ single source in home.css (:root --pad / --maxw).
  * Do not override --pad or --maxw here; keep every page on the same shell.
  */
 .page-service,
@@ -24,7 +24,7 @@ body.page-web-dev{
 .page-service .hero > .hero-in {
   width: 100%;
 }
-/* Full-bleed hero media under transparent nav Ã¢Â€Â” keep BEHIND copy */
+/* Full-bleed hero media under transparent nav Ã¢ÂÂ keep BEHIND copy */
 .page-service .hero .hero-visual,
 .page-service .hero .hero-bg,
 .page-service .wp-hero .wp-hero-visual,
@@ -134,7 +134,7 @@ body.page-web-dev .container{
 }
 
 /*
- * Shared site navbar ÃƒÂ¢Ã‚Â€Ã‚Â” same metrics as homepage.
+ * Shared site navbar ÃÂ¢ÃÂÃÂ same metrics as homepage.
  * Transparent at top; white only when .stuck (on scroll).
  */
 .page-service header.nav,
@@ -236,7 +236,7 @@ body.page-web-dev .nav-links{
   border:0 !important;
   width:auto !important;
 }
-/* Top-level links only ÃƒÂ¢Ã‚Â€Ã‚Â” never paint mega panel white-on-white */
+/* Top-level links only ÃÂ¢ÃÂÃÂ never paint mega panel white-on-white */
 .page-service .nav-links > a,
 body.page-web-dev .nav-links > a{
   color:rgba(255,255,255,.82) !important;
@@ -289,7 +289,7 @@ body.page-web-dev header.nav.stuck .has-mega:hover .nav-mega-trigger{
   color:var(--graphite) !important;
 }
 
-/* Mega dropdown ÃƒÂ¢Ã‚Â€Ã‚Â” match homepage (readable on white panel) */
+/* Mega dropdown ÃÂ¢ÃÂÃÂ match homepage (readable on white panel) */
 .page-service .nav .has-mega,
 body.page-web-dev .nav .has-mega{
   position:static !important;
@@ -314,7 +314,7 @@ body.page-web-dev .nav .mega{
   transform:none;
   transition:opacity .18s ease,visibility .18s;
   color:var(--graphite) !important;
-  /* Do NOT use pointer-events:none ÃƒÂ¢Ã‚Â€Ã‚Â” it lets events fall through to the
+  /* Do NOT use pointer-events:none ÃÂ¢ÃÂÃÂ it lets events fall through to the
      page under the panel and kills .has-mega:hover (dropdown closes). */
   pointer-events:auto;
 }
@@ -516,7 +516,7 @@ body.page-web-dev header.nav.stuck .nav-burger span{
     font-size:.95rem !important;
   }
 
-  /* Mobile mega accordion Ã¢Â€Â” undo desktop absolute panel */
+  /* Mobile mega accordion Ã¢ÂÂ undo desktop absolute panel */
   .page-service .nav .mega,
   body.page-web-dev .nav .mega{
     position:static !important;
@@ -938,7 +938,7 @@ body.page-web-dev .page-svc-carousel .svc-slide{
   min-height:0;
   box-sizing:border-box;
   flex-shrink:0 !important;
-  /* width/flex-basis set by JS ÃƒÂ¢Ã‚Â€Ã‚Â” never force 100% here */
+  /* width/flex-basis set by JS ÃÂ¢ÃÂÃÂ never force 100% here */
 }
 .page-service .page-svc-carousel .svc-card,
 body.page-web-dev .page-svc-carousel .service-card{
@@ -1013,7 +1013,7 @@ body.page-web-dev .page-svc-carousel .why-card{
   box-sizing:border-box;
   min-height:0;
   height:auto;
-  /* Do not set width:!important â€” same node is .svc-slide sized by JS */
+  /* Do not set width:!important â same node is .svc-slide sized by JS */
 }
 body.page-web-dev .page-svc-carousel .process-wrap,
 body.page-web-dev .page-svc-carousel .process-line,
@@ -1123,22 +1123,24 @@ body.page-web-dev .page-svc-carousel.is-mobile-scroll .svc-track{
     scroll-snap-align:start;
   }
 }
-.page-service .page-svc-carousel .svc-track,
-body.page-web-dev .page-svc-carousel .svc-track{
-  display:flex !important;
-  flex-wrap:nowrap !important;
-  align-items:stretch !important;
-  gap:var(--svc-gap,20px) !important;
-  transition:transform .4s cubic-bezier(.22,.61,.36,1) !important;
-  will-change:transform;
-  touch-action:pan-x;
-  cursor:grab;
-  transform:translate3d(0,0,0);
-}
-.page-service .page-svc-carousel .svc-slide,
-body.page-web-dev .page-svc-carousel .svc-slide{
-  flex-shrink:0 !important;
-  align-self:stretch;
+@media (max-width:900px){
+  .page-service .page-svc-carousel:not(.is-desktop-grid) .svc-track,
+  body.page-web-dev .page-svc-carousel:not(.is-desktop-grid) .svc-track{
+    display:flex !important;
+    flex-wrap:nowrap !important;
+    align-items:stretch !important;
+    gap:var(--svc-gap,20px) !important;
+    transition:transform .4s cubic-bezier(.22,.61,.36,1) !important;
+    will-change:transform;
+    touch-action:pan-x;
+    cursor:grab;
+    transform:translate3d(0,0,0);
+  }
+  .page-service .page-svc-carousel:not(.is-desktop-grid) .svc-slide,
+  body.page-web-dev .page-svc-carousel:not(.is-desktop-grid) .svc-slide{
+    flex-shrink:0 !important;
+    align-self:stretch;
+  }
 }
 body.page-web-dev .page-svc-carousel .svc-slide.reveal{
   opacity:1 !important;
@@ -1150,7 +1152,7 @@ body.page-web-dev .page-svc-carousel .svc-nav{
   cursor:pointer;
 }
 
-/* SEO service pages Ã‚Â— theme polish (reuses DM system) */
+/* SEO service pages ÃÂ theme polish (reuses DM system) */
 body.page-seo-service .compare-sub{
   color:#9FB6BE;
   font-size:.9rem;
@@ -1325,7 +1327,7 @@ body.page-seo-service .hero .hero-badges{display:flex !important}
     gap:22px 28px;
   }
 }
-/* Fully clear transparent nav Ã¢Â€Â” no white haze / border at rest */
+/* Fully clear transparent nav Ã¢ÂÂ no white haze / border at rest */
 body.page-seo-service header.nav:not(.stuck),
 .page-service header.nav:not(.stuck),
 body.page-web-dev header.nav:not(.stuck),
@@ -1368,7 +1370,7 @@ body.page-seo-service header.nav .mega{
   z-index:210 !important;
 }
 
-/* Problem Ã¢Â€Â” white */
+/* Problem Ã¢ÂÂ white */
 body.page-seo-service .seo-problem{
   background:#fff !important;
 }
@@ -1385,7 +1387,7 @@ body.page-seo-service .seo-problem .problem-card:hover{
 }
 body.page-seo-service .seo-problem .problem-card h4{ color:var(--graphite) !important; }
 
-/* "Here's how we close it" Ã¢Â€Â” beside problem cards (off-page) */
+/* "Here's how we close it" Ã¢ÂÂ beside problem cards (off-page) */
 body.page-seo-service .seo-problem-layout--with-close{
   display:grid;
   grid-template-columns:minmax(0,1.15fr) minmax(0,.95fr);
@@ -1456,7 +1458,7 @@ body.page-seo-service .seo-close li span{
 body.page-seo-service .seo-problem .problem-card p{ color:var(--slate) !important; }
 body.page-seo-service .seo-problem .problem-card .icon{ background:rgba(244,122,31,.1); }
 
-/* What's Included Ã¢Â€Â” dark */
+/* What's Included Ã¢ÂÂ dark */
 body.page-seo-service .seo-included .svc-card{
   background:var(--ink-2) !important;
   border:1px solid var(--line-dark) !important;
@@ -1469,7 +1471,7 @@ body.page-seo-service .seo-included .svc-card .tile svg{ stroke:var(--signal); }
 body.page-seo-service .seo-included .svc-card:hover .tile{ background:var(--signal); }
 body.page-seo-service .seo-included .svc-card:hover .tile svg{ stroke:var(--signal-ink); }
 
-/* Why KodRank — dark only on ink / why-bg */
+/* Why KodRank  dark only on ink / why-bg */
 body.page-seo-service .seo-why.sec-ink .why-card,
 body.page-seo-service .seo-why.why-bg .why-card{
   background:var(--ink-2);
@@ -1619,7 +1621,7 @@ body.page-web-dev .nav-in,
   max-width:var(--maxw);
 }
 
-/* Trim excess section whitespace on service themes (not heroes Ã¢Â€Â” nav clearance stays) */
+/* Trim excess section whitespace on service themes (not heroes Ã¢ÂÂ nav clearance stays) */
 .page-service section:not(.hero),
 body.page-web-dev section:not(.hero),
 .page-service .cms-page .section:not(.hero),
@@ -1667,7 +1669,7 @@ body.page-web-dev .section-head{
   }
 }
 
-/* Hero breadcrumbs â€” visible + readable on every service theme */
+/* Hero breadcrumbs â visible + readable on every service theme */
 .page-service .hero .breadcrumb,
 .page-service .hero .crumbs,
 .page-service .wp-hero .breadcrumb,
@@ -2114,7 +2116,7 @@ body.page-web-dev footer.foot{
   display:none !important;
 }
 
-/* Testimonials carousel dots — all service pages */
+/* Testimonials carousel dots  all service pages */
 .page-service .testi-slider .testi-dots,
 .page-service [data-testi-dots]{
   display:none;
@@ -2186,7 +2188,7 @@ body.page-web-dev footer.foot{
 }
 
 /* ============================================================
-   COMPACT HERO LOCK Ã¢Â€Â” same short height + soft image on ALL
+   COMPACT HERO LOCK Ã¢ÂÂ same short height + soft image on ALL
    service pages (overrides theme sheets that still differ)
    ============================================================ */
 .page-service .hero,
@@ -2217,7 +2219,7 @@ body.page-web-dev .hero{
   padding-top:calc(72px + 4px) !important;
 }
 
-/* Hero photos â€” cover, right-anchored; opacity left to theme sheets (~0.85â€“0.92) */
+/* Hero photos â cover, right-anchored; opacity left to theme sheets (~0.85â0.92) */
 .page-service .hero,
 body.page-web-dev .hero,
 body.page-seo-service .hero,
@@ -2332,7 +2334,7 @@ body.page-web-dev .hero-ctas{
   color:var(--slate,#4B5B62) !important;
 }
 
-/* CMS why Â— was ink-only typography */
+/* CMS why Â was ink-only typography */
 .cms-page .sec-paper .feat h3{color:var(--graphite) !important}
 .cms-page .sec-paper .feat p{color:var(--slate) !important}
 .cms-page .sec-paper .why-copy .check{color:var(--slate) !important}
@@ -2343,7 +2345,7 @@ body.page-web-dev .hero-ctas{
   padding:20px 18px;
 }
 
-/* Shopify why Â— drop ink photo band; clean light section */
+/* Shopify why Â drop ink photo band; clean light section */
 .shop-page .sec-paper .why-bg{display:none !important}
 .shop-page .sec-paper .feat{
   background:#fff !important;
@@ -2362,7 +2364,7 @@ body.page-web-dev .hero-ctas{
 .mo-page .sec-paper .loop-card h4{color:var(--graphite) !important}
 .mo-page .sec-paper .loop-card p{color:var(--slate) !important}
 
-/* AI compare on light Â— keep cards readable with dark ink cards is fine;
+/* AI compare on light Â keep cards readable with dark ink cards is fine;
    ensure section headings stay dark-on-mist (default) */
 
 /* Services cards that stayed dark-tile on light sections are intentional contrast */
@@ -2380,7 +2382,7 @@ body.page-web-dev .hero-ctas{
 .cms-page .sec-ink .plat-note{color:#9FB6BE !important}
 .cms-page .sec-ink .ptile{color:var(--graphite)}
 
-/* Shared DM intro (B2B/SaaS/ecom) Â— matches on-page chrome */
+/* Shared DM intro (B2B/SaaS/ecom) Â matches on-page chrome */
 body.page-seo-service .dm-intro-grid{
   display:grid;
   grid-template-columns:1.15fr .85fr;
@@ -2682,7 +2684,7 @@ body.page-wordpress .sec-mist .hl{
 .page-service .sec-mist .loop-card p{
   color:var(--kr-muted) !important;
 }
-/* Process / pain / loop nums stay orange text — not a full-width orange bar */
+/* Process / pain / loop nums stay orange text  not a full-width orange bar */
 .page-service .sec-paper .proc .num,
 .page-service .sec-mist .proc .num,
 .page-service .sec-paper .pain-num,
@@ -2712,14 +2714,14 @@ body.page-wordpress .sec-mist .hl{
   background:var(--signal,#F47A1F) !important;
 }
 
-/* Compare ticks only — circle badge with dark ink on orange */
+/* Compare ticks only  circle badge with dark ink on orange */
 .page-service .sec-paper .compare-list .mark.v,
 .page-service .sec-mist .compare-list .mark.v{
   color:var(--signal-ink,#0A1A22) !important;
   background:var(--signal,#F47A1F) !important;
 }
 
-/* Compare tiles are dark — tick must contrast on orange badge */
+/* Compare tiles are dark  tick must contrast on orange badge */
 .page-service .compare-card .mark.v{
   color:var(--signal-ink,#0A1A22) !important;
   background:var(--signal,#F47A1F) !important;
@@ -2816,7 +2818,7 @@ body.page-wordpress .sec-ink .hl{
   color:var(--kr-orange) !important;
 }
 
-/* Dark-section cards (true dark tiles â€” not paper svc-cards) */
+/* Dark-section cards (true dark tiles â not paper svc-cards) */
 .page-service .sec-ink .problem-card,
 .page-service .sec-ink .loop-card,
 .page-service .sec-ink .pain,
@@ -2916,7 +2918,7 @@ body.page-seo-service .seo-included .svc-card p{
   color:var(--kr-muted-2) !important;
 }
 
-/* What you get â€” image background (moved from Outcomes) */
+/* What you get â image background (moved from Outcomes) */
 .page-service .sec-ink.services-bg{
   position:relative;
   isolation:isolate;
@@ -2977,7 +2979,7 @@ body.page-seo-service .seo-included .svc-card p{
   color:var(--kr-light-muted);
 }
 
-/* Breadcrumb separator â€” ASCII-safe escape (never mojibake) */
+/* Breadcrumb separator â ASCII-safe escape (never mojibake) */
 .page-service .breadcrumb li:not(:last-child)::after,
 .page-service .crumbs li:not(:last-child)::after,
 .page-service .wp-breadcrumb li:not(:last-child)::after,
@@ -3024,7 +3026,7 @@ body.page-seo-service .sec-paper.seo-why .section-head .hl{
 }
 
 
-/* COMPARE-LIGHT-TEXT â€” all service pages: dark tiles, light copy */
+/* COMPARE-LIGHT-TEXT â all service pages: dark tiles, light copy */
 .page-service #compare .compare-card,
 .page-service .compare-wrap .compare-card,
 .page-service .sec-mist .compare-card,
@@ -3088,13 +3090,13 @@ body.page-seo-service #compare .compare-sub{
   background:var(--signal,#F47A1F) !important;
 }
 
-/* OFFPAGE-LIGHT-FIX â€” close panel light copy */
+/* OFFPAGE-LIGHT-FIX â close panel light copy */
 body.page-seo-service .seo-close h3{ color:#fff !important; }
 body.page-seo-service .seo-close > p,
 body.page-seo-service .seo-close li,
 body.page-seo-service .seo-close li span{ color:#C6D7DD !important; }
 body.page-seo-service .seo-close li svg{ color:var(--signal) !important; }
-/* Off-page Why KodRank â€” image bg moved from stats */
+/* Off-page Why KodRank â image bg moved from stats */
 .page-service .sec-ink.why-bg,
 body.page-seo-service .seo-why.why-bg{
   position:relative;
@@ -3132,7 +3134,7 @@ body.page-seo-service .seo-why.why-bg .hl{
 }
 
 /* ============================================================
-   KR-VAR-REMAP-DARK â€” on dark surfaces, --kr-dark / --kr-muted
+   KR-VAR-REMAP-DARK â on dark surfaces, --kr-dark / --kr-muted
    resolve to LIGHT so leftover contrast locks stay readable
    ============================================================ */
 .page-service .sec-ink,
@@ -3169,7 +3171,7 @@ body.page-wordpress .wp-hero,
   --kr-muted-2:#9FB6BE;
 }
 
-/* Digital marketing Problem is a light (white) band — keep real dark tokens */
+/* Digital marketing Problem is a light (white) band  keep real dark tokens */
 body.page-dm .dm-theme-page .problem-bg,
 body.page-dm .sec-ink.problem-bg{
   --kr-dark:#0A1A22;
@@ -3275,7 +3277,7 @@ body.page-aeo .aeo-theme-page .compare-list .mark.x{
 }
 
 /* ============================================================
-   CONTRAST-VERIFY-ALL â€” never dark-on-dark / light-on-light
+   CONTRAST-VERIFY-ALL â never dark-on-dark / light-on-light
    ============================================================ */
 
 /* --- Dark panels nested in light sections --- */
@@ -3409,7 +3411,7 @@ body.page-aeo .aeo-theme-page .compare-list .mark.x{
 }
 
 /* ============================================================
-   COMPARE-EQUAL-HEIGHT â€” equal cards + visible KodRank badge
+   COMPARE-EQUAL-HEIGHT â equal cards + visible KodRank badge
    ============================================================ */
 .page-service .compare-wrap,
 body.page-wordpress .compare-wrap,
@@ -3503,7 +3505,7 @@ body.page-seo-service .compare-card.pro::before{
   }
 }
 
-/* DARK-CARD-WHITE-TEXT â€” ink definition / intro cards always white copy */
+/* DARK-CARD-WHITE-TEXT â ink definition / intro cards always white copy */
 .page-service .seo-def-card,
 .page-service .seo-def-card *,
 .page-service .dm-intro-card,
@@ -3544,7 +3546,7 @@ body.page-onpage.page-service .sec-mist .def-card p{
   color:var(--signal,#F47A1F) !important;
 }
 
-/* WEBDEV-SVC-CARD-LG â€” dark featured cards keep light copy */
+/* WEBDEV-SVC-CARD-LG â dark featured cards keep light copy */
 body.page-web-dev .svc-card-lg,
 body.page-web-dev .service-card.svc-card-lg,
 .page-service .svc-card-lg{
@@ -3568,7 +3570,7 @@ body.page-web-dev .svc-card-lg .tag,
   color:#B7CBD2 !important;
 }
 
-/* SHOPIFY-PAIN-LINE â€” dark ink footer band keeps light copy */
+/* SHOPIFY-PAIN-LINE â dark ink footer band keeps light copy */
 .page-service .shop-page .pain-line,
 .shop-page .pain-line,
 .page-service .sec-paper .pain-line{
@@ -3601,7 +3603,7 @@ body.page-web-dev .svc-card-lg .tag,
   color:var(--signal,#F47A1F) !important;
 }
 
-/* AC-CAROUSEL-SLIDES â€” why / process / services use shared carousel + stack */
+/* AC-CAROUSEL-SLIDES â why / process / services use shared carousel + stack */
 .page-service .ac-page .page-svc-carousel .why,
 .page-service .ac-page .page-svc-carousel .why-card,
 .page-service .ac-page .page-svc-stack .pstep,
@@ -3671,7 +3673,7 @@ body.page-web-dev .svc-card-lg .tag,
   margin-top:auto;
 }
 
-/* GUEST-WHY-FEAT â€” vetting cards match theme feat tiles (4-up dark) */
+/* GUEST-WHY-FEAT â vetting cards match theme feat tiles (4-up dark) */
 .page-service .why-grid--4{
   grid-template-columns:repeat(4,minmax(0,1fr));
 }
@@ -3926,7 +3928,7 @@ body.page-seo-service.page-electrician .hero .breadcrumb span{
 .saas-dev-page .page-svc-stack.page-svc-carousel--ink .svc-dot{background:rgba(255,255,255,.22)}
 .saas-dev-page .page-svc-carousel--ink .svc-dot.is-active,
 .saas-dev-page .page-svc-stack.page-svc-carousel--ink .svc-dot.is-active{background:var(--signal,#F47A1F)}
-/* LIGHT WHY CARDS — beat leftover dark contrast locks */
+/* LIGHT WHY CARDS  beat leftover dark contrast locks */
 .page-service .rest-why .why,
 .page-service .re-why .why-card,
 .page-service .hc-page .why-card,
@@ -3952,7 +3954,7 @@ body.page-seo-service.page-electrician .hero .breadcrumb span{
   color:var(--slate,#4B5B62) !important;
 }
 
-/* ========== Mobile/tablet: force real carousel (1–2 cards), never squashed grid ========== */
+/* ========== Mobile/tablet: force real carousel (12 cards), never squashed grid ========== */
 @media (max-width: 900px) {
   .page-service [data-sp-carousel],
   .page-service .page-svc-carousel,
@@ -3990,7 +3992,7 @@ body.page-seo-service.page-electrician .hero .breadcrumb span{
     grid-template-columns: none !important;
     transform: translate3d(0, 0, 0);
   }
-  /* Slide widths: JS measure() sets px sizes (2-up tablet / 1-up phone) — no fixed vw override */
+  /* Slide widths: JS measure() sets px sizes (2-up tablet / 1-up phone)  no fixed vw override */
   .page-service [data-sp-carousel] .svc-dots:not([hidden]),
   .page-service .page-svc-carousel .svc-dots:not([hidden]),
   body.page-web-dev [data-sp-carousel] .svc-dots:not([hidden]),
@@ -4012,7 +4014,7 @@ body.page-seo-service.page-electrician .hero .breadcrumb span{
   }
 }
 
-/* ========== Desktop: no carousel — static card grid (mobile keeps carousel) ========== */
+/* ========== Desktop: no carousel  static card grid (mobile keeps carousel) ========== */
 @media (min-width: 901px) {
   .page-service [data-sp-carousel],
   .page-service .page-svc-carousel,
@@ -4073,17 +4075,17 @@ body.page-seo-service.page-electrician .hero .breadcrumb span{
     height: auto !important;
   }
 
-  /* Keep card faces equal height in the grid row.
-     Exclude absolute badges (.svc-check / .check) — height:100% stretches them into tall ovals. */
-  .page-service [data-sp-carousel] .svc-slide > *:not(.svc-check):not(.check),
-  .page-service .page-svc-carousel .svc-slide > *:not(.svc-check):not(.check),
-  body.page-web-dev [data-sp-carousel] .svc-slide > *:not(.svc-check):not(.check) {
+  /* Equal-height only when slide wraps an inner card face.
+     Do NOT target .svc-card.svc-slide > * (tile/h3/p)  height:100% on each child makes text spill out. */
+  .page-service [data-sp-carousel] .svc-slide:not(.svc-card) > *:not(.svc-check):not(.check),
+  .page-service .page-svc-carousel .svc-slide:not(.svc-card) > *:not(.svc-check):not(.check),
+  body.page-web-dev [data-sp-carousel] .svc-slide:not(.service-card):not(.svc-card) > *:not(.svc-check):not(.check) {
     height: 100%;
     box-sizing: border-box;
   }
 }
 
-/* Absolute corner check badges — never stretch with flex/equal-height rules */
+/* Absolute corner check badges  never stretch with flex/equal-height rules */
 body.page-web-dev .service-card .svc-check,
 body.page-web-dev .svc-slide > .svc-check,
 .page-service .svc-card .check,
@@ -4211,7 +4213,7 @@ body.page-wordpress .why-card p,
   opacity:1;
 }
 
-/* Desktop: no carousel motion / no sticky-stack scale — static grid only */
+/* Desktop: no carousel motion / no sticky-stack scale  static grid only */
 @media (min-width: 901px) {
   .page-service .page-svc-carousel.is-desktop-grid .svc-track,
   .page-service [data-sp-carousel].is-desktop-grid .svc-track,
@@ -4242,6 +4244,21 @@ body.page-wordpress .why-card p,
   .page-service .page-svc-stack[data-per-desktop="2"] .svc-track,
   .page-service [data-sp-stack][data-per-desktop="2"] .svc-track{
     grid-template-columns:repeat(2,minmax(0,1fr));
+  }
+  .page-service .page-svc-stack[data-per-desktop="4"] .svc-track,
+  .page-service [data-sp-stack][data-per-desktop="4"] .svc-track{
+    grid-template-columns:repeat(4,minmax(0,1fr));
+  }
+  /* Leftover sticky wrappers must not break the desktop grid */
+  .page-service .page-svc-stack.is-desktop-static .svc-stack-item,
+  .page-service .page-svc-stack.is-desktop-static .svc-stack-pair,
+  .page-service [data-sp-stack].is-desktop-static .svc-stack-item,
+  .page-service [data-sp-stack].is-desktop-static .svc-stack-pair{
+    display:contents !important;
+    position:static !important;
+    margin:0 !important;
+    width:auto !important;
+    height:auto !important;
   }
 }
 
@@ -4332,8 +4349,8 @@ body.page-theme-html .hero .ht span{
   }
 }
 
-/* ========== White / paper cards → dark text (all service pages) ========== */
-/* Note: .feat-card excluded — WordPress/ink feat tiles are dark and need light text */
+/* ========== White / paper cards ? dark text (all service pages) ========== */
+/* Note: .feat-card excluded  WordPress/ink feat tiles are dark and need light text */
 .page-service .svc-card,
 .page-service .problem-card,
 .page-service .pain-card,
@@ -4615,7 +4632,7 @@ body.page-wordpress .why-card p,
   color:#111 !important;
 }
 
-/* sec-ink pain-card tiles (healthcare + niche pages) — light text on dark cards */
+/* sec-ink pain-card tiles (healthcare + niche pages)  light text on dark cards */
 .theme-html-root .sec-ink .pain-card,
 .theme-html-root #pain.sec-ink .pain-card,
 .hc-theme-page .sec-ink .pain-card,
@@ -4698,7 +4715,7 @@ body.page-wordpress .why-card p,
 
 /* White cards nested on dark sections stay dark text.
    Only pages that use light .svc tiles inside .sec-ink (AC / redesign / CMS).
-   Theme-html on-page SEO keeps dark .svc / .comp-card tiles — do not force graphite. */
+   Theme-html on-page SEO keeps dark .svc / .comp-card tiles  do not force graphite. */
 .page-service .sec-ink .svc-card,
 .page-service .sec-ink .why:not(.why-card),
 .page-service .services-bg .svc-card,
@@ -4726,7 +4743,7 @@ body.page-wordpress .why-card p,
   color:var(--slate,#4B5B62) !important;
 }
 
-/* WordPress dark feat / problem / why cards — white text (beats paper-card lock) */
+/* WordPress dark feat / problem / why cards  white text (beats paper-card lock) */
 body.page-wordpress .feat-card,
 body.page-wordpress .feat-card h2,
 body.page-wordpress .feat-card h3,
@@ -4770,7 +4787,7 @@ body.page-wordpress .compare-list li,
   color:#B7CBD2 !important;
 }
 
-/* WP dark tiles — light text (final, highest priority) */
+/* WP dark tiles  light text (final, highest priority) */
 .page-service .sec-ink .feat-card,
 .page-service .sec-ink .feat-card h3,
 .page-service .sec-ink .feat-card h4,
@@ -4799,7 +4816,7 @@ body.page-wordpress .why-card p{
   color:#D5E4E8 !important;
 }
 
-/* Theme-html bodies strip theme JS — keep reveal nodes visible */
+/* Theme-html bodies strip theme JS  keep reveal nodes visible */
 .theme-html-root .rv,
 .theme-html-root .rev,
 .theme-html-root .reveal,
@@ -4810,7 +4827,7 @@ body.page-wordpress .why-card p{
   transform:none !important;
 }
 
-/* SaaS theme-html — FAQ centered, dark cards readable, why bg without huge base64 */
+/* SaaS theme-html  FAQ centered, dark cards readable, why bg without huge base64 */
 .saas-theme-page #faq .head-block{
   text-align:center !important;
   max-width:820px;
@@ -4851,7 +4868,7 @@ body.page-wordpress .why-card p{
   display:grid;
 }
 
-/* SaaS development services cards — force black copy on light tiles */
+/* SaaS development services cards  force black copy on light tiles */
 body.page-saas.page-service .saas-theme-page #services .svc,
 body.page-saas.page-service .saas-theme-page #services .svc-grid > .svc,
 body.page-saas.page-service .saas-theme-page #services article.svc{
@@ -4868,7 +4885,7 @@ body.page-saas.page-service .saas-theme-page #services .svc-grid > .svc p{
   color:#000 !important;
 }
 
-/* SaaS SEO services cards — dark ink tiles need white copy */
+/* SaaS SEO services cards  dark ink tiles need white copy */
 body.page-saasseo.page-service .saasseo-theme-page #services .svc,
 body.page-saasseo.page-service .saasseo-theme-page #services .svc-grid > .svc,
 body.page-saasseo.page-service .saasseo-theme-page #services article.svc,
@@ -5027,7 +5044,7 @@ body.page-theme-html .hero .breadcrumb li:last-child span{
   }
 }
 
-/* Electrician: dark SEO pillars / edge cards → light text */
+/* Electrician: dark SEO pillars / edge cards ? light text */
 .elec-theme-page .pillar,
 .elec-theme-page .pillar h4,
 .elec-theme-page .edge,
@@ -5051,7 +5068,7 @@ body.page-theme-html .hero .breadcrumb li:last-child span{
   color:#B7CBD2 !important;
 }
 
-/* Electrician FAQ — centered, equal width */
+/* Electrician FAQ  centered, equal width */
 .elec-theme-page #faq .head-block,
 .elec-theme-page #faq .section-head,
 .page-service .elec-page #faq .head-block,
@@ -5174,7 +5191,7 @@ body.page-dm.page-service .section-head .lede{
   margin-top:20px;
 }
 
-/* On-page SEO — #pain: 4 cards in one row on desktop (beats webdev-ref 3-col) */
+/* On-page SEO  #pain: 4 cards in one row on desktop (beats webdev-ref 3-col) */
 @media (min-width: 981px) {
   body.page-onpage.page-service .onpage-theme-page #pain .problem-grid,
   body.page-onpage.page-service .webdev-ref #pain > .wrap > .grid.g-4,
@@ -5220,6 +5237,22 @@ body.page-offpage.page-service .testi-dots{
   gap:10px;
   width:100%;
   padding:4px 0;
+  margin-top:18px;
+}
+@media (max-width:900px){
+  body.page-dm.page-service .testi-slider > .testi-dots:not([hidden]),
+  body.page-dm.page-service .webdev-ref .testi-slider > .testi-dots:not([hidden]),
+  body.page-dm.page-service:not(.page-theme-html) .testi-dots:not([hidden]),
+  body.page-onpage.page-service .testi-slider > .testi-dots:not([hidden]),
+  body.page-offpage.page-service .testi-slider > .testi-dots:not([hidden]){
+    display:flex !important;
+  }
+  body.page-dm.page-service .testi-slider .testi-nav-wrap,
+  body.page-dm.page-service .testi-slider .testi-controls:not(:has(.testi-dots)),
+  body.page-onpage.page-service .testi-slider .testi-nav-wrap,
+  body.page-offpage.page-service .testi-slider .testi-nav-wrap{
+    display:none !important;
+  }
 }
 body.page-dm.page-service .testi-dot,
 body.page-onpage.page-service .testi-dot,
@@ -5287,7 +5320,7 @@ body.page-offpage.page-theme-html .offpage-theme-page .thm-carousel-dots .testi-
     scroll-padding-inline:0;
   }
 }
-@media (max-width:767px){
+@media (max-width:900px){
   body.page-dm.page-service:not(.page-theme-html) .testi-dots,
   body.page-dm.page-service .webdev-ref .testi-dots.thm-carousel-dots,
   body.page-onpage.page-service .webdev-ref .testi-dots.thm-carousel-dots,
@@ -5635,7 +5668,7 @@ body.page-dm-motion.page-service .hero{
   justify-content:flex-start !important;
 }
 
-/* Related SEO services — icon+title cards, continuous RTL marquee */
+/* Related SEO services  icon+title cards, continuous RTL marquee */
 .page-service .kr-related-services{
   padding-block:clamp(48px,6vw,88px) !important;
   background:var(--ink,#0A1A22) !important;
@@ -5879,7 +5912,7 @@ body.page-dm-motion.page-service .hero .hero-trust{
   }
 }
 
-/* White Label + Shopify SEO — compact hero (beats tall page-seo-service min-height/centering) */
+/* White Label + Shopify SEO  compact hero (beats tall page-seo-service min-height/centering) */
 body.page-wlseo.page-service .hero,
 body.page-wlseo.page-seo-service .hero,
 body.page-shopifyseo.page-service .hero,
@@ -5950,15 +5983,20 @@ body.page-shopifyseo.page-seo-service .hero .hero-cta{
   margin:0 !important;
 }
 body.page-wlseo.page-service .hero .hero-badges,
-body.page-wlseo.page-service .hero .hero-trust,
 body.page-wlseo.page-seo-service .hero .hero-badges,
-body.page-wlseo.page-seo-service .hero .hero-trust,
 body.page-shopifyseo.page-service .hero .hero-badges,
 body.page-shopifyseo.page-service .hero .hero-trust,
 body.page-shopifyseo.page-seo-service .hero .hero-badges,
 body.page-shopifyseo.page-seo-service .hero .hero-trust{
   margin-top:28px !important;
   padding-top:22px !important;
+}
+/* WL trust-checks are a compact row — don't inherit badge strip spacing */
+body.page-wlseo.page-service .hero .hero-trust.hero-trust-checks,
+body.page-wlseo.page-seo-service .hero .hero-trust.hero-trust-checks{
+  margin-top:30px !important;
+  padding-top:0 !important;
+  border-top:none !important;
 }
 @media (max-width:900px){
   body.page-wlseo.page-service .hero,
@@ -5976,15 +6014,19 @@ body.page-shopifyseo.page-seo-service .hero .hero-trust{
     margin:0 0 24px !important;
   }
   body.page-wlseo.page-service .hero .hero-badges,
-  body.page-wlseo.page-service .hero .hero-trust,
   body.page-wlseo.page-seo-service .hero .hero-badges,
-  body.page-wlseo.page-seo-service .hero .hero-trust,
   body.page-shopifyseo.page-service .hero .hero-badges,
   body.page-shopifyseo.page-service .hero .hero-trust,
   body.page-shopifyseo.page-seo-service .hero .hero-badges,
   body.page-shopifyseo.page-seo-service .hero .hero-trust{
     margin-top:22px !important;
     padding-top:16px !important;
+  }
+  body.page-wlseo.page-service .hero .hero-trust.hero-trust-checks,
+  body.page-wlseo.page-seo-service .hero .hero-trust.hero-trust-checks{
+    margin-top:24px !important;
+    padding-top:0 !important;
+    border-top:none !important;
   }
 }
 @media (max-width:680px){
@@ -5995,6 +6037,575 @@ body.page-shopifyseo.page-seo-service .hero .hero-trust{
     padding-top:calc(56px + 12px) !important;
     padding-bottom:28px !important;
   }
+}
+
+/* Shopify SEO  hero trust checks + proof chip */
+body.page-shopifyseo.page-service .hero .hero-trust-checks,
+body.page-shopifyseo.page-seo-service .hero .hero-trust-checks{
+  display:flex !important;
+  flex-direction:column !important;
+  align-items:flex-start !important;
+  flex-wrap:nowrap !important;
+  gap:12px !important;
+  margin-top:22px !important;
+  margin-bottom:0 !important;
+  padding-top:0 !important;
+  border-top:none !important;
+  max-width:42rem !important;
+}
+body.page-shopifyseo.page-service .hero .hero-trust-checks span,
+body.page-shopifyseo.page-seo-service .hero .hero-trust-checks span{
+  display:inline-flex !important;
+  align-items:flex-start !important;
+  gap:10px !important;
+  font-size:.9rem !important;
+  line-height:1.45 !important;
+  color:#9FB6BE !important;
+  font-weight:500 !important;
+  max-width:100% !important;
+}
+body.page-shopifyseo.page-service .hero .hero-trust-checks svg,
+body.page-shopifyseo.page-seo-service .hero .hero-trust-checks svg{
+  width:17px !important;
+  height:17px !important;
+  min-width:17px !important;
+  min-height:17px !important;
+  max-width:17px !important;
+  max-height:17px !important;
+  margin-top:2px !important;
+  color:var(--signal,#F47A1F) !important;
+  stroke:var(--signal,#F47A1F) !important;
+  flex:0 0 auto !important;
+  display:block !important;
+}
+body.page-shopifyseo.page-service .hero .hero-actions,
+body.page-shopifyseo.page-seo-service .hero .hero-actions{
+  display:flex !important;
+  flex-direction:row !important;
+  flex-wrap:wrap !important;
+  align-items:center !important;
+  gap:14px 18px !important;
+  margin-top:28px !important;
+}
+body.page-shopifyseo.page-service .hero .proof-chip,
+body.page-shopifyseo.page-seo-service .hero .proof-chip{
+  display:inline-flex !important;
+  flex-direction:row !important;
+  flex-wrap:nowrap !important;
+  align-items:center !important;
+  justify-content:flex-start !important;
+  gap:10px !important;
+  padding:10px 16px !important;
+  border:1px solid rgba(244,122,31,.16) !important;
+  border-radius:999px !important;
+  background:rgba(255,255,255,.04) !important;
+  width:fit-content !important;
+  max-width:min(100%,560px) !important;
+  line-height:1 !important;
+  box-sizing:border-box !important;
+  vertical-align:middle !important;
+}
+body.page-shopifyseo.page-service .hero .proof-chip .stars,
+body.page-shopifyseo.page-seo-service .hero .proof-chip .stars{
+  display:inline-flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  color:#F6A54E !important;
+  letter-spacing:1px !important;
+  font-size:.9rem !important;
+  line-height:1 !important;
+  height:1em !important;
+  white-space:nowrap !important;
+  flex:0 0 auto !important;
+  margin:0 !important;
+  padding:0 !important;
+  position:relative !important;
+  top:0 !important;
+}
+body.page-shopifyseo.page-service .hero .proof-chip small,
+body.page-shopifyseo.page-seo-service .hero .proof-chip small{
+  display:inline-flex !important;
+  align-items:center !important;
+  color:#B7CBD2 !important;
+  font-weight:500 !important;
+  font-size:.82rem !important;
+  line-height:1.2 !important;
+  margin:0 !important;
+  padding:0 !important;
+  white-space:nowrap !important;
+  flex:0 1 auto !important;
+  min-width:0 !important;
+  position:relative !important;
+  top:0 !important;
+}
+body.page-shopifyseo.page-service .hero .proof-chip small b,
+body.page-shopifyseo.page-seo-service .hero .proof-chip small b{
+  font-weight:700 !important;
+  color:#EAF3F6 !important;
+  line-height:inherit !important;
+}
+body.page-shopifyseo.page-service .hero .proof-chip small br,
+body.page-shopifyseo.page-seo-service .hero .proof-chip small br{
+  display:none !important;
+}
+@media (max-width:680px){
+  body.page-shopifyseo.page-service .hero .proof-chip,
+  body.page-shopifyseo.page-seo-service .hero .proof-chip{
+    flex-wrap:wrap !important;
+    max-width:100% !important;
+    row-gap:6px !important;
+  }
+  body.page-shopifyseo.page-service .hero .proof-chip small,
+  body.page-shopifyseo.page-seo-service .hero .proof-chip small{
+    white-space:normal !important;
+  }
+}
+
+/* Shopify SEO  trust strip under hero (source HTML .trust) */
+body.page-shopifyseo.page-service .trust.shopify-trust-strip,
+body.page-shopifyseo.page-seo-service .trust.shopify-trust-strip{
+  display:block !important;
+  background:var(--ink,#0A1A22) !important;
+  border-top:1px solid rgba(255,255,255,.08) !important;
+  border-bottom:0 !important;
+  padding:clamp(18px,2.4vw,26px) 0 !important;
+}
+body.page-shopifyseo.page-service .trust.shopify-trust-strip .trust-inner,
+body.page-shopifyseo.page-seo-service .trust.shopify-trust-strip .trust-inner{
+  display:flex !important;
+  align-items:center !important;
+  justify-content:flex-start !important;
+  gap:clamp(18px,3.5vw,48px) !important;
+  flex-wrap:wrap !important;
+}
+body.page-shopifyseo.page-service .trust.shopify-trust-strip .trust-label,
+body.page-shopifyseo.page-seo-service .trust.shopify-trust-strip .trust-label{
+  font-size:.72rem !important;
+  letter-spacing:.14em !important;
+  text-transform:uppercase !important;
+  color:#7F98A1 !important;
+  font-weight:500 !important;
+  flex:0 0 auto !important;
+  white-space:nowrap !important;
+}
+body.page-shopifyseo.page-service .trust.shopify-trust-strip .trust-logos,
+body.page-shopifyseo.page-seo-service .trust.shopify-trust-strip .trust-logos{
+  display:flex !important;
+  align-items:center !important;
+  gap:clamp(16px,3vw,40px) !important;
+  flex-wrap:wrap !important;
+  opacity:1 !important;
+}
+body.page-shopifyseo.page-service .trust.shopify-trust-strip .trust-logo,
+body.page-shopifyseo.page-seo-service .trust.shopify-trust-strip .trust-logo{
+  color:#C7D6DC !important;
+  font-weight:600 !important;
+  font-size:.98rem !important;
+  letter-spacing:.01em !important;
+  opacity:.85 !important;
+  white-space:nowrap !important;
+}
+@media (max-width:680px){
+  body.page-shopifyseo.page-service .trust.shopify-trust-strip .trust-inner,
+  body.page-shopifyseo.page-seo-service .trust.shopify-trust-strip .trust-inner{
+    gap:12px 18px !important;
+  }
+  body.page-shopifyseo.page-service .trust.shopify-trust-strip .trust-logos,
+  body.page-shopifyseo.page-seo-service .trust.shopify-trust-strip .trust-logos{
+    gap:10px 18px !important;
+  }
+  body.page-shopifyseo.page-service .trust.shopify-trust-strip .trust-logo,
+  body.page-shopifyseo.page-seo-service .trust.shopify-trust-strip .trust-logo{
+    font-size:.9rem !important;
+  }
+}
+
+/* Shopify SEO  pain footer line under cards */
+body.page-shopifyseo.page-service #pain .pain-foot,
+body.page-shopifyseo.page-seo-service #pain .pain-foot{
+  margin-top:44px !important;
+  display:flex !important;
+  gap:16px !important;
+  align-items:center !important;
+  flex-wrap:wrap !important;
+  color:#C7D6DC !important;
+  font-size:1.08rem !important;
+  line-height:1.5 !important;
+}
+body.page-shopifyseo.page-service #pain .pain-foot .hl,
+body.page-shopifyseo.page-seo-service #pain .pain-foot .hl{
+  color:var(--signal,#F47A1F) !important;
+}
+@media (max-width:680px){
+  body.page-shopifyseo.page-service #pain .pain-foot,
+  body.page-shopifyseo.page-seo-service #pain .pain-foot{
+    margin-top:28px !important;
+    font-size:1rem !important;
+  }
+}
+
+/* Shopify SEO  intro: copy + stats card (source HTML) */
+body.page-shopifyseo.page-service #intro.service-intro .dm-intro-grid,
+body.page-shopifyseo.page-seo-service #intro.service-intro .dm-intro-grid{
+  display:grid !important;
+  grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr) !important;
+  gap:clamp(30px,5vw,72px) !important;
+  align-items:start !important;
+}
+body.page-shopifyseo.page-service #intro.service-intro .service-intro-h3,
+body.page-shopifyseo.page-seo-service #intro.service-intro .service-intro-h3{
+  font-size:clamp(1.25rem,2vw,1.6rem) !important;
+  font-weight:650 !important;
+  color:var(--graphite,#0D2029) !important;
+  margin:18px 0 0 !important;
+  letter-spacing:-.01em !important;
+  line-height:1.3 !important;
+}
+body.page-shopifyseo.page-service #intro.service-intro .service-intro-body p,
+body.page-shopifyseo.page-seo-service #intro.service-intro .service-intro-body p{
+  margin-top:20px !important;
+  margin-bottom:0 !important;
+  color:var(--slate,#4B5B62) !important;
+  font-size:1.06rem !important;
+  line-height:1.65 !important;
+}
+body.page-shopifyseo.page-service #intro.service-intro .service-intro-body .hl,
+body.page-shopifyseo.page-seo-service #intro.service-intro .service-intro-body .hl{
+  color:var(--signal,#F47A1F) !important;
+}
+body.page-shopifyseo.page-service #intro.service-intro .service-intro-side,
+body.page-shopifyseo.page-seo-service #intro.service-intro .service-intro-side{
+  background:var(--ink,#0A1A22) !important;
+  border:0 !important;
+  border-radius:18px !important;
+  padding:clamp(26px,3vw,38px) !important;
+  box-shadow:0 18px 40px -24px rgba(10,26,34,.55) !important;
+  position:relative !important;
+  overflow:hidden !important;
+  color:#B7CBD2 !important;
+}
+body.page-shopifyseo.page-service #intro.service-intro .service-intro-side::before,
+body.page-shopifyseo.page-seo-service #intro.service-intro .service-intro-side::before{
+  content:"" !important;
+  position:absolute !important;
+  top:0 !important;
+  left:0 !important;
+  right:0 !important;
+  height:3px !important;
+  background:linear-gradient(90deg,var(--signal,#F47A1F),#F6B26B) !important;
+}
+body.page-shopifyseo.page-service #intro.service-intro .service-intro-side h4,
+body.page-shopifyseo.page-seo-service #intro.service-intro .service-intro-side h4{
+  color:#fff !important;
+  font-size:1.06rem !important;
+  font-weight:600 !important;
+  margin:0 0 20px !important;
+  line-height:1.35 !important;
+}
+body.page-shopifyseo.page-service #intro.service-intro .service-intro-stats,
+body.page-shopifyseo.page-seo-service #intro.service-intro .service-intro-stats{
+  display:grid !important;
+  grid-template-columns:1fr 1fr !important;
+  gap:26px 20px !important;
+}
+body.page-shopifyseo.page-service #intro.service-intro .service-intro-stat .num,
+body.page-shopifyseo.page-seo-service #intro.service-intro .service-intro-stat .num{
+  font-size:clamp(2rem,3.4vw,2.7rem) !important;
+  font-weight:800 !important;
+  color:var(--signal,#F47A1F) !important;
+  letter-spacing:-.02em !important;
+  line-height:1 !important;
+}
+body.page-shopifyseo.page-service #intro.service-intro .service-intro-stat .lbl,
+body.page-shopifyseo.page-seo-service #intro.service-intro .service-intro-stat .lbl{
+  display:block !important;
+  margin-top:8px !important;
+  color:#9FB6BE !important;
+  font-size:.76rem !important;
+  text-transform:uppercase !important;
+  letter-spacing:.06em !important;
+  font-weight:500 !important;
+  line-height:1.35 !important;
+}
+@media (max-width:900px){
+  body.page-shopifyseo.page-service #intro.service-intro .dm-intro-grid,
+  body.page-shopifyseo.page-seo-service #intro.service-intro .dm-intro-grid{
+    grid-template-columns:1fr !important;
+  }
+}
+
+/* Shopify SEO  dark pain + process copy */
+body.page-shopifyseo.page-service #pain.sec-ink,
+body.page-shopifyseo.page-service #process.sec-ink{
+  background:var(--ink,#0A1A22) !important;
+  color:#B7CBD2 !important;
+}
+body.page-shopifyseo.page-service #pain.sec-ink .section-head h2,
+body.page-shopifyseo.page-service #process.sec-ink .section-head h2,
+body.page-shopifyseo.page-service #pain.sec-ink .problem-card h4,
+body.page-shopifyseo.page-service #process.sec-ink .proc h4{
+  color:#fff !important;
+}
+body.page-shopifyseo.page-service #pain.sec-ink .section-head .lede,
+body.page-shopifyseo.page-service #pain.sec-ink .section-head p,
+body.page-shopifyseo.page-service #process.sec-ink .section-head p,
+body.page-shopifyseo.page-service #pain.sec-ink .problem-card p,
+body.page-shopifyseo.page-service #process.sec-ink .proc p{
+  color:#9FB6BE !important;
+}
+body.page-shopifyseo.page-service #pain.sec-ink .eyebrow,
+body.page-shopifyseo.page-service #process.sec-ink .eyebrow{
+  color:var(--signal,#F47A1F) !important;
+}
+body.page-shopifyseo.page-service #pain.sec-ink .problem-card,
+body.page-shopifyseo.page-service #process.sec-ink .proc{
+  background:var(--ink-2,#0F2A33) !important;
+  border:1px solid rgba(255,255,255,.08) !important;
+  color:#B7CBD2 !important;
+}
+body.page-shopifyseo.page-service #process.sec-ink .proc .num{
+  color:var(--signal,#F47A1F) !important;
+}
+
+/* Shopify SEO  services cards: clean 3-col desktop grid + mobile carousel */
+@media (min-width:901px){
+  body.page-shopifyseo.page-service #services .page-svc-carousel.is-desktop-grid,
+  body.page-shopifyseo.page-service #services .page-svc-carousel{
+    display:block !important;
+  }
+  body.page-shopifyseo.page-service #services .svc-viewport{
+    overflow:visible !important;
+    height:auto !important;
+  }
+  body.page-shopifyseo.page-service #services .svc-track{
+    display:grid !important;
+    grid-template-columns:repeat(3,minmax(0,1fr)) !important;
+    gap:18px !important;
+    transform:none !important;
+    width:100% !important;
+    max-width:100% !important;
+    height:auto !important;
+    align-items:stretch !important;
+    touch-action:auto !important;
+    cursor:default !important;
+  }
+  body.page-shopifyseo.page-service #services .svc-slide,
+  body.page-shopifyseo.page-service #services .svc-card{
+    width:100% !important;
+    max-width:100% !important;
+    min-width:0 !important;
+    height:auto !important;
+    min-height:100% !important;
+    max-height:none !important;
+    flex:none !important;
+    align-self:stretch !important;
+    box-sizing:border-box !important;
+    overflow:hidden !important;
+    overflow-wrap:anywhere !important;
+    word-break:break-word !important;
+    white-space:normal !important;
+  }
+  body.page-shopifyseo.page-service #services .svc-nav,
+  body.page-shopifyseo.page-service #services .svc-dots{
+    display:none !important;
+  }
+  body.page-shopifyseo.page-service #services .svc-card{
+    display:flex !important;
+    flex-direction:column !important;
+    background:#fff !important;
+    border:1px solid var(--line,#E1E9E5) !important;
+    border-radius:18px !important;
+    padding:26px 22px !important;
+    box-shadow:0 1px 2px rgba(13,32,41,.04),0 12px 28px -18px rgba(13,32,41,.18) !important;
+  }
+  body.page-shopifyseo.page-service #services .svc-card .tile{
+    flex:none !important;
+    margin-bottom:16px !important;
+  }
+  body.page-shopifyseo.page-service #services .svc-card h3{
+    color:var(--graphite,#0d2029) !important;
+    font-size:1.05rem !important;
+    line-height:1.35 !important;
+    margin:0 0 10px !important;
+    max-width:100% !important;
+    white-space:normal !important;
+    overflow-wrap:anywhere !important;
+    word-break:break-word !important;
+  }
+  body.page-shopifyseo.page-service #services .svc-card p{
+    color:var(--slate,#4b5b62) !important;
+    font-size:.9rem !important;
+    line-height:1.55 !important;
+    margin:0 !important;
+    max-width:100% !important;
+    flex:1 1 auto !important;
+    min-height:0 !important;
+    white-space:normal !important;
+    overflow-wrap:anywhere !important;
+    word-break:break-word !important;
+  }
+}
+@media (min-width:901px) and (max-width:1100px){
+  body.page-shopifyseo.page-service #services .svc-track{
+    grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+  }
+}
+@media (max-width:900px){
+  body.page-shopifyseo.page-service #services .page-svc-carousel .svc-dots:not([hidden]){
+    display:flex !important;
+    justify-content:center;
+    gap:10px;
+    margin-top:20px;
+  }
+  body.page-shopifyseo.page-service #services .page-svc-carousel .svc-dot{
+    width:10px;
+    height:10px;
+    border-radius:50%;
+    padding:0;
+    border:none;
+    background:#C5D4CE;
+    cursor:pointer;
+  }
+  body.page-shopifyseo.page-service #services .page-svc-carousel .svc-dot.is-active{
+    background:var(--signal,#F47A1F);
+    transform:scale(1.15);
+  }
+  body.page-shopifyseo.page-service #services .svc-card{
+    background:#fff !important;
+    border:1px solid var(--line,#E1E9E5) !important;
+    border-radius:18px !important;
+    padding:22px 18px !important;
+    box-shadow:0 1px 2px rgba(13,32,41,.04),0 12px 28px -18px rgba(13,32,41,.18) !important;
+    height:auto !important;
+    max-height:none !important;
+    min-width:0 !important;
+    max-width:100% !important;
+    overflow:hidden !important;
+    overflow-wrap:anywhere !important;
+    word-break:break-word !important;
+    white-space:normal !important;
+    box-sizing:border-box !important;
+  }
+  body.page-shopifyseo.page-service #services .svc-card h3,
+  body.page-shopifyseo.page-service #services .svc-card p{
+    max-width:100% !important;
+    white-space:normal !important;
+    overflow-wrap:anywhere !important;
+    word-break:break-word !important;
+  }
+}
+
+/* Shopify SEO  process: 4-col desktop + swipe-up stack mobile */
+@media (min-width:901px){
+  body.page-shopifyseo.page-service #process .page-svc-stack,
+  body.page-shopifyseo.page-service #process .page-svc-stack.is-desktop-static{
+    display:block !important;
+  }
+  body.page-shopifyseo.page-service #process .page-svc-stack .svc-viewport,
+  body.page-shopifyseo.page-service #process .page-svc-stack.is-desktop-static .svc-viewport{
+    overflow:visible !important;
+    display:block !important;
+  }
+  body.page-shopifyseo.page-service #process .page-svc-stack .svc-track,
+  body.page-shopifyseo.page-service #process .page-svc-stack.is-desktop-static .svc-track{
+    display:grid !important;
+    grid-template-columns:repeat(4,minmax(0,1fr)) !important;
+    gap:16px !important;
+    transform:none !important;
+    width:100% !important;
+    touch-action:auto !important;
+    cursor:default !important;
+  }
+  body.page-shopifyseo.page-service #process .page-svc-stack .svc-stack-item,
+  body.page-shopifyseo.page-service #process .page-svc-stack.is-desktop-static .svc-stack-item,
+  body.page-shopifyseo.page-service #process .page-svc-stack .svc-slide{
+    position:relative !important;
+    top:auto !important;
+    z-index:auto !important;
+    width:auto !important;
+    max-width:none !important;
+    min-width:0 !important;
+    height:100% !important;
+    margin:0 !important;
+    transform:none !important;
+    flex:none !important;
+  }
+  body.page-shopifyseo.page-service #process .svc-nav,
+  body.page-shopifyseo.page-service #process .svc-dots{
+    display:none !important;
+  }
+  body.page-shopifyseo.page-service #process.sec-ink .page-svc-stack .proc,
+  body.page-shopifyseo.page-service #process.sec-ink .page-svc-stack .svc-stack-item > .proc{
+    height:100% !important;
+    background:var(--ink-2,#0F2A33) !important;
+    background-color:var(--ink-2,#0F2A33) !important;
+    border:1px solid rgba(255,255,255,.08) !important;
+    border-radius:18px !important;
+    padding:24px 18px !important;
+    color:#B7CBD2 !important;
+    box-shadow:none !important;
+  }
+  body.page-shopifyseo.page-service #process.sec-ink .proc .num{
+    color:var(--signal,#F47A1F) !important;
+    font-size:1.5rem !important;
+    font-weight:800 !important;
+    line-height:1 !important;
+    margin-bottom:12px !important;
+    display:block !important;
+  }
+  body.page-shopifyseo.page-service #process.sec-ink .proc h4{
+    color:#fff !important;
+    font-size:1.02rem !important;
+    margin:0 0 8px !important;
+  }
+  body.page-shopifyseo.page-service #process.sec-ink .proc p{
+    color:#9FB6BE !important;
+    font-size:.88rem !important;
+    line-height:1.55 !important;
+    margin:0 !important;
+  }
+}
+@media (min-width:901px) and (max-width:1100px){
+  body.page-shopifyseo.page-service #process .page-svc-stack .svc-track,
+  body.page-shopifyseo.page-service #process .page-svc-stack.is-desktop-static .svc-track{
+    grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+  }
+}
+@media (max-width:900px){
+  body.page-shopifyseo.page-service section#process.has-page-svc-stack,
+  body.page-shopifyseo.page-service section#process{
+    overflow-x:clip !important;
+    overflow-y:visible !important;
+  }
+  body.page-shopifyseo.page-service #process .page-svc-stack .svc-track,
+  body.page-shopifyseo.page-service #process .page-svc-stack .svc-viewport{
+    display:block !important;
+    grid-template-columns:none !important;
+    gap:0 !important;
+    overflow:visible !important;
+  }
+  body.page-shopifyseo.page-service #process .page-svc-stack .svc-stack-item{
+    position:sticky !important;
+    top:calc(var(--svc-stack-nav,68px) + (var(--index0,0) * var(--svc-stack-peek,14px))) !important;
+    z-index:calc(1 + var(--index0,0)) !important;
+    width:100% !important;
+    max-width:100% !important;
+    margin:0 0 var(--svc-stack-gap,18px) !important;
+  }
+  body.page-shopifyseo.page-service #process.sec-ink .page-svc-stack .proc,
+  body.page-shopifyseo.page-service #process.sec-ink .page-svc-stack .svc-stack-item > .proc{
+    background:var(--ink-2,#0F2A33) !important;
+    background-color:var(--ink-2,#0F2A33) !important;
+    border:1px solid rgba(255,255,255,.08) !important;
+    border-radius:18px !important;
+    color:#B7CBD2 !important;
+    box-shadow:
+      0 1px 2px rgba(0,0,0,.2),
+      0 14px 32px -16px rgba(0,0,0,.45) !important;
+  }
+  body.page-shopifyseo.page-service #process.sec-ink .proc h4{color:#fff !important;}
+  body.page-shopifyseo.page-service #process.sec-ink .proc p{color:#9FB6BE !important;}
+  body.page-shopifyseo.page-service #process.sec-ink .proc .num{color:var(--signal,#F47A1F) !important;}
 }
 
 /* Dark included / compare tiles: keep light text (beats paper-card lock) */
@@ -6220,7 +6831,7 @@ body.page-shopifyseo.page-seo-service .hero .hero-trust{
   }
 }
 
-/* ========== Hero image darker — text always readable ========== */
+/* ========== Hero image darker  text always readable ========== */
 .page-service .hero .hero-bg,
 .page-service .hero .hero-visual,
 .page-service .wp-hero .wp-hero-visual,
@@ -6418,7 +7029,7 @@ body.page-seo-service .hero h1{
   }
 }
 
-/* ── All service pages: orange carousel dots under thm carousels ── */
+/* -- All service pages: orange carousel dots under thm carousels -- */
 body.page-service .testi-dots.thm-carousel-dots,
 body.page-service [data-thm-carousel-dots].thm-carousel-dots {
   display: none;
@@ -6468,9 +7079,9 @@ body.page-service [data-thm-carousel-dots] .testi-dot:focus-visible {
 body.page-service .thm-carousel-nav-wrap {
   display: none !important;
 }
-body.page-service .sec-ink .thm-carousel-dots .testi-dot:not(.is-active),
-body.page-service .sec.sec-ink .thm-carousel-dots .testi-dot:not(.is-active),
-body.page-service [class*="sec-ink"] .thm-carousel-dots .testi-dot:not(.is-active) {
+/* Dark ink sections: light inactive dots. White problem-bg overrides below. */
+body.page-service .sec-ink:not(.problem-bg) .thm-carousel-dots .testi-dot:not(.is-active),
+body.page-service .sec.sec-ink:not(.problem-bg) .thm-carousel-dots .testi-dot:not(.is-active) {
   background: rgba(255, 255, 255, 0.45);
 }
 
@@ -6480,16 +7091,59 @@ body.page-service [class*="sec-ink"] .thm-carousel-dots .testi-dot:not(.is-activ
   body.page-service .wrap > .testi-dots.thm-carousel-dots:not([hidden]),
   body.page-service [data-thm-carousel] + .thm-carousel-nav-wrap + .testi-dots.thm-carousel-dots:not([hidden]),
   body.page-service [data-thm-carousel] + .testi-dots.thm-carousel-dots:not([hidden]),
-  body.page-service .why-mobile-carousel + .testi-dots.thm-carousel-dots:not([hidden]) {
+  body.page-service .why-mobile-carousel + .testi-dots.thm-carousel-dots:not([hidden]),
+  body.page-dm.page-service .webdev-ref .problem-bg .testi-dots.thm-carousel-dots:not([hidden]),
+  body.page-dm.page-service .webdev-ref .sec-ink.problem-bg .wrap > .testi-dots.thm-carousel-dots:not([hidden]),
+  body.page-dm.page-service .webdev-ref .why-mobile-carousel + .testi-dots.thm-carousel-dots:not([hidden]) {
     display: flex !important;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 10px;
-    width: 100%;
-    margin-top: 18px;
-    padding: 4px 0;
-    min-height: 18px;
+    justify-content: center !important;
+    align-items: center !important;
+    flex-wrap: wrap !important;
+    gap: 10px !important;
+    width: 100% !important;
+    margin-top: 18px !important;
+    padding: 6px 0 !important;
+    min-height: 22px !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+
+  /* problem-bg is white  use grey inactive dots (not white-on-white) */
+  body.page-dm.page-service .webdev-ref .problem-bg .thm-carousel-dots .testi-dot,
+  body.page-dm.page-service .webdev-ref .sec-ink.problem-bg .thm-carousel-dots .testi-dot,
+  body.page-service .sec-ink.problem-bg .thm-carousel-dots .testi-dot {
+    display: inline-block !important;
+    width: 10px !important;
+    height: 10px !important;
+    min-width: 10px !important;
+    min-height: 10px !important;
+    max-width: 10px !important;
+    max-height: 10px !important;
+    border-radius: 50% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    border: 2px solid transparent !important;
+    background: #c5d4ce !important;
+    flex: 0 0 10px !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    font-size: 0 !important;
+    line-height: 0 !important;
+    appearance: none !important;
+    -webkit-appearance: none !important;
+  }
+
+  body.page-dm.page-service .webdev-ref .sec-ink:not(.problem-bg) .thm-carousel-dots .testi-dot:not(.is-active) {
+    background: rgba(255, 255, 255, 0.5) !important;
+  }
+
+  body.page-dm.page-service .webdev-ref .problem-bg .thm-carousel-dots .testi-dot.is-active,
+  body.page-dm.page-service .webdev-ref .sec-ink.problem-bg .thm-carousel-dots .testi-dot.is-active,
+  body.page-service .sec-ink.problem-bg .thm-carousel-dots .testi-dot.is-active {
+    background: var(--signal, #f47a1f) !important;
+    border-color: rgba(244, 122, 31, 0.35) !important;
+    transform: scale(1.2) !important;
+    box-shadow: 0 0 0 6px rgba(244, 122, 31, 0.14) !important;
   }
 }
 

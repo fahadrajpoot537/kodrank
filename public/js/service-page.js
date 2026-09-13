@@ -52,11 +52,16 @@
       const show = isMobileCarousel() && cards().length > 1;
       dotsWrap.hidden = !show;
       dotsWrap.style.display = show ? 'flex' : 'none';
+      // Hide arrow controls only — never hide the dots wrap itself
       const controls = slider.querySelector('.testi-controls, .testi-nav-wrap');
-      if (controls) {
+      if (controls && !controls.contains(dotsWrap) && controls !== dotsWrap) {
         controls.hidden = show;
         controls.style.display = show ? 'none' : '';
       }
+      slider.querySelectorAll('.testi-nav').forEach((btn) => {
+        btn.hidden = show;
+        btn.style.display = show ? 'none' : '';
+      });
     };
 
     const bindDots = () => {
@@ -443,8 +448,9 @@
       const CAROUSEL_SELS = isWpOnly ? CAROUSEL_SELS_WP : CAROUSEL_SELS_FULL;
 
       const isOffpage = root.classList.contains('offpage-theme-page');
+      const isDmHub = document.body.classList.contains('page-dm');
+      const isOnpage = document.body.classList.contains('page-onpage');
       const isServicesCarouselPage =
-        document.body.classList.contains('page-dm') ||
         document.body.classList.contains('page-techseo') ||
         document.body.classList.contains('page-aeo') ||
         document.body.classList.contains('page-geo') ||
@@ -458,7 +464,8 @@
         document.body.classList.contains('page-restseo') ||
         document.body.classList.contains('page-hcseo') ||
         document.body.classList.contains('page-reseo') ||
-        document.body.classList.contains('page-dm-motion');
+        // Niche SEO motion pages only — DM hub (#services) uses swipe-up stack
+        (!isDmHub && document.body.classList.contains('page-dm-motion'));
       const isAeo = document.body.classList.contains('page-aeo');
       const isMonthly = document.body.classList.contains('page-monthly');
       const seenStack = new Set();
@@ -466,7 +473,7 @@
         if (seenStack.has(grid) || skipCommon(grid)) return;
         // Off-page: services + testimonials scroll as carousels (match on-page UX)
         if (isOffpage && grid.classList.contains('grid-cards')) return;
-        // Niche / DM SEO pages: #services / #included → mobile carousel (not sticky stack)
+        // Niche SEO pages: #services / #included → mobile carousel (not sticky stack)
         if (isServicesCarouselPage && grid.closest('#services, #included')) {
           return;
         }
@@ -490,6 +497,35 @@
             if (seenStack.has(grid) || skipCommon(grid)) return;
             seenStack.add(grid);
             grid.setAttribute('data-thm-stack', '1');
+          }
+        );
+      }
+
+      // DM hub: #why-us cards → swipe-up sticky stack (same as #services)
+      if (isDmHub) {
+        Array.prototype.forEach.call(
+          root.querySelectorAll('#why-us .why-grid, section#why-us .why-grid'),
+          (grid) => {
+            if (seenStack.has(grid) || skipCommon(grid)) return;
+            seenStack.add(grid);
+            grid.setAttribute('data-thm-stack', '1');
+            grid.removeAttribute('data-thm-carousel');
+          }
+        );
+      }
+
+      // On-page SEO: #pain cards → swipe-up sticky stack
+      if (isOnpage) {
+        Array.prototype.forEach.call(
+          root.querySelectorAll(
+            '#pain .problem-grid, #pain .grid.g-4, #pain .grid.g-3, #pain .grid.g4, section#pain .problem-grid, section#pain .grid'
+          ),
+          (grid) => {
+            if (seenStack.has(grid) || skipCommon(grid)) return;
+            if (!grid.closest('#pain')) return;
+            seenStack.add(grid);
+            grid.setAttribute('data-thm-stack', '1');
+            grid.removeAttribute('data-thm-carousel');
           }
         );
       }
@@ -538,14 +574,20 @@
         );
         Array.prototype.forEach.call(root.querySelectorAll('.included-grid, #why .why-grid'), markCarousel);
         if (isServicesCarouselPage) {
+          const isDmHub = document.body.classList.contains('page-dm');
           Array.prototype.forEach.call(
             root.querySelectorAll(
               [
-                '#services .service-grid',
-                '#services .svc-grid',
-                '#services .serv-grid',
-                '#services .grid-cards',
-                '#services .grid',
+                // DM hub #services → sticky stack (skip carousel mark)
+                ...(isDmHub
+                  ? []
+                  : [
+                      '#services .service-grid',
+                      '#services .svc-grid',
+                      '#services .serv-grid',
+                      '#services .grid-cards',
+                      '#services .grid',
+                    ]),
                 '#included .svc-grid',
                 '#included .grid-cards',
                 '#included .grid',
@@ -568,6 +610,34 @@
 
   // ─── Service-page stacking cards (sticky wrapper + scale on inner face) ───
   (function initSpStacks() {
+    // DM hub / on-page: flatten leftover carousel shells so sticky stacks work
+    if (document.body.classList.contains('page-dm')) {
+      Array.prototype.forEach.call(
+        document.querySelectorAll('#services .why-mobile-carousel, #why-us .why-mobile-carousel'),
+        (shell) => {
+          const parent = shell.parentElement;
+          if (!parent) return;
+          while (shell.firstChild) {
+            parent.insertBefore(shell.firstChild, shell);
+          }
+          shell.remove();
+        }
+      );
+    }
+    if (document.body.classList.contains('page-onpage')) {
+      Array.prototype.forEach.call(
+        document.querySelectorAll('#pain .why-mobile-carousel'),
+        (shell) => {
+          const parent = shell.parentElement;
+          if (!parent) return;
+          while (shell.firstChild) {
+            parent.insertBefore(shell.firstChild, shell);
+          }
+          shell.remove();
+        }
+      );
+    }
+
     const roots = document.querySelectorAll(
       '[data-sp-stack], .page-svc-stack, [data-thm-stack]'
     );
@@ -788,6 +858,24 @@
         if (section) section.classList.add('has-page-svc-stack');
       }
 
+      // Desktop: keep cards flat for CSS grid — never wrap into sticky pairs
+      if (isDesktop()) {
+        clearLayout(root);
+        root.classList.add('is-desktop-static');
+        const section = root.closest('section');
+        if (section) section.classList.add('has-page-svc-stack');
+        stacks.push({
+          root: root,
+          items: [],
+          cardTop: 96,
+          cardHeight: 200,
+          peek: 14,
+          listening: false,
+          themeHtml: false,
+        });
+        return;
+      }
+
       const items = buildLayout(root);
       if (reduce || !items.length) return;
 
@@ -874,6 +962,10 @@
       if (isDesktop()) {
         stack.root.classList.add('is-desktop-static');
         clearScales(stack);
+        if (stack.items.length) {
+          clearLayout(stack.root);
+          stack.items = [];
+        }
         return;
       }
       stack.root.classList.remove('is-desktop-static');
@@ -955,6 +1047,10 @@
       if (isDesktop()) {
         stack.root.classList.add('is-desktop-static');
         clearScales(stack);
+        if (stack.items.length) {
+          clearLayout(stack.root);
+          stack.items = [];
+        }
         stop(stack);
         return;
       }
@@ -1075,18 +1171,35 @@
       };
 
       const clearCarouselStyles = () => {
-        trackEl.style.removeProperty('transform');
-        trackEl.style.removeProperty('width');
-        trackEl.style.removeProperty('display');
-        trackEl.style.removeProperty('flex-wrap');
-        trackEl.style.removeProperty('transition');
-        viewport.style.removeProperty('overflow');
+        [
+          'transform',
+          'width',
+          'display',
+          'flex-wrap',
+          'transition',
+          'gap',
+          'touch-action',
+          'cursor',
+        ].forEach((prop) => trackEl.style.removeProperty(prop));
+        [
+          'overflow',
+          'overflow-x',
+          'overflow-y',
+          'scroll-snap-type',
+          '-webkit-overflow-scrolling',
+          'touch-action',
+          'width',
+          'max-width',
+        ].forEach((prop) => viewport.style.removeProperty(prop));
         slides.forEach((slide) => {
-          slide.style.removeProperty('flex');
-          slide.style.removeProperty('width');
-          slide.style.removeProperty('min-width');
-          slide.style.removeProperty('max-width');
-          slide.style.removeProperty('box-sizing');
+          [
+            'flex',
+            'width',
+            'min-width',
+            'max-width',
+            'box-sizing',
+            'scroll-snap-align',
+          ].forEach((prop) => slide.style.removeProperty(prop));
         });
       };
 
@@ -1127,6 +1240,19 @@
         trackEl.style.removeProperty('transform');
         viewport.style.removeProperty('overflow-x');
         viewport.style.removeProperty('scroll-snap-type');
+        // Kill any leftover mobile sizing so card text can wrap inside the grid
+        slides.forEach((slide) => {
+          [
+            'flex',
+            'width',
+            'min-width',
+            'max-width',
+            'height',
+            'max-height',
+            'scroll-snap-align',
+            'box-sizing',
+          ].forEach((prop) => slide.style.removeProperty(prop));
+        });
         root.style.setProperty('--svc-per', String(desktopPer));
         if (dotsWrap) {
           dotsWrap.hidden = true;
@@ -1558,7 +1684,6 @@
           '.offpage-theme-page .sec-ink .why-grid',
           '.offpage-theme-page #services .grid-cards',
           '.offpage-theme-page .tgrid',
-          '.page-dm .webdev-ref #services .service-grid',
           '.page-aeo .aeo-theme-page #services .carousel-track',
           '.page-aeo .aeo-theme-page #services #svcTrack',
           '.page-techseo .techseo-theme-page #services .svc-grid',
@@ -1573,6 +1698,13 @@
       (grid) => {
         const parent = grid.parentElement;
         if (!parent || parent.classList.contains('why-mobile-carousel')) return;
+        // DM hub #why-us / on-page #pain use swipe-up stack — never wrap in horizontal carousel shell
+        if (
+          (document.body.classList.contains('page-dm') && grid.closest('#why-us')) ||
+          (document.body.classList.contains('page-onpage') && grid.closest('#pain'))
+        ) {
+          return;
+        }
         if (
           grid.querySelector(
             ':scope > .stat, :scope > .stats, :scope > .why-list, :scope > .stats-row, :scope > .why-feats, :scope > .compare, :scope > .why-copy, :scope > .feat-list, :scope > .prob-panel, :scope > .intro-copy'
@@ -1629,13 +1761,6 @@
         return '(max-width: 980px)';
       }
       if (
-        document.body.classList.contains('page-dm') &&
-        track.classList.contains('service-grid') &&
-        track.closest('#services')
-      ) {
-        return '(max-width: 980px)';
-      }
-      if (
         document.body.classList.contains('page-shopifyseo') ||
         document.body.classList.contains('page-wpseo') ||
         document.body.classList.contains('page-ecomseo') ||
@@ -1679,6 +1804,18 @@
     tracks.forEach((track) => {
       if (!track || track.dataset.thmCarouselReady === '1') return;
       if (track.hasAttribute('data-thm-stack')) return;
+      // DM hub #services / #why-us + on-page #pain use swipe-up stack — never init horizontal carousel
+      if (
+        document.body.classList.contains('page-dm') &&
+        ((track.classList.contains('service-grid') && track.closest('#services')) ||
+          (track.classList.contains('why-grid') && track.closest('#why-us')) ||
+          track.closest('#why-us'))
+      ) {
+        return;
+      }
+      if (document.body.classList.contains('page-onpage') && track.closest('#pain')) {
+        return;
+      }
       if (
         track.closest('.testi-slider') ||
         track.classList.contains('testi-track') ||
@@ -1690,8 +1827,25 @@
 
       const scroller = track;
       const shell = track.closest('.why-mobile-carousel');
-      const cards = Array.prototype.filter.call(track.children, (el) => el.nodeType === 1);
-      if (cards.length < 2) return;
+      const cards = Array.prototype.filter.call(track.children, (el) => {
+        if (!el || el.nodeType !== 1) return false;
+        if (
+          el.classList.contains('testi-dots') ||
+          el.classList.contains('thm-carousel-dots') ||
+          el.classList.contains('thm-carousel-nav-wrap') ||
+          el.classList.contains('svc-nav') ||
+          el.classList.contains('svc-dots') ||
+          el.classList.contains('svc-prev') ||
+          el.classList.contains('svc-next')
+        ) {
+          return false;
+        }
+        return true;
+      });
+      if (cards.length < 2) {
+        delete track.dataset.thmCarouselReady;
+        return;
+      }
 
       let index = 0;
       let timer = null;
@@ -1735,9 +1889,15 @@
         });
         dotsWrap.appendChild(btn);
       });
-      const host = shell && shell.parentElement ? shell.parentElement : scroller.parentElement;
+      // Prefer section .wrap so dots sit under the carousel strip, never inside the track
+      const host =
+        (shell && shell.closest('.wrap')) ||
+        (scroller && scroller.closest('.wrap')) ||
+        (shell && shell.parentElement) ||
+        scroller.parentElement;
       if (host) {
-        host.insertBefore(navWrap, (shell || scroller).nextSibling);
+        const anchor = shell || scroller;
+        host.insertBefore(navWrap, anchor.nextSibling);
         host.insertBefore(dotsWrap, navWrap.nextSibling);
       }
 
