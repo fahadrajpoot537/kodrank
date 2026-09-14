@@ -68,8 +68,11 @@
   $ledeHtml = $h['lede_html'] ?? null;
   $titleHtml = $h['title_html'] ?? $h['titleHtml'] ?? null;
   $ctaText = $h['cta_text'] ?? $h['ctaText'] ?? $h['hero_button_text'] ?? 'Get A Free Proposal';
-  // Hero always renders its own arrow — strip trailing → so "Get Plan →" does not become "→ →"
-  $ctaText = trim(preg_replace('/\s*(?:→|->|»|›)+\s*$/u', '', (string) $ctaText));
+  // Hero always renders its own arrow — strip trailing → / &rarr; so text does not become "→ →"
+  $ctaText = html_entity_decode((string) $ctaText, ENT_QUOTES | ENT_HTML5, 'UTF-8');
+  $ctaText = html_entity_decode($ctaText, ENT_QUOTES | ENT_HTML5, 'UTF-8');
+  $ctaText = trim(preg_replace('/\s*(?:→|->|»|›|&rarr;|&#8594;|&#x2192;)+\s*$/iu', '', $ctaText) ?? $ctaText);
+  $ctaText = trim(preg_replace('/\s*(?:→|->|»|›)+\s*$/u', '', $ctaText) ?? $ctaText);
   $ctaUrl = $h['cta_url'] ?? $h['ctaUrl'] ?? $h['hero_button_link'] ?? '#contact';
 @endphp
 <section class="hero" id="top">

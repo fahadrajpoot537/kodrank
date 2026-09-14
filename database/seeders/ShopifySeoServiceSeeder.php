@@ -51,6 +51,11 @@ class ShopifySeoServiceSeeder extends Seeder
                 'cta_text' => 'Get a free Shopify SEO audit',
                 'cta_url' => '#contact',
                 'image' => 'media/services/shopify-seo/shopify-seo-services-hero.jpg',
+                'breadcrumb' => [
+                    ['label' => 'Home', 'url' => '/'],
+                    ['label' => 'Services', 'url' => '/services'],
+                    ['label' => 'Shopify SEO Services', 'url' => ''],
+                ],
                 'trust_points' => [
                     'Rank collection and product pages for high-intent, ready-to-buy searches',
                     'Fix the technical SEO debt Shopify ships with by default',

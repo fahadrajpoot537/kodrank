@@ -553,9 +553,21 @@
 .theme-html-root.webdev-ref .sec-ink .tile,
 .webdev-ref .sec-ink .tile{background:rgba(244,122,31,.12)}
 .theme-html-root.webdev-ref .svc-card:hover .tile,
-.webdev-ref .svc-card:hover .tile{background:var(--signal)}
+.theme-html-root.webdev-ref .svc-grid > .svc:hover .tile,
+.theme-html-root.webdev-ref .grid > .svc:hover .tile,
+.theme-html-root.webdev-ref .service-grid > .svc:hover .tile,
+.webdev-ref .svc-card:hover .tile,
+.webdev-ref .svc-grid > .svc:hover .tile,
+.webdev-ref .grid > .svc:hover .tile,
+.webdev-ref .service-grid > .svc:hover .tile{background:var(--signal)}
 .theme-html-root.webdev-ref .svc-card:hover .tile svg,
-.webdev-ref .svc-card:hover .tile svg{stroke:var(--signal-ink)}
+.theme-html-root.webdev-ref .svc-grid > .svc:hover .tile svg,
+.theme-html-root.webdev-ref .grid > .svc:hover .tile svg,
+.theme-html-root.webdev-ref .service-grid > .svc:hover .tile svg,
+.webdev-ref .svc-card:hover .tile svg,
+.webdev-ref .svc-grid > .svc:hover .tile svg,
+.webdev-ref .grid > .svc:hover .tile svg,
+.webdev-ref .service-grid > .svc:hover .tile svg{stroke:var(--signal-ink)}
 
 .theme-html-root.webdev-ref .svc-card .check,
 .theme-html-root.webdev-ref .svc-badge,

@@ -115,7 +115,7 @@
 @php $bodyClassAttr = $bodyClass !== '' ? ' class="'.e($bodyClass).'"' : ''; @endphp
 <body{!! $bodyClassAttr !!}>
 @yield('content')
-<script src="{{ asset('js/home.js') }}" defer></script>
+<script src="{{ asset('js/home.js') }}?v={{ @filemtime(public_path('js/home.js')) ?: time() }}" defer></script>
 @include('partials.recaptcha-script')
 @stack('scripts')
 </body>

@@ -418,27 +418,47 @@
       if(next) next.addEventListener('click', function(e){ e.preventDefault(); e.stopPropagation(); step(1); });
 
       if(!isMobile()){
+        var suppressClick=false;
+        var pendingPointerId=null;
         var onDown=function(clientX, pointerId){
-          dragging=true; didSwipe=false; startX=clientX; deltaX=0;
+          dragging=true; didSwipe=false; suppressClick=false; startX=clientX; deltaX=0;
+          pendingPointerId=pointerId!=null?pointerId:null;
           stopAuto();
           track.style.transition='none';
-          track.classList.add('is-dragging');
-          if(pointerId!=null){ try{ track.setPointerCapture(pointerId); }catch(err){} }
+          // Do NOT setPointerCapture here — capturing on pointerdown retargets the
+          // following click onto the track and kills <a> navigation.
         };
         var onMove=function(clientX){
           if(!dragging) return;
           deltaX=clientX-startX;
-          if(Math.abs(deltaX)>8) didSwipe=true;
-          track.style.transform='translate3d('+(-(index*(slideW+gap)-deltaX))+'px,0,0)';
+          // Only treat as a drag after a clear move — tiny jitter must not kill link clicks
+          if(Math.abs(deltaX)>12){
+            if(!didSwipe){
+              didSwipe=true;
+              track.classList.add('is-dragging');
+              if(pendingPointerId!=null){
+                try{ track.setPointerCapture(pendingPointerId); }catch(err){}
+                pendingPointerId=null;
+              }
+            }
+            track.style.transform='translate3d('+(-(index*(slideW+gap)-deltaX))+'px,0,0)';
+          }
         };
         var onUp=function(){
           if(!dragging) return;
           dragging=false;
+          pendingPointerId=null;
           track.style.transition='';
           track.classList.remove('is-dragging');
-          if(didSwipe && Math.abs(deltaX)>40) step(deltaX<0?1:-1);
-          else { goTo(index); startAuto(); }
-          setTimeout(function(){ didSwipe=false; deltaX=0; }, 0);
+          if(didSwipe && Math.abs(deltaX)>40){
+            suppressClick=true;
+            step(deltaX<0?1:-1);
+          }else{
+            goTo(index);
+            startAuto();
+          }
+          // Keep suppressClick through the synthetic click that follows pointerup
+          setTimeout(function(){ didSwipe=false; deltaX=0; suppressClick=false; }, 80);
         };
         track.addEventListener('dragstart', function(e){ e.preventDefault(); });
         if(window.PointerEvent){
@@ -447,7 +467,28 @@
           track.addEventListener('pointerup', onUp);
           track.addEventListener('pointercancel', onUp);
         }
-        track.addEventListener('click', function(e){ if(didSwipe){ e.preventDefault(); e.stopPropagation(); didSwipe=false; } }, true);
+        // Capture-phase: after a real swipe, block the ghost click; otherwise force
+        // navigation so card links always work even if the event was retargeted.
+        track.addEventListener('click', function(e){
+          if(suppressClick){
+            e.preventDefault();
+            e.stopPropagation();
+            suppressClick=false;
+            return;
+          }
+          var a=e.target&&e.target.closest?e.target.closest('a[href]'):null;
+          if(!a && e.clientX!=null){
+            var el=document.elementFromPoint(e.clientX, e.clientY);
+            a=el&&el.closest?el.closest('a[href]'):null;
+          }
+          if(!a||!track.contains(a)) return;
+          var href=a.getAttribute('href');
+          if(!href||href==='#') return;
+          e.preventDefault();
+          e.stopPropagation();
+          if(a.getAttribute('target')==='_blank') window.open(href, '_blank');
+          else window.location.assign(href);
+        }, true);
       }else{
         var scroller=getScroller();
         scroller.addEventListener('scroll', syncIndexFromScroll, {passive:true});

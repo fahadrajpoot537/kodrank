@@ -52,6 +52,11 @@ class WhiteLabelSeoServiceSeeder extends Seeder
                 'cta_text' => 'Get Your White Label Quote',
                 'cta_url' => '#contact',
                 'image' => $heroImage,
+                'breadcrumb' => [
+                    ['label' => 'Home', 'url' => '/'],
+                    ['label' => 'Services', 'url' => '/services'],
+                    ['label' => 'White Label SEO Services', 'url' => ''],
+                ],
                 'trust_points' => [
                     '150+ agency partners',
                     '100% white-labeled',

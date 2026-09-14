@@ -173,6 +173,10 @@ class ThemeHtmlNichePageImporter
             $hero['cta_text'] = $ctaDefault;
         } else {
             $hero['cta_text'] = trim(preg_replace('/\s*(?:→|->|»|›)+\s*$/u', '', (string) $hero['cta_text']));
+            $hero['cta_text'] = html_entity_decode($hero['cta_text'], ENT_QUOTES | ENT_HTML5, 'UTF-8');
+            $hero['cta_text'] = html_entity_decode($hero['cta_text'], ENT_QUOTES | ENT_HTML5, 'UTF-8');
+            $hero['cta_text'] = trim(preg_replace('/\s*(?:→|->|»|›|&rarr;|&#8594;|&#x2192;)+\s*$/iu', '', $hero['cta_text']) ?? $hero['cta_text']);
+            $hero['cta_text'] = trim(preg_replace('/\s*(?:→|->|»|›)+\s*$/u', '', $hero['cta_text']) ?? $hero['cta_text']);
         }
 
         $rawTheme = (string) file_get_contents($htmlPath);

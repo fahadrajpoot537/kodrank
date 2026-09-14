@@ -5573,6 +5573,11 @@ body.page-offpage.page-service .hero .breadcrumb,
 body.page-offpage.page-service .hero .crumbs{
   margin:0 0 12px !important;
 }
+/* On-page: more air between breadcrumb and H1 */
+body.page-onpage.page-service .hero .breadcrumb,
+body.page-onpage.page-service .hero .crumbs{
+  margin:0 0 clamp(28px,3.2vw,40px) !important;
+}
 body.page-onpage.page-service .hero h1,
 body.page-onpage.page-theme-html .hero h1,
 body.page-offpage.page-service .hero h1,
@@ -5580,6 +5585,10 @@ body.page-offpage.page-theme-html .hero h1{
   font-size:clamp(2.35rem,4.6vw,3.4rem) !important;
   line-height:1.08 !important;
   margin:0 0 14px !important;
+}
+body.page-onpage.page-service .hero h1,
+body.page-onpage.page-theme-html .hero h1{
+  margin-top:0 !important;
 }
 body.page-onpage.page-service .hero .lede,
 body.page-onpage.page-service .hero p.sub,
@@ -5598,12 +5607,21 @@ body.page-offpage.page-service .hero .hero-cta{
   margin:0 !important;
   gap:12px;
 }
+/* On-page: space between CTA and stats strip */
+body.page-onpage.page-service .hero .hero-actions,
+body.page-onpage.page-service .hero .hero-cta{
+  margin:0 0 clamp(20px,2.5vw,32px) !important;
+}
 body.page-onpage.page-service .hero .hero-badges,
 body.page-onpage.page-service .hero .hero-trust,
 body.page-offpage.page-service .hero .hero-badges,
 body.page-offpage.page-service .hero .hero-trust{
   margin-top:28px !important;
   padding-top:22px !important;
+}
+body.page-onpage.page-service .hero .hero-badges,
+body.page-onpage.page-service .hero .hero-trust{
+  margin-top:clamp(36px,4vw,56px) !important;
 }
 /* Desktop: breathing room under hero stats strip */
 @media (min-width:901px){
@@ -6751,6 +6769,25 @@ body.page-shopifyseo.page-service #process.sec-ink .proc .num{
 .onpage-theme-page .comp-card li{
   color:#B7CBD2 !important;
 }
+/* On-page #included: orange icon tile + dark stroke on hover */
+body.page-onpage.page-service .onpage-theme-page #included .svc .tile,
+body.page-onpage.page-service .webdev-ref #included .svc .tile{
+  background:rgba(244,122,31,.12) !important;
+  transition:background .22s ease, color .22s ease !important;
+}
+body.page-onpage.page-service .onpage-theme-page #included .svc .tile svg,
+body.page-onpage.page-service .webdev-ref #included .svc .tile svg{
+  stroke:var(--signal,#F47A1F) !important;
+  transition:stroke .22s ease !important;
+}
+body.page-onpage.page-service .onpage-theme-page #included .svc:hover .tile,
+body.page-onpage.page-service .webdev-ref #included .svc:hover .tile{
+  background:var(--signal,#F47A1F) !important;
+}
+body.page-onpage.page-service .onpage-theme-page #included .svc:hover .tile svg,
+body.page-onpage.page-service .webdev-ref #included .svc:hover .tile svg{
+  stroke:var(--signal-ink,#0A1A22) !important;
+}
 .onpage-theme-page .comp-card .tag,
 .onpage-theme-page .comp-card.win .tag{
   color:var(--signal,#F47A1F) !important;
@@ -7310,5 +7347,103 @@ body.page-seo-service .hero p.sub{
     padding-top: 14px !important;
     padding-bottom: 16px !important;
   }
+}
+
+/* On-page hero: clear gap between breadcrumb and heading */
+html body.page-onpage.page-service .hero .breadcrumb,
+html body.page-onpage.page-service .hero .crumbs,
+html body.page-onpage.page-theme-html .hero .breadcrumb{
+  margin: 0 0 clamp(36px, 4vw, 52px) !important;
+  padding-bottom: 0 !important;
+}
+html body.page-onpage.page-service .hero h1,
+html body.page-onpage.page-theme-html .hero h1{
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+html body.page-onpage.page-service .hero .hero-copy > .eyebrow,
+html body.page-onpage.page-service .hero .hero-copy > .hero-eyebrow{
+  margin-top: 0 !important;
+  margin-bottom: clamp(18px, 2.2vw, 28px) !important;
+}
+
+/* On-page hero: clear gap between CTA and trust badges */
+html body.page-onpage.page-service .hero .hero-actions,
+html body.page-onpage.page-service .hero .hero-cta{
+  margin: 0 0 clamp(28px, 3.5vw, 44px) !important;
+}
+html body.page-onpage.page-service .hero .hero-badges,
+html body.page-onpage.page-service .hero .hero-trust,
+html body.page-onpage.page-service .hero .hero-badges.hero-trust{
+  margin-top: clamp(40px, 4.5vw, 64px) !important;
+  padding-top: clamp(26px, 3vw, 36px) !important;
+}
+
+/* Digital Marketing hero: same breadcrumb→heading + CTA→badges gaps as on-page */
+html body.page-dm.page-service .hero .breadcrumb,
+html body.page-dm.page-service .hero .crumbs,
+html body.page-dm.page-theme-html .hero .breadcrumb{
+  margin: 0 0 clamp(36px, 4vw, 52px) !important;
+  padding-bottom: 0 !important;
+}
+html body.page-dm.page-service .hero h1,
+html body.page-dm.page-theme-html .hero h1{
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+html body.page-dm.page-service .hero .hero-copy > .eyebrow,
+html body.page-dm.page-service .hero .hero-copy > .hero-eyebrow{
+  margin-top: 0 !important;
+  margin-bottom: clamp(18px, 2.2vw, 28px) !important;
+}
+html body.page-dm.page-service .hero .hero-actions,
+html body.page-dm.page-service .hero .hero-cta{
+  margin: 0 0 clamp(28px, 3.5vw, 44px) !important;
+}
+html body.page-dm.page-service .hero .hero-badges,
+html body.page-dm.page-service .hero .hero-trust,
+html body.page-dm.page-service .hero .hero-badges.hero-trust{
+  margin-top: clamp(40px, 4.5vw, 64px) !important;
+  padding-top: clamp(26px, 3vw, 36px) !important;
+}
+
+/* Shopify SEO hero: breadcrumb→heading gap (same as on-page / DM) */
+html body.page-shopifyseo.page-service .hero .breadcrumb,
+html body.page-shopifyseo.page-seo-service .hero .breadcrumb,
+html body.page-shopifyseo.page-theme-html .hero .breadcrumb{
+  margin: 0 0 clamp(36px, 4vw, 52px) !important;
+  padding-bottom: 0 !important;
+}
+html body.page-shopifyseo.page-service .hero h1,
+html body.page-shopifyseo.page-seo-service .hero h1{
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+html body.page-shopifyseo.page-service .hero .hero-copy > .eyebrow,
+html body.page-shopifyseo.page-service .hero .hero-copy > .hero-eyebrow,
+html body.page-shopifyseo.page-seo-service .hero .hero-copy > .eyebrow,
+html body.page-shopifyseo.page-seo-service .hero .hero-copy > .hero-eyebrow{
+  margin-top: 0 !important;
+  margin-bottom: clamp(18px, 2.2vw, 28px) !important;
+}
+
+/* White Label SEO hero: breadcrumb→heading gap + flat trail (no DM parent) */
+html body.page-wlseo.page-service .hero .breadcrumb,
+html body.page-wlseo.page-seo-service .hero .breadcrumb,
+html body.page-wlseo.page-theme-html .hero .breadcrumb{
+  margin: 0 0 clamp(36px, 4vw, 52px) !important;
+  padding-bottom: 0 !important;
+}
+html body.page-wlseo.page-service .hero h1,
+html body.page-wlseo.page-seo-service .hero h1{
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+html body.page-wlseo.page-service .hero .hero-copy > .eyebrow,
+html body.page-wlseo.page-service .hero .hero-copy > .hero-eyebrow,
+html body.page-wlseo.page-seo-service .hero .hero-copy > .eyebrow,
+html body.page-wlseo.page-seo-service .hero .hero-copy > .hero-eyebrow{
+  margin-top: 0 !important;
+  margin-bottom: clamp(18px, 2.2vw, 28px) !important;
 }
 
