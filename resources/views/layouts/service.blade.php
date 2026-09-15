@@ -228,8 +228,11 @@
   @yield('content')
 @endif
 @include('home.partials.footer')
-<script src="{{ asset('js/home.js') }}?v={{ @filemtime(public_path('js/home.js')) ?: time() }}" defer></script>
-<script src="{{ asset('js/service-page.js') }}?v={{ @filemtime(public_path('js/service-page.js')) ?: time() }}" defer></script>
+<script src="/js/home.js?v={{ @filemtime(public_path('js/home.js')) ?: time() }}" defer></script>
+<script src="/js/service-page.js?v={{ @filemtime(public_path('js/service-page.js')) ?: time() }}" defer></script>
+@if(($page->slug ?? '') === 'off-page-seo-services')
+<script src="/js/offpage-carousel-dots.js?v={{ @filemtime(public_path('js/offpage-carousel-dots.js')) ?: time() }}" defer></script>
+@endif
 @include('partials.recaptcha-script')
 @stack('scripts')
 </body>

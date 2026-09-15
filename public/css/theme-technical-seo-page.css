@@ -103,10 +103,10 @@ body.page-techseo .techseo-theme-page .thm-carousel-nav-wrap {
     scroll-snap-type: none !important;
   }
 
-  /* Pain + services + testimonials — 1 card per row swipe carousel */
-  body.page-techseo .techseo-theme-page .pain-grid[data-thm-carousel],
-  body.page-techseo .techseo-theme-page .why-mobile-carousel > .pain-grid,
-  body.page-techseo .techseo-theme-page .pain-grid.thm-mobile-carousel,
+  /* Services + testimonials — 1 card per row swipe carousel (pain uses swipe-up stack) */
+  body.page-techseo .techseo-theme-page .pain-grid[data-thm-carousel]:not([data-thm-stack]):not(.page-svc-stack),
+  body.page-techseo .techseo-theme-page .why-mobile-carousel > .pain-grid:not([data-thm-stack]):not(.page-svc-stack),
+  body.page-techseo .techseo-theme-page .pain-grid.thm-mobile-carousel:not([data-thm-stack]):not(.page-svc-stack),
   body.page-techseo .techseo-theme-page #services .svc-grid[data-thm-carousel],
   body.page-techseo .techseo-theme-page #services .why-mobile-carousel > .svc-grid,
   body.page-techseo .techseo-theme-page #services .svc-grid.thm-mobile-carousel,
@@ -132,8 +132,8 @@ body.page-techseo .techseo-theme-page .thm-carousel-nav-wrap {
     touch-action: pan-x !important;
   }
 
-  body.page-techseo .techseo-theme-page .pain-grid[data-thm-carousel]::-webkit-scrollbar,
-  body.page-techseo .techseo-theme-page .pain-grid.thm-mobile-carousel::-webkit-scrollbar,
+  body.page-techseo .techseo-theme-page .pain-grid[data-thm-carousel]:not([data-thm-stack])::-webkit-scrollbar,
+  body.page-techseo .techseo-theme-page .pain-grid.thm-mobile-carousel:not([data-thm-stack])::-webkit-scrollbar,
   body.page-techseo .techseo-theme-page #services .svc-grid[data-thm-carousel]::-webkit-scrollbar,
   body.page-techseo .techseo-theme-page #services .svc-grid.thm-mobile-carousel::-webkit-scrollbar,
   body.page-techseo .techseo-theme-page .testi-grid[data-thm-carousel]::-webkit-scrollbar,
@@ -141,8 +141,8 @@ body.page-techseo .techseo-theme-page .thm-carousel-nav-wrap {
     display: none !important;
   }
 
-  body.page-techseo .techseo-theme-page .pain-grid[data-thm-carousel] > .pain-card,
-  body.page-techseo .techseo-theme-page .pain-grid.thm-mobile-carousel > .pain-card,
+  body.page-techseo .techseo-theme-page .pain-grid[data-thm-carousel]:not([data-thm-stack]) > .pain-card,
+  body.page-techseo .techseo-theme-page .pain-grid.thm-mobile-carousel:not([data-thm-stack]) > .pain-card,
   body.page-techseo .techseo-theme-page #services .svc-grid[data-thm-carousel] > .svc-card,
   body.page-techseo .techseo-theme-page #services .svc-grid.thm-mobile-carousel > .svc-card,
   body.page-techseo .techseo-theme-page .testi-grid[data-thm-carousel] > .testi-card,
@@ -177,6 +177,68 @@ body.page-techseo .techseo-theme-page .thm-carousel-nav-wrap {
   /* Dark section dots — inactive slightly brighter */
   body.page-techseo .techseo-theme-page .sec-ink .thm-carousel-dots .testi-dot:not(.is-active) {
     background: rgba(255, 255, 255, 0.35);
+  }
+
+  /* Pain cards — swipe-up sticky stack */
+  body.page-techseo .techseo-theme-page section.sec-paper:has(.pain-grid[data-thm-stack]),
+  body.page-techseo .techseo-theme-page section.sec-paper:has(.pain-grid.page-svc-stack),
+  body.page-techseo .techseo-theme-page section.sec-paper.has-page-svc-stack {
+    overflow-x: clip !important;
+    overflow-y: visible !important;
+  }
+  body.page-techseo .techseo-theme-page .pain-grid.page-svc-stack,
+  body.page-techseo .techseo-theme-page .pain-grid[data-thm-stack] {
+    display: block !important;
+    grid-template-columns: none !important;
+    gap: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: visible !important;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    flex-direction: unset !important;
+    flex-wrap: unset !important;
+    scroll-snap-type: none !important;
+    touch-action: auto !important;
+  }
+  body.page-techseo .techseo-theme-page .pain-grid.page-svc-stack > .svc-stack-item,
+  body.page-techseo .techseo-theme-page .pain-grid[data-thm-stack] > .svc-stack-item {
+    position: sticky !important;
+    top: calc(var(--svc-stack-nav, 68px) + (var(--index0, 0) * var(--svc-stack-peek, 14px))) !important;
+    z-index: calc(1 + var(--index0, 0)) !important;
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    margin: 0 0 var(--svc-stack-gap, 18px) !important;
+    padding: 0 !important;
+    background: transparent !important;
+    border: 0 !important;
+    box-shadow: none !important;
+    transform: none !important;
+  }
+  body.page-techseo .techseo-theme-page .pain-grid.page-svc-stack > .svc-stack-item:last-child,
+  body.page-techseo .techseo-theme-page .pain-grid[data-thm-stack] > .svc-stack-item:last-child {
+    margin-bottom: 0 !important;
+  }
+  body.page-techseo .techseo-theme-page .pain-grid.page-svc-stack .pain-card,
+  body.page-techseo .techseo-theme-page .pain-grid.page-svc-stack .svc-stack-item > .pain-card,
+  body.page-techseo .techseo-theme-page .pain-grid[data-thm-stack] .pain-card,
+  body.page-techseo .techseo-theme-page .pain-grid[data-thm-stack] .svc-stack-item > .pain-card {
+    display: flex !important;
+    flex-direction: column !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    height: auto !important;
+    min-height: 160px !important;
+    margin: 0 !important;
+    box-sizing: border-box !important;
+    opacity: 1 !important;
+    transform: none !important;
   }
 }
 

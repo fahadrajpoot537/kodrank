@@ -530,6 +530,20 @@
         );
       }
 
+      // Technical SEO: pain-grid cards → swipe-up sticky stack (not horizontal carousel)
+      if (document.body.classList.contains('page-techseo')) {
+        Array.prototype.forEach.call(
+          root.querySelectorAll('.pain-grid, .techseo-theme-page .pain-grid'),
+          (grid) => {
+            if (seenStack.has(grid) || skipCommon(grid)) return;
+            seenStack.add(grid);
+            grid.setAttribute('data-thm-stack', '1');
+            grid.removeAttribute('data-thm-carousel');
+            grid.classList.remove('thm-mobile-carousel');
+          }
+        );
+      }
+
       const markCarousel = (track) => {
         if (seenCar.has(track) || skipCommon(track)) return;
         if (track.hasAttribute('data-thm-stack')) return;
@@ -635,6 +649,34 @@
           }
           shell.remove();
         }
+      );
+    }
+    if (document.body.classList.contains('page-techseo')) {
+      Array.prototype.forEach.call(
+        document.querySelectorAll(
+          '.techseo-theme-page .why-mobile-carousel:has(> .pain-grid), .techseo-theme-page .pain-grid.thm-mobile-carousel'
+        ),
+        (el) => {
+          if (el.classList.contains('pain-grid')) {
+            el.classList.remove('thm-mobile-carousel');
+            el.removeAttribute('data-thm-carousel');
+            el.setAttribute('data-thm-stack', '1');
+            return;
+          }
+          const parent = el.parentElement;
+          if (!parent) return;
+          while (el.firstChild) {
+            parent.insertBefore(el.firstChild, el);
+          }
+          el.remove();
+        }
+      );
+      // Drop leftover carousel chrome under pain strips
+      Array.prototype.forEach.call(
+        document.querySelectorAll(
+          '.techseo-theme-page .sec-paper .thm-carousel-dots, .techseo-theme-page .sec-paper .thm-carousel-nav-wrap'
+        ),
+        (el) => el.remove()
       );
     }
 
@@ -1701,7 +1743,8 @@
         // DM hub #why-us / on-page #pain use swipe-up stack — never wrap in horizontal carousel shell
         if (
           (document.body.classList.contains('page-dm') && grid.closest('#why-us')) ||
-          (document.body.classList.contains('page-onpage') && grid.closest('#pain'))
+          (document.body.classList.contains('page-onpage') && grid.closest('#pain')) ||
+          (document.body.classList.contains('page-techseo') && grid.classList.contains('pain-grid'))
         ) {
           return;
         }
@@ -1816,6 +1859,9 @@
       if (document.body.classList.contains('page-onpage') && track.closest('#pain')) {
         return;
       }
+      if (document.body.classList.contains('page-techseo') && track.classList.contains('pain-grid')) {
+        return;
+      }
       if (
         track.closest('.testi-slider') ||
         track.classList.contains('testi-track') ||
@@ -1897,8 +1943,9 @@
         scroller.parentElement;
       if (host) {
         const anchor = shell || scroller;
-        host.insertBefore(navWrap, anchor.nextSibling);
-        host.insertBefore(dotsWrap, navWrap.nextSibling);
+        // Dots immediately under the carousel (nav stays hidden after)
+        host.insertBefore(dotsWrap, anchor.nextSibling);
+        host.insertBefore(navWrap, dotsWrap.nextSibling);
       }
 
       const syncNav = () => {
@@ -1909,9 +1956,18 @@
 
       const syncDots = () => {
         if (!dotsWrap) return;
-        const show = isMobile(track);
-        dotsWrap.hidden = !show;
-        dotsWrap.style.display = show ? 'flex' : 'none';
+        let show = isMobile(track);
+        // If CSS already made this a horizontal strip, keep dots visible
+        if (!show && track.scrollWidth > track.clientWidth + 8) show = true;
+        if (!show && track.classList.contains('thm-mobile-carousel')) show = true;
+        if (show) {
+          dotsWrap.hidden = false;
+          dotsWrap.removeAttribute('hidden');
+          dotsWrap.style.setProperty('display', 'flex', 'important');
+        } else {
+          dotsWrap.hidden = true;
+          dotsWrap.style.display = 'none';
+        }
         if (!show) return;
         dotsWrap.querySelectorAll('.testi-dot').forEach((d, i) => {
           const active = i === index;
@@ -2070,5 +2126,169 @@
       shell.addEventListener('touchstart', pause, { passive: true });
       shell.addEventListener('touchend', resume, { passive: true });
     });
+  })();
+
+  // ─── Off-page SEO: guarantee carousel dots under #services + why/feat strips ───
+  (function initOffpageCarouselDots() {
+    if (!document.body.classList.contains('page-offpage')) return;
+
+    const MQ = '(max-width: 980px)';
+    const isMobile = () => {
+      try {
+        return window.matchMedia(MQ).matches;
+      } catch (e) {
+        return (window.innerWidth || 0) <= 980;
+      }
+    };
+
+    const ensureShell = (grid) => {
+      if (!grid || !grid.parentElement) return null;
+      if (grid.parentElement.classList.contains('why-mobile-carousel')) {
+        return grid.parentElement;
+      }
+      const shell = document.createElement('div');
+      shell.className = 'why-mobile-carousel';
+      grid.parentElement.insertBefore(shell, grid);
+      shell.appendChild(grid);
+      return shell;
+    };
+
+    const cardSelector = (track) => {
+      if (track.classList.contains('grid-cards')) return ':scope > .svc, :scope > article';
+      if (track.classList.contains('why-grid')) return ':scope > .feat';
+      return ':scope > *';
+    };
+
+    const bindTrack = (track) => {
+      if (!track || track.dataset.offpageDotsReady === '1') return;
+      const cards = Array.prototype.slice.call(track.querySelectorAll(cardSelector(track)));
+      if (cards.length < 2) return;
+
+      track.dataset.offpageDotsReady = '1';
+      track.setAttribute('data-thm-carousel', '1');
+      const shell = ensureShell(track);
+      const host = (shell && shell.closest('.wrap')) || (shell && shell.parentElement) || track.parentElement;
+      if (!host) return;
+
+      // Reuse existing dots if generic carousel already inserted them
+      let dots =
+        (shell && shell.parentElement && shell.parentElement.querySelector(':scope > .testi-dots.thm-carousel-dots[data-offpage-dots]')) ||
+        (host.querySelector('.testi-dots.thm-carousel-dots[data-offpage-dots]'));
+      // Prefer dots that sit right after this shell
+      if (shell && shell.nextElementSibling && shell.nextElementSibling.classList.contains('thm-carousel-dots')) {
+        dots = shell.nextElementSibling;
+      } else if (
+        shell &&
+        shell.nextElementSibling &&
+        shell.nextElementSibling.classList.contains('thm-carousel-nav-wrap') &&
+        shell.nextElementSibling.nextElementSibling &&
+        shell.nextElementSibling.nextElementSibling.classList.contains('thm-carousel-dots')
+      ) {
+        dots = shell.nextElementSibling.nextElementSibling;
+      }
+
+      if (!dots) {
+        dots = document.createElement('div');
+        dots.className = 'testi-dots thm-carousel-dots';
+        dots.setAttribute('data-thm-carousel-dots', '');
+        dots.setAttribute('data-offpage-dots', '1');
+        dots.setAttribute('role', 'tablist');
+        dots.setAttribute('aria-label', 'Carousel slides');
+        cards.forEach((_, i) => {
+          const btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = 'testi-dot' + (i === 0 ? ' is-active' : '');
+          btn.setAttribute('aria-label', 'Go to slide ' + (i + 1));
+          btn.setAttribute('aria-selected', i === 0 ? 'true' : 'false');
+          btn.setAttribute('role', 'tab');
+          dots.appendChild(btn);
+        });
+        if (shell) {
+          host.insertBefore(dots, shell.nextSibling);
+        } else {
+          host.appendChild(dots);
+        }
+      } else {
+        dots.setAttribute('data-offpage-dots', '1');
+      }
+
+      let index = 0;
+      const cardLeft = (card) => {
+        const sRect = track.getBoundingClientRect();
+        const cRect = card.getBoundingClientRect();
+        return cRect.left - sRect.left + track.scrollLeft;
+      };
+      const syncDots = () => {
+        const show = isMobile() || track.scrollWidth > track.clientWidth + 8;
+        dots.hidden = false;
+        dots.removeAttribute('hidden');
+        if (show) {
+          dots.style.setProperty('display', 'flex', 'important');
+          dots.style.setProperty('visibility', 'visible', 'important');
+          dots.style.setProperty('opacity', '1', 'important');
+          track.classList.add('thm-mobile-carousel');
+        } else {
+          dots.style.setProperty('display', 'none', 'important');
+          track.classList.remove('thm-mobile-carousel');
+        }
+        dots.querySelectorAll('.testi-dot').forEach((d, i) => {
+          const active = i === index;
+          d.classList.toggle('is-active', active);
+          d.setAttribute('aria-selected', active ? 'true' : 'false');
+        });
+      };
+      const goTo = (i) => {
+        const card = cards[i];
+        if (!card) return;
+        index = i;
+        track.scrollTo({ left: cardLeft(card), behavior: 'smooth' });
+        syncDots();
+      };
+      dots.querySelectorAll('.testi-dot').forEach((btn, i) => {
+        if (btn.dataset.offpageBound === '1') return;
+        btn.dataset.offpageBound = '1';
+        btn.addEventListener('click', (e) => {
+          e.preventDefault();
+          goTo(i);
+        });
+      });
+      track.addEventListener(
+        'scroll',
+        () => {
+          if (!isMobile() && track.scrollWidth <= track.clientWidth + 8) return;
+          const left = track.scrollLeft;
+          let best = 0;
+          let bestDist = Infinity;
+          cards.forEach((card, i) => {
+            const dist = Math.abs(cardLeft(card) - left);
+            if (dist < bestDist) {
+              bestDist = dist;
+              best = i;
+            }
+          });
+          index = best;
+          syncDots();
+        },
+        { passive: true }
+      );
+
+      syncDots();
+      window.addEventListener('resize', () => setTimeout(syncDots, 100));
+      requestAnimationFrame(syncDots);
+      setTimeout(syncDots, 200);
+      setTimeout(syncDots, 600);
+    };
+
+    const run = () => {
+      document
+        .querySelectorAll(
+          '.offpage-theme-page #services .grid-cards, .offpage-theme-page .sec-ink .why-grid, .offpage-theme-page .why-mobile-carousel > .grid-cards, .offpage-theme-page .why-mobile-carousel > .why-grid'
+        )
+        .forEach(bindTrack);
+    };
+
+    run();
+    setTimeout(run, 300);
+    window.addEventListener('load', () => setTimeout(run, 100));
   })();
 })();
