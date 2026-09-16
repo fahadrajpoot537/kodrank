@@ -111,8 +111,8 @@
 .offpage-theme-page .hero h1 .o{color:var(--signal)}
 .offpage-theme-page .hero p.sub{font-size:clamp(1.05rem,1.7vw,1.28rem);color:#C6D7DD;max-width:56ch;margin-bottom:32px}
 .offpage-theme-page .hero-cta{display:flex;flex-wrap:wrap;gap:14px;align-items:center}
-.offpage-theme-page .hero-trust{display:flex;flex-wrap:wrap;gap:10px 22px;margin-top:30px;
-  padding-top:26px;border-top:1px solid var(--line-dark)}
+.offpage-theme-page .hero-trust{display:flex;flex-wrap:wrap;gap:10px 22px;margin-top:24px;
+  padding-top:4px;border-top:1px solid var(--line-dark);margin-bottom:clamp(32px,3.5vw,44px)}
 .offpage-theme-page .hero-trust span{display:inline-flex;align-items:center;gap:9px;font-size:.86rem;color:#9FB6BE;font-weight:500}
 .offpage-theme-page .hero-trust svg{width:17px;height:17px;color:var(--signal);flex:0 0 auto}
 .offpage-theme-page .statstrip{border-top:1px solid var(--line-dark);background:rgba(10,26,34,.55);position:relative;z-index:1}

@@ -544,13 +544,43 @@
         );
       }
 
+      // AEO: pain-grid cards → swipe-up sticky stack (not horizontal carousel)
+      if (isAeo) {
+        Array.prototype.forEach.call(
+          root.querySelectorAll('.pain-grid, .aeo-theme-page .pain-grid'),
+          (grid) => {
+            if (seenStack.has(grid) || skipCommon(grid)) return;
+            seenStack.add(grid);
+            grid.setAttribute('data-thm-stack', '1');
+            grid.removeAttribute('data-thm-carousel');
+            grid.classList.remove('thm-mobile-carousel');
+          }
+        );
+      }
+
+      // GEO: #problem pain-grid → swipe-up sticky stack (not horizontal carousel)
+      if (document.body.classList.contains('page-geo')) {
+        Array.prototype.forEach.call(
+          root.querySelectorAll('#problem .pain-grid, .geo-theme-page .pain-grid, .geo-theme-page #problem .pain-grid'),
+          (grid) => {
+            if (seenStack.has(grid) || skipCommon(grid)) return;
+            seenStack.add(grid);
+            grid.setAttribute('data-thm-stack', '1');
+            grid.removeAttribute('data-thm-carousel');
+            grid.classList.remove('thm-mobile-carousel');
+          }
+        );
+      }
+
       const markCarousel = (track) => {
         if (seenCar.has(track) || skipCommon(track)) return;
         if (track.hasAttribute('data-thm-stack')) return;
         if (isStatsOnly(track)) return;
         if (isLayoutComposite(track)) return;
-        // Monthly pain cards: sticky stack (not carousel)
+        // Monthly / AEO / GEO pain cards: sticky stack (not carousel)
         if (isMonthly && track.classList.contains('pain-grid')) return;
+        if (isAeo && track.classList.contains('pain-grid')) return;
+        if (document.body.classList.contains('page-geo') && track.classList.contains('pain-grid')) return;
         seenCar.add(track);
         track.setAttribute('data-thm-carousel', '1');
       };
@@ -675,6 +705,60 @@
       Array.prototype.forEach.call(
         document.querySelectorAll(
           '.techseo-theme-page .sec-paper .thm-carousel-dots, .techseo-theme-page .sec-paper .thm-carousel-nav-wrap'
+        ),
+        (el) => el.remove()
+      );
+    }
+    if (document.body.classList.contains('page-aeo')) {
+      Array.prototype.forEach.call(
+        document.querySelectorAll(
+          '.aeo-theme-page .why-mobile-carousel:has(> .pain-grid), .aeo-theme-page .pain-grid.thm-mobile-carousel'
+        ),
+        (el) => {
+          if (el.classList.contains('pain-grid')) {
+            el.classList.remove('thm-mobile-carousel');
+            el.removeAttribute('data-thm-carousel');
+            el.setAttribute('data-thm-stack', '1');
+            return;
+          }
+          const parent = el.parentElement;
+          if (!parent) return;
+          while (el.firstChild) {
+            parent.insertBefore(el.firstChild, el);
+          }
+          el.remove();
+        }
+      );
+      Array.prototype.forEach.call(
+        document.querySelectorAll(
+          '.aeo-theme-page .sec-paper .thm-carousel-dots, .aeo-theme-page .sec-paper .thm-carousel-nav-wrap'
+        ),
+        (el) => el.remove()
+      );
+    }
+    if (document.body.classList.contains('page-geo')) {
+      Array.prototype.forEach.call(
+        document.querySelectorAll(
+          '.geo-theme-page .why-mobile-carousel:has(> .pain-grid), .geo-theme-page #problem .pain-grid.thm-mobile-carousel, .geo-theme-page .pain-grid.thm-mobile-carousel'
+        ),
+        (el) => {
+          if (el.classList.contains('pain-grid')) {
+            el.classList.remove('thm-mobile-carousel');
+            el.removeAttribute('data-thm-carousel');
+            el.setAttribute('data-thm-stack', '1');
+            return;
+          }
+          const parent = el.parentElement;
+          if (!parent) return;
+          while (el.firstChild) {
+            parent.insertBefore(el.firstChild, el);
+          }
+          el.remove();
+        }
+      );
+      Array.prototype.forEach.call(
+        document.querySelectorAll(
+          '.geo-theme-page #problem .thm-carousel-dots, .geo-theme-page #problem .thm-carousel-nav-wrap, .geo-theme-page section#problem .thm-carousel-dots'
         ),
         (el) => el.remove()
       );
@@ -1744,7 +1828,9 @@
         if (
           (document.body.classList.contains('page-dm') && grid.closest('#why-us')) ||
           (document.body.classList.contains('page-onpage') && grid.closest('#pain')) ||
-          (document.body.classList.contains('page-techseo') && grid.classList.contains('pain-grid'))
+          (document.body.classList.contains('page-techseo') && grid.classList.contains('pain-grid')) ||
+          (document.body.classList.contains('page-aeo') && grid.classList.contains('pain-grid')) ||
+          (document.body.classList.contains('page-geo') && grid.classList.contains('pain-grid'))
         ) {
           return;
         }
@@ -1862,6 +1948,12 @@
       if (document.body.classList.contains('page-techseo') && track.classList.contains('pain-grid')) {
         return;
       }
+      if (document.body.classList.contains('page-aeo') && track.classList.contains('pain-grid')) {
+        return;
+      }
+      if (document.body.classList.contains('page-geo') && track.classList.contains('pain-grid')) {
+        return;
+      }
       if (
         track.closest('.testi-slider') ||
         track.classList.contains('testi-track') ||
@@ -1942,10 +2034,23 @@
         (shell && shell.parentElement) ||
         scroller.parentElement;
       if (host) {
-        const anchor = shell || scroller;
-        // Dots immediately under the carousel (nav stays hidden after)
-        host.insertBefore(dotsWrap, anchor.nextSibling);
-        host.insertBefore(navWrap, dotsWrap.nextSibling);
+        let anchor = shell || scroller;
+        // Nested shells (e.g. .wrap > .carousel > .why-mobile-carousel > #svcTrack)
+        // must place dots after the direct child of .wrap, not after a deep descendant
+        if (anchor && anchor.parentElement !== host) {
+          let n = anchor.closest('.carousel') || anchor.parentElement;
+          while (n && n.parentElement && n.parentElement !== host) {
+            n = n.parentElement;
+          }
+          if (n && n.parentElement === host) anchor = n;
+        }
+        try {
+          host.insertBefore(dotsWrap, anchor.nextSibling);
+          host.insertBefore(navWrap, dotsWrap.nextSibling);
+        } catch (e) {
+          host.appendChild(dotsWrap);
+          host.appendChild(navWrap);
+        }
       }
 
       const syncNav = () => {

@@ -21,7 +21,26 @@ body.page-geo .hero-eyebrow {
 
 body.page-geo .hero-badges.hero-trust,
 body.page-geo .hero-trust.hero-badges {
-  margin-top: 1.25rem;
+  margin-top: clamp(40px, 4.5vw, 64px) !important;
+  margin-bottom: clamp(18px, 2.2vw, 28px) !important;
+  padding-top: clamp(26px, 3vw, 36px) !important;
+}
+
+/* Match on-page: breadcrumb→H1 + CTA→badges gaps */
+body.page-geo.page-service .hero .breadcrumb,
+body.page-geo.page-service .hero .crumbs,
+body.page-geo.page-theme-html .hero .breadcrumb {
+  margin: 0 0 clamp(36px, 4vw, 52px) !important;
+  padding-bottom: 0 !important;
+}
+body.page-geo.page-service .hero h1,
+body.page-geo.page-theme-html .hero h1 {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+body.page-geo.page-service .hero .hero-actions,
+body.page-geo.page-service .hero .hero-cta {
+  margin: 0 0 clamp(28px, 3.5vw, 44px) !important;
 }
 
 /* Hero headline left-aligned (beats home.css 19ch / any center defaults) */
@@ -120,7 +139,12 @@ body.page-geo .geo-theme-page .thm-carousel-nav-wrap {
     overflow-y: visible !important;
   }
 
-  body.page-geo .geo-theme-page .why-mobile-carousel:has(> .pain-grid),
+  body.page-geo .geo-theme-page .why-mobile-carousel:has(> .pain-grid[data-thm-stack]),
+  body.page-geo .geo-theme-page .why-mobile-carousel:has(> .pain-grid.page-svc-stack) {
+    display: contents !important;
+  }
+
+  body.page-geo .geo-theme-page .why-mobile-carousel:has(> .pain-grid:not([data-thm-stack]):not(.page-svc-stack)),
   body.page-geo .geo-theme-page .why-mobile-carousel:has(> .serv-grid),
   body.page-geo .geo-theme-page .why-mobile-carousel:has(> .test-grid) {
     display: block !important;
@@ -132,17 +156,13 @@ body.page-geo .geo-theme-page .thm-carousel-nav-wrap {
     scroll-snap-type: none !important;
   }
 
-  /* Beat webdev-ref sticky-stack — 1 card per swipe */
-  html body.page-geo.page-service .geo-theme-page.webdev-ref .pain-grid[data-thm-carousel],
-  html body.page-geo.page-service .geo-theme-page.webdev-ref .pain-grid.thm-mobile-carousel,
-  html body.page-geo.page-service .geo-theme-page #problem .pain-grid,
+  /* Services + testimonials — 1 card per swipe carousel (pain uses swipe-up stack) */
   html body.page-geo.page-service .geo-theme-page #services .serv-grid[data-thm-carousel],
   html body.page-geo.page-service .geo-theme-page #services .serv-grid.thm-mobile-carousel,
-  html body.page-geo.page-service .geo-theme-page #services .serv-grid,
+  html body.page-geo.page-service .geo-theme-page #services .serv-grid:not([data-thm-stack]):not(.page-svc-stack),
   html body.page-geo.page-service .geo-theme-page .test-grid[data-thm-carousel],
   html body.page-geo.page-service .geo-theme-page .test-grid.thm-mobile-carousel,
-  html body.page-geo.page-service .geo-theme-page .test-grid,
-  html body.page-geo.page-service .geo-theme-page .why-mobile-carousel > .pain-grid,
+  html body.page-geo.page-service .geo-theme-page .test-grid:not([data-thm-stack]):not(.page-svc-stack),
   html body.page-geo.page-service .geo-theme-page .why-mobile-carousel > .serv-grid,
   html body.page-geo.page-service .geo-theme-page .why-mobile-carousel > .test-grid {
     display: flex !important;
@@ -168,15 +188,11 @@ body.page-geo .geo-theme-page .thm-carousel-nav-wrap {
     contain: none !important;
   }
 
-  html body.page-geo.page-service .geo-theme-page .pain-grid::-webkit-scrollbar,
   html body.page-geo.page-service .geo-theme-page .serv-grid::-webkit-scrollbar,
   html body.page-geo.page-service .geo-theme-page .test-grid::-webkit-scrollbar {
     display: none !important;
   }
 
-  html body.page-geo.page-service .geo-theme-page .pain-grid > .pain-card,
-  html body.page-geo.page-service .geo-theme-page .pain-grid > .svc-stack-item,
-  html body.page-geo.page-service .geo-theme-page .pain-grid > .svc-slide,
   html body.page-geo.page-service .geo-theme-page .serv-grid > .serv-card,
   html body.page-geo.page-service .geo-theme-page .serv-grid > .svc-stack-item,
   html body.page-geo.page-service .geo-theme-page .serv-grid > .svc-slide,
@@ -202,7 +218,6 @@ body.page-geo .geo-theme-page .thm-carousel-nav-wrap {
 
   html body.page-geo.page-service .geo-theme-page .serv-grid > .svc-stack-item > .serv-card,
   html body.page-geo.page-service .geo-theme-page .serv-grid > .svc-slide > .serv-card,
-  html body.page-geo.page-service .geo-theme-page .pain-grid > .svc-stack-item > .pain-card,
   html body.page-geo.page-service .geo-theme-page .test-grid > .svc-stack-item > .test-card {
     width: 100% !important;
     max-width: 100% !important;
@@ -210,6 +225,74 @@ body.page-geo .geo-theme-page .thm-carousel-nav-wrap {
     transform: none !important;
     opacity: 1 !important;
     box-sizing: border-box !important;
+  }
+
+  /* Pain cards — swipe-up sticky stack */
+  body.page-geo .geo-theme-page section#problem:has(.pain-grid[data-thm-stack]),
+  body.page-geo .geo-theme-page section#problem:has(.pain-grid.page-svc-stack),
+  body.page-geo .geo-theme-page section#problem.has-page-svc-stack {
+    overflow-x: clip !important;
+    overflow-y: visible !important;
+  }
+  body.page-geo .geo-theme-page .pain-grid.page-svc-stack,
+  body.page-geo .geo-theme-page .pain-grid[data-thm-stack],
+  body.page-geo .geo-theme-page #problem .pain-grid.page-svc-stack,
+  body.page-geo .geo-theme-page #problem .pain-grid[data-thm-stack] {
+    display: block !important;
+    grid-template-columns: none !important;
+    gap: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: visible !important;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    flex-direction: unset !important;
+    flex-wrap: unset !important;
+    scroll-snap-type: none !important;
+    touch-action: auto !important;
+  }
+  body.page-geo .geo-theme-page .pain-grid.page-svc-stack > .svc-stack-item,
+  body.page-geo .geo-theme-page .pain-grid[data-thm-stack] > .svc-stack-item {
+    position: sticky !important;
+    top: calc(var(--svc-stack-nav, 68px) + (var(--index0, 0) * var(--svc-stack-peek, 14px))) !important;
+    z-index: calc(1 + var(--index0, 0)) !important;
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    margin: 0 0 var(--svc-stack-gap, 18px) !important;
+    padding: 0 !important;
+    background: transparent !important;
+    border: 0 !important;
+    box-shadow: none !important;
+    transform: none !important;
+  }
+  body.page-geo .geo-theme-page .pain-grid.page-svc-stack > .svc-stack-item:last-child,
+  body.page-geo .geo-theme-page .pain-grid[data-thm-stack] > .svc-stack-item:last-child {
+    margin-bottom: 0 !important;
+  }
+  body.page-geo .geo-theme-page .pain-grid.page-svc-stack .pain-card,
+  body.page-geo .geo-theme-page .pain-grid.page-svc-stack .svc-stack-item > .pain-card,
+  body.page-geo .geo-theme-page .pain-grid[data-thm-stack] .pain-card,
+  body.page-geo .geo-theme-page .pain-grid[data-thm-stack] .svc-stack-item > .pain-card {
+    display: flex !important;
+    flex-direction: column !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    height: auto !important;
+    min-height: 160px !important;
+    margin: 0 !important;
+    box-sizing: border-box !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  body.page-geo .geo-theme-page #problem .thm-carousel-dots,
+  body.page-geo .geo-theme-page section#problem > .wrap > .testi-dots {
+    display: none !important;
   }
 
   /* Readable card faces on mobile */
