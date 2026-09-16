@@ -7689,6 +7689,7 @@ html body.page-aeo.page-service .hero .hero-badges,
 html body.page-aeo.page-service .hero .hero-trust,
 html body.page-aeo.page-service .hero .hero-badges.hero-trust{
   margin-top: clamp(40px, 4.5vw, 64px) !important;
+  margin-bottom: clamp(18px, 2.2vw, 28px) !important;
   padding-top: clamp(26px, 3vw, 36px) !important;
 }
 
