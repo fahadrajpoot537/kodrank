@@ -6113,7 +6113,7 @@ body.page-wlseo.page-seo-service .hero .hero-copy{
 /* Shopify SEO: space under CTA + proof chip */
 body.page-shopifyseo.page-service .hero .hero-actions,
 body.page-shopifyseo.page-seo-service .hero .hero-actions{
-  margin:0 0 clamp(28px,3.5vw,48px) !important;
+  margin:0 0 clamp(12px,1.5vw,20px) !important;
 }
 body.page-shopifyseo.page-service .hero,
 body.page-shopifyseo.page-seo-service .hero{
@@ -6230,12 +6230,12 @@ body.page-shopifyseo.page-seo-service .hero .hero-trust-checks svg{
 body.page-shopifyseo.page-service .hero .hero-actions,
 body.page-shopifyseo.page-seo-service .hero .hero-actions{
   display:flex !important;
-  flex-direction:row !important;
-  flex-wrap:wrap !important;
-  align-items:center !important;
-  gap:14px 18px !important;
+  flex-direction:column !important;
+  flex-wrap:nowrap !important;
+  align-items:flex-start !important;
+  gap:0 !important;
   margin-top:28px !important;
-  margin-bottom:clamp(28px,3.5vw,48px) !important;
+  margin-bottom:clamp(12px,1.5vw,20px) !important;
 }
 body.page-shopifyseo.page-service .hero .proof-chip,
 body.page-shopifyseo.page-seo-service .hero .proof-chip{
@@ -6245,6 +6245,7 @@ body.page-shopifyseo.page-seo-service .hero .proof-chip{
   align-items:center !important;
   justify-content:flex-start !important;
   gap:10px !important;
+  margin-top:0 !important;
   padding:10px 16px !important;
   border:1px solid rgba(244,122,31,.16) !important;
   border-radius:999px !important;
@@ -7433,6 +7434,32 @@ html body.page-shopifyseo.page-seo-service .hero .hero-copy > .eyebrow,
 html body.page-shopifyseo.page-seo-service .hero .hero-copy > .hero-eyebrow{
   margin-top: 0 !important;
   margin-bottom: clamp(18px, 2.2vw, 28px) !important;
+}
+
+/* Shopify SEO: space between CTA button and proof chip; less space under the block */
+html body.page-shopifyseo.page-service .hero .hero-actions,
+html body.page-shopifyseo.page-seo-service .hero .hero-actions,
+html body.page-shopifyseo.page-service section#top .hero-actions{
+  display: flex !important;
+  flex-direction: column !important;
+  flex-wrap: nowrap !important;
+  align-items: flex-start !important;
+  gap: 0 !important;
+  row-gap: 0 !important;
+  column-gap: 0 !important;
+  margin-bottom: clamp(12px, 1.5vw, 20px) !important;
+}
+html body.page-shopifyseo.page-service .hero .hero-actions > a.btn.btn-primary,
+html body.page-shopifyseo.page-service .hero .hero-actions > .btn,
+html body.page-shopifyseo.page-seo-service .hero .hero-actions > .btn{
+  margin: 0 !important;
+}
+html body.page-shopifyseo.page-service .hero .hero-actions > a.btn.btn-primary + .proof-chip,
+html body.page-shopifyseo.page-service .hero .hero-actions > .btn + .proof-chip,
+html body.page-shopifyseo.page-seo-service .hero .hero-actions > .btn + .proof-chip,
+html body.page-shopifyseo.page-service section#top .hero-actions > a.btn + .proof-chip{
+  margin-top: 21px !important;
+  margin-bottom: 0 !important;
 }
 
 /* White Label SEO hero: breadcrumb→heading gap + flat trail (no DM parent) */

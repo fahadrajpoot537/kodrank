@@ -147,6 +147,30 @@ html body.page-shopifyseo.page-service .hero-trust.hero-badges {
   margin-top: 1.25rem;
 }
 
+/* CTA button → proof chip: force ~21px gap (btn margin beats flex gap overrides) */
+html body.page-shopifyseo.page-service section#top .hero-actions,
+html body.page-shopifyseo.page-service .hero .hero-actions,
+html body.page-shopifyseo.page-seo-service .hero .hero-actions {
+  display: flex !important;
+  flex-direction: column !important;
+  flex-wrap: nowrap !important;
+  align-items: flex-start !important;
+  gap: 0 !important;
+  row-gap: 0 !important;
+}
+html body.page-shopifyseo.page-service section#top .hero-actions > a.btn.btn-primary,
+html body.page-shopifyseo.page-service .hero .hero-actions > a.btn,
+html body.page-shopifyseo.page-service .hero .hero-actions > .btn.btn-primary {
+  display: inline-flex !important;
+  margin: 0 0 22px 0 !important;
+}
+html body.page-shopifyseo.page-service section#top .hero-actions > .proof-chip,
+html body.page-shopifyseo.page-service .hero .hero-actions > .proof-chip,
+html body.page-shopifyseo.page-service .hero .proof-chip {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+
 html body.page-shopifyseo.page-service #contact .contact-side .compare-list .mark.v {
   color: var(--graphite, #0d2029) !important;
 }

@@ -112,7 +112,7 @@
           @endforeach
         </div>
       @endif
-      <div class="hero-actions">
+      <div class="hero-actions"@if(($page->slug ?? '') === 'shopify-seo-services') style="display:flex;flex-direction:column;align-items:flex-start;gap:0"@endif>
         <a href="{{ $ctaUrl }}" class="btn btn-primary">
           {{ $ctaText }}
           <span class="arw">→</span>
@@ -122,7 +122,7 @@
         @endif
         @if(!empty($h['proof_chip']))
           @php $proof = is_array($h['proof_chip']) ? $h['proof_chip'] : ['text' => (string) $h['proof_chip']]; @endphp
-          <div class="proof-chip">
+          <div class="proof-chip"@if(($page->slug ?? '') === 'shopify-seo-services') style="margin-top:21px"@endif>
             @if(!empty($proof['stars']))
               <span class="stars">{{ trim(preg_replace('/\s+/u', '', (string) $proof['stars'])) }}</span>
             @endif
