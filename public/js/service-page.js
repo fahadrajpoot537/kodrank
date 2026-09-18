@@ -477,26 +477,26 @@
         if (isServicesCarouselPage && grid.closest('#services, #included')) {
           return;
         }
-        // Monthly SEO: included + process grids carousel with dots (not sticky stack)
-        if (
-          isMonthly &&
-          ((grid.classList.contains('svc-grid') && grid.closest('#included')) ||
-            (grid.classList.contains('loop-grid') && grid.closest('#process')))
-        ) {
+        // Monthly SEO: included grids carousel with dots (not sticky stack)
+        if (isMonthly && grid.classList.contains('svc-grid') && grid.closest('#included')) {
           return;
         }
         seenStack.add(grid);
         grid.setAttribute('data-thm-stack', '1');
       });
 
-      // Monthly SEO: #services pain cards → same sticky stack as on-page #included
+      // Monthly SEO: #services pain + #process loop → swipe-up sticky stack
       if (isMonthly) {
         Array.prototype.forEach.call(
-          root.querySelectorAll('#services .pain-grid, section#services .pain-grid'),
+          root.querySelectorAll(
+            '#services .pain-grid, section#services .pain-grid, #process .loop-grid, section#process .loop-grid'
+          ),
           (grid) => {
             if (seenStack.has(grid) || skipCommon(grid)) return;
             seenStack.add(grid);
             grid.setAttribute('data-thm-stack', '1');
+            grid.removeAttribute('data-thm-carousel');
+            grid.classList.remove('thm-mobile-carousel');
           }
         );
       }
@@ -572,6 +572,20 @@
         );
       }
 
+      // SaaS SEO: #pain cards → swipe-up sticky stack (not horizontal carousel)
+      if (document.body.classList.contains('page-saasseo')) {
+        Array.prototype.forEach.call(
+          root.querySelectorAll('#pain .pain-grid, .saasseo-theme-page .pain-grid, section#pain .pain-grid'),
+          (grid) => {
+            if (seenStack.has(grid) || skipCommon(grid)) return;
+            seenStack.add(grid);
+            grid.setAttribute('data-thm-stack', '1');
+            grid.removeAttribute('data-thm-carousel');
+            grid.classList.remove('thm-mobile-carousel');
+          }
+        );
+      }
+
       const markCarousel = (track) => {
         if (seenCar.has(track) || skipCommon(track)) return;
         if (track.hasAttribute('data-thm-stack')) return;
@@ -581,6 +595,7 @@
         if (isMonthly && track.classList.contains('pain-grid')) return;
         if (isAeo && track.classList.contains('pain-grid')) return;
         if (document.body.classList.contains('page-geo') && track.classList.contains('pain-grid')) return;
+        if (document.body.classList.contains('page-saasseo') && track.classList.contains('pain-grid')) return;
         seenCar.add(track);
         track.setAttribute('data-thm-carousel', '1');
       };
@@ -642,9 +657,7 @@
         }
         if (isMonthly) {
           Array.prototype.forEach.call(
-            root.querySelectorAll(
-              '#included .svc-grid, #process .loop-grid, #work .tst-grid, .tst-grid'
-            ),
+            root.querySelectorAll('#included .svc-grid, #work .tst-grid, .tst-grid'),
             markCarousel
           );
         }
@@ -679,6 +692,33 @@
           }
           shell.remove();
         }
+      );
+    }
+    if (document.body.classList.contains('page-monthly')) {
+      Array.prototype.forEach.call(
+        document.querySelectorAll(
+          '.monthly-theme-page #process .why-mobile-carousel, .monthly-theme-page #process .loop-grid.thm-mobile-carousel'
+        ),
+        (el) => {
+          if (el.classList.contains('loop-grid')) {
+            el.classList.remove('thm-mobile-carousel');
+            el.removeAttribute('data-thm-carousel');
+            el.setAttribute('data-thm-stack', '1');
+            return;
+          }
+          const parent = el.parentElement;
+          if (!parent) return;
+          while (el.firstChild) {
+            parent.insertBefore(el.firstChild, el);
+          }
+          el.remove();
+        }
+      );
+      Array.prototype.forEach.call(
+        document.querySelectorAll(
+          '.monthly-theme-page #process .thm-carousel-dots, .monthly-theme-page #process .thm-carousel-nav-wrap'
+        ),
+        (el) => el.remove()
       );
     }
     if (document.body.classList.contains('page-techseo')) {
@@ -759,6 +799,33 @@
       Array.prototype.forEach.call(
         document.querySelectorAll(
           '.geo-theme-page #problem .thm-carousel-dots, .geo-theme-page #problem .thm-carousel-nav-wrap, .geo-theme-page section#problem .thm-carousel-dots'
+        ),
+        (el) => el.remove()
+      );
+    }
+    if (document.body.classList.contains('page-saasseo')) {
+      Array.prototype.forEach.call(
+        document.querySelectorAll(
+          '.saasseo-theme-page #pain .why-mobile-carousel, .saasseo-theme-page .why-mobile-carousel:has(> .pain-grid), .saasseo-theme-page .pain-grid.thm-mobile-carousel'
+        ),
+        (el) => {
+          if (el.classList.contains('pain-grid')) {
+            el.classList.remove('thm-mobile-carousel');
+            el.removeAttribute('data-thm-carousel');
+            el.setAttribute('data-thm-stack', '1');
+            return;
+          }
+          const parent = el.parentElement;
+          if (!parent) return;
+          while (el.firstChild) {
+            parent.insertBefore(el.firstChild, el);
+          }
+          el.remove();
+        }
+      );
+      Array.prototype.forEach.call(
+        document.querySelectorAll(
+          '.saasseo-theme-page #pain .thm-carousel-dots, .saasseo-theme-page #pain .thm-carousel-nav-wrap'
         ),
         (el) => el.remove()
       );
@@ -1782,7 +1849,6 @@
           '.ecom-theme-page #services .svc-grid',
           '.b2b-theme-page .pain-grid',
           '.b2b-theme-page #services .svc-grid',
-          '.saasseo-theme-page .pain-grid',
           '.saasseo-theme-page #services .svc-grid',
           '.gp-theme-page .pain-grid',
           '.gp-theme-page #services .svc-grid',
@@ -1817,20 +1883,24 @@
           '.page-geo .geo-theme-page #services .serv-grid',
           '.page-geo .geo-theme-page .test-grid',
           '.page-monthly .monthly-theme-page #included .svc-grid',
-          '.page-monthly .monthly-theme-page #process .loop-grid',
           '.page-monthly .monthly-theme-page #work .tst-grid',
         ].join(', ')
       ),
       (grid) => {
         const parent = grid.parentElement;
         if (!parent || parent.classList.contains('why-mobile-carousel')) return;
+        if (grid.hasAttribute('data-thm-stack') || grid.classList.contains('page-svc-stack')) return;
         // DM hub #why-us / on-page #pain use swipe-up stack — never wrap in horizontal carousel shell
         if (
           (document.body.classList.contains('page-dm') && grid.closest('#why-us')) ||
           (document.body.classList.contains('page-onpage') && grid.closest('#pain')) ||
+          (document.body.classList.contains('page-monthly') &&
+            grid.closest('#process') &&
+            grid.classList.contains('loop-grid')) ||
           (document.body.classList.contains('page-techseo') && grid.classList.contains('pain-grid')) ||
           (document.body.classList.contains('page-aeo') && grid.classList.contains('pain-grid')) ||
-          (document.body.classList.contains('page-geo') && grid.classList.contains('pain-grid'))
+          (document.body.classList.contains('page-geo') && grid.classList.contains('pain-grid')) ||
+          (document.body.classList.contains('page-saasseo') && grid.classList.contains('pain-grid'))
         ) {
           return;
         }
@@ -1952,6 +2022,9 @@
         return;
       }
       if (document.body.classList.contains('page-geo') && track.classList.contains('pain-grid')) {
+        return;
+      }
+      if (document.body.classList.contains('page-saasseo') && track.classList.contains('pain-grid')) {
         return;
       }
       if (
