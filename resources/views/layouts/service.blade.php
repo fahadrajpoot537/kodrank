@@ -88,6 +88,14 @@
   $serviceTheme = ($seo['theme'] ?? null)
     ?: (($page->slug ?? '') === 'web-design-and-development-services' ? 'web-development' : 'digital-marketing');
   $cssTheme = $serviceTheme === 'web-development' ? 'web-development' : 'digital-marketing';
+  // Live DB often lacks seo.extra_css (admin SEO save used to drop it). Fall back to {css}-page.css on disk.
+  $extraCssRel = trim((string) ($seo['extra_css'] ?? ''));
+  if ($extraCssRel === '' && ! empty($seo['css'])) {
+      $guessExtra = preg_replace('/\.css$/i', '-page.css', (string) $seo['css']);
+      if (is_string($guessExtra) && $guessExtra !== $seo['css'] && is_file(public_path($guessExtra))) {
+          $extraCssRel = $guessExtra;
+      }
+  }
   // SEO niche pages share on-page / digital-marketing design system
   // electrician + saas-development use their own sheets (still get page-seo-service for shared DM hero helpers)
   $dmSeoThemes = ['seo-service', 'b2b-seo', 'ecommerce-seo', 'saas-seo', 'monthly-seo', 'wordpress-seo', 'guest-posting', 'restaurant-seo', 'healthcare-seo', 'real-estate-seo', 'electrician', 'saas-development', 'legal'];
@@ -168,8 +176,8 @@
   <link rel="stylesheet" href="{{ asset($seo['css']) }}?v={{ @filemtime(public_path($seo['css'])) ?: time() }}">
 @endif
 {{-- Non-theme-html page polish: early is fine. theme-html extra_css loads after mobile (below). --}}
-@if(!empty($seo['extra_css']) && $serviceTheme !== 'legal' && $serviceTheme !== 'theme-html')
-  <link rel="stylesheet" href="{{ asset($seo['extra_css']) }}?v={{ @filemtime(public_path($seo['extra_css'])) ?: time() }}">
+@if($extraCssRel !== '' && $serviceTheme !== 'legal' && $serviceTheme !== 'theme-html')
+  <link rel="stylesheet" href="{{ asset($extraCssRel) }}?v={{ @filemtime(public_path($extraCssRel)) ?: time() }}">
 @endif
 @if(\App\Support\WpRefDesign::appliesTo($page->slug ?? '') && ($page->slug ?? '') !== 'off-page-seo-services')
   <link rel="stylesheet" href="{{ asset('css/theme-webdev-ref.css') }}?v={{ @filemtime(public_path('css/theme-webdev-ref.css')) ?: time() }}">
@@ -184,8 +192,8 @@
 @if($serviceTheme === 'theme-html' || \App\Support\WpRefDesign::appliesTo($page->slug ?? ''))
   <link rel="stylesheet" href="{{ asset('css/theme-html-mobile.css') }}?v={{ @filemtime(public_path('css/theme-html-mobile.css')) ?: time() }}">
 @endif
-@if(!empty($seo['extra_css']) && $serviceTheme === 'theme-html')
-  <link rel="stylesheet" href="{{ asset($seo['extra_css']) }}?v={{ @filemtime(public_path($seo['extra_css'])) ?: time() }}">
+@if($extraCssRel !== '' && $serviceTheme === 'theme-html')
+  <link rel="stylesheet" href="{{ asset($extraCssRel) }}?v={{ @filemtime(public_path($extraCssRel)) ?: time() }}">
 @endif
 @include('partials.clarity')
 @stack('head')

@@ -175,7 +175,8 @@ class ServicePageController extends Controller
         }
 
         $oldSlug = $page->slug;
-        $seo = is_array($validated['seo'] ?? null) ? $validated['seo'] : [];
+        $existingSeo = is_array($page->seo) ? $page->seo : [];
+        $seo = array_merge($existingSeo, is_array($validated['seo'] ?? null) ? $validated['seo'] : []);
         $seo['hide_from_nav'] = $request->boolean('hide_from_nav');
 
         if ($request->hasFile('og_image_file')) {
