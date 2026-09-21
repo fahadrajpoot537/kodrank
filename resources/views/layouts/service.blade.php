@@ -196,6 +196,7 @@
   <link rel="stylesheet" href="{{ asset($extraCssRel) }}?v={{ @filemtime(public_path($extraCssRel)) ?: time() }}">
 @endif
 @include('partials.clarity')
+@include('partials.wapp')
 @stack('head')
 </head>
 @php

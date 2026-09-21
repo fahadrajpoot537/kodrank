@@ -60,6 +60,7 @@
 <link rel="stylesheet" href="{{ asset('css/service-page-extra.css') }}?v={{ @filemtime(public_path('css/service-page-extra.css')) ?: time() }}">
 <link rel="stylesheet" href="{{ asset('css/blog.css') }}?v={{ @filemtime(public_path('css/blog.css')) ?: time() }}">
 @include('partials.clarity')
+@include('partials.wapp')
 @stack('head')
 </head>
 <body class="page-service page-blog">
