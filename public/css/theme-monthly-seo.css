@@ -199,9 +199,10 @@
 .monthly-theme-page .stars svg{width:17px;height:17px;color:var(--signal)}
 .monthly-theme-page .tst-card p{color:var(--slate);font-size:.96rem;line-height:1.65;flex:1;margin-bottom:22px}
 .monthly-theme-page .tst-who{display:flex;align-items:center;gap:13px}
-.monthly-theme-page .avatar{width:46px;height:46px;border-radius:50%;background:var(--ink);color:var(--signal);display:grid;place-items:center;font-weight:700;font-size:1.02rem;flex:none}
+.monthly-theme-page .tst-who .avatar,
+.monthly-theme-page .avatar{width:46px;height:46px;border-radius:50%;background:var(--ink);color:var(--signal);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.92rem;line-height:1;letter-spacing:.02em;flex:none;text-align:center;overflow:hidden}
 .monthly-theme-page .tst-who b{display:block;font-weight:650;font-size:.95rem}
-.monthly-theme-page .tst-who span{display:block;font-size:.82rem;color:var(--slate-2)}
+.monthly-theme-page .tst-who span:not(.avatar){display:block;font-size:.82rem;color:var(--slate-2);font-weight:400}
 .monthly-theme-page .faq{max-width:860px;margin:0 auto;display:grid;gap:14px}
 .monthly-theme-page .faq-item{border:1px solid var(--line);border-radius:var(--r-card);background:#fff;overflow:hidden;transition:.2s}
 .monthly-theme-page .faq-item.open{box-shadow:var(--sh-sm);border-color:#d6e2db}

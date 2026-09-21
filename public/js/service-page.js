@@ -477,6 +477,14 @@
         if (isServicesCarouselPage && grid.closest('#services, #included')) {
           return;
         }
+        // B2B SEO: #results svc cards → mobile carousel (not sticky stack)
+        if (
+          document.body.classList.contains('page-b2bseo') &&
+          grid.classList.contains('svc-grid') &&
+          grid.closest('#results')
+        ) {
+          return;
+        }
         // Monthly SEO: included grids carousel with dots (not sticky stack)
         if (isMonthly && grid.classList.contains('svc-grid') && grid.closest('#included')) {
           return;
@@ -586,6 +594,34 @@
         );
       }
 
+      // B2B SEO: pain-grid cards → swipe-up sticky stack (section has no #pain id)
+      if (document.body.classList.contains('page-b2bseo')) {
+        Array.prototype.forEach.call(
+          root.querySelectorAll('.b2b-theme-page .pain-grid, .pain-grid'),
+          (grid) => {
+            if (seenStack.has(grid) || skipCommon(grid)) return;
+            seenStack.add(grid);
+            grid.setAttribute('data-thm-stack', '1');
+            grid.removeAttribute('data-thm-carousel');
+            grid.classList.remove('thm-mobile-carousel');
+          }
+        );
+      }
+
+      // eCommerce SEO: pain-grid cards → swipe-up sticky stack (not horizontal carousel)
+      if (document.body.classList.contains('page-ecomseo')) {
+        Array.prototype.forEach.call(
+          root.querySelectorAll('.ecom-theme-page .pain-grid, .pain-grid'),
+          (grid) => {
+            if (seenStack.has(grid) || skipCommon(grid)) return;
+            seenStack.add(grid);
+            grid.setAttribute('data-thm-stack', '1');
+            grid.removeAttribute('data-thm-carousel');
+            grid.classList.remove('thm-mobile-carousel');
+          }
+        );
+      }
+
       const markCarousel = (track) => {
         if (seenCar.has(track) || skipCommon(track)) return;
         if (track.hasAttribute('data-thm-stack')) return;
@@ -596,6 +632,8 @@
         if (isAeo && track.classList.contains('pain-grid')) return;
         if (document.body.classList.contains('page-geo') && track.classList.contains('pain-grid')) return;
         if (document.body.classList.contains('page-saasseo') && track.classList.contains('pain-grid')) return;
+        if (document.body.classList.contains('page-b2bseo') && track.classList.contains('pain-grid')) return;
+        if (document.body.classList.contains('page-ecomseo') && track.classList.contains('pain-grid')) return;
         seenCar.add(track);
         track.setAttribute('data-thm-carousel', '1');
       };
@@ -650,6 +688,7 @@
                 '#included .svc-grid',
                 '#included .grid-cards',
                 '#included .grid',
+                '#results .svc-grid',
               ].join(', ')
             ),
             markCarousel
@@ -826,6 +865,60 @@
       Array.prototype.forEach.call(
         document.querySelectorAll(
           '.saasseo-theme-page #pain .thm-carousel-dots, .saasseo-theme-page #pain .thm-carousel-nav-wrap'
+        ),
+        (el) => el.remove()
+      );
+    }
+    if (document.body.classList.contains('page-b2bseo')) {
+      Array.prototype.forEach.call(
+        document.querySelectorAll(
+          '.b2b-theme-page .why-mobile-carousel:has(> .pain-grid), .b2b-theme-page .pain-grid.thm-mobile-carousel'
+        ),
+        (el) => {
+          if (el.classList.contains('pain-grid')) {
+            el.classList.remove('thm-mobile-carousel');
+            el.removeAttribute('data-thm-carousel');
+            el.setAttribute('data-thm-stack', '1');
+            return;
+          }
+          const parent = el.parentElement;
+          if (!parent) return;
+          while (el.firstChild) {
+            parent.insertBefore(el.firstChild, el);
+          }
+          el.remove();
+        }
+      );
+      Array.prototype.forEach.call(
+        document.querySelectorAll(
+          '.b2b-theme-page .sec-ink .thm-carousel-dots, .b2b-theme-page .sec-ink .thm-carousel-nav-wrap, .b2b-theme-page section.sec-ink .thm-carousel-dots'
+        ),
+        (el) => el.remove()
+      );
+    }
+    if (document.body.classList.contains('page-ecomseo')) {
+      Array.prototype.forEach.call(
+        document.querySelectorAll(
+          '.ecom-theme-page .why-mobile-carousel:has(> .pain-grid), .ecom-theme-page .pain-grid.thm-mobile-carousel'
+        ),
+        (el) => {
+          if (el.classList.contains('pain-grid')) {
+            el.classList.remove('thm-mobile-carousel');
+            el.removeAttribute('data-thm-carousel');
+            el.setAttribute('data-thm-stack', '1');
+            return;
+          }
+          const parent = el.parentElement;
+          if (!parent) return;
+          while (el.firstChild) {
+            parent.insertBefore(el.firstChild, el);
+          }
+          el.remove();
+        }
+      );
+      Array.prototype.forEach.call(
+        document.querySelectorAll(
+          '.ecom-theme-page .sec-ink .thm-carousel-dots, .ecom-theme-page .sec-ink .thm-carousel-nav-wrap, .ecom-theme-page section.sec-ink .thm-carousel-dots'
         ),
         (el) => el.remove()
       );
@@ -1849,6 +1942,7 @@
           '.ecom-theme-page #services .svc-grid',
           '.b2b-theme-page .pain-grid',
           '.b2b-theme-page #services .svc-grid',
+          '.b2b-theme-page #results .svc-grid',
           '.saasseo-theme-page #services .svc-grid',
           '.gp-theme-page .pain-grid',
           '.gp-theme-page #services .svc-grid',
@@ -1900,7 +1994,9 @@
           (document.body.classList.contains('page-techseo') && grid.classList.contains('pain-grid')) ||
           (document.body.classList.contains('page-aeo') && grid.classList.contains('pain-grid')) ||
           (document.body.classList.contains('page-geo') && grid.classList.contains('pain-grid')) ||
-          (document.body.classList.contains('page-saasseo') && grid.classList.contains('pain-grid'))
+          (document.body.classList.contains('page-saasseo') && grid.classList.contains('pain-grid')) ||
+          (document.body.classList.contains('page-b2bseo') && grid.classList.contains('pain-grid')) ||
+          (document.body.classList.contains('page-ecomseo') && grid.classList.contains('pain-grid'))
         ) {
           return;
         }
@@ -2025,6 +2121,12 @@
         return;
       }
       if (document.body.classList.contains('page-saasseo') && track.classList.contains('pain-grid')) {
+        return;
+      }
+      if (document.body.classList.contains('page-b2bseo') && track.classList.contains('pain-grid')) {
+        return;
+      }
+      if (document.body.classList.contains('page-ecomseo') && track.classList.contains('pain-grid')) {
         return;
       }
       if (

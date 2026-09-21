@@ -61,6 +61,21 @@ html body.page-saasseo.page-service #contact .contact-side .compare-list .mark.v
   color: var(--graphite, #0d2029) !important;
 }
 
+/* FAQ heading: centered like other service pages */
+html body.page-saasseo.page-service .saasseo-theme-page #faq .shead,
+html body.page-saasseo.page-service .saasseo-theme-page.webdev-ref #faq .shead {
+  margin-left: auto !important;
+  margin-right: auto !important;
+  text-align: center !important;
+  max-width: 820px !important;
+}
+html body.page-saasseo.page-service .saasseo-theme-page #faq .shead .eyebrow,
+html body.page-saasseo.page-service .saasseo-theme-page #faq .shead h2 {
+  text-align: center !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
 /* Force reveal nodes visible (theme .rv starts at opacity:0) */
 html body.page-saasseo.page-service .saasseo-theme-page .rv,
 html body.page-saasseo.page-service .saasseo-theme-page .reveal,
@@ -372,5 +387,47 @@ html body.page-saasseo.page-service .saasseo-theme-page #process .svc-stack-item
     min-width: 0 !important;
     box-sizing: border-box !important;
     overflow-wrap: anywhere !important;
+  }
+}
+
+/* #results photo: theme HTML set this via JS on #statsBg; that script is stripped on import */
+html body.page-saasseo.page-service .saasseo-theme-page #results.stats-sec {
+  position: relative !important;
+  overflow: hidden !important;
+  isolation: isolate;
+}
+html body.page-saasseo.page-service .saasseo-theme-page #results .stats-bg,
+html body.page-saasseo.page-service .saasseo-theme-page #results #statsBg {
+  position: absolute !important;
+  inset: 0 !important;
+  z-index: 0 !important;
+  background-image: url("../media/services/saas-seo/saas-seo-services-content-clusters-serp-ai-visibility-recurring-revenue-growth.jpg") !important;
+  background-size: cover !important;
+  background-position: center right !important;
+  background-repeat: no-repeat !important;
+  opacity: 0.9 !important;
+  pointer-events: none;
+}
+html body.page-saasseo.page-service .saasseo-theme-page #results .stats-veil {
+  position: absolute !important;
+  inset: 0 !important;
+  z-index: 1 !important;
+  pointer-events: none;
+  background:
+    radial-gradient(90% 120% at 82% 28%, rgba(244, 122, 31, 0.12), transparent 55%),
+    linear-gradient(90deg, var(--ink, #0a1a22) 0%, rgba(10, 26, 34, 0.88) 28%, rgba(10, 26, 34, 0.62) 58%, rgba(10, 26, 34, 0.32) 100%) !important;
+}
+html body.page-saasseo.page-service .saasseo-theme-page #results .wrap {
+  position: relative !important;
+  z-index: 2 !important;
+}
+@media (max-width: 860px) {
+  html body.page-saasseo.page-service .saasseo-theme-page #results .stats-bg,
+  html body.page-saasseo.page-service .saasseo-theme-page #results #statsBg {
+    opacity: 0.5 !important;
+    background-position: center !important;
+  }
+  html body.page-saasseo.page-service .saasseo-theme-page #results .stats-veil {
+    background: linear-gradient(180deg, rgba(10, 26, 34, 0.72), rgba(10, 26, 34, 0.82)) !important;
   }
 }

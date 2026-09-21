@@ -318,4 +318,58 @@ body.page-aeo .aeo-theme-page .thm-carousel-nav-wrap {
   body.page-aeo .aeo-theme-page .testi-dots.thm-carousel-dots {
     display: none !important;
   }
+
+  /* Desktop: static 3-col service grid — carousel is mobile-only */
+  html body.page-aeo.page-service .aeo-theme-page #services .carousel,
+  html body.page-aeo.page-service .aeo-theme-page.webdev-ref #services .carousel {
+    overflow: visible !important;
+  }
+  html body.page-aeo.page-service .aeo-theme-page #services .carousel-track,
+  html body.page-aeo.page-service .aeo-theme-page #services #svcTrack,
+  html body.page-aeo.page-service .aeo-theme-page.webdev-ref #services .carousel-track,
+  html body.page-aeo.page-service .aeo-theme-page.webdev-ref #services #svcTrack,
+  html body.page-aeo.page-service .aeo-theme-page #services .carousel-track[data-thm-carousel],
+  html body.page-aeo.page-service .aeo-theme-page #services #svcTrack[data-thm-carousel],
+  html body.page-aeo.page-service .aeo-theme-page #services .carousel-track.thm-mobile-carousel,
+  html body.page-aeo.page-service .aeo-theme-page #services #svcTrack.thm-mobile-carousel {
+    display: grid !important;
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: 20px !important;
+    overflow: visible !important;
+    overflow-x: visible !important;
+    overflow-y: visible !important;
+    flex-direction: unset !important;
+    flex-wrap: unset !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    scroll-snap-type: none !important;
+    touch-action: auto !important;
+    transform: none !important;
+    padding-bottom: 0 !important;
+  }
+  html body.page-aeo.page-service .aeo-theme-page #services .carousel-track > .svc-card,
+  html body.page-aeo.page-service .aeo-theme-page #services #svcTrack > .svc-card,
+  html body.page-aeo.page-service .aeo-theme-page #services .carousel-track > .svc-stack-item,
+  html body.page-aeo.page-service .aeo-theme-page #services #svcTrack > .svc-stack-item,
+  html body.page-aeo.page-service .aeo-theme-page #services .carousel-track > .svc-slide,
+  html body.page-aeo.page-service .aeo-theme-page #services #svcTrack > .svc-slide {
+    flex: unset !important;
+    flex-basis: auto !important;
+    width: auto !important;
+    min-width: 0 !important;
+    max-width: none !important;
+    height: auto !important;
+    scroll-snap-align: unset !important;
+    margin: 0 !important;
+  }
+  html body.page-aeo.page-service .aeo-theme-page #services .carousel-nav-wrap,
+  html body.page-aeo.page-service .aeo-theme-page #services .carousel-nav {
+    display: none !important;
+  }
+}
+@media (min-width: 981px) and (max-width: 1100px) {
+  html body.page-aeo.page-service .aeo-theme-page #services .carousel-track,
+  html body.page-aeo.page-service .aeo-theme-page #services #svcTrack {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
 }

@@ -12,11 +12,41 @@ html body.page-ecomseo.page-service .ecom-theme-page .sec-ink {
   position: relative;
 }
 
+html body.page-ecomseo.page-service .hero-eyebrow,
 html body.page-ecomseo.page-service .hero .hero-copy > .eyebrow.hero-eyebrow,
 html body.page-ecomseo.page-service .hero .hero-copy > .hero-eyebrow {
-  display: inline-flex !important;
-  color: var(--signal, #F47A1F) !important;
-  margin-bottom: 10px !important;
+  display: none !important;
+}
+
+/* Match on-page: breadcrumb→H1 gap + space under CTAs */
+html body.page-ecomseo.page-service .hero {
+  min-height: 0 !important;
+  padding-top: calc(84px + 24px) !important;
+  padding-bottom: clamp(64px, 8.5vh, 112px) !important;
+  align-items: flex-start !important;
+}
+html body.page-ecomseo.page-service .hero > .wrap,
+html body.page-ecomseo.page-service .hero .hero-copy,
+html body.page-ecomseo.page-service .hero .hero-inner {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+html body.page-ecomseo.page-service .hero .breadcrumb,
+html body.page-ecomseo.page-service .hero .crumbs,
+html body.page-ecomseo.page-theme-html .hero .breadcrumb {
+  margin: 0 0 clamp(36px, 4vw, 52px) !important;
+  padding-bottom: 0 !important;
+}
+html body.page-ecomseo.page-service .hero h1,
+html body.page-ecomseo.page-theme-html .hero h1 {
+  margin: 0 0 18px !important;
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+html body.page-ecomseo.page-service .hero .lede,
+html body.page-ecomseo.page-service .hero p.sub,
+html body.page-ecomseo.page-service .hero .hero-sub {
+  margin: 0 0 28px !important;
 }
 
 html body.page-ecomseo.page-service .hero .hero-trust-checks {
@@ -31,6 +61,7 @@ html body.page-ecomseo.page-service .hero .hero-trust-checks {
 
 html body.page-ecomseo.page-service .hero .hero-actions {
   margin-top: 28px !important;
+  margin-bottom: clamp(28px, 3.5vw, 44px) !important;
   display: flex !important;
   flex-direction: column !important;
   align-items: flex-start !important;
@@ -88,8 +119,13 @@ html body.page-ecomseo.page-service .hero .proof-chip b {
 }
 
 html body.page-ecomseo.page-service .hero-badges.hero-trust,
-html body.page-ecomseo.page-service .hero-trust.hero-badges {
-  margin-top: 1.25rem;
+html body.page-ecomseo.page-service .hero-trust.hero-badges,
+html body.page-ecomseo.page-service .hero .hero-badges,
+html body.page-ecomseo.page-service .hero .hero-trust,
+html body.page-ecomseo.page-service .hero .hero-badges.hero-trust {
+  margin-top: clamp(40px, 4.5vw, 64px) !important;
+  margin-bottom: 0 !important;
+  padding-top: clamp(26px, 3vw, 36px) !important;
 }
 
 html body.page-ecomseo.page-service #contact .contact-side .compare-list .mark.v {
@@ -133,13 +169,24 @@ html body.page-service .ecom-theme-page .fade-up {
 html body.page-ecomseo.page-service .hero {
   min-height: 0 !important;
   padding-top: calc(84px + 24px) !important;
-  padding-bottom: clamp(36px, 4.5vw, 64px) !important;
+  padding-bottom: clamp(64px, 8.5vh, 112px) !important;
   align-items: flex-start !important;
+}
+html body.page-ecomseo.page-service .hero > .wrap,
+html body.page-ecomseo.page-service .hero .hero-copy,
+html body.page-ecomseo.page-service .hero .hero-inner {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
 }
 @media (max-width: 900px) {
   html body.page-ecomseo.page-service .hero {
     padding-top: calc(64px + 16px) !important;
-    padding-bottom: 32px !important;
+    padding-bottom: clamp(52px, 7.5vh, 80px) !important;
+  }
+}
+@media (max-width: 680px) {
+  html body.page-ecomseo.page-service .hero {
+    padding-bottom: clamp(48px, 7vh, 68px) !important;
   }
 }
 @media (max-width: 767px) {
@@ -159,7 +206,13 @@ html body.page-ecomseo.page-service .hero {
   html body.page-ecomseo.page-service .ecom-theme-page section {
     overflow-x: clip !important;
   }
-  html body.page-ecomseo.page-service .ecom-theme-page .pain-grid:not([data-thm-carousel]):not(.thm-mobile-carousel),
+  html body.page-ecomseo.page-service .ecom-theme-page section.sec-ink,
+  html body.page-ecomseo.page-service .ecom-theme-page section:has(.pain-grid[data-thm-stack]),
+  html body.page-ecomseo.page-service .ecom-theme-page section:has(.pain-grid.page-svc-stack) {
+    overflow-x: clip !important;
+    overflow-y: visible !important;
+  }
+  html body.page-ecomseo.page-service .ecom-theme-page .pain-grid:not([data-thm-carousel]):not(.thm-mobile-carousel):not(.page-svc-stack):not([data-thm-stack]),
   html body.page-ecomseo.page-service .ecom-theme-page .svc-grid:not([data-thm-carousel]):not(.thm-mobile-carousel):not(.page-svc-stack),
   html body.page-ecomseo.page-service .ecom-theme-page .serv-grid:not([data-thm-carousel]):not(.thm-mobile-carousel),
   html body.page-ecomseo.page-service .ecom-theme-page .proc-grid:not([data-thm-stack]):not(.page-svc-stack):not([data-thm-carousel]),
@@ -226,7 +279,7 @@ html body.page-ecomseo.page-service .ecom-theme-page .intro-grid {
   gap: clamp(32px, 5vw, 72px) !important;
   align-items: center !important;
 }
-html body.page-ecomseo.page-service .ecom-theme-page .pain-grid {
+html body.page-ecomseo.page-service .ecom-theme-page .pain-grid:not(.page-svc-stack):not([data-thm-stack]) {
   display: grid !important;
   grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
   gap: 20px !important;
@@ -351,13 +404,13 @@ html body.page-ecomseo.page-service .ecom-theme-page .metric .n {
   html body.page-ecomseo.page-service .ecom-theme-page .intro-grid {
     grid-template-columns: minmax(0, 1fr) !important;
   }
-  html body.page-ecomseo.page-service .ecom-theme-page .pain-grid:not([data-thm-carousel]):not(.thm-mobile-carousel),
+  html body.page-ecomseo.page-service .ecom-theme-page .pain-grid:not([data-thm-carousel]):not(.thm-mobile-carousel):not(.page-svc-stack):not([data-thm-stack]),
   html body.page-ecomseo.page-service .ecom-theme-page .svc-grid:not([data-thm-carousel]):not(.thm-mobile-carousel):not(.page-svc-stack) {
     grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
   }
 }
 @media (max-width: 640px) {
-  html body.page-ecomseo.page-service .ecom-theme-page .pain-grid:not([data-thm-carousel]):not(.thm-mobile-carousel),
+  html body.page-ecomseo.page-service .ecom-theme-page .pain-grid:not([data-thm-carousel]):not(.thm-mobile-carousel):not(.page-svc-stack):not([data-thm-stack]),
   html body.page-ecomseo.page-service .ecom-theme-page .svc-grid:not([data-thm-carousel]):not(.thm-mobile-carousel):not(.page-svc-stack) {
     grid-template-columns: minmax(0, 1fr) !important;
   }
@@ -497,5 +550,132 @@ html body.page-ecomseo.page-service .ecom-theme-page #process .page-svc-stack .s
   html body.page-ecomseo.page-service .ecom-theme-page #process .page-svc-stack .step p,
   html body.page-ecomseo.page-service .ecom-theme-page #process .page-svc-stack .proc-step p {
     color: var(--slate, #4b5b62) !important;
+  }
+}
+
+@media (min-width: 901px) {
+  html body.page-ecomseo.page-service .ecom-theme-page .pain-grid,
+  html body.page-ecomseo.page-service .ecom-theme-page .pain-grid[data-thm-stack],
+  html body.page-ecomseo.page-service .ecom-theme-page .pain-grid.page-svc-stack {
+    display: grid !important;
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: 20px !important;
+    overflow: visible !important;
+    flex-direction: unset !important;
+    flex-wrap: unset !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    scroll-snap-type: none !important;
+    touch-action: auto !important;
+    margin-top: 52px !important;
+  }
+  html body.page-ecomseo.page-service .ecom-theme-page .pain-grid.page-svc-stack > .svc-stack-item,
+  html body.page-ecomseo.page-service .ecom-theme-page .pain-grid[data-thm-stack] > .svc-stack-item {
+    position: relative !important;
+    top: auto !important;
+    margin: 0 !important;
+    transform: none !important;
+    height: 100% !important;
+  }
+  html body.page-ecomseo.page-service .ecom-theme-page .why-mobile-carousel:has(> .pain-grid) {
+    display: contents !important;
+  }
+}
+@media (min-width: 901px) and (max-width: 1080px) {
+  html body.page-ecomseo.page-service .ecom-theme-page .pain-grid,
+  html body.page-ecomseo.page-service .ecom-theme-page .pain-grid[data-thm-stack],
+  html body.page-ecomseo.page-service .ecom-theme-page .pain-grid.page-svc-stack {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+}
+
+@media (max-width: 900px) {
+  html body.page-ecomseo.page-service .ecom-theme-page section.sec-ink,
+  html body.page-ecomseo.page-service .ecom-theme-page section:has(.pain-grid[data-thm-stack]),
+  html body.page-ecomseo.page-service .ecom-theme-page section:has(.pain-grid.page-svc-stack) {
+    overflow-x: clip !important;
+    overflow-y: visible !important;
+  }
+  html body.page-ecomseo.page-service .ecom-theme-page section.sec-ink > .wrap,
+  html body.page-ecomseo.page-service .ecom-theme-page section:has(.pain-grid[data-thm-stack]) > .wrap {
+    max-width: 100% !important;
+    min-width: 0 !important;
+    overflow: visible !important;
+  }
+  html body.page-ecomseo.page-service .ecom-theme-page .why-mobile-carousel:has(> .pain-grid) {
+    display: contents !important;
+  }
+  html body.page-ecomseo.page-service .ecom-theme-page .pain-grid[data-thm-stack],
+  html body.page-ecomseo.page-service .ecom-theme-page .pain-grid.page-svc-stack {
+    display: block !important;
+    grid-template-columns: none !important;
+    grid-template-rows: none !important;
+    gap: 0 !important;
+    overflow: visible !important;
+    transform: none !important;
+    filter: none !important;
+    contain: none !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    flex-direction: unset !important;
+    flex-wrap: unset !important;
+    scroll-snap-type: none !important;
+    touch-action: auto !important;
+    height: auto !important;
+    margin-top: 32px !important;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+  }
+  html body.page-ecomseo.page-service .ecom-theme-page .pain-grid .svc-stack-item,
+  html body.page-ecomseo.page-service .ecom-theme-page .pain-grid[data-thm-stack] > .svc-stack-item,
+  html body.page-ecomseo.page-service .ecom-theme-page .pain-grid.page-svc-stack > .svc-stack-item {
+    position: sticky !important;
+    top: calc(var(--svc-stack-nav, 68px) + (var(--index0, 0) * var(--svc-stack-peek, 14px))) !important;
+    z-index: calc(1 + var(--index0, 0)) !important;
+    display: block !important;
+    flex: none !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    height: auto !important;
+    margin: 0 0 var(--svc-stack-gap, 18px) !important;
+    padding: 0 !important;
+    background: transparent !important;
+    border: 0 !important;
+    box-shadow: none !important;
+    transform: none !important;
+    scroll-snap-align: unset !important;
+    box-sizing: border-box !important;
+  }
+  html body.page-ecomseo.page-service .ecom-theme-page .pain-grid .svc-stack-item:last-child {
+    margin-bottom: 0 !important;
+  }
+  html body.page-ecomseo.page-service .ecom-theme-page .pain-grid .svc-stack-item > .pain,
+  html body.page-ecomseo.page-service .ecom-theme-page .pain-grid[data-thm-stack] .pain,
+  html body.page-ecomseo.page-service .ecom-theme-page .pain-grid.page-svc-stack .pain {
+    display: flex !important;
+    flex-direction: column !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    height: auto !important;
+    min-height: 160px !important;
+    margin: 0 !important;
+    flex: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+    background: var(--ink-2, #0f2a33) !important;
+    box-sizing: border-box !important;
+  }
+  html body.page-ecomseo.page-service .ecom-theme-page .pain-grid .svc-stack-item > *:hover {
+    transform: none !important;
+  }
+  html body.page-ecomseo.page-service .ecom-theme-page .sec-ink .thm-carousel-dots,
+  html body.page-ecomseo.page-service .ecom-theme-page .sec-ink .thm-carousel-nav-wrap,
+  html body.page-ecomseo.page-service .ecom-theme-page section.sec-ink .wrap > .testi-dots.thm-carousel-dots {
+    display: none !important;
   }
 }
