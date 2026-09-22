@@ -1,0 +1,21 @@
+/**
+ * On-Page SEO Services page-only extras.
+ * Loaded via seo.extra_css or the {css}-page.css fallback — scoped to this page.
+ */
+html body.page-onpage.page-service .onpage-theme-page.theme-html-root {
+  /* namespace hook */
+}
+
+/* Heading block → cards/grid gap */
+html body.page-onpage.page-service .onpage-theme-page #pain .head-block,
+html body.page-onpage.page-service .onpage-theme-page #included .head-block,
+html body.page-onpage.page-service .onpage-theme-page #process .head-block,
+html body.page-onpage.page-service .onpage-theme-page #results .head-block,
+html body.page-onpage.page-service .onpage-theme-page #why .head-block,
+html body.page-onpage.page-service .onpage-theme-page.webdev-ref #pain .head-block,
+html body.page-onpage.page-service .onpage-theme-page.webdev-ref #included .head-block,
+html body.page-onpage.page-service .onpage-theme-page.webdev-ref #process .head-block,
+html body.page-onpage.page-service .onpage-theme-page.webdev-ref #results .head-block,
+html body.page-onpage.page-service .onpage-theme-page.webdev-ref #why .head-block {
+  margin-bottom: clamp(28px, 3.5vw, 40px) !important;
+}

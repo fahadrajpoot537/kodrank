@@ -1,0 +1,13 @@
+/**
+ * Off-Page SEO Services page-only extras.
+ * Loaded via seo.extra_css or the {css}-page.css fallback — scoped to this page.
+ */
+html body.page-offpage.page-service .offpage-theme-page.theme-html-root {
+  /* namespace hook */
+}
+
+/* #work heading → metrics gap */
+html body.page-offpage.page-service .offpage-theme-page #work .head,
+html body.page-offpage.page-service .offpage-theme-page.webdev-ref #work .head {
+  margin-bottom: clamp(28px, 3.5vw, 40px) !important;
+}

@@ -42,6 +42,9 @@ html body.page-ecomseo.page-theme-html .hero h1 {
   margin: 0 0 18px !important;
   margin-top: 0 !important;
   padding-top: 0 !important;
+  font-size: clamp(2.2rem, 4.1vw, 3.1rem) !important;
+  line-height: 1.1 !important;
+  max-width: 26ch !important;
 }
 html body.page-ecomseo.page-service .hero .lede,
 html body.page-ecomseo.page-service .hero p.sub,
@@ -182,6 +185,11 @@ html body.page-ecomseo.page-service .hero .hero-inner {
   html body.page-ecomseo.page-service .hero {
     padding-top: calc(64px + 16px) !important;
     padding-bottom: clamp(52px, 7.5vh, 80px) !important;
+  }
+  html body.page-ecomseo.page-service .hero h1,
+  html body.page-ecomseo.page-theme-html .hero h1 {
+    font-size: clamp(1.7rem, 6.2vw, 2.35rem) !important;
+    max-width: none !important;
   }
 }
 @media (max-width: 680px) {

@@ -12,6 +12,12 @@ html body.page-b2bseo.page-service .b2b-theme-page .sec-ink {
   position: relative;
 }
 
+/* Heading block → cards/grid gap */
+html body.page-b2bseo.page-service .b2b-theme-page section .head-block,
+html body.page-b2bseo.page-service .b2b-theme-page.webdev-ref section .head-block {
+  margin-bottom: clamp(28px, 3.5vw, 40px) !important;
+}
+
 html body.page-b2bseo.page-service .hero-eyebrow { display: none !important; }
 
 /* Match on-page: breadcrumb→H1 gap + space under trust badges */
