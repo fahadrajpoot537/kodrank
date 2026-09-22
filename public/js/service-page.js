@@ -232,20 +232,23 @@
   });
 
   // GEO / theme-html FAQ buttons (.faq-q + .faq-a panels)
+  // .faq-item = GEO/monthly; .faq = SaaS (and similar) theme-html accordions
   document.querySelectorAll('.faq-q').forEach((btn) => {
     btn.addEventListener('click', () => {
-      const item = btn.closest('.faq-item');
+      const item = btn.closest('.faq-item, .faq');
       if (!item) return;
       if (item.tagName === 'DETAILS') return;
       const panel = item.querySelector('.faq-a');
       const willOpen = !item.classList.contains('open');
-      document.querySelectorAll('.faq-item.open').forEach((other) => {
-        if (other === item) return;
+      const root = item.closest('#faq, .faq-list, .faq-wrap, .theme-html-root') || document;
+      root.querySelectorAll('.faq-item.open, .faq.open').forEach((other) => {
+        if (other === item || other.tagName === 'DETAILS') return;
         other.classList.remove('open');
         const p = other.querySelector('.faq-a');
         if (p) p.style.maxHeight = '0';
       });
       item.classList.toggle('open', willOpen);
+      btn.setAttribute('aria-expanded', willOpen ? 'true' : 'false');
       if (panel) {
         panel.style.maxHeight = willOpen ? panel.scrollHeight + 'px' : '0';
       }
