@@ -132,10 +132,40 @@ class ServicePageController extends Controller
     {
         $page->load(['sections', 'parent']);
 
+        $editors = $page->sections->map(fn (ServicePageSection $section) => $this->presentSection($page, $section))->all();
+
         return view('admin.service-pages.content', [
             'page' => $page,
             'theme' => $page->seo['theme'] ?? 'digital-marketing',
+            'listingTag' => \App\Support\ServiceListingCopy::tag($page),
+            'listingBlurb' => \App\Support\ServiceListingCopy::blurb($page),
+            'editors' => $editors,
         ]);
+    }
+
+    public function updateListing(Request $request, ServicePage $page): RedirectResponse
+    {
+        $validated = $request->validate([
+            'name' => ['required', 'string', 'max:160'],
+            'listing_tag' => ['nullable', 'string', 'max:40'],
+            'listing_blurb' => ['nullable', 'string', 'max:320'],
+        ]);
+
+        $seo = is_array($page->seo) ? $page->seo : [];
+        $seo['listing_tag'] = trim((string) ($validated['listing_tag'] ?? ''));
+        $seo['listing_blurb'] = trim((string) ($validated['listing_blurb'] ?? ''));
+
+        $page->update([
+            'name' => $validated['name'],
+            'seo' => $seo,
+        ]);
+
+        ServicePage::forgetCache($page->slug);
+        ServicePage::forgetNavCache();
+
+        return redirect()
+            ->route('admin.service-pages.content', $page)
+            ->with('success', 'Services page card saved.');
     }
 
     public function toggleActive(ServicePage $page): RedirectResponse
@@ -273,7 +303,59 @@ class ServicePageController extends Controller
             ->where('key', $key)
             ->firstOrFail();
 
-        return view('admin.service-pages.section', compact('page', 'section'));
+        return view('admin.service-pages.section', $this->presentSection($page, $section));
+    }
+
+    /**
+     * @return array{page: ServicePage, section: ServicePageSection, contentFields: list<array<string, mixed>>, themeHtmlPath: string, themeHtmlScope: string}
+     */
+    private function presentSection(ServicePage $page, ServicePageSection $section): array
+    {
+        $data = is_array($section->data) ? $section->data : [];
+        $contentFields = [];
+        $themeHtmlPath = '';
+        $themeHtmlScope = '';
+        $file = $this->themeHtmlFile((string) ($data['html_path'] ?? ''));
+        if ($file !== null && is_file($file)) {
+            $source = trim((string) ($data['html'] ?? ''));
+            if ($source === '') {
+                $source = (string) file_get_contents($file);
+            }
+            $contentFields = \App\Support\ThemeHtmlContentEditor::fields($source);
+            if ($contentFields !== []) {
+                $themeHtmlPath = (string) ($data['html_path'] ?? '');
+                $themeHtmlScope = (string) ($data['scope'] ?? '');
+                unset($data['html'], $data['html_path'], $data['scope']);
+            } else {
+                $data['html'] = $source;
+            }
+        }
+        if (\App\Support\ServiceSectionPhoto::ownsField($page->slug, $section->key)) {
+            $imageKeys = ['results_background_image', 'background_image', 'image'];
+            $hasImage = false;
+            foreach ($imageKeys as $imageKey) {
+                if (array_key_exists($imageKey, $data)) {
+                    $hasImage = true;
+                    break;
+                }
+            }
+            if (! $hasImage) {
+                $data['results_background_image'] = '';
+            }
+            $imageValue = $data['results_background_image'] ?? $data['background_image'] ?? $data['image'] ?? '';
+            unset($data['results_background_image']);
+            $section->data = ['results_background_image' => $imageValue] + $data;
+        } else {
+            $section->data = $data;
+        }
+
+        return [
+            'page' => $page,
+            'section' => $section,
+            'contentFields' => $contentFields,
+            'themeHtmlPath' => $themeHtmlPath,
+            'themeHtmlScope' => $themeHtmlScope,
+        ];
     }
 
     public function updateSection(Request $request, ServicePage $page, string $key): RedirectResponse
@@ -295,11 +377,16 @@ class ServicePageController extends Controller
 
         $label = trim((string) $request->input('label', $section->label));
         $sort = (int) $request->input('sort_order', $section->sort_order);
+        $existing = is_array($section->data) ? $section->data : [];
+        $data = $this->normalize($data);
+        $data = $this->applyThemeHtmlBlocks($data, $request->input('content_blocks', []));
+        $data = $this->persistThemeHtml($data);
+        $data = $this->keepHeadingCopy($data, $existing);
 
         $section->update([
             'label' => $label !== '' ? $label : $section->label,
             'sort_order' => $sort,
-            'data' => $this->normalize($data),
+            'data' => $data,
         ]);
         ServicePage::forgetCache($page->slug);
 
@@ -349,6 +436,97 @@ class ServicePageController extends Controller
         Storage::disk('public')->putFileAs($dir, $file, $name);
 
         return 'storage/'.$relative;
+    }
+
+    /**
+     * @param  array<string, mixed>  $data
+     * @param  mixed  $blocks
+     * @return array<string, mixed>
+     */
+    private function applyThemeHtmlBlocks(array $data, mixed $blocks): array
+    {
+        if (! is_array($blocks) || $blocks === []) {
+            return $data;
+        }
+
+        $file = $this->themeHtmlFile((string) ($data['html_path'] ?? ''));
+        if ($file === null || ! is_file($file)) {
+            return $data;
+        }
+
+        $current = (string) file_get_contents($file);
+        $updated = \App\Support\ThemeHtmlContentEditor::apply($current, $blocks);
+        if (file_put_contents($file, $updated, LOCK_EX) !== false) {
+            $data['html'] = '';
+        }
+
+        return $data;
+    }
+
+    /**
+     * Saving the body HTML updates the live page file and leaves the database copy empty
+     * so the next edit reads the same file.
+     *
+     * @param  array<string, mixed>  $data
+     * @return array<string, mixed>
+     */
+    private function persistThemeHtml(array $data): array
+    {
+        $full = $this->themeHtmlFile((string) ($data['html_path'] ?? ''));
+        $html = (string) ($data['html'] ?? '');
+        if ($full === null || trim($html) === '') {
+            return $data;
+        }
+
+        $dir = dirname($full);
+        if (! is_dir($dir)) {
+            mkdir($dir, 0755, true);
+        }
+
+        if (file_put_contents($full, $html, LOCK_EX) !== false) {
+            $data['html'] = '';
+        }
+
+        return $data;
+    }
+
+    /**
+     * The page shows title_html / lede_html when those exist.
+     * Keep the plain copies in sync, and don't drop them when the form hides the duplicate field.
+     *
+     * @param  array<string, mixed>  $data
+     * @param  array<string, mixed>  $existing
+     * @return array<string, mixed>
+     */
+    private function keepHeadingCopy(array $data, array $existing): array
+    {
+        foreach (['title', 'title_accent', 'lede'] as $keep) {
+            if (! array_key_exists($keep, $data) && array_key_exists($keep, $existing)) {
+                $data[$keep] = $existing[$keep];
+            }
+        }
+
+        foreach (['title_html' => 'title', 'lede_html' => 'lede'] as $htmlKey => $plainKey) {
+            if (! isset($data[$htmlKey]) || ! is_string($data[$htmlKey])) {
+                continue;
+            }
+            $plain = trim(preg_replace('/\s+/u', ' ', html_entity_decode(strip_tags($data[$htmlKey]), ENT_QUOTES | ENT_HTML5, 'UTF-8')) ?? '');
+            if ($plain !== '') {
+                $data[$plainKey] = $plain;
+            }
+        }
+
+        return $data;
+    }
+
+    private function themeHtmlFile(string $path): ?string
+    {
+        $path = str_replace('\\', '/', trim($path));
+        if (! preg_match('#^theme-html/[a-z0-9][a-z0-9\-]*\.html$#', $path)) {
+            return null;
+        }
+
+        return storage_path('app/'.$path);
     }
 
     private function normalize(array $data): array

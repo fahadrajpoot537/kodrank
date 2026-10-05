@@ -22,8 +22,14 @@ body.page-aeo .hero-eyebrow {
 body.page-aeo .hero-badges.hero-trust,
 body.page-aeo .hero-trust.hero-badges {
   margin-top: clamp(40px, 4.5vw, 64px) !important;
-  margin-bottom: clamp(18px, 2.2vw, 28px) !important;
+  margin-bottom: clamp(36px, 5vw, 64px) !important;
   padding-top: clamp(26px, 3vw, 36px) !important;
+}
+
+/* Stats strip under compare cards — a bit more space above */
+html body.page-aeo.page-service .aeo-theme-page .stats,
+html body.page-aeo.page-service .aeo-theme-page.webdev-ref .stats {
+  margin-top: clamp(44px, 5vw, 64px) !important;
 }
 
 /* Match on-page: breadcrumb→H1 + CTA→badges gaps */

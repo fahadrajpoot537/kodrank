@@ -14,9 +14,24 @@ html body.page-restseo.page-service .rest-theme-page .sec-ink {
 
 html body.page-restseo.page-service .hero-eyebrow { display: none !important; }
 
+html body.page-restseo.page-service .hero .breadcrumb,
+html body.page-restseo.page-service .hero .crumbs,
+html body.page-restseo.page-theme-html .hero .breadcrumb {
+  margin: 0 0 clamp(36px, 4vw, 52px) !important;
+  padding-bottom: 0 !important;
+}
+html body.page-restseo.page-service .hero h1,
+html body.page-restseo.page-theme-html .hero h1 {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+
 html body.page-restseo.page-service .hero-badges.hero-trust,
-html body.page-restseo.page-service .hero-trust.hero-badges {
-  margin-top: 1.25rem;
+html body.page-restseo.page-service .hero-trust.hero-badges,
+html body.page-restseo.page-service .hero .hero-badges.hero-trust {
+  margin-top: clamp(40px, 4.5vw, 64px) !important;
+  margin-bottom: clamp(36px, 5vw, 64px) !important;
+  padding-top: clamp(26px, 3vw, 36px) !important;
 }
 
 html body.page-restseo.page-service #contact .contact-side .compare-list .mark.v {
@@ -62,6 +77,12 @@ html body.page-restseo.page-service .hero {
   padding-top: calc(84px + 24px) !important;
   padding-bottom: clamp(36px, 4.5vw, 64px) !important;
   align-items: flex-start !important;
+}
+@media (min-width: 981px) {
+  html body.page-restseo.page-service .hero-badges.hero-trust,
+  html body.page-restseo.page-service .hero .hero-badges.hero-trust {
+    margin-bottom: clamp(112px, 14vh, 180px) !important;
+  }
 }
 @media (max-width: 900px) {
   html body.page-restseo.page-service .hero {
@@ -143,8 +164,89 @@ html body.page-restseo.page-service .rest-theme-page #process .svc-stack-item > 
   box-sizing: border-box !important;
 }
 
+@media (max-width: 900px) {
+  html body.page-restseo.page-service .rest-theme-page section.sec-ink:has(.grid[data-thm-stack]) {
+    overflow-x: clip !important;
+    overflow-y: visible !important;
+  }
+  html body.page-restseo.page-service .rest-theme-page section.sec-ink:has(.grid[data-thm-stack]) > .wrap {
+    max-width: 100% !important;
+    min-width: 0 !important;
+    overflow: visible !important;
+  }
+  html body.page-restseo.page-service .rest-theme-page section.sec-ink .why-mobile-carousel:has(> .grid.g-3) {
+    display: contents !important;
+  }
+  html body.page-restseo.page-service .rest-theme-page section.sec-ink .grid.g-3[data-thm-stack],
+  html body.page-restseo.page-service .rest-theme-page section.sec-ink .grid.g-3.page-svc-stack {
+    display: block !important;
+    grid-template-columns: none !important;
+    gap: 0 !important;
+    overflow: visible !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    margin-top: 28px !important;
+    padding: 0 !important;
+    flex-direction: unset !important;
+    flex-wrap: unset !important;
+    scroll-snap-type: none !important;
+    touch-action: auto !important;
+    transform: none !important;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+  }
+  html body.page-restseo.page-service .rest-theme-page section.sec-ink .grid.g-3 .svc-stack-item,
+  html body.page-restseo.page-service .rest-theme-page section.sec-ink .grid.g-3[data-thm-stack] > .svc-stack-item {
+    position: sticky !important;
+    top: calc(var(--svc-stack-nav, 68px) + (var(--index0, 0) * var(--svc-stack-peek, 14px))) !important;
+    z-index: calc(1 + var(--index0, 0)) !important;
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    height: auto !important;
+    margin: 0 0 var(--svc-stack-gap, 18px) !important;
+    padding: 0 !important;
+    background: transparent !important;
+    border: 0 !important;
+    box-shadow: none !important;
+    transform: none !important;
+    box-sizing: border-box !important;
+  }
+  html body.page-restseo.page-service .rest-theme-page section.sec-ink .grid.g-3 .svc-stack-item:last-child {
+    margin-bottom: 0 !important;
+  }
+  html body.page-restseo.page-service .rest-theme-page section.sec-ink .grid.g-3 .pain,
+  html body.page-restseo.page-service .rest-theme-page section.sec-ink .grid.g-3 .svc-stack-item > .pain {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    height: auto !important;
+    min-height: 150px !important;
+    margin: 0 !important;
+    opacity: 1 !important;
+    transform: none !important;
+    background: var(--ink-2, #102832) !important;
+    border: 1px solid var(--line-dark, rgba(255, 255, 255, 0.08)) !important;
+    border-radius: 18px !important;
+    box-shadow: 0 10px 28px -16px rgba(0, 0, 0, 0.45) !important;
+    box-sizing: border-box !important;
+    color: #9fb6be !important;
+  }
+  html body.page-restseo.page-service .rest-theme-page section.sec-ink .grid.g-3 .pain h4 {
+    color: #fff !important;
+  }
+  html body.page-restseo.page-service .rest-theme-page section.sec-ink .thm-carousel-dots,
+  html body.page-restseo.page-service .rest-theme-page section.sec-ink .thm-carousel-nav-wrap {
+    display: none !important;
+  }
+}
+
 @media (max-width: 980px) {
-  html body.page-restseo.page-service .rest-theme-page [data-thm-carousel].thm-mobile-carousel {
+  html body.page-restseo.page-service .rest-theme-page [data-thm-carousel].thm-mobile-carousel:not([data-thm-stack]) {
     display: flex !important;
     flex-direction: row !important;
     flex-wrap: nowrap !important;

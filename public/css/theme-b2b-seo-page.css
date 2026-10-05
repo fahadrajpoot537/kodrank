@@ -24,7 +24,7 @@ html body.page-b2bseo.page-service .hero-eyebrow { display: none !important; }
 html body.page-b2bseo.page-service .hero {
   min-height: 0 !important;
   padding-top: calc(84px + 24px) !important;
-  padding-bottom: clamp(64px, 8.5vh, 112px) !important;
+  padding-bottom: clamp(36px, 4.5vw, 64px) !important;
   align-items: flex-start !important;
 }
 html body.page-b2bseo.page-service .hero .breadcrumb,
@@ -54,7 +54,7 @@ html body.page-b2bseo.page-service .hero .hero-badges,
 html body.page-b2bseo.page-service .hero .hero-trust,
 html body.page-b2bseo.page-service .hero .hero-badges.hero-trust {
   margin-top: clamp(40px, 4.5vw, 64px) !important;
-  margin-bottom: 0 !important;
+  margin-bottom: clamp(36px, 5vw, 64px) !important;
   padding-top: clamp(26px, 3vw, 36px) !important;
 }
 @media (max-width: 900px) {
@@ -114,13 +114,33 @@ html body.page-service .b2b-theme-page .fade-up {
 html body.page-b2bseo.page-service .hero {
   min-height: 0 !important;
   padding-top: calc(84px + 24px) !important;
-  padding-bottom: clamp(64px, 8.5vh, 112px) !important;
+  padding-bottom: clamp(36px, 4.5vw, 64px) !important;
   align-items: flex-start !important;
+}
+@media (min-width: 981px) {
+  html body.page-b2bseo.page-service .hero {
+    box-sizing: border-box !important;
+    min-height: 100vh !important;
+    min-height: 100dvh !important;
+  }
+  html body.page-b2bseo.page-service .hero .hero-bg,
+  html body.page-b2bseo.page-service .hero .hero-veil {
+    position: absolute !important;
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+  }
+  html body.page-b2bseo.page-service .hero .lede,
+  html body.page-b2bseo.page-service .hero p.sub,
+  html body.page-b2bseo.page-service .hero .hero-sub {
+    margin-bottom: clamp(52px, 6.5vh, 76px) !important;
+  }
 }
 @media (max-width: 900px) {
   html body.page-b2bseo.page-service .hero {
     padding-top: calc(64px + 16px) !important;
     padding-bottom: clamp(52px, 7.5vh, 80px) !important;
+    min-height: 0 !important;
   }
 }
 @media (max-width: 767px) {
@@ -236,6 +256,41 @@ html body.page-b2bseo.page-service .b2b-theme-page #process .svc-stack-item > .p
 @media (min-width: 901px) and (max-width: 1080px) {
   html body.page-b2bseo.page-service .b2b-theme-page .pain-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+}
+
+@media (min-width: 981px) {
+  html body.page-b2bseo.page-service .b2b-theme-page #results .why-mobile-carousel:has(> .svc-grid) {
+    display: contents !important;
+  }
+  html body.page-b2bseo.page-service .b2b-theme-page #results .svc-grid,
+  html body.page-b2bseo.page-service .b2b-theme-page #results .svc-grid[data-thm-carousel],
+  html body.page-b2bseo.page-service .b2b-theme-page #results .why-mobile-carousel > .svc-grid {
+    display: grid !important;
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    grid-auto-flow: row !important;
+    gap: 22px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow: visible !important;
+    flex-wrap: unset !important;
+    scroll-snap-type: none !important;
+    transform: none !important;
+  }
+  html body.page-b2bseo.page-service .b2b-theme-page #results .svc-grid > .svc,
+  html body.page-b2bseo.page-service .b2b-theme-page #results .svc-grid > .svc-card,
+  html body.page-b2bseo.page-service .b2b-theme-page #results .why-mobile-carousel > .svc-grid > * {
+    flex: none !important;
+    width: auto !important;
+    min-width: 0 !important;
+    max-width: none !important;
+    scroll-snap-align: unset !important;
+    margin: 0 !important;
+  }
+  html body.page-b2bseo.page-service .b2b-theme-page #results .thm-carousel-dots,
+  html body.page-b2bseo.page-service .b2b-theme-page #results .thm-carousel-nav-wrap,
+  html body.page-b2bseo.page-service .b2b-theme-page #results .wrap > .testi-dots.thm-carousel-dots {
+    display: none !important;
   }
 }
 

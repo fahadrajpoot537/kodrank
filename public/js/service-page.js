@@ -625,6 +625,78 @@
         );
       }
 
+      // Restaurant SEO: dark pain cards → swipe-up sticky stack (not horizontal carousel)
+      if (document.body.classList.contains('page-restseo')) {
+        Array.prototype.forEach.call(
+          root.querySelectorAll('.rest-theme-page section.sec-ink .grid.g-3.mt-lg, .rest-theme-page .grid.g-3:has(> .pain)'),
+          (grid) => {
+            if (seenStack.has(grid) || skipCommon(grid)) return;
+            seenStack.add(grid);
+            grid.setAttribute('data-thm-stack', '1');
+            grid.removeAttribute('data-thm-carousel');
+            grid.classList.remove('thm-mobile-carousel');
+          }
+        );
+      }
+
+      // Guest posting: #problem pain cards → swipe-up sticky stack (not horizontal carousel)
+      if (document.body.classList.contains('page-gpseo')) {
+        Array.prototype.forEach.call(
+          root.querySelectorAll('.gp-theme-page #problem .grid, #problem .grid'),
+          (grid) => {
+            if (seenStack.has(grid) || skipCommon(grid)) return;
+            seenStack.add(grid);
+            grid.setAttribute('data-thm-stack', '1');
+            grid.removeAttribute('data-thm-carousel');
+            grid.classList.remove('thm-mobile-carousel');
+          }
+        );
+      }
+
+      // WordPress SEO: #why pain cards → swipe-up sticky stack (not horizontal carousel)
+      if (document.body.classList.contains('page-wpseo')) {
+        Array.prototype.forEach.call(
+          root.querySelectorAll('.wpseo-theme-page #why .pain-grid, #why .pain-grid'),
+          (grid) => {
+            if (seenStack.has(grid) || skipCommon(grid)) return;
+            seenStack.add(grid);
+            grid.setAttribute('data-thm-stack', '1');
+            grid.removeAttribute('data-thm-carousel');
+            grid.classList.remove('thm-mobile-carousel');
+          }
+        );
+      }
+
+      // Real estate SEO: #pain cards → swipe-up sticky stack (not horizontal carousel)
+      if (document.body.classList.contains('page-reseo')) {
+        Array.prototype.forEach.call(
+          root.querySelectorAll('.re-theme-page #pain .pain-grid, #pain .pain-grid'),
+          (grid) => {
+            if (seenStack.has(grid) || skipCommon(grid)) return;
+            if (!grid.closest('#pain')) return;
+            seenStack.add(grid);
+            grid.setAttribute('data-thm-stack', '1');
+            grid.removeAttribute('data-thm-carousel');
+            grid.classList.remove('thm-mobile-carousel');
+          }
+        );
+      }
+
+      // Healthcare SEO: #pain cards → swipe-up sticky stack (not horizontal carousel)
+      if (document.body.classList.contains('page-hcseo')) {
+        Array.prototype.forEach.call(
+          root.querySelectorAll('.hc-theme-page #pain .pain-grid, #pain .pain-grid'),
+          (grid) => {
+            if (seenStack.has(grid) || skipCommon(grid)) return;
+            if (!grid.closest('#pain')) return;
+            seenStack.add(grid);
+            grid.setAttribute('data-thm-stack', '1');
+            grid.removeAttribute('data-thm-carousel');
+            grid.classList.remove('thm-mobile-carousel');
+          }
+        );
+      }
+
       const markCarousel = (track) => {
         if (seenCar.has(track) || skipCommon(track)) return;
         if (track.hasAttribute('data-thm-stack')) return;
@@ -637,6 +709,11 @@
         if (document.body.classList.contains('page-saasseo') && track.classList.contains('pain-grid')) return;
         if (document.body.classList.contains('page-b2bseo') && track.classList.contains('pain-grid')) return;
         if (document.body.classList.contains('page-ecomseo') && track.classList.contains('pain-grid')) return;
+        if (document.body.classList.contains('page-wpseo') && track.classList.contains('pain-grid') && track.closest('#why')) return;
+        if (document.body.classList.contains('page-hcseo') && track.classList.contains('pain-grid') && track.closest('#pain')) return;
+        if (document.body.classList.contains('page-reseo') && track.classList.contains('pain-grid') && track.closest('#pain')) return;
+        if (document.body.classList.contains('page-gpseo') && track.closest('#problem')) return;
+        if (document.body.classList.contains('page-restseo') && track.closest('section.sec-ink') && track.querySelector(':scope > .pain')) return;
         seenCar.add(track);
         track.setAttribute('data-thm-carousel', '1');
       };
@@ -895,6 +972,147 @@
       Array.prototype.forEach.call(
         document.querySelectorAll(
           '.b2b-theme-page .sec-ink .thm-carousel-dots, .b2b-theme-page .sec-ink .thm-carousel-nav-wrap, .b2b-theme-page section.sec-ink .thm-carousel-dots'
+        ),
+        (el) => el.remove()
+      );
+    }
+    if (document.body.classList.contains('page-gpseo')) {
+      Array.prototype.forEach.call(
+        document.querySelectorAll(
+          '.gp-theme-page #problem .why-mobile-carousel:has(> .grid), .gp-theme-page #problem .grid.thm-mobile-carousel'
+        ),
+        (el) => {
+          if (el.classList.contains('grid')) {
+            el.classList.remove('thm-mobile-carousel');
+            el.removeAttribute('data-thm-carousel');
+            el.setAttribute('data-thm-stack', '1');
+            return;
+          }
+          const parent = el.parentElement;
+          if (!parent) return;
+          while (el.firstChild) {
+            parent.insertBefore(el.firstChild, el);
+          }
+          el.remove();
+        }
+      );
+      Array.prototype.forEach.call(
+        document.querySelectorAll(
+          '.gp-theme-page #problem .thm-carousel-dots, .gp-theme-page #problem .thm-carousel-nav-wrap'
+        ),
+        (el) => el.remove()
+      );
+    }
+    if (document.body.classList.contains('page-restseo')) {
+      Array.prototype.forEach.call(
+        document.querySelectorAll(
+          '.rest-theme-page section.sec-ink .why-mobile-carousel:has(> .grid.g-3), .rest-theme-page section.sec-ink .grid.g-3.thm-mobile-carousel'
+        ),
+        (el) => {
+          if (!el.querySelector(':scope > .pain') && !el.classList.contains('why-mobile-carousel')) return;
+          if (el.classList.contains('grid')) {
+            if (!el.querySelector(':scope > .pain')) return;
+            el.classList.remove('thm-mobile-carousel');
+            el.removeAttribute('data-thm-carousel');
+            el.setAttribute('data-thm-stack', '1');
+            return;
+          }
+          const parent = el.parentElement;
+          if (!parent) return;
+          while (el.firstChild) {
+            parent.insertBefore(el.firstChild, el);
+          }
+          el.remove();
+        }
+      );
+      Array.prototype.forEach.call(
+        document.querySelectorAll(
+          '.rest-theme-page section.sec-ink .thm-carousel-dots, .rest-theme-page section.sec-ink .thm-carousel-nav-wrap'
+        ),
+        (el) => {
+          if (el.closest('section.sec-ink') && el.closest('section.sec-ink').querySelector('.grid.g-3 > .pain')) {
+            el.remove();
+          }
+        }
+      );
+    }
+    if (document.body.classList.contains('page-wpseo')) {
+      Array.prototype.forEach.call(
+        document.querySelectorAll(
+          '.wpseo-theme-page #why .why-mobile-carousel:has(> .pain-grid), .wpseo-theme-page #why .pain-grid.thm-mobile-carousel'
+        ),
+        (el) => {
+          if (el.classList.contains('pain-grid')) {
+            el.classList.remove('thm-mobile-carousel');
+            el.removeAttribute('data-thm-carousel');
+            el.setAttribute('data-thm-stack', '1');
+            return;
+          }
+          const parent = el.parentElement;
+          if (!parent) return;
+          while (el.firstChild) {
+            parent.insertBefore(el.firstChild, el);
+          }
+          el.remove();
+        }
+      );
+      Array.prototype.forEach.call(
+        document.querySelectorAll(
+          '.wpseo-theme-page #why .thm-carousel-dots, .wpseo-theme-page #why .thm-carousel-nav-wrap'
+        ),
+        (el) => el.remove()
+      );
+    }
+    if (document.body.classList.contains('page-hcseo')) {
+      Array.prototype.forEach.call(
+        document.querySelectorAll(
+          '.hc-theme-page #pain .why-mobile-carousel:has(> .pain-grid), .hc-theme-page #pain .pain-grid.thm-mobile-carousel'
+        ),
+        (el) => {
+          if (el.classList.contains('pain-grid')) {
+            el.classList.remove('thm-mobile-carousel');
+            el.removeAttribute('data-thm-carousel');
+            el.setAttribute('data-thm-stack', '1');
+            return;
+          }
+          const parent = el.parentElement;
+          if (!parent) return;
+          while (el.firstChild) {
+            parent.insertBefore(el.firstChild, el);
+          }
+          el.remove();
+        }
+      );
+      Array.prototype.forEach.call(
+        document.querySelectorAll(
+          '.hc-theme-page #pain .thm-carousel-dots, .hc-theme-page #pain .thm-carousel-nav-wrap'
+        ),
+        (el) => el.remove()
+      );
+    }
+    if (document.body.classList.contains('page-reseo')) {
+      Array.prototype.forEach.call(
+        document.querySelectorAll(
+          '.re-theme-page #pain .why-mobile-carousel:has(> .pain-grid), .re-theme-page #pain .pain-grid.thm-mobile-carousel'
+        ),
+        (el) => {
+          if (el.classList.contains('pain-grid')) {
+            el.classList.remove('thm-mobile-carousel');
+            el.removeAttribute('data-thm-carousel');
+            el.setAttribute('data-thm-stack', '1');
+            return;
+          }
+          const parent = el.parentElement;
+          if (!parent) return;
+          while (el.firstChild) {
+            parent.insertBefore(el.firstChild, el);
+          }
+          el.remove();
+        }
+      );
+      Array.prototype.forEach.call(
+        document.querySelectorAll(
+          '.re-theme-page #pain .thm-carousel-dots, .re-theme-page #pain .thm-carousel-nav-wrap'
         ),
         (el) => el.remove()
       );
@@ -1999,7 +2217,12 @@
           (document.body.classList.contains('page-geo') && grid.classList.contains('pain-grid')) ||
           (document.body.classList.contains('page-saasseo') && grid.classList.contains('pain-grid')) ||
           (document.body.classList.contains('page-b2bseo') && grid.classList.contains('pain-grid')) ||
-          (document.body.classList.contains('page-ecomseo') && grid.classList.contains('pain-grid'))
+          (document.body.classList.contains('page-ecomseo') && grid.classList.contains('pain-grid')) ||
+          (document.body.classList.contains('page-wpseo') && grid.classList.contains('pain-grid') && grid.closest('#why')) ||
+          (document.body.classList.contains('page-hcseo') && grid.classList.contains('pain-grid') && grid.closest('#pain')) ||
+          (document.body.classList.contains('page-reseo') && grid.classList.contains('pain-grid') && grid.closest('#pain')) ||
+          (document.body.classList.contains('page-gpseo') && grid.closest('#problem')) ||
+          (document.body.classList.contains('page-restseo') && grid.closest('section.sec-ink') && grid.querySelector(':scope > .pain'))
         ) {
           return;
         }
@@ -2130,6 +2353,21 @@
         return;
       }
       if (document.body.classList.contains('page-ecomseo') && track.classList.contains('pain-grid')) {
+        return;
+      }
+      if (document.body.classList.contains('page-wpseo') && track.classList.contains('pain-grid') && track.closest('#why')) {
+        return;
+      }
+      if (document.body.classList.contains('page-hcseo') && track.classList.contains('pain-grid') && track.closest('#pain')) {
+        return;
+      }
+      if (document.body.classList.contains('page-reseo') && track.classList.contains('pain-grid') && track.closest('#pain')) {
+        return;
+      }
+      if (document.body.classList.contains('page-gpseo') && track.closest('#problem')) {
+        return;
+      }
+      if (document.body.classList.contains('page-restseo') && track.closest('section.sec-ink') && track.querySelector(':scope > .pain')) {
         return;
       }
       if (

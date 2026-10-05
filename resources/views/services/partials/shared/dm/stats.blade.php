@@ -1,6 +1,6 @@
 @php
   $st = $st ?? [];
-  $bg = $st['image'] ?? $st['background_image'] ?? null;
+  $bg = $st['results_background_image'] ?? $st['image'] ?? $st['background_image'] ?? null;
   $items = $st['items'] ?? [];
   $tone = $st['tone'] ?? $tone ?? 'light';
   $isDark = $tone === 'dark' || (!empty($st['dark']) && empty($st['light']));

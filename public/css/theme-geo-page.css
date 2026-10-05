@@ -22,7 +22,7 @@ body.page-geo .hero-eyebrow {
 body.page-geo .hero-badges.hero-trust,
 body.page-geo .hero-trust.hero-badges {
   margin-top: clamp(40px, 4.5vw, 64px) !important;
-  margin-bottom: clamp(18px, 2.2vw, 28px) !important;
+  margin-bottom: clamp(36px, 5vw, 64px) !important;
   padding-top: clamp(26px, 3vw, 36px) !important;
 }
 
@@ -343,5 +343,57 @@ body.page-geo .geo-theme-page .thm-carousel-nav-wrap {
 
   body.page-geo .geo-theme-page .testi-dots.thm-carousel-dots {
     display: none !important;
+  }
+
+  /* Problem: 4 cards, 2 per row (beats webdev-ref 3-up) */
+  html body.page-geo.page-service .geo-theme-page #problem .pain-grid,
+  html body.page-geo.page-service .geo-theme-page #problem .pain-grid[data-thm-stack],
+  html body.page-geo.page-service .geo-theme-page #problem .pain-grid.page-svc-stack {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    grid-auto-flow: row !important;
+    gap: 22px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow: visible !important;
+  }
+
+  html body.page-geo.page-service .geo-theme-page #problem .pain-grid > .pain-card,
+  html body.page-geo.page-service .geo-theme-page #problem .pain-grid > .svc-stack-item,
+  html body.page-geo.page-service .geo-theme-page #problem .pain-grid > .svc-stack-pair {
+    position: static !important;
+    top: auto !important;
+    width: auto !important;
+    min-width: 0 !important;
+    max-width: none !important;
+    margin: 0 !important;
+    flex: none !important;
+  }
+
+  /* Services: exactly 3 cards per row */
+  html body.page-geo.page-service .geo-theme-page #services .serv-grid,
+  html body.page-geo.page-service .geo-theme-page #services .serv-grid[data-thm-carousel],
+  html body.page-geo.page-service .geo-theme-page #services .why-mobile-carousel > .serv-grid {
+    display: grid !important;
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    grid-auto-flow: row !important;
+    gap: 22px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow: visible !important;
+    flex-wrap: unset !important;
+    scroll-snap-type: none !important;
+    transform: none !important;
+  }
+
+  html body.page-geo.page-service .geo-theme-page #services .serv-grid > .serv-card,
+  html body.page-geo.page-service .geo-theme-page #services .serv-grid > .svc-slide,
+  html body.page-geo.page-service .geo-theme-page #services .serv-grid > .svc-stack-item {
+    flex: none !important;
+    width: auto !important;
+    min-width: 0 !important;
+    max-width: none !important;
+    scroll-snap-align: unset !important;
+    margin: 0 !important;
   }
 }

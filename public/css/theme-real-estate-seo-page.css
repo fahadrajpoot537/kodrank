@@ -20,6 +20,18 @@ html body.page-reseo.page-service .hero .hero-copy > .hero-eyebrow {
   margin-bottom: 10px !important;
 }
 
+html body.page-reseo.page-service .hero .breadcrumb,
+html body.page-reseo.page-service .hero .crumbs,
+html body.page-reseo.page-theme-html .hero .breadcrumb {
+  margin: 0 0 calc(clamp(36px, 4vw, 52px) - 33px) !important;
+  padding-bottom: 0 !important;
+}
+html body.page-reseo.page-service .hero h1,
+html body.page-reseo.page-theme-html .hero h1 {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+
 /* Pain cards: 4 in one row on medium/large desktop (beats webdev-ref 3-col) */
 @media (min-width: 901px) {
   html body.page-reseo.page-service .re-theme-page #pain .pain-grid,
@@ -54,8 +66,11 @@ html body.page-reseo.page-service .re-theme-page #faq .head .lede {
 }
 
 html body.page-reseo.page-service .hero-badges.hero-trust,
-html body.page-reseo.page-service .hero-trust.hero-badges {
-  margin-top: 1.25rem;
+html body.page-reseo.page-service .hero-trust.hero-badges,
+html body.page-reseo.page-service .hero .hero-badges.hero-trust {
+  margin-top: clamp(40px, 4.5vw, 64px) !important;
+  margin-bottom: clamp(36px, 5vw, 64px) !important;
+  padding-top: clamp(26px, 3vw, 36px) !important;
 }
 
 html body.page-reseo.page-service #contact .contact-side .compare-list .mark.v {
@@ -144,6 +159,45 @@ html body.page-reseo.page-service .hero {
   padding-bottom: clamp(36px, 4.5vw, 64px) !important;
   align-items: flex-start !important;
 }
+@media (min-width: 981px) {
+  html body.page-reseo.page-service .hero-badges.hero-trust,
+  html body.page-reseo.page-service .hero .hero-badges.hero-trust {
+    margin-bottom: clamp(112px, 14vh, 180px) !important;
+  }
+}
+@media (min-width: 981px) {
+  html body.page-reseo.page-service .re-theme-page #services .why-mobile-carousel:has(> .svc-grid) {
+    display: contents !important;
+  }
+  html body.page-reseo.page-service .re-theme-page #services .svc-grid,
+  html body.page-reseo.page-service .re-theme-page.webdev-ref #services .svc-grid,
+  html body.page-reseo.page-service .re-theme-page #services .svc-grid[data-thm-carousel],
+  html body.page-reseo.page-service .re-theme-page #services .svc-grid.thm-mobile-carousel {
+    display: grid !important;
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: 20px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow: visible !important;
+    flex-direction: unset !important;
+    flex-wrap: unset !important;
+    scroll-snap-type: none !important;
+    touch-action: auto !important;
+    transform: none !important;
+  }
+  html body.page-reseo.page-service .re-theme-page #services .svc-grid > * {
+    flex: unset !important;
+    flex-basis: auto !important;
+    width: auto !important;
+    min-width: 0 !important;
+    max-width: none !important;
+    scroll-snap-align: unset !important;
+  }
+  html body.page-reseo.page-service .re-theme-page #services .thm-carousel-dots,
+  html body.page-reseo.page-service .re-theme-page #services .thm-carousel-nav-wrap {
+    display: none !important;
+  }
+}
 @media (max-width: 900px) {
   html body.page-reseo.page-service .hero {
     padding-top: calc(64px + 16px) !important;
@@ -167,7 +221,7 @@ html body.page-reseo.page-service .hero {
   html body.page-reseo.page-service .re-theme-page section {
     overflow-x: clip !important;
   }
-  html body.page-reseo.page-service .re-theme-page .pain-grid:not([data-thm-carousel]):not(.thm-mobile-carousel),
+  html body.page-reseo.page-service .re-theme-page .pain-grid:not([data-thm-carousel]):not(.thm-mobile-carousel):not([data-thm-stack]):not(.page-svc-stack),
   html body.page-reseo.page-service .re-theme-page .svc-grid:not([data-thm-carousel]):not(.thm-mobile-carousel):not(.page-svc-stack),
   html body.page-reseo.page-service .re-theme-page .serv-grid:not([data-thm-carousel]):not(.thm-mobile-carousel),
   html body.page-reseo.page-service .re-theme-page .proc-grid:not([data-thm-stack]):not(.page-svc-stack):not([data-thm-carousel]),
@@ -224,8 +278,6 @@ html body.page-reseo.page-service .re-theme-page #process .svc-stack-item > .ste
 
 @media (max-width: 980px) {
   /* Horizontal carousels — pain / services / testimonials */
-  html body.page-reseo.page-service .re-theme-page #pain .pain-grid.thm-mobile-carousel[data-thm-carousel],
-  html body.page-reseo.page-service .re-theme-page .pain-grid.thm-mobile-carousel[data-thm-carousel],
   html body.page-reseo.page-service .re-theme-page #services .svc-grid.thm-mobile-carousel[data-thm-carousel],
   html body.page-reseo.page-service .re-theme-page #services .svc-card.thm-mobile-carousel[data-thm-carousel],
   html body.page-reseo.page-service .re-theme-page .tst-grid.thm-mobile-carousel[data-thm-carousel],
@@ -255,8 +307,6 @@ html body.page-reseo.page-service .re-theme-page #process .svc-stack-item > .ste
     border: none !important;
     box-shadow: none !important;
   }
-  html body.page-reseo.page-service .re-theme-page #pain .pain-grid.thm-mobile-carousel[data-thm-carousel]::-webkit-scrollbar,
-  html body.page-reseo.page-service .re-theme-page .pain-grid.thm-mobile-carousel[data-thm-carousel]::-webkit-scrollbar,
   html body.page-reseo.page-service .re-theme-page #services .svc-grid.thm-mobile-carousel[data-thm-carousel]::-webkit-scrollbar,
   html body.page-reseo.page-service .re-theme-page #services .svc-card.thm-mobile-carousel[data-thm-carousel]::-webkit-scrollbar,
   html body.page-reseo.page-service .re-theme-page .tst-grid.thm-mobile-carousel[data-thm-carousel]::-webkit-scrollbar,
@@ -265,8 +315,6 @@ html body.page-reseo.page-service .re-theme-page #process .svc-stack-item > .ste
     display: none !important;
     height: 0 !important;
   }
-  html body.page-reseo.page-service .re-theme-page #pain .pain-grid.thm-mobile-carousel[data-thm-carousel] > *,
-  html body.page-reseo.page-service .re-theme-page .pain-grid.thm-mobile-carousel[data-thm-carousel] > *,
   html body.page-reseo.page-service .re-theme-page #services .svc-grid.thm-mobile-carousel[data-thm-carousel] > *,
   html body.page-reseo.page-service .re-theme-page #services .svc-card.thm-mobile-carousel[data-thm-carousel] > *,
   html body.page-reseo.page-service .re-theme-page .tst-grid.thm-mobile-carousel[data-thm-carousel] > *,
@@ -374,5 +422,101 @@ html body.page-reseo.page-service .re-theme-page #process .step h4 {
   html body.page-reseo.page-service .re-theme-page #process .proc-step p,
 html body.page-reseo.page-service .re-theme-page #process .step p {
     color: var(--slate, #4b5b62) !important;
+  }
+}
+
+@media (max-width: 900px) {
+  html body.page-reseo.page-service .re-theme-page #pain,
+  html body.page-reseo.page-service .re-theme-page section:has(.pain-grid[data-thm-stack]) {
+    overflow-x: clip !important;
+    overflow-y: visible !important;
+  }
+  html body.page-reseo.page-service .re-theme-page #pain > .wrap {
+    max-width: 100% !important;
+    min-width: 0 !important;
+    overflow: visible !important;
+  }
+  html body.page-reseo.page-service .re-theme-page #pain .why-mobile-carousel:has(> .pain-grid) {
+    display: contents !important;
+  }
+  html body.page-reseo.page-service .re-theme-page #pain .pain-grid[data-thm-stack],
+  html body.page-reseo.page-service .re-theme-page #pain .pain-grid.page-svc-stack {
+    display: block !important;
+    grid-template-columns: none !important;
+    gap: 0 !important;
+    overflow: visible !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    height: auto !important;
+    margin-top: 28px !important;
+    padding: 0 !important;
+    flex-direction: unset !important;
+    flex-wrap: unset !important;
+    scroll-snap-type: none !important;
+    touch-action: auto !important;
+    transform: none !important;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+  }
+  html body.page-reseo.page-service .re-theme-page #pain .pain-grid .svc-stack-item,
+  html body.page-reseo.page-service .re-theme-page #pain .pain-grid[data-thm-stack] > .svc-stack-item {
+    position: sticky !important;
+    top: calc(var(--svc-stack-nav, 68px) + (var(--index0, 0) * var(--svc-stack-peek, 14px))) !important;
+    z-index: calc(1 + var(--index0, 0)) !important;
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    height: auto !important;
+    margin: 0 0 var(--svc-stack-gap, 18px) !important;
+    padding: 0 !important;
+    background: transparent !important;
+    border: 0 !important;
+    box-shadow: none !important;
+    transform: none !important;
+    box-sizing: border-box !important;
+  }
+  html body.page-reseo.page-service .re-theme-page #pain .pain-grid .svc-stack-item:last-child {
+    margin-bottom: 0 !important;
+  }
+  html body.page-reseo.page-service .re-theme-page #pain .pain-grid .svc-stack-item > .pain-card,
+  html body.page-reseo.page-service .re-theme-page #pain .pain-grid[data-thm-stack] .pain-card {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    height: auto !important;
+    min-height: 160px !important;
+    margin: 0 !important;
+    opacity: 1 !important;
+    transform: none !important;
+    background: var(--ink-2, #0f2a33) !important;
+    background-color: var(--ink-2, #0f2a33) !important;
+    border: 1px solid var(--line-dark, rgba(244, 122, 31, 0.16)) !important;
+    border-radius: 18px !important;
+    box-shadow: 0 10px 28px -16px rgba(0, 0, 0, 0.45) !important;
+    box-sizing: border-box !important;
+    color: #b7cbd2 !important;
+    padding: 24px 22px !important;
+  }
+  html body.page-reseo.page-service .re-theme-page #pain .pain-card .n {
+    color: var(--signal, #f47a1f) !important;
+    background: transparent !important;
+    border: 0 !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    width: auto !important;
+  }
+  html body.page-reseo.page-service .re-theme-page #pain .pain-card h3 {
+    color: #fff !important;
+  }
+  html body.page-reseo.page-service .re-theme-page #pain .pain-card p {
+    color: #9fb6be !important;
+  }
+  html body.page-reseo.page-service .re-theme-page #pain .thm-carousel-dots,
+  html body.page-reseo.page-service .re-theme-page #pain .thm-carousel-nav-wrap {
+    display: none !important;
   }
 }

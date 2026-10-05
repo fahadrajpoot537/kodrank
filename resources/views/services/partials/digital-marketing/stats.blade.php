@@ -1,6 +1,6 @@
 @php
   $st = $s['stats'] ?? [];
-  $bg = $st['image'] ?? $st['background_image'] ?? null;
+  $bg = $st['results_background_image'] ?? $st['image'] ?? $st['background_image'] ?? null;
   $compact = ! empty($st['compact']) || (empty($st['title']) && empty($st['title_html']) && empty($st['eyebrow']));
   $tone = $st['tone'] ?? 'dark';
   $isLight = $tone === 'light' || ! empty($st['light']);

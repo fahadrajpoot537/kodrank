@@ -59,6 +59,7 @@
   @if($webdevRefWrap)
   <div class="webdev-ref">
   @endif
+  @include('services.partials.section-photo')
   @foreach($page->sections as $section)
     @continue($section->key === 'hero')
     @continue(($page->slug ?? '') === 'digital-marketing-services' && $section->key === 'cta')

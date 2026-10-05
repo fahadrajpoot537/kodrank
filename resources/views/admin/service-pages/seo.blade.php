@@ -51,13 +51,13 @@
 
     <div class="field">
       <label>Services listing blurb</label>
-      <textarea name="seo[listing_blurb]" rows="3" placeholder="Short card copy on /services">{{ old('seo.listing_blurb', $seo['listing_blurb'] ?? '') }}</textarea>
+      <textarea name="seo[listing_blurb]" rows="3" placeholder="Short card copy on /services">{{ old('seo.listing_blurb', ($seo['listing_blurb'] ?? '') !== '' ? $seo['listing_blurb'] : \App\Support\ServiceListingCopy::blurb($page)) }}</textarea>
       <p class="admin-hint">Shown on the /services grid. Leave empty to use the built-in fallback or SEO description.</p>
     </div>
 
     <div class="field">
       <label>Services listing tag</label>
-      <input type="text" name="seo[listing_tag]" value="{{ old('seo.listing_tag', $seo['listing_tag'] ?? '') }}" placeholder="e.g. For SaaS">
+      <input type="text" name="seo[listing_tag]" value="{{ old('seo.listing_tag', ($seo['listing_tag'] ?? '') !== '' ? $seo['listing_tag'] : \App\Support\ServiceListingCopy::tag($page)) }}" placeholder="e.g. For SaaS">
     </div>
 
     <div class="field">

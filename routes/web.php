@@ -164,6 +164,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::post('/service-pages', [AdminServicePageController::class, 'store'])->name('service-pages.store');
         Route::delete('/service-pages/{page}', [AdminServicePageController::class, 'destroy'])->name('service-pages.destroy');
         Route::get('/service-pages/{page}/content', [AdminServicePageController::class, 'content'])->name('service-pages.content');
+        Route::put('/service-pages/{page}/listing', [AdminServicePageController::class, 'updateListing'])->name('service-pages.listing');
         Route::post('/service-pages/{page}/toggle', [AdminServicePageController::class, 'toggleActive'])->name('service-pages.toggle');
 
         Route::get('/service-pages/{page}/seo', [AdminServicePageController::class, 'editSeo'])->name('service-pages.seo');

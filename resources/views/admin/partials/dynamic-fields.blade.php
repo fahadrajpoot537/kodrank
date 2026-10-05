@@ -56,7 +56,51 @@
           $html = '';
           foreach ($data as $key => $value) {
               $nameBase = $prefix.'['.$key.']';
-              $label = ucwords(str_replace('_', ' ', (string) $key));
+              $nice = [
+                  'title_html' => 'Heading',
+                  'lede_html' => 'Intro',
+                  'lead_html' => 'Intro',
+                  'paragraphs_html' => 'Paragraphs',
+                  'foot_html' => 'Closing line',
+                  'closing_html' => 'Closing line',
+                  'cta_text' => 'Button text',
+                  'cta_url' => 'Button link',
+                  'secondary_text' => 'Second button text',
+                  'secondary_url' => 'Second button link',
+                  'eyebrow' => 'Small label',
+                  'lede' => 'Intro',
+                  'title' => 'Heading',
+                  'title_accent' => 'Highlighted words',
+                  'body' => 'Card text',
+                  'group_label' => 'Group label',
+                  'submit_text' => 'Submit button',
+                  'form_title' => 'Form heading',
+                  'image_alt' => 'Image description',
+                  'trust_points' => 'Check marks',
+                  'badges' => 'Stats',
+                  'cards' => 'Cards',
+                  'items' => 'Items',
+                  'steps' => 'Steps',
+                  'logos' => 'Logos',
+                  'breadcrumb' => 'Breadcrumb',
+                  'link_text' => 'Link text',
+                  'link_url' => 'Link',
+                  'num' => 'Number',
+                  'label' => 'Label',
+                  'quote' => 'Quote',
+                  'name' => 'Name',
+                  'role' => 'Role',
+                  'text' => 'Text',
+                  'value' => 'Value',
+              ];
+              $label = $nice[$key] ?? ucwords(str_replace('_', ' ', (string) $key));
+              $htmlKey = (string) $key;
+              if (in_array($htmlKey, ['title', 'title_accent'], true) && isset($data['title_html']) && is_string($data['title_html']) && trim($data['title_html']) !== '') {
+                  continue;
+              }
+              if ($htmlKey === 'lede' && isset($data['lede_html']) && is_string($data['lede_html']) && trim($data['lede_html']) !== '') {
+                  continue;
+              }
 
               if (is_array($value)) {
                   $isList = $value === [] || array_keys($value) === range(0, count($value) - 1);
@@ -106,7 +150,9 @@
                   }
               } else {
                   $isImage = admin_is_image_field_key((string) $key);
-                  $isLong = is_string($value) && (strlen($value) > 120 || str_contains($value, "\n") || str_contains((string) $value, '<'));
+                  $shown = is_string($value) ? html_entity_decode($value, ENT_QUOTES | ENT_HTML5, 'UTF-8') : (string) $value;
+                  $isHtmlCopy = is_string($value) && str_ends_with((string) $key, '_html');
+                  $isLong = is_string($value) && (strlen($shown) > 120 || str_contains($shown, "\n") || str_contains($shown, '<') || $isHtmlCopy);
                   $html .= '<div class="field'.($isImage ? ' field-image' : '').'"><label>'.e($label).'</label>';
 
                   if ($isImage) {
@@ -117,14 +163,18 @@
                           $html .= '<img src="'.e($url).'" alt="" style="width:120px;height:120px;object-fit:cover;object-position:center top;border-radius:10px;border:1px solid #E1E9E5;background:#F1F5F3" loading="lazy">';
                           $html .= '</div>';
                       }
-                      $html .= '<input type="text" name="'.e($nameBase).'" value="'.e((string) $value).'" placeholder="media/about/photo.jpg or storage/...">';
+                      $html .= '<input type="text" name="'.e($nameBase).'" value="'.e($shown).'" placeholder="media/about/photo.jpg or storage/...">';
                       $html .= '<label class="admin-hint" style="display:block;margin:8px 0 4px">Or upload a new image</label>';
                       $html .= '<input type="file" name="'.e($uploadName).'" accept="image/jpeg,image/png,image/webp,image/gif">';
                       $html .= '<p class="admin-hint">Upload replaces the path above after Save. Max 5MB.</p>';
-                  } elseif ($isLong) {
-                      $html .= '<textarea name="'.e($nameBase).'" rows="4">'.e((string) $value).'</textarea>';
+                  } elseif ($isLong || (string) $key === 'html') {
+                      $rows = (string) $key === 'html' ? 24 : ($isHtmlCopy ? 3 : 4);
+                      $html .= '<textarea name="'.e($nameBase).'" rows="'.$rows.'">'.e($shown).'</textarea>';
+                      if ($isHtmlCopy && str_contains($shown, '<span')) {
+                          $html .= '<p class="admin-hint">Orange words sit inside &lt;span class="hl"&gt;...&lt;/span&gt;. Keep that tag if you want the highlight.</p>';
+                      }
                   } else {
-                      $html .= '<input type="text" name="'.e($nameBase).'" value="'.e((string) $value).'">';
+                      $html .= '<input type="text" name="'.e($nameBase).'" value="'.e($shown).'">';
                   }
                   $html .= '</div>';
               }

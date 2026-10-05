@@ -71,7 +71,7 @@
           }
       }
 
-      $relatedEyebrow = 'Web Design &amp; Development';
+      $relatedEyebrow = 'Web Design & Development';
       $relatedTitle = 'Build faster. Convert more. <span class="hl">Ship better</span>.';
       $relatedLede = 'From custom sites and WordPress to Shopify, CMS, AI chatbots, and SaaS — development services engineered for speed, clarity, and growth.';
       $relatedAria = 'Related development services';
@@ -107,9 +107,14 @@
           }
       }
 
-      $relatedEyebrow = 'SEO &amp; Search Growth';
-      $relatedTitle = 'Get found where your customers are <span class="hl">searching</span>.';
-      $relatedLede = 'Classic search, AI answers, and generative results — we optimize for all of it, so your business shows up first no matter how people search.';
+      $map = \App\Models\CmsSection::getMap();
+      $idx = array_merge(
+          \App\Support\CmsPageDefaults::servicesIndex(),
+          is_array($map['services_index'] ?? null) ? $map['services_index'] : []
+      );
+      $relatedEyebrow = (string) ($idx['seo_eyebrow'] ?? 'SEO & Search Growth');
+      $relatedTitle = e((string) ($idx['seo_title_h2'] ?? 'Get found where your customers are')).' <span class="hl">'.e((string) ($idx['seo_title_accent'] ?? 'searching')).'</span>.';
+      $relatedLede = (string) ($idx['seo_lede'] ?? '');
       $relatedAria = 'Related SEO services';
   }
 
@@ -122,7 +127,7 @@
 <section class="sec-ink kr-related-services" aria-label="{{ $relatedAria }}">
   <div class="wrap">
     <div class="kr-related-head">
-      <span class="eyebrow">{!! $relatedEyebrow !!}</span>
+      <span class="eyebrow">{{ $relatedEyebrow }}</span>
       <h2>{!! $relatedTitle !!}</h2>
       <p class="lede">{{ $relatedLede }}</p>
     </div>

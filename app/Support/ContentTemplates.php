@@ -32,6 +32,7 @@ class ContentTemplates
         if ($theme === 'theme-html') {
             return [
                 self::sectionTemplate('body', 'Page content (HTML)', 0, [
+                    'results_background_image' => '',
                     'scope' => 'theme-html-page',
                     'html' => '<p>Paste full page HTML content here.</p>',
                 ]),
@@ -251,6 +252,7 @@ class ContentTemplates
                 self::sectionTemplate('stats', 'Stats', 4, [
                     'eyebrow' => 'Stats',
                     'title' => 'Stats headline',
+                    'results_background_image' => '',
                     'items' => [['value' => '24/7', 'label' => 'Label', 'highlight' => true]],
                     'note' => '',
                 ]),
@@ -435,6 +437,7 @@ class ContentTemplates
                     'eyebrow' => 'Why organic compounds',
                     'title_html' => 'Stats headline',
                     'lede' => '',
+                    'results_background_image' => '',
                     'items' => [['value' => '53%', 'label' => 'Stat']],
                     'note' => '',
                 ]),
@@ -756,6 +759,7 @@ class ContentTemplates
                 'eyebrow' => '',
                 'title' => '',
                 'lede' => '',
+                'results_background_image' => '',
                 'items' => [
                     ['value' => '0+', 'label' => 'Metric', 'signal' => true],
                 ],

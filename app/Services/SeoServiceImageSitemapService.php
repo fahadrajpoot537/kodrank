@@ -89,7 +89,7 @@ class SeoServiceImageSitemapService
      */
     private function walk(array $data, array &$found, array &$seen, string $fallbackTitle): void
     {
-        $path = $data['image'] ?? $data['src'] ?? $data['bg_image'] ?? null;
+        $path = $data['image'] ?? $data['src'] ?? $data['bg_image'] ?? $data['background_image'] ?? $data['results_background_image'] ?? null;
         if (is_string($path) && $path !== '') {
             $title = (string) ($data['image_title'] ?? $data['image_alt'] ?? $data['title'] ?? $fallbackTitle);
             $caption = (string) ($data['image_caption'] ?? $data['image_alt'] ?? $data['visual_aria_label'] ?? $data['lede'] ?? '');

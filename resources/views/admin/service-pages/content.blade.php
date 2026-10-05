@@ -5,11 +5,11 @@
   <div>
     <h1 class="admin-h1">Edit content — {{ $page->name }}</h1>
     <p class="admin-sub">
-      Har section ka har text / card / FAQ / image path yahan se edit hota hai.
+      Hero, cards, buttons, aur neeche ka sara text isi page par hai. Jo section change karo, usi ka Save dabao.
       @if($page->parent)
         Parent: <strong>{{ $page->parent->name }}</strong> ·
       @endif
-      Theme: <code>{{ $theme }}</code> · URL: <code>/{{ $page->slug }}</code>
+      URL: <code>/{{ $page->slug }}</code>
     </p>
   </div>
   <div style="display:flex;gap:8px;flex-wrap:wrap">
@@ -17,6 +17,28 @@
     <a class="btn btn-ghost" href="{{ route('admin.service-pages.seo', $page) }}">SEO &amp; settings</a>
     <a class="btn btn-ghost" href="{{ route('admin.service-pages.sections.create', $page) }}">+ Add section</a>
   </div>
+</div>
+
+<div class="admin-card" style="margin-bottom:16px">
+  <h2 class="admin-h1" style="font-size:1.15rem;margin-bottom:6px">Services grid card</h2>
+  <p class="admin-hint" style="margin-top:0">Yeh text /services par is service ke card par dikhta hai — chhota label, title, aur description.</p>
+  <form method="post" action="{{ route('admin.service-pages.listing', $page) }}">
+    @csrf
+    @method('PUT')
+    <div class="field">
+      <label>Card title</label>
+      <input type="text" name="name" value="{{ old('name', $page->name) }}" required maxlength="160">
+    </div>
+    <div class="field">
+      <label>Small label</label>
+      <input type="text" name="listing_tag" value="{{ old('listing_tag', $listingTag ?? '') }}" maxlength="40" placeholder="AI Search, For SaaS, B2B — khali chhoro agar label nahi chahiye">
+    </div>
+    <div class="field">
+      <label>Card description</label>
+      <textarea name="listing_blurb" rows="3" maxlength="320">{{ old('listing_blurb', $listingBlurb ?? '') }}</textarea>
+    </div>
+    <button class="btn" type="submit">Save card</button>
+  </form>
 </div>
 
 <div class="admin-card" style="margin-bottom:16px">
@@ -31,62 +53,21 @@
   </div>
 </div>
 
-<div class="admin-card">
-  <div class="table-wrap">
-    <table class="table">
-      <thead>
-        <tr>
-          <th>#</th>
-          <th>Section</th>
-          <th>Key</th>
-          <th>What you can edit</th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody>
-        @forelse($page->sections as $section)
-          @php
-            $hints = [
-              'hero' => 'Title, subtitle, CTA, badges, hero image path / upload, breadcrumb',
-              'problem' => 'Headings + problem cards (title, body, icon) + close-it note',
-              'services' => 'Service cards, links, icons',
-              'included' => 'Deliverable cards',
-              'process' => 'Steps list',
-              'compare' => 'Comparison columns & items',
-              'stats' => 'Numbers / metrics + optional background image',
-              'why_us' => 'Why us cards',
-              'testimonials' => 'Quotes & names',
-              'faq' => 'Questions & answers',
-              'cta' => 'CTA title, body, buttons, background image',
-              'contact' => 'Form labels, service options, contact cards',
-              'trust' => 'Trust logos / label',
-              'playbook' => 'Playbook cards',
-              'platforms' => 'Platform / industry cards',
-              'why_exist' => 'Agency vs KodRank compare columns',
-              'values' => 'Value cards (add / remove)',
-              'leadership' => 'Team members — name, role, bio, photo upload, LinkedIn, tags',
-              'mission' => 'Vision number, title, checklist items',
-            ];
-          @endphp
-          <tr>
-            <td>{{ $section->sort_order }}</td>
-            <td><strong>{{ $section->label }}</strong></td>
-            <td><code>{{ $section->key }}</code></td>
-            <td style="color:#4B5B62;font-size:.9rem">{{ $hints[$section->key] ?? 'All fields in this section JSON' }}</td>
-            <td>
-              <a class="btn" href="{{ route('admin.service-pages.sections.edit', [$page, $section->key]) }}">Edit</a>
-            </td>
-          </tr>
-        @empty
-          <tr>
-            <td colspan="5">
-              No sections yet.
-              <a href="{{ route('admin.service-pages.sections.create', $page) }}">Add first section</a>
-            </td>
-          </tr>
-        @endforelse
-      </tbody>
-    </table>
+@if(empty($editors))
+  <div class="admin-card">
+    <p>No sections yet. <a href="{{ route('admin.service-pages.sections.create', $page) }}">Add the first section</a></p>
   </div>
-</div>
+@else
+  <div class="admin-card" style="margin-bottom:16px">
+    <p class="admin-hint" style="margin:0">Jump to</p>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px">
+      @foreach($editors as $editor)
+        <a class="btn btn-ghost" href="#section-{{ $editor['section']->key }}">{{ $editor['section']->label }}</a>
+      @endforeach
+    </div>
+  </div>
+  @foreach($editors as $editor)
+    @include('admin.service-pages.partials.section-form', $editor + ['allowDelete' => false])
+  @endforeach
+@endif
 @endsection

@@ -1,6 +1,9 @@
-@php $d = $s['stats'] ?? []; @endphp
+@php
+  $d = $s['stats'] ?? [];
+  $bg = $d['results_background_image'] ?? $d['image'] ?? $d['background_image'] ?? null;
+@endphp
 <section class="sec-ink bgwrap stats-sec">
-  <div class="bg-img"></div><div class="bg-ov"></div>
+  <div class="bg-img"@if($bg) style="background-image:url('{{ asset(ltrim($bg, '/')) }}')"@endif></div><div class="bg-ov"></div>
   <div class="wrap">
     <div class="sec-head">
       @if(!empty($d['eyebrow']))<span class="eyebrow">{{ $d['eyebrow'] }}</span>@endif

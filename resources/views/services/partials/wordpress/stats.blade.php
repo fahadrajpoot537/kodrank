@@ -1,5 +1,8 @@
-@php $d = $s['stats'] ?? []; @endphp
-<section class="sec-ink stats-bg">
+@php
+  $d = $s['stats'] ?? [];
+  $bg = $d['results_background_image'] ?? $d['image'] ?? $d['background_image'] ?? null;
+@endphp
+<section class="sec-ink stats-bg"@if($bg) style="--stats-bg-image:url('{{ asset(ltrim($bg, '/')) }}');--wp-stats-bg:url('{{ asset(ltrim($bg, '/')) }}')"@endif>
   <div class="wrap">
     <div class="section-head">
       @if(!empty($d['eyebrow']))<span class="eyebrow">{{ $d['eyebrow'] }}</span>@endif

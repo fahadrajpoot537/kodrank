@@ -6,6 +6,12 @@ html body.page-onpage.page-service .onpage-theme-page.theme-html-root {
   /* namespace hook */
 }
 
+/* A little more air under the hero stats than the shared AEO gap.
+   Margin adds to the hero padding, so the next section sits further down. */
+html body.page-onpage.page-service .hero .hero-badges.hero-trust {
+  margin-bottom: clamp(64px, 8vw, 100px) !important;
+}
+
 /* Heading block → cards/grid gap */
 html body.page-onpage.page-service .onpage-theme-page #pain .head-block,
 html body.page-onpage.page-service .onpage-theme-page #included .head-block,
@@ -18,4 +24,54 @@ html body.page-onpage.page-service .onpage-theme-page.webdev-ref #process .head-
 html body.page-onpage.page-service .onpage-theme-page.webdev-ref #results .head-block,
 html body.page-onpage.page-service .onpage-theme-page.webdev-ref #why .head-block {
   margin-bottom: clamp(28px, 3.5vw, 40px) !important;
+}
+
+/* #included: desktop 3-up grid (beats webdev-ref auto-fit 4-col + carousel attrs) */
+@media (min-width: 901px) {
+  html body.page-onpage.page-service .onpage-theme-page #included .grid.g-3.service-grid,
+  html body.page-onpage.page-service .onpage-theme-page #included .service-grid,
+  html body.page-onpage.page-service .onpage-theme-page.webdev-ref #included .grid.g-3.service-grid,
+  html body.page-onpage.page-service .onpage-theme-page.webdev-ref #included .service-grid,
+  html body.page-onpage.page-service .onpage-theme-page #included .grid.g-3.service-grid[data-thm-carousel],
+  html body.page-onpage.page-service .onpage-theme-page #included .service-grid[data-thm-carousel],
+  html body.page-onpage.page-service .onpage-theme-page #included .grid.g-3.service-grid.thm-mobile-carousel,
+  html body.page-onpage.page-service .onpage-theme-page #included .service-grid.thm-mobile-carousel {
+    display: grid !important;
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: 22px !important;
+    overflow: visible !important;
+    overflow-x: visible !important;
+    flex-direction: unset !important;
+    flex-wrap: unset !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    scroll-snap-type: none !important;
+    touch-action: auto !important;
+    transform: none !important;
+  }
+  html body.page-onpage.page-service .onpage-theme-page #included .service-grid > .svc,
+  html body.page-onpage.page-service .onpage-theme-page #included .grid.g-3 > .svc,
+  html body.page-onpage.page-service .onpage-theme-page.webdev-ref #included .service-grid > .svc,
+  html body.page-onpage.page-service .onpage-theme-page #included .service-grid[data-thm-carousel] > .svc {
+    flex: unset !important;
+    flex-basis: auto !important;
+    width: auto !important;
+    min-width: 0 !important;
+    max-width: none !important;
+    height: auto !important;
+    scroll-snap-align: unset !important;
+    margin: 0 !important;
+  }
+  html body.page-onpage.page-service .onpage-theme-page #included .thm-carousel-nav-wrap,
+  html body.page-onpage.page-service .onpage-theme-page #included .thm-carousel-dots,
+  html body.page-onpage.page-service .onpage-theme-page #included .testi-dots.thm-carousel-dots,
+  html body.page-onpage.page-service .onpage-theme-page #included .wrap > .testi-dots.thm-carousel-dots {
+    display: none !important;
+  }
+}
+@media (min-width: 901px) and (max-width: 1100px) {
+  html body.page-onpage.page-service .onpage-theme-page #included .grid.g-3.service-grid,
+  html body.page-onpage.page-service .onpage-theme-page #included .service-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
 }

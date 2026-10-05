@@ -6,8 +6,86 @@ html body.page-offpage.page-service .offpage-theme-page.theme-html-root {
   /* namespace hook */
 }
 
-/* #work heading → metrics gap */
+/* Hero stats: same open row as AEO, not the boxed 4-up strip */
+html body.page-offpage.page-service .hero .hero-badges.hero-trust {
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: nowrap !important;
+  align-items: flex-start !important;
+  justify-content: flex-start !important;
+  gap: 22px 40px !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  margin-top: clamp(40px, 4.5vw, 64px) !important;
+  margin-bottom: clamp(36px, 5vw, 64px) !important;
+  padding: clamp(26px, 3vw, 36px) 0 0 !important;
+  background: transparent !important;
+  border-top: 1px solid rgba(255, 255, 255, .12) !important;
+  box-sizing: border-box !important;
+}
+@media (min-width: 901px) {
+  html body.page-offpage.page-service .hero .hero-badges.hero-trust {
+    margin-bottom: clamp(168px, 16.5vw, 198px) !important;
+  }
+}
+html body.page-offpage.page-service .hero .hero-badges.hero-trust .hero-badge {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+  flex: 0 1 auto !important;
+  width: auto !important;
+  max-width: none !important;
+  min-width: 0 !important;
+  background: transparent !important;
+  padding: 0 !important;
+  text-align: left !important;
+}
+html body.page-offpage.page-service .hero .hero-badges.hero-trust .hero-badge .num {
+  font-size: clamp(1.45rem, 2.2vw, 2rem) !important;
+  font-weight: 800 !important;
+  color: var(--signal, #F47A1F) !important;
+  letter-spacing: 0 !important;
+  line-height: 1 !important;
+  white-space: nowrap !important;
+}
+html body.page-offpage.page-service .hero .hero-badges.hero-trust .hero-badge .lbl {
+  font-size: .72rem !important;
+  text-transform: uppercase !important;
+  letter-spacing: .06em !important;
+  color: #9FB6BE !important;
+  margin-top: 8px !important;
+  white-space: nowrap !important;
+  line-height: 1.35 !important;
+}
+@media (max-width: 900px) {
+  html body.page-offpage.page-service .hero .hero-badges.hero-trust {
+    flex-wrap: wrap !important;
+    gap: 18px 28px !important;
+  }
+  html body.page-offpage.page-service .hero .hero-badges.hero-trust .hero-badge .lbl {
+    white-space: normal !important;
+  }
+}
 html body.page-offpage.page-service .offpage-theme-page #work .head,
 html body.page-offpage.page-service .offpage-theme-page.webdev-ref #work .head {
   margin-bottom: clamp(28px, 3.5vw, 40px) !important;
+}
+
+/* Compare band (“Not all links are equal”) — light section, dark cards stay */
+html body.page-offpage.page-service .offpage-theme-page section.sec.sec-ink:has(.cmp) {
+  background: #F1F5F3 !important;
+  background-color: #F1F5F3 !important;
+  color: #4B5B62 !important;
+  --kr-dark: #0D2029;
+  --kr-muted: #4B5B62;
+  --kr-muted-2: #6B7A80;
+}
+html body.page-offpage.page-service .offpage-theme-page section.sec.sec-ink:has(.cmp) .head .h-lg,
+html body.page-offpage.page-service .offpage-theme-page section.sec.sec-ink:has(.cmp) .head .h-md,
+html body.page-offpage.page-service .offpage-theme-page section.sec.sec-ink:has(.cmp) h2 {
+  color: #0D2029 !important;
+}
+html body.page-offpage.page-service .offpage-theme-page section.sec.sec-ink:has(.cmp) .lede,
+html body.page-offpage.page-service .offpage-theme-page section.sec.sec-ink:has(.cmp) .head .lede {
+  color: #4B5B62 !important;
 }

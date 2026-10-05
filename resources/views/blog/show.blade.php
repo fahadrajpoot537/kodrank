@@ -52,6 +52,12 @@
       $contentHtml
   ) ?? $contentHtml;
 
+  $contentHtml = preg_replace(
+      '/<table\b[^>]*>.*?<\/table>/is',
+      '<div class="table-scroll">$0</div>',
+      $contentHtml
+  ) ?? $contentHtml;
+
   // Theme-style title highlight (e.g. "best pages.")
   $heroTitleHtml = e($post->title);
   if (preg_match('/^(.*?\b)(best pages\.)$/iu', $post->title, $tm)) {

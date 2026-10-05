@@ -5,37 +5,6 @@
   $seoGroup = $groups->firstWhere('slug', $idx['seo_group_slug'] ?? 'digital-marketing-services');
   $webGroup = $groups->firstWhere('slug', $idx['web_group_slug'] ?? 'web-design-and-development-services');
 
-  $blurbs = [
-    'digital-marketing-services' => 'Full-funnel campaigns across search, social, and paid — built to turn traffic into pipeline, and pipeline into revenue.',
-    'monthly-seo-services' => 'Ongoing optimization that compounds. Fresh content, clean links, and technical fixes every month to climb rankings — and hold them.',
-    'on-page-seo-services' => 'Titles, structure, and content tuned to search intent — so every page earns its ranking instead of hoping for one.',
-    'off-page-seo-services' => 'Authority built through relevant, high-quality backlinks that move rankings — never the risky links that trigger penalties.',
-    'technical-seo-services' => 'Crawlability, speed, and site health fixed at the code level — so search engines can index and reward everything you publish.',
-    'saas-seo-services' => 'Growth engineered for software companies — MRR-driven keywords, product-led content, and rankings that scale with your funnel.',
-    'aeo-services' => 'Answer Engine Optimization that wins featured snippets, voice results, and the direct answers people trust most.',
-    'geo-services' => 'Generative Engine Optimization — content structured to be surfaced and cited by ChatGPT, Gemini, and AI overviews.',
-    'b2b-seo-services' => 'Buyer-intent SEO for long sales cycles — keywords, content, and reporting tied to pipeline, not vanity traffic.',
-    'ecommerce-seo-services' => 'Product and category pages that rank and sell — so organic search becomes your cheapest acquisition channel.',
-    'wordpress-seo-services' => 'WordPress speed, plugins, and content fixed so your site ranks higher, loads faster, and converts more.',
-    'web-design-and-development-services' => 'Fast, modern websites designed around your users and your goals — engineered to convert visitors into customers.',
-    'wordpress-development-services' => 'Custom WordPress builds that are secure, scalable, and simple for your team to manage — no plugin bloat.',
-    'shopify-development-services' => 'High-converting Shopify stores engineered for speed, clean UX, and sales — so more visitors reach checkout.',
-    'cms-development-services' => 'Flexible content platforms that let your team publish, edit, and grow — without ever touching a line of code.',
-    'website-redesign-services' => 'A rebuild that ranks and converts — a modern look and better UX, without throwing away the SEO equity you\'ve earned.',
-    'ai-chatbot-development-services' => 'Custom AI assistants that answer questions, qualify leads, and convert visitors — working for you around the clock.',
-  ];
-
-  $tags = [
-    'saas-seo-services' => 'For SaaS',
-    'aeo-services' => 'AI Search',
-    'geo-services' => 'AI Search',
-    'b2b-seo-services' => 'B2B',
-    'ecommerce-seo-services' => 'eCommerce',
-    'wordpress-seo-services' => 'WordPress',
-    'shopify-development-services' => 'eCommerce',
-    'ai-chatbot-development-services' => 'AI Build',
-  ];
-
   $icons = [
     'digital-marketing-services' => '<path d="m3 11 18-5v12L3 14v-3z"/><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/>',
     'monthly-seo-services' => '<path d="M3 3v18h18"/><path d="M7 14l4-4 3 3 5-6"/>',
@@ -124,8 +93,8 @@
     <div class="svc-index-grid">
       @foreach($seoPages as $svc)
         @php
-          $cardTag = trim((string) ($svc->seo['listing_tag'] ?? '')) ?: ($tags[$svc->slug] ?? '');
-          $cardBlurb = trim((string) ($svc->seo['listing_blurb'] ?? '')) ?: ($blurbs[$svc->slug] ?? (($svc->seo['seo_description'] ?? '') !== '' ? \Illuminate\Support\Str::limit($svc->seo['seo_description'], 120) : 'Explore how KodRank delivers this service end to end.'));
+          $cardTag = \App\Support\ServiceListingCopy::tag($svc);
+          $cardBlurb = \App\Support\ServiceListingCopy::blurb($svc);
           $cardIcon = trim((string) ($svc->seo['listing_icon'] ?? ''));
         @endphp
         <a href="/{{ ltrim($svc->slug, '/') }}" class="svc-card svc-card-dark">
@@ -160,8 +129,8 @@
     <div class="svc-index-grid">
       @foreach($webPages as $svc)
         @php
-          $cardTag = trim((string) ($svc->seo['listing_tag'] ?? '')) ?: ($tags[$svc->slug] ?? '');
-          $cardBlurb = trim((string) ($svc->seo['listing_blurb'] ?? '')) ?: ($blurbs[$svc->slug] ?? (($svc->seo['seo_description'] ?? '') !== '' ? \Illuminate\Support\Str::limit($svc->seo['seo_description'], 120) : 'Explore how KodRank delivers this service end to end.'));
+          $cardTag = \App\Support\ServiceListingCopy::tag($svc);
+          $cardBlurb = \App\Support\ServiceListingCopy::blurb($svc);
           $cardIcon = trim((string) ($svc->seo['listing_icon'] ?? ''));
         @endphp
         <a href="/{{ ltrim($svc->slug, '/') }}" class="svc-card svc-card-light">
