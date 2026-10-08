@@ -1,10 +1,26 @@
+@php
+  $showMeta = $showMeta ?? true;
+  $showStructured = $showStructured ?? true;
+  $showPhotoBlock = $showPhoto ?? true;
+  $formTitle = $formTitle ?? $section->label;
+  $returnPart = $returnPart ?? '';
+  $partialData = $partialData ?? false;
+  $shortLabels = $shortLabels ?? false;
+@endphp
 <div class="admin-card" id="section-{{ $section->key }}" style="margin-bottom:18px">
-  <h2 class="admin-h1" style="font-size:1.15rem;margin-bottom:4px">{{ $section->label }}</h2>
-  <p class="admin-hint" style="margin-top:0">Headings, cards, buttons, and images in this part of the page.</p>
+  <h2 class="admin-h1" style="font-size:1.15rem;margin-bottom:4px">{{ $formTitle }}</h2>
+  <p class="admin-hint" style="margin-top:0">Edit this section, then save. The rest of the page stays as it is.</p>
   <form method="post" action="{{ route('admin.service-pages.sections.update', [$page, $section->key]) }}" enctype="multipart/form-data">
     @csrf
     @method('PUT')
+    @if($returnPart !== '')
+      <input type="hidden" name="return_part" value="{{ $returnPart }}">
+    @endif
+    @if($partialData)
+      <input type="hidden" name="partial_data" value="1">
+    @endif
 
+    @if($showMeta)
     <div class="grid2">
       <div class="field">
         <label>Section name</label>
@@ -15,6 +31,7 @@
         <input type="number" name="sort_order" value="{{ old('sort_order', $section->sort_order) }}" min="0" max="999">
       </div>
     </div>
+    @endif
 
     @php
       $sectionFields = is_array($section->data) ? $section->data : [];
@@ -28,7 +45,7 @@
           }
       }
     @endphp
-    @if($photoFields !== [])
+    @if($showPhotoBlock && $photoFields !== [])
       @if($page->slug === 'web-design-and-development-services')
         <p class="admin-hint">Included section photo is the background on “Included in every package”. Upload a new image here, or leave the path blank to keep the current photo. The dark color layer stays on top of the image.</p>
       @elseif($page->slug === 'shopify-development-services')
@@ -50,10 +67,24 @@
       <input type="hidden" name="data[html_path]" value="{{ $themeHtmlPath }}">
       <input type="hidden" name="data[scope]" value="{{ $themeHtmlScope }}">
       <input type="hidden" name="data[html]" value="">
-      <p class="admin-hint">Every heading, card, button, and paragraph below the hero is listed here. Change the words and save this section.</p>
       @foreach($contentFields as $field)
+        @php
+          $fieldLabel = $field['label'];
+          if ($shortLabels && str_contains($fieldLabel, ' · ')) {
+              $fieldLabel = trim(substr($fieldLabel, strrpos($fieldLabel, ' · ') + strlen(' · ')));
+          }
+          if ($shortLabels) {
+              $preview = trim(preg_replace('/\s+/u', ' ', (string) ($field['value'] ?? '')) ?? '');
+              if ($preview !== '') {
+                  if (mb_strlen($preview) > 48) {
+                      $preview = rtrim(mb_substr($preview, 0, 45)).'…';
+                  }
+                  $fieldLabel .= ' — '.$preview;
+              }
+          }
+        @endphp
         <div class="field">
-          <label>{{ $field['label'] }}</label>
+          <label>{{ $fieldLabel }}</label>
           @if(($field['rows'] ?? 1) > 1)
             <textarea name="content_blocks[{{ $field['id'] }}]" rows="{{ (int) $field['rows'] }}">{{ $field['value'] }}</textarea>
           @else
@@ -63,7 +94,9 @@
       @endforeach
     @endif
 
-    @include('admin.partials.dynamic-fields', ['fieldsData' => $sectionFields ?? ($section->data ?? []), 'fieldsPrefix' => 'data'])
+    @if($showStructured)
+      @include('admin.partials.dynamic-fields', ['fieldsData' => $sectionFields ?? ($section->data ?? []), 'fieldsPrefix' => 'data'])
+    @endif
 
     <div class="admin-actions">
       <button class="btn" type="submit">Save {{ $section->label }}</button>

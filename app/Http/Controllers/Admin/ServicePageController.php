@@ -164,7 +164,7 @@ class ServicePageController extends Controller
         ServicePage::forgetNavCache();
 
         return redirect()
-            ->route('admin.service-pages.content', $page)
+            ->route('admin.service-pages.content', ['page' => $page, 'part' => 'listing'])
             ->with('success', 'Services page card saved.');
     }
 
@@ -387,6 +387,9 @@ class ServicePageController extends Controller
         $sort = (int) $request->input('sort_order', $section->sort_order);
         $existing = is_array($section->data) ? $section->data : [];
         $data = $this->normalize($data);
+        if ($request->boolean('partial_data')) {
+            $data = array_replace($existing, $data);
+        }
         $data = $this->applyThemeHtmlBlocks($data, $request->input('content_blocks', []));
         $data = $this->persistThemeHtml($data);
         $data = $this->keepHeadingCopy($data, $existing);
@@ -398,9 +401,12 @@ class ServicePageController extends Controller
         ]);
         ServicePage::forgetCache($page->slug);
 
-        return redirect()
-            ->route('admin.service-pages.sections.edit', [$page, $section->key])
-            ->with('success', $section->label.' saved successfully.');
+        $part = trim((string) $request->input('return_part', ''));
+        $redirect = $part !== ''
+            ? redirect()->route('admin.service-pages.content', ['page' => $page, 'part' => $part])
+            : redirect()->route('admin.service-pages.sections.edit', [$page, $section->key]);
+
+        return $redirect->with('success', ($label !== '' ? $label : $section->label).' saved.');
     }
 
     /**

@@ -8,22 +8,39 @@ namespace App\Support;
  */
 final class ThemeHtmlContentEditor
 {
+    /** @var array<int, string>|null */
+    private static ?array $groupTitles = null;
+
+    private static int $groupIndex = 0;
     /**
      * @return list<array{id: string, label: string, value: string, rows: int}>
      */
     public static function fields(string $html): array
     {
         $fields = [];
+        self::$groupTitles = [0 => 'Page'];
+        self::$groupIndex = 0;
         self::walk($html, function (string $id, string $raw, string $plain, string $label) use (&$fields): ?string {
             $fields[] = [
                 'id' => $id,
                 'label' => $label,
                 'value' => $plain,
                 'rows' => strlen($plain) > 90 ? 3 : 1,
+                'group_index' => self::$groupIndex,
             ];
 
             return null;
         });
+        $titles = self::$groupTitles ?? [];
+        self::$groupTitles = null;
+
+        foreach ($fields as &$field) {
+            $index = (int) $field['group_index'];
+            $title = trim((string) ($titles[$index] ?? ''));
+            $field['group'] = $title !== '' ? $title : 'Section '.$index;
+            unset($field['group_index']);
+        }
+        unset($field);
 
         return $fields;
     }
@@ -109,13 +126,12 @@ final class ThemeHtmlContentEditor
             $n++;
             $label = self::fieldLabel($section, $parent);
             $replacement = $onText($id, $raw, $plain, $label);
-            $class = $parent['class'] ?? '';
             if (
-                ($parent['tag'] ?? '') === 'h1'
-                || ($parent['tag'] ?? '') === 'h2'
-                || str_contains($class, 'eyebrow')
+                self::$groupTitles !== null
+                && in_array(($parent['tag'] ?? ''), ['h2', 'h3'], true)
+                && trim((string) (self::$groupTitles[self::$groupIndex] ?? '')) === ''
             ) {
-                $section = self::short($plain);
+                self::$groupTitles[self::$groupIndex] = self::short($plain);
             }
             $out .= is_string($replacement) ? $replacement : $raw;
         }
@@ -159,7 +175,13 @@ final class ThemeHtmlContentEditor
         if (preg_match('/\sclass\s*=\s*(["\'])(.*?)\1/i', $rawTag, $cm)) {
             $class = $cm[2];
         }
-        if ($tag === 'section' && $id !== '') {
+        if ($tag === 'section' && self::$groupTitles !== null) {
+            self::$groupIndex++;
+            self::$groupTitles[self::$groupIndex] = self::sectionTitle($id, $class);
+            if (self::$groupTitles[self::$groupIndex] !== '') {
+                $section = self::$groupTitles[self::$groupIndex];
+            }
+        } elseif ($tag === 'section' && $id !== '') {
             $section = self::short(ucwords(str_replace(['-', '_'], ' ', $id)));
         }
         if (in_array($tag, ['script', 'style', 'svg', 'noscript'], true)) {
@@ -214,6 +236,27 @@ final class ThemeHtmlContentEditor
         };
 
         return $section.' · '.$kind;
+    }
+
+    private static function sectionTitle(string $id, string $class): string
+    {
+        if ($id !== '') {
+            return self::short(ucwords(str_replace(['-', '_'], ' ', $id)));
+        }
+
+        $skip = [
+            'section', 'sec-ink', 'sec-paper', 'sec-mist', 'sec-compare', 'sec',
+            'rv', 'in', 'on', 'bgwrap', 'ctaband', 'wrap', 'paper',
+        ];
+        foreach (preg_split('/\s+/', trim($class)) ?: [] as $token) {
+            if ($token === '' || in_array($token, $skip, true)) {
+                continue;
+            }
+
+            return self::short(ucwords(str_replace(['-', '_'], ' ', $token)));
+        }
+
+        return '';
     }
 
     private static function short(string $text): string
