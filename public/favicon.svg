@@ -1,7 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-label="KodRank">
-  <rect width="32" height="32" rx="6" fill="#FFFFFF"/>
-  <g fill="none" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M11.2 8.2 6.6 16l4.6 7.8" stroke="#F47A1F" stroke-width="3.2"/>
-    <path d="M14.2 9.4 21.4 22.6" stroke="#0C1115" stroke-width="3.2"/>
-  </g>
-</svg>

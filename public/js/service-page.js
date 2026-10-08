@@ -795,6 +795,23 @@
           );
         }
       }
+
+      // Shopify development: pain cards swipe up; #services is a dotted carousel.
+      if (document.body.classList.contains('page-shopify') && root.classList.contains('shopify-theme-page')) {
+        Array.prototype.forEach.call(root.querySelectorAll('#services .svc-grid'), (grid) => {
+          seenStack.delete(grid);
+          grid.removeAttribute('data-thm-stack');
+          grid.classList.remove('page-svc-stack');
+          grid.setAttribute('data-thm-carousel', '1');
+        });
+        Array.prototype.forEach.call(root.querySelectorAll('section.sec-paper .pain-grid, section.section.sec-paper .pain-grid'), (grid) => {
+          if (seenStack.has(grid)) return;
+          seenStack.add(grid);
+          grid.setAttribute('data-thm-stack', '1');
+          grid.removeAttribute('data-thm-carousel');
+          grid.classList.remove('thm-mobile-carousel');
+        });
+      }
     });
   })();
 
@@ -2219,6 +2236,7 @@
         const parent = grid.parentElement;
         if (!parent || parent.classList.contains('why-mobile-carousel')) return;
         if (grid.hasAttribute('data-thm-stack') || grid.classList.contains('page-svc-stack')) return;
+        if (document.body.classList.contains('page-shopify') && grid.classList.contains('pain-grid')) return;
         // DM hub #why-us / on-page #pain use swipe-up stack — never wrap in horizontal carousel shell
         if (
           (document.body.classList.contains('page-dm') && grid.closest('#why-us')) ||
@@ -2294,6 +2312,9 @@
       }
       if (track.closest('.monthly-theme-page') || document.body.classList.contains('page-monthly')) {
         return '(max-width: 980px)';
+      }
+      if (document.body.classList.contains('page-shopify')) {
+        return '(max-width: 900px)';
       }
       if (
         document.body.classList.contains('page-shopifyseo') ||
@@ -2463,7 +2484,15 @@
         (scroller && scroller.closest('.wrap')) ||
         (shell && shell.parentElement) ||
         scroller.parentElement;
-      if (host) {
+      if (
+        document.body.classList.contains('page-shopify') &&
+        scroller.classList.contains('why-feats') &&
+        shell &&
+        shell.parentElement
+      ) {
+        shell.parentElement.insertBefore(dotsWrap, shell.nextSibling);
+        shell.parentElement.insertBefore(navWrap, dotsWrap.nextSibling);
+      } else if (host) {
         let anchor = shell || scroller;
         // Nested shells (e.g. .wrap > .carousel > .why-mobile-carousel > #svcTrack)
         // must place dots after the direct child of .wrap, not after a deep descendant

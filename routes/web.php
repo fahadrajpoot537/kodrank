@@ -24,12 +24,19 @@ use App\Models\ServicePage;
 use App\Services\SeoServiceImageSitemapService;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/favicon.ico', function () {
-    $path = public_path('fav.png');
+$serveSiteIcon = function () {
+    $path = public_path('fav.jpeg');
     abort_unless(is_file($path), 404);
 
-    return response()->file($path, ['Content-Type' => 'image/png']);
-});
+    return response()->file($path, [
+        'Content-Type' => 'image/jpeg',
+        'Cache-Control' => 'public, max-age=86400',
+    ]);
+};
+
+Route::get('/favicon.ico', $serveSiteIcon);
+Route::get('/apple-touch-icon.png', $serveSiteIcon);
+Route::get('/apple-touch-icon-precomposed.png', $serveSiteIcon);
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/contact', [ContactController::class, 'show'])->name('contact');

@@ -82,10 +82,43 @@ html body.page-shopify.page-service .hero-ctas {
   }
 }
 
-/* ─── #services: mobile swipe-up sticky stack ─── */
+/* #services cards stay dark on every breakpoint. */
+html body.page-shopify.page-service .shopify-theme-page #services .svc-card {
+  background: var(--ink, #0a1a22) !important;
+  background-color: var(--ink, #0a1a22) !important;
+  color: #9fb6be !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+html body.page-shopify.page-service .shopify-theme-page #services .svc-card h3 {
+  color: #fff !important;
+}
+
+html body.page-shopify.page-service .shopify-theme-page #services .svc-card p {
+  color: #9fb6be !important;
+}
+
+html body.page-shopify.page-service .shopify-theme-page #services .svc-card .tile {
+  background: #cfd6da !important;
+  color: var(--signal, #f47a1f) !important;
+}
+
+html body.page-shopify.page-service .shopify-theme-page #services .svc-card .tile svg {
+  stroke: var(--signal, #f47a1f) !important;
+}
+
+html body.page-shopify.page-service .shopify-theme-page #services .svc-card:hover .tile {
+  background: var(--signal, #f47a1f) !important;
+  color: var(--signal-ink, #0a1a22) !important;
+}
+
+html body.page-shopify.page-service .shopify-theme-page #services .svc-card:hover .tile svg {
+  stroke: var(--signal-ink, #0a1a22) !important;
+}
+
+/* ─── #services: mobile carousel with orange dots ─── */
 @media (max-width: 900px) {
-  html body.page-shopify.page-service .shopify-theme-page section#services,
-  html body.page-shopify.page-service .shopify-theme-page section#services.has-page-svc-stack {
+  html body.page-shopify.page-service .shopify-theme-page section#services {
     overflow-x: clip !important;
     overflow-y: visible !important;
   }
@@ -96,103 +129,79 @@ html body.page-shopify.page-service .hero-ctas {
     overflow: visible !important;
   }
 
-  html body.page-shopify.page-service .shopify-theme-page #services .svc-grid.page-svc-stack,
-  html body.page-shopify.page-service .shopify-theme-page #services .svc-grid[data-thm-stack] {
-    display: block !important;
-    grid-template-columns: none !important;
-    gap: 0 !important;
+  html body.page-shopify.page-service .shopify-theme-page #services .svc-grid.thm-mobile-carousel[data-thm-carousel] {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    align-items: stretch !important;
+    gap: 14px !important;
     width: 100% !important;
     max-width: 100% !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    overflow: visible !important;
+    min-width: 0 !important;
+    height: auto !important;
+    margin-top: 28px !important;
+    padding: 0 0 6px !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    -webkit-overflow-scrolling: touch !important;
+    scroll-snap-type: x mandatory !important;
+    overscroll-behavior-x: contain !important;
+    grid-template-columns: none !important;
+    scrollbar-width: none !important;
+    touch-action: pan-x !important;
     background: transparent !important;
     border: none !important;
     box-shadow: none !important;
   }
 
-  html body.page-shopify.page-service .shopify-theme-page #services .svc-grid.page-svc-stack > .svc-stack-item {
-    position: sticky !important;
-    top: calc(var(--svc-stack-nav, 68px) + (var(--index0, 0) * var(--svc-stack-peek, 14px))) !important;
-    z-index: calc(1 + var(--index0, 0)) !important;
-    display: block !important;
+  html body.page-shopify.page-service .shopify-theme-page #services .svc-grid.thm-mobile-carousel[data-thm-carousel]::-webkit-scrollbar {
+    display: none !important;
+    height: 0 !important;
+  }
+
+  html body.page-shopify.page-service .shopify-theme-page #services .svc-grid.thm-mobile-carousel[data-thm-carousel] > .svc-card {
+    flex: 0 0 100% !important;
     width: 100% !important;
+    min-width: 100% !important;
     max-width: 100% !important;
-    min-width: 0 !important;
-    margin: 0 0 var(--svc-stack-gap, 18px) !important;
-    padding: 0 !important;
-    background: transparent !important;
-    border: 0 !important;
-    box-shadow: none !important;
-    transform: none !important;
-  }
-
-  html body.page-shopify.page-service .shopify-theme-page #services .svc-grid.page-svc-stack > .svc-stack-item:last-child {
-    margin-bottom: 0 !important;
-  }
-
-  /* Keep ink cards opaque so stack layers don't bleed (override white stack face) */
-  html body.page-shopify.page-service .shopify-theme-page #services .svc-grid.page-svc-stack .svc-card,
-  html body.page-shopify.page-service .shopify-theme-page #services .svc-grid.page-svc-stack .svc-stack-item > .svc-card,
-  html body.page-shopify.page-service .shopify-theme-page #services .svc-grid[data-thm-stack] .svc-card {
+    height: auto !important;
+    box-sizing: border-box !important;
+    scroll-snap-align: start !important;
+    scroll-snap-stop: always !important;
     display: flex !important;
     flex-direction: column !important;
-    width: 100% !important;
-    max-width: 100% !important;
-    min-width: 0 !important;
-    height: auto !important;
-    min-height: 160px !important;
-    margin: 0 !important;
     padding: 22px 18px 24px !important;
-    box-sizing: border-box !important;
-    background: var(--ink-2, #0f2a33) !important;
-    background-color: var(--ink-2, #0f2a33) !important;
-    border: 1px solid rgba(255, 255, 255, 0.1) !important;
     border-radius: 18px !important;
-    box-shadow:
-      0 1px 2px rgba(0, 0, 0, 0.2),
-      0 14px 32px -16px rgba(0, 0, 0, 0.45) !important;
-    opacity: 1 !important;
-    transform: none !important;
-    overflow: hidden !important;
-    isolation: isolate;
-    color: #9fb6be !important;
-  }
-
-  html body.page-shopify.page-service .shopify-theme-page #services .svc-card h3 {
-    color: #fff !important;
-    font-size: 1.08rem !important;
-    line-height: 1.3 !important;
-    margin: 0 0 8px !important;
-    padding-right: 36px !important;
-    max-width: 100% !important;
     overflow-wrap: anywhere !important;
-    word-break: break-word !important;
   }
 
+  html body.page-shopify.page-service .shopify-theme-page #services .svc-card h3,
   html body.page-shopify.page-service .shopify-theme-page #services .svc-card p {
-    color: #9fb6be !important;
-    font-size: 0.9rem !important;
-    line-height: 1.55 !important;
-    margin: 0 !important;
     max-width: 100% !important;
     overflow-wrap: anywhere !important;
-    word-break: break-word !important;
   }
 
-  html body.page-shopify.page-service .shopify-theme-page #services .svc-card .tile {
-    width: 48px !important;
-    height: 48px !important;
-    margin-bottom: 16px !important;
+  html body.page-shopify.page-service .shopify-theme-page #services .wrap > .testi-dots.thm-carousel-dots {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: 8px !important;
+    margin: 18px 0 0 !important;
   }
 
-  html body.page-shopify.page-service .shopify-theme-page #services .svc-card .svc-badge {
-    top: 18px !important;
-    right: 18px !important;
+  html body.page-shopify.page-service .shopify-theme-page #services .testi-dot {
+    width: 8px !important;
+    height: 8px !important;
+    padding: 0 !important;
+    border: 0 !important;
+    border-radius: 999px !important;
+    background: rgba(255, 255, 255, 0.28) !important;
+    cursor: pointer;
   }
 
-  html body.page-shopify.page-service .shopify-theme-page #services .svc-card .tlink {
-    margin-top: 16px !important;
+  html body.page-shopify.page-service .shopify-theme-page #services .testi-dot.is-active {
+    background: var(--signal, #f47a1f) !important;
+    transform: scale(1.15);
   }
 }
 
@@ -216,5 +225,114 @@ html body.page-shopify.page-service .hero-ctas {
   html body.page-shopify.page-service .shopify-theme-page #services .svc-grid.page-svc-stack,
   html body.page-shopify.page-service .shopify-theme-page #services .svc-grid[data-thm-stack] {
     grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+}
+
+/* Industries: real cards, 4 per row on large screens. */
+@media (min-width: 981px) {
+  html body.page-shopify.page-service .shopify-theme-page #industries .ind-grid,
+  html body.page-shopify.page-service .shopify-theme-page #industries .ind-grid[data-thm-carousel]:not(.thm-mobile-carousel) {
+    display: grid !important;
+    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+    gap: 16px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-top: 50px !important;
+    overflow: visible !important;
+  }
+}
+
+html body.page-shopify.page-service .shopify-theme-page #industries .ind-grid > .ind {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+  width: 100% !important;
+  min-width: 0 !important;
+  box-sizing: border-box !important;
+  background: #fff !important;
+  border: 1px solid var(--line, #e1e9e5) !important;
+  border-radius: 18px !important;
+  padding: 24px !important;
+  box-shadow: 0 1px 2px rgba(13, 32, 41, 0.05) !important;
+  text-decoration: none !important;
+  color: inherit !important;
+}
+
+html body.page-shopify.page-service .shopify-theme-page #industries .ind h3 {
+  margin: 0 0 6px !important;
+  font-size: 1rem !important;
+  color: var(--graphite, #0d2029) !important;
+}
+
+html body.page-shopify.page-service .shopify-theme-page #industries .ind p {
+  margin: 0 !important;
+  max-width: none !important;
+  font-size: 0.85rem !important;
+  line-height: 1.5 !important;
+  color: var(--slate, #4b5b62) !important;
+}
+
+/* First paper section: pain cards swipe up on mobile. */
+@media (max-width: 900px) {
+  html body.page-shopify.page-service .shopify-theme-page section.sec-paper:has(.pain-grid.page-svc-stack) {
+    overflow-x: clip !important;
+    overflow-y: visible !important;
+  }
+
+  html body.page-shopify.page-service .shopify-theme-page section.sec-paper .pain-grid.page-svc-stack {
+    display: block !important;
+    grid-template-columns: none !important;
+    width: 100% !important;
+    margin-top: 28px !important;
+  }
+
+  html body.page-shopify.page-service .shopify-theme-page section.sec-paper .pain-grid.page-svc-stack > .svc-stack-item {
+    position: sticky !important;
+    top: calc(var(--svc-stack-nav, 68px) + (var(--index0, 0) * var(--svc-stack-peek, 14px))) !important;
+    z-index: calc(1 + var(--index0, 0)) !important;
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 0 18px !important;
+    padding: 0 !important;
+    background: transparent !important;
+    border: 0 !important;
+    box-shadow: none !important;
+  }
+
+  html body.page-shopify.page-service .shopify-theme-page section.sec-paper .pain-grid.page-svc-stack > .svc-stack-item:last-child {
+    margin-bottom: 0 !important;
+  }
+
+  html body.page-shopify.page-service .shopify-theme-page section.sec-paper .pain-grid.page-svc-stack .pain-card {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    background: #fff !important;
+    border: 1px solid var(--line, #e1e9e5) !important;
+    border-radius: 18px !important;
+    opacity: 1 !important;
+    overflow-wrap: anywhere !important;
+  }
+}
+
+@media (min-width: 901px) {
+  html body.page-shopify.page-service .shopify-theme-page section.sec-paper .pain-grid[data-thm-stack] {
+    display: grid !important;
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: 20px !important;
+  }
+
+  html body.page-shopify.page-service .shopify-theme-page section.sec-paper .pain-grid > .svc-stack-item {
+    display: contents !important;
+  }
+}
+
+@media (max-width: 900px) {
+  html body.page-shopify.page-service .shopify-theme-page #why .why-grid > .testi-dots.thm-carousel-dots {
+    position: static !important;
+    width: 100% !important;
+    margin: 16px 0 22px !important;
+    order: 0 !important;
   }
 }

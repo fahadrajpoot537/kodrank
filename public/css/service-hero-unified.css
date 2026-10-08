@@ -69,15 +69,7 @@ html body.page-hero-ref.page-service .hero .crumbs {
 }
 html body.page-hero-ref.page-service .hero .hero-copy > .eyebrow,
 html body.page-hero-ref.page-service .hero .hero-copy > .hero-eyebrow {
-  display: inline-flex !important;
-  margin: 0 0 clamp(18px, 2.2vw, 28px) !important;
-  color: var(--signal, #f47a1f) !important;
-}
-/* Shorter heroes have no badge row, so the empty space sits under the copy.
-   Use that room between the eyebrow and the heading. */
-html body.page-hero-ref.page-service .hero:not(:has(.hero-badges)) .hero-copy > .eyebrow,
-html body.page-hero-ref.page-service .hero:not(:has(.hero-badges)) .hero-copy > .hero-eyebrow {
-  margin-bottom: clamp(36px, 4vw, 52px) !important;
+  display: none !important;
 }
 html body.page-hero-ref.page-service .hero h1 {
   margin: 0 0 14px !important;
@@ -187,7 +179,7 @@ html body.page-hero-ref.page-service .hero .hero-badges.hero-trust .lbl {
   html body.page-hero-ref.page-service .hero {
     min-height: 0 !important;
     height: auto !important;
-    padding-top: calc(64px + 16px) !important;
+    padding-top: calc(56px + 36px) !important;
     padding-bottom: 20px !important;
   }
   html body.page-hero-ref.page-service .hero .hero-badges.hero-trust {
@@ -209,9 +201,6 @@ html body.page-hero-ref.page-service .hero .hero-badges.hero-trust .lbl {
   }
 }
 @media (max-width: 680px) {
-  html body.page-hero-ref.page-service .hero {
-    padding-top: calc(56px + 12px) !important;
-  }
   html body.page-hero-ref.page-service .hero h1 {
     font-size: clamp(1.85rem, 6.4vw, 2.45rem) !important;
   }
@@ -222,8 +211,31 @@ html body.page-hero-ref.page-service .hero .hero-badges.hero-trust .lbl {
     padding-right: 16px !important;
   }
 }
-/* Web design hero keeps its own heading; the repeated service-name eyebrow is hidden. */
-html body.page-hero-ref.page-webdesign.page-service .hero .hero-copy > .eyebrow,
-html body.page-hero-ref.page-webdesign.page-service .hero .hero-copy > .hero-eyebrow {
+/* Beat page CSS that sets its own hero padding. Nav is 72px, 56px below 900px. */
+html body.page-hero-ref.page-service header.nav .nav-in {
+  height: 72px !important;
+}
+html body.page-hero-ref.page-service section#top.hero {
+  padding-top: calc(72px + 36px) !important;
+}
+html body.page-hero-ref.page-service section#top.hero > .wrap,
+html body.page-hero-ref.page-service section#top.hero .hero-copy {
+  padding-top: 0 !important;
+  margin-top: 0 !important;
+}
+html body.page-hero-ref.page-service section#top.hero .breadcrumb,
+html body.page-hero-ref.page-service section#top.hero .crumbs {
+  margin-top: 0 !important;
+}
+html body.page-hero-ref.page-service section#top.hero .hero-copy > .eyebrow,
+html body.page-hero-ref.page-service section#top.hero .hero-copy > .hero-eyebrow {
   display: none !important;
+}
+@media (max-width: 900px) {
+  html body.page-hero-ref.page-service header.nav .nav-in {
+    height: 56px !important;
+  }
+  html body.page-hero-ref.page-service section#top.hero {
+    padding-top: calc(56px + 36px) !important;
+  }
 }
