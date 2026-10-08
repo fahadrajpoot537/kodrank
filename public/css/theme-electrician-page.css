@@ -211,3 +211,14 @@ html body.page-elec.page-service .hero-ctas {
     grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
   }
 }
+
+html body.page-elec.page-service .elec-theme-page #services .svc:hover .svc-ico {
+  background: var(--signal, #f47a1f) !important;
+  background-color: var(--signal, #f47a1f) !important;
+  color: #000 !important;
+}
+
+html body.page-elec.page-service .elec-theme-page #services .svc:hover .svc-ico svg {
+  stroke: #000 !important;
+  color: #000 !important;
+}

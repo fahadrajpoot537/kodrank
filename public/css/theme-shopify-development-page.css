@@ -99,7 +99,8 @@ html body.page-shopify.page-service .shopify-theme-page #services .svc-card p {
 }
 
 html body.page-shopify.page-service .shopify-theme-page #services .svc-card .tile {
-  background: #cfd6da !important;
+  background: #061018 !important;
+  background-color: #061018 !important;
   color: var(--signal, #f47a1f) !important;
 }
 

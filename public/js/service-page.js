@@ -696,6 +696,21 @@
         );
       }
 
+      // Website redesign: #pain cards → swipe-up sticky stack (not horizontal carousel)
+      if (document.body.classList.contains('page-redesign')) {
+        Array.prototype.forEach.call(
+          root.querySelectorAll('.redesign-theme-page #pain .grid, #pain .grid.g-3'),
+          (grid) => {
+            if (seenStack.has(grid) || skipCommon(grid)) return;
+            if (!grid.closest('#pain')) return;
+            seenStack.add(grid);
+            grid.setAttribute('data-thm-stack', '1');
+            grid.removeAttribute('data-thm-carousel');
+            grid.classList.remove('thm-mobile-carousel');
+          }
+        );
+      }
+
       // Healthcare SEO: #pain cards → swipe-up sticky stack (not horizontal carousel)
       if (document.body.classList.contains('page-hcseo')) {
         Array.prototype.forEach.call(
@@ -726,6 +741,7 @@
         if (document.body.classList.contains('page-wpseo') && track.classList.contains('pain-grid') && track.closest('#why')) return;
         if (document.body.classList.contains('page-hcseo') && track.classList.contains('pain-grid') && track.closest('#pain')) return;
         if (document.body.classList.contains('page-reseo') && track.classList.contains('pain-grid') && track.closest('#pain')) return;
+        if (document.body.classList.contains('page-redesign') && track.closest('#pain')) return;
         if (document.body.classList.contains('page-gpseo') && track.closest('#problem')) return;
         if (document.body.classList.contains('page-restseo') && track.closest('section.sec-ink') && track.querySelector(':scope > .pain')) return;
         seenCar.add(track);
@@ -794,6 +810,23 @@
             markCarousel
           );
         }
+      }
+
+      // SaaS development: #problems swipe up; #services is a dotted carousel.
+      if (document.body.classList.contains('page-saas') && root.classList.contains('saas-theme-page')) {
+        Array.prototype.forEach.call(root.querySelectorAll('#services .svc-grid'), (grid) => {
+          seenStack.delete(grid);
+          grid.removeAttribute('data-thm-stack');
+          grid.classList.remove('page-svc-stack');
+          grid.setAttribute('data-thm-carousel', '1');
+        });
+        Array.prototype.forEach.call(root.querySelectorAll('#problems .pain-grid'), (grid) => {
+          if (seenStack.has(grid)) return;
+          seenStack.add(grid);
+          grid.setAttribute('data-thm-stack', '1');
+          grid.removeAttribute('data-thm-carousel');
+          grid.classList.remove('thm-mobile-carousel');
+        });
       }
 
       // Shopify development: pain cards swipe up; #services is a dotted carousel.
@@ -2237,6 +2270,7 @@
         if (!parent || parent.classList.contains('why-mobile-carousel')) return;
         if (grid.hasAttribute('data-thm-stack') || grid.classList.contains('page-svc-stack')) return;
         if (document.body.classList.contains('page-shopify') && grid.classList.contains('pain-grid')) return;
+        if (document.body.classList.contains('page-saas') && grid.classList.contains('pain-grid') && grid.closest('#problems')) return;
         // DM hub #why-us / on-page #pain use swipe-up stack — never wrap in horizontal carousel shell
         if (
           (document.body.classList.contains('page-dm') && grid.closest('#why-us')) ||
@@ -2253,6 +2287,7 @@
           (document.body.classList.contains('page-wpseo') && grid.classList.contains('pain-grid') && grid.closest('#why')) ||
           (document.body.classList.contains('page-hcseo') && grid.classList.contains('pain-grid') && grid.closest('#pain')) ||
           (document.body.classList.contains('page-reseo') && grid.classList.contains('pain-grid') && grid.closest('#pain')) ||
+          (document.body.classList.contains('page-redesign') && grid.closest('#pain')) ||
           (document.body.classList.contains('page-gpseo') && grid.closest('#problem')) ||
           (document.body.classList.contains('page-restseo') && grid.closest('section.sec-ink') && grid.querySelector(':scope > .pain'))
         ) {
@@ -2335,6 +2370,9 @@
       if (track.closest('.redesign-theme-page') && track.closest('#pain')) {
         return '(max-width: 980px)';
       }
+      if (document.body.classList.contains('page-saas') && track.classList.contains('svc-grid') && track.closest('#services')) {
+        return '(max-width: 900px)';
+      }
       if (track.closest('.saas-theme-page') && (track.classList.contains('pain-grid') || track.closest('#problems'))) {
         return '(max-width: 980px)';
       }
@@ -2370,6 +2408,9 @@
         return;
       }
       if (document.body.classList.contains('page-onpage') && track.closest('#pain')) {
+        return;
+      }
+      if (document.body.classList.contains('page-redesign') && track.closest('#pain')) {
         return;
       }
       if (document.body.classList.contains('page-techseo') && track.classList.contains('pain-grid')) {
@@ -2485,10 +2526,13 @@
         (shell && shell.parentElement) ||
         scroller.parentElement;
       if (
-        document.body.classList.contains('page-shopify') &&
-        scroller.classList.contains('why-feats') &&
         shell &&
-        shell.parentElement
+        shell.parentElement &&
+        (
+          (document.body.classList.contains('page-shopify') && scroller.classList.contains('why-feats')) ||
+          (document.body.classList.contains('page-aibot') && scroller.classList.contains('prob-list')) ||
+          (document.body.classList.contains('page-cms') && scroller.classList.contains('feat-list'))
+        )
       ) {
         shell.parentElement.insertBefore(dotsWrap, shell.nextSibling);
         shell.parentElement.insertBefore(navWrap, dotsWrap.nextSibling);

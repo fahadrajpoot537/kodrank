@@ -505,3 +505,93 @@ html body.page-cms.page-service .cms-theme-page #process .step p {
     margin: 18px 0 0 !important;
   }
 }
+
+/* #why feats: one card per view. 100% of a max-content track was stretching cards to thousands of px. */
+@media (max-width: 767px) {
+  html body.page-cms.page-service .cms-theme-page #why .why-mobile-carousel:has(> .feat-list) {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    overflow: visible !important;
+  }
+
+  html body.page-cms.page-service .cms-theme-page #why .feat-list.thm-mobile-carousel {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    align-items: stretch !important;
+    gap: 14px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    margin: 0 !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    scroll-snap-type: x mandatory !important;
+    scrollbar-width: none !important;
+    -webkit-overflow-scrolling: touch !important;
+  }
+
+  html body.page-cms.page-service .cms-theme-page #why .feat-list.thm-mobile-carousel::-webkit-scrollbar {
+    display: none !important;
+    height: 0 !important;
+  }
+
+  html body.page-cms.page-service .cms-theme-page #why .feat-list.thm-mobile-carousel > .feat {
+    flex: 0 0 100% !important;
+    width: 100% !important;
+    min-width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    box-sizing: border-box !important;
+    scroll-snap-align: start !important;
+    scroll-snap-stop: always !important;
+    display: flex !important;
+    align-items: flex-start !important;
+    gap: 14px !important;
+  }
+
+  html body.page-cms.page-service .cms-theme-page #why .feat h3,
+  html body.page-cms.page-service .cms-theme-page #why .feat p {
+    white-space: normal !important;
+    overflow-wrap: anywhere !important;
+  }
+
+  html body.page-cms.page-service .cms-theme-page #why .why-mobile-carousel + .testi-dots.thm-carousel-dots {
+    display: flex !important;
+    justify-content: center !important;
+    width: 100% !important;
+    margin: 16px 0 0 !important;
+    position: static !important;
+  }
+
+  html body.page-cms.page-service .cms-theme-page #why .testi-dot.is-active {
+    background: var(--signal, #f47a1f) !important;
+  }
+}
+
+@media (max-width: 900px) {
+  html body.page-cms.page-service .cms-theme-page #process .steps.page-svc-stack > .svc-stack-item {
+    width: min(100%, calc(100vw - 36px)) !important;
+    max-width: min(100%, calc(100vw - 36px)) !important;
+  }
+
+  html body.page-cms.page-service .cms-theme-page #process .steps.page-svc-stack .step,
+  html body.page-cms.page-service .cms-theme-page #process .steps.page-svc-stack .svc-stack-item > .step {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    border-top: 3px solid var(--signal, #f47a1f) !important;
+    overflow: visible !important;
+  }
+
+  html body.page-cms.page-service .cms-theme-page #process .step h3,
+  html body.page-cms.page-service .cms-theme-page #process .step p,
+  html body.page-cms.page-service .cms-theme-page #process .step .n {
+    white-space: normal !important;
+    max-width: 100% !important;
+  }
+}

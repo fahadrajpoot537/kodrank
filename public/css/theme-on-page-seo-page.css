@@ -12,6 +12,11 @@ html body.page-onpage.page-service .hero .hero-badges.hero-trust {
   margin-bottom: clamp(64px, 8vw, 100px) !important;
 }
 
+html body.page-onpage.page-service .onpage-theme-page #pain .pain-card .pico {
+  background: var(--ink, #0a1a22) !important;
+  background-color: var(--ink, #0a1a22) !important;
+}
+
 /* Heading block → cards/grid gap */
 html body.page-onpage.page-service .onpage-theme-page #pain .head-block,
 html body.page-onpage.page-service .onpage-theme-page #included .head-block,

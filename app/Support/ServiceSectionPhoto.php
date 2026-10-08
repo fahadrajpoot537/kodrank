@@ -100,9 +100,9 @@ class ServiceSectionPhoto
         ],
         'cms-development-services' => [
             'section' => 'body',
-            'mode' => 'ink',
+            'mode' => 'cover',
             'selectors' => [
-                'html body.page-cms.page-service .cms-theme-page.theme-html-root section.numbers',
+                'html body.page-cms.page-service .cms-theme-page.theme-html-root section.numbers::before',
             ],
         ],
         'saas-software-development-services' => [
@@ -138,8 +138,7 @@ class ServiceSectionPhoto
             'section' => 'body',
             'mode' => 'cover',
             'selectors' => [
-                'html body.page-redesign.page-service .redesign-theme-page.theme-html-root .stats-bg',
-                'html body.page-redesign.page-service .redesign-theme-page.theme-html-root .stats-sec',
+                'html body.page-redesign.page-service .redesign-theme-page.theme-html-root section.stats-sec .bg-img',
             ],
         ],
         'wordpress-development-services' => [

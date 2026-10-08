@@ -33,6 +33,12 @@
         <p class="admin-hint">Included section photo is the background on “Included in every package”. Upload a new image here, or leave the path blank to keep the current photo. The dark color layer stays on top of the image.</p>
       @elseif($page->slug === 'shopify-development-services')
         <p class="admin-hint">Section photo is the background on “Why Shopify”. Upload a new image here, or leave the path blank to keep the current photo.</p>
+      @elseif($page->slug === 'electrician-website-design-services')
+        <p class="admin-hint">Section photo is the background on “Why KodRank”. Upload a new image here, or leave the path blank to keep that section a solid dark color. The “Found First, Not Buried” section stays solid dark.</p>
+      @elseif($page->slug === 'website-redesign-services')
+        <p class="admin-hint">Section photo is the background on “The numbers our redesigns move”. Upload a new image here, or leave the path blank to keep the current photo. The dark color layer stays on top of the image.</p>
+      @elseif($page->slug === 'cms-development-services')
+        <p class="admin-hint">Section photo is the background on “The numbers”. Upload a new image here, or leave the path blank to keep the current photo. The dark color layer stays on top of the image.</p>
       @elseif($page->slug === 'wordpress-development-services')
         <p class="admin-hint">Section photo is the background on “By the numbers”. Why WordPress photo is the background on “Why WordPress, built right”. Leave a path blank to keep that photo.</p>
       @else
