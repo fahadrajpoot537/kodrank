@@ -682,6 +682,20 @@
         );
       }
 
+      // Web design: #services cards → swipe-up sticky stack (not a tall static list)
+      if (document.body.classList.contains('page-webdesign')) {
+        Array.prototype.forEach.call(
+          root.querySelectorAll('#services .services-grid, .webdesign-theme-page #services .services-grid'),
+          (grid) => {
+            if (seenStack.has(grid) || skipCommon(grid)) return;
+            seenStack.add(grid);
+            grid.setAttribute('data-thm-stack', '1');
+            grid.removeAttribute('data-thm-carousel');
+            grid.classList.remove('thm-mobile-carousel');
+          }
+        );
+      }
+
       // Healthcare SEO: #pain cards → swipe-up sticky stack (not horizontal carousel)
       if (document.body.classList.contains('page-hcseo')) {
         Array.prototype.forEach.call(

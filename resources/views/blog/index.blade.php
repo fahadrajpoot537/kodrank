@@ -67,18 +67,19 @@
       <div class="htext">
         <span class="eyebrow">Filtered</span>
         <h2>{{ $filterLabel }}</h2>
-        <p class="lede" style="margin-top:8px">{{ $filtered->count() }} {{ $filtered->count() === 1 ? 'article' : 'articles' }} found</p>
+        <p class="lede" style="margin-top:8px">{{ $posts->total() }} {{ $posts->total() === 1 ? 'article' : 'articles' }} found</p>
       </div>
       <a href="{{ route('blog.index') }}" class="tlink">Clear filters <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
     </div>
 
     <div class="blog-grid">
-      @forelse($filtered as $i => $post)
-        @include('blog.partials.card', ['post' => $post, 'featured' => $i === 0])
+      @forelse($posts as $i => $post)
+        @include('blog.partials.card', ['post' => $post, 'featured' => $posts->currentPage() === 1 && $i === 0])
       @empty
         <p class="blog-empty">No articles match this filter. Try another category or clear search.</p>
       @endforelse
     </div>
+    @include('blog.partials.pagination', ['posts' => $posts])
   </div>
 </section>
 @else
@@ -89,16 +90,16 @@
         <span class="eyebrow">Fresh This Month</span>
         <h2>Latest articles</h2>
       </div>
-      <a href="{{ route('blog.index', ['category' => 'all']) }}" class="tlink">View All Posts <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
     </div>
 
     <div class="blog-grid">
-      @forelse($latest as $i => $post)
-        @include('blog.partials.card', ['post' => $post, 'featured' => $i === 0 && $post->is_featured])
+      @forelse($posts as $i => $post)
+        @include('blog.partials.card', ['post' => $post, 'featured' => $posts->currentPage() === 1 && $i === 0 && $post->is_featured])
       @empty
-        <p>No articles yet. Check back soon.</p>
+        <p class="blog-empty">No articles yet. Check back soon.</p>
       @endforelse
     </div>
+    @include('blog.partials.pagination', ['posts' => $posts])
   </div>
 </section>
 

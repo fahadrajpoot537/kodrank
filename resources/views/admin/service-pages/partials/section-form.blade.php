@@ -16,8 +16,27 @@
       </div>
     </div>
 
-    @if(\App\Support\ServiceSectionPhoto::ownsField($page->slug, $section->key))
-      <p class="admin-hint">Results background image is the photo on this page’s dark section. Leave it blank to keep the current image.</p>
+    @php
+      $sectionFields = is_array($section->data) ? $section->data : [];
+      $photoFields = [];
+      if (\App\Support\ServiceSectionPhoto::ownsField($page->slug, $section->key)) {
+          foreach (\App\Support\ServiceSectionPhoto::fieldKeys($page->slug) as $photoKey) {
+              if (array_key_exists($photoKey, $sectionFields) && ! is_array($sectionFields[$photoKey])) {
+                  $photoFields[$photoKey] = $sectionFields[$photoKey];
+                  unset($sectionFields[$photoKey]);
+              }
+          }
+      }
+    @endphp
+    @if($photoFields !== [])
+      @if($page->slug === 'web-design-and-development-services')
+        <p class="admin-hint">Included section photo is the background on “Included in every package”. Upload a new image here, or leave the path blank to keep the current photo. The dark color layer stays on top of the image.</p>
+      @elseif($page->slug === 'wordpress-development-services')
+        <p class="admin-hint">Section photo is the background on “By the numbers”. Why WordPress photo is the background on “Why WordPress, built right”. Leave a path blank to keep that photo.</p>
+      @else
+        <p class="admin-hint">Section photo is the picture on this page’s dark image section. Leave the path blank to keep the current image.</p>
+      @endif
+      @include('admin.partials.dynamic-fields', ['fieldsData' => $photoFields, 'fieldsPrefix' => 'data'])
     @endif
     @if(!empty($contentFields))
       <input type="hidden" name="data[html_path]" value="{{ $themeHtmlPath }}">
@@ -36,7 +55,7 @@
       @endforeach
     @endif
 
-    @include('admin.partials.dynamic-fields', ['fieldsData' => $section->data ?? [], 'fieldsPrefix' => 'data'])
+    @include('admin.partials.dynamic-fields', ['fieldsData' => $sectionFields ?? ($section->data ?? []), 'fieldsPrefix' => 'data'])
 
     <div class="admin-actions">
       <button class="btn" type="submit">Save {{ $section->label }}</button>

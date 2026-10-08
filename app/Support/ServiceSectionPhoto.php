@@ -131,7 +131,7 @@ class ServiceSectionPhoto
             'section' => 'body',
             'mode' => 'cover',
             'selectors' => [
-                'html body.page-webdesign.page-service .webdesign-theme-page.theme-html-root section.sec-included-bg',
+                'html body.page-webdesign.page-service .webdesign-theme-page.theme-html-root section.sec-included-bg::before',
             ],
         ],
         'website-redesign-services' => [
@@ -146,8 +146,15 @@ class ServiceSectionPhoto
             'section' => 'body',
             'mode' => 'cover',
             'selectors' => [
-                'html body.page-wpdev.page-service .wpdev-theme-page.theme-html-root .stats-bg',
-                'html body.page-wpdev.page-service .wpdev-theme-page.theme-html-root #results',
+                'html body.page-wpdev.page-service .wpdev-theme-page.theme-html-root section.stats-bg::before',
+            ],
+            'photos' => [
+                'why_background_image' => [
+                    'mode' => 'cover',
+                    'selectors' => [
+                        'html body.page-wpdev.page-service .wpdev-theme-page.theme-html-root section.why-bg::before',
+                    ],
+                ],
             ],
         ],
         'electrician-website-design-services' => [
@@ -207,6 +214,19 @@ class ServiceSectionPhoto
         return self::TARGETS[$slug]['section'] ?? 'body';
     }
 
+    /**
+     * @return list<string>
+     */
+    public static function fieldKeys(string $slug): array
+    {
+        $keys = ['results_background_image'];
+        foreach (self::TARGETS[$slug]['photos'] ?? [] as $key => $photo) {
+            $keys[] = (string) $key;
+        }
+
+        return $keys;
+    }
+
     public static function ownsField(string $slug, string $sectionKey): bool
     {
         if (in_array($sectionKey, ['body', 'stats', 'results'], true)) {
@@ -246,23 +266,48 @@ class ServiceSectionPhoto
 
     public static function css(ServicePage $page): string
     {
-        $path = self::url($page);
-        if ($path === '') {
-            return '';
-        }
-
         $slug = (string) $page->slug;
         $target = self::TARGETS[$slug] ?? null;
         if ($target === null) {
             return '';
         }
 
-        $url = e(asset(ltrim($path, '/')));
-        $selectors = implode(",\n", $target['selectors']);
+        $chunks = [];
+        $primary = self::url($page);
+        if ($primary !== '') {
+            $chunks[] = self::paint($target['mode'], $target['selectors'], $primary);
+        }
 
-        if ($target['mode'] === 'layer' || $target['mode'] === 'cover') {
+        $sections = $page->relationLoaded('sections') ? $page->sections : $page->sections()->get();
+        $data = [];
+        foreach ($sections as $section) {
+            if ($section->key === self::sectionKey($slug)) {
+                $data = is_array($section->data) ? $section->data : [];
+                break;
+            }
+        }
+        foreach ($target['photos'] ?? [] as $key => $photo) {
+            $value = trim((string) ($data[$key] ?? ''));
+            if ($value === '') {
+                continue;
+            }
+            $chunks[] = self::paint((string) ($photo['mode'] ?? 'cover'), $photo['selectors'], $value);
+        }
+
+        return implode("\n", $chunks);
+    }
+
+    /**
+     * @param  list<string>  $selectors
+     */
+    private static function paint(string $mode, array $selectors, string $path): string
+    {
+        $url = e(asset(ltrim($path, '/')));
+        $selectorList = implode(",\n", $selectors);
+
+        if ($mode === 'layer' || $mode === 'cover') {
             return <<<CSS
-{$selectors} {
+{$selectorList} {
   background-image: url("{$url}") !important;
   background-size: cover !important;
   background-position: center right !important;
@@ -272,7 +317,7 @@ CSS;
         }
 
         return <<<CSS
-{$selectors} {
+{$selectorList} {
   background-color: var(--ink, #0a1a22) !important;
   background-image:
     linear-gradient(90deg, rgba(10, 26, 34, 0.94) 0%, rgba(10, 26, 34, 0.78) 42%, rgba(10, 26, 34, 0.4) 100%),

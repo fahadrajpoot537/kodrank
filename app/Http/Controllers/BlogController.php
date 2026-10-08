@@ -39,7 +39,6 @@ class BlogController extends Controller
         }
 
         $isFiltered = $category !== 'all' || $q !== '' || $tag !== '';
-        $filtered = collect();
         $filterLabel = 'All posts';
 
         if ($isFiltered) {
@@ -63,26 +62,20 @@ class BlogController extends Controller
                     : $filterLabel.' · “'.$q.'”';
             }
 
-            $filtered = $filteredQuery
-                ->orderByDesc('is_featured')
-                ->orderByDesc('published_at')
-                ->orderBy('sort_order')
-                ->get();
+            $base = $filteredQuery;
         }
 
-        $latest = collect();
+        $posts = (clone $base)
+            ->orderByDesc('is_featured')
+            ->orderByDesc('published_at')
+            ->orderBy('sort_order')
+            ->paginate(9)
+            ->withQueryString();
+
         $editorsPicks = collect();
         $byCategory = [];
         $topicCounts = [];
-        if (! $isFiltered) {
-            $latest = (clone $base)
-                ->where('show_in_latest', true)
-                ->orderByDesc('is_featured')
-                ->orderByDesc('published_at')
-                ->orderBy('sort_order')
-                ->limit(6)
-                ->get();
-
+        if (! $isFiltered && $posts->currentPage() === 1) {
             $editorsPicks = (clone $base)
                 ->where('is_editors_pick', true)
                 ->orderBy('sort_order')
@@ -122,7 +115,7 @@ class BlogController extends Controller
         return view('blog.index', compact(
             'c',
             'settings',
-            'latest',
+            'posts',
             'editorsPicks',
             'categories',
             'byCategory',
@@ -131,7 +124,6 @@ class BlogController extends Controller
             'tag',
             'category',
             'isFiltered',
-            'filtered',
             'filterLabel',
             'seo'
         ));

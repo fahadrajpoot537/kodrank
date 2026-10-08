@@ -92,6 +92,8 @@
                   'role' => 'Role',
                   'text' => 'Text',
                   'value' => 'Value',
+                  'results_background_image' => 'Section photo',
+                  'why_background_image' => 'Why WordPress photo',
               ];
               $label = $nice[$key] ?? ucwords(str_replace('_', ' ', (string) $key));
               $htmlKey = (string) $key;

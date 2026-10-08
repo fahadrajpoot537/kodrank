@@ -344,7 +344,15 @@ class ServicePageController extends Controller
             }
             $imageValue = $data['results_background_image'] ?? $data['background_image'] ?? $data['image'] ?? '';
             unset($data['results_background_image']);
-            $section->data = ['results_background_image' => $imageValue] + $data;
+            $ordered = ['results_background_image' => $imageValue];
+            foreach (\App\Support\ServiceSectionPhoto::fieldKeys($page->slug) as $photoKey) {
+                if ($photoKey === 'results_background_image') {
+                    continue;
+                }
+                $ordered[$photoKey] = (string) ($data[$photoKey] ?? '');
+                unset($data[$photoKey]);
+            }
+            $section->data = $ordered + $data;
         } else {
             $section->data = $data;
         }

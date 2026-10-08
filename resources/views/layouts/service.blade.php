@@ -195,6 +195,9 @@
 @if($extraCssRel !== '' && $serviceTheme === 'theme-html')
   <link rel="stylesheet" href="{{ asset($extraCssRel) }}?v={{ @filemtime(public_path($extraCssRel)) ?: time() }}">
 @endif
+@if(\App\Support\ServiceHeroDesign::appliesTo($page->slug ?? null))
+  <link rel="stylesheet" href="{{ asset('css/service-hero-unified.css') }}?v={{ @filemtime(public_path('css/service-hero-unified.css')) ?: time() }}">
+@endif
 @include('partials.clarity')
 @include('partials.wapp')
 @stack('head')
@@ -217,6 +220,9 @@
   }
   if ($serviceTheme === 'guest-posting') {
       $bodyExtras .= ' page-guest-posting';
+  }
+  if (\App\Support\ServiceHeroDesign::appliesTo($page->slug ?? null)) {
+      $bodyExtras .= ' page-hero-ref';
   }
 @endphp
 <body class="page-service{{ $cssTheme === 'web-development' ? ' page-web-dev' : '' }}{{ $bodyExtras }}{{ $serviceTheme === 'theme-html' ? ' page-theme-html' : '' }}{{ $serviceTheme === 'industries' ? ' page-industries' : '' }}{{ $serviceTheme === 'legal' ? ' page-legal' : '' }}{{ ($page->slug ?? '') === 'digital-marketing-services' ? ' page-dm' : '' }}{{ ($page->slug ?? '') === 'on-page-seo-services' ? ' page-onpage' : '' }}{{ ($page->slug ?? '') === 'off-page-seo-services' ? ' page-offpage' : '' }}{{ ($page->slug ?? '') === 'technical-seo-services' ? ' page-techseo' : '' }}{{ ($page->slug ?? '') === 'aeo-services' ? ' page-aeo' : '' }}{{ ($page->slug ?? '') === 'geo-services' ? ' page-geo' : '' }}{{ ($page->slug ?? '') === 'monthly-seo-services' ? ' page-monthly' : '' }}{{ ($page->slug ?? '') === 'saas-seo-services' ? ' page-saasseo' : '' }}{{ ($page->slug ?? '') === 'b2b-seo-services' ? ' page-b2bseo' : '' }}{{ ($page->slug ?? '') === 'ecommerce-seo-services' ? ' page-ecomseo' : '' }}{{ ($page->slug ?? '') === 'wordpress-seo-services' ? ' page-wpseo' : '' }}{{ ($page->slug ?? '') === 'shopify-seo-services' ? ' page-shopifyseo' : '' }}{{ ($page->slug ?? '') === 'guest-posting-services' ? ' page-gpseo' : '' }}{{ ($page->slug ?? '') === 'restaurant-seo-services' ? ' page-restseo' : '' }}{{ ($page->slug ?? '') === 'healthcare-seo-services' ? ' page-hcseo' : '' }}{{ ($page->slug ?? '') === 'real-estate-seo-services' ? ' page-reseo' : '' }}{{ ($page->slug ?? '') === 'web-design-and-development-services' ? ' page-webdesign' : '' }}{{ ($page->slug ?? '') === 'wordpress-development-services' ? ' page-wpdev' : '' }}{{ ($page->slug ?? '') === 'shopify-development-services' ? ' page-shopify' : '' }}{{ ($page->slug ?? '') === 'ai-chatbot-development-services' ? ' page-aibot' : '' }}{{ ($page->slug ?? '') === 'cms-development-services' ? ' page-cms' : '' }}{{ ($page->slug ?? '') === 'website-redesign-services' ? ' page-redesign' : '' }}{{ ($page->slug ?? '') === 'electrician-website-design-services' ? ' page-elec' : '' }}{{ ($page->slug ?? '') === 'saas-software-development-services' ? ' page-saas' : '' }}{{ ($page->slug ?? '') === 'white-label-seo-services' ? ' page-wlseo' : '' }}{{ \App\Support\WpRefDesign::usesSeoMotion($page->slug ?? null) ? ' page-dm-motion' : '' }}">

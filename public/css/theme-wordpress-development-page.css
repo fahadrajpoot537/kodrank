@@ -296,3 +296,69 @@ body.page-wpdev .hero-trust.hero-badges {
     display: none !important;
   }
 }
+
+/* Large screens: service cards are exactly 3 per row. */
+@media (min-width: 981px) {
+  html body.page-wpdev.page-service .wpdev-theme-page #services .service-grid,
+  html body.page-wpdev.page-service .wpdev-theme-page #services .service-grid[data-thm-stack] {
+    display: grid !important;
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: 20px !important;
+    width: 100% !important;
+  }
+
+  html body.page-wpdev.page-service .wpdev-theme-page #services .service-grid > .svc-stack-item {
+    display: contents !important;
+    position: static !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    height: auto !important;
+    transform: none !important;
+  }
+}
+
+/* #why-us sits on the dark ink background. Cards stay a step lighter so they still read. */
+html body.page-wpdev.page-service .wpdev-theme-page #why-us {
+  background: var(--ink, #0a1a22) !important;
+  color: #b7cbd2 !important;
+}
+
+html body.page-wpdev.page-service .wpdev-theme-page #why-us h2 {
+  color: #fff !important;
+}
+
+html body.page-wpdev.page-service .wpdev-theme-page #why-us .section-head p {
+  color: #9fb6be !important;
+}
+
+html body.page-wpdev.page-service .wpdev-theme-page #why-us .why-card {
+  background: var(--ink-2, #0f2a33) !important;
+}
+
+/* Large screens: the three testimonials share one row. */
+@media (min-width: 981px) {
+  html body.page-wpdev.page-service .wpdev-theme-page .testi-track,
+  html body.page-wpdev.page-service .wpdev-theme-page #testiTrack {
+    display: grid !important;
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: 20px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow: visible !important;
+    scroll-snap-type: none !important;
+  }
+
+  html body.page-wpdev.page-service .wpdev-theme-page .testi-track > .testi,
+  html body.page-wpdev.page-service .wpdev-theme-page #testiTrack > .testi {
+    flex: none !important;
+    width: auto !important;
+    min-width: 0 !important;
+    max-width: none !important;
+    scroll-snap-align: none !important;
+  }
+
+  html body.page-wpdev.page-service .wpdev-theme-page .testi-controls,
+  html body.page-wpdev.page-service .wpdev-theme-page .testi-nav {
+    display: none !important;
+  }
+}

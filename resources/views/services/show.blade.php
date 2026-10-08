@@ -7,26 +7,7 @@
 @endphp
 @if($theme === 'theme-html')
   {{-- KodRank shared hero + site nav/footer; theme HTML is body-only --}}
-  @php
-    $themeHero = $s['hero'] ?? [];
-    if (in_array($page->slug ?? '', [
-        'on-page-seo-services',
-        'off-page-seo-services',
-        'aeo-services',
-        'geo-services',
-        'monthly-seo-services',
-        'saas-seo-services',
-        'b2b-seo-services',
-        'wordpress-seo-services',
-        'shopify-seo-services',
-        'guest-posting-services',
-        'restaurant-seo-services',
-        'healthcare-seo-services',
-    ], true)) {
-        unset($themeHero['eyebrow']);
-    }
-  @endphp
-  @include('services.partials.shared.dm.hero', ['h' => $themeHero])
+  @include('services.partials.shared.dm.hero', ['h' => $s['hero'] ?? []])
   @include('services.partials.theme-html.body')
 @else
   @php
@@ -46,7 +27,7 @@
   @endif
   @php
     $webdevRefWrap = \App\Support\WpRefDesign::appliesTo($page->slug ?? '');
-    $useSharedHero = ($page->slug ?? '') === 'web-design-and-development-services';
+    $useSharedHero = \App\Support\ServiceHeroDesign::appliesTo($page->slug ?? '');
   @endphp
   @foreach($page->sections as $section)
     @continue($section->key !== 'hero')
