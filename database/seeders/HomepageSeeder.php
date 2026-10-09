@@ -315,6 +315,7 @@ class HomepageSeeder extends Seeder
                 'label' => 'Technologies',
                 'sort_order' => 11,
                 'data' => [
+                    'background_image' => 'media/home/sec-tech-bg.jpg',
                     'eyebrow' => 'Technologies we use',
                     'title' => 'Chosen for what they do to your rankings.',
                     'lede' => 'We are not loyal to a stack. We pick what will render fast, stay crawlable and be maintainable by your team after we hand it over.',
@@ -389,6 +390,7 @@ class HomepageSeeder extends Seeder
                 'label' => 'CTA band',
                 'sort_order' => 15,
                 'data' => [
+                    'background_image' => 'media/home/cta-band-bg.jpg',
                     'eyebrow' => 'Free, no-obligation',
                     'title' => 'See exactly why your site isn’t ranking — free.',
                     'body' => 'Get a no-cost audit of your current website’s SEO and technical health, plus a clear plan to fix it. See exactly how our web development and SEO services would get you ranking — no pressure, no jargon, just a straight look under the hood.',

@@ -9,9 +9,10 @@
 <div class="admin-page-head">
   <div>
     <h1 class="admin-h1">Site &amp; page content</h1>
-    <p class="admin-sub">Add, update, or delete copy, images, navigation, the logo, contact details, the services listing, results, and homepage blocks. Change service and blog URLs from the Services and Blog screens. The old URL keeps a 301 redirect.</p>
+    <p class="admin-sub">Add, update, or delete copy, images, navigation, the logo, contact details, the services listing, results, and homepage blocks. Homepage SEO (title, description, social image, robots) is edited under Site settings. Change service and blog URLs from the Services and Blog screens. The old URL keeps a 301 redirect.</p>
   </div>
   <div style="display:flex;gap:8px;flex-wrap:wrap">
+    <a class="btn btn-ghost" href="{{ route('admin.sections.edit', 'site') }}">SEO settings</a>
     <a class="btn btn-ghost" href="{{ route('home') }}" target="_blank" rel="noopener">Preview home ↗</a>
     <a class="btn btn-ghost" href="{{ route('results') }}" target="_blank" rel="noopener">Preview /results ↗</a>
     <a class="btn" href="{{ route('admin.sections.create') }}">+ Add section</a>

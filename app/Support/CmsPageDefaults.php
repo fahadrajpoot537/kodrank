@@ -62,9 +62,47 @@ class CmsPageDefaults
         $site = CmsSection::query()->where('key', 'site')->first();
         if ($site) {
             $data = is_array($site->data) ? $site->data : [];
+            $changed = false;
             if (! array_key_exists('logo', $data)) {
                 $data['logo'] = 'logo.png';
+                $changed = true;
+            }
+            foreach ([
+                'seo_title' => 'Web Development & SEO Services in One Build | KodRank',
+                'seo_description' => 'KodRank builds fast, technically sound websites with SEO engineered in from the first line of code — so your site launches indexed, structured and ready to rank. One team, one package, no second invoice.',
+                'og_title' => '',
+                'og_description' => '',
+                'og_image' => 'media/hero-poster.jpg',
+                'og_image_alt' => 'KodRank — custom web development and SEO services built to rank from launch day',
+                'canonical_url' => '',
+                'robots' => 'index, follow',
+                'keywords' => 'web development, SEO services, technical SEO, custom websites, KodRank',
+            ] as $seoKey => $seoDefault) {
+                if (! array_key_exists($seoKey, $data)) {
+                    $data[$seoKey] = $seoKey === 'seo_title' && ! empty($data['meta_title'])
+                        ? $data['meta_title']
+                        : ($seoKey === 'seo_description' && ! empty($data['meta_description'])
+                            ? $data['meta_description']
+                            : $seoDefault);
+                    $changed = true;
+                }
+            }
+            if ($changed) {
                 $site->update(['data' => $data]);
+            }
+        }
+
+        foreach ([
+            'tech' => 'media/home/sec-tech-bg.jpg',
+            'band' => 'media/home/cta-band-bg.jpg',
+        ] as $sectionKey => $imagePath) {
+            $section = CmsSection::query()->where('key', $sectionKey)->first();
+            if (! $section) {
+                continue;
+            }
+            $sectionData = is_array($section->data) ? $section->data : [];
+            if (! array_key_exists('background_image', $sectionData)) {
+                $section->update(['data' => ['background_image' => $imagePath] + $sectionData]);
             }
         }
 

@@ -3,6 +3,11 @@
 @section('content')
 <h1 class="admin-h1">{{ $section->label }}</h1>
 <p class="admin-sub">Update this content. Use “Add item” for lists. Image fields have an upload button — Save to apply.</p>
+@if($section->key === 'site')
+<p class="admin-sub">SEO title, SEO description, social image, canonical URL, robots, and keywords on this screen are what the homepage sends to Google and social shares.</p>
+@elseif(in_array($section->key, ['tech', 'band'], true))
+<p class="admin-sub">Background image is the photo behind this section. Leave the path as-is to keep the current photo, or upload a replacement.</p>
+@endif
 
 <div class="admin-card">
   <form method="post" action="{{ route('admin.sections.update', $section->key) }}" enctype="multipart/form-data">

@@ -94,6 +94,18 @@
                   'value' => 'Value',
                   'results_background_image' => 'Section photo',
                   'why_background_image' => 'Why WordPress photo',
+                  'background_image' => 'Background image',
+                  'seo_title' => 'SEO title',
+                  'seo_description' => 'SEO description',
+                  'meta_title' => 'Meta title',
+                  'meta_description' => 'Meta description',
+                  'og_title' => 'Social title',
+                  'og_description' => 'Social description',
+                  'og_image' => 'Social image',
+                  'og_image_alt' => 'Social image description',
+                  'canonical_url' => 'Canonical URL',
+                  'robots' => 'Robots',
+                  'keywords' => 'Keywords',
               ];
               $label = $nice[$key] ?? ucwords(str_replace('_', ' ', (string) $key));
               $htmlKey = (string) $key;

@@ -1,4 +1,8 @@
-<section class="band">
+@php
+  $bandBg = trim((string) ($c['band']['background_image'] ?? ''));
+  $bandBgUrl = $bandBg === '' ? '' : (str_starts_with($bandBg, 'http://') || str_starts_with($bandBg, 'https://') ? $bandBg : asset(ltrim($bandBg, '/')));
+@endphp
+<section class="band" @if($bandBgUrl !== '') style="background-image:url('{{ $bandBgUrl }}')" @endif>
   <div class="wrap band-in">
     <div class="rv">
       @if(!empty($c['band']['eyebrow']))

@@ -1,4 +1,8 @@
-<section class="sec-ink sec-tech">
+@php
+  $techBg = trim((string) ($c['tech']['background_image'] ?? ''));
+  $techBgUrl = $techBg === '' ? '' : (str_starts_with($techBg, 'http://') || str_starts_with($techBg, 'https://') ? $techBg : asset(ltrim($techBg, '/')));
+@endphp
+<section class="sec-ink sec-tech" @if($techBgUrl !== '') style="background-image:url('{{ $techBgUrl }}')" @endif>
   <div class="wrap">
     <div class="head-split rv">
       <div>
