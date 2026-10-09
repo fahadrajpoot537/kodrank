@@ -6,9 +6,9 @@
 html body.page-hero-ref.page-service .hero {
   position: relative !important;
   box-sizing: border-box !important;
-  /* Fills the screen. Zoom changes the type, not the banner frame. */
+  /* At least one screen. Grows when zoom makes the copy taller than the viewport. */
   min-height: 100dvh !important;
-  height: 100dvh !important;
+  height: auto !important;
   display: flex !important;
   align-items: flex-start !important;
   justify-content: flex-start !important;
@@ -16,7 +16,7 @@ html body.page-hero-ref.page-service .hero {
   padding-bottom: 64px !important;
   background-color: var(--ink, #0a1a22) !important;
   color: #fff !important;
-  overflow: hidden !important;
+  overflow: visible !important;
   text-align: left !important;
 }
 html body.page-hero-ref.page-service .hero .hero-bg {
@@ -50,6 +50,7 @@ html body.page-hero-ref.page-service .hero > .wrap {
   padding-right: clamp(18px, 3.2vw, 40px) !important;
   box-sizing: border-box !important;
   text-align: left !important;
+  flex: 0 0 auto !important;
 }
 html body.page-hero-ref.page-service .hero .hero-copy {
   position: relative !important;
