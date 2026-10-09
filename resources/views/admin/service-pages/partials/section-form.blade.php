@@ -54,6 +54,20 @@
         <p class="admin-hint">Section photo is the background on “Why KodRank”. Upload a new image here, or leave the path blank to keep that section a solid dark color. The “Found First, Not Buried” section stays solid dark.</p>
       @elseif($page->slug === 'website-redesign-services')
         <p class="admin-hint">Section photo is the background on “The numbers our redesigns move”. Upload a new image here, or leave the path blank to keep the current photo. The dark color layer stays on top of the image.</p>
+      @elseif($page->slug === 'real-estate-seo-services')
+        <p class="admin-hint">Section photo is the background on “Rankings Are Nice. Leads Pay the Bills.” Upload a new image here, or leave the path blank to keep the current photo. The dark color layer stays on top of the image.</p>
+      @elseif($page->slug === 'restaurant-seo-services')
+        <p class="admin-hint">Section photo is the background on the “What better rankings look like on the calendar” card. Upload a new image here, or leave the path blank to keep the current photo. The dark color layer stays on top of the image.</p>
+      @elseif($page->slug === 'ecommerce-seo-services')
+        <p class="admin-hint">Section photo is the background on “A web dev and SEO team under one roof”. Upload a new image here, or leave the path blank to keep the current photo. The dark color layer stays on top of the image.</p>
+      @elseif($page->slug === 'b2b-seo-services')
+        <p class="admin-hint">Section photo is the background on “SEO that shows up on the revenue line”. Upload a new image here, or leave the path blank to keep the current photo. The dark color layer stays on top of the image.</p>
+      @elseif($page->slug === 'off-page-seo-services')
+        <p class="admin-hint">Section photo is the background on “The numbers our clients care about”. Upload a new image here, or leave the path blank to keep the current photo. The dark color layer stays on top of the image.</p>
+      @elseif($page->slug === 'geo-services')
+        <p class="admin-hint">Section photo is the background on “Search stopped being a list of blue links.” Upload a new image here, or leave the path blank to keep the current photo. The dark color layer stays on top of the image.</p>
+      @elseif($page->slug === 'aeo-services')
+        <p class="admin-hint">Section photo is the background on “Old Playbook vs. New Playbook”. Upload a new image here, or leave the path blank to keep the current photo. The dark color layer stays on top of the image.</p>
       @elseif($page->slug === 'cms-development-services')
         <p class="admin-hint">Section photo is the background on “The numbers”. Upload a new image here, or leave the path blank to keep the current photo. The dark color layer stays on top of the image.</p>
       @elseif($page->slug === 'wordpress-development-services')

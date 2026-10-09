@@ -454,27 +454,7 @@
     $resultsBg = \App\Support\ServiceSectionPhoto::url($page);
     $resultsBgUrl = $resultsBg !== '' ? asset(ltrim($resultsBg, '/')) : '';
     if ($resultsBgUrl !== '') {
-        $html = preg_replace_callback(
-            '/(<section\b[^>]*\bstats-sec\b[^>]*>)([\s\S]*?)(<\/section>)/i',
-            function (array $m) use ($resultsBgUrl) {
-                $inner = preg_replace(
-                    '/(<div\b[^>]*\bbg-sec-img\b[^>]*>\s*<img\b[^>]*\bsrc=["\'])([^"\']*)/i',
-                    '$1'.e($resultsBgUrl),
-                    $m[2],
-                    1
-                );
-
-                return $m[1].$inner.$m[3];
-            },
-            $html,
-            1
-        ) ?? $html;
-        $html = preg_replace(
-            '/(<div\b[^>]*\bwhy-bg\b[^>]*>\s*<img\b[^>]*\bsrc=["\'])([^"\']*)/i',
-            '$1'.e($resultsBgUrl),
-            $html,
-            1
-        ) ?? $html;
+        $html = \App\Support\ServiceSectionPhoto::swapInlinePhoto($html, $resultsBgUrl);
     }
   @endphp
   @include('services.partials.section-photo')

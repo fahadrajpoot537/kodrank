@@ -14,6 +14,36 @@ body.page-aeo .aeo-theme-page .trust {
   position: relative;
 }
 
+/* Old Playbook band: photo sits under a dark wash so the copy stays readable. */
+html body.page-aeo.page-service .aeo-theme-page.theme-html-root > section.sec-ink {
+  isolation: isolate;
+  overflow: hidden;
+  background: #0a1a22;
+}
+html body.page-aeo.page-service .aeo-theme-page.theme-html-root > section.sec-ink::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image: url("/media/services/aeo/embed-002-be4d144e92.webp");
+  background-size: cover;
+  background-position: center right;
+  background-repeat: no-repeat;
+}
+html body.page-aeo.page-service .aeo-theme-page.theme-html-root > section.sec-ink::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(90deg, rgba(10, 26, 34, 0.9) 0%, rgba(10, 26, 34, 0.62) 48%, rgba(10, 26, 34, 0.34) 100%);
+}
+html body.page-aeo.page-service .aeo-theme-page.theme-html-root > section.sec-ink > .wrap {
+  position: relative;
+  z-index: 2;
+}
+
 /* Keep shared KodRank hero; no theme "AEO Services" eyebrow */
 body.page-aeo .hero-eyebrow {
   display: none !important;

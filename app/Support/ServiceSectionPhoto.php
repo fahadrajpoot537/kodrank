@@ -71,31 +71,30 @@ class ServiceSectionPhoto
         ],
         'real-estate-seo-services' => [
             'section' => 'body',
-            'mode' => 'ink',
+            'mode' => 'veil',
             'selectors' => [
-                'html body.page-reseo.page-service .re-theme-page.theme-html-root #results.stats-bg',
-                'html body.page-reseo.page-service .re-theme-page.theme-html-root #results.sec-ink',
+                'html body.page-reseo.page-service .re-theme-page.theme-html-root #results.stats-bg::before',
             ],
         ],
         'ecommerce-seo-services' => [
             'section' => 'body',
-            'mode' => 'ink',
+            'mode' => 'wash',
             'selectors' => [
-                'html body.page-ecomseo.page-service .ecom-theme-page.theme-html-root #results.sec-ink',
+                'html body.page-ecomseo.page-service .ecom-theme-page.theme-html-root #results::before',
             ],
         ],
         'restaurant-seo-services' => [
             'section' => 'body',
-            'mode' => 'ink',
+            'mode' => 'card',
             'selectors' => [
-                'html body.page-restseo.page-service .rest-theme-page.theme-html-root #results',
+                'html body.page-restseo.page-service .rest-theme-page.theme-html-root #results .results',
             ],
         ],
         'b2b-seo-services' => [
             'section' => 'body',
-            'mode' => 'ink',
+            'mode' => 'fade',
             'selectors' => [
-                'html body.page-b2bseo.page-service .b2b-theme-page.theme-html-root section.sec-ink',
+                'html body.page-b2bseo.page-service .b2b-theme-page.theme-html-root section.stats-sec',
             ],
         ],
         'cms-development-services' => [
@@ -180,9 +179,9 @@ class ServiceSectionPhoto
         ],
         'aeo-services' => [
             'section' => 'body',
-            'mode' => 'ink',
+            'mode' => 'cover',
             'selectors' => [
-                'html body.page-aeo.page-service .aeo-theme-page.theme-html-root > section.sec-ink',
+                'html body.page-aeo.page-service .aeo-theme-page.theme-html-root > section.sec-ink::before',
             ],
         ],
         'geo-services' => [
@@ -201,9 +200,9 @@ class ServiceSectionPhoto
         ],
         'off-page-seo-services' => [
             'section' => 'body',
-            'mode' => 'ink',
+            'mode' => 'cover',
             'selectors' => [
-                'html body.page-offpage.page-service .offpage-theme-page.theme-html-root #work.stats-sec',
+                'html body.page-offpage.page-service .offpage-theme-page.theme-html-root #work.stats-sec .sbg',
             ],
         ],
     ];
@@ -263,6 +262,109 @@ class ServiceSectionPhoto
         return '';
     }
 
+    /**
+     * Swap a theme photo that is an <img>, not a CSS background.
+     * The stats image is often a multi-megabyte data URI, which breaks a
+     * section-wide regular expression on PHP's backtrack limit.
+     */
+    public static function swapInlinePhoto(string $html, string $url): string
+    {
+        if ($html === '' || $url === '') {
+            return $html;
+        }
+
+        $safe = htmlspecialchars($url, ENT_QUOTES, 'UTF-8');
+        $html = self::swapSrcAfter($html, 'stats-sec', 'bg-sec-img', $safe);
+        $html = self::swapSrcAfter($html, 'why-bg', null, $safe);
+        $html = self::swapBackgroundAfter($html, 'id="work"', 'class="sbg"', $safe);
+
+        return $html;
+    }
+
+    private static function swapBackgroundAfter(string $html, string $startMarker, string $imgMarker, string $url): string
+    {
+        $from = stripos($html, $startMarker);
+        if ($from === false) {
+            return $html;
+        }
+
+        $regionEnd = stripos($html, '</section>', $from);
+        $marker = stripos($html, $imgMarker, $from);
+        if ($marker === false || ($regionEnd !== false && $marker > $regionEnd)) {
+            return $html;
+        }
+
+        $prop = stripos($html, 'background-image', $marker);
+        if ($prop === false || $prop > $marker + 200) {
+            return $html;
+        }
+
+        $urlPos = stripos($html, 'url(', $prop);
+        if ($urlPos === false || $urlPos > $prop + 40) {
+            return $html;
+        }
+
+        $open = $urlPos + 4;
+        $quote = $html[$open] ?? '';
+        if ($quote === '"' || $quote === "'") {
+            $valueStart = $open + 1;
+            $valueEnd = strpos($html, $quote, $valueStart);
+            if ($valueEnd === false) {
+                return $html;
+            }
+
+            return substr($html, 0, $valueStart).$url.substr($html, $valueEnd);
+        }
+
+        $valueEnd = strpos($html, ')', $open);
+        if ($valueEnd === false) {
+            return $html;
+        }
+
+        return substr($html, 0, $open).$url.substr($html, $valueEnd);
+    }
+
+    private static function swapSrcAfter(string $html, string $startMarker, ?string $imgMarker, string $url): string
+    {
+        $from = stripos($html, $startMarker);
+        if ($from === false) {
+            return $html;
+        }
+
+        $regionEnd = stripos($html, '</section>', $from);
+        $searchFrom = $from;
+        if ($imgMarker !== null) {
+            $marker = stripos($html, $imgMarker, $from);
+            if ($marker === false || ($regionEnd !== false && $marker > $regionEnd)) {
+                return $html;
+            }
+            $searchFrom = $marker;
+        }
+
+        $img = stripos($html, '<img', $searchFrom);
+        if ($img === false || ($regionEnd !== false && $img > $regionEnd) || $img > $searchFrom + 800) {
+            return $html;
+        }
+
+        $src = stripos($html, 'src=', $img);
+        if ($src === false || $src > $img + 400) {
+            return $html;
+        }
+
+        $quote = $html[$src + 4] ?? '';
+        if ($quote !== '"' && $quote !== "'") {
+            return $html;
+        }
+
+        $valueStart = $src + 5;
+        $valueEnd = strpos($html, $quote, $valueStart);
+        if ($valueEnd === false) {
+            return $html;
+        }
+
+        return substr($html, 0, $valueStart).$url.substr($html, $valueEnd);
+    }
+
     public static function css(ServicePage $page): string
     {
         $slug = (string) $page->slug;
@@ -310,6 +412,62 @@ class ServiceSectionPhoto
   background-image: url("{$url}") !important;
   background-size: cover !important;
   background-position: center right !important;
+  background-repeat: no-repeat !important;
+}
+CSS;
+        }
+
+        if ($mode === 'fade') {
+            return <<<CSS
+{$selectorList} {
+  background-color: #061019 !important;
+  background-image:
+    linear-gradient(180deg, rgba(10, 26, 34, 0.5), var(--ink, #0a1a22) 82%),
+    url("{$url}") !important;
+  background-size: cover !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+}
+CSS;
+        }
+
+        if ($mode === 'wash') {
+            return <<<CSS
+{$selectorList} {
+  background-color: var(--ink, #0a1a22) !important;
+  background-image:
+    linear-gradient(90deg, var(--ink, #0a1a22) 0%, rgba(10, 26, 34, 0.94) 32%, rgba(10, 26, 34, 0.55) 62%, rgba(10, 26, 34, 0.35) 100%),
+    radial-gradient(900px 500px at 88% 40%, rgba(244, 122, 31, 0.10), transparent 60%),
+    url("{$url}") !important;
+  background-size: cover !important;
+  background-position: center, center, right center !important;
+  background-repeat: no-repeat !important;
+}
+CSS;
+        }
+
+        if ($mode === 'card') {
+            return <<<CSS
+{$selectorList} {
+  background-color: var(--ink, #0a1a22) !important;
+  background-image:
+    linear-gradient(90deg, var(--ink, #0a1a22) 0%, var(--ink, #0a1a22) 30%, rgba(10, 26, 34, 0.82) 55%, rgba(10, 26, 34, 0.42) 100%),
+    url("{$url}") !important;
+  background-size: cover !important;
+  background-position: center, right center !important;
+  background-repeat: no-repeat !important;
+}
+CSS;
+        }
+
+        if ($mode === 'veil') {
+            return <<<CSS
+{$selectorList} {
+  background-image:
+    linear-gradient(rgba(10, 26, 34, 0.5), rgba(10, 26, 34, 0.5)),
+    linear-gradient(100deg, rgba(10, 26, 34, 0.94) 0%, rgba(10, 26, 34, 0.82) 46%, rgba(10, 26, 34, 0.4) 78%, rgba(10, 26, 34, 0.34) 100%),
+    url("{$url}") !important;
+  background-size: cover !important;
   background-repeat: no-repeat !important;
 }
 CSS;
