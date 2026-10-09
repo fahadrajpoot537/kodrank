@@ -88,9 +88,14 @@
       <div class="field">
         <label>{{ $label }}</label>
         @if(str_contains($key, 'description') || $key === 'schema_json')
-          <textarea name="seo[{{ $key }}]" rows="{{ $key === 'schema_json' ? 6 : 3 }}">{{ old('seo.'.$key, $seo[$key] ?? '') }}</textarea>
+          <textarea name="seo[{{ $key }}]" rows="{{ $key === 'schema_json' ? 6 : 3 }}" @if($key === 'seo_description') data-seo-count="160" @endif>{{ old('seo.'.$key, $seo[$key] ?? '') }}</textarea>
         @else
-          <input type="text" name="seo[{{ $key }}]" value="{{ old('seo.'.$key, $seo[$key] ?? '') }}">
+          <input type="text" name="seo[{{ $key }}]" value="{{ old('seo.'.$key, $seo[$key] ?? '') }}" @if($key === 'seo_title') data-seo-count="60" @endif>
+        @endif
+        @if($key === 'seo_title')
+          <p class="admin-hint"><span data-seo-live="seo[seo_title]">0</span> characters. About 50–60 is a useful search title. Google may show something else.</p>
+        @elseif($key === 'seo_description')
+          <p class="admin-hint"><span data-seo-live="seo[seo_description]">0</span> characters. About 120–160 is a useful description. Google may show something else.</p>
         @endif
       </div>
     @endforeach
@@ -113,4 +118,13 @@
     </div>
   </form>
 </div>
+<script>
+  document.querySelectorAll('[data-seo-count]').forEach(function (field) {
+    var live = document.querySelector('[data-seo-live="' + field.name + '"]');
+    if (!live) return;
+    var paint = function () { live.textContent = String(field.value.length); };
+    field.addEventListener('input', paint);
+    paint();
+  });
+</script>
 @endsection

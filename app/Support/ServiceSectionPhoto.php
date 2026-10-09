@@ -122,7 +122,6 @@ class ServiceSectionPhoto
             'section' => 'body',
             'mode' => 'ink',
             'selectors' => [
-                'html body.page-aibot.page-service .aibot-theme-page.theme-html-root #why',
                 'html body.page-aibot.page-service .aibot-theme-page.theme-html-root .sec-stats',
             ],
         ],

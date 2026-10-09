@@ -313,6 +313,7 @@ class ServicePageController extends Controller
     {
         $data = is_array($section->data) ? $section->data : [];
         $contentFields = [];
+        $mediaFields = [];
         $themeHtmlPath = '';
         $themeHtmlScope = '';
         $file = $this->themeHtmlFile((string) ($data['html_path'] ?? ''));
@@ -322,7 +323,8 @@ class ServicePageController extends Controller
                 $source = (string) file_get_contents($file);
             }
             $contentFields = \App\Support\ThemeHtmlContentEditor::fields($source);
-            if ($contentFields !== []) {
+            $mediaFields = \App\Support\ThemeHtmlContentEditor::media($source);
+            if ($contentFields !== [] || $mediaFields !== []) {
                 $themeHtmlPath = (string) ($data['html_path'] ?? '');
                 $themeHtmlScope = (string) ($data['scope'] ?? '');
                 unset($data['html'], $data['html_path'], $data['scope']);
@@ -361,6 +363,7 @@ class ServicePageController extends Controller
             'page' => $page,
             'section' => $section,
             'contentFields' => $contentFields,
+            'mediaFields' => $mediaFields,
             'themeHtmlPath' => $themeHtmlPath,
             'themeHtmlScope' => $themeHtmlScope,
         ];
@@ -391,6 +394,7 @@ class ServicePageController extends Controller
             $data = array_replace($existing, $data);
         }
         $data = $this->applyThemeHtmlBlocks($data, $request->input('content_blocks', []));
+        $data = $this->applyThemeHtmlMedia($data, $request, $page);
         $data = $this->persistThemeHtml($data);
         $data = $this->keepHeadingCopy($data, $existing);
 
@@ -470,6 +474,56 @@ class ServicePageController extends Controller
 
         $current = (string) file_get_contents($file);
         $updated = \App\Support\ThemeHtmlContentEditor::apply($current, $blocks);
+        if (file_put_contents($file, $updated, LOCK_EX) !== false) {
+            $data['html'] = '';
+        }
+
+        return $data;
+    }
+
+    /**
+     * Replace pictures that live in the theme HTML file. CSS-only backgrounds stay on Section photo.
+     *
+     * @param  array<string, mixed>  $data
+     * @return array<string, mixed>
+     */
+    private function applyThemeHtmlMedia(array $data, Request $request, ServicePage $page): array
+    {
+        $alts = $request->input('theme_media_alt', []);
+        $files = $request->file('theme_media', []);
+        if (! is_array($alts)) {
+            $alts = [];
+        }
+        if (! is_array($files)) {
+            $files = [];
+        }
+
+        $changes = [];
+        foreach ($alts as $id => $alt) {
+            $id = (string) $id;
+            if (! preg_match('/^m\d+$/', $id)) {
+                continue;
+            }
+            $changes[$id] = ['alt' => trim((string) $alt)];
+        }
+        foreach ($files as $id => $file) {
+            $id = (string) $id;
+            if (! preg_match('/^m\d+$/', $id) || ! $file instanceof UploadedFile || ! $file->isValid()) {
+                continue;
+            }
+            $changes[$id]['url'] = '/'.ltrim($this->storeSectionImage($file, $page), '/');
+        }
+        if ($changes === []) {
+            return $data;
+        }
+
+        $file = $this->themeHtmlFile((string) ($data['html_path'] ?? ''));
+        if ($file === null || ! is_file($file)) {
+            return $data;
+        }
+
+        $current = (string) file_get_contents($file);
+        $updated = \App\Support\ThemeHtmlContentEditor::replaceMedia($current, $changes);
         if (file_put_contents($file, $updated, LOCK_EX) !== false) {
             $data['html'] = '';
         }

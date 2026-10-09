@@ -2,8 +2,11 @@
   $pad = 12 + ($depth * 22);
   $type = $depth === 0 ? 'Main' : ($depth === 1 ? 'Sub' : 'Sub · '.$depth);
   $theme = $page->seo['theme'] ?? '—';
+  $seoTitle = trim((string) ($page->seo['seo_title'] ?? ''));
+  $seoDesc = trim((string) ($page->seo['seo_description'] ?? ''));
+  $seoReady = $seoTitle !== '' && strcasecmp($seoTitle, 'KodRank') !== 0 && strlen($seoDesc) >= 12;
 @endphp
-<tr>
+<tr data-svc="{{ strtolower($page->name.' '.$page->slug.' /'.$page->slug) }}">
   <td style="padding-left:{{ $pad }}px">
     @if($depth > 0)<span style="color:#9fb3bb;margin-right:6px">↳</span>@endif
     <strong>{{ $page->name }}</strong>
@@ -15,6 +18,7 @@
   <td><span class="badge">{{ $type }}</span></td>
   <td><code>{{ $page->slug }}</code></td>
   <td>{{ $page->is_active ? 'Active' : 'Inactive' }}</td>
+  <td>{{ $seoReady ? 'Ready' : 'Needs title or description' }}</td>
   <td>
     <div class="row-actions">
       <a class="btn" href="{{ route('admin.service-pages.content', $page) }}">Edit content</a>

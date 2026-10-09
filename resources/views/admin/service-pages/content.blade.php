@@ -27,6 +27,7 @@
   ]];
   foreach ($editors as $editor) {
       $fields = $editor['contentFields'] ?? [];
+      $mediaFields = $editor['mediaFields'] ?? [];
       if ($fields === []) {
           $panels[] = [
               'id' => $editor['section']->key,
@@ -37,6 +38,7 @@
               'showStructured' => true,
               'partial' => false,
               'fields' => [],
+              'mediaFields' => $mediaFields,
           ];
           continue;
       }
@@ -76,6 +78,14 @@
           } else {
               $used[$id] = 1;
           }
+          $groupMedia = [];
+          foreach ($mediaFields as $mediaIndex => $mediaField) {
+              if (($mediaField['group'] ?? '') !== $name) {
+                  continue;
+              }
+              $groupMedia[] = $mediaField;
+              unset($mediaFields[$mediaIndex]);
+          }
           $panels[] = [
               'id' => $id,
               'label' => $name,
@@ -85,6 +95,34 @@
               'showStructured' => false,
               'partial' => true,
               'fields' => $groupFields,
+              'mediaFields' => $groupMedia,
+              'shortLabels' => true,
+          ];
+      }
+      $extraMedia = [];
+      foreach ($mediaFields as $mediaField) {
+          $name = trim((string) ($mediaField['group'] ?? 'Images'));
+          $extraMedia[$name !== '' ? $name : 'Images'][] = $mediaField;
+      }
+      foreach ($extraMedia as $name => $groupMedia) {
+          $slug = \Illuminate\Support\Str::slug($name);
+          $id = $editor['section']->key.'__'.($slug !== '' ? $slug : 'images');
+          if (isset($used[$id])) {
+              $used[$id]++;
+              $id .= '-'.$used[$id];
+          } else {
+              $used[$id] = 1;
+          }
+          $panels[] = [
+              'id' => $id,
+              'label' => $name,
+              'type' => 'section',
+              'editor' => $editor,
+              'showPhoto' => false,
+              'showStructured' => false,
+              'partial' => true,
+              'fields' => [],
+              'mediaFields' => $groupMedia,
               'shortLabels' => true,
           ];
       }
@@ -151,6 +189,7 @@
             'showStructured' => $panel['showStructured'],
             'partialData' => $panel['partial'],
             'contentFields' => $panel['fields'],
+            'mediaFields' => $panel['mediaFields'] ?? [],
             'formTitle' => $panel['label'],
             'returnPart' => $panel['id'],
             'shortLabels' => $panel['shortLabels'] ?? false,

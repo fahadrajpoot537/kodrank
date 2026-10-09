@@ -76,6 +76,49 @@
 ], JSON_UNESCAPED_SLASHES|JSON_UNESCAPED_UNICODE|JSON_PRETTY_PRINT) !!}
 </script>
 @endif
+@if(isset($page))
+@php
+  $schemaCrumbs = [
+      ['name' => 'Home', 'item' => url('/')],
+      ['name' => 'Services', 'item' => url('/services')],
+  ];
+  if ($page->parent) {
+      $schemaCrumbs[] = ['name' => $page->parent->name, 'item' => url('/'.$page->parent->slug)];
+  }
+  $schemaCrumbs[] = ['name' => $page->name, 'item' => $canonical];
+  $schemaGraph = [[
+      '@type' => 'BreadcrumbList',
+      '@id' => $canonical.'#breadcrumb',
+      'itemListElement' => array_map(function (array $crumb, int $index) {
+          return [
+              '@type' => 'ListItem',
+              'position' => $index + 1,
+              'name' => $crumb['name'],
+              'item' => $crumb['item'],
+          ];
+      }, $schemaCrumbs, array_keys($schemaCrumbs)),
+  ]];
+  $schemaTheme = (string) ($seo['theme'] ?? '');
+  $skipServiceSchema = in_array($schemaTheme, ['legal', 'about', 'industries'], true)
+      || in_array($page->slug, ['privacy-policy', 'terms-and-conditions', 'about-us', 'industries'], true);
+  if (! $skipServiceSchema) {
+      $schemaGraph[] = [
+          '@type' => 'Service',
+          'name' => $page->name,
+          'url' => $canonical,
+          'description' => $seoDescription,
+          'provider' => [
+              '@type' => 'Organization',
+              'name' => $brand,
+              'url' => 'https://kodrank.com/',
+          ],
+      ];
+  }
+@endphp
+<script type="application/ld+json">
+{!! json_encode(['@context' => 'https://schema.org', '@graph' => $schemaGraph], JSON_UNESCAPED_SLASHES|JSON_UNESCAPED_UNICODE|JSON_PRETTY_PRINT) !!}
+</script>
+@endif
 @if(!empty($seo['schema_json']))
   @php
     $schemaJson = is_string($seo['schema_json']) ? trim($seo['schema_json']) : '';

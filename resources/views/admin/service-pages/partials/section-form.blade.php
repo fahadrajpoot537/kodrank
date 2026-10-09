@@ -46,7 +46,9 @@
       }
     @endphp
     @if($showPhotoBlock && $photoFields !== [])
-      @if($page->slug === 'web-design-and-development-services')
+      @if($page->slug === 'ai-chatbot-development-services')
+        <p class="admin-hint">Section photo is the background on “Good conversational AI pays for itself”. “Why KodRank” stays without a photo. Leave the path blank to keep the current stats photo.</p>
+      @elseif($page->slug === 'web-design-and-development-services')
         <p class="admin-hint">Included section photo is the background on “Included in every package”. Upload a new image here, or leave the path blank to keep the current photo. The dark color layer stays on top of the image.</p>
       @elseif($page->slug === 'shopify-development-services')
         <p class="admin-hint">Section photo is the background on “Why Shopify”. Upload a new image here, or leave the path blank to keep the current photo.</p>
@@ -77,10 +79,12 @@
       @endif
       @include('admin.partials.dynamic-fields', ['fieldsData' => $photoFields, 'fieldsPrefix' => 'data'])
     @endif
-    @if(!empty($contentFields))
+    @if(!empty($contentFields) || !empty($mediaFields))
       <input type="hidden" name="data[html_path]" value="{{ $themeHtmlPath }}">
       <input type="hidden" name="data[scope]" value="{{ $themeHtmlScope }}">
       <input type="hidden" name="data[html]" value="">
+    @endif
+    @if(!empty($contentFields))
       @foreach($contentFields as $field)
         @php
           $fieldLabel = $field['label'];
@@ -104,6 +108,29 @@
           @else
             <input type="text" name="content_blocks[{{ $field['id'] }}]" value="{{ $field['value'] }}">
           @endif
+        </div>
+      @endforeach
+    @endif
+
+    @if(!empty($mediaFields))
+      <p class="admin-hint">Pictures in this section. Upload a file to replace one. Leave the file empty to keep the current picture. Backgrounds that live only in the stylesheet stay on Section photo.</p>
+      @foreach($mediaFields as $media)
+        <div class="field">
+          <label>{{ $media['label'] }}</label>
+          @if(!empty($media['embedded']))
+            <p class="admin-hint">This picture is embedded in the page.</p>
+          @elseif(!empty($media['src']))
+            @php $mediaSrc = $media['src']; @endphp
+            @if(!str_starts_with($mediaSrc, 'data:'))
+              <div style="margin:8px 0"><img src="{{ str_starts_with($mediaSrc, 'http') || str_starts_with($mediaSrc, '/') ? $mediaSrc : asset(ltrim($mediaSrc, '/')) }}" alt="" style="max-width:220px;max-height:120px;object-fit:cover;border-radius:10px;border:1px solid #E1E9E5"></div>
+            @endif
+          @endif
+          @if(($media['kind'] ?? 'image') === 'image')
+            <label class="admin-hint" style="display:block;margin-bottom:4px">Alt text</label>
+            <input type="text" name="theme_media_alt[{{ $media['id'] }}]" value="{{ $media['alt'] }}" maxlength="180">
+          @endif
+          <label class="admin-hint" style="display:block;margin:8px 0 4px">Replace image</label>
+          <input type="file" name="theme_media[{{ $media['id'] }}]" accept="image/jpeg,image/png,image/webp,image/gif">
         </div>
       @endforeach
     @endif
