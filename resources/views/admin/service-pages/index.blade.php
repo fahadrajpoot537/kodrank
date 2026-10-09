@@ -4,7 +4,7 @@
 <div class="admin-page-head">
   <div>
     <h1 class="admin-h1">Service pages</h1>
-    <p class="admin-sub">Main service → column. Sub services → links under it. Sub ke under aur sub bhi bana sakte ho.</p>
+    <p class="admin-sub">A main service is a menu column. Sub-services are the links under it. A sub-service can have its own sub-services.</p>
   </div>
   <a class="btn" href="{{ route('admin.service-pages.create') }}">+ Main service</a>
 </div>

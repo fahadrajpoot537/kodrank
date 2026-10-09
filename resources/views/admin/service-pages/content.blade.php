@@ -5,7 +5,7 @@
   <div>
     <h1 class="admin-h1">Edit content — {{ $page->name }}</h1>
     <p class="admin-sub">
-      Ek waqt par ek section. Jo khula hai sirf wahi save hota hai.
+      One section at a time. Save updates only the section that is open.
       @if($page->parent)
         Parent: <strong>{{ $page->parent->name }}</strong> ·
       @endif

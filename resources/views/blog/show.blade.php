@@ -59,6 +59,10 @@
   ) ?? $contentHtml;
 
   // Theme-style title highlight (e.g. "best pages.")
+  $schemaImage = (string) ($post->og_image ?: $post->featured_image);
+  if ($schemaImage !== '' && ! str_starts_with($schemaImage, 'http')) {
+      $schemaImage = asset(ltrim($schemaImage, '/'));
+  }
   $heroTitleHtml = e($post->title);
   if (preg_match('/^(.*?\b)(best pages\.)$/iu', $post->title, $tm)) {
       $heroTitleHtml = e($tm[1]).'<span class="hl">'.e($tm[2]).'</span>';
@@ -72,7 +76,7 @@
     '@type' => 'BlogPosting',
     'headline' => $post->title,
     'description' => $post->excerpt,
-    'image' => $post->og_image ?: $post->featured_image,
+    'image' => $schemaImage !== '' ? $schemaImage : null,
     'datePublished' => optional($post->published_at)->toAtomString(),
     'dateModified' => optional($post->updated_at)->toAtomString(),
     'author' => [
@@ -274,7 +278,7 @@
         Subscribe
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
       </button>
-      @include('partials.recaptcha', ['size' => 'compact'])
+      @include('partials.recaptcha', ['size' => 'normal', 'theme' => 'dark'])
     </form>
   </div>
 </section>

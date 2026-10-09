@@ -2,7 +2,7 @@
 
 @section('content')
 <h1 class="admin-h1">Dashboard</h1>
-<p class="admin-sub">Home, services, contact, blogs — har page ka content, images, aur slugs yahan se handle karein.</p>
+<p class="admin-sub">Edit homepage, services, contact, and blog content, images, and URLs from here.</p>
 
 <div class="grid2" style="margin-bottom:18px">
   <div class="admin-card">
@@ -12,18 +12,31 @@
   </div>
   <div class="admin-card">
     <h3 style="margin:0 0 8px">Services &amp; sub-services</h3>
-    <p style="margin:0 0 14px;color:#4B5B62">Har service page ka content, images, SEO, aur slug (old URL 301 redirect).</p>
+    <p style="margin:0 0 14px;color:#4B5B62">Edit each service page’s content, images, SEO, and URL. The old URL keeps a 301 redirect.</p>
     <a class="btn" href="{{ route('admin.service-pages.index') }}">Manage service pages</a>
   </div>
   <div class="admin-card">
     <h3 style="margin:0 0 8px">Blogs</h3>
-    <p style="margin:0 0 14px;color:#4B5B62">Posts, categories, authors, images, SEO, publish. Slug change pe redirect.</p>
+    <p style="margin:0 0 14px;color:#4B5B62">Posts, categories, authors, images, SEO, and publishing. Changing a URL keeps a 301 redirect.</p>
     <a class="btn" href="{{ route('admin.blog.posts.index') }}">Manage blog posts</a>
   </div>
   <div class="admin-card">
     <h3 style="margin:0 0 8px">Media library</h3>
     <p style="margin:0 0 14px;color:#4B5B62">Upload / delete images for service and SEO use.</p>
     <a class="btn" href="{{ route('admin.seo-media.index') }}">Open media library</a>
+  </div>
+</div>
+
+<div class="admin-card">
+  <h3 style="margin:0 0 6px">Unique visitors</h3>
+  <p class="admin-hint" style="margin:0 0 14px">One person counts once in each range, even if they open many pages. Admin pages are not counted. Numbers start from the day this tracking went live.</p>
+  <div class="visitor-grid">
+    <div class="visitor-stat"><strong>{{ number_format($visitors['day'] ?? 0) }}</strong><span>1 day</span></div>
+    <div class="visitor-stat"><strong>{{ number_format($visitors['week'] ?? 0) }}</strong><span>1 week</span></div>
+    <div class="visitor-stat"><strong>{{ number_format($visitors['days15'] ?? 0) }}</strong><span>15 days</span></div>
+    <div class="visitor-stat"><strong>{{ number_format($visitors['month'] ?? 0) }}</strong><span>1 month</span></div>
+    <div class="visitor-stat"><strong>{{ number_format($visitors['months3'] ?? 0) }}</strong><span>3 months</span></div>
+    <div class="visitor-stat"><strong>{{ number_format($visitors['year'] ?? 0) }}</strong><span>1 year</span></div>
   </div>
 </div>
 

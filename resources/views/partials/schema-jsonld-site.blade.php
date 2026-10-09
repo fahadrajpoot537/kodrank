@@ -22,11 +22,10 @@
       "telephone": "+92-305-9202732",
       "areaServed": "Worldwide",
       "sameAs": [
-        "https://www.facebook.com/kodrank/",
-        "https://x.com/kodrank_",
-        "https://www.youtube.com/@KodRank_official",
-        "https://www.instagram.com/kodrank_official/",
-        "https://www.linkedin.com/company/kodrank"
+        "https://www.facebook.com/share/1C31fz3agJ/",
+        "https://www.youtube.com/@kodrank_official",
+        "https://www.instagram.com/kodrank_official",
+        "https://www.linkedin.com/company/kodrank/"
       ]
     },
     {

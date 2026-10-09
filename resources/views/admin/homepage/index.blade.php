@@ -9,7 +9,7 @@
 <div class="admin-page-head">
   <div>
     <h1 class="admin-h1">Site &amp; page content</h1>
-    <p class="admin-sub">Har page ka copy, images, nav, logo, contact, services listing, results, aur homepage blocks yahan se add / update / delete karein. Service URLs aur blog slugs Services / Blog screens se change hote hain (purani URL 301 redirect ho jati hai).</p>
+    <p class="admin-sub">Add, update, or delete copy, images, navigation, the logo, contact details, the services listing, results, and homepage blocks. Change service and blog URLs from the Services and Blog screens. The old URL keeps a 301 redirect.</p>
   </div>
   <div style="display:flex;gap:8px;flex-wrap:wrap">
     <a class="btn btn-ghost" href="{{ route('home') }}" target="_blank" rel="noopener">Preview home ↗</a>

@@ -80,6 +80,26 @@ final class ServiceListingCopy
         return 'Explore how KodRank delivers this service end to end.';
     }
 
+    /**
+     * Meta description for the public page. "KodRank" alone is not a description,
+     * so those pages use the hero intro instead.
+     */
+    public static function metaDescription(ServicePage $page): string
+    {
+        $seo = is_array($page->seo) ? $page->seo : [];
+        $desc = self::plain((string) ($seo['seo_description'] ?? ''));
+        if ($desc !== '' && ! self::isBrandOnly($desc)) {
+            return $desc;
+        }
+
+        $lede = self::heroLede($page);
+        if ($lede !== '') {
+            return self::excerpt($lede);
+        }
+
+        return $desc;
+    }
+
     public static function tag(ServicePage $page): string
     {
         $seo = is_array($page->seo) ? $page->seo : [];

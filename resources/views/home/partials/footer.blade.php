@@ -30,7 +30,8 @@
         <div class="f-social">
           @foreach($c['footer']['social'] ?? [] as $social)
             @php $key = strtolower($social['label'] ?? ''); @endphp
-            <a href="{{ $social['url'] ?? '#' }}" aria-label="{{ ucfirst($key) }}">
+            @continue(in_array($key, ['x', 'twitter'], true))
+            <a href="{{ $social['url'] ?? '#' }}" target="_blank" rel="noopener noreferrer" aria-label="{{ ucfirst($key) }}">
               {!! $socialIcons[$key] ?? '<span>'.e($social['label'] ?? '').'</span>' !!}
             </a>
           @endforeach

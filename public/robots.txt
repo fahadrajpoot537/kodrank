@@ -1,4 +1,7 @@
 User-agent: *
 Allow: /
+Disallow: /admin
+Disallow: /clear-cache
 
-Sitemap: http://localhost/kodrank/public/sitemap.xml
+Sitemap: https://kodrank.com/sitemap.xml
+Sitemap: https://kodrank.com/image-sitemap.xml

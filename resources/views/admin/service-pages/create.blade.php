@@ -4,9 +4,9 @@
 <h1 class="admin-h1">{{ $parent ? 'Add sub service' : 'Add main service' }}</h1>
 <p class="admin-sub">
   @if($parent)
-    Sub service under <strong>{{ $parent->name }}</strong>. Navbar me parent column ke neeche link banegi.
+    Sub-service under <strong>{{ $parent->name }}</strong>. This link appears under that column in the navbar.
   @else
-    Main service navbar Services mega menu me <strong>column heading</strong> banegi. Uske under sub services add karo.
+    A main service becomes a <strong>column heading</strong> in the Services menu. Add sub-services under it.
   @endif
 </p>
 
@@ -65,7 +65,7 @@
         <option value="theme-html" @selected($defaultTheme === 'theme-html')>Full HTML import layout (theme pages)</option>
         <option value="industries" @selected($defaultTheme === 'industries')>Industries hub layout</option>
       </select>
-      <p class="admin-hint">Theme decide karti hai page ka design. Baad me SEO &amp; settings se bhi change kar sakte ho.</p>
+      <p class="admin-hint">The theme sets this page’s design. You can change it later under SEO &amp; settings.</p>
     </div>
 
     <input type="hidden" name="is_active" value="1">

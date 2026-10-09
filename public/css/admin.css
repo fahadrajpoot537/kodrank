@@ -235,6 +235,14 @@ body.admin-nav-open{overflow:hidden}
   .rep-block{padding:12px}
 }
 
+.visitor-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.visitor-stat{background:#F7FAF8;border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+.visitor-stat strong{display:block;font-size:1.7rem;line-height:1.1}
+.visitor-stat span{display:block;margin-top:4px;color:#4B5B62;font-size:.82rem;font-weight:600}
+@media(max-width:640px){
+  .visitor-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+
 .svc-edit{
   display:grid;
   grid-template-columns:260px minmax(0,1fr);

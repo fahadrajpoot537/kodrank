@@ -8,12 +8,21 @@
   $site = $c['site'] ?? [];
   $seo = $seo ?? [];
   $seoTitle = $seo['seo_title'] ?? ($site['seo_title'] ?? ($site['meta_title'] ?? ($site['brand_name'] ?? 'KodRank')));
-  $seoDescription = $seo['seo_description'] ?? ($site['seo_description'] ?? ($site['meta_description'] ?? ''));
+  $pageDescription = isset($page) ? \App\Support\ServiceListingCopy::metaDescription($page) : '';
+  $seoDescription = $pageDescription !== ''
+      ? $pageDescription
+      : ($seo['seo_description'] ?? ($site['seo_description'] ?? ($site['meta_description'] ?? '')));
   $ogTitle = $seo['og_title'] ?? ($site['og_title'] ?? $seoTitle);
-  $ogDescription = $seo['og_description'] ?? ($site['og_description'] ?? $seoDescription);
+  $ogRaw = trim((string) ($seo['og_description'] ?? ''));
+  $ogDescription = ($ogRaw !== '' && strcasecmp($ogRaw, 'KodRank') !== 0)
+      ? $ogRaw
+      : ($seoDescription !== '' ? $seoDescription : ($site['og_description'] ?? ''));
   $ogImagePath = $seo['og_image'] ?? ($site['og_image'] ?? 'media/hero-poster.jpg');
   $ogImage = str_starts_with($ogImagePath, 'http') ? $ogImagePath : asset(ltrim($ogImagePath, '/'));
-  $canonical = !empty($seo['canonical_url']) ? $seo['canonical_url'] : (!empty($site['canonical_url']) ? $site['canonical_url'] : url()->current());
+  $customCanonical = trim((string) ($seo['canonical_url'] ?? ''));
+  $canonical = $customCanonical === ''
+      ? url()->current()
+      : (str_starts_with($customCanonical, 'http') ? $customCanonical : url($customCanonical));
   $robots = $seo['robots'] ?? ($site['robots'] ?? 'index, follow');
   $keywords = $seo['keywords'] ?? ($site['keywords'] ?? 'digital marketing services, SEO services, KodRank');
   $brand = $site['brand_name'] ?? 'KodRank';

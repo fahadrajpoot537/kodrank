@@ -254,6 +254,12 @@ strong{font-weight:650;color:var(--graphite)}
 /* Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬
    Newsletter CTA (dark)
    Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬ */
+@media (min-width:901px){
+  body.page-blog section#news{
+    padding-top:clamp(40px,4.6vw,64px) !important;
+    padding-bottom:clamp(40px,4.6vw,64px) !important;
+  }
+}
 .news-cta{text-align:center;max-width:640px;margin:0 auto}
 .news-cta h2{margin-bottom:16px}
 .news-cta p{font-size:1.05rem;margin-bottom:32px;max-width:520px;margin-left:auto;margin-right:auto}
@@ -265,6 +271,29 @@ strong{font-weight:650;color:var(--graphite)}
 .newsletter-form input{flex:1;background:transparent;border:none;color:#fff;font-size:.92rem;outline:none;min-width:0}
 .newsletter-form input::placeholder{color:#7A929A}
 .news-cta .fine{margin-top:16px;font-size:.78rem;color:#7A929A}
+body.page-blog #news .newsletter-signup .kr-recaptcha,
+body.page-blog #news .news-form .kr-recaptcha{
+  display:flex !important;
+  justify-content:center !important;
+  align-items:flex-start !important;
+  width:100% !important;
+  min-height:0 !important;
+  margin:18px auto 0 !important;
+  padding:0 !important;
+}
+body.page-blog #news .kr-recaptcha .g-recaptcha{
+  display:inline-block;
+  line-height:0;
+  border-radius:8px;
+  overflow:hidden;
+  transform:none;
+}
+@media(max-width:420px){
+  body.page-blog #news .kr-recaptcha .g-recaptcha{
+    transform:scale(.9);
+    transform-origin:center top;
+  }
+}
 @media(max-width:480px){
   .newsletter-form{flex-wrap:wrap;border-radius:18px;padding:16px}
   .newsletter-form input{width:100%;padding:10px 0}

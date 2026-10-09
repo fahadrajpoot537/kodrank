@@ -36,7 +36,7 @@
           </option>
         @endforeach
       </select>
-      <p class="admin-hint">Sub service parent ke under navbar me dikhegi. Sub ke under aur sub bhi set kar sakte ho.</p>
+      <p class="admin-hint">A sub-service appears under its parent in the navbar. A sub-service can have its own sub-services.</p>
     </div>
 
     <div class="field">
