@@ -12,7 +12,8 @@
 @endphp
 @once
   @push('head')
-    <link rel="stylesheet" href="{{ asset('css/country-select.css') }}?v={{ @filemtime(public_path('css/country-select.css')) ?: time() }}">
+    <link rel="stylesheet" href="{{ asset('css/country-select.css') }}?v={{ @filemtime(public_path('css/country-select.css')) ?: time() }}" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="{{ asset('css/country-select.css') }}?v={{ @filemtime(public_path('css/country-select.css')) ?: time() }}"></noscript>
   @endpush
   @push('scripts')
     <script src="{{ asset('js/country-select.js') }}?v={{ @filemtime(public_path('js/country-select.js')) ?: time() }}" defer></script>

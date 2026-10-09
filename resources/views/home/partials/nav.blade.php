@@ -71,7 +71,11 @@
 <header class="nav{{ !empty($navStuck) ? ' stuck' : '' }}" id="nav"@if(!empty($navStuck)) data-always-stuck="1"@endif>
   <div class="nav-in">
     <a class="brand" href="/" aria-label="{{ $c['site']['brand_name'] ?? 'KodRank' }} home">
-      <img class="brand-logo" src="{{ asset(ltrim(($c['site']['logo'] ?? 'logo.png') !== '' ? ($c['site']['logo'] ?? 'logo.png') : 'logo.png', '/')) }}" alt="{{ $c['site']['brand_name'] ?? 'KodRank' }}" width="168" height="40" decoding="async">
+      @php
+        $logoFile = ltrim((string) (($c['site']['logo'] ?? '') !== '' ? $c['site']['logo'] : 'logo.png'), '/');
+        if ($logoFile === 'logo.png') { $logoFile = 'logo-nav.png'; }
+      @endphp
+      <img class="brand-logo" src="{{ asset($logoFile) }}" alt="{{ $c['site']['brand_name'] ?? 'KodRank' }}" width="168" height="40" decoding="async">
     </a>
     <nav class="nav-links" aria-label="Primary">
       @if($homeLink)

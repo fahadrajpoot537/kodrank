@@ -25,19 +25,37 @@
     onScroll(); window.addEventListener('scroll',onScroll,{passive:true});
   }
 
-  // --- hero video: play from <source> files (webm/mp4), muted autoplay ---
+  // --- hero video: one format, after the load event, so it does not compete with the poster ---
   var v=document.getElementById('heroVideo');
   if(v && !reduce){
     v.muted=true; v.defaultMuted=true; v.setAttribute('muted','');
     var go=function(){ try{ var pr=v.play(); if(pr&&pr.catch){ pr.catch(function(){}); } }catch(e){} };
-    if(v.readyState>=2){ go(); }
-    v.addEventListener('loadeddata',go,{once:true});
-    v.addEventListener('canplay',go,{once:true});
-    try{ v.load(); }catch(e){}
-    var kick=function(){ if(v.paused){ go(); } document.removeEventListener('pointerdown',kick); document.removeEventListener('touchstart',kick); };
+    var arm=function(){
+      if(v.getAttribute('data-armed')==='1') return;
+      v.setAttribute('data-armed','1');
+      if(!v.querySelector('source')){
+        var webm=v.getAttribute('data-webm')||'';
+        var mp4=v.getAttribute('data-mp4')||'';
+        var useWebm=webm!=='' && v.canPlayType('video/webm')!=='';
+        var src=useWebm?webm:mp4;
+        if(src){
+          var s=document.createElement('source');
+          s.src=src;
+          s.type=useWebm?'video/webm':'video/mp4';
+          v.appendChild(s);
+        }
+      }
+      v.addEventListener('loadeddata',go,{once:true});
+      v.addEventListener('canplay',go,{once:true});
+      try{ v.load(); }catch(e){}
+      go();
+    };
+    if(document.readyState==='complete') arm();
+    else window.addEventListener('load', arm);
+    var kick=function(){ arm(); document.removeEventListener('pointerdown',kick); document.removeEventListener('touchstart',kick); };
     document.addEventListener('pointerdown',kick,{passive:true});
     document.addEventListener('touchstart',kick,{passive:true});
-  } else if(v){ v.removeAttribute('autoplay'); }
+  } else if(v){ v.removeAttribute('autoplay'); v.preload='none'; }
 
   // --- mega menu (hover on desktop, accordion click on mobile) ---
   var megaRoot=document.querySelector('.has-mega');
@@ -512,7 +530,6 @@
       window.addEventListener('orientationchange', function(){ setTimeout(refreshMode, 180); });
       window.addEventListener('load', function(){ setTimeout(refreshMode, 50); });
 
-      refreshMode();
       requestAnimationFrame(function(){ refreshMode(); setTimeout(refreshMode, 250); });
     }
 

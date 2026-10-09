@@ -22,7 +22,11 @@
     <div class="f-top f-top-5">
       <div class="f-brandcol">
         <a class="brand" href="{{ route('home') }}" aria-label="{{ $c['site']['brand_name'] ?? 'KodRank' }} home">
-          <img class="brand-logo" src="{{ asset(ltrim(($c['site']['logo'] ?? 'logo.png') !== '' ? ($c['site']['logo'] ?? 'logo.png') : 'logo.png', '/')) }}" alt="{{ $c['site']['brand_name'] ?? 'KodRank' }}" width="168" height="40" decoding="async">
+          @php
+            $logoFile = ltrim((string) (($c['site']['logo'] ?? '') !== '' ? $c['site']['logo'] : 'logo.png'), '/');
+            if ($logoFile === 'logo.png') { $logoFile = 'logo-nav.png'; }
+          @endphp
+          <img class="brand-logo" src="{{ asset($logoFile) }}" alt="{{ $c['site']['brand_name'] ?? 'KodRank' }}" width="168" height="40" decoding="async">
         </a>
         @if(!empty($c['footer']['blurb']))
           <p class="f-blurb">{{ $c['footer']['blurb'] }}</p>

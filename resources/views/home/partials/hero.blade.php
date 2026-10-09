@@ -10,11 +10,11 @@
       fetchpriority="high"
     >
     <video id="heroVideo"
-      autoplay muted loop playsinline disablepictureinpicture preload="metadata"
+      muted loop playsinline disablepictureinpicture preload="none"
       poster="{{ asset('media/hero-poster.jpg') }}"
+      data-webm="{{ asset('media/hero.webm') }}"
+      data-mp4="{{ asset('media/hero.mp4') }}"
       aria-label="{{ $c['hero']['video_alt'] ?? 'KodRank web development and SEO services background video' }}">
-      <source src="{{ asset('media/hero.webm') }}" type="video/webm">
-      <source src="{{ asset('media/hero.mp4') }}" type="video/mp4">
     </video>
     <div class="hero-scrim" aria-hidden="true"></div>
   </div>

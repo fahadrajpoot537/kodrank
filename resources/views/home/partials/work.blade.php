@@ -70,11 +70,16 @@ SVG,
           if ($shot && !empty($case['image_alt'])) {
               $shot = preg_replace('/aria-label="[^"]*"/', 'aria-label="'.e($case['image_alt']).'"', $shot, 1);
           }
+          $srcset = '';
+          if ($img !== '' && str_ends_with($img, 'google-analytics-494k-users-manufacturer.png')) {
+              $small = preg_replace('/\.png$/', '-400.jpg', $img);
+              $srcset = asset(ltrim($small, '/')).' 400w, '.$imgUrl.' 800w';
+          }
         @endphp
         <article class="work-card rv">
           <div class="work-shot @if($imgUrl) has-img @elseif(!$shot) placeholder tone-{{ ($i % 3) + 1 }} @endif">
             @if($imgUrl)
-              <img src="{{ $imgUrl }}" alt="{{ $case['image_alt'] ?? $title }}" loading="{{ $i === 0 ? 'eager' : 'lazy' }}">
+              <img src="{{ $imgUrl }}" @if($srcset !== '') srcset="{{ $srcset }}" sizes="(min-width: 981px) 400px, 100vw" @endif width="800" height="450" alt="{{ $case['image_alt'] ?? $title }}" loading="lazy" decoding="async">
             @elseif($shot)
               {!! $shot !!}
             @endif
