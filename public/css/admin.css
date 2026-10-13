@@ -188,6 +188,8 @@ img,svg{max-width:100%}
 .rep-title{font-size:.8rem;font-weight:600;color:var(--slate);margin-bottom:10px;text-transform:uppercase;letter-spacing:.05em}
 .grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .badge{display:inline-block;background:rgba(244,122,31,.12);color:#CD661A;padding:3px 8px;border-radius:999px;font-size:.75rem;font-weight:600}
+.badge-ok{background:#E8F7EE;color:#1b5e35}
+.badge-muted{background:#EEF2F1;color:#5C6B72}
 .err{color:#b42318;font-size:.88rem;margin-top:6px}
 
 .login-wrap{

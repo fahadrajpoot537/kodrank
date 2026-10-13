@@ -5,7 +5,9 @@
   $theme = ($seo['theme'] ?? null)
     ?: (($page->slug ?? '') === 'web-design-and-development-services' ? 'web-development' : 'digital-marketing');
 @endphp
-@if($theme === 'theme-html')
+@if(in_array($page->slug ?? '', ['privacy-policy', 'terms-and-conditions'], true))
+  @include('services.partials.legal.plain')
+@elseif($theme === 'theme-html')
   {{-- KodRank shared hero + site nav/footer; theme HTML is body-only --}}
   @include('services.partials.shared.dm.hero', ['h' => $s['hero'] ?? []])
   @include('services.partials.theme-html.body')

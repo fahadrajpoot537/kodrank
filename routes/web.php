@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\BlogPostController as AdminBlogPostController;
 use App\Http\Controllers\Admin\BlogSettingsController as AdminBlogSettingsController;
 use App\Http\Controllers\Admin\CacheController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\LegalPageController;
 use App\Http\Controllers\Admin\MessageController;
 use App\Http\Controllers\Admin\NewsletterSubscriberController as AdminNewsletterSubscriberController;
 use App\Http\Controllers\Admin\SectionController;
@@ -165,6 +166,13 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('/newsletter', [AdminNewsletterSubscriberController::class, 'index'])->name('newsletter.index');
         Route::post('/newsletter/{subscriber}/toggle', [AdminNewsletterSubscriberController::class, 'toggle'])->name('newsletter.toggle');
         Route::delete('/newsletter/{subscriber}', [AdminNewsletterSubscriberController::class, 'destroy'])->name('newsletter.destroy');
+
+        Route::get('/legal/{slug}', [LegalPageController::class, 'edit'])
+            ->where('slug', 'privacy-policy|terms-and-conditions')
+            ->name('legal.edit');
+        Route::put('/legal/{slug}', [LegalPageController::class, 'update'])
+            ->where('slug', 'privacy-policy|terms-and-conditions')
+            ->name('legal.update');
 
         Route::get('/service-pages', [AdminServicePageController::class, 'index'])->name('service-pages.index');
         Route::get('/service-pages/create', [AdminServicePageController::class, 'create'])->name('service-pages.create');

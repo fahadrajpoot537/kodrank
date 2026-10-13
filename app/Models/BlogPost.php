@@ -40,6 +40,7 @@ class BlogPost extends Model
         'og_image_alt',
         'read_minutes',
         'published_at',
+        'newsletter_sent_at',
         'is_published',
         'is_featured',
         'is_editors_pick',
@@ -51,6 +52,7 @@ class BlogPost extends Model
     {
         return [
             'published_at' => 'datetime',
+            'newsletter_sent_at' => 'datetime',
             'table_of_contents' => 'array',
             'is_published' => 'boolean',
             'is_featured' => 'boolean',

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\BlogCategory;
 use App\Models\BlogPost;
+use App\Services\LeadNotificationService;
 use App\Support\BlogAuthors;
 use App\Support\BlogMedia;
 use App\Support\UrlRedirector;
@@ -51,11 +52,14 @@ class BlogPostController extends Controller
         $data['slug'] = $this->uniqueSlug($data['slug'] ?: Str::slug($data['title']));
         $data = $this->applyUploads($request, $data);
 
-        BlogPost::query()->create($data);
+        $post = BlogPost::query()->create($data);
+        $mailNote = $post->is_published
+            ? app(LeadNotificationService::class)->sendNewPostEmails($post)
+            : 'skipped';
 
         return redirect()
             ->route('admin.blog.posts.index')
-            ->with('success', 'Blog post created.');
+            ->with('success', $this->savedMessage('Blog post created.', $mailNote));
     }
 
     public function edit(BlogPost $post): View
@@ -71,21 +75,28 @@ class BlogPostController extends Controller
     public function update(Request $request, BlogPost $post): RedirectResponse
     {
         $data = $this->validated($request, $post);
+        $wasPublished = (bool) $post->is_published;
         $oldSlug = $post->slug;
         $data['slug'] = $this->uniqueSlug($data['slug'] ?: Str::slug($data['title']), $post->id);
         $data = $this->applyUploads($request, $data, $post);
 
         $post->update($data);
+        $post->refresh();
 
         if ($oldSlug !== $post->slug) {
             UrlRedirector::remember('/blogs/'.$oldSlug, '/blogs/'.$post->slug);
         }
 
+        $mailNote = (! $wasPublished && $post->is_published)
+            ? app(LeadNotificationService::class)->sendNewPostEmails($post)
+            : 'skipped';
+        $base = $oldSlug !== $post->slug
+            ? 'Blog post updated. /blogs/'.$oldSlug.' now redirects to the new slug.'
+            : 'Blog post updated.';
+
         return redirect()
             ->route('admin.blog.posts.index')
-            ->with('success', $oldSlug !== $post->slug
-                ? 'Blog post updated. /blogs/'.$oldSlug.' now redirects to the new slug.'
-                : 'Blog post updated.');
+            ->with('success', $this->savedMessage($base, $mailNote));
     }
 
     public function destroy(BlogPost $post): RedirectResponse
@@ -194,6 +205,15 @@ class BlogPostController extends Controller
         }
 
         return $data;
+    }
+
+    private function savedMessage(string $base, string $mailNote): string
+    {
+        return match ($mailNote) {
+            'sent' => $base.' Subscribers were emailed about this article.',
+            'failed' => $base.' The subscriber email could not be sent. Save the post again while it is published to retry.',
+            default => $base,
+        };
     }
 
     private function uniqueSlug(string $slug, ?int $ignoreId = null): string

@@ -1,18 +1,26 @@
 /* Industries hub — from theme/newone/kodrank-industries-menu.html */
 .page-service .industries-hub-hero{
-  padding:clamp(48px,7vw,96px) 0 clamp(28px,4vw,48px);
-  background:#fff;
+  background:#0A1A22;
+  color:#fff;
+  padding:calc(72px + clamp(28px,4vw,48px)) 0 clamp(48px,7vw,88px);
 }
 .page-service .industries-hub-hero .eyebrow{
   display:inline-block;font-size:.75rem;font-weight:500;letter-spacing:.08em;
-  text-transform:uppercase;color:#CD661A;margin-bottom:16px;
+  text-transform:uppercase;color:#F47A1F;margin-bottom:16px;
 }
 .page-service .industries-hub-hero h1{
-  font-size:clamp(2rem,5vw,3.4rem);font-weight:800;letter-spacing:-.02em;line-height:1.08;max-width:16ch;color:#0D2029;margin:0;
+  font-size:clamp(2rem,5vw,3.4rem);font-weight:800;letter-spacing:-.02em;line-height:1.08;max-width:16ch;color:#fff;margin:0;
 }
-.page-service .industries-hub-hero h1 span{color:#CD661A}
+.page-service .industries-hub-hero h1 span{color:#F47A1F}
 .page-service .industries-hub-hero .lede{
-  margin-top:20px;color:#4B5B62;font-size:1.05rem;max-width:52ch;line-height:1.6;
+  margin-top:20px;color:#B7CBD2;font-size:1.05rem;max-width:52ch;line-height:1.6;
+}
+.page-service .industries-hub-hero .breadcrumb a,
+.page-service .industries-hub-hero .breadcrumb li:not(:last-child)::after{
+  color:#B7CBD2;
+}
+.page-service .industries-hub-hero .breadcrumb [aria-current="page"]{
+  color:#F47A1F;
 }
 .page-service .industries-hub-hero .promo-stats{display:flex;gap:26px;margin-top:26px}
 .page-service .industries-hub-hero .promo-stats .st b{display:block;font-size:1.5rem;font-weight:800;color:#CD661A;line-height:1}

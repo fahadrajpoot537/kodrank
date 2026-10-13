@@ -187,3 +187,88 @@
     padding-inline:var(--pad,18px);
   }
 }
+
+/* Plain white document: title + body only */
+html body.page-legal{
+  background:#fff;
+}
+html body.page-legal .plain-doc{
+  background:#fff;
+  color:#1a1a1a;
+  padding:calc(72px + 36px) 0 80px;
+}
+html body.page-legal .plain-doc-inner{
+  max-width:var(--maxw,1600px);
+  margin:0 auto;
+  padding-inline:var(--pad,clamp(18px,3.2vw,40px));
+}
+html body.page-legal .plain-doc h1,
+html body.page-legal .plain-doc-body{
+  width:100%;
+  max-width:none;
+  margin-left:0;
+  margin-right:0;
+}
+html body.page-legal.page-service header.nav,
+html body.page-legal.page-service header.nav:not(.stuck){
+  background:#fff !important;
+  background-color:#fff !important;
+  background-image:none !important;
+  border-bottom:1px solid #E1E9E5 !important;
+}
+html body.page-legal header.nav .brand,
+html body.page-legal header.nav .nav-links > a,
+html body.page-legal header.nav .nav-mega-trigger{
+  color:#4B5B62 !important;
+}
+html body.page-legal header.nav .nav-links > a:hover,
+html body.page-legal header.nav .nav-mega-trigger:hover,
+html body.page-legal header.nav .has-mega:hover .nav-mega-trigger{
+  color:#0D2029 !important;
+}
+html body.page-legal header.nav .brand-logo{
+  filter:none !important;
+}
+html body.page-legal header.nav .nav-burger span{
+  background:#0D2029 !important;
+}
+html body.page-legal .plain-doc h1{
+  font-size:2rem;
+  font-weight:700;
+  line-height:1.25;
+  letter-spacing:0;
+  color:#111;
+  margin:0 0 28px;
+}
+html body.page-legal .plain-doc-body section{
+  padding:0 !important;
+  margin:0 0 1.25rem;
+  background:transparent !important;
+  color:inherit;
+}
+html body.page-legal .plain-doc-body h2,
+html body.page-legal .plain-doc-body h3{
+  font-size:1.25rem;
+  font-weight:700;
+  letter-spacing:0;
+  line-height:1.35;
+  color:#111;
+  margin:1.5rem 0 .5rem;
+}
+html body.page-legal .plain-doc-body p{
+  margin:0 0 .9rem;
+  color:#222;
+  line-height:1.7;
+}
+html body.page-legal .plain-doc-body a{
+  color:#0b57d0;
+  text-decoration:underline;
+}
+html body.page-legal .plain-doc-body ul,
+html body.page-legal .plain-doc-body ol{
+  margin:0 0 1rem 1.25rem;
+  color:#222;
+}
+html body.page-legal .plain-doc-body li{margin:0 0 .35rem}
+html body.page-legal .plain-doc-body img{max-width:100%;height:auto}
+html body.page-legal .plain-doc-body .num::after{content:" "}

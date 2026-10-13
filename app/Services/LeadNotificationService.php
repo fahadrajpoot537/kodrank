@@ -5,6 +5,9 @@ namespace App\Services;
 use App\Mail\ContactConfirmationMail;
 use App\Mail\ContactInquiryCopyMail;
 use App\Mail\NewsletterConfirmationMail;
+use App\Mail\NewsletterNewPostMail;
+use App\Models\BlogPost;
+use App\Models\NewsletterSubscriber;
 use Illuminate\Support\Facades\Mail;
 use Throwable;
 
@@ -44,6 +47,46 @@ class LeadNotificationService
             'email' => $subscriberEmail,
             'message' => 'A visitor subscribed to the KodRank insights list.',
         ]);
+    }
+
+    /**
+     * Email every active subscriber once, the first time a post is published.
+     * Returns sent, failed, or skipped.
+     */
+    public function sendNewPostEmails(BlogPost $post): string
+    {
+        if ($post->newsletter_sent_at !== null || ! $post->is_published) {
+            return 'skipped';
+        }
+
+        $emails = NewsletterSubscriber::query()
+            ->where('is_active', true)
+            ->orderBy('id')
+            ->pluck('email');
+
+        $sent = 0;
+        $failed = 0;
+        foreach ($emails as $email) {
+            $email = mb_strtolower(trim((string) $email));
+            if (! filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                continue;
+            }
+            try {
+                Mail::to($email)->send(new NewsletterNewPostMail($post));
+                $sent++;
+            } catch (Throwable $exception) {
+                $failed++;
+                report($exception);
+            }
+        }
+
+        if ($failed > 0 && $sent === 0 && $emails->isNotEmpty()) {
+            return 'failed';
+        }
+
+        $post->forceFill(['newsletter_sent_at' => now()])->saveQuietly();
+
+        return $sent > 0 ? 'sent' : 'skipped';
     }
 
     /**

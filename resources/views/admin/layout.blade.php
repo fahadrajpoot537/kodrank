@@ -14,6 +14,8 @@
       <a href="{{ route('admin.homepage.index') }}" class="{{ request()->routeIs('admin.homepage.*') || request()->routeIs('admin.sections.*') ? 'active' : '' }}">Site &amp; page content</a>
       <a href="{{ route('admin.sections.edit', 'site') }}">Site settings / logo</a>
       <a href="{{ route('admin.sections.edit', 'contact_page') }}">Contact page</a>
+      <a href="{{ route('admin.legal.edit', 'privacy-policy') }}" class="{{ request()->routeIs('admin.legal.*') && request()->route('slug') === 'privacy-policy' ? 'active' : '' }}">Privacy Policy</a>
+      <a href="{{ route('admin.legal.edit', 'terms-and-conditions') }}" class="{{ request()->routeIs('admin.legal.*') && request()->route('slug') === 'terms-and-conditions' ? 'active' : '' }}">Terms &amp; Conditions</a>
       <a href="{{ route('admin.sections.edit', 'services_index') }}">Services listing</a>
       <a href="{{ route('admin.sections.edit', 'results_page') }}">Results page</a>
       <a href="{{ route('admin.service-pages.index') }}" class="{{ request()->routeIs('admin.service-pages.*') ? 'active' : '' }}">Services &amp; sub-services</a>

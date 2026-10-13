@@ -18,6 +18,13 @@ class AppServiceProvider extends ServiceProvider
 
     public function boot(): void
     {
+        if ($this->app->environment('local')) {
+            config([
+                'services.recaptcha.site_key' => '6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI',
+                'services.recaptcha.secret_key' => '6LeIxAcTAAAAAGG-vFI1TnRWxMZNFuojJ4WifJWe',
+            ]);
+        }
+
         if (! $this->app->runningInConsole()) {
             // Keep generated URLs on the current host/port (fixes 8001 vs APP_URL mismatch)
             \Illuminate\Support\Facades\URL::forceRootUrl(request()->root());

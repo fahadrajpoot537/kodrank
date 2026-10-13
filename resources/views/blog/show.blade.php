@@ -268,11 +268,14 @@
       @if(session('newsletter_success'))
         <p class="newsletter-status" role="status">{{ session('newsletter_success') }}</p>
       @endif
+      @if($errors->any())
+        <p class="newsletter-status newsletter-error" role="alert">{{ $errors->first() }}</p>
+      @endif
     </div>
     <form class="news-form" method="post" action="{{ route('newsletter.store') }}">
       @csrf
       <input type="hidden" name="redirect_to" value="{{ url('/blogs/'.$post->slug) }}#news">
-      <input type="hidden" name="fax_number" value="" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <input type="text" name="kr_hp" value="" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;height:0;width:0;opacity:0;">
       <input type="email" name="email" value="{{ old('email') }}" placeholder="{{ $settings['newsletter_placeholder'] ?? 'you@company.com' }}" required aria-label="Email address">
       <button type="submit" class="btn btn-primary">
         Subscribe
