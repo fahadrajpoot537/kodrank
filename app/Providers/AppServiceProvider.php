@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\Models\CmsSection;
 use App\Models\ContactMessage;
 use App\Models\SeoServiceInquiry;
+use App\Models\ServicePage;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
@@ -61,6 +62,9 @@ class AppServiceProvider extends ServiceProvider
                 'unreadInquiries' => Schema::hasTable('seo_service_inquiries')
                     ? SeoServiceInquiry::query()->where('status', SeoServiceInquiry::STATUS_NEW)->count()
                     : 0,
+                'aboutPage' => Schema::hasTable('service_pages')
+                    ? ServicePage::query()->where('slug', 'about-us')->first(['id', 'slug', 'name'])
+                    : null,
             ]);
         });
     }

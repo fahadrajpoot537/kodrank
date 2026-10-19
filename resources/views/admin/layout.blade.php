@@ -16,9 +16,12 @@
       <a href="{{ route('admin.sections.edit', 'contact_page') }}">Contact page</a>
       <a href="{{ route('admin.legal.edit', 'privacy-policy') }}" class="{{ request()->routeIs('admin.legal.*') && request()->route('slug') === 'privacy-policy' ? 'active' : '' }}">Privacy Policy</a>
       <a href="{{ route('admin.legal.edit', 'terms-and-conditions') }}" class="{{ request()->routeIs('admin.legal.*') && request()->route('slug') === 'terms-and-conditions' ? 'active' : '' }}">Terms &amp; Conditions</a>
+      @if(!empty($aboutPage))
+        <a href="{{ route('admin.service-pages.content', $aboutPage) }}" class="{{ request()->routeIs('admin.service-pages.*') && optional(request()->route('page'))->slug === 'about-us' ? 'active' : '' }}">About Us</a>
+      @endif
       <a href="{{ route('admin.sections.edit', 'services_index') }}">Services listing</a>
       <a href="{{ route('admin.sections.edit', 'results_page') }}">Results page</a>
-      <a href="{{ route('admin.service-pages.index') }}" class="{{ request()->routeIs('admin.service-pages.*') ? 'active' : '' }}">Services &amp; sub-services</a>
+      <a href="{{ route('admin.service-pages.index') }}" class="{{ request()->routeIs('admin.service-pages.*') && optional(request()->route('page'))->slug !== 'about-us' ? 'active' : '' }}">Services &amp; sub-services</a>
       <a href="{{ route('admin.service-pages.create') }}">+ Add service</a>
       <a href="{{ route('admin.blog.posts.index') }}" class="{{ request()->routeIs('admin.blog.posts.*') ? 'active' : '' }}">Blog posts</a>
       <a href="{{ route('admin.blog.posts.create') }}">+ New post</a>
