@@ -143,11 +143,20 @@ class AboutUsSeeder extends Seeder
                 'sort_order' => 3,
                 'data' => [
                     'eyebrow' => '— Leadership',
-                    'title' => 'Two specialists. No layers between.',
-                    'title_html' => 'Two specialists.<br>No layers between.',
+                    'title' => 'The specialists. No layers between.',
+                    'title_html' => 'The specialists.<br>No layers between.',
                     'lede' => 'The people named below are the people who work on your project — there\'s no bench of juniors you never meet.',
                     'background_image' => 'media/about/kodrank-leadership-bg.jpg',
                     'members' => [
+                        [
+                            'name' => 'Hidayatul Haq',
+                            'role' => 'Founder · SEO Strategist',
+                            'linkedin' => 'https://www.linkedin.com/in/hidayatul-haq',
+                            'bio' => 'Founder of KodRank. Leads the search work on every project — technical audits, on-page optimization, and organic growth — with no account layer in between.',
+                            'tags' => ['SEO Strategy', 'Technical SEO'],
+                            'image' => 'media/about/hidayatul-haq.jpg',
+                            'image_position' => 'center 18%',
+                        ],
                         [
                             'name' => 'Fahad Bin Khalid',
                             'role' => 'Co-Founder · AI & Software Architect',
