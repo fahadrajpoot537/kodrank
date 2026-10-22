@@ -353,4 +353,5 @@
 })();
 </script>
 @endpush
+@include('blog.partials.lead-popup')
 @endsection

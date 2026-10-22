@@ -14,6 +14,7 @@ use App\Http\Controllers\Admin\SeoServiceInquiryController as AdminSeoServiceInq
 use App\Http\Controllers\Admin\SeoServiceMediaController;
 use App\Http\Controllers\Admin\ServicePageController as AdminServicePageController;
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\BlogLeadController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\NewsletterController;
@@ -46,6 +47,7 @@ Route::middleware('throttle:12,1')->group(function () {
     Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
     Route::post('/seo-services/inquiry', [SeoServiceInquiryController::class, 'store'])->name('seo-services.inquiry.store');
     Route::post('/newsletter/subscribe', [NewsletterController::class, 'store'])->name('newsletter.store');
+    Route::post('/blogs/lead', [BlogLeadController::class, 'store'])->name('blog.lead.store');
 });
 
 // One-click cache clear (local + live). Use ?key= from .env CACHE_CLEAR_KEY
