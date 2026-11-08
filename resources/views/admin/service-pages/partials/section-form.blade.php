@@ -58,6 +58,8 @@
         <p class="admin-hint">Section photo is the background on “The numbers our redesigns move”. Upload a new image here, or leave the path blank to keep the current photo. The dark color layer stays on top of the image.</p>
       @elseif($page->slug === 'real-estate-seo-services')
         <p class="admin-hint">Section photo is the background on “Rankings Are Nice. Leads Pay the Bills.” Upload a new image here, or leave the path blank to keep the current photo. The dark color layer stays on top of the image.</p>
+      @elseif($page->slug === 'law-firm-seo-services')
+        <p class="admin-hint">Section photo is the background on “How it works”. Upload a new image here, or leave the path blank to keep the current photo. The dark color layer stays on top of the image. The banner photo is on the Hero section.</p>
       @elseif($page->slug === 'restaurant-seo-services')
         <p class="admin-hint">Section photo is the background on the “What better rankings look like on the calendar” card. Upload a new image here, or leave the path blank to keep the current photo. The dark color layer stays on top of the image.</p>
       @elseif($page->slug === 'ecommerce-seo-services')

@@ -298,6 +298,22 @@ class ThemeHtmlImporter
                 }
             }
 
+            // Law-firm style: .tnum + .tlbl
+            if ($badges === [] && preg_match_all(
+                '/<(?:div|span)\b[^>]*class=["\'][^"\']*\btnum\b[^"\']*["\'][^>]*>(.*?)<\/(?:div|span)>\s*<(?:div|span)\b[^>]*class=["\'][^"\']*\btlbl\b[^"\']*["\'][^>]*>(.*?)<\/(?:div|span)>/is',
+                $chunk,
+                $tnumRows,
+                PREG_SET_ORDER
+            )) {
+                foreach ($tnumRows as $row) {
+                    $num = trim(html_entity_decode(strip_tags($row[1]), ENT_QUOTES | ENT_HTML5, 'UTF-8'));
+                    $label = trim(html_entity_decode(strip_tags($row[2]), ENT_QUOTES | ENT_HTML5, 'UTF-8'));
+                    if ($num !== '' || $label !== '') {
+                        $badges[] = ['num' => $num, 'label' => $label];
+                    }
+                }
+            }
+
             // Nested .hero-trust children: <div><strong>187%</strong><span>label</span></div>
             if ($badges === [] && preg_match_all(
                 '/<(?:div|li)\b[^>]*>\s*<(?:strong|b)>(.*?)<\/(?:strong|b)>\s*<span\b[^>]*>(.*?)<\/span>\s*<\/(?:div|li)>/is',

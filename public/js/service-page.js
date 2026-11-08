@@ -467,6 +467,7 @@
         document.body.classList.contains('page-restseo') ||
         document.body.classList.contains('page-hcseo') ||
         document.body.classList.contains('page-reseo') ||
+        document.body.classList.contains('page-lawseo') ||
         // Niche SEO motion pages only — DM hub (#services) uses swipe-up stack
         (!isDmHub && document.body.classList.contains('page-dm-motion'));
       const isAeo = document.body.classList.contains('page-aeo');
@@ -744,6 +745,7 @@
         if (document.body.classList.contains('page-redesign') && track.closest('#pain')) return;
         if (document.body.classList.contains('page-gpseo') && track.closest('#problem')) return;
         if (document.body.classList.contains('page-restseo') && track.closest('section.sec-ink') && track.querySelector(':scope > .pain')) return;
+        if (document.body.classList.contains('page-lawseo') && track.closest('#pain, #why')) return;
         seenCar.add(track);
         track.setAttribute('data-thm-carousel', '1');
       };
@@ -826,6 +828,36 @@
           grid.setAttribute('data-thm-stack', '1');
           grid.removeAttribute('data-thm-carousel');
           grid.classList.remove('thm-mobile-carousel');
+        });
+      }
+
+      // Law firm SEO: pain + why swipe up; services grid and results comparison carousel.
+      if (document.body.classList.contains('page-lawseo')) {
+        Array.prototype.forEach.call(root.querySelectorAll('#pain .grid.g3, #why .grid.g3'), (grid) => {
+          if (skipCommon(grid)) return;
+          seenStack.add(grid);
+          grid.setAttribute('data-thm-stack', '1');
+          grid.removeAttribute('data-thm-carousel');
+          grid.classList.remove('thm-mobile-carousel', 'page-svc-carousel');
+        });
+        Array.prototype.forEach.call(root.querySelectorAll('#services .grid.g3'), (grid) => {
+          seenStack.delete(grid);
+          grid.removeAttribute('data-thm-stack');
+          grid.classList.remove('page-svc-stack');
+          grid.setAttribute('data-thm-carousel', '1');
+        });
+        Array.prototype.forEach.call(root.querySelectorAll('#results .cmp'), (grid) => {
+          if (skipCommon(grid)) return;
+          seenStack.delete(grid);
+          grid.removeAttribute('data-thm-stack');
+          grid.classList.remove('page-svc-stack');
+          grid.setAttribute('data-thm-carousel', '1');
+        });
+        // Process steps: page JS stacks them only on phones. Keep a real grid above that.
+        Array.prototype.forEach.call(root.querySelectorAll('#process .steps'), (grid) => {
+          seenStack.delete(grid);
+          grid.removeAttribute('data-thm-stack');
+          grid.classList.remove('page-svc-stack');
         });
       }
 

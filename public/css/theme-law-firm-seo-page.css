@@ -1,0 +1,104 @@
+/**
+ * Law Firm SEO — page-only extras.
+ * Loaded only via seo.extra_css on /law-firm-seo-services.
+ */
+body.page-lawseo .law-theme-page.theme-html-root {
+  /* namespace hook */
+}
+
+body.page-lawseo .hero-badges.hero-trust,
+body.page-lawseo .hero-trust.hero-badges {
+  margin-top: 1.25rem;
+}
+
+/* Phone: section title on top, intro under it, then a gap before the cards */
+@media (max-width: 900px) {
+  html body.page-lawseo.page-service .law-theme-page .head-grid {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) !important;
+    align-items: start !important;
+    gap: 14px !important;
+  }
+
+  html body.page-lawseo.page-service .law-theme-page .head-grid > * {
+    width: 100% !important;
+    max-width: none !important;
+    min-width: 0 !important;
+  }
+
+  html body.page-lawseo.page-service .law-theme-page .head-grid .lede {
+    margin-top: 0 !important;
+  }
+
+  html body.page-lawseo.page-service .law-theme-page .head-grid + .grid,
+  html body.page-lawseo.page-service .law-theme-page .head-grid + .stats,
+  html body.page-lawseo.page-service .law-theme-page .head-grid + .steps,
+  html body.page-lawseo.page-service .law-theme-page .head-grid + .cmp {
+    margin-top: 32px !important;
+  }
+
+  html body.page-lawseo.page-service .law-theme-page .stats {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 22px 16px !important;
+  }
+}
+
+/* Why cards sit on a dark face — heading and body copy stay white */
+html body.page-lawseo.page-service .law-theme-page #why .feat h3,
+html body.page-lawseo.page-service .law-theme-page #why .feat p {
+  color: #fff !important;
+}
+
+/* Process: card faces, 3 / 2 / 1. Phone swipe-up is applied in theme-law-firm-seo.js */
+html body.page-lawseo.page-service .law-theme-page #process .steps {
+  display: grid !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  gap: 18px !important;
+  margin-top: 46px !important;
+}
+
+html body.page-lawseo.page-service .law-theme-page #process .step,
+html body.page-lawseo.page-theme-html .law-theme-page #process .page-svc-stack .step,
+html body.page-lawseo.page-theme-html .law-theme-page #process .svc-stack-item > .step {
+  position: relative !important;
+  background: #122832 !important;
+  background-color: #122832 !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-radius: 18px !important;
+  padding: 22px 20px 24px !important;
+  box-shadow: 0 12px 32px -18px rgba(0, 0, 0, 0.55) !important;
+  color: #fff !important;
+  height: 100%;
+}
+
+html body.page-lawseo.page-service .law-theme-page #process .step::before {
+  display: none !important;
+}
+
+html body.page-lawseo.page-service .law-theme-page #process .step .sn {
+  color: #F47A1F !important;
+}
+
+html body.page-lawseo.page-service .law-theme-page #process .step h3,
+html body.page-lawseo.page-service .law-theme-page #process .step p {
+  color: #fff !important;
+}
+
+@media (max-width: 980px) {
+  html body.page-lawseo.page-service .law-theme-page #process .steps {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+}
+
+@media (max-width: 640px) {
+  html body.page-lawseo.page-service .law-theme-page #process .steps.page-svc-stack {
+    display: block !important;
+    grid-template-columns: none !important;
+  }
+
+  html body.page-lawseo.page-service .law-theme-page #process .steps .svc-stack-item {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+}

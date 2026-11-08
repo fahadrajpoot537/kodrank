@@ -90,6 +90,13 @@ class ServiceSectionPhoto
                 'html body.page-restseo.page-service .rest-theme-page.theme-html-root #results .results',
             ],
         ],
+        'law-firm-seo-services' => [
+            'section' => 'body',
+            'mode' => 'cover',
+            'selectors' => [
+                'html body.page-lawseo.page-service .law-theme-page.theme-html-root #process .proc-bg',
+            ],
+        ],
         'b2b-seo-services' => [
             'section' => 'body',
             'mode' => 'fade',

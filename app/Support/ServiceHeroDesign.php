@@ -28,6 +28,7 @@ final class ServiceHeroDesign
             'wordpress-seo-services',
             'guest-posting-services',
             'restaurant-seo-services',
+            'law-firm-seo-services',
             'healthcare-seo-services',
             'real-estate-seo-services',
             'web-design-and-development-services',
