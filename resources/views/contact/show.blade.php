@@ -1,7 +1,7 @@
 @extends('layouts.site')
 
 @push('head')
-<link rel="stylesheet" href="{{ asset('css/contact-page.css') }}?v={{ @filemtime(public_path('css/contact-page.css')) ?: time() }}">
+<link rel="stylesheet" href="{{ \App\Support\PublicCss::href('css/contact-page.css') }}">
 @endpush
 
 @section('content')

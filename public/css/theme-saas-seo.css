@@ -148,7 +148,7 @@
 .saasseo-theme-page .cmp .tag{font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;font-weight:600;margin-bottom:6px}
 .saasseo-theme-page .cmp.typ .tag{color:#7B929A}
 .saasseo-theme-page .cmp.best .tag{color:var(--signal)}
-.saasseo-theme-page .cmp h4{color:#fff;font-size:1.35rem;font-weight:700;margin-bottom:22px}
+.saasseo-theme-page .cmp h4{color:#fff !important;font-size:1.35rem;font-weight:700;margin-bottom:22px}
 .saasseo-theme-page .cmp ul{list-style:none}
 .saasseo-theme-page .cmp li{display:flex;gap:12px;align-items:flex-start;padding:11px 0;font-size:.95rem;color:#C6D8DE;border-top:1px solid rgba(255,255,255,.06)}
 .saasseo-theme-page .cmp li:first-child{border-top:none}

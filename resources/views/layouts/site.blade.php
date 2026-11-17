@@ -66,10 +66,10 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"></noscript>
-<link rel="stylesheet" href="{{ asset('css/home.css') }}?v={{ @filemtime(public_path('css/home.css')) ?: time() }}">
-<link rel="stylesheet" href="{{ asset('css/home-extra.css') }}?v={{ @filemtime(public_path('css/home-extra.css')) ?: time() }}">
-<link rel="stylesheet" href="{{ asset('css/page-industries.css') }}?v={{ @filemtime(public_path('css/page-industries.css')) ?: time() }}" media="print" onload="this.media='all'">
-<noscript><link rel="stylesheet" href="{{ asset('css/page-industries.css') }}?v={{ @filemtime(public_path('css/page-industries.css')) ?: time() }}"></noscript>
+<link rel="stylesheet" href="{{ \App\Support\PublicCss::href('css/home.css') }}">
+<link rel="stylesheet" href="{{ \App\Support\PublicCss::href('css/home-extra.css') }}">
+<link rel="stylesheet" href="{{ \App\Support\PublicCss::href('css/page-industries.css') }}" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="{{ \App\Support\PublicCss::href('css/page-industries.css') }}"></noscript>
 @include('partials.clarity')
 @include('partials.wapp')
 @stack('head')

@@ -135,8 +135,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"></noscript>
-<link rel="stylesheet" href="{{ asset('css/home.css') }}?v={{ @filemtime(public_path('css/home.css')) ?: time() }}">
-<link rel="stylesheet" href="{{ asset('css/home-extra.css') }}?v={{ @filemtime(public_path('css/home-extra.css')) ?: time() }}">
+<link rel="stylesheet" href="{{ \App\Support\PublicCss::href('css/home.css') }}">
+<link rel="stylesheet" href="{{ \App\Support\PublicCss::href('css/home-extra.css') }}">
 @php
   $serviceTheme = ($seo['theme'] ?? null)
     ?: (($page->slug ?? '') === 'web-design-and-development-services' ? 'web-development' : 'digital-marketing');
@@ -173,83 +173,83 @@
 @endphp
 @if($serviceTheme === 'theme-html')
   {{-- KodRank hero styles; theme CSS is scoped so it cannot restyle nav/footer/hero --}}
-  <link rel="stylesheet" href="{{ asset('css/service-digital-marketing.css') }}?v={{ @filemtime(public_path('css/service-digital-marketing.css')) ?: time() }}">
+  <link rel="stylesheet" href="{{ \App\Support\PublicCss::href('css/service-digital-marketing.css') }}">
 @elseif(in_array($serviceTheme, $standaloneThemes, true))
   {{-- standalone component sheet only --}}
 @elseif($cssTheme === 'web-development')
-  <link rel="stylesheet" href="{{ asset('css/service-digital-marketing.css') }}?v={{ @filemtime(public_path('css/service-digital-marketing.css')) ?: time() }}">
-  <link rel="stylesheet" href="{{ asset('css/service-web-development.css') }}?v={{ @filemtime(public_path('css/service-web-development.css')) ?: time() }}">
-  <link rel="stylesheet" href="{{ asset('css/service-web-extra.css') }}?v={{ @filemtime(public_path('css/service-web-extra.css')) ?: time() }}">
+  <link rel="stylesheet" href="{{ \App\Support\PublicCss::href('css/service-digital-marketing.css') }}">
+  <link rel="stylesheet" href="{{ \App\Support\PublicCss::href('css/service-web-development.css') }}">
+  <link rel="stylesheet" href="{{ \App\Support\PublicCss::href('css/service-web-extra.css') }}">
 @else
-  <link rel="stylesheet" href="{{ asset('css/service-digital-marketing.css') }}?v={{ @filemtime(public_path('css/service-digital-marketing.css')) ?: time() }}">
+  <link rel="stylesheet" href="{{ \App\Support\PublicCss::href('css/service-digital-marketing.css') }}">
 @endif
-<link rel="stylesheet" href="{{ asset('css/service-page-extra.css') }}?v={{ @filemtime(public_path('css/service-page-extra.css')) ?: time() }}">
+<link rel="stylesheet" href="{{ \App\Support\PublicCss::href('css/service-page-extra.css') }}">
 @if($serviceTheme === 'about')
-  <link rel="stylesheet" href="{{ asset('css/service-about.css') }}?v={{ @filemtime(public_path('css/service-about.css')) ?: time() }}">
+  <link rel="stylesheet" href="{{ \App\Support\PublicCss::href('css/service-about.css') }}">
 @endif
 @if($serviceTheme === 'wordpress')
-  <link rel="stylesheet" href="{{ asset('css/service-wordpress.css') }}?v={{ @filemtime(public_path('css/service-wordpress.css')) ?: time() }}">
+  <link rel="stylesheet" href="{{ \App\Support\PublicCss::href('css/service-wordpress.css') }}">
 @endif
 @if($serviceTheme === 'ai-chatbot')
-  <link rel="stylesheet" href="{{ asset('css/service-ai-chatbot.css') }}?v={{ @filemtime(public_path('css/service-ai-chatbot.css')) ?: time() }}">
+  <link rel="stylesheet" href="{{ \App\Support\PublicCss::href('css/service-ai-chatbot.css') }}">
 @endif
 @if($serviceTheme === 'cms')
-  <link rel="stylesheet" href="{{ asset('css/service-cms.css') }}?v={{ @filemtime(public_path('css/service-cms.css')) ?: time() }}">
+  <link rel="stylesheet" href="{{ \App\Support\PublicCss::href('css/service-cms.css') }}">
 @endif
 @if($serviceTheme === 'website-redesign')
-  <link rel="stylesheet" href="{{ asset('css/service-redesign.css') }}?v={{ @filemtime(public_path('css/service-redesign.css')) ?: time() }}">
+  <link rel="stylesheet" href="{{ \App\Support\PublicCss::href('css/service-redesign.css') }}">
 @endif
 @if($serviceTheme === 'shopify')
-  <link rel="stylesheet" href="{{ asset('css/service-shopify.css') }}?v={{ @filemtime(public_path('css/service-shopify.css')) ?: time() }}">
+  <link rel="stylesheet" href="{{ \App\Support\PublicCss::href('css/service-shopify.css') }}">
 @endif
 {{-- Nav Industries mega hide/show lives in page-industries.css — needed on every service page --}}
-<link rel="stylesheet" href="{{ asset('css/page-industries.css') }}?v={{ @filemtime(public_path('css/page-industries.css')) ?: time() }}">
+<link rel="stylesheet" href="{{ \App\Support\PublicCss::href('css/page-industries.css') }}">
 @if($serviceTheme === 'electrician')
-  <link rel="stylesheet" href="{{ asset('css/service-electrician.css') }}?v={{ @filemtime(public_path('css/service-electrician.css')) ?: time() }}">
+  <link rel="stylesheet" href="{{ \App\Support\PublicCss::href('css/service-electrician.css') }}">
 @endif
 @if($serviceTheme === 'saas-development')
-  <link rel="stylesheet" href="{{ asset('css/service-saas-development.css') }}?v={{ @filemtime(public_path('css/service-saas-development.css')) ?: time() }}">
+  <link rel="stylesheet" href="{{ \App\Support\PublicCss::href('css/service-saas-development.css') }}">
 @endif
 @if($serviceTheme === 'restaurant-seo')
-  <link rel="stylesheet" href="{{ asset('css/service-restaurant-seo.css') }}?v={{ @filemtime(public_path('css/service-restaurant-seo.css')) ?: time() }}">
+  <link rel="stylesheet" href="{{ \App\Support\PublicCss::href('css/service-restaurant-seo.css') }}">
 @endif
 @if($serviceTheme === 'real-estate-seo')
-  <link rel="stylesheet" href="{{ asset('css/service-real-estate-seo.css') }}?v={{ @filemtime(public_path('css/service-real-estate-seo.css')) ?: time() }}">
+  <link rel="stylesheet" href="{{ \App\Support\PublicCss::href('css/service-real-estate-seo.css') }}">
 @endif
 @if($serviceTheme === 'healthcare-seo')
-  <link rel="stylesheet" href="{{ asset('css/service-healthcare-seo.css') }}?v={{ @filemtime(public_path('css/service-healthcare-seo.css')) ?: time() }}">
+  <link rel="stylesheet" href="{{ \App\Support\PublicCss::href('css/service-healthcare-seo.css') }}">
 @endif
 @if($serviceTheme === 'guest-posting')
-  <link rel="stylesheet" href="{{ asset('css/service-guest-posting.css') }}?v={{ @filemtime(public_path('css/service-guest-posting.css')) ?: time() }}">
+  <link rel="stylesheet" href="{{ \App\Support\PublicCss::href('css/service-guest-posting.css') }}">
 @endif
 @if($serviceTheme === 'legal')
-  <link rel="stylesheet" href="{{ asset('css/page-legal.css') }}?v={{ @filemtime(public_path('css/page-legal.css')) ?: time() }}">
+  <link rel="stylesheet" href="{{ \App\Support\PublicCss::href('css/page-legal.css') }}">
 @endif
 @if(!empty($seo['css']) && $serviceTheme !== 'legal')
-  <link rel="stylesheet" href="{{ asset($seo['css']) }}?v={{ @filemtime(public_path($seo['css'])) ?: time() }}">
+  <link rel="stylesheet" href="{{ \App\Support\PublicCss::href($seo['css']) }}">
 @endif
 {{-- Non-theme-html page polish: early is fine. theme-html extra_css loads after mobile (below). --}}
 @if($extraCssRel !== '' && $serviceTheme !== 'legal' && $serviceTheme !== 'theme-html')
-  <link rel="stylesheet" href="{{ asset($extraCssRel) }}?v={{ @filemtime(public_path($extraCssRel)) ?: time() }}">
+  <link rel="stylesheet" href="{{ \App\Support\PublicCss::href($extraCssRel) }}">
 @endif
 @if(\App\Support\WpRefDesign::appliesTo($page->slug ?? '') && ($page->slug ?? '') !== 'off-page-seo-services')
-  <link rel="stylesheet" href="{{ asset('css/theme-webdev-ref.css') }}?v={{ @filemtime(public_path('css/theme-webdev-ref.css')) ?: time() }}">
+  <link rel="stylesheet" href="{{ \App\Support\PublicCss::href('css/theme-webdev-ref.css') }}">
 @endif
 {{-- Sticky stack CSS (Blade pages + theme-html) --}}
-<link rel="stylesheet" href="{{ asset('css/service-stack.css') }}?v={{ @filemtime(public_path('css/service-stack.css')) ?: time() }}">
+<link rel="stylesheet" href="{{ \App\Support\PublicCss::href('css/service-stack.css') }}">
 {{-- WP reference mobile file (never previously linked) --}}
 @if(($page->slug ?? '') === 'wordpress-development-services')
-  <link rel="stylesheet" href="{{ asset('css/theme-wordpress-development-mobile.css') }}?v={{ @filemtime(public_path('css/theme-wordpress-development-mobile.css')) ?: time() }}">
+  <link rel="stylesheet" href="{{ \App\Support\PublicCss::href('css/theme-wordpress-development-mobile.css') }}">
 @endif
 {{-- Mobile/tablet carousel + stack — then page polish so compare/process overrides win --}}
 @if($serviceTheme === 'theme-html' || \App\Support\WpRefDesign::appliesTo($page->slug ?? ''))
-  <link rel="stylesheet" href="{{ asset('css/theme-html-mobile.css') }}?v={{ @filemtime(public_path('css/theme-html-mobile.css')) ?: time() }}">
+  <link rel="stylesheet" href="{{ \App\Support\PublicCss::href('css/theme-html-mobile.css') }}">
 @endif
 @if($extraCssRel !== '' && $serviceTheme === 'theme-html')
-  <link rel="stylesheet" href="{{ asset($extraCssRel) }}?v={{ @filemtime(public_path($extraCssRel)) ?: time() }}">
+  <link rel="stylesheet" href="{{ \App\Support\PublicCss::href($extraCssRel) }}">
 @endif
 @if(\App\Support\ServiceHeroDesign::appliesTo($page->slug ?? null))
-  <link rel="stylesheet" href="{{ asset('css/service-hero-unified.css') }}?v={{ @filemtime(public_path('css/service-hero-unified.css')) ?: time() }}">
+  <link rel="stylesheet" href="{{ \App\Support\PublicCss::href('css/service-hero-unified.css') }}">
 @endif
 @include('partials.clarity')
 @include('partials.wapp')

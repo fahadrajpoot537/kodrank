@@ -480,8 +480,7 @@ class CmsPageDefaults
     }
 
     /**
-     * Industries mega + hub cards. Each URL maps to an existing service page
-     * (Law Firm SEO has no dedicated page yet, so it uses the SEO hub).
+     * Industries mega + hub cards. Each URL maps to an existing service page.
      *
      * @return list<array{title:string, body:string, url:string}>
      */
@@ -490,7 +489,7 @@ class CmsPageDefaults
         return [
             ['title' => 'B2B SEO', 'body' => 'Search strategies that turn traffic into qualified pipeline.', 'url' => '/b2b-seo-services'],
             ['title' => 'Real Estate SEO', 'body' => 'Rank listings and capture high-intent buyers locally.', 'url' => '/real-estate-seo-services'],
-            ['title' => 'Law Firm SEO', 'body' => 'Own your practice areas and win case-ready clients.', 'url' => '/digital-marketing-services'],
+            ['title' => 'Law Firm SEO', 'body' => 'Own your practice areas and win case-ready clients.', 'url' => '/law-firm-seo-services'],
             ['title' => 'SaaS SEO', 'body' => 'Content and search engineered to grow recurring revenue.', 'url' => '/saas-seo-services'],
             ['title' => 'SaaS Software Development', 'body' => 'Custom SaaS products built to ship and scale.', 'url' => '/saas-software-development-services'],
             ['title' => 'Ecommerce SEO', 'body' => 'Grow product visibility and organic store revenue.', 'url' => '/ecommerce-seo-services'],

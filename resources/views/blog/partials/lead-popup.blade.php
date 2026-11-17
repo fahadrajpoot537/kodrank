@@ -1,5 +1,5 @@
 @push('head')
-<link rel="stylesheet" href="{{ asset('css/blog-lead-popup.css') }}?v={{ @filemtime(public_path('css/blog-lead-popup.css')) ?: time() }}">
+<link rel="stylesheet" href="{{ \App\Support\PublicCss::href('css/blog-lead-popup.css') }}">
 @endpush
 <div class="krp-overlay" id="krp" aria-hidden="true">
   <div class="krp-modal" role="dialog" aria-modal="true" aria-labelledby="krp-title">

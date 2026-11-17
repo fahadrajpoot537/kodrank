@@ -43,7 +43,7 @@
 @endphp
 
 @push('head')
-<link rel="stylesheet" href="{{ asset('css/services-index.css') }}?v={{ @filemtime(public_path('css/services-index.css')) ?: time() }}">
+<link rel="stylesheet" href="{{ \App\Support\PublicCss::href('css/services-index.css') }}">
 @endpush
 
 @section('content')

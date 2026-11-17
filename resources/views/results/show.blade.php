@@ -1,7 +1,7 @@
 @extends('layouts.site')
 
 @push('head')
-<link rel="stylesheet" href="{{ asset('css/page-results.css') }}?v={{ @filemtime(public_path('css/page-results.css')) ?: time() }}">
+<link rel="stylesheet" href="{{ \App\Support\PublicCss::href('css/page-results.css') }}">
 @endpush
 
 @section('content')
