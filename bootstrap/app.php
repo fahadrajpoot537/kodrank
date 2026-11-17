@@ -21,6 +21,7 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->append(\App\Http\Middleware\SecurityHeaders::class);
         $middleware->append(\App\Http\Middleware\ResolveUrlRedirect::class);
         $middleware->append(\App\Http\Middleware\RecordUniqueVisitor::class);
+        $middleware->append(\App\Http\Middleware\StripInternalNofollow::class);
 
         $middleware->redirectGuestsTo('/admin/login');
         $middleware->redirectUsersTo('/admin');

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Support\HtmlNofollow;
 use App\Models\BlogCategory;
 use App\Models\BlogPost;
 use App\Services\LeadNotificationService;
@@ -185,6 +186,12 @@ class BlogPostController extends Controller
             }
         } else {
             $data['author_name'] = trim((string) ($data['author_name'] ?? '')) ?: 'KodRank';
+        }
+
+        foreach (['content_html', 'body', 'author_bio'] as $column) {
+            if (isset($data[$column]) && is_string($data[$column])) {
+                $data[$column] = HtmlNofollow::stripInternal($data[$column]);
+            }
         }
 
         return $data;
